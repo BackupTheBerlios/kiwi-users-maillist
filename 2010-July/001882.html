@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] suse-oem-preload not working
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201007051052.47342.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001876.html">
+   <LINK REL="Next"  HREF="001877.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] suse-oem-preload not working</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201007051052.47342.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] suse-oem-preload not working">javier at opensuse.org
+       </A><BR>
+    <I>Mon Jul  5 10:52:44 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001876.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+        <LI>Next message: <A HREF="001877.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1882">[ date ]</a>
+              <a href="thread.html#1882">[ thread ]</a>
+              <a href="subject.html#1882">[ subject ]</a>
+              <a href="author.html#1882">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi.
+
+Sorry for the delay.
+
+On Jueves, 1 de Julio de 2010 10:10:59 Marcus Sch&#228;fer escribi&#243;:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; Thanks, no lang=... variable. Steffen could you please take a look
+</I>&gt;<i> &gt;&gt; at this one ? The appliance was built on 11.3 and somehow the lang
+</I>&gt;<i> &gt;&gt; variable is not part of the cmdline which works with 11.2. Did you
+</I>&gt;<i> &gt;&gt; change anything in here ?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; No changes. Maybe a missing
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; gfxbooot --change-config boot::addopt.lang=1
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; call (see gfxboot.cfg)?
+</I>&gt;<i> 
+</I>&gt;<i> the call is there. In /usr/share/kiwi/modules/KIWIConfig.sh
+</I>&gt;<i> 
+</I>&gt;<i>   function suseGFXBoot {
+</I>&gt;<i> 
+</I>&gt;<i>       ...
+</I>&gt;<i>       # update configuration for new layout only
+</I>&gt;<i>         if [ &quot;$newlayout&quot; ] &amp;&amp; [ ! -z &quot;$gfxcfg&quot; ];then
+</I>&gt;<i> 
+</I>&gt;<i>         ...
+</I>&gt;<i>           # tell the bootloader to hand over lang to cmdline
+</I>&gt;<i>                 gfxboot --config-file $gfxcfg \
+</I>&gt;<i>                     --change-config boot::addopt.lang=1
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> This is also done if the branding package is used
+</I>&gt;<i> Do you have a 11.3 installed and give it a test with a
+</I>&gt;<i> example JeOS vmx image ?
+</I>
+Sure. I can test it. I have built the suse-11.3-JeOS example. What do you 
+want me to do?
+
+Greetings,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100705/da673b05/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100705/da673b05/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001876.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+	<LI>Next message: <A HREF="001877.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1882">[ date ]</a>
+              <a href="thread.html#1882">[ thread ]</a>
+              <a href="subject.html#1882">[ subject ]</a>
+              <a href="author.html#1882">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

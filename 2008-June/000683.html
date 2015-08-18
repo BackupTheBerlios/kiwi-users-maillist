@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with Network boot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20Network%20boot%20image&In-Reply-To=%3C484DB2F1.EE07.00F0.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000680.html">
+   <LINK REL="Next"  HREF="000676.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with Network boot image</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20Network%20boot%20image&In-Reply-To=%3C484DB2F1.EE07.00F0.0%40novell.com%3E"
+       TITLE="[Kiwi-users] Issues with Network boot image">ragupta at novell.com
+       </A><BR>
+    <I>Mon Jun  9 19:17:13 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000680.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+        <LI>Next message: <A HREF="000676.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#683">[ date ]</a>
+              <a href="thread.html#683">[ thread ]</a>
+              <a href="subject.html#683">[ subject ]</a>
+              <a href="author.html#683">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>My read-only image is 340 MB because it contains OpenOffice, Acrobat Reader, Firefox, ICA client etc. But that's not an issue.
+ 
+According to my PART configuration, the read-write partition should use all the remaining space, but that's not happening. I am getting a read-write partition of just 23 MB while the rest remains as free unused space.  Do we have a way to control the size of read-write partition ?
+
+I believe if this issue can be resolved then, the initrd issue will be resolved as well.
+
+Regards,
+Rahul
+ 
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; 06/09/08 8:52 PM &gt;&gt;&gt; 
+</I>Hi,
+
+&gt;<i> I also tried using the KIWI_INITRD=/boot/initrd  option in the
+</I>&gt;<i> config.&lt;MAC&gt; file . However, what I get is a binary file of size
+</I>&gt;<i> 188928 Bytes. This does not look like a proper initrd. When I
+</I>&gt;<i> try to boot locally from the disk, it results in a kernel panic with
+</I>&gt;<i> the following errors.
+</I>
+I think the file is ok. You can run
+
+    gzip -cd initrd | cpio -it
+
+if it prints a file listing the initrd archive is ok
+
+&gt;<i> VFS: Cannot open root device &quot;hda3&quot; or unknown-block(0,0)
+</I>&gt;<i> Please append a correct &quot;root=&quot; boot option 
+</I>&gt;<i> 
+</I>&gt;<i> (Screenshot attached.)
+</I>
+I guess this is because of your size problem. I really should add
+an integrity check if the download of the file was successful
+
+&gt;<i> I tried to manually copy the initrd from the TFTP server onto the
+</I>&gt;<i> thin client but here I ran into another issue. 
+</I>
+yes the real issue :)
+
+&gt;<i> My image created a read-write partition of just 23 MB even though I have
+</I>&gt;<i> an additional 100+ MB of free disk space. Out of this 23 MB only 5 MB
+</I>&gt;<i> is available for use. So while copying the initrd file (which is 13 MB),
+</I>&gt;<i> I ran out of disk space..
+</I>
+yes that's the problem. When setting KIWI_INITRD the same happens. atftp
+silently failed downloading the file and leaves some crap which can't
+be used for booting. So to solve this make your read-write partition bigger
+and you free disk space partition smaller. You should be able to see
+this error in /var/log/boot.kiwi
+
+&gt;<i> Is there a way that I can force the read-write partition to use up all
+</I>&gt;<i> the free space that is available. My config.&lt;MAC&gt; reads like this
+</I>&gt;<i>
+</I>&gt;<i> PART=5;S;x,340;L;/,x;L;x,
+</I>
+This should result in 5MB swap, 340MB read-only and the rest is read-write.
+I don't see your 100MB free disk space setup ? With the setup above you
+should get what you want, all the rest for read-write. In case of a
+split image you should make sure to make the read-only portion not bigger
+than the read-only image itself. Everything else would be waste of paste.
+So is your compressed image portion really 340MB big ? 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000680.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+	<LI>Next message: <A HREF="000676.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#683">[ date ]</a>
+              <a href="thread.html#683">[ thread ]</a>
+              <a href="subject.html#683">[ subject ]</a>
+              <a href="author.html#683">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

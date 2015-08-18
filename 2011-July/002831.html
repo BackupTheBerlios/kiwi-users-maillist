@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problems creating an OpenSuse 11.4 installation disc
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20creating%20an%20OpenSuse%2011.4%20installation%0A%20disc&In-Reply-To=%3C4E1EF8E8.1080201%40suse.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002830.html">
+   <LINK REL="Next"  HREF="002832.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problems creating an OpenSuse 11.4 installation disc</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20creating%20an%20OpenSuse%2011.4%20installation%0A%20disc&In-Reply-To=%3C4E1EF8E8.1080201%40suse.com%3E"
+       TITLE="[Kiwi-users] Problems creating an OpenSuse 11.4 installation disc">rjschwei at suse.com
+       </A><BR>
+    <I>Thu Jul 14 16:10:48 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002830.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+</A></li>
+        <LI>Next message: <A HREF="002832.html">[Kiwi-users] kiwi: Weekly report 2011-07-10 - 2011-07-15...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2831">[ date ]</a>
+              <a href="thread.html#2831">[ thread ]</a>
+              <a href="subject.html#2831">[ subject ]</a>
+              <a href="author.html#2831">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 07/14/2011 10:02 AM, Lluis Garrido wrote:
+&gt;<i> Hi everybody,
+</I>&gt;<i>
+</I>&gt;<i> Thanks for your suggestions. I've been able to create the ISO
+</I>&gt;<i> image with the kernel-desktop but I won't be able to check it
+</I>&gt;<i> at work until next week.
+</I>&gt;<i>
+</I>&gt;<i> However, I think that it may not work (i.e. the kernel will
+</I>&gt;<i> crash at boot) since the problem has been solved in an
+</I>&gt;<i> updated kernel (available in the update repository).
+</I>&gt;<i>
+</I>&gt;<i> Is there any possibility of installing the packages available in
+</I>&gt;<i> the update repository ? I've tried to change the lines of
+</I>&gt;<i> config.xml that say
+</I>&gt;<i>
+</I>
+Needs to look as follows;
+
+&lt;repository type=&quot;yast2&quot;&gt;
+   &lt;source path=&quot;<A HREF="opensuse://11.4/repo/oss/">opensuse://11.4/repo/oss/</A>&quot;/&gt;
+&lt;/repository&gt;
+&lt;repository type=&quot;rpm-md&quot;&gt;
+   &lt;source path=&quot;<A HREF="opensuse://11.4/repo/update/">opensuse://11.4/repo/update/</A>&quot;/&gt;
+&lt;/repository&gt;
+
+
+BTW, some of the examples that are in the kiwi-doc package show how to 
+specify multiple repositories.
+
+Later,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweik at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002830.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+</A></li>
+	<LI>Next message: <A HREF="002832.html">[Kiwi-users] kiwi: Weekly report 2011-07-10 - 2011-07-15...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2831">[ date ]</a>
+              <a href="thread.html#2831">[ thread ]</a>
+              <a href="subject.html#2831">[ subject ]</a>
+              <a href="author.html#2831">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

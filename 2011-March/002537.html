@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi or package issue?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3CAANLkTi%3D9va9TpE4%2Bm%3D5d_Um6X-Fd7aDG3xB94QW8DBVE%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002536.html">
+   <LINK REL="Next"  HREF="002540.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi or package issue?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3CAANLkTi%3D9va9TpE4%2Bm%3D5d_Um6X-Fd7aDG3xB94QW8DBVE%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Kiwi or package issue?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Thu Mar 24 02:04:14 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002536.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+        <LI>Next message: <A HREF="002540.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2537">[ date ]</a>
+              <a href="thread.html#2537">[ thread ]</a>
+              <a href="subject.html#2537">[ subject ]</a>
+              <a href="author.html#2537">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Mar 23, 2011 at 2:14 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 03/23/2011 12:37 PM, Chris Cunha wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i> I had a bit of a mishap the other day where my config.xml file had
+</I>&gt;&gt;<i> been deleted to the trash bin while deleting other files. &#160;I restored
+</I>&gt;&gt;<i> the config.xml file by confirming the time/date to make sure I had the
+</I>&gt;&gt;<i> correct version of this file. &#160;As far as I could tell it was the
+</I>&gt;&gt;<i> correct one.
+</I>&gt;&gt;<i> However after running kiwi to create a new image and testing that
+</I>&gt;&gt;<i> image I notice an issue with two package that were previously resolved
+</I>&gt;&gt;<i> before this &quot;delete/restore&quot; issue.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If you guys remember I had an issue with the package
+</I>&gt;&gt;<i> lxde-common-branding-openSUSE conflicting with my version of this
+</I>&gt;&gt;<i> package. &#160;The issue was related to a conflict string in the spec file.
+</I>&gt;&gt;<i> &#160;I was unsuccessful in getting the maintainer of this package to
+</I>&gt;&gt;<i> remove this string so Marcus recommended a few options. &#160;Based on
+</I>&gt;&gt;<i> these options I choose to have my package(s) stored locally in the
+</I>&gt;&gt;<i> image (within the overlay file tree) and using the config.sh file to
+</I>&gt;&gt;<i> remove the SUSE version and install my branded version of this file.
+</I>&gt;&gt;<i> Up until now this worked great. &#160;However it isnt' working now and I'm
+</I>&gt;&gt;<i> out of things to look at to find the source of the problem.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The lxde-common-branding-openSUSE package provides some images for
+</I>&gt;&gt;<i> logout, menus and script to logout and login. &#160;My package provides the
+</I>&gt;&gt;<i> same exact items and deps. &#160;The config.sh &#160;script has:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> # Activate services
+</I>&gt;&gt;<i> #--------------------------------------
+</I>&gt;&gt;<i> suseActivateDefaultServices
+</I>&gt;&gt;<i> suseInsertService boot.device-mapper
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> #unistallation of the Suse branding package leaving the deps behind
+</I>&gt;&gt;<i> and installing SOS branding in it's place.
+</I>&gt;&gt;<i> rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch
+</I>&gt;&gt;<i> rpm -i /opt/SOS/lxde-common-branding-SOS-11.3-32.1.noarch.rpm
+</I>&gt;&gt;<i> rpm -e --nodeps desktop-data-openSUSE-11.3-1.3.noarch
+</I>&gt;&gt;<i> rpm -i /opt/SOS/desktop-data-SOS-11.3-15.1.noarch.rpm
+</I>&gt;&gt;<i> rm -rf /opt/SOS
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> which uninstalls the SUSE version and installs my branded version of
+</I>&gt;&gt;<i> theses package. &#160;It always worked before. &#160; Now when I an working in
+</I>&gt;&gt;<i> this image I can see that the menu and logout images are not correct.
+</I>&gt;&gt;<i> I CD over to /usr/share/lxde/images (in this recently built image) and
+</I>&gt;&gt;<i> sure enough the SUSE image are still there. &#160;So by the looks of it the
+</I>&gt;&gt;<i> config.sh script isn't running
+</I>&gt;<i>
+</I>&gt;<i> Did you check the log file? I'll bet you'll find a line that states that
+</I>&gt;<i> config.sh is being executed. Otherwise there is most likely some other
+</I>&gt;<i> problem during package installation. Maybe your restore of config.xml isn't
+</I>&gt;<i> quite as good as you had hoped.
+</I>&gt;<i>
+</I>&gt;&gt;<i> because when I do a &quot;rpm -e --nodeps
+</I>&gt;&gt;<i> lxde-common-branding-openSUSE-11.3-54.2.noarch&quot; manually in a terminal
+</I>&gt;&gt;<i> it removes all the image and scripts on the system related to the SUSE
+</I>&gt;&gt;<i> version of this package. &#160;I then tried to install my version of the
+</I>&gt;&gt;<i> package which is in /opt/SOS with the same command that the config.sh
+</I>&gt;&gt;<i> script is running which is &quot;rpm -i
+</I>&gt;&gt;<i> /opt/SOS/lxde-common-branding-SOS-11.3-32.1.noarch.rpm&quot; and it's
+</I>&gt;&gt;<i> indicating &quot;failed dependencies: desktop-data-openSUSE is need by
+</I>&gt;&gt;<i> lxde-common-branding-SOS&quot; &#160; Since when?!
+</I>&gt;<i>
+</I>&gt;<i> Well, you create the package and control the dependencies, how is anyone
+</I>&gt;<i> here supposed to know?
+</I>&gt;<i>
+</I>&gt;&gt;<i> I'm guessing maybe this isn't an issue at all with the package as this
+</I>&gt;&gt;<i> all worked fine up until the deletion and restore of my config.xml
+</I>&gt;&gt;<i> file.
+</I>&gt;&gt;<i> I've been trying to figure out what happened to cause this for over a
+</I>&gt;&gt;<i> day now and can't seem to figure out what happend. &#160;Here is the
+</I>&gt;&gt;<i> config.xml file <A HREF="http://paste.opensuse.org/79011903">http://paste.opensuse.org/79011903</A>
+</I>&gt;<i>
+</I>&gt;<i> The log from your prepare step would be more helpful. Also you pasted your
+</I>&gt;<i> config.xml file just a couple of days ago because of a validation error. If
+</I>&gt;<i> you look back in the log fo the mailing list you probably will find the
+</I>&gt;<i> appropriate post.
+</I>&gt;<i>
+</I>&gt;<i> Later,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>Hey Robert,
+You are correct on the log. It did exec the config.sh file.  I did
+think of using the version of the config.xml file that I posted on the
+21 of March.  The results were the same.
+The packages that I made to replace the SUSE branding ones worked fine
+until 2days ago.
+I just confirmed that the lxde-common-branding-openSUSE package was
+changed.  I was just looking at the image files for this package that
+are in /usr/share/lxde/images.  The image are nothing like they used
+to be.  So this package was updated for sure.  Is there a way in kiwi
+to specify it to use a specific version of this
+lxde-common-branding-openSUSE package rather than the latest version?
+
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002536.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+	<LI>Next message: <A HREF="002540.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2537">[ date ]</a>
+              <a href="thread.html#2537">[ thread ]</a>
+              <a href="subject.html#2537">[ subject ]</a>
+              <a href="author.html#2537">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

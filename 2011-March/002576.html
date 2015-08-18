@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bootinclude%2C%20Bootdelete%2C%20and%20boot-theme&In-Reply-To=%3C20110330074704.GA4922%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002582.html">
+   <LINK REL="Next"  HREF="002572.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Bootinclude, Bootdelete, and boot-theme</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bootinclude%2C%20Bootdelete%2C%20and%20boot-theme&In-Reply-To=%3C20110330074704.GA4922%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Bootinclude, Bootdelete, and boot-theme">ms at suse.de
+       </A><BR>
+    <I>Wed Mar 30 09:47:04 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002582.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+        <LI>Next message: <A HREF="002572.html">[Kiwi-users] kiwi autostart app/script or other means
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2576">[ date ]</a>
+              <a href="thread.html#2576">[ thread ]</a>
+              <a href="subject.html#2576">[ subject ]</a>
+              <a href="author.html#2576">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;To put another way, if I prebuild my boot image, will setting the &quot;bootinclulde&quot; attribute in my system image config.xml have any effect?
+</I>&gt;<i> 
+</I>&gt;<i> Marcus will need to answer that one.
+</I>
+if you prebuild it and after that you set some bootinclude statement to
+a package or archive it will not have any effect on the prebuild boot
+image. That is because kiwi just use the prebuilt version. In such a
+case you should deactivate the checkprebuilt attr and activate it
+again after kiwi has built the new version of the boot image
+
+&gt;<i> &gt;Does branding need to be deployed as an RPM in order to work?
+</I>&gt;<i> 
+</I>&gt;<i> No, it does not, see example above.
+</I>
+But we recommend to use a package. This is the more clean solution
+the branding system als has changed from one distro to the other.
+This means if you create an archive you have to make sure it installs
+the right data to the right place, which requires some knowledge
+about branding in openSUSE. If you clone from an existing branding
+package and change the theme and package name as well as add your
+own branding files according to the package contents you could be
+sure it will work for the distro version this branding package
+was provided 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002582.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+	<LI>Next message: <A HREF="002572.html">[Kiwi-users] kiwi autostart app/script or other means
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2576">[ date ]</a>
+              <a href="thread.html#2576">[ thread ]</a>
+              <a href="subject.html#2576">[ subject ]</a>
+              <a href="author.html#2576">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

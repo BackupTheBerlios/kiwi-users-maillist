@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issue with partition creation on USB stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C492166C8020000AF0003231B%40sinclair.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000893.html">
+   <LINK REL="Next"  HREF="000892.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issue with partition creation on USB stick</H1>
+    <B>Vagner Farias</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C492166C8020000AF0003231B%40sinclair.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Issue with partition creation on USB stick">vfarias at novell.com
+       </A><BR>
+    <I>Mon Nov 17 15:42:48 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000893.html">[Kiwi-users] Kiwi Errors
+</A></li>
+        <LI>Next message: <A HREF="000892.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#891">[ date ]</a>
+              <a href="thread.html#891">[ thread ]</a>
+              <a href="subject.html#891">[ subject ]</a>
+              <a href="author.html#891">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+I'm trying to deploy a image to two different usb sticks, but on both it stays forever in &quot;Creating partition table on: &lt;device&gt;&quot;.
+
+It seems this started to happen when I upgraded to 3.01-83.1. Today I upgraded to 3.01-84.1 and I still have the same issue.
+
+I'm running kiwi on SLED 10 SP2. The image is also based on SLED 10 SP2 (but I don't think this issue would be related to the image).
+
+I noticed that fdisk is being run several times, on an endless loop.
+
+Some logs:
+
+tesla:/home/vfarias/kiwi/stick-ext3-result # kiwi --bootstick initrd-usbboot-suse-SLED10.i686-2.1.1.splash.gz --bootstick-system cb-live-stick.i686-0.2.1
+Nov-17 12:00:36 &lt;1&gt; : Creating boot USB stick from: initrd-usbboot-suse-SLED10.i686-2.1.1.splash.gz...
+Nov-17 12:00:37 &lt;1&gt; : Creating initial boot structure                                                                             done
+Nov-17 12:00:37 &lt;1&gt; : Importing grub stages and graphics boot message                                                             done
+Nov-17 12:00:37 &lt;1&gt; : Found following removable USB devices:
+Nov-17 12:00:37 &lt;1&gt; : ---&gt; 05112000C4EAB405 at /dev/sdc
+Nov-17 12:00:37 &lt;1&gt; : ---&gt; 5B880D000078 at /dev/sdb
+Nov-17 12:00:37 &lt;1&gt; : Your choice (enter device name): /dev/sdc
+Nov-17 12:00:42 &lt;1&gt; : Saving disk label on disk: 0x0c16e2a7...                                                                    done
+Nov-17 12:00:42 &lt;1&gt; : Creating grub menu list file...                                                                             done
+Nov-17 12:00:43 &lt;1&gt; : Establish HAL lock for: /dev/sdc                                                                            done
+Nov-17 12:00:44 &lt;1&gt; : Creating partition table on: /dev/sdc............
+
+/tmp/kiwiboot.Y12994/fdisk.log
+
+Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
+Building a new DOS disklabel. Changes will remain in memory only,
+until you decide to write them. After that, of course, the previous
+content won't be recoverable.
+
+Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)
+
+Command (m for help): Command action
+   e   extended
+   p   primary partition (1-4)
+Partition number (1-4): First cylinder (1-1022, default 1): Using default value 1
+Last cylinder or +size or +sizeM or +sizeK (1-1022, default 1022):
+Command (m for help): Command action
+   e   extended
+   p   primary partition (1-4)
+Partition number (1-4): First cylinder (7-1022, default 7): Using default value 7
+Last cylinder or +size or +sizeM or +sizeK (7-1022, default 1022): Using default value 1022
+
+Command (m for help): Partition number (1-4): Hex code (type L to list codes):
+Command (m for help): Partition number (1-4): Hex code (type L to list codes):
+Command (m for help): Partition number (1-4):
+Command (m for help):
+
+Any hints?
+
+
+Vagner Farias
+Linux Technology Specialist
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">vfarias at novell.com</A>
+(11) 3345-3946
+(11) 9228-5916
+
+Novell do Brasil
+Making IT Work As One*
+www.novell.com
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000893.html">[Kiwi-users] Kiwi Errors
+</A></li>
+	<LI>Next message: <A HREF="000892.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#891">[ date ]</a>
+              <a href="thread.html#891">[ thread ]</a>
+              <a href="subject.html#891">[ subject ]</a>
+              <a href="author.html#891">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

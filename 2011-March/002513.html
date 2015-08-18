@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTi%3Dk%3DjMcHeiQciRYB7_mtfEvxRY4P1maypyhOEdb%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002512.html">
+   <LINK REL="Next"  HREF="002514.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTi%3Dk%3DjMcHeiQciRYB7_mtfEvxRY4P1maypyhOEdb%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Mar 18 15:28:00 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002512.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002514.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2513">[ date ]</a>
+              <a href="thread.html#2513">[ thread ]</a>
+              <a href="subject.html#2513">[ subject ]</a>
+              <a href="author.html#2513">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Mar 18, 2011 at 10:03 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> Sorry for not being clear. &#160;Simply put my notebook test machine when
+</I>&gt;&gt;<i> running the Live OS on the USB stick is able to access and display in
+</I>&gt;&gt;<i> the file manager the fat (300mb) partition as well as the existing
+</I>&gt;&gt;<i> hard drive partitions yet on my desktop test machine the fat partition
+</I>&gt;&gt;<i> nor the existing hard drive is assessable or viewable from the file
+</I>&gt;&gt;<i> manager. &#160;I actually can't located the fat partition at all on this
+</I>&gt;&gt;<i> machine. &#160;How can the same image (flash drive) on one machine show
+</I>&gt;&gt;<i> different results than another? &#160;Nothing changed in terms of the
+</I>&gt;&gt;<i> image.
+</I>&gt;<i>
+</I>&gt;<i> What you are saying is that if you turn off your notebook, plugg off
+</I>&gt;<i> the USB stick, put it in your desktop machine , switch on your desktop
+</I>&gt;<i> machine and boot from the stick, then you can't see the fat partition ?
+</I>&gt;<i> Well I'm sure it's still there otherwise the boot from USB would have
+</I>&gt;<i> failed. So if that's true than I only can imagine a problem with
+</I>&gt;<i> the automounter but on a ramonly image no information of the system
+</I>&gt;<i> before has been stored. So I'm still confused
+</I>&gt;<i>
+</I>&gt;&gt;<i> Based on what Robert suggest do you guys think that your re-instate
+</I>&gt;&gt;<i> the &lt;type image=&quot;usb&quot;....&gt; element or do you think this recent change
+</I>&gt;&gt;<i> will suffice?
+</I>&gt;<i>
+</I>&gt;<i> the image=&quot;usb&quot; is gone and won't come back. You can have entirely
+</I>&gt;<i> the same thing with the oem type and more. I don't see a reason to
+</I>&gt;<i> maintain two code bases where one is just an extraction of the other.
+</I>&gt;<i> Basically usb has survived only for the reason to create a custom
+</I>&gt;<i> partition table which allows to have another partition than the
+</I>&gt;<i> root partition as first partition. The only reason people requesting
+</I>&gt;<i> this was to be able to use the stick as OS _and_ as data container
+</I>&gt;<i> on Windows and Linux. Exactly that has been achieved with the recent
+</I>&gt;<i> changes to the oem type. What most people dislike with the usb
+</I>&gt;<i> type was that you need linux and kiwi to deploy the image on the
+</I>&gt;<i> stick. One had to plug in the stick and call kiwi --bootstick in
+</I>&gt;<i> order to deploy to the stick. So the type really wasn't very
+</I>&gt;<i> popular and almost all people prefer to use imageWriter which also
+</I>&gt;<i> brings you back to the oem or iso type
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+Hey Marcus,
+
+&gt;<i> What you are saying is that if you turn off your notebook, plugg off
+</I>&gt;<i> the USB stick, put it in your desktop machine , switch on your desktop
+</I>&gt;<i> machine and boot from the stick, then you can't see the fat partition ?
+</I>&gt;<i> Well I'm sure it's still there otherwise the boot from USB would have
+</I>&gt;<i> failed. So if that's true than I only can imagine a problem with
+</I>&gt;<i> the automounter but on a ramonly image no information of the system
+</I>&gt;<i> before has been stored. So I'm still confused
+</I>
+Exactly.  I can't see the fat partition in using the desktop computer.
+ The fat partition is there...but I must manually mount it!  I pulled
+up the Yast Partitioner with the OS running on the Desktop and none of
+partitions are set for &quot;mount partition&quot; where on the notebook
+computer it has the &quot;mount partition&quot; enabled and the mount point is
+&quot;/media/d9b9-e7bd&quot;  How the heck can it automount on one machine and
+not on the other?   Maybe this is a good thing.  The goal here is to
+have a &quot;storage&quot; partition mount for direct access to this folder...so
+what is causing this fat partition (and the existing hard drives
+partitions) to auto mount when used int he latptop.  Some config file
+must be saying &quot;find the fat partition and mout it 'here'&quot;.   Actually
+now that I think of it ONLY the fat partition mounts on the notebook
+computer.  The existing hard drive partitions simply show up in the
+file manager but don't mount until you access them.
+
+Stressful stuff. :(
+Marcus thanks for continuing to answer these questions and trying to
+address the problems.  I know this is getting old.  This inconsistent
+behavior is concerning to me because it must work the same on all
+machines otherwise what's the point.
+
+One more thing that I notice after I started using the OEM image
+compared to the ISO image is when booting now the OEM image will
+always boot in verbose mode (with the bootsplash image behind) where
+as with the ISO boot it would show the progress bootsplash screen.
+Any idea what's up with that?
+
+chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002512.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002514.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2513">[ date ]</a>
+              <a href="thread.html#2513">[ thread ]</a>
+              <a href="subject.html#2513">[ subject ]</a>
+              <a href="author.html#2513">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Need help with KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Need%20help%20with%20KIWI&In-Reply-To=%3C20100628085441.GA24935%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001857.html">
+   <LINK REL="Next"  HREF="001859.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Need help with KIWI</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Need%20help%20with%20KIWI&In-Reply-To=%3C20100628085441.GA24935%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Need help with KIWI">ms at novell.com
+       </A><BR>
+    <I>Mon Jun 28 10:54:41 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001857.html">[Kiwi-users] Need help with KIWI
+</A></li>
+        <LI>Next message: <A HREF="001859.html">[Kiwi-users] Need help with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1858">[ date ]</a>
+              <a href="thread.html#1858">[ thread ]</a>
+              <a href="subject.html#1858">[ subject ]</a>
+              <a href="author.html#1858">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; Hi! I have the same problem with KIWI.
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/pipermail/kiwi-users/2009-May/001139.html">https://lists.berlios.de/pipermail/kiwi-users/2009-May/001139.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> Misery loves company. Sad to say, it was never solved. I just make a new
+</I>&gt;<i> image until this does not happen. I'm not comfortable with it. But as
+</I>&gt;<i> only I seemed to experience the problem... Anyway, I have posted this to
+</I>&gt;<i> the kiwi group. Maybe with two people having the problem we can find the
+</I>&gt;<i> cause.
+</I>
+If you see the message  &quot;Checking Server name: tftp&quot;
+This means there is no kiwiserver=... set in the pxe configuration
+and there is no DOMAIN set in the config.&lt;MAC&gt;. This is normally not
+a big problem if the dhcp info file contains additional information.
+
+kiwi now checks the value of DHCPSIADDR and DHCPSID before it
+runs into the &quot;Can't assign SERVER IP/name .. fatal!&quot; exception.
+Normally one of the following actions should fix the problem:
+
+1) add at least kiwiserver=&quot;ip or name&quot; in your
+   /srv/tftpboot/pxelinux.cfg/default file or the file which is
+   assigned to this client. The ip or name must successfully
+   complete the following call:
+
+      ping -c 1 &quot;ip or name&quot; 
+
+   if that call fails kiwi will use the data provided by the
+   dhcp server. Maybe this could be a problem if &quot;-c 1&quot; is too
+   short. Thinking of increasing that value...
+
+2) check your dhcp server configuration. if dhcp has setup the
+   interface there is an info file stored here:
+
+      /var/lib/dhcpcd/dhcpcd-X.info   (X = interface name eg eth0)
+
+   kiwi simply sources that file and it should contain
+   the DHCPSIADDR or DHCPSID information. If you can't find that
+   data you should check the dhcpd.conf why it doesn't provide it
+   
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001857.html">[Kiwi-users] Need help with KIWI
+</A></li>
+	<LI>Next message: <A HREF="001859.html">[Kiwi-users] Need help with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1858">[ date ]</a>
+              <a href="thread.html#1858">[ thread ]</a>
+              <a href="subject.html#1858">[ subject ]</a>
+              <a href="author.html#1858">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%20directory&In-Reply-To=%3C20101122145435.GA30643%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002144.html">
+   <LINK REL="Next"  HREF="002152.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%20directory&In-Reply-To=%3C20101122145435.GA30643%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory">ms at novell.com
+       </A><BR>
+    <I>Mon Nov 22 15:54:35 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002144.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+        <LI>Next message: <A HREF="002152.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2148">[ date ]</a>
+              <a href="thread.html#2148">[ thread ]</a>
+              <a href="subject.html#2148">[ subject ]</a>
+              <a href="author.html#2148">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> mount says that /home is not mounted on first boot (yast2 firstboot also 
+</I>&gt;<i> complains about it). Nevertheless, I copied some stuff to my /home, rebooted 
+</I>&gt;<i> and it's mounted and the stuff I copied is there as well.
+</I>&gt;<i> 
+</I>&gt;<i> boot.kiwi:
+</I>&gt;<i> /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</I>&gt;<i> Full boot.kiwi: <A HREF="http://paste.opensuse.org/82955188">http://paste.opensuse.org/82955188</A>
+</I>
+Hmm, I wasn't able to reproduce that problem by rebuilding an image
+with the same type setup posted by you. kiwi deactivates the volume
+group before it repartitions the disk. The 'vgchange -an' call
+generated that message which I don't understand because the LVHome
+device exists in the vgroup
+
+&gt;<i> boot.msg: 
+</I>&gt;<i> mount: /dev/mapper/KiwiVG-LVhome already mounted or /home busy
+</I>&gt;<i> mount: /dev/sda1 already mounted or /lvmboot busy
+</I>&gt;<i> /lvmboot/boot on /boot type none (rw,bind)
+</I>&gt;<i> failed
+</I>
+I fixed this one, the problem is that kiwi calls init with those
+filesystems already mounted.
+
+&gt;<i> I have the following in my config.xml
+</I>&gt;<i> 
+</I>&gt;<i> [...]
+</I>&gt;<i> &lt;oemconfig&gt;
+</I>&gt;<i>  &lt;oem-swapsize&gt;1024&lt;/oem-swapsize&gt;
+</I>&gt;<i>  &lt;oem-boot-title&gt;Open-PC&lt;/oem-boot-title&gt;
+</I>&gt;<i> &lt;/oemconfig&gt;
+</I>&gt;<i> &lt;systemdisk name=&quot;KiwiVG&quot;&gt;
+</I>&gt;<i>  &lt;volume name=&quot;/&quot; freespace=&quot;100M&quot;/&gt;
+</I>&gt;<i>  &lt;volume name=&quot;/home&quot; size=&quot;1024M&quot;/&gt;
+</I>&gt;<i> &lt;/systemdisk&gt;
+</I>&gt;<i> [...]
+</I>
+There is a small mistake. The size of the root partition is specified
+by the &lt;oem-systemsize&gt; element. I think you want to use the rest space
+for the root volume so your setup should look like this:
+
+&lt;oemconfig&gt;
+	&lt;!-- your oem disk parameters. incl. system root size --&gt;
+	&lt;oem-swapsize&gt;1024&lt;/oem-swapsize&gt;
+	&lt;!-- optional if you want a smaller root size --&gt;
+	&lt;!-- &lt;oem-systemsize&gt;2048&lt;/oem-systemsize&gt; --&gt;
+	&lt;oem-boot-title&gt;Open-PC&lt;/oem-boot-title&gt;
+&lt;/oemconfig&gt;
+&lt;systemdisk name=&quot;KiwiVG&quot;&gt;
+	&lt;!-- additional partitions --&gt;
+	&lt;volume name=&quot;/home&quot; size=&quot;1024M&quot;/&gt;
+&lt;/systemdisk&gt;
+
+Reason for this is, &lt;systemdisk&gt; is optional but a root partition is not
+so the setup for the root partition size is outside &lt;systemdisk&gt;
+
+&gt;<i> BTW, I'm testing it on a VirtualBox machine with a 8GB harddisk, and 5.05 GB 
+</I>&gt;<i> end up assigned to LVRoot, 1.00GB to LVSwap, 1.00 GB to LVhome and 904.00 MB 
+</I>&gt;<i> remained unassigned. Is this the intended behaviour? Wouldn't it be better to 
+</I>&gt;<i> have those 904 MB assigned to LVRoot by default (or whatever partition having 
+</I>&gt;<i> &quot;freespace&quot;)? I can easily fix it by having a script with
+</I>&gt;<i> lvresize -l +100%FREE /dev/KiwiVG/LVRoot
+</I>&gt;<i> resize2fs /dev/KiwiVG/LVRoot
+</I>&gt;<i> but I think it would be better if KIWI did it on its own, no?
+</I>
+Normally the rest space is available to LVRoot. kiwi calls lvextend
+on that volume according to the oem-systemsize value if set. If not set
+the entire rest space should be used. In your log I found:
+
+---snip---
+  lvextend -l 100%FREE /dev/KiwiVG/LVRoot
+  New size given (226 extents) not larger than existing size (1294 extents)
+  Run `lvextend --help' for more information.
+---snap---
+
+I wasn't able to reproduce this too :( I have tested on a 10GB harddisk
+in KVM and didn't saw that problem. As I wrote above I also wasn't able
+to see that 'unlink failed' message
+
+* Hmm, strange. Would you mind to give it a try with the adapted systemdisk
+  setup I wrote above ? But it shouldn't be different because kiwi ignores
+  if you specify a volume with name=&quot;/&quot;. 
+
+* Another question I have is; Do you change the disk file kiwi created
+  in some way ? I mean the log you posted showed me only the boot process
+  not the install process which could mean you have transfered the kiwi
+  generated raw disk file into a 8GB or 5.05GB disk yourself ? is this
+  correct ?.
+
+Please find attached at least the small patch to fix the busy
+mount problem on boot:
+
+   patch -p0 &lt; kiwi.dif
+   rm /usr/share/kiwi/image/*boot/suse-*/.checksum.md5
+
+   kiwi ...
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.dif
+Type: video/dv
+Size: 4201 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101122/4b3b899e/attachment.dif">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101122/4b3b899e/attachment.dif</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002144.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+	<LI>Next message: <A HREF="002152.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2148">[ date ]</a>
+              <a href="thread.html#2148">[ thread ]</a>
+              <a href="subject.html#2148">[ subject ]</a>
+              <a href="author.html#2148">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

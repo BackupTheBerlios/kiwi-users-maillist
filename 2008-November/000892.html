@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issue with partition creation on USB stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C20081117152526.GA2279%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000891.html">
+   <LINK REL="Next"  HREF="000894.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issue with partition creation on USB stick</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C20081117152526.GA2279%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Issue with partition creation on USB stick">ms at novell.com
+       </A><BR>
+    <I>Mon Nov 17 16:25:26 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000891.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+        <LI>Next message: <A HREF="000894.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#892">[ date ]</a>
+              <a href="thread.html#892">[ thread ]</a>
+              <a href="subject.html#892">[ subject ]</a>
+              <a href="author.html#892">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm trying to deploy a image to two different usb sticks, but on both it stays forever in &quot;Creating partition table on: &lt;device&gt;&quot;.
+</I>
+Hmm, how big is the cb-live-stick.i686-0.2.1 file compared to the size
+of the stick ? Do you use a squashfs compressed stick ? did you check
+if the stick wasn't mounted by any other program before calling
+kiwi --bootstick ?
+
+What kiwi does is it calls fdisk and after that it checks the size of
+the created partitions. If the size is ok for the image it puts it on
+the stick if not it increases the partition size and restarts fdisk
+again. kiwi does that because of the alignment done by fdisk. I have
+also implemented support for parted but didn't test it hard enough.
+If you like you can give it a try with the option:
+
+   --partitioner parted
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000891.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+	<LI>Next message: <A HREF="000894.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#892">[ date ]</a>
+              <a href="thread.html#892">[ thread ]</a>
+              <a href="subject.html#892">[ subject ]</a>
+              <a href="author.html#892">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

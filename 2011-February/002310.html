@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi preload image failure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C1297338820.5499.122.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002362.html">
+   <LINK REL="Next"  HREF="002312.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi preload image failure</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C1297338820.5499.122.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] kiwi preload image failure">roger at opq.se
+       </A><BR>
+    <I>Thu Feb 10 12:53:40 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002362.html">[Kiwi-users] kiwi preload image failure [perhaps solved]
+</A></li>
+        <LI>Next message: <A HREF="002312.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2310">[ date ]</a>
+              <a href="thread.html#2310">[ thread ]</a>
+              <a href="subject.html#2310">[ subject ]</a>
+              <a href="author.html#2310">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-02-10 at 11:13 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; &gt;   sda2: EXT4-fs error: double free of inode 0's block XXXX, 0 in gd
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; This looks pretty much like a disk or filesystem error. Do you see
+</I>&gt;<i> &gt; &gt; the same issue when using ext3 ?                
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Is it enough to make the change in my config.xml? I now have this:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &lt;type image=&quot;split&quot; fsreadwrite=&quot;ext4&quot; fsreadonly=&quot;squashfs&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;&gt;
+</I>&gt;<i> 
+</I>&gt;<i> sure change it to:
+</I>&gt;<i> 
+</I>&gt;<i>   &lt;type image=&quot;split&quot; fsreadwrite=&quot;ext3&quot; fsreadonly=&quot;squashfs&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;&gt;
+</I>&gt;<i> 
+</I>&gt;<i> and call kiwi prepare and kiwi create again. If you have the prepared
+</I>&gt;<i> tree laying around somewhere you can also skip the kiwi prepare call
+</I>&gt;<i> but you need to change the xml file inside _that_ tree then !
+</I>
+I just rebuilt everything to be sure. The resizing takes much longer
+compared to the EXT4 resize, which happened almost immediately. But this
+seems not to fail now. So, one step forward.
+
+After the resizing, the system makes some complaints about various
+things not being writable. Unfortunately they zip off the screen before
+I can see them all. They were things like:
+
+ Could not get pty for fbset
+
+or nfs. or any other things I guess it is starting.
+
+I get an X login screen. But the keyboard and mouse are not working. So
+I cannot get in to the system to see what is wrong. On other VTs I see
+that the mouse and keyboard are detected. They are standard devices.
+
+After this, I reboot the system. I get the grub menu with the install
+listed as [oem]. I would have thought that would have gone away after
+the image was loaded in the first step. Of course, I am unclear what is
+expected to happen when in the preload scenario. That is what I am
+hoping to see now...
+
+I see some lines like:
+
+/etc/initscript: I see /etc/init.d/boot: permission denied
+
+That seems not good.
+
+Once again I get the X login with no working keyboard or mouse.
+
+Reboot again (power off/on...). I thought I would give a run level on
+the grub menu command line. But it still says it is doing runlevel 5.
+And I get the X screen teasing me.
+
+Once again this is with the original example. The only change is I am
+using ext3. And my 11.2 repo is a local DVD instead of the one on the
+internet. I have built other kiwi images with that image, and the md5sum
+is correct.
+
+&gt;<i> 
+</I>&gt;<i> &gt; I get a bit confused about which spec is for the stick/iso, and which is
+</I>&gt;<i> &gt; for the target that will be installed on some new system. I would
+</I>&gt;<i> &gt; imagine that the spec above is for the stick, not the image that gets
+</I>&gt;<i> &gt; copied. Or?
+</I>&gt;<i> 
+</I>&gt;<i> It's for both. It means create the split OS image and also create
+</I>&gt;<i> an installation stick image including that OS image
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I have now tried the pristine original
+</I>&gt;<i> &gt; examples/suse-11.2/suse-oem-preload. The result is exactly the same.
+</I>&gt;<i> 
+</I>&gt;<i> Again I don't think this is an imaging issue. To me it looks like
+</I>&gt;<i> a ext4 but in combination with resize2fs.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I have now let it run longer, and I see that the error messages do
+</I>&gt;<i> &gt; eventually stop. It is stopped asking for the runlevel. So obviously
+</I>&gt;<i> &gt; something has gone bad.
+</I>&gt;<i> 
+</I>&gt;<i> If you see problems like the one above you can't rely on your
+</I>&gt;<i> operating system anymore. All kinds of crap can happen if the
+</I>&gt;<i> filesystem screws up. What you saw after the broken resize operation
+</I>&gt;<i> are all after effects of the broken filesystem.
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002362.html">[Kiwi-users] kiwi preload image failure [perhaps solved]
+</A></li>
+	<LI>Next message: <A HREF="002312.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2310">[ date ]</a>
+              <a href="thread.html#2310">[ thread ]</a>
+              <a href="subject.html#2310">[ subject ]</a>
+              <a href="author.html#2310">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

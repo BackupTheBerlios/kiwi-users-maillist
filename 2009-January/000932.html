@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oem preload
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20preload&In-Reply-To=%3C20090115150507.GA9476%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000931.html">
+   <LINK REL="Next"  HREF="000933.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oem preload</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20preload&In-Reply-To=%3C20090115150507.GA9476%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] oem preload">ms at novell.com
+       </A><BR>
+    <I>Thu Jan 15 16:05:08 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000931.html">[Kiwi-users] oem preload
+</A></li>
+        <LI>Next message: <A HREF="000933.html">[Kiwi-users] LiveDVD/CD with persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#932">[ date ]</a>
+              <a href="thread.html#932">[ thread ]</a>
+              <a href="subject.html#932">[ subject ]</a>
+              <a href="author.html#932">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Hi, is there any complete tutorial for making oem boot cd with disk
+</I>&gt;<i> autopartitioning for headless instalation? Thanks in advance!
+</I>
+I think there is no complete tutorial about this topic. I have
+mentioned the possible OEM parameters as part of the kiwi cookbook
+(kiwi.pdf) in the kiwi-doc package. The list of possible oem-*
+parameters in config.xml is useful
+
+Here is a workflow I use when creating such an install CD
+
+1) I often use a 4GB USB stick just for testing the bare
+   system image in the first place.
+
+2) My image description includes among other data
+   the following type:
+
+   &lt;type filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.1&quot;&gt;oem&lt;/type&gt;
+
+3) And I use the oem parameters:
+
+   &lt;oem-systemsize&gt;800&lt;/oem-systemsize&gt;
+
+   That means 800MB for the system image, swap according to the
+   RAM space of the system and the rest for home. I'm pretty
+   sure everybody has different requirements at that point   
+
+4) I now create the image of type oem and simply dump (via dd)
+   the .raw file on my stick. The sticked is plugged in to my
+   test system and if everything works as expected I go to the
+   next step:
+
+5) I know the image works so I add the attribute format to my
+   oem type.
+
+   &lt;type filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.1&quot; format=&quot;iso&quot;&gt;oem&lt;/type&gt;
+
+6) When recreating the image I got the install iso with the oem image
+   on it. I burn the iso on a CD and give it a test on a test system
+
+7) the installation procedure just does the same as I did before
+   manually; it dumps the oem image on the disk. The available disks
+   are searched and you need to select one before the process starts.
+   If you don't want that you need to take a look in the file
+
+   /usr/share/kiwi/image/oemboot/suse-dump
+
+   I was asked to add at least one question before the system completely
+   overwrites the system disk :-)
+
+I hope that helps a bit. Professional documentation about this
+topic would really help a lot, unfortunately I'm too busy with
+other tasks and also not a good doc writer
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000931.html">[Kiwi-users] oem preload
+</A></li>
+	<LI>Next message: <A HREF="000933.html">[Kiwi-users] LiveDVD/CD with persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#932">[ date ]</a>
+              <a href="thread.html#932">[ thread ]</a>
+              <a href="subject.html#932">[ subject ]</a>
+              <a href="author.html#932">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

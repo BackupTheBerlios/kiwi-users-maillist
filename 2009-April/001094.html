@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] 32 bit vs. 64 bit
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%2032%20bit%20vs.%2064%20bit&In-Reply-To=%3C49F83CDA.3070501%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001087.html">
+   <LINK REL="Next"  HREF="001096.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] 32 bit vs. 64 bit</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%2032%20bit%20vs.%2064%20bit&In-Reply-To=%3C49F83CDA.3070501%40novell.com%3E"
+       TITLE="[Kiwi-users] 32 bit vs. 64 bit">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Apr 29 13:41:14 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001087.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+        <LI>Next message: <A HREF="001096.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1094">[ date ]</a>
+              <a href="thread.html#1094">[ thread ]</a>
+              <a href="subject.html#1094">[ subject ]</a>
+              <a href="author.html#1094">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Is there a macro/function/variable that can be queried by the user in 
+config.sh or image.sh that provides the architecture? Kiwi knows how to 
+figure this out and does, therefore the user, i.e. person setting up the 
+image shouldn't have to invent their own tricks to figure this out if 
+there were some platform specific code.
+
+Constructing a use case for this is fairly simple. If I am an ISV and 
+want to build an appliance for x86, x86_64, itanium, and ppc, I would 
+build my proprietary binaries on the respective machine and then store 
+them in some directory on a file server. In config.sh based on the 
+platform I am running on I will then copy my architecture specific 
+binaries from the fie server into the unpacked image. With this the 
+configuration is platform independent at a high level and the platform 
+dependency is encapsulated in config.sh
+
+If a platform macro/function/variable does not exist yet it would be 
+great to add this feature to kiwi.
+
+Robert
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> The original seed of the root tree was based on the JeOS template
+</I>&gt;&gt;<i> installed on the 32 bit machine.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I wonder if there were any harm to add the lib64 path to the xorg.conf
+</I>&gt;&gt;<i> file by default for all examples/templates. This would avoid this error
+</I>&gt;&gt;<i> for users.
+</I>&gt;<i> 
+</I>&gt;<i> fixed...
+</I>&gt;<i> 
+</I>&gt;&gt;<i> This however makes we wonder about architectures in a more general
+</I>&gt;&gt;<i> sense. What if I were to run kiwi on Itanium with the same config file
+</I>&gt;&gt;<i> and directory layout. I guess my question is how does one create a
+</I>&gt;&gt;<i> platform independent configuration and root tree layout?
+</I>&gt;<i> 
+</I>&gt;<i> - in terms of packages the package manager will pick up the right
+</I>&gt;<i>   packages if the repositories provides it automatically
+</I>&gt;<i> 
+</I>&gt;<i> - in terms of configuration files this is an individual task. On
+</I>&gt;<i>   a 64bit system there is lib64 and if the application needs to
+</I>&gt;<i>   distinguish this it could be intelligent like Xorg on SLE11 which
+</I>&gt;<i>   doesn't need a modulepath setup or it could be dumb and requires
+</I>&gt;<i>   a static path list which it searches for the right contents in
+</I>&gt;<i>   like Xorg on SLE10 does. In other words it's up to to the one who
+</I>&gt;<i>   creates the image description how well it is prepared for multiarch
+</I>&gt;<i>   configurations
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001087.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+	<LI>Next message: <A HREF="001096.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1094">[ date ]</a>
+              <a href="thread.html#1094">[ thread ]</a>
+              <a href="subject.html#1094">[ subject ]</a>
+              <a href="author.html#1094">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

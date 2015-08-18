@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20net/pxe%20boot%20and%20NFS%20%20setuid%20problem&In-Reply-To=%3C1309789422.7878.17.camel%40UbuntuX64%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002820.html">
+   <LINK REL="Next"  HREF="002822.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem</H1>
+    <B>rich</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20net/pxe%20boot%20and%20NFS%20%20setuid%20problem&In-Reply-To=%3C1309789422.7878.17.camel%40UbuntuX64%3E"
+       TITLE="[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem">rich at richud.com
+       </A><BR>
+    <I>Mon Jul  4 16:23:42 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002820.html">[Kiwi-users] kiwi: Weekly report 2011-06-26 - 2011-07-01...
+</A></li>
+        <LI>Next message: <A HREF="002822.html">[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2821">[ date ]</a>
+              <a href="thread.html#2821">[ thread ]</a>
+              <a href="subject.html#2821">[ subject ]</a>
+              <a href="author.html#2821">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi,
+
+I am trying to pxe/netboot a basic(default configured) GNOME appliance
+created in Susestudio.
+
+When it starts to boot the image from NFS it hangs mounting proc, the
+fault being the setuid bit is set on mount.
+If I remove all setuid settings from all in /bin it gets to loading the
+desktop but gets stuck with other problems I assume are related
+(permission looking issues)
+e.g. &quot;SSH daemon/var/lib//empty must be owned by root...&quot;
+&quot;gdm could not create display access file: Unable to change permissions
+of '/var/run/gdm/auth-for-gdm-LhFfAf'&quot;
+
+[also ifplugd is missing by default]
+
+I notice it mounts with sec=sys , but depending on what your read this
+appears to mean different things.
+All files folders are permission 4294967294 which I assume is as a
+result of this.
+
+&gt;<i>From reading the nfs4 docs it seems setuid on mount is defaulted to
+</I>enabled, yet doesn't seem to work? 
+I am sure the answer is simple but I cannot work it out - I hope someone
+can help!
+
+My exports file is
+(rw,root_squash,no_subtree_check)
+
+Thanks
+
+Rich
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110704/dfc2d1c8/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110704/dfc2d1c8/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002820.html">[Kiwi-users] kiwi: Weekly report 2011-06-26 - 2011-07-01...
+</A></li>
+	<LI>Next message: <A HREF="002822.html">[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2821">[ date ]</a>
+              <a href="thread.html#2821">[ thread ]</a>
+              <a href="subject.html#2821">[ subject ]</a>
+              <a href="author.html#2821">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

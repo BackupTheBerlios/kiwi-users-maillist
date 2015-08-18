@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-hooks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-hooks&In-Reply-To=%3C4CD1E7B9.2020806%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002096.html">
+   <LINK REL="Next"  HREF="002100.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-hooks</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-hooks&In-Reply-To=%3C4CD1E7B9.2020806%40novell.com%3E"
+       TITLE="[Kiwi-users] kiwi-hooks">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Nov  3 23:52:41 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002096.html">[Kiwi-users] kiwi-hooks
+</A></li>
+        <LI>Next message: <A HREF="002100.html">[Kiwi-users] kiwi-hooks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2098">[ date ]</a>
+              <a href="thread.html#2098">[ thread ]</a>
+              <a href="subject.html#2098">[ subject ]</a>
+              <a href="author.html#2098">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 11/03/2010 04:41 PM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I'm trying to use the preHWdetect.sh and postImageDump.sh hooks when creating an oem ISO image.  However the install ISO generated doesn't seem to be including them.  I've placed the files in my &lt;source&gt;/root/kiwi-hooks directory of my projects kiwi config files.  I can see them after the kiwi prepare step in the &lt;image-root&gt;/root/kiwi-hooks directory.  But after I build and run an install from the ISO image, it does not have these scripts.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I can see in the boot.kiw file that it looks for the file to run the script, but it does not find the file:
+</I>&gt;&gt;<i> runHook preHWdetect
+</I>&gt;&gt;<i> HOOK=/kiwi-hooks/preHWdetect.sh
+</I>&gt;&gt;<i> '[' -e /kiwi-hooks/preHWdetect.sh ']'
+</I>&gt;&gt;<i> '[' -z '' ']'
+</I>&gt;&gt;<i> USBStickDevice install
+</I>&gt;&gt;<i> ...
+</I>&gt;&gt;<i> How do these hook script files get onto the boot media?  Do they need to be added into the kiwi boot configuration root directory?
+</I>&gt;<i> 
+</I>&gt;<i> The hook scripts are called inside the initrd so they must be part
+</I>&gt;<i> of the initrd which you can achieve as follows:
+</I>&gt;<i> 
+</I>&gt;<i>   * create a tarball which has the hook scripts and the /kiwi-hooks/...
+</I>&gt;<i>     structure inside
+</I>&gt;<i> 
+</I>&gt;<i>   * put only the tarball in your image description directory in the
+</I>&gt;<i>     same directory where your config.xml lives
+</I>&gt;<i> 
+</I>&gt;<i>   * add the following in your config.xml &lt;packages type=&quot;image&quot;&gt; section
+</I>&gt;<i> 
+</I>&gt;<i>     &lt;archive name=&quot;name-of-tarball&quot; bootinclude=&quot;true&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> The bootinclude causes kiwi to pick up the archive and install it
+</I>&gt;<i> into the initrd when it is build by kiwi. That way the hook scripts
+</I>&gt;<i> should be available at the right place
+</I>
+Yes, this will work. However, this also means something has changed.
+When I added the hooks I created a test setup to verify things work as I
+expected them to. In this test I did not need to create the tarball. I
+just created KIWI_CONFIG_DIR/root/kiwi-hooks with the scripts in the
+directory and things worked.
+
+If I would have had to create a tarball for this to work I am pretty
+sure I would have updated the documentation to indicate this. However,
+in the documentation it specifically states that only root/kiwi-hooks is
+required.
+
+I think it would be nice to restore the old behavior. If we find
+kiwi-hooks in the unpacked image tree it should automatically be part of
+the initrd.
+
+Robert
+&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002096.html">[Kiwi-users] kiwi-hooks
+</A></li>
+	<LI>Next message: <A HREF="002100.html">[Kiwi-users] kiwi-hooks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2098">[ date ]</a>
+              <a href="thread.html#2098">[ thread ]</a>
+              <a href="subject.html#2098">[ subject ]</a>
+              <a href="author.html#2098">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

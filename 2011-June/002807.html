@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Unable to reduce size of OEM split image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20reduce%20size%20of%20OEM%20split%20image&In-Reply-To=%3C4E0B61E8020000F0000D1B11%40soto.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002806.html">
+   <LINK REL="Next"  HREF="002808.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Unable to reduce size of OEM split image</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20reduce%20size%20of%20OEM%20split%20image&In-Reply-To=%3C4E0B61E8020000F0000D1B11%40soto.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Unable to reduce size of OEM split image">ragupta at novell.com
+       </A><BR>
+    <I>Wed Jun 29 14:03:28 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002806.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+        <LI>Next message: <A HREF="002808.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2807">[ date ]</a>
+              <a href="thread.html#2807">[ thread ]</a>
+              <a href="subject.html#2807">[ subject ]</a>
+              <a href="author.html#2807">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Here's the partition geometry of the raw file 
+
+-------------------------------------- 
+Model:  (file) 
+Disk /home/KIWI/SLED11-TC-Intel-1G.i686-1.0.1.raw: 1132MB 
+Sector size (logical/physical): 512B/512B 
+Partition Table: msdos 
+
+Number  Start   End     Size   Type     File system  Flags                             
+ 1      32.3kB  699MB   699MB  primary               , , , , , , , , , type=83, ,      
+ 2      699MB   1127MB  428MB  primary  ext3         boot, , , , , , , , , type=83, ,  
+-------------------------------------- 
+
+I defined the size in the XLM as follows. 
+
+&lt;oem-systemsize&gt;800&lt;/oem-systemsize&gt;
+ 
+But this valye did not seem to be effeective as a change in the value did not make any difference. 
+
+Regards, 
+Rahul 
+
+
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; 6/29/2011 17:17 &gt;&gt;&gt;
+</I>Hi,
+
+&gt;<i> Thanks for the pointer. I am trying this out.
+</I>&gt;<i> I was checking the build logs and I see the message &quot;Set boot space to: 100&quot; . I am assuming this means that the boot partition size is being set to 100 MB.
+</I>
+correct
+
+&gt;<i> I tried 2 different builds (without the changes that you suggested) where the size of the squashfs partition was different, but the size of the .raw file was exactly the same in both instances.
+</I>&gt;<i>
+</I>&gt;<i> Here are my observations.
+</I>&gt;<i>
+</I>&gt;<i> Instance 1 :
+</I>&gt;<i> Size of squashfs : 700 MB
+</I>&gt;<i> Size of .raw : 1.1 GB (1132462080 bytes)
+</I>&gt;<i>
+</I>&gt;<i> Instance 2 :
+</I>&gt;<i> Size of squashfs : 647 MB
+</I>&gt;<i> Size of .raw : 1.1 GB (1132462080 bytes)
+</I>&gt;<i>
+</I>&gt;<i> In Instance 2, I had removed some packages in trying to reduce the size of the image. The  interesting part is that the size of .raw file is exactly the same (in terms of bytes) in both the instances. 
+</I>&gt;<i>
+</I>&gt;<i> I suspect that there is some other place where the size of the .raw file is being defined. This did not happen earlier where I observed that the size of the .raw file would change if the size of squashfs or ext3 filesystems changed.
+</I>
+Did you define any size in your XML ?
+can you send the partition geometry of the raw file
+
+  parted file.raw print
+
+Thanks
+
+Regards,
+Marcus
+--
+Public Key available
+gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+-------------------------------------------------------
+Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+Tel: 0911-740 53 0             Maxfeldstrasse 5
+FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                 
+HRB: 21284 (AG N&#252;rnberg)       Germany
+<A HREF="http://www.suse.de">http://www.suse.de</A>
+-------------------------------------------------------
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110629/7e5de7f9/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110629/7e5de7f9/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002806.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+	<LI>Next message: <A HREF="002808.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2807">[ date ]</a>
+              <a href="thread.html#2807">[ thread ]</a>
+              <a href="subject.html#2807">[ subject ]</a>
+              <a href="author.html#2807">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Recent update broke --bootstick?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Recent%20update%20broke%20--bootstick%3F&In-Reply-To=%3C20080220081721.GB26894%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000328.html">
+   <LINK REL="Next"  HREF="000346.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Recent update broke --bootstick?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Recent%20update%20broke%20--bootstick%3F&In-Reply-To=%3C20080220081721.GB26894%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Recent update broke --bootstick?">ms at suse.de
+       </A><BR>
+    <I>Wed Feb 20 09:17:21 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000328.html">[Kiwi-users] Recent update broke --bootstick?
+</A></li>
+        <LI>Next message: <A HREF="000346.html">[Kiwi-users] Recent update broke --bootstick?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#331">[ date ]</a>
+              <a href="thread.html#331">[ thread ]</a>
+              <a href="subject.html#331">[ subject ]</a>
+              <a href="author.html#331">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Paul,
+
+&gt;<i> Hello. I've been using kiwi to build LiveUSB sticks
+</I>&gt;<i> for a while. My workflow broke today with an update of
+</I>&gt;<i> kiwi and I haven't been able to find any way to get it
+</I>&gt;<i> working by changing my usage. I had to hack kiwi to
+</I>&gt;<i> get it working.
+</I>&gt;<i> 
+</I>&gt;<i> This is the error message:
+</I>&gt;<i> Feb-19 15:25:14 &lt;1&gt; : Creating boot USB stick from:
+</I>&gt;<i> /myth/notmyth/kiwi/kiwi-suse-10.3-custom-KDE/initrd-usbboot-suse-10.3.i686-2.1.1...
+</I>&gt;<i> Feb-19 15:25:14 &lt;3&gt; : Failed to loop mount system
+</I>&gt;<i> image: mount: you must specify the filesystem type
+</I>&gt;<i> 
+</I>&gt;<i> Adding &quot;-t squashfs&quot; to the mount command at line 376
+</I>&gt;<i> of /usr/share/kiwi/modules/KIWIBoot.pm took care of it
+</I>&gt;<i> for me. I don't know whether that's a proper solution,
+</I>&gt;<i> i.e. whether squashfs is the only possible fs type
+</I>&gt;<i> there.
+</I>
+ah yes you are right this is a bug in kiwi. Attached is a patch
+which in principal does the same what you did but in a more
+general way. Would you mind to give it a short test and
+report back on the list if it has worked for you ?
+
+Would be great, thanks
+
+&gt;<i> P.S. kiwi rules.
+</I>
+thanks that makes me feeling happy :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.diff
+Type: text/x-patch
+Size: 973 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080220/e1daa4dc/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080220/e1daa4dc/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000328.html">[Kiwi-users] Recent update broke --bootstick?
+</A></li>
+	<LI>Next message: <A HREF="000346.html">[Kiwi-users] Recent update broke --bootstick?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#331">[ date ]</a>
+              <a href="thread.html#331">[ thread ]</a>
+              <a href="subject.html#331">[ subject ]</a>
+              <a href="author.html#331">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] btrfs problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20btrfs%20problem&In-Reply-To=%3C4CB59275.8090904%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002076.html">
+   <LINK REL="Next"  HREF="002078.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] btrfs problem</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20btrfs%20problem&In-Reply-To=%3C4CB59275.8090904%40novell.com%3E"
+       TITLE="[Kiwi-users] btrfs problem">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Oct 13 13:05:25 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002076.html">[Kiwi-users] kiwi: Weekly report 2010-10-03 - 2010-10-08...
+</A></li>
+        <LI>Next message: <A HREF="002078.html">[Kiwi-users] btrfs problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2077">[ date ]</a>
+              <a href="thread.html#2077">[ thread ]</a>
+              <a href="subject.html#2077">[ subject ]</a>
+              <a href="author.html#2077">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I am trying to build and image with btrfs but the create process fails
+as I am apparently missing something on my system.
+
+Oct-13 06:50:30 &lt;1&gt; : EXEC [mount -o loop
+/tmp/refImage_image/suse-11.3-oem-preload.x86_64-1.0.0
+/tmp/refImage_image/mnt-16927 2&gt;&amp;1]
+ Oct-13 06:50:30 &lt;3&gt; : Image loop mount failed:   failed
+ [*** end ***]
+Oct-13 06:50:31 &lt;3&gt; : mnt:
+/tmp/refImage_image/suse-11.3-oem-preload.x86_64-1.0.0 -&gt;
+/tmp/refImage_image/mnt-16927: mount: unknown filesystem type 'btrfs'
+Oct-13 06:50:31 &lt;3&gt; : KIWI exited with error(s)                      done
+
+I have btrfsprogs installed
+
+# rpm -qa | grep btrfs
+btrfsprogs-0.19-38.2.x86_64
+
+and 'zypper se btrfs' did not show any other btrfs related packages I
+might need.
+
+The build machine is openSUSE 11.3 with kiwi 4.62. The image is also
+based on openSUSE 11.3.
+
+The machine is running the desktop-kernel just in case that makes a
+difference.
+
+Any ideas what I am missing?
+
+Thanks,
+Robert
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002076.html">[Kiwi-users] kiwi: Weekly report 2010-10-03 - 2010-10-08...
+</A></li>
+	<LI>Next message: <A HREF="002078.html">[Kiwi-users] btrfs problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2077">[ date ]</a>
+              <a href="thread.html#2077">[ thread ]</a>
+              <a href="subject.html#2077">[ subject ]</a>
+              <a href="author.html#2077">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

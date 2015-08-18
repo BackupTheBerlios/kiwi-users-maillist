@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] using systemdisk - sizing LVM partitions for OEM kiwi	images
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20using%20systemdisk%20-%20sizing%20LVM%20partitions%20for%20OEM%20kiwi%0A%09images&In-Reply-To=%3CAC64E043BC2F224FA58F068A79452D873FEBF824%40MX36A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002959.html">
+   <LINK REL="Next"  HREF="002961.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] using systemdisk - sizing LVM partitions for OEM kiwi	images</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20using%20systemdisk%20-%20sizing%20LVM%20partitions%20for%20OEM%20kiwi%0A%09images&In-Reply-To=%3CAC64E043BC2F224FA58F068A79452D873FEBF824%40MX36A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] using systemdisk - sizing LVM partitions for OEM kiwi	images">john.lund at emc.com
+       </A><BR>
+    <I>Fri Oct 14 22:02:25 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002959.html">[Kiwi-users] [ IMPORTANT ] berlios will close down
+</A></li>
+        <LI>Next message: <A HREF="002961.html">[Kiwi-users] using systemdisk - sizing LVM partitions for OEM	kiwi images
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2960">[ date ]</a>
+              <a href="thread.html#2960">[ thread ]</a>
+              <a href="subject.html#2960">[ subject ]</a>
+              <a href="author.html#2960">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'd like to know if there is a way to use the systemdisk section to configure LVM logical volumes (and filesystems that use them) such that one of the logical volumes (not / ,aka root) will use the remainder of the space available from the underlying LVM physical volume(s) in the Volume Group(s) on the chosen system disk(s) after installation.
+
+For example, using the following systemdisk configuration:
+            &lt;systemdisk name=&quot;AtmosInstallVG&quot;&gt;
+                &lt;volume name=&quot;root2&quot; size=&quot;6G&quot; /&gt;
+                &lt;volume name=&quot;var&quot; size=&quot;2G&quot; /&gt;
+            &lt;/systemdisk&gt;
+
+Where we have the eom-systemsize set to 6G (&lt;oem-systemsize&gt;6144&lt;/oem-systemsize&gt;) and swap set to 2G.  Generally the disk chosen for installation could be somewhere between 200G and 1T.  We would like to specify that the &quot;var&quot; volume use up the rest of whatever space is available.  So for a 200GB system disk, if the underlying pv has ~196GB, the swap, root and root2 volumes would use 14G, and the remaining ~182G would be used for the var volume.  And for a 1TB system disk, if the underlying pv has ~1000GB, the swap, root, and root2 volumes would still use 14G, but the var volume would use the remainder of 9986GB.
+
+We would like to be able to specify that the &quot;var&quot; volume use up the rest of any space available on the systemdisk from within the kiwi config.xml file when the oem install is run.  Is this possible?
+Would it be easy to modify the oem init scripts to do this, if it is not currently possible?
+
+We have looked at using the preCallInit hooks script to grow the partition using LVM commands (lvextend).  But when that script runs, the partitions have been mounted already and growing the var partition adds a significant time/delay to the process.  We used the lvextend -l option, and that allowed us to specify the logical volume size in units of &quot;logical extents&quot;.   This allows the use of %FREE for sizing the volume as a percentage of the remaining free space in the Volume Group.  Is there an easy way to support running lvextend -l +100%FREE for one of the logical volumes sized in the kiwi config.xml systemdisk section within the kiwi oem init scripts?  (Specifically we want to do this for the /var partition.)
+
+Or is there a better method to do what I'm asking?
+
+Thank you,
+John Lund
+EMC Atmos - Access &amp; Platform Team
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002959.html">[Kiwi-users] [ IMPORTANT ] berlios will close down
+</A></li>
+	<LI>Next message: <A HREF="002961.html">[Kiwi-users] using systemdisk - sizing LVM partitions for OEM	kiwi images
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2960">[ date ]</a>
+              <a href="thread.html#2960">[ thread ]</a>
+              <a href="subject.html#2960">[ subject ]</a>
+              <a href="author.html#2960">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

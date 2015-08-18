@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Setting the size of a VMware disk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20size%20of%20a%20VMware%20disk&In-Reply-To=%3C20090723130931.GA30398%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001291.html">
+   <LINK REL="Next"  HREF="001293.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Setting the size of a VMware disk</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20size%20of%20a%20VMware%20disk&In-Reply-To=%3C20090723130931.GA30398%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Setting the size of a VMware disk">ms at novell.com
+       </A><BR>
+    <I>Thu Jul 23 15:09:31 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001291.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+        <LI>Next message: <A HREF="001293.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1292">[ date ]</a>
+              <a href="thread.html#1292">[ thread ]</a>
+              <a href="subject.html#1292">[ subject ]</a>
+              <a href="author.html#1292">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;&gt;<i>    &lt;preferences&gt;
+</I>&gt;&gt;<i>       ...
+</I>&gt;&gt;<i>       &lt;size unit=&quot;G&quot;&gt;50&lt;/size&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   
+</I>&gt;<i> Thanks, does this apply to other images types in some way? If it only 
+</I>&gt;<i> applies to VM (Xen and VMware) images I wonder if it shouldn't be moved to 
+</I>&gt;<i> the appropriat options for those images.
+</I>
+It applies to all image types. In case of a virtual disk creation the
+size references the disk size and in any other case the size references
+the size of the root filesystem
+
+&gt;<i> Further I noticed that all the oem- options are part of preferences and was 
+</I>&gt;<i> thinking it would be nice to collect these in an oem-options element.
+</I>
+Well I agree putting them all into the preferences section was not
+the best place. If we change this we also should think of changing the
+type schema completely. I was thinking on something like this for each
+type:
+
+   &lt;oem attributes&gt;
+      &lt;size .../&gt;
+      &lt;oem-parameters/&gt;
+   &lt;/oem&gt;
+
+   &lt;vmx attributes&gt;
+   &lt;/vmx&gt;
+
+   &lt;iso attributes&gt;
+   &lt;/iso&gt;
+
+   ... and so on
+
+
+This would be a hard change and we need a very good xsl stylesheet
+to transform from the old scheme into the new scheme. I have that
+on my todo list but prio is low atm
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001291.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+	<LI>Next message: <A HREF="001293.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1292">[ date ]</a>
+              <a href="thread.html#1292">[ thread ]</a>
+              <a href="subject.html#1292">[ subject ]</a>
+              <a href="author.html#1292">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

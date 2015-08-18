@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110310150639.GA19501%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002441.html">
+   <LINK REL="Next"  HREF="002447.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110310150639.GA19501%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Thu Mar 10 16:06:39 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002441.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002447.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2446">[ date ]</a>
+              <a href="thread.html#2446">[ thread ]</a>
+              <a href="subject.html#2446">[ subject ]</a>
+              <a href="author.html#2446">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Basically you have two options to create the stick image
+</I>&gt;<i> which should be shown in the following Examples:
+</I>
+update:
+
+as consequence of the new --fat-storage option I'm going
+to remove the image=&quot;usb&quot; type. It's entirely replaced
+by oem or iso types now. So in order to create the Windows
+friendly stick the following is supported
+ 
+*) &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.3&quot;&gt;
+       ... optional oem and systemdisk settings
+   &lt;/type&gt;
+
+     kiwi --prepare ... --root /tmp/kiwi-11.3
+     kiwi --create /tmp/kiwi-11.3 -d /tmp/mytest/ \
+          --type oem --fat-storage 300
+
+   * This example creates a virtual oem disk (expandable) and thus
+     can be deployed with dd or with Matt's image writer tool on Windows too
+     on first boot the stick is resized according to the oem options
+     set in config.xml
+   * The --fat-storage option allows to specify the size of the fat
+     partition usable by Windows as data container (default 60M)
+     in this case 300M will be used
+   * fat partition is first partition
+
+I also update the documentation
+
+will now check if filesystem=&quot;clicfs&quot; also works
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002441.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002447.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2446">[ date ]</a>
+              <a href="thread.html#2446">[ thread ]</a>
+              <a href="subject.html#2446">[ subject ]</a>
+              <a href="author.html#2446">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

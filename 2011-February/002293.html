@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with Xen images
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20Xen%20images&In-Reply-To=%3C1296730698.5848.196.camel%40linux-rtgf.site%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002292.html">
+   <LINK REL="Next"  HREF="002294.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with Xen images</H1>
+    <B>Peter Bowen</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20Xen%20images&In-Reply-To=%3C1296730698.5848.196.camel%40linux-rtgf.site%3E"
+       TITLE="[Kiwi-users] Problem with Xen images">pzb at novell.com
+       </A><BR>
+    <I>Thu Feb  3 11:58:18 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002292.html">[Kiwi-users] Bug in Kiwi and U3 ?
+</A></li>
+        <LI>Next message: <A HREF="002294.html">[Kiwi-users] Problem with Xen images
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2293">[ date ]</a>
+              <a href="thread.html#2293">[ thread ]</a>
+              <a href="subject.html#2293">[ subject ]</a>
+              <a href="author.html#2293">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm trying to build an image for a Xen HVM (full virtualization) domU.
+This means it needs to use the regular kernel and the Xen device drivers
+for the block and network devices.
+
+The problem that I'm having is that the non-Xen block device drivers are
+getting loaded before the Xen ones, which results in duplicate devices
+and leaves the system open for block device corruption if the user
+mounts both by mistake.
+
+I'm using kiwi 3.74 and my kiwi config starts like this:
+
+&lt;image schemaversion=&quot;3.7&quot; name=&quot;SLES11-SP1-hvm-guest&quot;&gt;
+        &lt;description type=&quot;system&quot;&gt;
+                &lt;author&gt;Peter Bowen&lt;/author&gt;
+                &lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pzb at novell.com</A>&lt;/contact&gt;
+                &lt;specification&gt;SUSE Linux Enterprise Server 11 Service Pack 1&lt;/specification&gt;
+        &lt;/description&gt;
+        &lt;preferences&gt;
+                &lt;type filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-SLES11&quot; fsnocheck=&quot;true&quot;&gt;oem&lt;/type&gt;
+                &lt;version&gt;0.0.1&lt;/version&gt;
+                &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+                &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+                &lt;locale&gt;en_US&lt;/locale&gt;
+                &lt;keytable&gt;us.map.gz&lt;/keytable&gt;
+                &lt;size unit=&quot;M&quot;&gt;10240&lt;/size&gt;
+        &lt;/preferences&gt;
+        &lt;xenconfig memory=&quot;1536&quot; domain=&quot;domU&quot;&gt;
+                &lt;xendisk device=&quot;/dev/xvda&quot;/&gt;
+                &lt;xenbridge mac=&quot;00:0C:6E:AA:48:2E&quot; name=&quot;xenbr0&quot;/&gt;
+        &lt;/xenconfig&gt;
+
+Did I do something wrong?
+
+Thanks,
+Peter
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002292.html">[Kiwi-users] Bug in Kiwi and U3 ?
+</A></li>
+	<LI>Next message: <A HREF="002294.html">[Kiwi-users] Problem with Xen images
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2293">[ date ]</a>
+              <a href="thread.html#2293">[ thread ]</a>
+              <a href="subject.html#2293">[ subject ]</a>
+              <a href="author.html#2293">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

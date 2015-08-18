@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: [kiwi-users] how do i enable specific systemd services in generated appliance?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20%5Bkiwi-users%5D%20how%20do%20i%20enable%20specific%20systemd%0A%20services%20in%20generated%20appliance%3F&In-Reply-To=%3CCABKsJ%3DTAqe2w71wir%3D%2B5NOdW4jdw2_hHKw7E3LhYiRV5Uy4fqQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003004.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: [kiwi-users] how do i enable specific systemd services in generated appliance?</H1>
+    <B>marcin kowalski</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20%5Bkiwi-users%5D%20how%20do%20i%20enable%20specific%20systemd%0A%20services%20in%20generated%20appliance%3F&In-Reply-To=%3CCABKsJ%3DTAqe2w71wir%3D%2B5NOdW4jdw2_hHKw7E3LhYiRV5Uy4fqQ%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Fwd: [kiwi-users] how do i enable specific systemd services in generated appliance?">yoshi314 at gmail.com
+       </A><BR>
+    <I>Wed Nov 30 10:02:28 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003004.html">[Kiwi-users] [kiwi-users] how do i enable specific systemd services	in generated appliance?
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3005">[ date ]</a>
+              <a href="thread.html#3005">[ thread ]</a>
+              <a href="subject.html#3005">[ subject ]</a>
+              <a href="author.html#3005">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>sorry for the spam, but gmail always drops the ML from receivers, resending
+:<i>/
+</I>
+---------- Forwarded message ----------
+From: marcin kowalski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">yoshi314 at gmail.com</A>&gt;
+Date: 2011/11/30
+Subject: Re: [Kiwi-users] [kiwi-users] how do i enable specific systemd
+services in generated appliance?
+To: Frederic Crozat &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fcrozat at suse.com</A>&gt;
+
+
+my impression is that systemctl requires working systemd service, but i
+could be wrong here.
+
+I'll try your approach. If it fails then I'll just make symlinks to various
+services i need.
+
+Afaik systemd has some kind of chroot-like feature that could help here,
+but since my host system is non-systemd 11.4, that's not likely to work.
+
+
+2011/11/30 Frederic Crozat &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fcrozat at suse.com</A>&gt;
+
+&gt;<i> Le mercredi 30 novembre 2011 &#224; 09:28 +0100, Marcus Sch&#228;fer a &#233;crit :
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &gt;    Hi list;
+</I>&gt;<i> &gt; &gt;    It would appear that enabling specific services with chkconfig in
+</I>&gt;<i> &gt; &gt;    config.sh no longer works, and the target system runs whatever
+</I>&gt;<i> services
+</I>&gt;<i> &gt; &gt;    it feels like.
+</I>&gt;<i> &gt; &gt;    Do i have to ditch chkconfig and provide manual symlinks in
+</I>&gt;<i> &gt; &gt;    /etc/systemd for various services i want to enable ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Uh, you are right for &gt;= 12.1 systemd services works differently
+</I>&gt;<i> &gt; now. Frankly said I don't know how to activate/deactivate services
+</I>&gt;<i> &gt; for systemd in an image which actually does not run systemd
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; @Frederic can you tell us what the best way is to achieve that ?
+</I>&gt;<i>
+</I>&gt;<i> It should still work, since insserv (which is called by chkconfig) has
+</I>&gt;<i> support to forward command for systemd service, when they shadow an
+</I>&gt;<i> initscript.
+</I>&gt;<i>
+</I>&gt;<i> Anyway, if you need to enable / disable a systemd service, I suggest you
+</I>&gt;<i> use :
+</I>&gt;<i> systemctl enable service_name.service
+</I>&gt;<i> or
+</I>&gt;<i> systemctl disable service_name.service
+</I>&gt;<i>
+</I>&gt;<i> rather than creating the symlink yourself (it does the same job, but it
+</I>&gt;<i> is easier for people to remember ;)
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Frederic Crozat &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fcrozat at suse.com</A>&gt;
+</I>&gt;<i> SUSE
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20111130/af413394/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20111130/af413394/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003004.html">[Kiwi-users] [kiwi-users] how do i enable specific systemd services	in generated appliance?
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3005">[ date ]</a>
+              <a href="thread.html#3005">[ thread ]</a>
+              <a href="subject.html#3005">[ subject ]</a>
+              <a href="author.html#3005">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

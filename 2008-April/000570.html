@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] OEM partition resize
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20partition%20resize&In-Reply-To=%3C20080411080153.GA13983%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000568.html">
+   <LINK REL="Next"  HREF="000576.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] OEM partition resize</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20partition%20resize&In-Reply-To=%3C20080411080153.GA13983%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] OEM partition resize">ms at suse.de
+       </A><BR>
+    <I>Fri Apr 11 10:01:53 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000568.html">[Kiwi-users] OEM partition resize
+</A></li>
+        <LI>Next message: <A HREF="000576.html">[Kiwi-users] Dear friend,
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#570">[ date ]</a>
+              <a href="thread.html#570">[ thread ]</a>
+              <a href="subject.html#570">[ subject ]</a>
+              <a href="author.html#570">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi David,
+
+&gt;<i> I'm using a kiwi OEM image description.  I would rather let kiwi
+</I>&gt;<i> automatically determine the size of the resulting raw image file (by not
+</I>&gt;<i> using a &lt;size&gt; element in the &lt;preferences&gt; section), but I would like
+</I>&gt;<i> the partition to be larger in the resulting deployment.  Is there a way
+</I>&gt;<i> to specify the installed partition size somewhere, as is done with the
+</I>&gt;<i> netboot image with the PART=size;type;mount-point parameter?
+</I>
+you can influence the partitioning if you create a file named
+&quot;config.oempartition&quot; and put that file into the oemboot boot
+image description of your choice. As this is a change to a
+user defined boot image I suggest to first create a copy of the
+standard boot image. For example:
+
+	cp -a /usr/share/kiwi/image/oemboot/suse-10.3 \
+          /usr/share/kiwi/image/oemboot/suse-10.3-david
+
+    cp config.oempartition /usr/share/kiwi/image/oemboot/suse-10.3-david/root
+
+    ===&gt; change system image config.xml:
+         &lt;type ... boot=&quot;oemboot/suse-10.3-david&quot;&gt;oem&lt;/type&gt;
+
+the contents of the config.oempartition could be as follows:
+
+	OEM_SWAPSIZE=&lt;number in MB&gt;
+    OEM_SYSTEMSIZE=&lt;number in MB&gt;
+    OEM_WITHOUTHOME=1
+    OEM_REBOOT=1
+
+I think what you want is only
+
+    OEM_SYSTEMSIZE=&lt;number in MB&gt;
+
+We also should add that into the documentation. I really need
+to take care for the docs now :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000568.html">[Kiwi-users] OEM partition resize
+</A></li>
+	<LI>Next message: <A HREF="000576.html">[Kiwi-users] Dear friend,
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#570">[ date ]</a>
+              <a href="thread.html#570">[ thread ]</a>
+              <a href="subject.html#570">[ subject ]</a>
+              <a href="author.html#570">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

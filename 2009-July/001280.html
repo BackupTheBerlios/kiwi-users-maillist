@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Howto add your custom boot menu branding...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C4A5B63BE.2010508%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001279.html">
+   <LINK REL="Next"  HREF="001300.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Howto add your custom boot menu branding...</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C4A5B63BE.2010508%40novell.com%3E"
+       TITLE="[Kiwi-users] Howto add your custom boot menu branding...">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Jul 13 18:41:34 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001279.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+        <LI>Next message: <A HREF="001300.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1280">[ date ]</a>
+              <a href="thread.html#1280">[ thread ]</a>
+              <a href="subject.html#1280">[ subject ]</a>
+              <a href="author.html#1280">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> hope you don't mind if I include the community again
+</I>&gt;<i> this information might be interesting for others too
+</I>
+No problem, just the info (branding images) in the tarball are not for 
+public consumption. The discussion certainly is.
+
+&gt;<i> 
+</I>&gt;&gt;<i> Apparently I am being extremely dense about this. With the latest attempt I 
+</I>&gt;&gt;<i> have now managed to have no graphics during the boot process.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Could you take a look at this and let me know where I am messing things up?
+</I>&gt;<i> 
+</I>&gt;<i> well your tarball puts everything below kiwiBrandingTest/ this
+</I>&gt;<i> results in a root filesystem which has among other directories
+</I>
+Sorry for the insufficient information/explanation. In the 
+kiwiBrandingTest directory you will find a suse-live-iso directory. This 
+directory in turn contains a tarball myBrand.tgz. This tarball is listed 
+in the config.xml file and creates what I thought to be the appropriate 
+files in etc/bootsplash/themes and usr/share/gfxboot.
+
+&gt;<i> You should have a look into the packages
+</I>&gt;<i> 
+</I>&gt;<i>   bootsplash-branding-openSUSE
+</I>&gt;<i>   gfxboot-devel  
+</I>&gt;<i> 
+</I>&gt;<i> there you see where they install data and with your custom
+</I>&gt;<i> tarball you can overwrite that data to include your own
+</I>&gt;<i> branding. But that of course requires that you use the
+</I>&gt;<i> same directory structure
+</I>
+I did look at these packages and at your initial tarball. Further I 
+thought I did duplicate the appropriate directory structure.
+
+I think there may be an issue with the theme, as I am not putting the 
+images in ....../themes/openSUSE but in ....../themes/myBrand. When I 
+look at etc/sysconfig/bootsplash in the unpacked image created it still 
+points to openSUSE when it should probably point to myBrand.
+
+# head /tmp/brandTest/etc/sysconfig/bootsplash
+
+## Path:	System/Boot
+## Description:	selects bootsplash graphics theme
+## Type:	string
+## Default:	&quot;&quot;
+# Choose the bootsplash theme. It should be based in
+# /etc/bootsplash/themes/
+THEME=&quot;openSUSE&quot;
+## Path:	System/Boot
+## Description:	enables/disables bootup graphics
+
+
+Thanks,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001279.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+	<LI>Next message: <A HREF="001300.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1280">[ date ]</a>
+              <a href="thread.html#1280">[ thread ]</a>
+              <a href="subject.html#1280">[ subject ]</a>
+              <a href="author.html#1280">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

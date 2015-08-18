@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] lts.conf ignores parameters
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20lts.conf%20ignores%20parameters&In-Reply-To=%3Cb317ae5c0803132316l5d26dbby2a347790273ef7ff%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000487.html">
+   <LINK REL="Next"  HREF="000489.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] lts.conf ignores parameters</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20lts.conf%20ignores%20parameters&In-Reply-To=%3Cb317ae5c0803132316l5d26dbby2a347790273ef7ff%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] lts.conf ignores parameters">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Fri Mar 14 07:16:17 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000487.html">[Kiwi-users] lts.conf ignores parameters
+</A></li>
+        <LI>Next message: <A HREF="000489.html">[Kiwi-users] lts.conf ignores parameters
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#488">[ date ]</a>
+              <a href="thread.html#488">[ thread ]</a>
+              <a href="subject.html#488">[ subject ]</a>
+              <a href="author.html#488">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Mar 14, 2008 at 8:39 AM, Bart Geesink &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bart at geesink.org</A>&gt; wrote:
+&gt;<i> On Friday 14 March 2008 10:03:10 Robert W March wrote:
+</I>&gt;<i>  &gt; From CyberOrg earlier on this list ...
+</I>&gt;<i>  &gt; You need to change /srv/kiwi-ltsp-nfs/etc/lts.conf and run the
+</I>&gt;<i>  &gt; following every time you change lts.conf:
+</I>&gt;<i>  &gt;
+</I>&gt;<i>  &gt; rm /srv/kiwi-ltsp/ltsp-suse-10.3.i686-0.0.2
+</I>&gt;<i>  &gt; mksquashfs /srv/kiwi-ltsp-nfs /srv/kiwi-ltsp/ltsp-suse-10.3.i686-0.0.2
+</I>&gt;<i>  I changed the setup to boot from nfs in stead of nbd, to make testing easier
+</I>&gt;<i>  and not needing to rebuild the squashfs image every time again. So changes to
+</I>&gt;<i>  lts.conf are loaded into the client.
+</I>&gt;<i>
+</I>
+I will be doing new packages later this week, which will have slightly
+different way of handling lts.conf, it will eliminate need to put
+lts.conf inside chroot and rebuild squashfs image every time it is
+changed.
+
+We would be using kiwi's feature of adding CONF= in
+/srv/tftpboot/KIWI/config.default
+
+To change from nbd to nfs you can create two files and switch between them:
+
+
+Put the following in /srv/tftpboot/KIWI/config.default.nbd
+NBDROOT=&lt;replacewithserverip&gt;;2000
+COMBINED_IMAGE=yes
+
+cp /srv/tftpboot/KIWI/config.default.nbd /srv/tftpboot/KIWI/config.default
+
+
+Put the following in /srv/tftpboot/KIWI/config.default.nfs
+NFSROOT=&lt;replacewithserverip&gt;;/srv/kiwi-ltsp-nfs
+COMBINED_IMAGE=yes
+
+cp /srv/tftpboot/KIWI/config.default.nfs /srv/tftpboot/KIWI/config.default
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000487.html">[Kiwi-users] lts.conf ignores parameters
+</A></li>
+	<LI>Next message: <A HREF="000489.html">[Kiwi-users] lts.conf ignores parameters
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#488">[ date ]</a>
+              <a href="thread.html#488">[ thread ]</a>
+              <a href="subject.html#488">[ subject ]</a>
+              <a href="author.html#488">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.xml%20schema%20reference%3F%20Want%20to%20build%20an%0A%20image%20with%20multiple%20partitions&In-Reply-To=%3C20120512191752.GA26289%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003022.html">
+   <LINK REL="Next"  HREF="003024.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.xml%20schema%20reference%3F%20Want%20to%20build%20an%0A%20image%20with%20multiple%20partitions&In-Reply-To=%3C20120512191752.GA26289%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions">ms at suse.de
+       </A><BR>
+    <I>Sat May 12 21:17:52 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003022.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+        <LI>Next message: <A HREF="003024.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3023">[ date ]</a>
+              <a href="thread.html#3023">[ thread ]</a>
+              <a href="subject.html#3023">[ subject ]</a>
+              <a href="author.html#3023">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;    &lt;type ...
+</I>&gt;<i> &gt;       &lt;systemdisk&gt;
+</I>&gt;<i> &gt;         &lt;volume name=&quot;var&quot; size=&quot;200G&quot;/&gt;
+</I>&gt;<i> &gt;		&lt;volume name=&quot;tmp&quot; size=&quot;100G&quot;/&gt;
+</I>&gt;<i> &gt;         &lt;volume name=&quot;log&quot; freespace=&quot;all&quot;/&gt;
+</I>&gt;<i> &gt;       &lt;/systemdisk&gt;
+</I>&gt;<i> &gt;    &lt;/type&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Okay, this makes very little sense to me in practical terms.
+</I>&gt;<i> According to both documentation and experimentation, you get a /boot
+</I>&gt;<i> sector with the usual files, an LVM partition, but the LVM partition
+</I>&gt;<i> is empty! 
+</I>
+why should it be empty ? sorry that doesn't follow any of
+the results I have built. With the above setup the partition
+table should have two partition
+
+   1: type 0x83 boot
+   2: type 0x8e LVM
+
+inside the LVM there is the entire root filesystem whereas
+var,tmp and log are extra volumes. All in all there are four
+logcal volumes inside the LVM:
+
+   LVRoot (with the size to hold the rest of the root filesystem)
+   LVtmp  (size set as 100G)
+   LVvar  (size set as 200G)
+   LVlog  (size set to take all the rest space)
+
+I can see all of these volumes when loop mounting/activating
+the LVM from the generated raw disk file
+
+on first boot the oem image will be resized to the real
+disk geometry. The LVlog volume grows to the rest free
+space of the disk (imho a strange setup but ok) and the
+entire disk grows to the value of oem-system-size or
+to the entire disk size if not set. a swap space LVSwap
+is created if not disabled by oem-swap
+
+It has worked exactly like that in my test build
+with kiwi v5.03.5, suse 11.4 build machine, suse 12.1 image
+
+&gt;<i> What happened to the root file system?  Why isn't there
+</I>&gt;<i> one?  (image type=&quot;oem&quot;)  What else to I need to do to bring the
+</I>&gt;<i> system to life, and what exactly does this do for me?
+</I>
+According to that I only can imagine that something was
+seriously messed up while building the image. Of course
+there has to be some content in your image everything
+else wouldn't make any sense
+
+&gt;<i> Why not just, very early on in the bootstrap process, add partitions
+</I>&gt;<i> to unused space on the target system drive?
+</I>
+you can add unused free space if you can access the target disk
+device geometry not before. So this can happen on first boot
+of the oem image
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003022.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+	<LI>Next message: <A HREF="003024.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3023">[ date ]</a>
+              <a href="thread.html#3023">[ thread ]</a>
+              <a href="subject.html#3023">[ subject ]</a>
+              <a href="author.html#3023">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

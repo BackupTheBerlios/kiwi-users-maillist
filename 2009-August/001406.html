@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live iso images not working
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20iso%20images%20not%20working&In-Reply-To=%3C20090820082757.GA26909%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001403.html">
+   <LINK REL="Next"  HREF="001407.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live iso images not working</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20iso%20images%20not%20working&In-Reply-To=%3C20090820082757.GA26909%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] live iso images not working">ms at novell.com
+       </A><BR>
+    <I>Thu Aug 20 10:27:57 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001403.html">[Kiwi-users] live iso images not working
+</A></li>
+        <LI>Next message: <A HREF="001407.html">[Kiwi-users] live iso images not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1406">[ date ]</a>
+              <a href="thread.html#1406">[ thread ]</a>
+              <a href="subject.html#1406">[ subject ]</a>
+              <a href="author.html#1406">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Thanks for looking into the problem. Please open the attachment to
+</I>&gt;<i> find the config.xml file.
+</I>
+Ok this config.xml looks like it is from an older kiwi version.
+The bootinclude information is missing which causes the text only
+boot screen. If you don't mind install the kiwi version from 
+here:
+
+   <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances">http://download.opensuse.org/repositories/Virtualization:/Appliances</A>
+
+also make sure you install the kiwi-doc package from this repo.
+If you have done that check again the contents of
+
+   /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-live-iso/config.xml
+
+you should see something like:
+
+   &lt;packages type=&quot;image&quot; patternType=&quot;plusRecommended&quot; patternPackageType=&quot;plusRecommended&quot;&gt;
+     &lt;package name=&quot;bootsplash-branding-openSUSE&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+     &lt;package name=&quot;gfxboot-branding-openSUSE&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+     &lt;package name=&quot;kernel-default&quot;/&gt;
+     &lt;package name=&quot;bootsplash&quot;/&gt;
+     &lt;package name=&quot;ifplugd&quot;/&gt;
+     &lt;package name=&quot;vim&quot;/&gt;
+     &lt;opensusePattern name=&quot;default&quot;/&gt;
+     &lt;opensusePattern name=&quot;kde4&quot;/&gt;
+   &lt;/packages&gt;
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001403.html">[Kiwi-users] live iso images not working
+</A></li>
+	<LI>Next message: <A HREF="001407.html">[Kiwi-users] live iso images not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1406">[ date ]</a>
+              <a href="thread.html#1406">[ thread ]</a>
+              <a href="subject.html#1406">[ subject ]</a>
+              <a href="author.html#1406">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

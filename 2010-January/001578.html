@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] AoE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20AoE&In-Reply-To=%3C20100113100938.GA12353%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001576.html">
+   <LINK REL="Next"  HREF="001568.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] AoE</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20AoE&In-Reply-To=%3C20100113100938.GA12353%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] AoE">ms at novell.com
+       </A><BR>
+    <I>Wed Jan 13 11:09:38 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001576.html">[Kiwi-users] AoE
+</A></li>
+        <LI>Next message: <A HREF="001568.html">[Kiwi-users] make image size dependant on type - or profile?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1578">[ date ]</a>
+              <a href="thread.html#1578">[ thread ]</a>
+              <a href="subject.html#1578">[ subject ]</a>
+              <a href="author.html#1578">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;&gt; I need more information to know what happened here. It looks like
+</I>&gt;<i> &gt;&gt; only the root partition but not the entire disk is exported. clicfs
+</I>&gt;<i> &gt;&gt; over AoE has not really been tested. A short look into the code
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> We use clicfs over AoE/NBD for kiwi-ltsp, works fine.
+</I>
+I have tested this as well now with the latest version of kiwi.
+The following works:
+
+   cd /srv/tftpboot/image
+   vbladed 0 1 eth2 LimeJeOS-openSUSE-11.2.i686-1.11.2
+
+   ==&gt; LimeJeOS-openSUSE-11.2.i686-1.11.2 is a clicfs file
+       created by kiwi with the following type:
+
+       &lt;type filesystem=&quot;clicfs&quot; boot=&quot;netboot/suse-11.2&quot;&gt;pxe&lt;/type&gt;
+
+   config.&lt;MAC&gt;
+
+   AOEROOT=/dev/etherd/e0.1
+
+   ==&gt; boot the client, copy on write actions happens
+       into RAM 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001576.html">[Kiwi-users] AoE
+</A></li>
+	<LI>Next message: <A HREF="001568.html">[Kiwi-users] make image size dependant on type - or profile?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1578">[ date ]</a>
+              <a href="thread.html#1578">[ thread ]</a>
+              <a href="subject.html#1578">[ subject ]</a>
+              <a href="author.html#1578">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

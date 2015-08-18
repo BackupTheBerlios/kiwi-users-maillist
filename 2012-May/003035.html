@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Multiple vmware harddisks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Multiple%20vmware%20harddisks&In-Reply-To=%3CCADgx2xZwtcR1L4h-s2-Vs2_KNpTYAZWy0YG1QBMKwui0ahTiyw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003034.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Multiple vmware harddisks</H1>
+    <B>balaguru</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Multiple%20vmware%20harddisks&In-Reply-To=%3CCADgx2xZwtcR1L4h-s2-Vs2_KNpTYAZWy0YG1QBMKwui0ahTiyw%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Multiple vmware harddisks">balaguruv at gmail.com
+       </A><BR>
+    <I>Sun May 20 20:04:47 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003034.html">[Kiwi-users] How to avoid creating /boot as a separate partition ?
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3035">[ date ]</a>
+              <a href="thread.html#3035">[ thread ]</a>
+              <a href="subject.html#3035">[ subject ]</a>
+              <a href="author.html#3035">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks for this workaround.Now we like to have this in single raw disk.Is
+there a way we can get multiple disks in a raw disk.
+
+
+
+On Tue, Apr 24, 2012 at 11:01 PM, Robert Schweikert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>&gt;wrote:
+
+&gt;<i> On 04/24/2012 01:20 PM, balaguru wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> hi,
+</I>&gt;&gt;<i> I am very new to kiwi build system and don't know how to achieve this.We
+</I>&gt;&gt;<i> are trying to create vmware appliance(ovf) with multiple harddisks,one
+</I>&gt;&gt;<i> contains system files(softwares,system files,etc.) and another contains
+</I>&gt;&gt;<i> just data.Idea is in case of software updates just replace primary disk
+</I>&gt;&gt;<i> which contains system files and retain data disk.Something like this we
+</I>&gt;&gt;<i> want to achieve in kiwi. We kind of stuck up here.If anyone could help
+</I>&gt;&gt;<i> I'd really appreciate.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> KIWI does not directly support this. Then again this is very easy to
+</I>&gt;<i> script or follow through manually.
+</I>&gt;<i>
+</I>&gt;<i> All you have to do is create an image file:
+</I>&gt;<i>
+</I>&gt;<i> qemu-img create -f vmdk [ANY_OPTIONS] myDatadisk.vmdk [SIZE]
+</I>&gt;<i>
+</I>&gt;<i> You can loopmount the image file to format the disk image.
+</I>&gt;<i>
+</I>&gt;<i> In the .vmx file you just need to add the path to your file as an
+</I>&gt;<i> additional disk entry.
+</I>&gt;<i>
+</I>&gt;<i> done.
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> SUSE-IBM Software Integration Center                   LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweik at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i> ______________________________**_________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/**mailman/listinfo/kiwi-users&lt;https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/**mailman/listinfo/kiwi-users&lt;https://lists.berlios.de/mailman/listinfo/kiwi-users</A>&gt;
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120520/f7efec96/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120520/f7efec96/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003034.html">[Kiwi-users] How to avoid creating /boot as a separate partition ?
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3035">[ date ]</a>
+              <a href="thread.html#3035">[ thread ]</a>
+              <a href="subject.html#3035">[ subject ]</a>
+              <a href="author.html#3035">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

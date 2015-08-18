@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Persistent diskless setup with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3C201001150246.48414.hpj%40urpla.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001585.html">
+   <LINK REL="Next"  HREF="001587.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Persistent diskless setup with kiwi</H1>
+    <B>Hans-Peter Jansen</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3C201001150246.48414.hpj%40urpla.net%3E"
+       TITLE="[Kiwi-users] Persistent diskless setup with kiwi">hpj at urpla.net
+       </A><BR>
+    <I>Fri Jan 15 02:46:47 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001585.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+        <LI>Next message: <A HREF="001587.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1586">[ date ]</a>
+              <a href="thread.html#1586">[ thread ]</a>
+              <a href="subject.html#1586">[ subject ]</a>
+              <a href="author.html#1586">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Marcus and the other kiwis around,
+
+I'm in the need to get a 11.1 diskless setup going quickly, since I failed 
+to adapt a current kernel (necessary because of new hardware) to a well 
+established, rock solid SuSE 9.3 Prof. based diskless desktop setup for a 
+company.. None of the desktops has any kind of persistent storage, btw.
+
+This setup is pretty simple: an installation into a directory is exported 
+ro (e.g. the result of kiwi --prepare), adjusted to diskless needs (a few 
+network/ldap settings, don't stop eth0 on shutdown, a simple automatic X 
+setup with sax). All nodes boot from the same kernel/initrd, which 
+overlays a node specific rw nfs path (with aufs). 
+
+The beauty of this setup is, that I'm able to adjust each node to specific 
+needs: cdrom, sound, X _once_ (e.g. with YaST). I could even install 
+special rpms to selected hosts, if I want, but I'm still enjoying the 
+install once, use everywhere property, even if it's five years old now..
+
+It looks like current technologies in this area are not able to mimic that 
+fully out of the box. Aufs cannot use a nfs mount for its xino file, and I 
+do not want to give up on the two nfs mounts, either. But I might want to 
+add nfs or nbd based swap (now, that's available). Looks like, that I need 
+to use an tmpfs for the xino.
+
+It would be kind, if you/someone could give me a few hints, what would be 
+the best way to realize this with the help of kiwi. Is there an interest 
+to add this functionality to netboot/suse-11.1, or should I create a new 
+image for that. Any pitfalls, I should be aware of?
+
+At the moment, I'm toying with a config based on suse-pxe-client, but it
+behaves a bit strange:
+
+[    7.940325] Checking for config file: config.default
+[    7.950183] Waiting for USB device scan to complete..................
+brd: module loaded
+device-mapper: uevent: version 1.0.3
+device-mapper: ioctl: 4.14.0-ioctl (2008-04-23) initialised: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">dm-devel at redhat.com</A>
+[   23.214372] Have size: /dev/ram1 -&gt; 524288000 Bytes [ 500 MB ]
+[   23.215222] Need size: 56250368 Bytes [ 53 MB ]
+[   23.218740] Loading image/lisa-11.1-pxe-client.i686-1.2.8 [/dev/ram1 BS:4096 Byte]...
+[   25.365511] Download complete, checking data...
+[   25.643032] Image checksum test: fine :-)
+squashfs: version 3.4 (2008/08/26) Phillip Lougher
+SQUASHFS error: Major/Minor mismatch, trying to mount newer 4.0 filesystem
+SQUASHFS error: Please update your kernel
+
+15 seconds wasted for searching some usb devices :-( Whould be cool the get 
+rid of it. The userspace squashfs on the server is from the filesystems repo.
+
+If I mount the --prepare path:
+
+Setting up (localfs) network interfaces:
+    lo        name: 0
+    lo        IP address: 127.0.0.1/8   
+              IP address: 127.0.0.2/8                                                                        done
+    eth0      device: nVidia Corporation MCP78S [GeForce 8200] Ethernet (rev a2)
+    eth0      is controlled by ifplugd                                                                       waiting
+Waiting for mandatory devices:  eth0 __NSC__
+29 28 26 25 24 23 22 20 19 18 17 16 14 13 12 11 9 8 7 6 5 3 2 1 0 
+    eth0      device: nVidia Corporation MCP78S [GeForce 8200] Ethernet (rev a2)
+    eth0      ifplugd is running
+    eth0      cable is connected
+    eth0      DHCP4 client (dhcpcd) is running
+    eth0      . . . but is still waiting for data
+    eth0      IP address: 172.16.23.189/24                                                                   waiting
+    eth0      interface could not be set up until now                                                        failed
+Setting up service (localfs) network  .  .  .  .  .  .  .  .  .  .                                           failed
+
+although IPAPPEND 1 is specified in the pxe default file.
+
+and consequently on shutdown:
+
+Shutting down acpid                                                                                          done
+Shutting down mail service (Postfix)                                                                         done
+Shutting down syslog services                                                                                done
+Shutting down (remotefs) network interfaces:
+[Game over]
+
+Been there, fixed that once.. 
+
+TIA,
+Pete
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001585.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+	<LI>Next message: <A HREF="001587.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1586">[ date ]</a>
+              <a href="thread.html#1586">[ thread ]</a>
+              <a href="subject.html#1586">[ subject ]</a>
+              <a href="author.html#1586">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

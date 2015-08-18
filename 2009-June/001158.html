@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] VMX image creation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMX%20image%20creation&In-Reply-To=%3C20090608070810.GA18620%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001157.html">
+   <LINK REL="Next"  HREF="001159.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] VMX image creation</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMX%20image%20creation&In-Reply-To=%3C20090608070810.GA18620%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] VMX image creation">ms at novell.com
+       </A><BR>
+    <I>Mon Jun  8 09:08:11 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001157.html">[Kiwi-users] VMX image creation
+</A></li>
+        <LI>Next message: <A HREF="001159.html">[Kiwi-users] List of opensusePatterns
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1158">[ date ]</a>
+              <a href="thread.html#1158">[ thread ]</a>
+              <a href="subject.html#1158">[ subject ]</a>
+              <a href="author.html#1158">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Thanks a bunch, Marcus. I ran the diff loop you sent and it turns out I was
+</I>&gt;<i> missing two symlinks in the oemboot descriptor I copied. The missing links
+</I>&gt;<i> were suse-dump and suse-repart. I created those symlinks in my copy and
+</I>&gt;<i> here's the output.
+</I>
+ah ok that explains much. If you copy the boot images you
+need to take care that _all_ the symlinks in the copy still
+point to an existing target. Basically there are five such
+symlinks depending on the image description. The following
+three are always there:
+
+    include -&gt; /usr/share/kiwi/modules/KIWILinuxRC.sh
+    linuxrc -&gt; ../../suse-linuxrc
+    preinit -&gt; ../../suse-preinit
+
+and the following two only for oemboot
+
+    dump -&gt; ../../suse-dump
+    repart -&gt; ../../suse-repart
+
+The symlinks except for the include link references files
+two levels back in the directory structure. Therefore when
+copying a boot image you should respect two things:
+
+1) always run &quot;cp -a&quot;
+2) always copy the bootimage in the same directory level
+   or make sure you adapt the symlinks afterwards
+
+The latest kiwi version has a &quot;--clone&quot; command which allows
+creating a copy of an image description. I think I should add
+some checks to prevent the problems you ran into
+
+&gt;<i> The bootsplash directory is different because I copied custom images in
+</I>&gt;<i> there for the bootsplash. Perhaps that's where the problem was coming in?
+</I>
+I'm pretty sure the reason why it broke was the broken symlink
+stuff. You should be back on the green line if all symlinks
+in the */ViewOpenLive-2.0/root directories are valid 
+
+&gt;<i> Also, I've applied the changes from your patch and now I am unable to
+</I>&gt;<i> prepare the image. I've looked at the xml and don't see any issues with
+</I>&gt;<i> formatting, but I receive the following output when trying to prepare now.
+</I>&gt;<i> I've attached the new config.xml to make sure I patched correctly.
+</I>
+sorry I thought you were on the latest kiwi code. schema version
+is 3.5 there. But you already fixed that :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001157.html">[Kiwi-users] VMX image creation
+</A></li>
+	<LI>Next message: <A HREF="001159.html">[Kiwi-users] List of opensusePatterns
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1158">[ date ]</a>
+              <a href="thread.html#1158">[ thread ]</a>
+              <a href="subject.html#1158">[ subject ]</a>
+              <a href="author.html#1158">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

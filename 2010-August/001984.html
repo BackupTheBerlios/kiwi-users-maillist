@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-08-15 - 2010-08-20...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-08-15%20-%202010-08-20...&In-Reply-To=%3C20100823075623.GA31016%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001987.html">
+   <LINK REL="Next"  HREF="001988.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-08-15 - 2010-08-20...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-08-15%20-%202010-08-20...&In-Reply-To=%3C20100823075623.GA31016%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-08-15 - 2010-08-20...">ms at novell.com
+       </A><BR>
+    <I>Mon Aug 23 09:56:24 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001987.html">[Kiwi-users] source control files...
+</A></li>
+        <LI>Next message: <A HREF="001988.html">[Kiwi-users] Ability to run scripts in final image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1984">[ date ]</a>
+              <a href="thread.html#1984">[ thread ]</a>
+              <a href="subject.html#1984">[ subject ]</a>
+              <a href="author.html#1984">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.57 2010-08-15 - 2010-08-20
+--------------------------------------------------
+most important changes for last weeks release...
+
+commit c303286eb9805dc28add21aeb57d0010a711700c
+
+  don't use mkclicfs from image root tree. That will fail in
+  any case where the image buildsystem libraries doesn't match
+  the ones required by the mkclicfs binary inside the root tree
+
+commit 0794e53e3ce0c69cf3e3974125bb1763208369a0
+
+  fixed shell exception handling after the move mount of
+  devices. In that cases the tty devices are in /mnt/dev and
+  therefore any shell exception failed because the setctsid
+  call can't find the device. This is now fixed (bnc #608620)
+
+commit 8ead61ffc3c6adcd3f8f3b422998e5c17aaf5d76
+
+  added support for selecting the default boot entry for a
+  kiwi install image. The optional &lt;type&gt; attribute called
+  installboot can take the values 'install' for standard
+  installation, 'failsafe-install' for installation with
+  failsafe kernel parameters and 'harddisk' which is the
+  default anyway if no installboot attribute was
+  given (bnc #624228)
+
+commit 7ebd80ff29646289bb014a818647822cb6c68dfe
+
+  update documentation. XML elements and attributes are
+  now listed in the index. The docs has been improved a lot
+  Thanks to Thomas Schraitle for the good work
+
+Have fun :-)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001987.html">[Kiwi-users] source control files...
+</A></li>
+	<LI>Next message: <A HREF="001988.html">[Kiwi-users] Ability to run scripts in final image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1984">[ date ]</a>
+              <a href="thread.html#1984">[ thread ]</a>
+              <a href="subject.html#1984">[ subject ]</a>
+              <a href="author.html#1984">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

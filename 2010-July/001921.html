@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] netcat-openbsd in suse-pxe-client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20netcat-openbsd%20in%20suse-pxe-client&In-Reply-To=%3C20100726083600.GA27454%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001920.html">
+   <LINK REL="Next"  HREF="001922.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] netcat-openbsd in suse-pxe-client</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20netcat-openbsd%20in%20suse-pxe-client&In-Reply-To=%3C20100726083600.GA27454%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] netcat-openbsd in suse-pxe-client">ms at novell.com
+       </A><BR>
+    <I>Mon Jul 26 10:36:00 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001920.html">[Kiwi-users] netcat-openbsd in suse-pxe-client
+</A></li>
+        <LI>Next message: <A HREF="001922.html">[Kiwi-users] netcat-openbsd in suse-pxe-client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1921">[ date ]</a>
+              <a href="thread.html#1921">[ thread ]</a>
+              <a href="subject.html#1921">[ subject ]</a>
+              <a href="author.html#1921">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm trying to build pxe bootable vm hypervisor appliance. I achieved
+</I>&gt;<i> successfully build pxe-client with automatically starting libvirt interface
+</I>&gt;<i> to linux kvm virtualization layer.
+</I>&gt;<i> The problem is - for communication through libvirt I do need to 'nc' binary
+</I>&gt;<i> which is located in netcat-openbsd. I've added &lt;package
+</I>&gt;<i> name=&quot;netcat-openbsd'/&gt; to confix.xml &lt;packages type=&quot;image&quot;&gt; section but
+</I>&gt;<i> after bootstraping the image and booting it I can not find 'nc' utility.
+</I>&gt;<i> 
+</I>&gt;<i> How can I check if kiwi removed /usr/bin/nc or not. It must be in the image
+</I>&gt;<i> because of these lines from log:
+</I>
+it surely doesn't remove that except you have some config.sh or
+images.sh script which does it. So I would first check the custom scripts
+
+&gt;<i> + chroot /tmp/kiwi/vmh-32-root /usr/bin/zypper --non-interactive
+</I>&gt;<i> --no-gpg-checks --reposd-dir /var/cache/kiwi/zypper --cache-dir
+</I>&gt;<i> /var/cache/kiwi/zypper --raw-cache-dir /var/cache/kiwi/zypper install
+</I>&gt;<i> --auto-agree-with-licenses --no-recommends acpid binutils dhcpcd file gawk
+</I>&gt;<i> grub ifplugd initviocons iputils kbd kernel-default ksymoops kvm less
+</I>&gt;<i> libcgroup1 libvirt lxc module-init-tools netcat-openbsd netcfg nfs-client
+</I>&gt;<i> openssh portmap procinfo qemu sysconfig sysfsutils syslinux syslog-ng
+</I>&gt;<i>   licenses logrotate lvm2 lxc mkinitrd module-init-tools mtools
+</I>&gt;<i> netcat-openbsd
+</I>&gt;<i> Installing: netcat-openbsd-1.89-71.2 [done]
+</I>&gt;<i> warning:
+</I>&gt;<i> /var/cache/kiwi/zypper/packages/http:__download.opensuse.org_distribution_11.3_repo_oss/suse/i586/netcat-openbsd-1.89-71.2.i586.rpm:
+</I>&gt;<i> Header V3 RSA/SHA256 Signature, key ID 3dbdc284: NOKEY
+</I>
+ok so it has been installed. Can you make sure you don't have netcat-openbsd
+listed in the &quot;&lt;packages type=&quot;delete&quot;&gt;&quot; section too ? I saw people adding
+the package in all packages sections they can find, which results in an
+install followed by an uninstall of the package :-)
+
+After that chroot into your tree:
+
+   chroot /tmp/kiwi/vmh-32-root bash
+   rpm -ql netcat-openbsd
+
+is it really installed or not ? if not it must be uninstalled by
+some script or by kiwi's delete list
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001920.html">[Kiwi-users] netcat-openbsd in suse-pxe-client
+</A></li>
+	<LI>Next message: <A HREF="001922.html">[Kiwi-users] netcat-openbsd in suse-pxe-client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1921">[ date ]</a>
+              <a href="thread.html#1921">[ thread ]</a>
+              <a href="subject.html#1921">[ subject ]</a>
+              <a href="author.html#1921">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

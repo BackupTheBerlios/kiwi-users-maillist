@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Single partition image creation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Single%20partition%20image%20creation&In-Reply-To=%3C20100223102904.GB13646%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001687.html">
+   <LINK REL="Next"  HREF="001690.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Single partition image creation</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Single%20partition%20image%20creation&In-Reply-To=%3C20100223102904.GB13646%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Single partition image creation">ms at novell.com
+       </A><BR>
+    <I>Tue Feb 23 11:29:04 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001687.html">[Kiwi-users] Single partition image creation
+</A></li>
+        <LI>Next message: <A HREF="001690.html">[Kiwi-users] Single partition image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1689">[ date ]</a>
+              <a href="thread.html#1689">[ thread ]</a>
+              <a href="subject.html#1689">[ subject ]</a>
+              <a href="author.html#1689">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Steve,
+
+&gt;<i> We are trying to automate our image creation such that it can then
+</I>&gt;<i> be dumped/flashed onto a partition ready to boot up and work.  We
+</I>&gt;<i> want to avoid any manual image creation steps like deploying/installing
+</I>&gt;<i> the image.
+</I>
+If you create the image type &quot;oem&quot; with kiwi the result would be a virtual
+disk including all that. The bootloader, partition table, partitions,
+filesystems and the data. This file can be dumped on the disk device.
+On first boot of the machine the partition table and the filesystems
+are enlarged to the real disk geometry and the system boots up. This
+oemboot boot code also takes care for the fstab and also runs mkinitrd
+as well as setup the bootloader and such. The downside of this image
+type:
+
+ * everything on the disk will be lost
+ * you can only influence the partition setup to some degree
+   (full freedom if you use LVM though)
+
+I don't know exactly about your requirements in terms of the partition
+table setup and if you need to take care for the data already on the
+disk before deployment. But it's surely the easiest way of installing
+an OS on a machine. The dump on the disk device can also happen from
+for example Windows or over the network via PXE
+
+&gt;<i> It would be great if kiwi had a option to create a single filesystem
+</I>&gt;<i> image (a-la image=&quot;ext3&quot;) with a boot image that is ready for normal
+</I>&gt;<i> boot (given you dump it someplace with the correct disk layout), and
+</I>&gt;<i> with either supplying the fstab/grub files or options to specify the
+</I>&gt;<i> swap and boot device.  Would this be a good RFC?
+</I>
+I think I don't understand why you want to separate all those steps ?
+Is it because there is another system on the disk which you don't want
+to loose ?
+
+&gt;<i> I could do the following...  Use image=&quot;ext3&quot; and boot=&quot;oemboot*&quot;.
+</I>&gt;<i>  Mount or dump the filesystem image someplace.  Finish the image
+</I>&gt;<i> &quot;install&quot; just like the oemboot does where LOCAL_BOOT=no
+</I>&gt;<i> (minus the partitioning, etc).  End result being a image I can flash
+</I>&gt;<i> and boot into.
+</I>
+This should work as long as the filesystem image can be found on
+the first partition. The oemboot code expects that to be the case
+
+&gt;<i> I've been going through the oemboot scripts to figure the install
+</I>&gt;<i> parts out.  Is there anything other than fstab/grub config I need
+</I>&gt;<i> to keep in mind that the kiwi --create has not done yet
+</I>&gt;<i> (especially if I use image=&quot;ext3&quot;)?
+</I>
+That should be enough for booting. Keep in mind that your filesystem
+image should be adapted to the real disk geometry so at least
+a resize2fs might be required.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001687.html">[Kiwi-users] Single partition image creation
+</A></li>
+	<LI>Next message: <A HREF="001690.html">[Kiwi-users] Single partition image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1689">[ date ]</a>
+              <a href="thread.html#1689">[ thread ]</a>
+              <a href="subject.html#1689">[ subject ]</a>
+              <a href="author.html#1689">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

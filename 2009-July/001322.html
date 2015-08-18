@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Attempts to make a live USB stick reboots
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Attempts%20to%20make%20a%20live%20USB%20stick%20reboots&In-Reply-To=%3C4A727D37.3070105%40baywinds.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001320.html">
+   <LINK REL="Next"  HREF="001323.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Attempts to make a live USB stick reboots</H1>
+    <B>Bruce Ferrell</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Attempts%20to%20make%20a%20live%20USB%20stick%20reboots&In-Reply-To=%3C4A727D37.3070105%40baywinds.org%3E"
+       TITLE="[Kiwi-users] Attempts to make a live USB stick reboots">bferrell at baywinds.org
+       </A><BR>
+    <I>Fri Jul 31 07:12:23 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001320.html">[Kiwi-users] config.xml image description oem iso usb vmx
+</A></li>
+        <LI>Next message: <A HREF="001323.html">[Kiwi-users] Attempts to make a live USB stick reboots
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1322">[ date ]</a>
+              <a href="thread.html#1322">[ thread ]</a>
+              <a href="subject.html#1322">[ subject ]</a>
+              <a href="author.html#1322">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I started by cloning the following:
+
+/usr/share/doc/packages/kiwi/examples/suse-11.1/suse-live-stick
+/usr/share/kiwi/image/suse-11.1-JeOS
+/usr/share/kiwi/image/usbboot/suse-11.1
+
+  kiwi -p usb -r usb-root
+
+always completes correctly
+
+  kiwi -c usb-root -t oem -d usb-image
+
+and
+
+  kiwi -c usb-root -t usb -d usb-image
+
+runs to here:
+
+tail -15 usb-root.16611.screenrc.log
+
+Jul-30 21:59:59 &lt;1&gt; : EXEC [mount -o loop
+usb-image/suse-11.1-live-stick.i686-1.1.2 /tmp/kiwiboot.6AtvOa 2&gt;&amp;1]
+Jul-30 21:59:59 &lt;1&gt; : EXEC [uname -m]
+Jul-30 21:59:59 &lt;1&gt; : EXEC [xsltproc -o
+/tmp/kiwiboot.6AtvOa/image/config.xml-next
+/usr/share/kiwi/xsl/convert24to35.xsl
+/tmp/kiwiboot.6AtvOa/image/config.xml 2&gt;&amp;1]
+Jul-30 21:59:59 &lt;1&gt; : XSL: Already at version 3.5... skipped
+Jul-30 21:59:59 &lt;1&gt; : EXEC [pwd]
+Jul-30 21:59:59 &lt;1&gt; : EXEC [pwd]
+Jul-30 21:59:59 &lt;1&gt; : EXEC [umount
+usb-image/suse-11.1-live-stick.i686-1.1.2 2&gt;&amp;1]
+Jul-30 21:59:59 &lt;2&gt; : UmountStack failed: umount
+usb-image/suse-11.1-live-stick.i686-1.1.2: umount:
+usb-image/suse-11.1-live-stick.i686-1.1.2: not mounted
+
+Jul-30 21:59:59 &lt;1&gt; : EXEC [uname -m]
+Jul-30 21:59:59 &lt;1&gt; : EXEC [dd
+if=usb-image/suse-11.1-live-stick.i686-1.1.2 bs=128k count=1 2&gt;/dev/null
+|<i> file -]
+</I>Jul-30 21:59:59 &lt;1&gt; : EXEC [mount -o loop
+usb-image/suse-11.1-live-stick.i686-1.1.2 /tmp/kiwiboot.6AtvOa 2&gt;&amp;1]
+Jul-30 21:59:59 &lt;3&gt; : Failed to loop mount
+usb-image/suse-11.1-live-stick.i686-1.1.2 to: /tmp/kiwiboot.6AtvOa:
+mount: according to mtab
+/home/kiwi/usb-image/suse-11.1-live-stick.i686-1.1.2 is already mounted
+on /tmp/kiwiboot.6AtvOa as loop
+   failed
+Jul-30 21:59:59 &lt;1&gt; : EXEC [rm -rf /tmp/kiwiboot.6AtvOa]
+
+while the rm's are failing the system reboots.
+
+Any thoughts?  The last time I had a screwed up squashfs, but I've
+corrected that.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001320.html">[Kiwi-users] config.xml image description oem iso usb vmx
+</A></li>
+	<LI>Next message: <A HREF="001323.html">[Kiwi-users] Attempts to make a live USB stick reboots
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1322">[ date ]</a>
+              <a href="thread.html#1322">[ thread ]</a>
+              <a href="subject.html#1322">[ subject ]</a>
+              <a href="author.html#1322">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

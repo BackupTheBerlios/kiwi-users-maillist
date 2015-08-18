@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTinpkMwthXH9FsMmWFvFLBXSJiK-VdfCEUsLvx9-%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002432.html">
+   <LINK REL="Next"  HREF="002436.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTinpkMwthXH9FsMmWFvFLBXSJiK-VdfCEUsLvx9-%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Mon Mar  7 23:08:02 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002432.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002436.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2434">[ date ]</a>
+              <a href="thread.html#2434">[ thread ]</a>
+              <a href="subject.html#2434">[ subject ]</a>
+              <a href="author.html#2434">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Mar 7, 2011 at 2:28 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi Erich,
+</I>&gt;<i>
+</I>&gt;&gt;<i> We have needed a bootable usbstick carrying an installable system.
+</I>&gt;&gt;<i> We do it like this:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 1.
+</I>&gt;&gt;<i> The usb stick has *no* partition and is formatted FAT32, so it can
+</I>&gt;&gt;<i> be handled by Windows.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 2.
+</I>&gt;&gt;<i> The usbstick contains
+</I>&gt;&gt;<i> a. a live image, which contains the root file system of the &quot;live&quot; system.
+</I>&gt;&gt;<i> &#160; &#160;It consists of 3 files
+</I>&gt;&gt;<i> &#160; &#160;1 &#160;rootfs.raw
+</I>&gt;&gt;<i> &#160; &#160;2 &#160;vmlinuz
+</I>&gt;&gt;<i> &#160; &#160;3 &#160;initrd
+</I>&gt;&gt;<i> b. a target image, maybe specialized to the particular target hardware
+</I>&gt;&gt;<i> &#160; &#160;in question
+</I>&gt;&gt;<i> &#160; &#160;4 &#160;target.raw.gz
+</I>&gt;&gt;<i> c. syslinux
+</I>&gt;&gt;<i> &#160; &#160;5. syslinux.cfg etc.
+</I>&gt;&gt;<i> d. install-to-disk script
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The usbstick is made bootable, booting from the stick will start syslinux,
+</I>&gt;&gt;<i> which in turn will load the kernel (2), the initial ram disk (3) and loop
+</I>&gt;&gt;<i> mount the rootfs.raw as READ ONLY. A writeable layer is added using aufs.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The content of the stick itself is made available as /usb/1.
+</I>&gt;&gt;<i> The install-to-disk script is called like any application and will install
+</I>&gt;&gt;<i> the target.raw.gz image to the disk in the target system. The install-to-disk
+</I>&gt;&gt;<i> script will analyze the disk size, calculate sizes of the desired partitions.
+</I>&gt;&gt;<i> The image is installed using
+</I>&gt;&gt;<i> &#160; &#160;gzip -cd target.raw.gz | dd of=/dev/sdXXX bs=1M
+</I>&gt;&gt;<i> Then the partition table is corrected using fdisk or similar, and after that
+</I>&gt;&gt;<i> fsck and resize2fs will expand the root fs to its final size.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The driving reason for doing it this way was, that the boot stick is created
+</I>&gt;&gt;<i> on a Windows system, which is not under our control. So using ext2fsd or
+</I>&gt;&gt;<i> similar on Windows was no option.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The above mentioned images are all created using kiwi.
+</I>&gt;<i>
+</I>&gt;<i> Thanks for this report. There are some new aspects in it which
+</I>&gt;<i> I did not thought about. I think you had to modify the linuxrc code
+</I>&gt;<i> in the initrd in order to mount the rootfs.raw on the fat fs ?
+</I>&gt;<i>
+</I>&gt;<i> nice stick solution :)
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+Is this a possible solution?  How is this being done?
+C
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002432.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002436.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2434">[ date ]</a>
+              <a href="thread.html#2434">[ thread ]</a>
+              <a href="subject.html#2434">[ subject ]</a>
+              <a href="author.html#2434">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

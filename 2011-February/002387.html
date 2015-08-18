@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oem preload to ISO image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20preload%20to%20ISO%20image&In-Reply-To=%3C1298412340.4548.7.camel%40barracuda.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002380.html">
+   <LINK REL="Next"  HREF="002388.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oem preload to ISO image</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20preload%20to%20ISO%20image&In-Reply-To=%3C1298412340.4548.7.camel%40barracuda.pacific%3E"
+       TITLE="[Kiwi-users] oem preload to ISO image">roger at opq.se
+       </A><BR>
+    <I>Tue Feb 22 23:05:40 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002380.html">[Kiwi-users] [Kiwi-devel] Google summer of code
+</A></li>
+        <LI>Next message: <A HREF="002388.html">[Kiwi-users] oem preload to ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2387">[ date ]</a>
+              <a href="thread.html#2387">[ thread ]</a>
+              <a href="subject.html#2387">[ subject ]</a>
+              <a href="author.html#2387">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have built an oem preload image that deploys on a USB stick. I am
+quite happy with the results. Thanks to all for the help I needed to get
+this working.
+
+FTHOI, I thought I would try to make the image so it can be deployed
+from an ISO image. So, I set installiso=&quot;true&quot; in config.xml. Nothing
+else is changed. Well, it gets quite far. At the last, it fails as seen
+below. It does this lots of times and eventually fails. And for many
+different files. I just took the complaints at the very start.
+
+
+Feb-22 18:47:00 &lt;1&gt; : Creating ISO image...
+Feb-22 18:47:00 &lt;1&gt; : EXEC [pwd]
+Feb-22 18:47:00 &lt;1&gt; : EXEC [mktemp /tmp/kiso-sort-XXXXXX 2&gt;&amp;1]
+Feb-22 18:47:00 &lt;1&gt; : EXEC [mktemp -q -d /tmp/kiso-loader-XXXXXX 2&gt;&amp;1]
+Feb-22 18:47:00 &lt;1&gt; : EXEC [chmod 755 /tmp/kiso-loader-ujtMr0]
+Feb-22 18:47:00 &lt;1&gt; : EXEC [cd /home/roger/source.18.00/RSofT_Diskless/kiwi/RSofT-preload-openSUSE-11.2/image/kiwicdinst.KoBHbj &amp;&amp; genisoimage -R -J -f -b boot/grub/stage2 -no-emul-boot -V &quot;KIWI CD/DVD Installation&quot; -boot-load-size 4 -boot-info-table -udf -allow-limited-size -o /home/roger/source.18.00/RSofT_Diskless/kiwi/RSofT-preload-openSUSE-11.2/image/RSofT-11.2-oem-preload.i686-1.1.3.iso . 2&gt;&amp;1]
+   failed
+Feb-22 19:11:56 &lt;3&gt; : Failed creating ISO image: Warning: -follow-links does not always work correctly; be careful.
+I: -input-charset not specified, using utf-8 (detected in locale settings)
+genisoimage: Too many levels of symbolic links. File ./var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp is not readable - ignoring
+genisoimage: Too many levels of symbolic links. File ./boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/vmlinuz is not readable - ignoring
+genisoimage: Too many levels of symbolic links. File ./boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot is not readable - ignoring
+genisoimage: Too many levels of symbolic links. File ./boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/initrd is not readable - ignoring
+genisoimage: No such file or directory. File ./etc/alternatives/jre_1.6.0 is not readable - ignoring
+genisoimage: No such file or directory. File ./etc/alternatives/keytool is not readable - ignoring
+genisoimage: No such file or directory. File ./etc/alternatives/jre is not readable - ignoring
+genisoimage: No such file or directory. File ./etc/alternatives/jre_openjdk is not readable - ignoring
+genisoimage: No such file or directory. File ./etc/alternatives/jre_1.6.0_exports is not readable - ignoring
+genisoimage: No such file or directory. File ./etc/alternatives/jre_exports is not readable - ignoring
+
+
+Did I miss something?
+
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+SHAW'S PRINCIPAL
+    Build a system that even a fool can use,
+    and only a fool will want to use it.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002380.html">[Kiwi-users] [Kiwi-devel] Google summer of code
+</A></li>
+	<LI>Next message: <A HREF="002388.html">[Kiwi-users] oem preload to ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2387">[ date ]</a>
+              <a href="thread.html#2387">[ thread ]</a>
+              <a href="subject.html#2387">[ subject ]</a>
+              <a href="author.html#2387">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

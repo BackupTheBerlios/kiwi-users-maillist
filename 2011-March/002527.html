@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D879945.8000404%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002526.html">
+   <LINK REL="Next"  HREF="002528.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D879945.8000404%40novell.com%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Mar 21 19:30:29 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002526.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002528.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2527">[ date ]</a>
+              <a href="thread.html#2527">[ thread ]</a>
+              <a href="subject.html#2527">[ subject ]</a>
+              <a href="author.html#2527">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&lt;snip&gt;
+&gt;<i>
+</I>&gt;<i> Nice trick :)
+</I>&gt;<i> It built nicely now.
+</I>&gt;<i> The script you gave me to auto detect and mounts the fat partition
+</I>&gt;<i> works great.   With a few mods I was able to have it create a better
+</I>&gt;<i> mount point (not media) and using Mtools, hide the &quot;boot&quot; and
+</I>&gt;<i> &quot;ldlinux.sys&quot; files when using this USB drive in WIndows. I'll share
+</I>&gt;<i> this with you guys once I get it all built.
+</I>&gt;<i> I added a couple of packages to the config.xml file. Broadcom drivers
+</I>&gt;<i> for wireless and a package &quot;ntp&quot; for clock sync to local time.
+</I>&gt;<i> When I run kiwi --prepare I can an error that reads:
+</I>&gt;<i>
+</I>&gt;<i> &quot;Mar-21 14:03:01&lt;3&gt;  : Schema validation failed                      failed
+</I>&gt;<i> Mar-21 14:03:01&lt;1&gt;  : Automatically upgraded
+</I>&gt;<i> /home/linux/SOSbuild/SOS-min-live-Gnome/config.xml to
+</I>&gt;<i> Mar-21 14:03:01&lt;1&gt;  :
+</I>&gt;<i> /home/linux/SOSbuild/SOS-min-live-Gnome/config.converted.xml
+</I>&gt;<i> Mar-21 14:03:01&lt;1&gt;  : Reported line numbers may not match the
+</I>&gt;<i> Mar-21 14:03:01&lt;1&gt;  : file /home/linux/SOSbuild/SOS-min-live-Gnome/config.xml
+</I>&gt;<i> Mar-21 14:03:01&lt;3&gt;  : unknown-93736a0:0: Relax-NG validity error :
+</I>&gt;<i> Element packages has extra content: text
+</I>&gt;<i> Relax-NG validity error : Extra element packages in interleave
+</I>&gt;<i> unknown-93736a0:0: Relax-NG validity error : Element image failed to
+</I>&gt;<i> validate content&quot;
+</I>&gt;<i> This is the only error I get which is displayed in the terminal.
+</I>&gt;<i> There is no log files as kiwi never really got the chance to run.   It
+</I>&gt;<i> mentions &quot;extra content&quot; in the form of &quot;text&quot; but I can't seem to
+</I>&gt;<i> locate the issue.  This is the config.xml as of the error.
+</I>
+You have a trailing &quot;comment close&quot; markup
+
+&lt;package name=&quot;bundle-lang-gnome-extras-en&quot;/&gt;--&gt;
+
+A couple of tips, install jing on your build machine, to get better 
+error messages, don't insert blank lines as those cause nodes to be 
+created during XML processing and might throw off the line numbers 
+reported as error.
+
+Run kiwi --check-config PATH_TO_config.xml
+
+to verify the configuration file.
+
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002526.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002528.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2527">[ date ]</a>
+              <a href="thread.html#2527">[ thread ]</a>
+              <a href="subject.html#2527">[ subject ]</a>
+              <a href="author.html#2527">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

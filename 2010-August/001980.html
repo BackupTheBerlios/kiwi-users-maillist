@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to maintain a kiwi image?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20maintain%20a%20kiwi%20image%3F&In-Reply-To=%3C20100820082046.GA5897%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001979.html">
+   <LINK REL="Next"  HREF="001981.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to maintain a kiwi image?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20maintain%20a%20kiwi%20image%3F&In-Reply-To=%3C20100820082046.GA5897%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] How to maintain a kiwi image?">ms at novell.com
+       </A><BR>
+    <I>Fri Aug 20 10:20:47 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001979.html">[Kiwi-users] How to maintain a kiwi image?
+</A></li>
+        <LI>Next message: <A HREF="001981.html">[Kiwi-users] How to maintain a kiwi image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1980">[ date ]</a>
+              <a href="thread.html#1980">[ thread ]</a>
+              <a href="subject.html#1980">[ subject ]</a>
+              <a href="author.html#1980">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have build an unpacked image by kiwi
+</I>&gt;<i> eg. kiwi -p /mykiwi -r /tmp/mybuildroot
+</I>&gt;<i> 
+</I>&gt;<i> If i want to change something in /mykiwi/root
+</I>
+What does &quot;something&quot; mean ? a new package some
+configuration changes ? maybe more ?
+
+&gt;<i> I will rebuild an unpacked image, but it takes long time.
+</I>&gt;<i> Is there another method can help me to do that quickly?
+</I>&gt;<i> Thanks!
+</I>
+You don't have to rebuild the unpacked image. After you
+changed something in /tmp/mybuildroot you can call
+kiwi --create /tmp/mybuildroot ... again and the resulting
+image contains your changes
+
+* maintaining the unpacked image might require an inplace
+  repository (for example git) managing those files or
+  directories which are about to change to keep track
+  of the changes. But that's only a recommendation
+
+* installing or removing packages from the unpacked image
+  can be done with kiwi's upgrade mode
+
+  kiwi --upgrade /tmp/mybuildroot --add-package ... --add-package ... \
+       -del-package ...
+
+If you want to speedup the --create step you can think of a
+destination directory which is a tmpdir it will speedup I/O here
+using a parallel gzip like pgzip also speed things up. You can
+set the tool with the option --gzip-cmd ... If you prebuild the
+boot image (initrd) you can re-use it again which also speed things
+up. This is the --prebuiltbootimage option
+
+Making things fast requires some changes in your image creation
+environment. We do a lot in Studio here so maybe building it
+inside studio is the best solution ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001979.html">[Kiwi-users] How to maintain a kiwi image?
+</A></li>
+	<LI>Next message: <A HREF="001981.html">[Kiwi-users] How to maintain a kiwi image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1980">[ date ]</a>
+              <a href="thread.html#1980">[ thread ]</a>
+              <a href="subject.html#1980">[ subject ]</a>
+              <a href="author.html#1980">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

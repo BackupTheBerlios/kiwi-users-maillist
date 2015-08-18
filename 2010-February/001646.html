@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] NBDROOT overlay tests...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20NBDROOT%20overlay%20tests...&In-Reply-To=%3C20100203114343.GA440%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001643.html">
+   <LINK REL="Next"  HREF="001618.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] NBDROOT overlay tests...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20NBDROOT%20overlay%20tests...&In-Reply-To=%3C20100203114343.GA440%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] NBDROOT overlay tests...">ms at novell.com
+       </A><BR>
+    <I>Wed Feb  3 12:43:43 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001643.html">[Kiwi-users] NBDROOT overlay tests...
+</A></li>
+        <LI>Next message: <A HREF="001618.html">[Kiwi-users] how to build Fedora distribution on Kiwi?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1646">[ date ]</a>
+              <a href="thread.html#1646">[ thread ]</a>
+              <a href="subject.html#1646">[ subject ]</a>
+              <a href="author.html#1646">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I've tried to create a simple step by step guide for Jeff Mahoney for 
+</I>&gt;<i> reproducing this problem - based on suse-pxe-client, and guess what, that 
+</I>&gt;<i> setup worked! Do you have a {serial,net} console setup running, that allows 
+</I>&gt;<i> you to capture the oopses easily? Then it would be kind to post them here.
+</I>
+Attached is the trace information. It happens only sometimes and
+sometimes the system simply stands still (I guess hanging in a network timeout)
+The config.&lt;MAC&gt; I used was:
+
+   NFSROOT=192.168.100.7;/tmp/kiwi-11.1
+   UNIONFS_CONFIG=/tmp/kiwi-11.1-cow,nfs,aufs
+
+etc/exports
+
+   /tmp/kiwi-11.1  *(rw,no_root_squash,sync,no_subtree_check)
+   /tmp/kiwi-11.1-cow *(rw,no_root_squash,sync,no_subtree_check)
+
+the /tmp/kiwi-11.1-cow is used for writing in an aufs overlay
+of the base root /tmp/kiwi-11.1 and /tmp/kiwi-11.1-cow. If I check the
+contents of the cow I can see some data. So it looks like it writes
+something before the crash happens
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+Initializing cgroup subsys cpuset
+Initializing cgroup subsys cpu
+Linux version 2.6.27.7-9-default (<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">geeko at buildhost</A>) (gcc version 4.3.2 [gcc-4_3-branch revision 141291] (SUSE Linux) ) #1 SMP 2008-12-04 18:10:04 +0100
+PAT WC disabled due to known CPU erratum.
+BIOS-provided physical RAM map:
+ BIOS-e820: 0000000000000000 - 000000000009f000 (usable)
+ BIOS-e820: 000000000009f000 - 00000000000a0000 (reserved)
+ BIOS-e820: 00000000000e8000 - 0000000000100000 (reserved)
+ BIOS-e820: 0000000000100000 - 0000000017ff0000 (usable)
+ BIOS-e820: 0000000017ff0000 - 0000000018000000 (ACPI data)
+ BIOS-e820: 00000000fffbc000 - 0000000100000000 (reserved)
+DMI 2.4 present.
+last_pfn = 0x17ff0 max_arch_pfn = 0x100000
+RAMDISK: 16772000 - 17ecb662
+ACPI: RSDP 000FBE30, 0014 (r0 QEMU  )
+ACPI: RSDT 17FF0000, 002C (r1 QEMU   QEMURSDT        1 QEMU        1)
+ACPI: FACP 17FF002C, 0074 (r1 QEMU   QEMUFACP        1 QEMU        1)
+ACPI: DSDT 17FF0100, 2540 (r1   BXPC   BXDSDT        1 INTL 20081031)
+ACPI: FACS 17FF00C0, 0040
+ACPI: APIC 17FF2640, 00E0 (r1 QEMU   QEMUAPIC        1 QEMU        1)
+0MB HIGHMEM available.
+383MB LOWMEM available.
+  mapped low ram: 0 - 17ff0000
+  low ram: 00000000 - 17ff0000
+  bootmap 00002000 - 00005000
+(9 early reservations) ==&gt; bootmem [0000000000 - 0017ff0000]
+  #0 [0000000000 - 0000001000]   BIOS data page ==&gt; [0000000000 - 0000001000]
+  #1 [0000001000 - 0000002000]    EX TRAMPOLINE ==&gt; [0000001000 - 0000002000]
+  #2 [0000006000 - 0000007000]       TRAMPOLINE ==&gt; [0000006000 - 0000007000]
+  #3 [0000100000 - 00006509dc]    TEXT DATA BSS ==&gt; [0000100000 - 00006509dc]
+  #4 [0016772000 - 0017ecb662]          RAMDISK ==&gt; [0016772000 - 0017ecb662]
+  #5 [0000651000 - 0000654000]    INIT_PG_TABLE ==&gt; [0000651000 - 0000654000]
+  #6 [000009f800 - 0000100000]    BIOS reserved ==&gt; [000009f800 - 0000100000]
+  #7 [0000007000 - 000000a000]          PGTABLE ==&gt; [0000007000 - 000000a000]
+  #8 [0000002000 - 0000005000]          BOOTMAP ==&gt; [0000002000 - 0000005000]
+found SMP MP-table at [c00fbd10] 000fbd10
+kvm-clock: cpu 0, msr 0:588281, boot clock
+Zone PFN ranges:
+  DMA      0x00000000 -&gt; 0x00001000
+  Normal   0x00001000 -&gt; 0x00017ff0
+  HighMem  0x00017ff0 -&gt; 0x00017ff0
+Movable zone start PFN for each node
+early_node_map[2] active PFN ranges
+    0: 0x00000000 -&gt; 0x0000009f
+    0: 0x00000100 -&gt; 0x00017ff0
+Using APIC driver default
+ACPI: PM-Timer IO Port: 0xb008
+ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00] enabled)
+ACPI: LAPIC (acpi_id[0x01] lapic_id[0x01] disabled)
+ACPI: LAPIC (acpi_id[0x02] lapic_id[0x02] disabled)
+ACPI: LAPIC (acpi_id[0x03] lapic_id[0x03] disabled)
+ACPI: LAPIC (acpi_id[0x04] lapic_id[0x04] disabled)
+ACPI: LAPIC (acpi_id[0x05] lapic_id[0x05] disabled)
+ACPI: LAPIC (acpi_id[0x06] lapic_id[0x06] disabled)
+ACPI: LAPIC (acpi_id[0x07] lapic_id[0x07] disabled)
+ACPI: LAPIC (acpi_id[0x08] lapic_id[0x08] disabled)
+ACPI: LAPIC (acpi_id[0x09] lapic_id[0x09] disabled)
+ACPI: LAPIC (acpi_id[0x0a] lapic_id[0x0a] disabled)
+ACPI: LAPIC (acpi_id[0x0b] lapic_id[0x0b] disabled)
+ACPI: LAPIC (acpi_id[0x0c] lapic_id[0x0c] disabled)
+ACPI: LAPIC (acpi_id[0x0d] lapic_id[0x0d] disabled)
+ACPI: LAPIC (acpi_id[0x0e] lapic_id[0x0e] disabled)
+ACPI: LAPIC (acpi_id[0x0f] lapic_id[0x0f] disabled)
+ACPI: IOAPIC (id[0x01] address[0xfec00000] gsi_base[0])
+IOAPIC[0]: apic_id 1, version 17, address 0xfec00000, GSI 0-23
+ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+Enabling APIC mode:  Flat.  Using 1 I/O APICs
+Using ACPI (MADT) for SMP configuration information
+SMP: Allowing 16 CPUs, 15 hotplug CPUs
+PM: Registered nosave memory: 000000000009f000 - 00000000000a0000
+PM: Registered nosave memory: 00000000000a0000 - 00000000000e8000
+PM: Registered nosave memory: 00000000000e8000 - 0000000000100000
+Allocating PCI resources starting at 20000000 (gap: 18000000:e7fbc000)
+PERCPU: Allocating 39068 bytes of per cpu data
+kvm-clock: cpu 0, msr 0:136a281, primary cpu clock
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 97327
+Kernel command line: initrd=boot/initrd vga=normal splash=silent kiwidebug=1 kiwiserver=192.168.100.2 pxe=1 console=ttyS0 BOOT_IMAGE=boot/linux BOOTIF=01-52-54-00-12-34-56 
+bootsplash: silent mode.
+Enabling fast FPU save and restore... done.
+Enabling unmasked SIMD FPU exception support... done.
+Initializing CPU#0
+PID hash table entries: 2048 (order: 11, 8192 bytes)
+TSC: PIT calibration confirmed by PMTIMER.
+TSC: using PIT calibration value
+Detected 2659.860 MHz processor.
+Console: colour VGA+ 80x25
+console [ttyS0] enabled
+Dentry cache hash table entries: 65536 (order: 6, 262144 bytes)
+Inode-cache hash table entries: 32768 (order: 5, 131072 bytes)
+Memory: 358528k/393152k available (2342k kernel code, 33976k reserved, 1960k data, 316k init, 0k highmem)
+virtual kernel memory layout:
+    fixmap  : 0xffdf6000 - 0xfffff000   (2084 kB)
+    pkmap   : 0xff400000 - 0xff800000   (4096 kB)
+    vmalloc : 0xd8800000 - 0xff3fe000   ( 619 MB)
+    lowmem  : 0xc0000000 - 0xd7ff0000   ( 383 MB)
+      .init : 0xc053a000 - 0xc0589000   ( 316 kB)
+      .data : 0xc034988b - 0xc0533a90   (1960 kB)
+      .text : 0xc0100000 - 0xc034988b   (2342 kB)
+Checking if this processor honours the WP bit even in supervisor mode...Ok.
+Calibrating delay loop (skipped), value calculated using timer frequency.. 5319.72 BogoMIPS (lpj=10639440)
+kdb version 4.4 by Keith Owens, Scott Lurndal. Copyright SGI, All Rights Reserved
+kdb_cmd[0]: defcmd archkdb &quot;&quot; &quot;First line arch debugging&quot;
+kdb_cmd[7]: defcmd archkdbcpu &quot;&quot; &quot;archkdb with only tasks on cpus&quot;
+kdb_cmd[14]: defcmd archkdbshort &quot;&quot; &quot;archkdb with less detailed backtrace&quot;
+kdb_cmd[21]: defcmd archkdbcommon &quot;&quot; &quot;Common arch debugging&quot;
+Security Framework initialized
+SELinux:  Disabled at boot.
+AppArmor: AppArmor initialized
+Mount-cache hash table entries: 512
+Initializing cgroup subsys ns
+Initializing cgroup subsys cpuacct
+Initializing cgroup subsys memory
+Initializing cgroup subsys devices
+Initializing cgroup subsys freezer
+CPU: L1 I cache: 32K, L1 D cache: 32K
+CPU: L2 cache: 2048K
+Intel machine check architecture supported.
+Intel machine check reporting enabled on CPU#0.
+SMP alternatives: switching to UP code
+ACPI: Core revision 20080609
+ACPI: Checking initramfs for custom DSDT
+Parsing all Control Methods:
+Table [DSDT](id 0001) - 325 Objects with 46 Devices 112 Methods 6 Regions
+ tbxface-0596 [00] tb_load_namespace     : ACPI Tables successfully acquired
+evxfevnt-0091 [00] enable                : Transition to ACPI mode successful
+ENABLING IO-APIC IRQs
+..TIMER: vector=0x31 apic1=0 pin1=0 apic2=-1 pin2=-1
+CPU0: Intel QEMU Virtual CPU version 0.9.1 stepping 03
+Brought up 1 CPUs
+Total of 1 processors activated (5319.72 BogoMIPS).
+net_namespace: 1044 bytes
+Booting paravirtualized kernel on KVM
+NET: Registered protocol family 16
+ACPI: bus type pci registered
+PCI: PCI BIOS revision 2.10 entry at 0xfb510, last bus=0
+PCI: Using configuration type 1 for base access
+evgpeblk-0957 [00] ev_create_gpe_block   : GPE 00 to 0F [_GPE] 2 regs on int 0x9
+Completing Region/Field/Buffer/Package initialization:.............................................
+Initialized 4/6 Regions 0/0 Fields 37/37 Buffers 4/4 Packages (334 nodes)
+Initializing Device/Processor/Thermal objects by executing _INI methods:
+Executed 0 _INI methods requiring 0 _STA executions (examined 63 objects)
+evgpeblk-1054 [00] ev_initialize_gpe_bloc: Found 0 Wake, Enabled 16 Runtime GPEs in this block
+ACPI: Interpreter enabled
+ACPI: (supports S0 S3 S4 S5)
+ACPI: Using IOAPIC for interrupt routing
+ACPI: PCI Root Bridge [PCI0] (0000:00)
+pci 0000:00:01.3: quirk: region b000-b03f claimed by PIIX4 ACPI
+pci 0000:00:01.3: quirk: region b100-b10f claimed by PIIX4 SMB
+ACPI: PCI Interrupt Link [LNKA] (IRQs 5 *10 11)
+ACPI: PCI Interrupt Link [LNKB] (IRQs 5 *10 11)
+ACPI: PCI Interrupt Link [LNKC] (IRQs 5 10 *11)
+ACPI: PCI Interrupt Link [LNKD] (IRQs 5 10 *11)
+Linux Plug and Play Support v0.97 (c) Adam Belay
+pnp: PnP ACPI init
+ACPI: bus type pnp registered
+pnp: PnP ACPI: found 7 devices
+ACPI: ACPI bus type pnp unregistered
+PnPBIOS: Disabled
+PCI: Using ACPI for IRQ routing
+AppArmor: AppArmor Filesystem Enabled
+bus: 00 index 0 io port: [0, ffff]
+bus: 00 index 1 mmio: [0, ffffffff]
+NET: Registered protocol family 2
+IP route cache hash table entries: 4096 (order: 2, 16384 bytes)
+TCP established hash table entries: 16384 (order: 5, 131072 bytes)
+TCP bind hash table entries: 16384 (order: 5, 131072 bytes)
+TCP: Hash tables configured (established 16384 bind 16384)
+TCP reno registered
+NET: Registered protocol family 1
+Unpacking initramfs... done
+Freeing initrd memory: 23909k freed
+Machine check exception polling timer started.
+audit: initializing netlink socket (disabled)
+type=2000 audit(1265197105.536:1): initialized
+HugeTLB registered 4 MB page size, pre-allocated 0 pages
+VFS: Disk quotas dquot_6.5.1
+Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+msgmni has been set to 186
+Block layer SCSI generic (bsg) driver version 0.4 loaded (major 254)
+io scheduler noop registered
+io scheduler anticipatory registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+pci 0000:00:01.0: PIIX3: Enabling Passive Release
+pci 0000:00:01.0: Activating ISA DMA hang workarounds
+isapnp: Scanning for PnP cards...
+isapnp: No Plug &amp; Play device found
+Serial: 8250/16550 driver8 ports, IRQ sharing enabled
+serial8250: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+00:06: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+serio: i8042 KBD port at 0x60,0x64 irq 1
+serio: i8042 AUX port at 0x60,0x64 irq 12
+mice: PS/2 mouse device common for all mice
+input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input0
+cpuidle: using governor ladder
+cpuidle: using governor menu
+TCP cubic registered
+Using IPI No-Shortcut mode
+registered taskstats version 1
+Freeing unused kernel memory: 316k freed
+Write protecting the kernel text: 2344k
+Write protecting the kernel read-only data: 1768k
+Loading KIWI Boot-System...
+---------------------------
+Creating device nodes with udev
+Boot logging started on /dev/ttyS0(/dev/console) at Wed Feb  3 11:38:27 2010
+cat: /tmp/utimer: No such file or directory
++ echo ' Starting boot shell on /dev/tty2'
+ Starting boot shell on /dev/tty2
++ '[' 0 = 0 ']'
++ set +x
++ setctsid -f /dev/tty2 /bin/bash -i
++ errorLogStart
++ '[' '!' -f /var/log/boot.kiwi ']'
++ echo 'KIWI Log:'
++ echo 'Boot-Logging enabled on /dev/tty3'
+Boot-Logging enabled on /dev/tty3
++ setctsid -f /dev/tty3 /bin/bash -i -c 'tail -f /var/log/boot.kiwi'
++ exec
+[    1.246960] Kernel logging enabled on: /dev/tty4
+eth0: link up, 100Mbps, full-duplex, lpa 0x05E1
+NET: Registered protocol family 17
+[    1.246960] Found server in kernel cmdline
+[    3.884860] Checking Server name: 192.168.100.2
+[    3.894399] Checking for config file: config.52:54:00:12:34:56
+brd: module loaded
+device-mapper: uevent: version 1.0.3
+device-mapper: ioctl: 4.14.0-ioctl (2008-04-23) initialised: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">dm-devel at redhat.com</A>
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+[    4.448571] Mounting NFS root system: 192.168.100.7:/tmp/kiwi-11.1...
+squashfs: version 3.4 (2008/08/26) Phillip Lougher
+aufs 20081020
+[    8.724395] Stopping boot shell
+[    8.744260] Stopping boot logging
+[    8.756614] Activating Image: [NFSRoot-System]
+[    8.760955] Kernel logging enabled on: /dev/tty1
+[    9.185996] Preparing preinit phase...
+
+===&gt; Booting System: 
+BUG: unable to handle kernel NULL pointer dereference at 00000032
+IP: [&lt;d8a1fcd4&gt;] :nfs:nfs3_proc_setattr+0x73/0xda
+*pde = 00000000 
+Oops: 0000 [#1] SMP 
+last sysfs file: /sys/devices/pci0000:00/0000:00:03.0/net/eth0/address
+Modules linked in: aufs(N) squashfs nfs lockd nfs_acl sunrpc dm_mod brd af_packet sg sr_mod cdrom 8139too ide_pci_generic piix ide_core ata_generic 8139cp mii ata_piix isp1760(N) ahci usbcore libata scsi_mod dock parport_pc parport
+Supported: No
+
+Pid: 1312, comm: umount Tainted: G          (2.6.27.7-9-default #1)
+EIP: 0060:[&lt;d8a1fcd4&gt;] EFLAGS: 00010202 CPU: 0
+EIP is at nfs3_proc_setattr+0x73/0xda [nfs]
+EAX: 00000026 EBX: d5677d60 ECX: 00000000 EDX: 00000000
+ESI: d5677f5c EDI: d5677d48 EBP: d5c911dc ESP: d5677d1c
+ DS: 007b ES: 007b FS: 00d8 GS: 0033 SS: 0068
+Process umount (pid: 1312, ti=d5676000 task=d276c3b0 task.ti=d5676000)
+Stack: d5c911dc d8a1e14d d5c910bc d5677f5c 00000000 00000000 00000000 d8a4a71c 
+       d5677d24 d5677d60 00000000 d8a31ec8 d5677f5c d5c911dc d5677d60 d8a13eb8 
+       d5d2d7c8 d5677dfc d5cf620c 00000001 00000000 d5677dfc d5677dbc 00000000 
+Call Trace:
+ [&lt;d8a13eb8&gt;] nfs_setattr+0xe8/0x104 [nfs]
+ [&lt;c01a1e74&gt;] fnotify_change+0x196/0x2f3
+ [&lt;d89c28d5&gt;] call_notify_change+0x55/0x110 [aufs]
+ [&lt;d89c29b9&gt;] vfsub_fnotify_change+0x29/0x80 [aufs]
+ [&lt;d89c2a1f&gt;] vfsub_notify_change+0xf/0x20 [aufs]
+ [&lt;d89dcdfc&gt;] aufs_do_setattr+0x6fc/0x860 [aufs]
+ [&lt;c01a1e56&gt;] fnotify_change+0x178/0x2f3
+ [&lt;c018de8e&gt;] chown_common+0x7b/0x8e
+ [&lt;c018def9&gt;] sys_fchown+0x58/0x7b
+ [&lt;c0104d92&gt;] syscall_call+0x7/0xb
+ [&lt;ffffe422&gt;] 0xffffe422
+ =======================
+Code: 89 44 24 20 89 5c 24 24 74 0c c7 04 24 7b 59 a3 d8 e8 69 40 92 e7 8b 06 f6 c4 20 74 19 8b 46 30 85 c0 74 0c 8b 40 70 85 c0 74 05 &lt;8b&gt; 40 0c eb 02 31 c0 89 44 24 28 66 c7 03 00 00 a1 00 9b 52 c0 
+EIP: [&lt;d8a1fcd4&gt;] nfs3_proc_setattr+0x73/0xda [nfs] SS:ESP 0068:d5677d1c
+---[ end trace 1e960222a87838fe ]---
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001643.html">[Kiwi-users] NBDROOT overlay tests...
+</A></li>
+	<LI>Next message: <A HREF="001618.html">[Kiwi-users] how to build Fedora distribution on Kiwi?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1646">[ date ]</a>
+              <a href="thread.html#1646">[ thread ]</a>
+              <a href="subject.html#1646">[ subject ]</a>
+              <a href="author.html#1646">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

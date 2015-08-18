@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] building 32bit images on 64bit machine
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20building%2032bit%20images%20on%2064bit%20machine&In-Reply-To=%3C20090317143542.GA21947%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001019.html">
+   <LINK REL="Next"  HREF="001034.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] building 32bit images on 64bit machine</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20building%2032bit%20images%20on%2064bit%20machine&In-Reply-To=%3C20090317143542.GA21947%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] building 32bit images on 64bit machine">ms at novell.com
+       </A><BR>
+    <I>Tue Mar 17 15:35:42 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001019.html">[Kiwi-users] building 32bit images on 64bit machine
+</A></li>
+        <LI>Next message: <A HREF="001034.html">[Kiwi-users] building 32bit images on 64bit machine
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1031">[ date ]</a>
+              <a href="thread.html#1031">[ thread ]</a>
+              <a href="subject.html#1031">[ subject ]</a>
+              <a href="author.html#1031">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Doh,
+</I>&gt;<i> I was being a bit stupid there.  I didn't put the linux32 call before the 
+</I>&gt;<i> create step !!
+</I>
+:<i>-) ok
+</I>
+&gt;<i> However, I still think there's a problem with the arch= parameter. 64bit sled 
+</I>&gt;<i> has some patterns that are not available on 32bit sled. (e.g. x11-32bit) 
+</I>&gt;<i> so, if I try to build the 32bit image when the line
+</I>&gt;<i>  &lt;opensusePattern name=&quot;x11-32bit&quot;&gt; 
+</I>&gt;<i> is in there, it fails. However if I put in 
+</I>&gt;<i> &lt;opensusePattern name=&quot;x11-32bit&quot; arch=&quot;x86_64&quot;/&gt;
+</I>&gt;<i> that fails the XML check. 
+</I>
+ok that's something I will check, looks like a bug
+
+&gt;<i> Fair enough. But, when I try to build an iso image for sled11, it seems to 
+</I>&gt;<i> depend on AUFS in some way. Without editing the  
+</I>&gt;<i> /usr/share/kiwi/image/isoboot/suse-SLED11/config.xml it fails to boot the ISO 
+</I>&gt;<i> as aufs seems to be used in it's building. I'll double check the main 
+</I>&gt;<i> config.xml file and see where that got pulled in from. 
+</I>
+aufs doesn't exist on SLE11 correct. Given that you can't build an image
+with the flags=&quot;unified&quot; set in your config.xml. But you have other
+choices which doesn't require aufs:
+
+   a) flags=&quot;compressed&quot;
+   b) no flags attribute specified at all
+
+- The first one allows you to specify in a &lt;split&gt; section what
+  should be read-write (in RAM) and what should be read-only. The
+  read-only part will be compressed using squashfs
+
+- The second one just uses a static list of paths and make them
+  read-write in a tmpfs
+
+I have documented that in the ISO chapter of the kiwi.pdf.
+Unfortunately I can't do more. Be aware that if you add software
+not natively part of the SLE distribution your image will not
+have the SLE status and might not be supported by anybody
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001019.html">[Kiwi-users] building 32bit images on 64bit machine
+</A></li>
+	<LI>Next message: <A HREF="001034.html">[Kiwi-users] building 32bit images on 64bit machine
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1031">[ date ]</a>
+              <a href="thread.html#1031">[ thread ]</a>
+              <a href="subject.html#1031">[ subject ]</a>
+              <a href="author.html#1031">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

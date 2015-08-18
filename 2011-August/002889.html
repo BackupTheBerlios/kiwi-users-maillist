@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] RAID configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3C11DCC945-6036-4470-AFF7-23C9E71B37E8%40danl.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002887.html">
+   <LINK REL="Next"  HREF="002891.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] RAID configuration</H1>
+    <B>Daniel Little</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3C11DCC945-6036-4470-AFF7-23C9E71B37E8%40danl.org%3E"
+       TITLE="[Kiwi-users] RAID configuration">me at danl.org
+       </A><BR>
+    <I>Thu Aug  4 08:34:29 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002887.html">[Kiwi-users] Keyboard Layout
+</A></li>
+        <LI>Next message: <A HREF="002891.html">[Kiwi-users] Keyboard Layout
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2889">[ date ]</a>
+              <a href="thread.html#2889">[ thread ]</a>
+              <a href="subject.html#2889">[ subject ]</a>
+              <a href="author.html#2889">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+&gt;<i> That's ok now but the install code should not use the /dev/dm-xx device
+</I>&gt;<i> names. They are not persistent. I changed the code to use the udev 
+</I>&gt;<i> device names /dev/disk/by-id. That way the convention for partitions is
+</I>&gt;<i> also clear with -part[Nr]. The code should be clean for any storage
+</I>&gt;<i> device now
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Anyway, thanks for the quick turnaround on the patches! Much appreciated.
+</I>&gt;&gt;<i> I'm very happy now! :)
+</I>&gt;<i> 
+</I>&gt;<i> I will push out the changes now and you will find them in the next
+</I>&gt;<i> release v4.94.x (plan for release is on Friday). It would be great
+</I>&gt;<i> if you can give that version a test again
+</I>
+I was able to do a test today and, would you believe it, there's still an issue - by one character. There are several different devices associated with dm-1 as follows:
+
+lrwxrwxrwx 1 root root 10 Aug  3 03:29 dm-name-lsi_dgichgiidca_part1 -&gt; ../../dm-1
+lrwxrwxrwx 1 root root 10 Aug  3 03:29 dm-uuid-part1-DMRAID-lsi_dgichgiidca -&gt; ../../dm-1
+lrwxrwxrwx 1 root root 10 Aug  3 03:29 raid-DMRAID-lsi_dgichgiidca-part1 -&gt; ../../dm-1
+lrwxrwxrwx 1 root root 10 Aug  3 03:29 raid-lsi_dgichgiidca-part1 -&gt; ../../dm-1
+
+If you notice the first device, it ends with _part1 instead of -part1. Unfortunately, it's this dm-name-lsi_dgichgiidca device that is chosen in the OEMInstall function. The output of the 'hwinfo --disk --listmd' command (showing dm-0 and dm-1 only) is as follows:
+
+16: None 00.0: 10600 Disk
+  [Created at block.245]
+  Unique ID: QUMq.Fxp0d3BezAE
+  SysFS ID: /class/block/dm-0
+  Hardware Class: disk
+  Model: &quot;Disk&quot;
+  Device File: /dev/dm-0
+  Device Files: /dev/dm-0, /dev/disk/by-id/dm-name-lsi_dgichgiidca, /dev/disk/by-id/dm-uuid-DMRAID-lsi_dgichgiidca, /dev/disk/by-id/raid-lsi_dgichgiidca
+  Device Number: block 253:0
+  Geometry (Logical): CHS 77519/16/63
+  Size: 78140159 sectors a 512 bytes
+  Config Status: cfg=new, avail=yes, need=no, active=unknown
+
+17: None 00.0: 10600 Disk
+  [Created at block.245]
+  Unique ID: tfcu.Fxp0d3BezAE
+  SysFS ID: /class/block/dm-1
+  Hardware Class: disk
+  Model: &quot;Disk&quot;
+  Device File: /dev/dm-1
+  Device Files: /dev/dm-1, /dev/mapper/lsi_dgichgiidca_part1, /dev/root, /dev/disk/by-id/dm-name-lsi_dgichgiidca_part1, /dev/disk/by-id/dm-uuid-part1-DMRAID-lsi_dgichgiidca, /dev/disk/by-uuid/4861531d-0f6f-49d5-9a73-7b1af9311a65, /dev/disk/by-id/raid-lsi_dgichgiidca-part1, /dev/disk/by-id/raid-DMRAID-lsi_dgichgiidca-part1
+  Device Number: block 253:1
+  Geometry (Logical): CHS 0/0/0
+  Size: 78122047 sectors a 512 bytes
+  Config Status: cfg=new, avail=yes, need=no, active=unknown
+
+
+So not sure the best approach to solving this problem. I've got a workaround in my initrd again in the function ddn() as follows:
+
+        if echo $1 | grep -q &quot;^\/dev\/disk\/&quot; ; then
+                if [ -e $1&quot;_part&quot;$2 ]; then
+                        echo $1&quot;_part&quot;$2
+                        return
+                fi
+                echo $1&quot;-part&quot;$2
+                return
+        fi
+
+but I don't think ddn should be checking the physical device.  
+
+As an aside, I was able to find another test device that I can use to reproduce these issues. It's a FastTrak 100 TX2. Again, it's a fairly old fake raid card. I haven't got any recent cards to identify if fake raid is still a common practice, but I suspect it is. 
+
+Anyway, hope you had great holidays, and welcome back!
+
+Daniel.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002887.html">[Kiwi-users] Keyboard Layout
+</A></li>
+	<LI>Next message: <A HREF="002891.html">[Kiwi-users] Keyboard Layout
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2889">[ date ]</a>
+              <a href="thread.html#2889">[ thread ]</a>
+              <a href="subject.html#2889">[ subject ]</a>
+              <a href="author.html#2889">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

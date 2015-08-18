@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] suse-oem-preload not working
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201007060043.05342.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001885.html">
+   <LINK REL="Next"  HREF="001874.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] suse-oem-preload not working</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201007060043.05342.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] suse-oem-preload not working">javier at opensuse.org
+       </A><BR>
+    <I>Tue Jul  6 00:43:01 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001885.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+        <LI>Next message: <A HREF="001874.html">[Kiwi-users] kiwi2puppet
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1889">[ date ]</a>
+              <a href="thread.html#1889">[ thread ]</a>
+              <a href="subject.html#1889">[ subject ]</a>
+              <a href="author.html#1889">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Lunes, 5 de Julio de 2010 11:09:04 Steffen Winterfeldt escribi&#243;:
+&gt;<i> On Mon, 5 Jul 2010, Javier Llorente wrote:
+</I>&gt;<i> &gt; On Jueves, 1 de Julio de 2010 14:14:24 Steffen Winterfeldt escribi&#243;:
+</I>&gt;<i> &gt;&gt; On Thu, 1 Jul 2010, Marcus Sch&#228;fer wrote:
+</I>&gt;<i> &gt;&gt;&gt;&gt; On Mi&#233;rcoles, 30 de Junio de 2010 16:56:30 Marcus Sch&#228;fer 
+</I>escribi&#243;:
+&gt;<i> &gt;&gt;&gt;&gt;&gt;&gt; Done. Here's the log for the suse-oem-preload/11.2 based image:
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt;&gt; <A HREF="http://pastebin.de/7926">http://pastebin.de/7926</A>
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt; 
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt; Thanks. first the language question. If you have set de_DE which 
+</I>you
+&gt;<i> &gt;&gt;&gt;&gt;&gt; had when I saw the log the only reason why you see the language
+</I>&gt;<i> &gt;&gt;&gt;&gt; 
+</I>&gt;<i> &gt;&gt;&gt;&gt; selection
+</I>&gt;<i> &gt;&gt;&gt;&gt; 
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt; dialog is if the bootloader doesn't set lang=... to the kernel
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt; commandline
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt; 
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt; Can you please check the following in your kiwidebug shell:
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt;    cat /proc/cmdline
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt; 
+</I>&gt;<i> &gt;&gt;&gt;&gt;&gt; what are the contents ?
+</I>&gt;<i> &gt;&gt;&gt;&gt; 
+</I>&gt;<i> &gt;&gt;&gt;&gt; vga=0x314 loader=grub splash=silent COMBINED_IMAGE=yes
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; showopts
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt;&gt;&gt; kiwidebug=1
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; Javier, did you select Deutsch at the boot screen? Or did you just 
+</I>boot?
+&gt;<i> &gt; 
+</I>&gt;<i> &gt; I think I just booted up. I can re-dd the image, if needed.
+</I>&gt;<i> 
+</I>&gt;<i> Then it's correct. You need to set the language at the boot screen,
+</I>&gt;<i> otherwise you get the language dialog later. kiwi could set the default
+</I>&gt;<i> language, though. Don't know if this is intended.
+</I>
+I would like to not see this language selection menu. With earlier versions of 
+kiwi I didn't get that. Perhaps it's related to my kiwi's root files such as 
+/etc/sysconfig/language 
+[...]
+RC_LANG=&quot;de_DE.UTF-8&quot;
+ROOT_USES_LANG=&quot;ctype&quot;
+
+/etc/sysconfig/keyboard
+[...]
+KEYTABLE=&quot;de-latin1-nodeadkeys.map.gz&quot;
+YAST_KEYBOARD=&quot;german,pc104&quot;
+
+
+Thanks,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100706/5c848103/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100706/5c848103/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001885.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+	<LI>Next message: <A HREF="001874.html">[Kiwi-users] kiwi2puppet
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1889">[ date ]</a>
+              <a href="thread.html#1889">[ thread ]</a>
+              <a href="subject.html#1889">[ subject ]</a>
+              <a href="author.html#1889">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

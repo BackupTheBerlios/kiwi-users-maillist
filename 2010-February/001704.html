@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Boot problem live USB 11.2
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20problem%20live%20USB%2011.2&In-Reply-To=%3C878097.39618.qm%40web56507.mail.re3.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001699.html">
+   <LINK REL="Next"  HREF="001705.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Boot problem live USB 11.2</H1>
+    <B>Zdravko Angelov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20problem%20live%20USB%2011.2&In-Reply-To=%3C878097.39618.qm%40web56507.mail.re3.yahoo.com%3E"
+       TITLE="[Kiwi-users] Boot problem live USB 11.2">zdravko_angelov at yahoo.com
+       </A><BR>
+    <I>Fri Feb 26 21:37:13 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001699.html">[Kiwi-users] Boot problem live USB 11.2
+</A></li>
+        <LI>Next message: <A HREF="001705.html">[Kiwi-users] creating 11.2 ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1704">[ date ]</a>
+              <a href="thread.html#1704">[ thread ]</a>
+              <a href="subject.html#1704">[ subject ]</a>
+              <a href="author.html#1704">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; GRUB freezes at boot time after loading initrd. I have tried booting manually 
+</I>&gt;<i> through the GRUB prompt, using the parameters from the generated menu.lst file 
+</I>&gt;<i> and:
+</I>&gt;<i> &gt; - kernel loads fine
+</I>&gt;<i> &gt; - initrd loads fine
+</I>&gt;<i> &gt; - when I issue &quot;boot&quot; it freezes. Doesn't proceed to kernel extraction, no 
+</I>&gt;<i> output, no usb access, nothing.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I have tried the oem approach with the same problem. Any suggestions how to 
+</I>&gt;<i> fix this or trace it in more detail? Any help is appreciated.
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, looks like a stick / grub problem. Could you try another stick ?
+</I>&gt;<i> Alternatively you can try to build a hybrid ISO. That's an iso image with
+</I>&gt;<i> a partition table so that the BIOS see this as a disk. As result you
+</I>&gt;<i> can dump the iso on your stick and use isolinux (instead of grub) to
+</I>&gt;<i> boot that thing. Sometimes this solves the boot problems on the stick
+</I>&gt;<i> which is often a combination of grub + bios + bad-stick-hardware
+</I>&gt;<i> 
+</I>&gt;<i> To build the hybrid use the suse-11.2/suse-live-iso example and
+</I>&gt;<i> edit the config.xml in there. Change the type line to look like
+</I>&gt;<i> this:
+</I>&gt;<i> 
+</I>&gt;<i>   
+</I>&gt;<i>      image=&quot;iso&quot; primary=&quot;true&quot; boot=&quot;isoboot/suse-11.2&quot; flags=&quot;clic&quot;
+</I>&gt;<i>      hybrid=&quot;true&quot; hybridpersistent=&quot;true&quot;
+</I>&gt;<i>    /&gt;
+</I>&gt;<i> 
+</I>&gt;<i> You can install the generated ISO file on the stick via dd and
+</I>&gt;<i> boot from the stick
+</I>
+
+That's what I was afraid of. Unfortunately I have no other stick to try it on to verify this. 
+Anyway, your suggestion for the hybrid setup worked just fine! Thanks for the advice!
+
+Some notes about that. I have kiwi v3.74 and the schema parser didn't like the hybridpersistent=&quot;true&quot; and image=&quot;iso&quot; attributes. I was able to run it only like this 
+&lt;type primary=&quot;true&quot; hybrid=&quot;true&quot; boot=&quot;isoboot/suse-11.2&quot; flags=&quot;clic&quot;&gt;iso&lt;/type&gt;
+
+All other combinations of attributes and values(!= iso) either didn't parse or give an error on --create:
+Use of uninitialized value $type{&quot;filesystem&quot;} in split at /usr/sbin/kiwi line 2273.
+
+Basically, what worked for me is what you have described a while back in <A HREF="http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/">http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/</A>
+
+Thanks,
+Zdravko
+
+
+      
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001699.html">[Kiwi-users] Boot problem live USB 11.2
+</A></li>
+	<LI>Next message: <A HREF="001705.html">[Kiwi-users] creating 11.2 ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1704">[ date ]</a>
+              <a href="thread.html#1704">[ thread ]</a>
+              <a href="subject.html#1704">[ subject ]</a>
+              <a href="author.html#1704">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

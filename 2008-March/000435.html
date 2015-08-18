@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Trying to build a SLED10-SP1 Live DVD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Trying%20to%20build%20a%20SLED10-SP1%20Live%20DVD&In-Reply-To=%3Ceb6a6b80d8cd6f9eb9866c0d644e58bb%4080.64.32.10%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000433.html">
+   <LINK REL="Next"  HREF="000436.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Trying to build a SLED10-SP1 Live DVD</H1>
+    <B>jordi at grn.es</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Trying%20to%20build%20a%20SLED10-SP1%20Live%20DVD&In-Reply-To=%3Ceb6a6b80d8cd6f9eb9866c0d644e58bb%4080.64.32.10%3E"
+       TITLE="[Kiwi-users] Trying to build a SLED10-SP1 Live DVD">jordi at grn.es
+       </A><BR>
+    <I>Tue Mar  4 19:30:28 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000433.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+        <LI>Next message: <A HREF="000436.html">[Kiwi-users] live usb stick problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#435">[ date ]</a>
+              <a href="thread.html#435">[ thread ]</a>
+              <a href="subject.html#435">[ subject ]</a>
+              <a href="author.html#435">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus,
+
+I got success on booting the DVD, not yet in X11
+but at least I could configure it manually and
+start Gnome. I'll have to check the auto sax
+config.
+
+Anyway, something isn't correct:
+
+I had to raise the memory for the virtual machine
+to 1GB, and I suspect there is something wrong
+with the split image:
+
+If I type mount I see:
+
+/dev/loop1 on / type unknown (rw)
+proc on /proc type proc (rw)
+sysfs on /sys type sysfs (rw)
+debugfs on /sys/kernel/debug type debugfs (rw)
+udev on /dev type tmpfs (rw)
+devpts on /dev/pts type devpts (rw,mode=0620,gid=5)
+
+A ls -l / shows:
+
+drwxr-xr-x  2 root root 2000 Mar  4 14:50 bin
+drwxr-xr-x  2 root root  240 Mar  4 14:50 boot
+drwxr-xr-x 10 root root 6720 Mar  4 18:49 dev
+drwxr-xr-x 71 root root 3920 Mar  4 18:49 etc
+drwxr-xr-x  3 root root   60 Mar  4 14:50 home
+drwxr-xr-x  9 root root 2200 Mar  4 14:47 lib
+lrwxrwxrwx  1 root root   26 Mar  4 18:48 license.tar.gz -&gt;
+/read-only//license.tar.gz
+drwxr-xr-x  2 root root   40 Mar  4 14:50 media
+drwxr-xr-x  2 root root   40 Mar  4 14:50 mnt
+drwxr-xr-x  4 root root   80 Mar  4 14:47 opt
+dr-xr-xr-x 70 root root    0 Mar  4 18:47 proc
+drwxr-xr-x 20 root root  318 Mar  4 14:50 read-only
+drwxr-xr-x  2 root root   40 Mar  4 18:48 read-write
+drwx------  5 root root  220 Mar  4 19:03 root
+drwxr-xr-x  3 root root 4060 Mar  4 14:50 sbin
+drwxr-xr-x  4 root root   80 Mar  4 14:50 srv
+drwxr-xr-x 11 root root    0 Mar  4 18:48 sys
+drwxrwxrwt  6 root root  200 Mar  4 18:57 tmp
+drwxr-xr-x 12 root root  280 Mar  4 14:50 usr
+drwxr-xr-x 13 root root  280 Mar  4 14:50 var
+
+
+the strange thing is that:
+
+/read-write is empty
+/read-only seem to contain all / , repeated content
+
+After that, my calculated RW part was 240 MB but when
+I type &quot;free&quot; I obtain:
+             total       used       free     shared    buffers     cached
+Mem:       1036540     760900     275640          0     115080     544280
+-/+ buffers/cache:     101540     935000
+Swap:            0          0          0
+
+So I'm using 750 MB of RAM... I suppose that RO part
+stays on the DVD and the RW in RAM, is this right ?
+
+more data:
+
+# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/loop1            507M   95M  412M  19% /
+udev                  507M   96K  507M   1% /dev
+
+
+I see some mount command in the /var/log/boot.kiwi that
+seems to fail: ( see the mount: command )
+
++ needMByte=149
++ Echo 'Have size: /mnt -&gt; 506 MB'
++ test 'Have size: /mnt -&gt; 506 MB' = -n
++ test 'Have size: /mnt -&gt; 506 MB' = -b
++ echo '-----&gt; Have size: /mnt -&gt; 506 MB'
++ Echo 'Need size: /read-only/rootfs.tar.gz -&gt; 149 MB [ uncompressed ]'
++ test 'Need size: /read-only/rootfs.tar.gz -&gt; 149 MB [ uncompressed ]' =
+-n
++ test 'Need size: /read-only/rootfs.tar.gz -&gt; 149 MB [ uncompressed ]' =
+-b
++ echo '-----&gt; Need size: /read-only/rootfs.tar.gz -&gt; 149 MB [ uncompressed
+]'
++ test 506 -gt 149
++ return 0
++ cd /mnt
++ tar xvfz /read-only/rootfs.tar.gz
++ cd /
++ mkdir /mnt/read-only
++ mount --move /read-only /mnt/read-only
++ rm -rf /read-only
++ ln -s /mnt/read-only /read-only
++ sfdisk -s /dev/loop2
++ mkdir /mnt/read-write
++ mount /dev/loop2 /mnt/read-write
+mount: /dev/loop2: can't read superblock
++ rm -f /read-write
++ ln -s /mnt/read-write /read-write
++ retval=0
++ IFS=';'
++ return 0
++ validateRootTree
+
+
+Does this mean that the read-write part isn't at place ?
+
+I'm attaching files config.xml and isoboot/config.xml
+
+thanks for your help.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: isoboot-config.xml
+Type: text/xml
+Size: 3893 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080304/ddcfee56/attachment.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080304/ddcfee56/attachment.xml</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: config.xml
+Type: text/xml
+Size: 2687 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080304/ddcfee56/attachment-0001.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080304/ddcfee56/attachment-0001.xml</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000433.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+	<LI>Next message: <A HREF="000436.html">[Kiwi-users] live usb stick problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#435">[ date ]</a>
+              <a href="thread.html#435">[ thread ]</a>
+              <a href="subject.html#435">[ subject ]</a>
+              <a href="author.html#435">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem creating ISO image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20creating%20ISO%20image&In-Reply-To=%3CAANLkTi%3DRDzePhUW9Vp7n-RPjBwgyC5Lvtk-Wmwab0jrf%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002176.html">
+   <LINK REL="Next"  HREF="002181.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem creating ISO image</H1>
+    <B>Cleber Paiva de Souza</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20creating%20ISO%20image&In-Reply-To=%3CAANLkTi%3DRDzePhUW9Vp7n-RPjBwgyC5Lvtk-Wmwab0jrf%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Problem creating ISO image">cleberps at gmail.com
+       </A><BR>
+    <I>Tue Dec  7 19:45:25 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002176.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+        <LI>Next message: <A HREF="002181.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2178">[ date ]</a>
+              <a href="thread.html#2178">[ thread ]</a>
+              <a href="subject.html#2178">[ subject ]</a>
+              <a href="author.html#2178">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>First using kiwi-4.67-251.1 with the following command:
+
+kiwi --debug --force-new-root --prepare /kiwi/template --root
+/kiwi/temp-root --add-profile xfce --target-arch i586
+kiwi --debug --create /kiwi/temp-root --type usb --destdir
+/kiwi/usb-image --add-profile xfce --target-arch i586
+
+During the create step I got:
+
+Dec-07 15:42:11 &lt;1&gt; : Set root log:
+/kiwi/temp-root.25993.screenrc.log...
+                         done
+Dec-07 15:42:16 &lt;1&gt; : Updating type in .profile environment
+                                                             done
+Can't locate object method &quot;createImageUSB&quot; via package &quot;KIWIImage&quot; at
+/usr/sbin/kiwi line 804.
+
+And using:
+kiwi --debug --create /kiwi/temp-root --type iso --destdir
+/kiwi/iso-image --add-profile xfce --target-arch i586
+
+I got:
+Dec-07 16:24:00 &lt;1&gt; : Copying boot image and kernel [x86_64]
+                                                             done
+Dec-07 16:24:04 &lt;1&gt; : Extracting initrd for boot graphics data lookup
+                                                             done
+Dec-07 16:24:08 &lt;1&gt; : Setting up isolinux boot CD [x86_64]cp: cannot
+stat `/kiwi/iso-image/boot-iso.IIYyUY/image/loader/*': No such file or
+directory
+
+                                                             failed
+Dec-07 16:24:10 &lt;3&gt; : Copy failed:
+                                                             failed
+[*** back trace follows ***]
+Trace Level 1 at /usr/share/kiwi/modules/KIWIImage.pm line 1632
+        KIWIImage::createImageLiveCD(undef, 'oemboot/suse-11.2')
+called at /usr/sbin/kiwi line 796
+        main::main() called at /usr/sbin/kiwi line 3254
+[*** end ***]
+[*** log excerpt follows, last significant bytes ***]
+ Dec-07 16:23:05 &lt;1&gt; : EXEC [mv -f
+/kiwi/iso-image/initrd-oemboot-suse-11.2.x86_64-2.7.1.kernel
+/kiwi/iso-image/initrd-oemboot-suse-11.2.x86_64-2.7.1.kernel.2.6.31.5-0.1-default
+&amp;&amp; ln -s initrd-oemboot-suse-11.2.x86_64-2.7.1.kernel.2.6.31.5-0.1-default
+/kiwi/iso-image/initrd-oemboot-suse-11.2.x86_64-2.7.1.kernel]
+ Dec-07 16:23:06 &lt;1&gt; : EXEC [rm -rf
+/kiwi/iso-image/boot-iso.MDp2G1/kiwi-isoboot-26088/boot/*]
+    done
+ Dec-07 16:23:07 &lt;1&gt; : EXEC [umount
+/kiwi/iso-image//proc/sys/fs/binfmt_misc 2&gt;&amp;1]
+ Dec-07 16:23:07 &lt;1&gt; : EXEC [umount /kiwi/iso-image//proc 2&gt;&amp;1]
+ Dec-07 16:23:08 &lt;1&gt; : EXEC [umount /kiwi/iso-image//dev/pts 2&gt;&amp;1]
+ Dec-07 16:23:08 &lt;1&gt; : EXEC [umount /kiwi/iso-image//sys 2&gt;&amp;1]
+ Dec-07 16:23:09 &lt;1&gt; : EXEC [find
+/kiwi/iso-image/boot-iso.MDp2G1/kiwi-isoboot-26088 | wc -l]
+ Dec-07 16:23:10 &lt;1&gt; : EXEC [du -s --block-size=1
+/kiwi/iso-image/boot-iso.MDp2G1/kiwi-isoboot-26088 | cut -f1]
+ Dec-07 16:23:11 &lt;1&gt; : getSize: files: 2695
+ Dec-07 16:23:11 &lt;1&gt; : getSize: spare: 1.5
+ Dec-07 16:23:11 &lt;1&gt; : getSize: usage: 75235328 Bytes
+ Dec-07 16:23:11 &lt;1&gt; : getSize: inode: 256 Bytes
+ Dec-07 16:23:11 &lt;1&gt; : getSize: journ: 12582912 Bytes
+ Dec-07 16:23:11 &lt;1&gt; : getSize: minsz: 127505664 Bytes
+ Dec-07 16:23:11 &lt;1&gt; : EXEC [pwd]
+ Dec-07 16:23:11 &lt;1&gt; : EXEC [cd
+/kiwi/iso-image/boot-iso.MDp2G1/kiwi-isoboot-26088 &amp;&amp; find . | cpio
+--create --format=newc --quiet | gzip -9 -f &gt;
+/kiwi/iso-image/initrd-oemboot-suse-11.2.x86_64-2.7.1.gz]
+ Dec-07 16:23:36 &lt;1&gt; : Creating image MD5 sum...
+ Dec-07 16:23:36 &lt;1&gt; : EXEC [factor 25956593]
+ Dec-07 16:23:37 &lt;1&gt; : EXEC [cat
+/kiwi/iso-image/initrd-oemboot-suse-11.2.x86_64-2.7.1.gz | md5sum - |
+cut -f 1 -d-]
+ Dec-07 16:23:39 &lt;1&gt; : EXEC [echo &quot;4f8f17d2b1b7a86fdbee8c41143cc4cd
+1549 16757&quot; &gt; /kiwi/iso-image/initrd-oemboot-suse-11.2.x86_64-2.7.1.md5]
+...
+...
+ Dec-07 16:24:08 &lt;1&gt; : Setting up isolinux boot CD [x86_64]
+ Dec-07 16:24:08 &lt;1&gt; : EXEC [cp -a
+/kiwi/iso-image/boot-iso.IIYyUY/image/loader/*
+/kiwi/iso-image/CD/boot/x86_64/loader]
+    failed
+ Dec-07 16:24:10 &lt;3&gt; : Copy failed:    failed
+ Dec-07 16:24:10 &lt;1&gt; : EXEC [rm -rf /kiwi/temp-root-read-only/ 2&gt;&amp;1]
+ Dec-07 16:24:12 &lt;1&gt; : EXEC [rm -rf /kiwi/iso-image/boot-iso.MDp2G1 2&gt;&amp;1]
+ Dec-07 16:24:13 &lt;1&gt; : EXEC [rm -rf /kiwi/iso-image/CD 2&gt;&amp;1]
+ Dec-07 16:24:15 &lt;1&gt; : EXEC [rm -rf /kiwi/iso-image/boot-iso.IIYyUY 2&gt;&amp;1]
+ [*** end ***]
+Dec-07 16:24:34 &lt;3&gt; : KIWI exited with error(s)
+                                                             done
+Dec-07 16:24:35 &lt;1&gt; : Complete logfile at: /kiwi/temp-root.log
+                                                             done
+
+This help?
+
+On Mon, Dec 6, 2010 at 7:34 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> Dec-06 14:28:36 &lt;1&gt; : Copying boot image and kernel [i386]
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; done
+</I>&gt;&gt;<i> Dec-06 14:28:37 &lt;1&gt; : Setting up isolinux boot CD [i386]cp: cannot
+</I>&gt;&gt;<i> stat `/tmp/kiwi-cdboot.bb6acM/kiwi-cdboot-5231/image/loader/*': No
+</I>&gt;&gt;<i> such file or directory
+</I>&gt;<i>
+</I>&gt;<i> Hmm, the initrd is missing some mandatory files which normally
+</I>&gt;<i> always exists after kiwi has built the initrd. Would you mind to
+</I>&gt;<i> use the current version of kiwi from here:
+</I>&gt;<i>
+</I>&gt;<i> &#160; <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/">http://download.opensuse.org/repositories/Virtualization:/Appliances/</A>
+</I>&gt;<i>
+</I>&gt;<i> after that could you be more specific how you build the
+</I>&gt;<i> appliance ? I mean which commands did you call to build it
+</I>&gt;<i>
+</I>&gt;<i> Thanks
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+
+
+-- 
+Cleber Paiva de Souza
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002176.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+	<LI>Next message: <A HREF="002181.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2178">[ date ]</a>
+              <a href="thread.html#2178">[ thread ]</a>
+              <a href="subject.html#2178">[ subject ]</a>
+              <a href="author.html#2178">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

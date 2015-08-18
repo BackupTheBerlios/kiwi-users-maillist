@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] RAID configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3CD41A4BF6-4E29-4401-985B-ED3FD4C63A72%40danl.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002881.html">
+   <LINK REL="Next"  HREF="002853.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] RAID configuration</H1>
+    <B>Daniel Little</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3CD41A4BF6-4E29-4401-985B-ED3FD4C63A72%40danl.org%3E"
+       TITLE="[Kiwi-users] RAID configuration">me at danl.org
+       </A><BR>
+    <I>Sun Jul 31 01:31:29 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002881.html">[Kiwi-users] RAID configuration
+</A></li>
+        <LI>Next message: <A HREF="002853.html">[Kiwi-users] kiwi: Weekly report 2011-07-17 - 2011-07-22...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2885">[ date ]</a>
+              <a href="thread.html#2885">[ thread ]</a>
+              <a href="subject.html#2885">[ subject ]</a>
+              <a href="author.html#2885">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Thanks! I'll get the 4.94 version tested as soon as I can. Unfortunately, it's impossible to provide a controller like the one that I am using easily. It is built into a blade server and you would need a blade chassis to test it with so it's not particularly easy to reproduce outside of that context. I'm trying to find an alternative fake raid controller that provides similar results though, so that it's easier for me to do my testing too, but I haven't got one pinned down just yet. If I do, I'll let you know. 
+
+Daniel.
+
+On 2011-07-28, at 4:58 AM, Marcus Sch&#228;fer wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I applied the patch and there were a couple of issues. The DHCP code
+</I>&gt;&gt;<i> worked perfectly, 
+</I>&gt;&gt;<i> but the dmraid code changes didn't quite:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 1. The line 'dmraid -a -y -p' in KIWILinuxRC.sh should not have a '-' before the 'y'. 
+</I>&gt;&gt;<i> That is, it should read:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 	dmraid -a y -p
+</I>&gt;<i> 
+</I>&gt;<i> ah, me so stupid, fixed :)
+</I>&gt;<i> 
+</I>&gt;&gt;<i> 2. Oddly, with the dmraid additions to probeDevices, the device was
+</I>&gt;&gt;<i> actually found by 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 	hwinfo --disk --listmd
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> but the device name is /dev/dm-0 instead of /dev/mapper/lsi... 
+</I>&gt;&gt;<i> What's interesting about that is that the 'function ddn' changes I did
+</I>&gt;&gt;<i> earlier don't work, and, furthermore, I'm not entirely sure how they 
+</I>&gt;&gt;<i> should be changed as I don't know the full naming conventions of the dmraid
+</I>&gt;&gt;<i> device. In this particular example, the raw device is /dev/dm-0 and the first
+</I>&gt;&gt;<i> partition is /dev/dm-1. That seems straightforward enough but if this was 
+</I>&gt;&gt;<i> installed on a machine that had two raid devices, I have no idea what they
+</I>&gt;&gt;<i> would be labelled. For now, I added the following to ddn and it did the job:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 	if echo $1 | grep -q &quot;^\/dev\/dm-&quot; ; then 
+</I>&gt;&gt;<i> 		echo &quot;/dev/dm-&quot;$2 
+</I>&gt;&gt;<i> 		return 
+</I>&gt;&gt;<i> 	fi 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Maybe if you have more details on what multiple devices can be called, you'll
+</I>&gt;&gt;<i> have a better idea of what 'ddn' should look like.
+</I>&gt;<i> 
+</I>&gt;<i> That's ok now but the install code should not use the /dev/dm-xx device
+</I>&gt;<i> names. They are not persistent. I changed the code to use the udev 
+</I>&gt;<i> device names /dev/disk/by-id. That way the convention for partitions is
+</I>&gt;<i> also clear with -part[Nr]. The code should be clean for any storage
+</I>&gt;<i> device now
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Anyway, thanks for the quick turnaround on the patches! Much appreciated.
+</I>&gt;&gt;<i> I'm very happy now! :)
+</I>&gt;<i> 
+</I>&gt;<i> I will push out the changes now and you will find them in the next
+</I>&gt;<i> release v4.94.x (plan for release is on Friday). It would be great
+</I>&gt;<i> if you can give that version a test again
+</I>&gt;<i> 
+</I>&gt;<i> Other than that if you have such a controller laying around unused
+</I>&gt;<i> I'd like to ask if I can borrow one for testing and to keep the
+</I>&gt;<i> code working
+</I>&gt;<i> 
+</I>&gt;<i> Thanks
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> -- 
+</I>&gt;<i> Public Key available
+</I>&gt;<i> gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> -------------------------------------------------------
+</I>&gt;<i> Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i> Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i> FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i> GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+</I>&gt;<i> HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i> <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i> -------------------------------------------------------
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002881.html">[Kiwi-users] RAID configuration
+</A></li>
+	<LI>Next message: <A HREF="002853.html">[Kiwi-users] kiwi: Weekly report 2011-07-17 - 2011-07-22...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2885">[ date ]</a>
+              <a href="thread.html#2885">[ thread ]</a>
+              <a href="subject.html#2885">[ subject ]</a>
+              <a href="author.html#2885">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

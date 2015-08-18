@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3C20100208144136.GB3943%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001667.html">
+   <LINK REL="Next"  HREF="001659.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3C20100208144136.GB3943%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?">ms at novell.com
+       </A><BR>
+    <I>Mon Feb  8 15:41:36 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001667.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+        <LI>Next message: <A HREF="001659.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1669">[ date ]</a>
+              <a href="thread.html#1669">[ thread ]</a>
+              <a href="subject.html#1669">[ subject ]</a>
+              <a href="author.html#1669">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> My last Status is not 100% right. In the chroot - Environment I have /etc/init.d/{nagios, ndo} set to on in init 3/5. The 'require-start' Option in Initskript is set to mysql, and that package is not available at that point.
+</I>&gt;<i> 
+</I>&gt;<i> During 'kiwi --migrate' the Packages will be installed.
+</I>&gt;<i> I set up a workaround, by installing mysql through the prepare Process...
+</I>&gt;<i> 
+</I>&gt;<i> Now I can create my iso - Image...
+</I>
+ah well first of all the migration is not perfect :-) this code is work
+in progress and I promise it will be better at the end of the year :)
+
+But I don't understand your last report. You said the main cause for
+the problem is that mysql is not installed, is that correct ? You also
+said that the relevant packages were installed during migration.
+This confuses me because the migration just collects, checks and
+creates a kiwi image description as a result. So if the system you
+are migrating has mysql installed the kiwi migration process should
+have done one of the following actions:
+
+a) it could find mysql in one of the repos part of the zypper repo list
+   it will add this package to the packages list except it is part of
+   an installed pattern. If it is part of a pattern the pattern will
+   be added.
+
+b) it can't find mysql in any repo defined by zypper. it will report
+   this as a problem in the report file
+   
+So what applies in your case a) or b) It would be also helpful if
+you can attach the html report file created by the migration
+
+&gt;<i> Any opensusePattern are not available in the chroot envrionment.
+</I>&gt;<i> I need the 'lamp_server' Image for my Application, and in 'chroot /tmp/mysys
+</I>&gt;<i> bash' is no mysql available.
+</I>
+If none of the patterns are available you wouldn't be able to
+call kiwi --prepare with success. So I don't understand what you mean
+as you already were able to create an iso from the successfully ? prepared
+tree
+
+confused ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001667.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+	<LI>Next message: <A HREF="001659.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1669">[ date ]</a>
+              <a href="thread.html#1669">[ thread ]</a>
+              <a href="subject.html#1669">[ subject ]</a>
+              <a href="author.html#1669">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

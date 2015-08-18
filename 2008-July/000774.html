@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Updating nbd-client in kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Updating%20nbd-client%20in%20kiwi&In-Reply-To=%3C1216120316.19768.8.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000773.html">
+   <LINK REL="Next"  HREF="000775.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Updating nbd-client in kiwi</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Updating%20nbd-client%20in%20kiwi&In-Reply-To=%3C1216120316.19768.8.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] Updating nbd-client in kiwi">roger at opq.se
+       </A><BR>
+    <I>Tue Jul 15 13:11:56 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000773.html">[Kiwi-users] RECONFIGURE
+</A></li>
+        <LI>Next message: <A HREF="000775.html">[Kiwi-users] Updating nbd-client in kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#774">[ date ]</a>
+              <a href="thread.html#774">[ thread ]</a>
+              <a href="subject.html#774">[ subject ]</a>
+              <a href="author.html#774">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+I am building an image for a diskless system. As I mentioned way back on
+the list, I have issues with nbd when booting over a fast network. The
+nbd developers want me to replace the nbd-client with a newer version
+(2.9.11). I have built the new version as binaries and would like to use
+them. My first attempt was to replace the old nbd-client with my new one
+when my install.sh script runs. In fact, this works. But I have a
+feeling that the nbd-client that gets replaced at this time is not the
+one used when mounting / via nbd during boot. It is the one I see after
+the mount is finished. That is, the nbd-client that would get replaced
+when the install.sh script gets run is not the one in the initrd image,
+but the one in the image that nbd eventually mounts.
+
+Could it be this way? And if so, what is a better way to be sure that my
+nbd-client is the one used during initial boot?
+
+Sorry if this is not a clear description...
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Kapellgr&#228;nd 7
+P.O. Box 4205
+SE-102 65 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+And remember:
+
+It is RSofT and there is always something under construction. 
+It is like talking about large city with all constructions finished. 
+Not impossible, but very unlikely.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000773.html">[Kiwi-users] RECONFIGURE
+</A></li>
+	<LI>Next message: <A HREF="000775.html">[Kiwi-users] Updating nbd-client in kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#774">[ date ]</a>
+              <a href="thread.html#774">[ thread ]</a>
+              <a href="subject.html#774">[ subject ]</a>
+              <a href="author.html#774">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

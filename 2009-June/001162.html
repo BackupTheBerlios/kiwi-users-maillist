@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] List of opensusePatterns
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20List%20of%20opensusePatterns&In-Reply-To=%3C8f985b960906090636u2b293ca0q9481176521ed2542%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001160.html">
+   <LINK REL="Next"  HREF="001165.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] List of opensusePatterns</H1>
+    <B>Mike Kienenberger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20List%20of%20opensusePatterns&In-Reply-To=%3C8f985b960906090636u2b293ca0q9481176521ed2542%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] List of opensusePatterns">mkienenb at gmail.com
+       </A><BR>
+    <I>Tue Jun  9 15:36:32 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001160.html">[Kiwi-users] List of opensusePatterns
+</A></li>
+        <LI>Next message: <A HREF="001165.html">[Kiwi-users] List of opensusePatterns
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1162">[ date ]</a>
+              <a href="thread.html#1162">[ thread ]</a>
+              <a href="subject.html#1162">[ subject ]</a>
+              <a href="author.html#1162">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus,
+
+Any chance of adding support for this into kiwi explicitly?   Knowing
+what pattern names are available seems like a useful thing for
+building images, and there's no intuitive way to get a human-readable
+list from what I've seen.
+
+Regards,
+Mike
+
+On Tue, Jun 9, 2009 at 5:55 AM, Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> Where can I find, or how can I extract, a list of openSUSE patterns
+</I>&gt;&gt;<i> suitable for use in a kiwi config.xml file? &#160;I thought I saw some kind
+</I>&gt;&gt;<i> of &quot;pattern*.xml&quot; downloaded during autorefresh when I launched the
+</I>&gt;&gt;<i> yast2 installer, but I haven't been able to locate it again on
+</I>&gt;&gt;<i> download.opensuse.org.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've read through <A HREF="http://en.opensuse.org/Patterns,">http://en.opensuse.org/Patterns,</A> but while the
+</I>&gt;&gt;<i> pattern names are obvious for pre-11.1, it's not obvious what the
+</I>&gt;&gt;<i> machine-readable name for patterns are for 11.1.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'm particularly interested in 11.1 or 11.2.
+</I>&gt;<i>
+</I>&gt;<i> You can try to do this:
+</I>&gt;<i>
+</I>&gt;<i> &#160;rm /var/cache/kiwi/satsolver/*
+</I>&gt;<i> &#160;kiwi --list-xmlinfo /usr/share/kiwi/image/isoboot/suse-11.1 \
+</I>&gt;<i> &#160; &#160; &#160; --set-repo /path/to/11.1/repo
+</I>&gt;<i>
+</I>&gt;<i> &#160;*** ignore the output ***
+</I>&gt;<i>
+</I>&gt;<i> &#160;dumpsolv /var/cache/kiwi/satsolver/* | grep pattern:
+</I>&gt;<i>
+</I>&gt;<i> the kiwi --list-xmlinfo function creates a solvable from the
+</I>&gt;<i> given repository which also contains the pattern information.
+</I>&gt;<i> The dumpsolv tool just dumps the data in a human readable
+</I>&gt;<i> format and gives you a list of all patterns in that solvable
+</I>&gt;<i> respectively in that distro
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001160.html">[Kiwi-users] List of opensusePatterns
+</A></li>
+	<LI>Next message: <A HREF="001165.html">[Kiwi-users] List of opensusePatterns
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1162">[ date ]</a>
+              <a href="thread.html#1162">[ thread ]</a>
+              <a href="subject.html#1162">[ subject ]</a>
+              <a href="author.html#1162">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

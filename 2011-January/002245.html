@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kernelcmdline for iso image -&gt; bug?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kernelcmdline%20for%20iso%20image%20-%3E%20bug%3F&In-Reply-To=%3CPine.LNX.4.64.1101071157270.13816%40general.elte.hu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002246.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kernelcmdline for iso image -&gt; bug?</H1>
+    <B>Kalman Szabo</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kernelcmdline%20for%20iso%20image%20-%3E%20bug%3F&In-Reply-To=%3CPine.LNX.4.64.1101071157270.13816%40general.elte.hu%3E"
+       TITLE="[Kiwi-users] kernelcmdline for iso image -&gt; bug?">szaboka at general.elte.hu
+       </A><BR>
+    <I>Fri Jan  7 12:08:43 CET 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002246.html">[Kiwi-users] gfxboot resolution
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2245">[ date ]</a>
+              <a href="thread.html#2245">[ thread ]</a>
+              <a href="subject.html#2245">[ subject ]</a>
+              <a href="author.html#2245">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Marcus and kiwi-users,
+
+if I try to set a kernel boot argument when preparing an iso image ala
+
+&lt;type image=&quot;iso&quot; boot=&quot;isoboot/suse-11.3&quot; ... kernelcmdline=&quot;vga=0x317&quot;/&gt;
+
+then it does not get passed. I guess the problem is in
+
+modules/KIWIImage.pm:1199
+
+where $cmdline variable is not correctly initialized. If you would change 
+it to
+
+$cmdline = &quot; $stype{cmdline}&quot;;
+
+then it would work.
+
+BEst and happy new year
+Kalman
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002246.html">[Kiwi-users] gfxboot resolution
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2245">[ date ]</a>
+              <a href="thread.html#2245">[ thread ]</a>
+              <a href="subject.html#2245">[ subject ]</a>
+              <a href="author.html#2245">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

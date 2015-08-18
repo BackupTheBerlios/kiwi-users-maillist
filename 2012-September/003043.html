@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] missing dependency on db-utils after update to 12.2
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20missing%20dependency%20on%20db-utils%20after%20update%20to%2012.2&In-Reply-To=%3CCABKsJ%3DQSj18DW%2BNcJ5SMn8274cX83JJRkTE1XQxDp%3D2CTSOjMw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003044.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] missing dependency on db-utils after update to 12.2</H1>
+    <B>marcin kowalski</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20missing%20dependency%20on%20db-utils%20after%20update%20to%2012.2&In-Reply-To=%3CCABKsJ%3DQSj18DW%2BNcJ5SMn8274cX83JJRkTE1XQxDp%3D2CTSOjMw%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] missing dependency on db-utils after update to 12.2">yoshi314 at gmail.com
+       </A><BR>
+    <I>Thu Sep  6 13:30:10 CEST 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003044.html">[Kiwi-users] missing dependency on db-utils after update to 12.2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3043">[ date ]</a>
+              <a href="thread.html#3043">[ thread ]</a>
+              <a href="subject.html#3043">[ subject ]</a>
+              <a href="author.html#3043">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I've updated my kiwi building host to 12.2 today, and builds started
+failing when making a 11.4 system image.
+
+ Sep-06 13:03:50 &lt;1&gt; : EXEC [chroot &quot;/root/kiwi/cw-iso/root&quot; /bin/rpm
+--initdb &amp;&gt;/dev/null]
+ Sep-06 13:03:50 &lt;1&gt; : Rebuild RPM package db...
+    failed
+ Sep-06 13:03:50 &lt;3&gt; : db_dump tool required for rpm db rebuild
+(...)
+
+Solution is to install db-utils, and my appliances start building again.
+
+Package db45_utils has db45_dump, so i guess i could symlink it, which
+may or may not work right. What is the correct procedure here?
+I am building various systems, starting from 11.4 installations, is
+the right version of db_dump important?
+
+This is with current kiwi from Virtualization/Appliances repo on top of 12.2.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003044.html">[Kiwi-users] missing dependency on db-utils after update to 12.2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3043">[ date ]</a>
+              <a href="thread.html#3043">[ thread ]</a>
+              <a href="subject.html#3043">[ subject ]</a>
+              <a href="author.html#3043">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

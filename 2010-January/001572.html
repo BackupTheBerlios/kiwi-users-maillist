@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB Image Partition Order
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20Image%20Partition%20Order&In-Reply-To=%3C1263249482.17649.49.camel%40delder.novacoast.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001570.html">
+   <LINK REL="Next"  HREF="001574.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB Image Partition Order</H1>
+    <B>Dan Elder</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20Image%20Partition%20Order&In-Reply-To=%3C1263249482.17649.49.camel%40delder.novacoast.com%3E"
+       TITLE="[Kiwi-users] USB Image Partition Order">delder at novacoast.com
+       </A><BR>
+    <I>Mon Jan 11 23:38:02 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001570.html">[Kiwi-users] make image size dependant on type - or profile?
+</A></li>
+        <LI>Next message: <A HREF="001574.html">[Kiwi-users] USB Image Partition Order
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1572">[ date ]</a>
+              <a href="thread.html#1572">[ thread ]</a>
+              <a href="subject.html#1572">[ subject ]</a>
+              <a href="author.html#1572">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>	Is there any way to specify what order partitions should be created on
+for an oemboot image destined for a usb stick?  I have an image that
+works very well on most systems but do it's size (&gt; 12 GB) runs into
+GRUB errors when booting on certain systems because the /boot partition
+is too large or not close enough to the start of the drive.  When I
+don't specify /boot as a separate partition GRUB fails (error 17 or 18)
+but when I split it off by choosing LVM it's not the first partition:
+
+Disk image/zenboot.x86_64-0.5.1.raw: 0 MB, 0 bytes
+255 heads, 63 sectors/track, 0 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Disk identifier: 0x8f9e2dd5
+
+                         Device Boot      Start         End      Blocks   Id  System
+image/zenboot.x86_64-0.5.1.raw1               1        2398    19261903+  8e  Linux LVM
+image/zenboot.x86_64-0.5.1.raw2   *        2399        2404       48195   83  Linux
+
+	
+	Is there any way to specify that /boot should be the first partition in
+an LVM or non-LVM build?  I've tried split images, LVM, non-LVM, and
+everything else I can think of but for some reason /boot doesn't seem to
+end up at a low enough cylinder for kludgy BIOSes to be able to boot
+from it.
+	Cheers,
+	Dan
+
+-- 
+Dan Elder
+Linux Services Manager
+Novacoast, Inc.
+<A HREF="http://www.novacoast.com/">http://www.novacoast.com/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001570.html">[Kiwi-users] make image size dependant on type - or profile?
+</A></li>
+	<LI>Next message: <A HREF="001574.html">[Kiwi-users] USB Image Partition Order
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1572">[ date ]</a>
+              <a href="thread.html#1572">[ thread ]</a>
+              <a href="subject.html#1572">[ subject ]</a>
+              <a href="author.html#1572">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

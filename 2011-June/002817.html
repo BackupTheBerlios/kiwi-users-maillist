@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Quick Question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Quick%20Question&In-Reply-To=%3C20110630073454.GB11270%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002814.html">
+   <LINK REL="Next"  HREF="002818.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Quick Question</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Quick%20Question&In-Reply-To=%3C20110630073454.GB11270%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] Quick Question">ms at suse.de
+       </A><BR>
+    <I>Thu Jun 30 09:34:54 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002814.html">[Kiwi-users] Quick Question
+</A></li>
+        <LI>Next message: <A HREF="002818.html">[Kiwi-users] Quick Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2817">[ date ]</a>
+              <a href="thread.html#2817">[ thread ]</a>
+              <a href="subject.html#2817">[ subject ]</a>
+              <a href="author.html#2817">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have a system that uses a standard block device for a storage
+</I>&gt;<i> device, using ext3, and is configured for read/write operations.
+</I>&gt;<i> However, when I want to &quot;refresh&quot; the system using the IMAGE_RELOAD
+</I>&gt;<i> configuration option,
+</I>
+This option is called 
+
+    RELOAD_IMAGE=yes
+
+just a typo in your writing ?
+
+&gt;<i> I get an out of space error, which is true,
+</I>&gt;<i> there's 7 MBytes remaining as free space, that I don't use during
+</I>&gt;<i> the initial installation stage.
+</I>&gt;<i> 
+</I>&gt;<i> I suspect, the file systems that are on the block device are not
+</I>&gt;<i> being properly cleared, and am wondering if there is another option
+</I>&gt;<i> that I need to specify to force a reformatting of the entire system?
+</I>
+Hmm, the size validation is done by calling blockdev on the
+device thus it's not related to the filesystem. Could you attach
+the /var/log/boot.kiwi file when booting the client ?
+
+&gt;<i> The exact error is:
+</I>&gt;<i> Not enough space available for this image.
+</I>
+This normally means that the target device is not big enough
+to store the image. e.g. trying to store a 100G file on a
+50G disk.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002814.html">[Kiwi-users] Quick Question
+</A></li>
+	<LI>Next message: <A HREF="002818.html">[Kiwi-users] Quick Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2817">[ date ]</a>
+              <a href="thread.html#2817">[ thread ]</a>
+              <a href="subject.html#2817">[ subject ]</a>
+              <a href="author.html#2817">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

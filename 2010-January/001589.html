@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Persistent diskless setup with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3Cb317ae5c1001152033y6d849dd9ld851be89fbb57b13%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001588.html">
+   <LINK REL="Next"  HREF="001590.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Persistent diskless setup with kiwi</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3Cb317ae5c1001152033y6d849dd9ld851be89fbb57b13%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Persistent diskless setup with kiwi">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Sat Jan 16 05:33:55 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001588.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+        <LI>Next message: <A HREF="001590.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1589">[ date ]</a>
+              <a href="thread.html#1589">[ thread ]</a>
+              <a href="subject.html#1589">[ subject ]</a>
+              <a href="author.html#1589">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Jan 15, 2010 at 7:16 AM, Hans-Peter Jansen &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">hpj at urpla.net</A>&gt; wrote:
+&gt;<i> Dear Marcus and the other kiwis around,
+</I>&gt;<i>
+</I>&gt;<i> I'm in the need to get a 11.1 diskless setup going quickly, since I failed
+</I>&gt;<i> to adapt a current kernel (necessary because of new hardware) to a well
+</I>&gt;<i> established, rock solid SuSE 9.3 Prof. based diskless desktop setup for a
+</I>&gt;<i> company.. None of the desktops has any kind of persistent storage, btw.
+</I>&gt;<i>
+</I>&gt;<i> This setup is pretty simple: an installation into a directory is exported
+</I>&gt;<i> ro (e.g. the result of kiwi --prepare), adjusted to diskless needs (a few
+</I>&gt;<i> network/ldap settings, don't stop eth0 on shutdown, a simple automatic X
+</I>&gt;<i> setup with sax). All nodes boot from the same kernel/initrd, which
+</I>&gt;<i> overlays a node specific rw nfs path (with aufs).
+</I>&gt;<i>
+</I>&gt;<i> The beauty of this setup is, that I'm able to adjust each node to specific
+</I>&gt;<i> needs: cdrom, sound, X _once_ (e.g. with YaST). I could even install
+</I>&gt;<i> special rpms to selected hosts, if I want, but I'm still enjoying the
+</I>&gt;<i> install once, use everywhere property, even if it's five years old now..
+</I>&gt;<i>
+</I>&gt;<i> It looks like current technologies in this area are not able to mimic that
+</I>&gt;<i> fully out of the box. Aufs cannot use a nfs mount for its xino file, and I
+</I>&gt;<i> do not want to give up on the two nfs mounts, either. But I might want to
+</I>&gt;<i> add nfs or nbd based swap (now, that's available). Looks like, that I need
+</I>&gt;<i> to use an tmpfs for the xino.
+</I>&gt;<i>
+</I>&gt;<i> It would be kind, if you/someone could give me a few hints, what would be
+</I>&gt;<i> the best way to realize this with the help of kiwi. Is there an interest
+</I>&gt;<i> to add this functionality to netboot/suse-11.1, or should I create a new
+</I>&gt;<i> image for that. Any pitfalls, I should be aware of?
+</I>&gt;<i>
+</I>Have you looked at kiwi-ltsp?
+
+<A HREF="http://en.opensuse.org/LTSP">http://en.opensuse.org/LTSP</A>
+
+You can test it from live DVD/USB in case you do not want to install
+it, get this:
+
+<A HREF="http://en.opensuse.org/Education/Live">http://en.opensuse.org/Education/Live</A>
+
+Once the user logs in, the session is running on the server and the
+changes get saved on the server. Some applications like firefox can
+also run locally using resources of the client.
+
+I tried experimenting with the setup you have described, haven't
+ported it to 11.2 yet, you are welcome to do that :)
+
+<A HREF="http://en.opensuse.org/LTSP/Fatclient">http://en.opensuse.org/LTSP/Fatclient</A>
+
+Ciao
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001588.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+	<LI>Next message: <A HREF="001590.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1589">[ date ]</a>
+              <a href="thread.html#1589">[ thread ]</a>
+              <a href="subject.html#1589">[ subject ]</a>
+              <a href="author.html#1589">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

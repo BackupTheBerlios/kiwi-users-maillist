@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem creating ISO image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20creating%20ISO%20image&In-Reply-To=%3CAANLkTi%3Dkm%3DXx6DaLKe0MXKifn%3DRfxsL8KW4o4zEQAWkO%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002181.html">
+   <LINK REL="Next"  HREF="002191.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem creating ISO image</H1>
+    <B>Cleber Paiva de Souza</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20creating%20ISO%20image&In-Reply-To=%3CAANLkTi%3Dkm%3DXx6DaLKe0MXKifn%3DRfxsL8KW4o4zEQAWkO%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Problem creating ISO image">cleberps at gmail.com
+       </A><BR>
+    <I>Thu Dec  9 04:49:15 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002181.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+        <LI>Next message: <A HREF="002191.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2187">[ date ]</a>
+              <a href="thread.html#2187">[ thread ]</a>
+              <a href="subject.html#2187">[ subject ]</a>
+              <a href="author.html#2187">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>After some changes in the config.xml what I got now is:
+
+# uname -a
+Linux linux-0tvz 2.6.31.14-0.4-desktop #1 SMP PREEMPT 2010-10-25
+08:45:30 +0200 i686 i686 i386 GNU/Linux
+
+# kiwi --version
+Dec-09 01:48:33 &lt;1&gt; : kiwi version v4.67
+GIT Commit: 2cc0d05c8d15b2882e1ae3556d632515488c92f2
+
+# kiwi --create /kiwi/tempRoot --type iso -d /kiwi/isoImage
+
+...
+Dec-09 01:34:26 &lt;1&gt; : Creating isolinux configuration...
+
+                          done
+Dec-09 01:34:28 &lt;1&gt; : Creating ISO image...
+Dec-09 01:34:29 &lt;1&gt; : Calling: /usr/bin/genisoimage -R -J -pad
+-joliet-long -p &quot;KIWI - <A HREF="http://kiwi.berlios.de">http://kiwi.berlios.de</A>&quot; -publisher &quot;SUSE LINUX
+Products GmbH&quot; -iso-level 4 -V &quot;My Installation&quot; -sort
+/tmp/kiso-sort-1lGNLz -no-emul-boot -boot-load-size 4 -boot-info-table
+-b boot/i386/loader/isolinux.bin -c boot/i386/boot.catalog -hide
+boot/i386/boot.catalog -hide-joliet boot/i386/boot.catalog -o
+/kiwi/isoImage/openSUSE-11.2-oem.i686-1.0.2.iso
+/tmp/kiso-loader-45sLMU /kiwi/isoImage/CD 2&gt;&amp;1
+Dec-09 01:34:52 &lt;3&gt; : Failed to call /usr/bin/genisoimage: Warning:
+Creating ISO-9660:1999 (version 2) filesystem.
+Warning: ISO-9660 filenames longer than 31 may cause buffer overflows in the OS.
+/usr/bin/genisoimage: Uh oh, I cant find the boot image
+'boot/i386/loader/isolinux.bin' !
+
+
+                          failed
+[*** log excerpt follows, last significant bytes ***]
+ Dec-09 01:34:15 &lt;1&gt; : Creating image MD5 sum...
+ Dec-09 01:34:15 &lt;1&gt; : EXEC [factor 27274898]
+ Dec-09 01:34:15 &lt;1&gt; : EXEC [cat
+/kiwi/isoImage/initrd-oemboot-suse-11.2.i686-2.7.1.gz | md5sum - | cut
+-f 1 -d-]
+ Dec-09 01:34:16 &lt;1&gt; : EXEC [echo &quot;3e9bab3f8e7381ed500029b523ff0c77
+5519 4942&quot; &gt; /kiwi/isoImage/initrd-oemboot-suse-11.2.i686-2.7.1.md5]
+    done
+ Dec-09 01:34:17 &lt;1&gt; : EXEC [rm -rf /kiwi/isoImage/boot-iso.qoFGV8]
+ Dec-09 01:34:17 &lt;1&gt; : Creating CD filesystem structure
+ Dec-09 01:34:17 &lt;1&gt; : EXEC [mkdir -p /kiwi/isoImage/CD/boot]
+    done
+ Dec-09 01:34:17 &lt;1&gt; : Moving CD image data into boot structure
+ Dec-09 01:34:17 &lt;1&gt; : EXEC [mv
+/kiwi/isoImage/openSUSE-11.2-atm-cea.i686-1.0.2.md5 /kiwi/isoImage/CD]
+ Dec-09 01:34:17 &lt;1&gt; : EXEC [mv
+/kiwi/isoImage/openSUSE-11.2-atm-cea.i686-1.0.2.gz  /kiwi/isoImage/CD]
+ Dec-09 01:34:17 &lt;1&gt; : EXEC [rm
+/kiwi/isoImage/openSUSE-11.2-atm-cea.i686-1.0.2.*]
+ Dec-09 01:34:17 &lt;1&gt; : EXEC [mkdir -p /kiwi/isoImage/CD/read-only-system]
+ Dec-09 01:34:18 &lt;1&gt; : EXEC [mv /kiwi/tempRoot-read-only//*
+/kiwi/isoImage/CD/read-only-system]
+    done
+ Dec-09 01:34:18 &lt;1&gt; : Copying boot image and kernel [i386]
+ Dec-09 01:34:18 &lt;1&gt; : EXEC [mkdir -p /kiwi/isoImage/CD/boot/i386/loader]
+ Dec-09 01:34:18 &lt;1&gt; : EXEC [cp
+/kiwi/isoImage/initrd-oemboot-suse-11.2.i686-2.7.1.gz
+/kiwi/isoImage/CD/boot/i386/loader/initrd 2&gt;&amp;1]
+ Dec-09 01:34:18 &lt;1&gt; : EXEC [cp
+/kiwi/isoImage/initrd-oemboot-suse-11.2.i686-2.7.1.kernel
+/kiwi/isoImage/CD/boot/i386/loader/linux 2&gt;&amp;1]
+    done
+ Dec-09 01:34:18 &lt;1&gt; : Extracting initrd for boot graphics data lookup
+ Dec-09 01:34:18 &lt;1&gt; : EXEC [mktemp -q -d /kiwi/isoImage/boot-iso.XXXXXX]
+ Dec-09 01:34:19 &lt;1&gt; : EXEC [gzip -9 -cd
+/kiwi/isoImage/initrd-oemboot-suse-11.2.i686-2.7.1.gz | (cd
+/kiwi/isoImage/boot-iso.aM6Np5 &amp;&amp; cpio -di 2&gt;&amp;1)]
+    done
+...
+ Dec-09 01:34:28 &lt;1&gt; : EXEC [/usr/bin/isolinux-config --base
+boot/i386/loader /kiwi/isoImage/CD/boot/i386/loader/isolinux.bin 2&gt;&amp;1]
+ Dec-09 01:34:29 &lt;1&gt; : EXEC [mkdir -p /kiwi/isoImage/CD/isolinux 2&gt;&amp;1]
+ Dec-09 01:34:29 &lt;1&gt; : EXEC [ln /kiwi/isoImage/CD/boot/i386/loader/*
+/kiwi/isoImage/CD/isolinux/ 2&gt;&amp;1]
+ Dec-09 01:34:29 &lt;1&gt; : Calling: /usr/bin/genisoimage -R -J -pad
+-joliet-long -p &quot;KIWI - <A HREF="http://kiwi.berlios.de">http://kiwi.berlios.de</A>&quot; -publisher &quot;SUSE LINUX
+Products GmbH&quot; -iso-level 4 -V &quot;My Installation&quot; -sort
+/tmp/kiso-sort-1lGNLz -no-emul-boot -boot-load-size 4 -boot-info-table
+-b boot/i386/loader/isolinux.bin -c boot/i386/boot.catalog -hide
+boot/i386/boot.catalog -hide-joliet boot/i386/boot.catalog -o
+/kiwi/isoImage/openSUSE-11.2-atm-cea.i686-1.0.2.iso
+/tmp/kiso-loader-45sLMU /kiwi/isoImage/CD 2&gt;&amp;1
+ Dec-09 01:34:29 &lt;1&gt; : EXEC [/usr/bin/genisoimage -R -J -pad
+-joliet-long -p &quot;KIWI - <A HREF="http://kiwi.berlios.de">http://kiwi.berlios.de</A>&quot; -publisher &quot;SUSE LINUX
+Products GmbH&quot; -iso-level 4 -V &quot;My Installation&quot; -sort
+/tmp/kiso-sort-1lGNLz -no-emul-boot -boot-load-size 4 -boot-info-table
+-b boot/i386/loader/isolinux.bin -c boot/i386/boot.catalog -hide
+boot/i386/boot.catalog -hide-joliet boot/i386/boot.catalog -o
+/kiwi/isoImage/openSUSE-11.2-atm-cea.i686-1.0.2.iso
+/tmp/kiso-loader-45sLMU /kiwi/isoImage/CD 2&gt;&amp;1]
+ Dec-09 01:34:52 &lt;3&gt; : Failed to call /usr/bin/genisoimage: Warning:
+Creating ISO-9660:1999 (version 2) filesystem.
+ Warning: ISO-9660 filenames longer than 31 may cause buffer overflows
+in the OS.
+ /usr/bin/genisoimage: Uh oh, I cant find the boot image
+'boot/i386/loader/isolinux.bin' !
+    failed
+ Dec-09 01:34:52 &lt;1&gt; : EXEC [rm -f /tmp/kiso-sort-1lGNLz 2&gt;&amp;1]
+ Dec-09 01:34:52 &lt;1&gt; : EXEC [rm -rf /tmp/kiso-loader-45sLMU 2&gt;&amp;1]
+ Dec-09 01:34:52 &lt;1&gt; : EXEC [rm -rf /kiwi/tempRoot-read-only/ 2&gt;&amp;1]
+ Dec-09 01:34:52 &lt;1&gt; : EXEC [rm -rf /kiwi/isoImage/boot-iso.qoFGV8 2&gt;&amp;1]
+ Dec-09 01:34:52 &lt;1&gt; : EXEC [rm -rf /kiwi/isoImage/CD 2&gt;&amp;1]
+ Dec-09 01:35:04 &lt;1&gt; : EXEC [rm -rf /kiwi/isoImage/boot-iso.aM6Np5 2&gt;&amp;1]
+ [*** end ***]
+Dec-09 01:35:07 &lt;3&gt; : KIWI exited with error(s)
+
+                          done
+Dec-09 01:35:07 &lt;1&gt; : Complete logfile at: /kiwi/tempRoot.log
+
+                          done
+
+
+Thanks,
+
+
+On Wed, Dec 8, 2010 at 6:43 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> First using kiwi-4.67-251.1 with the following command:
+</I>&gt;<i>
+</I>&gt;<i> ok, thanks for the information I think I found the problem
+</I>&gt;<i> see below.
+</I>&gt;<i>
+</I>&gt;&gt;<i> kiwi --debug --force-new-root --prepare /kiwi/template --root
+</I>&gt;&gt;<i> /kiwi/temp-root --add-profile xfce --target-arch i586
+</I>&gt;&gt;<i> kiwi --debug --create /kiwi/temp-root --type usb --destdir
+</I>&gt;&gt;<i> /kiwi/usb-image --add-profile xfce --target-arch i586
+</I>&gt;<i>
+</I>&gt;<i> why do you use the --target-arch option ? Is this because you
+</I>&gt;<i> want to build a 32bit image on a 64bit system ? if yes please use
+</I>&gt;<i> linux32 to do this:
+</I>&gt;<i>
+</I>&gt;<i> &#160; linux32 kiwi --prepare ...
+</I>&gt;<i> &#160; linux32 kiwi --create &#160;...
+</I>&gt;<i>
+</I>&gt;<i> the target-arch option is only available to zypper and just makes
+</I>&gt;<i> sense if zypper has the choice between a i586 and i686 package. It
+</I>&gt;<i> will use the one selected by target-arch then but the option name
+</I>&gt;<i> is somewhat misleading; you can't select the image target
+</I>&gt;<i> architecture with it.
+</I>&gt;<i>
+</I>&gt;&gt;<i> During the create step I got:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Can't locate object method &quot;createImageUSB&quot; via package &quot;KIWIImage&quot; at
+</I>&gt;&gt;<i> /usr/sbin/kiwi line 804.
+</I>&gt;<i>
+</I>&gt;<i> my fault :( fixed it for the usb type. See attached patch
+</I>&gt;<i>
+</I>&gt;&gt;<i> And using:
+</I>&gt;&gt;<i> kiwi --debug --create /kiwi/temp-root --type iso --destdir
+</I>&gt;&gt;<i> /kiwi/iso-image --add-profile xfce --target-arch i586
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I got:
+</I>&gt;&gt;<i> Dec-07 16:24:00 &lt;1&gt; : Copying boot image and kernel [x86_64]
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;done
+</I>&gt;&gt;<i> Dec-07 16:24:04 &lt;1&gt; : Extracting initrd for boot graphics data lookup
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;done
+</I>&gt;&gt;<i> Dec-07 16:24:08 &lt;1&gt; : Setting up isolinux boot CD [x86_64]cp: cannot
+</I>&gt;&gt;<i> stat `/kiwi/iso-image/boot-iso.IIYyUY/image/loader/*': No such file or
+</I>&gt;&gt;<i> directory
+</I>&gt;<i>
+</I>&gt;<i> This is exactly what happens if you build with target-arch i586 but
+</I>&gt;<i> the underlaying architecture is still 64bit. In order to build a 32bit
+</I>&gt;<i> image on a 64bit system the entire system architecture (uname -m) must
+</I>&gt;<i> report 32bit which you can achieve by prefixing the kiwi call
+</I>&gt;<i> with 'linux32' as I mentioned above
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+
+
+-- 
+Cleber Paiva de Souza
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002181.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+	<LI>Next message: <A HREF="002191.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2187">[ date ]</a>
+              <a href="thread.html#2187">[ thread ]</a>
+              <a href="subject.html#2187">[ subject ]</a>
+              <a href="author.html#2187">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

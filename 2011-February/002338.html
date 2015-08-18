@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTinsnRPvn7s-8UnP3iidovPjmu8-9HxFj8mLG27t%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002332.html">
+   <LINK REL="Next"  HREF="002339.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTinsnRPvn7s-8UnP3iidovPjmu8-9HxFj8mLG27t%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Wed Feb 16 20:04:39 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002332.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+        <LI>Next message: <A HREF="002339.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2338">[ date ]</a>
+              <a href="thread.html#2338">[ thread ]</a>
+              <a href="subject.html#2338">[ subject ]</a>
+              <a href="author.html#2338">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Feb 16, 2011 at 3:05 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi Chris,
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; None of the last few suggestions have worked. &#160;I'm a bit confused on
+</I>&gt;&gt;<i> &gt; this issue. &#160;Isn't this rebrand situation one of the more common uses
+</I>&gt;&gt;<i> &gt; for Kiwi?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Maybe yes, but I do not know. For re-branding people may not necessarily
+</I>&gt;&gt;<i> create their own packages, but rather use the method documented here:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen#Custom_GRUB_and_boot_splash_images">http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen#Custom_GRUB_and_boot_splash_images</A>
+</I>&gt;<i>
+</I>&gt;<i> People want custom branding, yes but most of them rebrand by just
+</I>&gt;<i> overwriting data as described in the article Robert posted. Even though
+</I>&gt;<i> it is much more clean to create a branding package one needs to take
+</I>&gt;<i> care for some branding package specific 'rules' which I will write
+</I>&gt;<i> down later in this mail
+</I>&gt;<i>
+</I>&gt;&gt;<i> Thus, there are no packaging conflicts. Further the branding packages
+</I>&gt;&gt;<i> are generally separate as in
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> bootsplash-branding-openSUSE
+</I>&gt;&gt;<i> gfxboot-branding-openSUSE
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> rather than being part of a pattern. You are running into trouble
+</I>&gt;&gt;<i> because the definition of the LXDE pattern includes the branding packages.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> These branding packages for some reason or another cause a conflict.
+</I>&gt;&gt;<i> However, that there is a conflict sounds fishy to begin with. I suspect
+</I>&gt;&gt;<i> that your branding packages are putting files in the same location as
+</I>&gt;&gt;<i> the distribution supplied packages and that's why the conflict is
+</I>&gt;&gt;<i> triggered. Different branding packages should put their files into
+</I>&gt;&gt;<i> different directories, then there is no opportunity for conflicts.
+</I>&gt;&gt;<i> Anyway, I am going on a &quot;clean up the world&quot; tangent now and will stop.
+</I>&gt;<i>
+</I>&gt;<i> It's perfectly fine to have multiple branding packages installed
+</I>&gt;<i> _but_ each of them have to provide an own theme name. Example:
+</I>&gt;<i>
+</I>&gt;<i> &#160;a)
+</I>&gt;<i> &#160;bootsplash-branding-openSUSE
+</I>&gt;<i> &#160; &#160; ==&gt; installs to: /etc/bootsplash/themes/openSUSE
+</I>&gt;<i> &#160;Theme Name: openSUSE
+</I>&gt;<i> &#160; &#160; ==&gt; in kiwi config.xml &lt;boot-theme&gt;openSUSE&lt;/boot-theme&gt;
+</I>&gt;<i>
+</I>&gt;<i> &#160;b)
+</I>&gt;<i> &#160;bootsplash-branding-SLES
+</I>&gt;<i> &#160; &#160;==&gt; install to: /etc/bootsplash/themes/SLES
+</I>&gt;<i> &#160;Theme Name: SLES
+</I>&gt;<i> &#160; &#160;==&gt; in kiwi config.xml &lt;boot-theme&gt;SLES&lt;/boot-theme&gt;
+</I>&gt;<i>
+</I>&gt;<i> &#160;c)
+</I>&gt;<i> &#160;Your branding package
+</I>&gt;<i> &#160; &#160;==&gt; install to: /etc/bootsplash/themes/YourBranding
+</I>&gt;<i> &#160;Theme Name: YourBranding
+</I>&gt;<i> &#160; &#160;==&gt; in kiwi config.xml &lt;boot-theme&gt;YourBranding&lt;/boot-theme&gt;
+</I>&gt;<i>
+</I>&gt;<i> If your branding package follow these rules there will be no
+</I>&gt;<i> conflict and you can easily use it by just selecting the theme
+</I>&gt;<i> in &lt;boot-theme&gt;
+</I>&gt;<i>
+</I>&gt;<i> So the question I have is: where do your package install
+</I>&gt;<i> the files
+</I>&gt;<i>
+</I>&gt;<i> &#160; rpm -qpl &quot;Your branding package&quot;
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; I would have thought that replacing a default SUSE package
+</I>&gt;&gt;<i> &gt; with and OEM branding package would be fairly common, no?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Probably, as mentioned above the packages are separate by default and
+</I>&gt;&gt;<i> thus in the &quot;common&quot; case one just does not install the openSUSE
+</I>&gt;&gt;<i> branding packages. The problem is the pattern.
+</I>&gt;<i>
+</I>&gt;<i> What is the oem branding package ?
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; What I am very surprised with is that the &quot;replaces&quot; element added to
+</I>&gt;&gt;<i> &gt; the package line doesn't work either. &#160;That was really disappointing.
+</I>&gt;&gt;<i> &gt; I thought for sure this would work. &#160;The other thing that makes no
+</I>&gt;&gt;<i> &gt; sense is how clearly the kiwi docs .pdf file states that if this
+</I>&gt;&gt;<i> &gt; problem exists...then use the &quot;ignore&quot; element to resolve it.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I will take a look at the doc and re-word it to make this less
+</I>&gt;&gt;<i> ambiguous. I'll submit a patch for this.
+</I>&gt;<i>
+</I>&gt;<i> I will add that patch today. 'replaces', replaces one ore more packages
+</I>&gt;<i> with another package but this doesn't have any impact on the previos
+</I>&gt;<i> package dependency and conflict creation of the package manager. If
+</I>&gt;<i> you put a branding package into your package list which conflicts
+</I>&gt;<i> with another package this conflict always will be reported because
+</I>&gt;<i> the very first and prio1 task is to make sure that the specified package
+</I>&gt;<i> list is conflict free. replaces and delete happens after the packagemanager
+</I>&gt;<i> thought about the package list. I can't change this because the
+</I>&gt;<i> packagemanager backend (zypper in our case) always wants a clean
+</I>&gt;<i> list which it didn't get and so it errors out.
+</I>&gt;<i>
+</I>&gt;<i> The ignore statement is processed before the package list is passed to
+</I>&gt;<i> the package manager but as I said in case of patterns we leave it up to
+</I>&gt;<i> the package manager to solve them and so the ignore doesn't have an impact
+</I>&gt;<i> on the contents of patterns if zypper is used
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; So does this mean that I now have to add each package that each
+</I>&gt;&gt;<i> &gt; pattern contains and leave out the ones that are being replaced by our
+</I>&gt;&gt;<i> &gt; OEM packages?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Yes, and no. You can take the approach of basically expanding the list
+</I>&gt;&gt;<i> of packages that are part of the pattern in the config.xml file.
+</I>&gt;&gt;<i> However, the root cause is really not the use of the pattern but rather
+</I>&gt;&gt;<i> the packages that cause the conflict. If I were in your shoes I would
+</I>&gt;&gt;<i> work on understanding why the packages conflict and then fix the
+</I>&gt;&gt;<i> conflicts, I know back to &quot;clean up the world&quot; mode.
+</I>&gt;<i>
+</I>&gt;<i> I completely agree, solve the package conflict
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; If so how can we confirm EXACTLY what packages are contained in the
+</I>&gt;&gt;<i> &gt; pattern package?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Information about patterns are found in suse/setup/descr/ on the media.
+</I>&gt;&gt;<i> I do not know where the source of the patterns resides, probably
+</I>&gt;&gt;<i> somewhere in the buildservice.
+</I>&gt;<i>
+</I>&gt;<i> You can let kiwi solve the list for you:
+</I>&gt;<i>
+</I>&gt;<i> &#160;kiwi --info /path/to/image/description --select packages
+</I>&gt;<i>
+</I>&gt;<i> it will print the list of solved packages. This also requires that
+</I>&gt;<i> the specified package list is conflict free. If there is a conflict,
+</I>&gt;<i> the conflict will be reported.
+</I>&gt;<i>
+</I>&gt;<i> But again I strongly recommend to fix the package causing the
+</I>&gt;<i> conflict. We are not talking about a kiwi bug or inconvenience
+</I>&gt;<i> that's all cause by a packaging problem. By the way I didn't
+</I>&gt;<i> receive the exact error message you got from the package manager.
+</I>&gt;<i> I would be glad to assist in solving the issue here on the list
+</I>&gt;<i> This will also help others
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+I hope I'm posting this correctly. I'm not sure if the all the post
+from the buildservice ML made it over to the kiwi ML.
+
+Let me try an break down where I am so far and give as much info as I
+can regarding packages.
+
+The technique that I used to make all of my branding packages was this.
+1) I first download the source files from the openSUSE11.3 project of
+the particular branding package that I want in OBS.
+2) I then make a copy on my local machine of that branding package.
+3) I go though the config files, spec file, tar, and image and replace
+and update everything to what I need it to be.
+4) I then repackage it create a new package in my OBS account and
+upload the contents of the source and have OBS build the package.
+I've had many issue with builds but I'm sure they were a lack of
+experience on my part.
+5) I then update my config.xml file locally so that Kiwi can pull that
+package in from my repo.
+
+I do remember the link that (I think it was Marcus) posted (
+<A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen#Custom_GRUB_and_boot_splash_images">http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen#Custom_GRUB_and_boot_splash_images</A>).
+ I know for sure that I did go though MOST of that page but I'm also
+sure that I ended up using OpenPC version of GFXBOOT and BootSplash to
+fill in the blanks...BIG mistake as OpenPC has Javier. He has some
+experience and kind of did things his own way.  I think his way works
+very well but I need to build a foundation for my methods and his way
+is over my head right now.
+
+Now regarding the question &quot;&quot;where do your package install the files&quot;.
+ Well since my branding package such as GFXBOOT and Bootsplash are
+based on SUSE versions they are where the SUSE branding package would
+be EXCEPT that my projects name is the folder for the theme not
+&quot;openSUSE&quot; or &quot;SUSE&quot;.  So this project name right now is SOS.  So all
+of my themes are all in the SOS theme folder.  The rule of thumb on
+this is that EVERYTHING in the whatever branding package that we are
+talking about that was named/labeled &quot;openSUSE&quot; is now named &quot;SOS&quot;.
+So I don't think there is a problem with the package itself...although
+I remember about a month ago I had a similar issue with my GFXBOOT
+package.  Same conflict.  I can't remember who helped me with that but
+I do remember having to tweak the spec file of this package and remove
+some &quot;openSUSE&quot; stuff and I think we removed the &quot;conflicts&quot; string on
+one of the subpackages.  I'm sure this issue is my fault I just don't
+know where the faults is.
+
+I ran the command &quot;kiwi --info /path/to/image/description --select
+packages&quot;.   This command looks like it shows EVERY package that is
+being installed.  Including the ones in the patterns. Is this correct?
+  I can clearly see both the &quot;lxde-common-branding-SOS&quot; and the
+&quot;lxde-common-branding-openSUSE&quot; package visible.
+Looking at the LONG list of packages that shows up when running  this
+command seems like it's crazy to manually enter the package separately
+and remove the patterens.  Correct?  Learning what is causing this
+package conflict is the key to this issue...and to avoid many more
+like it as I have lots of other branded packages to replace, such as
+Suse.release and others like it.
+
+For this project I always was trying to do my rebrands all the way.
+Not using the existing SUSE dir and files to hold my images and
+configs with the openSUSE name.  I thought by taking the original
+source and changing everything that this issue wouldn't exist because
+the packages have their own direct and configs.
+
+The answer to the question &quot;What is the oem branding package ?&quot;  By
+OEM I mean the our branded packages.  Original Equipment Manufacturer.
+
+Maybe the best way to get to the problem is if you guys could take a
+look at my spec file for this lxde-common-branding-SOS package, the
+config.xml file that kiwi is using to make the image and anything else
+that you can think of that will confirm one way or another what the
+issue is.  The more I do the more I know what isn't or is correct.  I
+just don't have enough of &quot;correct&quot; to know what I'm doing yet.
+
+This SOS project is  subproject of another project of mine...if that matters.
+The link to the lxde-common-branding-SOS branding package is here
+<A HREF="https://build.opensuse.org/project/packages?package=&amp;project=home%3Aeportel6607%3ASOS">https://build.opensuse.org/project/packages?package=&amp;project=home%3Aeportel6607%3ASOS</A>
+I should mention that the gfxboot and bootsplash branding package were
+made the same way as this package and they both work fine.  although
+not without some pain with build failures.
+
+The link to a pastebin page that has my config.xml file that kiwi is
+using to build with is here:  <A HREF="http://paste2.org/p/1250196">http://paste2.org/p/1250196</A>
+
+The output of the command kiwi --info /path/to/image/description
+--select packages is here:  <A HREF="http://paste2.org/p/1250199">http://paste2.org/p/1250199</A>
+
+Thanks all
+chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002332.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+	<LI>Next message: <A HREF="002339.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2338">[ date ]</a>
+              <a href="thread.html#2338">[ thread ]</a>
+              <a href="subject.html#2338">[ subject ]</a>
+              <a href="author.html#2338">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

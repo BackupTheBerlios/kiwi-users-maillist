@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI-LTSP%20%26%20Layouts%20%26%20Openchrome%20driver&In-Reply-To=%3Cb317ae5c0805100306wc64b07bofdb6780e6f003740%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000626.html">
+   <LINK REL="Next"  HREF="000628.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI-LTSP%20%26%20Layouts%20%26%20Openchrome%20driver&In-Reply-To=%3Cb317ae5c0805100306wc64b07bofdb6780e6f003740%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver">cyberorg at opensuse.org
+       </A><BR>
+    <I>Sat May 10 12:06:27 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000626.html">[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+</A></li>
+        <LI>Next message: <A HREF="000628.html">[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#627">[ date ]</a>
+              <a href="thread.html#627">[ thread ]</a>
+              <a href="subject.html#627">[ subject ]</a>
+              <a href="author.html#627">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, May 10, 2008 at 3:31 PM, Yuriy Andamasov &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">andamasov at gmail.com</A>&gt; wrote:
+&gt;<i> Hi everyone!
+</I>&gt;<i> So i'm trying build LTSP  system  with  HP T5135  as thin client.
+</I>&gt;<i> All  fine but i have two problems.
+</I>&gt;<i> First is that TC video driver, i'm only available boot this TC with VESA,
+</I>&gt;<i> I'm tried add to packages openchrome driver(in config.xml), but it does
+</I>&gt;<i> appear in the final image
+</I>
+Are openchrome drivers available on the media or
+/usr/share/kiwi/images/ltsp/suse-&lt;version&gt;/extra-rpms ?
+
+&gt;<i> Second is keyboard layouts, i'm specified in lts.kiwi layouts what  i need,
+</I>&gt;<i> but  this values are totally  ignored.
+</I>&gt;<i> Can anybody help me with this.
+</I>
+Try adding the video server and keyboard layout required in
+/srv/tftpboot/KIWI/lts.conf
+
+For example:
+
+XKBLAYOUT=de
+XSERVER = vesa
+
+See <A HREF="http://doc.ubuntu.com/edubuntu/edubuntu/handbook/C/customizing-thin-client.html">http://doc.ubuntu.com/edubuntu/edubuntu/handbook/C/customizing-thin-client.html</A>
+for details.
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000626.html">[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+</A></li>
+	<LI>Next message: <A HREF="000628.html">[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#627">[ date ]</a>
+              <a href="thread.html#627">[ thread ]</a>
+              <a href="subject.html#627">[ subject ]</a>
+              <a href="author.html#627">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

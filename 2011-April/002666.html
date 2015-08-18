@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] New error-no changes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20error-no%20changes&In-Reply-To=%3C4DAC7F98.3070800%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002664.html">
+   <LINK REL="Next"  HREF="002669.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] New error-no changes</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20error-no%20changes&In-Reply-To=%3C4DAC7F98.3070800%40novell.com%3E"
+       TITLE="[Kiwi-users] New error-no changes">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Apr 18 20:14:48 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002664.html">[Kiwi-users] New error-no changes
+</A></li>
+        <LI>Next message: <A HREF="002669.html">[Kiwi-users] New error-no changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2666">[ date ]</a>
+              <a href="thread.html#2666">[ thread ]</a>
+              <a href="subject.html#2666">[ subject ]</a>
+              <a href="author.html#2666">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Chris,
+
+On 04/18/2011 12:50 PM, Chris Cunha wrote:
+&gt;<i> On Mon, Apr 18, 2011 at 4:25 AM, Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt;  wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Guys I have been building this image with no changes to the config.xml
+</I>&gt;&gt;&gt;<i> file for amost 3 weeks now.  On this last build I receive this error
+</I>&gt;&gt;&gt;<i> during the kiwi prepare stage &quot;Problem: nothing provides liblzma.so.5
+</I>&gt;&gt;&gt;<i> needed by clicfs-1.4.1-51.2.i586
+</I>&gt;&gt;&gt;<i>   Solution 1: do not install clicfs-1.4.1-51.2.i586
+</I>&gt;&gt;&gt;<i>   Solution 2: break clicfs by ignoring some of its dependencies&quot;
+</I>&gt;&gt;&gt;<i> Did something in the repos change or an issues with a mirror?   What
+</I>&gt;&gt;&gt;<i> is the best way to narrow down a problem like this?  Is there anything
+</I>&gt;&gt;&gt;<i> I can do to make sure that it doesn' happen again?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> you need the following repos:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;repository type=&quot;rpm-md&quot;&gt;
+</I>&gt;&gt;<i>    &lt;source path=&quot;<A HREF="http://download.opensuse.org/repositories/filesystems/openSUSE_11.3/">http://download.opensuse.org/repositories/filesystems/openSUSE_11.3/</A>&quot;/&gt;
+</I>&gt;&gt;<i> &lt;/repository&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This one provides the clicfs 1.4 as you know
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;repository type=&quot;rpm-md&quot;&gt;
+</I>&gt;&gt;<i>    &lt;source path=&quot;<A HREF="http://download.opensuse.org/repositories/Archiving/openSUSE_11.3/">http://download.opensuse.org/repositories/Archiving/openSUSE_11.3/</A>&quot;/&gt;
+</I>&gt;&gt;<i> &lt;/repository&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> and this one provides liblzma0 required by clicfs 1.4
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Marcus
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i>   Public Key available
+</I>&gt;&gt;<i>   gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;&gt;<i>   -------------------------------------------------------
+</I>&gt;&gt;<i>   Marcus Sch&#228;fer (Res.&amp;  Dev.)   SUSE LINUX Products GmbH
+</I>&gt;&gt;<i>   Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;&gt;<i>   FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;&gt;<i>   GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;&gt;<i>   <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;&gt;<i>   -------------------------------------------------------
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I'm obviously missing something here.
+</I>&gt;<i> I've always had the :
+</I>&gt;&gt;<i> &lt;repository type=&quot;rpm-md&quot;&gt;
+</I>&gt;&gt;<i>    &lt;source path=&quot;<A HREF="http://download.opensuse.org/repositories/filesystems/openSUSE_11.3/">http://download.opensuse.org/repositories/filesystems/openSUSE_11.3/</A>&quot;/&gt;
+</I>&gt;&gt;<i> &lt;/repository&gt;
+</I>&gt;<i> repo in my repos list within the config.xml file.  I never had an
+</I>&gt;<i> issue with the clicfs package until now.  How did this work all this
+</I>&gt;<i> time if I didn't have the&gt;    &lt;source
+</I>&gt;<i> path=&quot;<A HREF="http://download.opensuse.org/repositories/Archiving/openSUSE_11.3/">http://download.opensuse.org/repositories/Archiving/openSUSE_11.3/</A>&quot;/&gt;
+</I>&gt;<i>   repo in my repo list?
+</I>&gt;<i> I want to understand what changed to make this issue happen.
+</I>
+We had this conversation previously, thus just a few hints: If you look 
+at the content of 
+<A HREF="http://download.opensuse.org/repositories/filesystems/openSUSE_11.3/x86_64/">http://download.opensuse.org/repositories/filesystems/openSUSE_11.3/x86_64/</A> 
+you will see that the clicfs package changed today, and now things are 
+broken on your end.
+
+Again, if you depend on packages in development repositories this is 
+stuff you have to expect and you have to be able to handle. The only way 
+to avoid such issues is to stick with the &quot;official&quot; project repositories
+
+- <A HREF="http://download.opensuse.org/distribution/11.3/repo/oss/">http://download.opensuse.org/distribution/11.3/repo/oss/</A>
+- <A HREF="http://download.opensuse.org/distribution/11.3/repo/non-oss/">http://download.opensuse.org/distribution/11.3/repo/non-oss/</A>
+- <A HREF="http://download.opensuse.org/update/11.3/">http://download.opensuse.org/update/11.3/</A>
+
+These may not provide the functionality you need, but these are the only 
+repositories pretty much guaranteed to be stable.
+
+Later,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002664.html">[Kiwi-users] New error-no changes
+</A></li>
+	<LI>Next message: <A HREF="002669.html">[Kiwi-users] New error-no changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2666">[ date ]</a>
+              <a href="thread.html#2666">[ thread ]</a>
+              <a href="subject.html#2666">[ subject ]</a>
+              <a href="author.html#2666">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

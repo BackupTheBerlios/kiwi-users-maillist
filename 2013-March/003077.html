@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] I have to reinstall the package(s) ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20I%20have%20to%20reinstall%20the%20package%28s%29%20%3F&In-Reply-To=%3C513F72F9.4020508%40sch.bme.hu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003076.html">
+   <LINK REL="Next"  HREF="003078.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] I have to reinstall the package(s) ?</H1>
+    <B>&quot;Horv&#225;th Gergely J. (Ott&#243;)&quot;</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20I%20have%20to%20reinstall%20the%20package%28s%29%20%3F&In-Reply-To=%3C513F72F9.4020508%40sch.bme.hu%3E"
+       TITLE="[Kiwi-users] I have to reinstall the package(s) ?">hgj at sch.bme.hu
+       </A><BR>
+    <I>Tue Mar 12 19:24:57 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003076.html">[Kiwi-users] Can't add i386 package to x86_64 distribution.
+</A></li>
+        <LI>Next message: <A HREF="003078.html">[Kiwi-users] I have to reinstall the package(s) ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3077">[ date ]</a>
+              <a href="thread.html#3077">[ thread ]</a>
+              <a href="subject.html#3077">[ subject ]</a>
+              <a href="author.html#3077">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello there,
+
+I recently built an other openSUSE image with KIWI and noticed a strange
+thing. I've installed man, but I can not view any man pages:
+
+linux:~ # man man
+No manual entry for man
+
+So I quickly checked if man is installed or what?
+
+linux:~ # zypper if man
+...
+Installed: Yes
+Status: up-to-date
+Installed Size: 1,8 MiB
+...
+
+linux:~ # zypper in man
+'man' is already installed.
+No update candidate for 'man-2.5.2-43.2.2.i586'. The highest available
+version is already installed.
+
+Seems fine. The first idea was to reinstall the package:
+
+linux:~ # zypper in --force man
+...
+
+And voila, we have man pages:
+
+linux:~ # man man | wc
+    599    4034   30740
+
+Why is that? See the attached config.xml for the image configuration.
+
+Thank you,
+Greg
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: config.xml
+Type: text/xml
+Size: 4994 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20130312/26e50b37/attachment.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20130312/26e50b37/attachment.xml</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003076.html">[Kiwi-users] Can't add i386 package to x86_64 distribution.
+</A></li>
+	<LI>Next message: <A HREF="003078.html">[Kiwi-users] I have to reinstall the package(s) ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3077">[ date ]</a>
+              <a href="thread.html#3077">[ thread ]</a>
+              <a href="subject.html#3077">[ subject ]</a>
+              <a href="author.html#3077">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

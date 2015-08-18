@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] password encryption problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C1260432322.4493.1.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001549.html">
+   <LINK REL="Next"  HREF="001555.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] password encryption problem</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C1260432322.4493.1.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] password encryption problem">roger at opq.se
+       </A><BR>
+    <I>Thu Dec 10 09:05:22 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001549.html">[Kiwi-users] password encryption problem
+</A></li>
+        <LI>Next message: <A HREF="001555.html">[Kiwi-users] password encryption problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1550">[ date ]</a>
+              <a href="thread.html#1550">[ thread ]</a>
+              <a href="subject.html#1550">[ subject ]</a>
+              <a href="author.html#1550">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2009-12-09 at 14:26 -0500, Robert Schweikert wrote:
+&gt;<i> I think I have found a password creation/encryption problem. When I use
+</I>&gt;<i> 
+</I>&gt;<i> -&gt; kiwi --createpassword
+</I>&gt;<i> 
+</I>&gt;<i> and use linux as the plain text password I get the following encrypted 
+</I>&gt;<i> string back:
+</I>&gt;<i> 
+</I>&gt;<i> $2a$05$vgmS7MrbVWrghZGWn84CpeDjVSEzc5NSrYb8wtkwkm4EjJ2mRN4cO
+</I>&gt;<i> 
+</I>&gt;<i> When comparing this to the encrypted password in the example config.xml 
+</I>&gt;<i> files ($1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0) the difference is obvious. 
+</I>&gt;<i> But the example config.xml files also use linux as the password.
+</I>&gt;<i> 
+</I>&gt;<i> I would have expected to get the same encrypted value back from 
+</I>&gt;<i> createpassword as is encoded in config.xml.
+</I>&gt;<i> 
+</I>&gt;<i> The createpassword invocation ends up calling Perl's crypt() interface 
+</I>&gt;<i> which according to <A HREF="http://www.osix.net/modules/article/?id=571">http://www.osix.net/modules/article/?id=571</A> 
+</I>&gt;<i> implements DES. However, the default encryption algorithm for the distro 
+</I>&gt;<i> is Blowfish, I believe. I also think this changed in the not too distant 
+</I>&gt;<i> past.
+</I>&gt;<i> 
+</I>&gt;<i> Couldn't figure out how to use Crypt::Blowfish or I would have tested this.
+</I>
+The same password will be different. That is what makes it more tricky
+to break. The same encoded string, however, is always the same password.
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001549.html">[Kiwi-users] password encryption problem
+</A></li>
+	<LI>Next message: <A HREF="001555.html">[Kiwi-users] password encryption problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1550">[ date ]</a>
+              <a href="thread.html#1550">[ thread ]</a>
+              <a href="subject.html#1550">[ subject ]</a>
+              <a href="author.html#1550">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

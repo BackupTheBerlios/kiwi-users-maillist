@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] runlevel setting on kiwi network client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20runlevel%20setting%20on%20kiwi%20network%20client&In-Reply-To=%3C200710171929.32962.jcbornschlegel%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000100.html">
+   <LINK REL="Next"  HREF="000089.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] runlevel setting on kiwi network client</H1>
+    <B>Jan-Christoph Bornschlegel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20runlevel%20setting%20on%20kiwi%20network%20client&In-Reply-To=%3C200710171929.32962.jcbornschlegel%40suse.de%3E"
+       TITLE="[Kiwi-users] runlevel setting on kiwi network client">jcbornschlegel at suse.de
+       </A><BR>
+    <I>Wed Oct 17 19:29:32 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000100.html">[Kiwi-users] runlevel setting on kiwi network client
+</A></li>
+        <LI>Next message: <A HREF="000089.html">[Kiwi-users] nfs mounted root system does not shut down
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#101">[ date ]</a>
+              <a href="thread.html#101">[ thread ]</a>
+              <a href="subject.html#101">[ subject ]</a>
+              <a href="author.html#101">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Wolfgang,
+
+Am Mittwoch, 17. Oktober 2007 19:06 schrieb Mair Wolfgang-awm013:
+[..]
+&gt;<i> du: cannot access `/live/root/proc/6510/task/6510/fd/3': No such file or
+</I>&gt;<i> directory du: cannot access `/live/root/proc/6510/fd/4': No such file or
+</I>&gt;<i> directory Oct-17 18:56 &lt;1&gt; : Image requires 3244 MB, got 3200M MB
+</I>
+This looks familiar :)
+
+You did something in the chroot which left /proc mounted, right?
+What does 'cat /proc/mounts' say? If your base dir appears there you'll have 
+to unmount it manually. This happened sometimes after I called smart in the 
+chroot.
+
+So long,
+Jan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000100.html">[Kiwi-users] runlevel setting on kiwi network client
+</A></li>
+	<LI>Next message: <A HREF="000089.html">[Kiwi-users] nfs mounted root system does not shut down
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#101">[ date ]</a>
+              <a href="thread.html#101">[ thread ]</a>
+              <a href="subject.html#101">[ subject ]</a>
+              <a href="author.html#101">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

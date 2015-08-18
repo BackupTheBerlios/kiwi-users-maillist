@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110306091059.GA19442%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002424.html">
+   <LINK REL="Next"  HREF="002426.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110306091059.GA19442%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Sun Mar  6 10:11:00 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002424.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002426.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2425">[ date ]</a>
+              <a href="thread.html#2425">[ thread ]</a>
+              <a href="subject.html#2425">[ subject ]</a>
+              <a href="author.html#2425">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Chris,
+
+&gt;<i> First off I should say that I didn't mean any disrespect about my
+</I>&gt;<i> &quot;waste of time&quot; statement.
+</I>
+:<i>) no worries, it wasn't understood like that
+</I>
+&gt;<i> Anyway here is what I've tried so far.
+</I>&gt;<i> As a test I took the drive and using the Windows format to make a fat
+</I>&gt;<i> partition. Windows of course sees it just fine.  Linux does also.
+</I>&gt;<i> I then started Yast (parted) partitioning software and removed all
+</I>&gt;<i> partitions on this 1gb drive. The drive itself is sdf.  I made sdf1 be
+</I>&gt;<i> the Fat partition and sdf2 to be the linux partion.  I &quot;dd&quot; the iso to
+</I>&gt;<i> the sdf2.  I tried booting from it...no go.  I stuck it in a Win
+</I>&gt;<i> machine.  The fat partition was available.  I then reversed the
+</I>&gt;<i> partitions.  So sdf1 was the iso and sdf2 was the fat partition.  It
+</I>&gt;<i> boots fine but when I put it in a Win machine it wants to format the
+</I>&gt;<i> drive!!  I'm going to SNAP!
+</I>&gt;<i> I tried also to change the hex digit in the string on the drive
+</I>&gt;<i> itself...no go.  This has to be done in Windows with some software
+</I>&gt;<i> that Matt pointed out.
+</I>&gt;<i> I also tried changing the driver in Windows for this USB drive.  This
+</I>&gt;<i> didn't work either however I need to try it again as I think I missed
+</I>&gt;<i> a critical step.
+</I>&gt;<i> 
+</I>&gt;<i> So it appears that you can't boot off a USB drive it the boot sector
+</I>&gt;<i> is anything but partition 1 and Windows won't see the USB drive if
+</I>&gt;<i> it's anything but partition 1!!  Honestly modifying the USB to be a
+</I>&gt;<i> internal drive is an option but so far as I expected nothing is
+</I>&gt;<i> working.  Windows is pretty stupid when It comes to removable media
+</I>&gt;<i> that's for sure.
+</I>
+This is basically what other people found out too :(
+I think we should make kiwi's usbboot code more windows friendly
+I opened an enhancement bug report for this one including
+your feedback:
+
+  <A HREF="https://bugzilla.novell.com/show_bug.cgi?id=677246">https://bugzilla.novell.com/show_bug.cgi?id=677246</A>
+
+&gt;<i> Question.  When you look at a usb drive on the partition software it
+</I>&gt;<i> would show up as sdf.  Ok so sdf is the drive itself it seems.
+</I>
+yes
+
+&gt;<i> I noticed that I can either create another partition (sdf1) for the
+</I>&gt;<i> bootable linux iso..or i can dump it on sdf.  What is the difference?
+</I>
+the bootable linux iso contains a drive layout. Which means it also
+includes the partition table. Therefore you should dump the iso
+always on /dev/sdf and not on a partition /dev/sdf1
+
+&gt;<i> Then should the fat partition go on sdf1 (if the os bootable iso is on
+</I>&gt;<i> sdf) or should it go on sdf2?
+</I>
+the fat data partititon must be on /dev/sdf1 and the linux system
+on /dev/sdf2. But all that must be part of the iso itself because
+it embeds that partition table
+
+This is also the reason why it's in this case better to let kiwi
+deploy the partition table (including the fat data partition) and
+the system itself by the kiwi --bootstick method.
+
+I was thinking on a new attribute in config.xml like:
+
+   winspace=&quot;200M&quot;  or winspace=&quot;auto&quot;
+
+or something which then creates some space as the first partition
+as fat filesystem at the right place on the stick to make
+Windows happy  
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002424.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002426.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2425">[ date ]</a>
+              <a href="thread.html#2425">[ thread ]</a>
+              <a href="subject.html#2425">[ subject ]</a>
+              <a href="author.html#2425">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

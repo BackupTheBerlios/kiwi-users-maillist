@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with aufs being pulled in by kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20aufs%20being%20pulled%20in%20by%20kiwi&In-Reply-To=%3C78a1326c0910020746q6baf070fsdea78b53e6971a30%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001469.html">
+   <LINK REL="Next"  HREF="001471.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with aufs being pulled in by kiwi</H1>
+    <B>Andrew Wafaa</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20aufs%20being%20pulled%20in%20by%20kiwi&In-Reply-To=%3C78a1326c0910020746q6baf070fsdea78b53e6971a30%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Issues with aufs being pulled in by kiwi">awafaa at opensuse.org
+       </A><BR>
+    <I>Fri Oct  2 16:46:09 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001469.html">[Kiwi-users] Issues with aufs being pulled in by kiwi
+</A></li>
+        <LI>Next message: <A HREF="001471.html">[Kiwi-users] SLES10 SP2 x86_64 image creation on openSUSE 11.0	(i586)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1470">[ date ]</a>
+              <a href="thread.html#1470">[ thread ]</a>
+              <a href="subject.html#1470">[ subject ]</a>
+              <a href="author.html#1470">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+2009/10/2 Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt;:
+&gt;<i> aufs is not used in 11.2 anymore and kiwi already has no reference
+</I>&gt;<i> to aufs in 11.2 anymore. I'm wondering where you saw any aufs mount
+</I>&gt;<i> with the specs I see below:
+</I>&gt;<i>
+</I>OK I'm actually trying to build against 11.1 and 11.2 so maybe that is
+part of the issue?
+When building against 11.1 I see aufs here:
+
+EXEC [mount -t aufs -o
+dirs=/usr/src/packages/SOURCES/repos/openSUSE:11.1:Update/standard=ro
+aufs /usr/src/packages/KIWIROOT-oem//base-system/usr/src/packages/SOURCES/repos/openSUSE:11.1:Update/standard
+2&gt;&amp;1]
+
+&gt;<i> maybe you use an old prebuilt boot image. I suggest to remove
+</I>&gt;<i> the line checkprebuilt=&quot;true&quot; and recreate the image
+</I>&gt;<i>
+</I>OK I removed that and it still fails with:
+
+buildinfo is broken... it says:
+expansion error: nothing provides kernel(default:mm) =
+f3eb7c17cf1a1604 needed by aufs-kmp-default, nothing provides
+kernel(default:fs) = 5e86d35962b843e6 needed by aufs-kmp-default,
+nothing provides kernel(default:fs) = ae1a6b2a7b8b3b88 needed by
+aufs-kmp-default, nothing provides kernel(default:fs) =
+bd37340224cf87a7 needed by aufs-kmp-default, nothing provides
+kernel(default:kernel) = 3df41a687950fa3d needed by aufs-kmp-default,
+nothing provides kernel(default:kernel) = 7f1373e539002cf0 needed by
+aufs-kmp-default, nothing provides kernel(default:kernel) =
+a71f20c04b8e8bc9 needed by aufs-kmp-default, nothing provides
+kernel(default:vmlinux) = de5c7ba437e2813b needed by aufs-kmp-default,
+nothing provides kernel(default:fs_sysfs) = 011aa0d00d2f0465 needed by
+aufs-kmp-default, nothing provides kernel(default:drivers_char) =
+9eac313ab2bc8ba4 needed by aufs-kmp-default, nothing provides
+kernel(default:lib) = 3ce5e8985356727f needed by aufs-kmp-default,
+nothing provides kernel(default:arch_x86_kernel) = cd0f8682a926a58d
+needed by aufs-kmp-default, nothing provides kernel(default:security)
+= 7f62b51867965766 needed by aufs-kmp-default
+Building suse-moblin-rescue.kiwi for openSUSE_11.1/i586
+Getting buildinfo from server
+
+When I try and build against 11.2 I get:
+
+wrong repo/arch?
+Building suse-moblin-rescue.kiwi for openSUSE_Factory/i586
+Getting buildinfo from server
+
+Thanks,
+
+Andy
+-- 
+Andrew Wafaa
+IRC: FunkyPenguin
+PGP: 0x3A36312F
+openSUSE: Get It, Discover It, Create It at <A HREF="http://www.opensuse.org">http://www.opensuse.org</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001469.html">[Kiwi-users] Issues with aufs being pulled in by kiwi
+</A></li>
+	<LI>Next message: <A HREF="001471.html">[Kiwi-users] SLES10 SP2 x86_64 image creation on openSUSE 11.0	(i586)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1470">[ date ]</a>
+              <a href="thread.html#1470">[ thread ]</a>
+              <a href="subject.html#1470">[ subject ]</a>
+              <a href="author.html#1470">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

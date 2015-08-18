@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Not accepting EULA does not cause system shutdown
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Not%20accepting%20EULA%20does%20not%20cause%20system%20shutdown&In-Reply-To=%3C4AC0B28E.6080904%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001453.html">
+   <LINK REL="Next"  HREF="001455.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Not accepting EULA does not cause system shutdown</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Not%20accepting%20EULA%20does%20not%20cause%20system%20shutdown&In-Reply-To=%3C4AC0B28E.6080904%40novell.com%3E"
+       TITLE="[Kiwi-users] Not accepting EULA does not cause system shutdown">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Sep 28 14:56:46 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001453.html">[Kiwi-users] config.xml ownership
+</A></li>
+        <LI>Next message: <A HREF="001455.html">[Kiwi-users] Not accepting EULA does not cause system shutdown
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1454">[ date ]</a>
+              <a href="thread.html#1454">[ thread ]</a>
+              <a href="subject.html#1454">[ subject ]</a>
+              <a href="author.html#1454">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>For an OEM image based on SLES 10 with a recent version of Kiwi 
+(kiwi-3.74-44.1) not accepting the EULA does not cause the system to 
+shutdown, rather the state off the machine is returned to the EULA 
+display in what appears to be an endless loop. Looks like the &quot;No&quot; 
+condition for the EULA is not handled correctly.
+
+If the user should get a second or third chance to accept the license it 
+appears that a counter is needed in KIWILinuxRC.sh.  However, I think if 
+the user does not accept the EULA the system should just shutdown. I 
+think the following should do the trick.
+
+    case $? in
+            0 ) break
+                ;;
+            1 ) systemException \
+                    &quot;License not accepted... reboot&quot; \
+                &quot;reboot&quot;
+                ;;
+        esac
+
+Not sure if we should turn the system off, i.e. &quot;shutdown -h&quot; or simply 
+reboot as in the code above.
+
+Thanks,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001453.html">[Kiwi-users] config.xml ownership
+</A></li>
+	<LI>Next message: <A HREF="001455.html">[Kiwi-users] Not accepting EULA does not cause system shutdown
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1454">[ date ]</a>
+              <a href="thread.html#1454">[ thread ]</a>
+              <a href="subject.html#1454">[ subject ]</a>
+              <a href="author.html#1454">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

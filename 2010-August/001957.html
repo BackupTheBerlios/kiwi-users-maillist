@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Strange error while building an OEM split image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Strange%20error%20while%20building%20an%20OEM%20split%20image&In-Reply-To=%3C20100809142437.GA12369%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001956.html">
+   <LINK REL="Next"  HREF="001958.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Strange error while building an OEM split image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Strange%20error%20while%20building%20an%20OEM%20split%20image&In-Reply-To=%3C20100809142437.GA12369%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Strange error while building an OEM split image">ms at novell.com
+       </A><BR>
+    <I>Mon Aug  9 16:24:37 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001956.html">[Kiwi-users] Strange error while building an OEM split image
+</A></li>
+        <LI>Next message: <A HREF="001958.html">[Kiwi-users] Strange error while building an OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1957">[ date ]</a>
+              <a href="thread.html#1957">[ thread ]</a>
+              <a href="subject.html#1957">[ subject ]</a>
+              <a href="author.html#1957">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am trying to build an OEM split image based on SLED 11 SP1 and I am encountering the following error message. 
+</I>&gt;<i> 
+</I>&gt;<i> Aug-09 17:52:10 &lt;1&gt; : Creating boot image: oemboot/suse-SLED11-SAI... 
+</I>&gt;<i> Aug-09 17:52:11 &lt;1&gt; : Checking for pre-built boot image                                                           notset 
+</I>&gt;<i> Aug-09 17:52:11 &lt;1&gt; : Reading image description [Prepare]... 
+</I>&gt;<i> Aug-09 17:52:11 &lt;1&gt; : Including foreign repository node(s)                                                        done 
+</I>&gt;<i> Can't call method &quot;requestedProfile&quot; on an undefined value at /usr/share/kiwi/modules/KIWIXML.pm line 310 
+</I>&gt;<i> 
+</I>&gt;<i> I am not quite sure where to look for. 
+</I>
+Does the following patch fix it ?
+
+diff --git a/modules/KIWIImage.pm b/modules/KIWIImage.pm
+index e428101..5113d01 100644
+--- /usr/share/kiwi/modules/KIWIImage.pm
++++ /usr/share/kiwi/modules/KIWIImage.pm
+@@ -2488,6 +2488,7 @@ sub createImageSplit {
+    if ($type{bootloader}) {
+        $main::ForeignRepo{&quot;bootloader&quot;} = $type{bootloader};
+    }
++   $main::ForeignRepo{&quot;xmlobj&quot;}  = $xml;
+    $main::ForeignRepo{&quot;xmlnode&quot;} = $xml -&gt; getForeignNodeList();
+    $main::ForeignRepo{&quot;xmlpacnode&quot;} = $xml -&gt; getForeignPackageNodeList();
+    $main::ForeignRepo{&quot;packagemanager&quot;} = $xml -&gt; getPackageManager();
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001956.html">[Kiwi-users] Strange error while building an OEM split image
+</A></li>
+	<LI>Next message: <A HREF="001958.html">[Kiwi-users] Strange error while building an OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1957">[ date ]</a>
+              <a href="thread.html#1957">[ thread ]</a>
+              <a href="subject.html#1957">[ subject ]</a>
+              <a href="author.html#1957">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

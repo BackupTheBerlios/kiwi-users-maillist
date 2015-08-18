@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Best way to cache packages for kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Best%20way%20to%20cache%20packages%20for%20kiwi&In-Reply-To=%3CCADFKw8jipjc62Bhm7Ys1P2J1eUZEy114McX_KsB27CA7-fou9A%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002863.html">
+   <LINK REL="Next"  HREF="002865.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Best way to cache packages for kiwi</H1>
+    <B>James Ford</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Best%20way%20to%20cache%20packages%20for%20kiwi&In-Reply-To=%3CCADFKw8jipjc62Bhm7Ys1P2J1eUZEy114McX_KsB27CA7-fou9A%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Best way to cache packages for kiwi">jford at endeavorsystems.com
+       </A><BR>
+    <I>Tue Jul 26 07:35:47 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002863.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+        <LI>Next message: <A HREF="002865.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2864">[ date ]</a>
+              <a href="thread.html#2864">[ thread ]</a>
+              <a href="subject.html#2864">[ subject ]</a>
+              <a href="author.html#2864">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus,
+
+Attached is a copy of the build.log file. There are tons of packages stored
+under /var/cache/kiwi/zypper, below is a directory listing, seems to be
+working properly but yet each build requires many packages to be downloaded
+for some reason.
+
+It looks like kiwi dumps the zypper directory each time before the build
+process with the following statement:
+ EXEC [rm -rf /var/cache/kiwi/zypper/*
+
+I wonder if by calling force-new-root it tells kiwi to destroy the cache?
+
+linux-fajz:/var/cache/kiwi/zypper # ls -ll
+total 48
+drwxr-xr-x 4 root root 4096 Jul 26 05:04
+http:__download.opensuse.org_distribution_11.4_repo_oss
+-rw-r--r-- 1 root root  233 Jul 26 05:03
+http:__download.opensuse.org_distribution_11.4_repo_oss.repo
+drwxr-xr-x 3 root root 4096 Jul 26 05:04
+http:__download.opensuse.org_repositories_home:_openfisma:_stable_openSUSE_11.4
+-rw-r--r-- 1 root root  306 Jul 26 05:03
+http:__download.opensuse.org_repositories_home:_openfisma:_stable_openSUSE_11.4.repo
+drwxr-xr-x 3 root root 4096 Jul 26 05:04
+http:__download.opensuse.org_update_11.4
+-rw-r--r-- 1 root root  189 Jul 26 05:03
+http:__download.opensuse.org_update_11.4.repo
+drwxr-xr-x 4 root root 4096 Jul 26 05:09 packages
+drwxr-xr-x 2 root root 4096 Jul 26 05:05
+root_appliance_commercial_source_rpms
+-rw-r--r-- 1 root root  188 Jul 26 05:03
+root_appliance_commercial_source_rpms.repo
+drwxr-xr-x 6 root root 4096 Jul 26 05:06 solv
+-rw-r--r-- 1 root root   36 Jul 26 05:03 zypp.conf.27161
+-rw-r--r-- 1 root root    7 Jul 26 05:03 zypper.conf.27161
+
+
+On Mon, Jul 25, 2011 at 1:19 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; I seem to have the latest copy of kiwi from the Virtualization:Appliance
+</I>&gt;<i> &gt; repo, unless there is another repository I should be using, details on
+</I>&gt;<i> the
+</I>&gt;<i> &gt; package is below.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Repository: @System
+</I>&gt;<i> &gt; Name: kiwi
+</I>&gt;<i> &gt; Version: 4.93.2-274.1
+</I>&gt;<i> &gt; Arch: x86_64
+</I>&gt;<i> &gt; Vendor: <A HREF="obs://build.opensuse.org/Virtualization:Appliances">obs://build.opensuse.org/Virtualization:Appliances</A>
+</I>&gt;<i> &gt; Installed: Yes
+</I>&gt;<i> &gt; Status: up-to-date
+</I>&gt;<i> &gt; Installed Size: 36.2 MiB
+</I>&gt;<i> &gt; Summary: OpenSuSE - KIWI Image System
+</I>&gt;<i> &gt; Description:
+</I>&gt;<i> &gt; The OpenSuSE KIWI Image System provides a complete operating system
+</I>&gt;<i> &gt; image solution for Linux supported hardware platforms as well as for
+</I>&gt;<i> &gt; virtualization systems like Xen.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I added aliases to each repository and re-ran kiwi, on the first try kiwi
+</I>&gt;<i> &gt; downloaded 77 packages.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 77 new packages to install.
+</I>&gt;<i> &gt; Overall download size: 26.6 MiB. After the operation, additional 181.1
+</I>&gt;<i> MiB
+</I>&gt;<i> &gt; will
+</I>&gt;<i> &gt; be used.
+</I>&gt;<i> &gt; Continue? [y/n/?] (y): y
+</I>&gt;<i> &gt; Retrieving package terminfo-base-5.7-14.1.x86_64 (1/77), 112.0 KiB (1.0
+</I>&gt;<i> MiB
+</I>&gt;<i> &gt; unpacked)
+</I>&gt;<i> &gt; Retrieving: terminfo-base-5.7-14.1.x86_64.rpm [done (131.7 KiB/s)]
+</I>&gt;<i> &gt; Installing: terminfo-base-5.7-14.1 [done]
+</I>&gt;<i> &gt; Retrieving package filesystem-11.4-11.14.1.x86_64 (2/77), 51.0 KiB (0 B
+</I>&gt;<i> &gt; unpacked)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The second run produced the same results:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 77 new packages to install.
+</I>&gt;<i> &gt; Overall download size: 26.6 MiB. After the operation, additional 181.1
+</I>&gt;<i> MiB
+</I>&gt;<i> &gt; will
+</I>&gt;<i> &gt; be used.
+</I>&gt;<i> &gt; Continue? [y/n/?] (y): y
+</I>&gt;<i> &gt; Retrieving package terminfo-base-5.7-14.1.x86_64 (1/77), 112.0 KiB (1.0
+</I>&gt;<i> MiB
+</I>&gt;<i> &gt; unpacked)
+</I>&gt;<i> &gt; Retrieving: terminfo-base-5.7-14.1.x86_64.rpm [done (40.3 KiB/s)]
+</I>&gt;<i> &gt; Installing: terminfo-base-5.7-14.1 [done]
+</I>&gt;<i> &gt; Retrieving package filesystem-11.4-11.14.1.x86_64 (2/77), 51.0 KiB (0 B
+</I>&gt;<i> &gt; unpacked)
+</I>&gt;<i> &gt; Retrieving: filesystem-11.4-11.14.1.x86_64.rpm [done]
+</I>&gt;<i> &gt; Installing: filesystem-11.4-11.14.1 [done]
+</I>&gt;<i> &gt; Retrieving package cracklib-dict-full-2.8.12-50.1.x86_64 (3/77), 3.1 MiB
+</I>&gt;<i> &gt; (10.5 MiB unpacked)
+</I>&gt;<i> &gt; Retrieving: cracklib-dict-full-2.8.12-50.1.x86_64.rpm [79% (156.3 KiB/s)]
+</I>&gt;<i>
+</I>&gt;<i> Hmm, could you provide the kiwi log file ? Additionally could you
+</I>&gt;<i> check if the downloaded packages are available on your system in
+</I>&gt;<i> /var/cache/kiwi/zypper/...
+</I>&gt;<i>
+</I>&gt;<i> Thanks
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer
+</I>&gt;<i>  HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110726/af62d429/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110726/af62d429/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: build.27161.screenrc.zip
+Type: application/zip
+Size: 17542 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110726/af62d429/attachment.zip">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110726/af62d429/attachment.zip</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002863.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+	<LI>Next message: <A HREF="002865.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2864">[ date ]</a>
+              <a href="thread.html#2864">[ thread ]</a>
+              <a href="subject.html#2864">[ subject ]</a>
+              <a href="author.html#2864">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

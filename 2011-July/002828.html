@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problems creating an OpenSuse 11.4 installation disc
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20creating%20an%20OpenSuse%2011.4%20installation%20disc&In-Reply-To=%3CCAA843w-2qxJPm0jxWJRM_2no6ypfj4EMFMJJ%2BknLvMROmUZsQw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002827.html">
+   <LINK REL="Next"  HREF="002829.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problems creating an OpenSuse 11.4 installation disc</H1>
+    <B>Lluis Garrido</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20creating%20an%20OpenSuse%2011.4%20installation%20disc&In-Reply-To=%3CCAA843w-2qxJPm0jxWJRM_2no6ypfj4EMFMJJ%2BknLvMROmUZsQw%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Problems creating an OpenSuse 11.4 installation disc">lgoster at gmail.com
+       </A><BR>
+    <I>Tue Jul 12 21:18:33 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002827.html">[Kiwi-users] kiwi: Weekly report 2011-07-03 - 2011-07-08...
+</A></li>
+        <LI>Next message: <A HREF="002829.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation disc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2828">[ date ]</a>
+              <a href="thread.html#2828">[ thread ]</a>
+              <a href="subject.html#2828">[ subject ]</a>
+              <a href="author.html#2828">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear everybody,
+
+First, I would like you to comment on my problem and on why I want to
+use kiwi.
+
+I currently have problems booting the official installation DVD
+of openSuse 11.4 x64 at *work*. As soon as I try to boot the DVD, the
+kernel crashes. Here you see that I've posted my problem on the forums:
+
+<A HREF="http://forums.opensuse.org/english/get-technical-help-here/install-boot-login/462434-kernel-panic-when-booting-live-gnome-dvd-install.html">http://forums.opensuse.org/english/get-technical-help-here/install-boot-login/462434-kernel-panic-when-booting-live-gnome-dvd-install.html</A>
+
+The problem seems to be related to see this link
+
+<A HREF="https://bugzilla.novell.com/show_bug.cgi?id=693382">https://bugzilla.novell.com/show_bug.cgi?id=693382</A>
+
+I've tried to install the same DVD at *home* and I haven't got any
+problems. So currently I have OpenSuse 11.4 at home, but not at work. In
+order to ease file synchronization I need OpenSuse 11.4 to be installed
+at work.
+
+I've found Kiwi and I would like to create an installation CD (or DVD,
+does not matter) that boots with an updated kernel (which does not have
+the problem of the official web) and allows me to install OpenSuse 11.4
+at work.
+
+So, my questions are:
+
+1/ Which template should I use to create an installation CD ? I'm
+currently trying suse-live-iso included in folder
+
+/usr/share/doc/packages/kiwi/examples/suse-11.4.
+
+Which packages should I include ? For instance, I've changed config.xml
+to add the following modifications
+
+&lt;packages type=&quot;image&quot; patternType=&quot;plusRecommended&quot;&gt;
+   &lt;package name=&quot;bootsplash-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt;
+   &lt;package name=&quot;gfxboot-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt;
+   &lt;package name=&quot;kernel-desktop&quot;/&gt;   #### modified
+   &lt;package name=&quot;ifplugd&quot;/&gt;
+   &lt;package name=&quot;vim&quot;/&gt;
+   &lt;package name=&quot;yast2-live-installer&quot;/&gt;   #### included
+   &lt;opensusePattern name=&quot;default&quot;/&gt;
+   &lt;opensusePattern name=&quot;kde4&quot;/&gt;
+&lt;/packages&gt;
+
+2/ I would like to ensure that the initrd kernel that boots the CD is
+the kernel-desktop rather than the kernel-default (since I've tried to
+create a live CD with the default parameters and I have the same problem
+- kernel crash - when booting the CD). In particular, I've tried to
+modify the config.xml of the folder
+/usr/share/kiwi/image/isoboot/suse-11.4
+as follows
+
+&lt;preferences&gt;
+  &lt;type image=&quot;cpio&quot; bootprofile=&quot;default&quot; bootkernel=&quot;desktop&quot;/&gt;
+  &lt;version&gt;2.1.2&lt;/version&gt;
+  &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+  &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+&lt;/preferences&gt;
+
+rather than bootkernel=&quot;std&quot; (which is the original setup).
+
+3/ I then execute
+
+kiwi --prepare suse-live-iso --root /tmp/myiso
+
+and have no problems. But when I run
+
+kiwi --create /tmp/myiso --type iso -d /tmp/myiso-result
+
+I obtain this error:
+
+Jul-12 19:42:48 &lt;1&gt; : Reading image description [Create]...
+Jul-12 19:42:50 &lt;1&gt; : --&gt; Requesting pattern:default   done
+Jul-12 19:42:50 &lt;1&gt; : --&gt; Requesting pattern:kde4      done
+Jul-12 19:42:50 &lt;1&gt; : Set root log: /tmp/myiso.32082.screenrc.log...
+done
+Jul-12 19:42:50 &lt;1&gt; : Updating type in .profile environment
+done
+Jul-12 19:42:52 &lt;1&gt; : Creating clicfs read only filesystem...
+Jul-12 19:42:53 &lt;1&gt; : Image requires 4946M, got 4946M
+done
+Jul-12 19:42:53 &lt;1&gt; : Suggested Image size: 4946M
+done
+Jul-12 19:42:57 &lt;1&gt; : Copying physical to logical [myiso]...
+done
+Jul-12 19:50:32 &lt;1&gt; : Checking file system: clicfs...
+done
+Jul-12 19:52:29 &lt;1&gt; : Creating clicfs
+container:
+/tmp/myiso-result/suse-11.4-live-iso-read-only.x86_64-2.5.2.clicfs
+done
+Jul-12 19:59:53 &lt;1&gt; : Creating image MD5 sum...
+done
+Jul-12 20:00:10 &lt;1&gt; : --&gt; Creating ISO boot image: isoboot/suse-11.4...
+Jul-12 20:00:11 &lt;1&gt; : Using profile(s): default,desktop
+done
+Jul-12 20:00:11 &lt;1&gt; : Checking for pre-built boot image
+notset
+Jul-12 20:00:11 &lt;1&gt; : Reading image description [Prepare]...
+Jul-12 20:00:11 &lt;3&gt; : Integrity check
+for /usr/share/kiwi/image/isoboot/suse-11.4 failed:
+./config.sh: CORRECT
+./root/linuxrc: CORRECT
+./root/etc/modprobe.conf.local: CORRECT
+./root/preinit: CORRECT
+./config.xml: INCORRECT
+./images.sh: CORRECT
+md5sum: av&#237;s: 1 suma calculada NO coincideix (i.e. ---&gt; warning: the sum
+does not coincide)
+
+Can you help me ?
+
+Thanks,
+
+Luis Garrido
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110712/f9131875/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110712/f9131875/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002827.html">[Kiwi-users] kiwi: Weekly report 2011-07-03 - 2011-07-08...
+</A></li>
+	<LI>Next message: <A HREF="002829.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation disc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2828">[ date ]</a>
+              <a href="thread.html#2828">[ thread ]</a>
+              <a href="subject.html#2828">[ subject ]</a>
+              <a href="author.html#2828">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

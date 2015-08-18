@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] AoE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20AoE&In-Reply-To=%3C1263212613.6082.14.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001569.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] AoE</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20AoE&In-Reply-To=%3C1263212613.6082.14.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] AoE">roger at opq.se
+       </A><BR>
+    <I>Mon Jan 11 13:23:33 CET 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001569.html">[Kiwi-users] AoE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1567">[ date ]</a>
+              <a href="thread.html#1567">[ thread ]</a>
+              <a href="subject.html#1567">[ subject ]</a>
+              <a href="author.html#1567">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have made a PXE diskless setup that is working with NBD to mount the
+root file system. For various reasons, I need to try to use AoE instead.
+I have followed the directions in the docs (Chapter 11 PXE Clients) and
+have set up the AOEROOT variable as I think it should be.
+
+When booting the image, I get to the point of it wanting to mount the
+root image with AOE. The mount complains:
+
+	Unrecognized partition table
+
+and fails. I am using the exact same images that work with NBD. Need I
+specify more than AOEROOT in my config file? I only have a line with
+NBDROOT in the config file when that works.
+
+Could there be anything to do with using squashfs vs. clicfs? My
+config.xml contains this:
+
+&lt;preferences&gt;
+      &lt;type filesystem=&quot;clicfs&quot; boot=&quot;netboot/suse-11.2&quot;&gt;pxe&lt;/type&gt;
+      &lt;version&gt;1.2.8&lt;/version&gt;
+      &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+      &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+      &lt;rpm-force&gt;true&lt;/rpm-force&gt;
+&lt;/preferences&gt;
+
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001569.html">[Kiwi-users] AoE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1567">[ date ]</a>
+              <a href="thread.html#1567">[ thread ]</a>
+              <a href="subject.html#1567">[ subject ]</a>
+              <a href="author.html#1567">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

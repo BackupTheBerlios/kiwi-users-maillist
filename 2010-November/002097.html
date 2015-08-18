@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] LVM configurations with oem type
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20configurations%20with%20oem%20type&In-Reply-To=%3C20101103205131.GB10956%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002095.html">
+   <LINK REL="Next"  HREF="002103.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] LVM configurations with oem type</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20configurations%20with%20oem%20type&In-Reply-To=%3C20101103205131.GB10956%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] LVM configurations with oem type">ms at novell.com
+       </A><BR>
+    <I>Wed Nov  3 21:51:31 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002095.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+        <LI>Next message: <A HREF="002103.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2097">[ date ]</a>
+              <a href="thread.html#2097">[ thread ]</a>
+              <a href="subject.html#2097">[ subject ]</a>
+              <a href="author.html#2097">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm creating an install ISO using an oem kiwi configuration file for my project, and setting lvm=&quot;true&quot;.  When the system is installed I see three physical partitions created on the drive where the system is installed.  Two for LVM and one boot partition.
+</I>&gt;<i> Is there any reason that the boot partition can't be created first?  So that there can  be only one physical volume for the LVM setup.  Is there a way to do this currently, or would this involve making changes to kiwi?
+</I>
+when kiwi creates the oem image the first partition is the LVM and the
+second one is the boot partition. Now when it does the repartition step
+kiwi simply creates another partition and adds the physical extends into
+the existing volume group. I did it that way because this involves only
+a little change in the partition table with low risk to fail
+
+Is there any big downside ? I mean extending the existing volume group
+inside one partition is more effort and a higher risk to fail. One need
+to preserve the boot data first, then resize the partition table, then resize
+the physical volumes inside the partition and then resize the volume group
+by the new pv set and restore the boot data.
+
+It would require some code changes in kiwi to do it that way but if it
+has a good benefit I'm willing to change it :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002095.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+	<LI>Next message: <A HREF="002103.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2097">[ date ]</a>
+              <a href="thread.html#2097">[ thread ]</a>
+              <a href="subject.html#2097">[ subject ]</a>
+              <a href="author.html#2097">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

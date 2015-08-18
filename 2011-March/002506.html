@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D826258.8060206%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002504.html">
+   <LINK REL="Next"  HREF="002510.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D826258.8060206%40novell.com%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Mar 17 20:34:48 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002504.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002510.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2506">[ date ]</a>
+              <a href="thread.html#2506">[ thread ]</a>
+              <a href="subject.html#2506">[ subject ]</a>
+              <a href="author.html#2506">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&lt;snip&gt;
+
+&gt;&gt;<i>
+</I>&gt;<i> Wow...sorry about all these separate post but I keep testing and find
+</I>&gt;<i> other questions.
+</I>&gt;<i> The way things currently work the fat partition contains a &quot;boot&quot;
+</I>&gt;<i> directory that holds the critical boot files for the OS.  As of right
+</I>&gt;<i> now I don't see a way to keep the end user out of the boot folder.
+</I>&gt;<i> Due to the boot folder being on the fat partition and there doesn't
+</I>&gt;<i> seem to be a way to create a &quot;Storage&quot; folder on this fat partition
+</I>&gt;<i> and have the .desktop file point to it, it seems that the .desktop
+</I>&gt;<i> file must be pointed to the /media folder.
+</I>
+But, you are in control of the &quot;automount&quot; behavior of your desktop 
+environment. You can create any directory you want and then in 
+/etc/boot.local write a couple of lines of code to find the FAT 
+partition; then mount it to the directory of your choice.
+
+Of course you cannot control any of this when a user plugs the USB stick 
+into a Windoze machine, they can easily mess with stuff on the stick and 
+make the system unusable.
+
+&gt;<i> If I'm clear on this,
+</I>&gt;<i> after the first boot if I was to click on this .desktop icon it would
+</I>&gt;<i> bring me to the /media folder which is the fat32 partition.  There is
+</I>&gt;<i> no structured place for the end users to place any files within this
+</I>&gt;<i> fat partition. If the boot folder wasn't in this space or there was a
+</I>&gt;<i> sub folder (say a &quot;Storage&quot; folder) on this partition  the end user
+</I>&gt;<i> could get directly too I wouldn't be concerned. What might be the
+</I>&gt;<i> answer to this issue?
+</I>
+What you are after is a stick with 2 FAT partitions, one at the 
+beginning that contains the boot code, i.e. /boot, and one FAT partition 
+that is pure storage. With this you could hide the boot directory as you 
+could mount the pure storage partition to where ever you wanted and when 
+running 'ls' on the mount it would be empty.
+
+I don't know how Windoze would react to a stick with 2 FAT partitions at 
+the beginning.
+
+With the current configuration it is not possible to hide away /boot, we 
+do have to get the system started somehow, and /boot is a name that 
+cannot be changed, i.e. we cannot name it /.boot to hide the directory.
+
+Later,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002504.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002510.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2506">[ date ]</a>
+              <a href="thread.html#2506">[ thread ]</a>
+              <a href="subject.html#2506">[ subject ]</a>
+              <a href="author.html#2506">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

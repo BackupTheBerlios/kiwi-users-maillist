@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3CCABKsJ%3DR1PMvRDSHDuCba63SAr_qpotx6CtG79%3Dtecv3Fc14YWw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003052.html">
+   <LINK REL="Next"  HREF="003054.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>marcin kowalski</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3CCABKsJ%3DR1PMvRDSHDuCba63SAr_qpotx6CtG79%3Dtecv3Fc14YWw%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">yoshi314 at gmail.com
+       </A><BR>
+    <I>Mon Dec 31 08:16:10 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003052.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+        <LI>Next message: <A HREF="003054.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3053">[ date ]</a>
+              <a href="thread.html#3053">[ thread ]</a>
+              <a href="subject.html#3053">[ subject ]</a>
+              <a href="author.html#3053">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>last time i tried zypper --root it would complain about some
+users/groups it wanted and my host system didn't have ( i was using
+zypper from my gentoo installation ) - this could lead to some runtime
+problems. So I would not recommend it, unless you run it from suse
+system itself.
+
+As for kiwi, you will probably need to hack kiwi's scripts to work
+around that block ( potential location would be createDirInteractive
+in /usr/share/kiwi/modules/KIWIGlobals.pm )
+
+Or you could build a tarball with kiwi and unpack it into target
+location. This is what i do, and i couple it with a custom
+installation script that sets up my storage accordingly, unpacks the
+tarball and installs the bootloader. Of course using it for a one-time
+installation is a bit of an overkill.
+
+2012/12/31 Yarny &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Yarny at public-files.de</A>&gt;:
+&gt;<i> Hi kiwi-users,
+</I>&gt;<i>
+</I>&gt;<i> Is there a possibility to make kiwi install its
+</I>&gt;<i> unpackaged image tree into an existing directory?
+</I>&gt;<i>
+</I>&gt;<i> Background: When deploying openSUSE to a new machine, I'm using
+</I>&gt;<i> a handmade script which makes and mounts some filesystems
+</I>&gt;<i> on the fresh hard disk and then essentially runs
+</I>&gt;<i>  $ zypper --root /mnt/new_root in pattern:enhanced_base ...
+</I>&gt;<i> to install a minimal system.  Judging from the logfiles kiwi
+</I>&gt;<i> apparently does something very similar, but the script which
+</I>&gt;<i> calls zypper seems to be much more well-thought-out (using
+</I>&gt;<i> chroot/lxc) than my simple zypper command line above.  I tried
+</I>&gt;<i> to replace my zypper line with a kiwi call, with appropriate
+</I>&gt;<i> config.xml, but kiwi refuses to fill the mounted soon-to-be
+</I>&gt;<i> root file system, it insists on creating a new directory itself.
+</I>&gt;<i>
+</I>&gt;<i> Also, I'm wondering if the kiwi-approach to deploy SUSE
+</I>&gt;<i> installations outlined above brings any pitfalls which I might
+</I>&gt;<i> overlook.   Any thoughts are welcome.
+</I>&gt;<i>
+</I>&gt;<i> Best wishes for the new year
+</I>&gt;<i> Yarny
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I></PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003052.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+	<LI>Next message: <A HREF="003054.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3053">[ date ]</a>
+              <a href="thread.html#3053">[ thread ]</a>
+              <a href="subject.html#3053">[ subject ]</a>
+              <a href="author.html#3053">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

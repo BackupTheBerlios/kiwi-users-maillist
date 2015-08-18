@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] &quot;No space left on device error&quot; while	copying	physical to logical
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%22No%20space%20left%20on%20device%20error%22%20while%0A%09copying%09physical%20to%20logical&In-Reply-To=%3C20090806135042.GA16811%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001337.html">
+   <LINK REL="Next"  HREF="001341.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] &quot;No space left on device error&quot; while	copying	physical to logical</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%22No%20space%20left%20on%20device%20error%22%20while%0A%09copying%09physical%20to%20logical&In-Reply-To=%3C20090806135042.GA16811%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] &quot;No space left on device error&quot; while	copying	physical to logical">ms at novell.com
+       </A><BR>
+    <I>Thu Aug  6 15:50:42 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001337.html">[Kiwi-users] &quot;No space left on device error&quot; while copying physical	to	 logical
+</A></li>
+        <LI>Next message: <A HREF="001341.html">[Kiwi-users] &quot;No space left on device error&quot; while	copying	physical to logical
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1340">[ date ]</a>
+              <a href="thread.html#1340">[ thread ]</a>
+              <a href="subject.html#1340">[ subject ]</a>
+              <a href="author.html#1340">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i>  Aug-06 14:34:54 &lt;1&gt; : EXEC [mount -o loop /home/KIWI/myimage/CBEC-SLED11-read-write.i686-4.2.4 /home/KIWI/myimage/mnt-19129 2&gt;&amp;1] 
+</I>&gt;<i>  Aug-06 14:34:54 &lt;1&gt; : Copying physical to logical [myroot-read-write]... 
+</I>&gt;<i>  Aug-06 14:34:54 &lt;1&gt; : EXEC [cp -a -x /home/KIWI/myimage/myroot-read-write/* /home/KIWI/myimage/mnt-19129 2&gt;&amp;1] 
+</I>&gt;<i>     failed 
+</I>&gt;<i>  Aug-06 14:34:58 &lt;1&gt; : No space left on device: Bad file descriptor   failed 
+</I>&gt;<i>  Aug-06 14:34:58 &lt;1&gt; : EXEC [umount /home/KIWI/myimage/mnt-19129 2&gt;&amp;1] 
+</I>&gt;<i>  Aug-06 14:34:58 &lt;1&gt; : EXEC [rm -rf /home/KIWI/myimage/myroot-read-write] 
+</I>&gt;<i>  Aug-06 14:34:58 &lt;1&gt; : EXEC [rm -rf /home/KIWI/myimage/myroot] 
+</I>&gt;<i>  [*** end ***] 
+</I>&gt;<i> Aug-06 14:35:02 &lt;3&gt; : KIWI exited with error(s)                                                                                                                  done 
+</I>&gt;<i> --------------------------------------------------------------- 
+</I>
+can you do a 
+
+   mount -o loop /home/KIWI/myimage/CBEC-SLED11-read-write.i686-4.2.4 /mnt
+
+and check with &quot;df&quot; how much space is left inside. Also try to remove
+everything in there 
+
+   cd /mnt &amp;&amp; rm -rf *
+
+after that check how much space is there after you removed all data.
+The available space must be more than the following du call tells you
+
+   du -ks /home/KIWI/myimage/myroot-read-write/
+
+see if that matches the sizes
+
+&gt;<i> I have checked and the actual size of the contents in read-write partition is 18 MB. Then why is it that I am facing this issue. Is there any place where I can tweak something to rectify this. 
+</I>
+there is a function in KIWIImage.pm
+
+sub getSize {
+  ...
+}
+
+it calculates the needed space, you can tweak things here but
+I'm wondering why we have that issue
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001337.html">[Kiwi-users] &quot;No space left on device error&quot; while copying physical	to	 logical
+</A></li>
+	<LI>Next message: <A HREF="001341.html">[Kiwi-users] &quot;No space left on device error&quot; while	copying	physical to logical
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1340">[ date ]</a>
+              <a href="thread.html#1340">[ thread ]</a>
+              <a href="subject.html#1340">[ subject ]</a>
+              <a href="author.html#1340">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

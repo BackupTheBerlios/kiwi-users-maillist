@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Stick-Image wouldn't boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C4DB17BA6.8070401%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002679.html">
+   <LINK REL="Next"  HREF="002684.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Stick-Image wouldn't boot</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C4DB17BA6.8070401%40novell.com%3E"
+       TITLE="[Kiwi-users] Stick-Image wouldn't boot">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Apr 22 14:59:18 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002679.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+        <LI>Next message: <A HREF="002684.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2681">[ date ]</a>
+              <a href="thread.html#2681">[ thread ]</a>
+              <a href="subject.html#2681">[ subject ]</a>
+              <a href="author.html#2681">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 04/22/2011 07:17 AM, Hermann J. Beckers wrote:
+&gt;<i> Hi Robert,
+</I>&gt;<i>
+</I>&gt;<i> thanks for your explanations
+</I>&gt;<i>
+</I>&gt;<i> ...
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> So it seems a image generated as &quot;usb stick/hard disk image&quot; can't be
+</I>&gt;&gt;&gt;<i> used both ways?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Correct
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Or what am I doing wrong?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> No, you are not doing anything wrong. When the image boots for the first
+</I>&gt;&gt;<i> time a &quot;generic/special&quot; initrd runs. This initrd is responsible for
+</I>&gt;&gt;<i> expanding the file system (as you observed on the stick) and it also
+</I>&gt;&gt;<i> creates a new initrd that is specific to the device the image is booted
+</I>&gt;&gt;<i> from. The image gets permanently altered when this happens.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thus, after you boot from the stick you have an initrd on the stick that
+</I>&gt;&gt;<i> works for the stick, if you first boot in qemu, you'll end up with an
+</I>&gt;&gt;<i> initrd for qemu.
+</I>&gt;&gt;<i>
+</I>&gt;<i> The stick works only on the netbook, where it was initialized. Booting my
+</I>&gt;<i> notebook with this stick it still shows &quot;waiting for .... to appear&quot;.
+</I>
+That's a bug and should not happen. Once on the stick and expanded it 
+should boot pretty much everywhere. You can export the Kiwi 
+configuration from Studio and post config.xml to the list. I'll take a look.
+
+&gt;<i> That
+</I>&gt;<i> can't be the right way. Would I be better of using another img format?
+</I>
+Building with Studio that's pretty much your only choice.
+
+&gt;<i>
+</I>&gt;<i> I need a small linux with user accounting,
+</I>
+Not sure what you mean with &quot;user accounting&quot;.
+
+&gt;<i> X11 not a must. It should fit on a
+</I>&gt;<i> 1 Gb, better 512 MB stick. But most important: It MUST boot on almost any USB-
+</I>&gt;<i> bootable PC.
+</I>
+That should not be a problem.
+Robert
+
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002679.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+	<LI>Next message: <A HREF="002684.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2681">[ date ]</a>
+              <a href="thread.html#2681">[ thread ]</a>
+              <a href="subject.html#2681">[ subject ]</a>
+              <a href="author.html#2681">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

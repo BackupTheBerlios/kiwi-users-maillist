@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image - Live-Stick System error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3C20090602104601.GA10134%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001148.html">
+   <LINK REL="Next"  HREF="001149.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image - Live-Stick System error</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3C20090602104601.GA10134%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] USB image - Live-Stick System error">ms at novell.com
+       </A><BR>
+    <I>Tue Jun  2 12:46:02 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001148.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+        <LI>Next message: <A HREF="001149.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1147">[ date ]</a>
+              <a href="thread.html#1147">[ thread ]</a>
+              <a href="subject.html#1147">[ subject ]</a>
+              <a href="author.html#1147">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> You are completely right I have inherited my usb image from
+</I>&gt;<i> an oem image description. but I have also updated the config .xml to add the
+</I>&gt;<i> appropriated type. Here you will find the header of my config.xml
+</I>&gt;<i> ==================================================================
+</I>&gt;<i> &lt;?xml version=&quot;1.0&quot;?&gt;
+</I>&gt;<i> &lt;image schemeversion=&quot;2.4&quot; name=&quot;essilor-suse-sled11&quot; displayname=&quot;Master
+</I>&gt;<i> Essilor&quot;&gt;
+</I>&gt;<i>     &lt;description type=&quot;system&quot;&gt;
+</I>&gt;<i>           &lt;specification&gt;suse-SLED11 oem Preload Essilor&lt;/specification&gt;
+</I>&gt;<i>     &lt;/description&gt;
+</I>&gt;<i>     &lt;!-- ************************************ --&gt;
+</I>&gt;<i>     &lt;!-- IMAGE TYPES DEFINITIONS  --&gt;
+</I>&gt;<i>     &lt;preferences&gt;
+</I>&gt;<i>         &lt;type primary=&quot;true&quot; filesystem=&quot;ext3&quot;
+</I>&gt;<i> boot=&quot;/usr/share/kiwi/image/oemboot/suse-SLED11-essilor&quot;
+</I>&gt;<i> format=&quot;iso&quot;&gt;oem&lt;/type&gt;
+</I>&gt;<i>         &lt;type filesystem=&quot;ext3&quot;
+</I>&gt;<i> boot=&quot;/usr/share/kiwi/image/netboot/suse-SLED11-essilor&quot;&gt;pxe&lt;/type&gt;
+</I>&gt;<i>         &lt;type filesystem=&quot;ext3&quot;
+</I>&gt;<i> boot=&quot;/usr/share/kiwi/image/usbboot/suse-SLED11-essilor&quot;&gt;usb&lt;/type&gt;
+</I>&gt;<i>           &lt;!--type filesystem=&quot;ext3&quot; boot=&quot;vmxboot/suse-SLED11-essilor&quot;
+</I>&gt;<i> format=&quot;vmdk&quot;&gt;vmx&lt;/type--&gt;
+</I>&gt;<i>         &lt;type boot=&quot;/usr/share/kiwi/image/isoboot/suse-SLED11-essilor&quot;
+</I>&gt;<i> flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+</I>&gt;<i> ====================================================================
+</I>&gt;<i> 
+</I>&gt;<i> And unfortunatly I have the problem described in my first mail.
+</I>
+Ok that looks good. Can you tell me the contents of the
+partition table inside the file essilor-suse-sled11.i686-0.1.0.ext3
+
+   sfdisk -l essilor-suse-sled11.i686-0.1.0.ext3
+
+Could you also attach the log file written by kiwi when you
+run into the problem and the complete config.xml you use so that
+I can try to reproduce this. The log tells me the exact exec calls
+which might be helpful
+
+I'm pretty sure it's a kiwi bug... not your fault
+let's fix it :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001148.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+	<LI>Next message: <A HREF="001149.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1147">[ date ]</a>
+              <a href="thread.html#1147">[ thread ]</a>
+              <a href="subject.html#1147">[ subject ]</a>
+              <a href="author.html#1147">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

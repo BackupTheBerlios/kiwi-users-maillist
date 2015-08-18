@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Permission issues in OEM split image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Permission%20issues%20in%20OEM%20split%20image&In-Reply-To=%3C4C62EB91020000F0000B4512%40victor.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001964.html">
+   <LINK REL="Next"  HREF="001966.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Permission issues in OEM split image</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Permission%20issues%20in%20OEM%20split%20image&In-Reply-To=%3C4C62EB91020000F0000B4512%40victor.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Permission issues in OEM split image">ragupta at novell.com
+       </A><BR>
+    <I>Wed Aug 11 14:57:29 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001964.html">[Kiwi-users] Permission issues in OEM split image
+</A></li>
+        <LI>Next message: <A HREF="001966.html">[Kiwi-users] Permission issues in OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1965">[ date ]</a>
+              <a href="thread.html#1965">[ thread ]</a>
+              <a href="subject.html#1965">[ subject ]</a>
+              <a href="author.html#1965">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+The patch worked !!!
+
+&gt;&gt;&gt;<i> &quot;Rahulkrishna Gupta&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ragupta at novell.com</A>&gt; 8/10/2010 19:49 &gt;&gt;&gt;
+</I>
+Thanks for the quick response. I have applied the patch and started the build. 
+
+
+Lets hope for the best. 
+
+
+Regards, 
+Rahul 
+
+
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; 8/10/2010 19:39 &gt;&gt;&gt;
+</I>Hi,
+
+&gt;<i> I am finding some strange permission issues in the OEM split image that I have created.
+</I>&gt;<i>
+</I>&gt;<i> The destination directory, where the image is installed, has the correct permissions eg home directories are owned by respective users and /var/lib/gdm is owned by &quot;gdm&quot;
+</I>&gt;<i>
+</I>&gt;<i> But in the resulting image that is deployed, I notice that everything is owned by &quot;root&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Consequently, gdm doesn't work. And when I do correct the permissions on the &quot;/var/lib/gdm&quot; directory, I still face problems because of the permission issues on home directory.
+</I>&gt;<i>
+</I>&gt;<i> Why is there a difference between the installed OS in the &quot;destdir&quot; and the actual image ?
+</I>&gt;<i>
+</I>&gt;<i> In my config.xml , /home and /var are in the persistent section.
+</I>&gt;<i>
+</I>&gt;<i> Let me know in case more information is required.
+</I>
+Hmm, I see when splitting it up kiwi creates the directory with mkdir
+and then moves the files into it. That mkdir call happens as root
+and therefore it belongs to root :(
+
+Attached is a patch which hopefully fixes this but I didn't tested
+it so far. Can you give it a try ?
+
+Thanks
+
+Regards,
+Marcus
+--
+Public Key available
+gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+-------------------------------------------------------
+Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+Tel: 0911-740 53 0             Maxfeldstrasse 5
+FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+<A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+-------------------------------------------------------
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100811/15252042/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100811/15252042/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001964.html">[Kiwi-users] Permission issues in OEM split image
+</A></li>
+	<LI>Next message: <A HREF="001966.html">[Kiwi-users] Permission issues in OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1965">[ date ]</a>
+              <a href="thread.html#1965">[ thread ]</a>
+              <a href="subject.html#1965">[ subject ]</a>
+              <a href="author.html#1965">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] missing dependency on db-utils after update to 12.2
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20missing%20dependency%20on%20db-utils%20after%20update%20to%2012.2&In-Reply-To=%3C20120906151608.GA32317%40d9.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003043.html">
+   <LINK REL="Next"  HREF="003045.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] missing dependency on db-utils after update to 12.2</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20missing%20dependency%20on%20db-utils%20after%20update%20to%2012.2&In-Reply-To=%3C20120906151608.GA32317%40d9.ddts.net%3E"
+       TITLE="[Kiwi-users] missing dependency on db-utils after update to 12.2">ms at suse.de
+       </A><BR>
+    <I>Thu Sep  6 17:16:08 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003043.html">[Kiwi-users] missing dependency on db-utils after update to 12.2
+</A></li>
+        <LI>Next message: <A HREF="003045.html">[Kiwi-users] suse-pxe-client diskless image (RAM only)	inconsistencies
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3044">[ date ]</a>
+              <a href="thread.html#3044">[ thread ]</a>
+              <a href="subject.html#3044">[ subject ]</a>
+              <a href="author.html#3044">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I've updated my kiwi building host to 12.2 today, and builds started
+</I>&gt;<i> failing when making a 11.4 system image.
+</I>&gt;<i> 
+</I>&gt;<i>  Sep-06 13:03:50 &lt;1&gt; : EXEC [chroot &quot;/root/kiwi/cw-iso/root&quot; /bin/rpm
+</I>&gt;<i> --initdb &amp;&gt;/dev/null]
+</I>&gt;<i>  Sep-06 13:03:50 &lt;1&gt; : Rebuild RPM package db...
+</I>&gt;<i>     failed
+</I>&gt;<i>  Sep-06 13:03:50 &lt;3&gt; : db_dump tool required for rpm db rebuild
+</I>&gt;<i> (...)
+</I>&gt;<i> 
+</I>&gt;<i> Solution is to install db-utils, and my appliances start building again.
+</I>&gt;<i> 
+</I>&gt;<i> Package db45_utils has db45_dump, so i guess i could symlink it, which
+</I>&gt;<i> may or may not work right. What is the correct procedure here?
+</I>
+You need to install the db-utils _and_ the db45-utils package which provides
+the db45_load program which is required to convert the rpm database
+between the different versions
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003043.html">[Kiwi-users] missing dependency on db-utils after update to 12.2
+</A></li>
+	<LI>Next message: <A HREF="003045.html">[Kiwi-users] suse-pxe-client diskless image (RAM only)	inconsistencies
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3044">[ date ]</a>
+              <a href="thread.html#3044">[ thread ]</a>
+              <a href="subject.html#3044">[ subject ]</a>
+              <a href="author.html#3044">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Howto use custom gfxboot branding package?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20use%20custom%20gfxboot%20branding%20package%3F&In-Reply-To=%3C20090811113819.GH5354%40open-xchange.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001361.html">
+   <LINK REL="Next"  HREF="001363.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Howto use custom gfxboot branding package?</H1>
+    <B>Carsten Hoeger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20use%20custom%20gfxboot%20branding%20package%3F&In-Reply-To=%3C20090811113819.GH5354%40open-xchange.com%3E"
+       TITLE="[Kiwi-users] Howto use custom gfxboot branding package?">choeger at open-xchange.com
+       </A><BR>
+    <I>Tue Aug 11 13:38:19 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001361.html">[Kiwi-users] Howto use custom gfxboot branding package?
+</A></li>
+        <LI>Next message: <A HREF="001363.html">[Kiwi-users] Howto use custom gfxboot branding package?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1362">[ date ]</a>
+              <a href="thread.html#1362">[ thread ]</a>
+              <a href="subject.html#1362">[ subject ]</a>
+              <a href="author.html#1362">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Aug 11, Marcus Sch&#228;fer wrote:
+
+&gt;<i> &gt; my custom gfxboot-branding is now ready and installs it's files into
+</I>&gt;<i> &gt; /etc/bootsplash/themes/OX.
+</I>&gt;<i> 
+</I>&gt;<i> This is wrong, your custom gfxboot branding has to follow the
+</I>&gt;<i> guidelines of the _gfxboot-branding_ packages and not the
+</I>&gt;<i> bootsplash-branding package
+</I>&gt;<i> 
+</I>&gt;<i> gfxboot     -&gt; graphics screen in grub and isolinux
+</I>&gt;<i>                Follow the rules of the gfxboot-branding packages
+</I>&gt;<i> 
+</I>&gt;<i> bootsplash  -&gt; graphics background of the framebuffer console
+</I>&gt;<i>                Follow the rules of the bootsplash-branding packages
+</I>
+Yes, I did that.
+ 
+&gt;<i> &gt; I also created an own version of the boot stuff suse-11.1 and changed
+</I>&gt;<i> &gt; images.sh to call
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; suseGFXBoot OX isolinux
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; instead of openSUSE.
+</I>&gt;<i> 
+</I>&gt;<i> That's also evil: Don't create your own copy of the boot image if you
+</I>&gt;<i> want me to help with problems. You need to use the boot-theme
+</I>&gt;<i> attribute in your system image config.xml
+</I>&gt;<i> 
+</I>&gt;<i> &lt;preferences&gt;
+</I>&gt;<i>      ...
+</I>&gt;<i>      &lt;boot-theme&gt;OX&lt;/boot-theme&gt;
+</I>&gt;<i> &lt;/preferences&gt;
+</I>
+That doesn't seem to work with my version of kiwi kiwi-3.01-143.1.
+
+Aug-11 13:34:52 &lt;1&gt; : Reading image description [Prepare]...
+Aug-11 13:34:52 &lt;3&gt; : Scheme validation failed
+failed
+Aug-11 13:34:52 &lt;3&gt; : Element preferences has extra content: boot-theme
+
+Aug-11 13:34:52 &lt;3&gt; : KIWI exited with error(s)
+done
+
+Are there any newer packages for openSUSE11.1 available?
+
+&gt;<i> &gt; Unfortunately that does try to compile the gfxboot stuff again in
+</I>&gt;<i> &gt; /usr/share/gfxboot (from gfxboot-devel), where my branding package does not
+</I>&gt;<i> &gt; put any stuff, because it is in /etc/bootsplash/themes/OX.
+</I>&gt;<i> 
+</I>&gt;<i> If you have branding packages you are not allowed to have gfxboot-devel
+</I>&gt;<i> installed. The branding packages has to provide all that what would
+</I>&gt;<i> be the result of the gfxboot-devel compile code. If you install branding
+</I>&gt;<i> and devel packages kiwi prefers the devel data and thus your branding
+</I>&gt;<i> packages have no effect
+</I>
+I just added my gfxboot-branding-ox package.
+ 
+&gt;<i> &gt; How is that designed to work? Do I have to create a package which puts that
+</I>&gt;<i> &gt; stuff also to /usr/share/gfxboot/themes? Or is there some other way?
+</I>&gt;<i> 
+</I>&gt;<i> * use boot-theme
+</I>&gt;<i> * don't copy any boot image code !
+</I>
+Will not do that again, I swear! ;-)
+
+&gt;<i> * follow the rules of the existing gfxboot-branding and/or bootsplash-branding
+</I>&gt;<i>   packages. Best way is to install the src rpm, exchange the pictures,
+</I>&gt;<i>   spec file etc.. and rebuild
+</I>&gt;<i> * don't add gfxboot-devel if you have branding packages
+</I>&gt;<i> 
+</I>&gt;<i> Have fun :-)
+</I>
+Thanks... :-) - missing the &quot;a lot of&quot;, though ;-)
+
+-- 
+With best regards,
+
+Carsten Hoeger
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090811/abe80b35/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090811/abe80b35/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001361.html">[Kiwi-users] Howto use custom gfxboot branding package?
+</A></li>
+	<LI>Next message: <A HREF="001363.html">[Kiwi-users] Howto use custom gfxboot branding package?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1362">[ date ]</a>
+              <a href="thread.html#1362">[ thread ]</a>
+              <a href="subject.html#1362">[ subject ]</a>
+              <a href="author.html#1362">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] UNIONFS_CONFIG
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20UNIONFS_CONFIG&In-Reply-To=%3C47B73BF8.F132.00B1.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000316.html">
+   <LINK REL="Next"  HREF="000318.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] UNIONFS_CONFIG</H1>
+    <B>Kazuhiro Takagi</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20UNIONFS_CONFIG&In-Reply-To=%3C47B73BF8.F132.00B1.0%40novell.com%3E"
+       TITLE="[Kiwi-users] UNIONFS_CONFIG">KTakagi at novell.com
+       </A><BR>
+    <I>Sat Feb 16 11:39:34 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000316.html">[Kiwi-users] LTSP question
+</A></li>
+        <LI>Next message: <A HREF="000318.html">[Kiwi-users] UNIONFS_CONFIG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#317">[ date ]</a>
+              <a href="thread.html#317">[ thread ]</a>
+              <a href="subject.html#317">[ subject ]</a>
+              <a href="author.html#317">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list,
+
+I used kiwi-2.25 to build a livecd.
+Livecd didn't start up in progress of boot. I doubt config.isoclient. I
+used no split section.
+I saw &quot;COMBINED_IMAGE=yes&quot; in boot log. What is the point of the
+problem?
+Could you suggest me?
+
+config.isoclient:
+-------------------------------------
+IMAGE=/dev/loop1;SLED10.i686;1.1.460
+COMBINED_IMAGE=yes
+-------------------------------------
+
+In livecd which I made before: config.isoclient
+-------------------------------------
+IMAGE=/dev/ram1;SLED10.i686;1.1.456
+-------------------------------------
+
+The config.xml is same as well. Only version specified is different.
+--------------------------------------
+       &lt;preferences&gt;
+                &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-SLED10-SP1-smp&quot;
+flags=&quot;compressed&quot;
+ filesystem=&quot;squashfs&quot;&gt;iso&lt;/type&gt;
+                &lt;version&gt;1.1.460&lt;/version&gt;
+                &lt;size unit=&quot;M&quot;&gt;4700&lt;/size&gt;
+                &lt;compressed&gt;yes&lt;/compressed&gt;
+                &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+                &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+                &lt;locale&gt;ja_JP.UTF-8&lt;/locale&gt;
+        &lt;/preferences&gt;
+--------------------------------------
+
+linux-60ka:/mnt2 # kiwi --version
+Feb-17 13:34:11 &lt;1&gt; : kiwi version v2.25 SVN: Revision: 1047
+
+
+Regards,
+Kazuhiro Takagi
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000316.html">[Kiwi-users] LTSP question
+</A></li>
+	<LI>Next message: <A HREF="000318.html">[Kiwi-users] UNIONFS_CONFIG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#317">[ date ]</a>
+              <a href="thread.html#317">[ thread ]</a>
+              <a href="subject.html#317">[ subject ]</a>
+              <a href="author.html#317">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

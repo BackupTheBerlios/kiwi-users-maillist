@@ -1,0 +1,2086 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] can't apply OEM image to VM machine
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20can%27t%20apply%20OEM%20image%20to%20VM%20machine&In-Reply-To=%3C1249567883.9646.5.camel%40linux-39oc.site%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001344.html">
+   <LINK REL="Next"  HREF="001346.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] can't apply OEM image to VM machine</H1>
+    <B>Simon Crute</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20can%27t%20apply%20OEM%20image%20to%20VM%20machine&In-Reply-To=%3C1249567883.9646.5.camel%40linux-39oc.site%3E"
+       TITLE="[Kiwi-users] can't apply OEM image to VM machine">scrute at novell.com
+       </A><BR>
+    <I>Thu Aug  6 16:11:23 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001344.html">[Kiwi-users] Susestudio LiveUSB and Iso Image
+</A></li>
+        <LI>Next message: <A HREF="001346.html">[Kiwi-users] can't apply OEM image to VM machine
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1345">[ date ]</a>
+              <a href="thread.html#1345">[ thread ]</a>
+              <a href="subject.html#1345">[ subject ]</a>
+              <a href="author.html#1345">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, 
+
+While I'm testing building kiwi images, I'm applying  the kiwi OEM image
+to a VM by booting the ISO in vmware (vmware 6.5) 
+
+Just recently this has stopped working. When I boot the virtual machine
+form the ISO it just sits on 
+&quot;===&gt; Searching for a boot device...&quot;
+
+console3, has loads of messages scrolling past. 
+I copied the boot.kiwi file and have attached it. I can tell it's
+looping somewhere, but I've no idea what I've done wrong. (I've trimmed
+this file to 2000 lines to save on space.)
+
+
+Thanks. 
+
+
+-- 
+Simon Crute
+ACS Information Technologies UK Ltd
+working on behalf of Novell IS&amp;T 
++44-(0)-1344-326-313
+GWIM: scrute.novell 
+MSN: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">simon.crute at snccc.co.uk</A>
+-------------- next part --------------
+KIWI Log:
+KIWI .profile contents:
+kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;
+kiwi_timezone=&quot;&quot;
+kiwi_type=&quot;cpio&quot;
+kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;
+kiwi_language=&quot;en_US&quot;
+kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;
+kiwi_profiles=&quot;default,std&quot;
+kiwi_boottheme=&quot;&quot;
+kiwi_oemtitle=&quot;sled-11-oem-preload&quot;
+kiwi_keytable=&quot;&quot;
+kiwi_iversion=&quot;2.7.1&quot;
+kiwi_size=&quot;60M&quot;
+kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;
+kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;
++ openKernelConsole
++ test 0 = 0
++ Echo 'Kernel logging enabled on: /dev/tty4'
++ local option=
++ local 'prefix====&gt;'
++ local optn=
++ local opte=
++ getopts bne option
++ shift 0
++ echo '===&gt; Kernel logging enabled on: /dev/tty4'
++ OPTIND=1
++ setctsid /dev/tty4 klogconsole -l 7 -r4
++ probeDevices
++ probeUSB
++ local module=
++ local stdevs=
++ local hwicmd=/usr/sbin/hwinfo
++ export HAVE_USB=no
++ HAVE_USB=no
++ '[' 1 = 0 ']'
++ lsmod
++ grep -q usbcore
++ export HAVE_USB=yes
++ HAVE_USB=yes
++ waitForUSBDeviceScan
++ local silent=
++ local devices=0
++ '[' '!' yes = yes ']'
++ '[' -z '' ']'
++ Echo -n 'Waiting for USB device scan to complete...'
++ local option=
++ local 'prefix====&gt;'
++ local optn=
++ local opte=
++ getopts bne option
++ case $option in
++ optn=-n
++ getopts bne option
++ shift 1
++ echo -n '===&gt; Waiting for USB device scan to complete...'
++ OPTIND=1
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 0 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=1
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 1 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=2
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 2 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=3
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 3 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=4
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 4 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=5
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 5 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=6
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 6 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=7
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 7 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=8
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 8 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=9
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 9 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=10
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 10 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=11
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 11 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=12
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 12 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=13
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 13 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=14
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 14 -lt 15 ']'
++ '[' -z '' ']'
++ echo -n .
++ sleep 1
++ devices=15
+++ dmesg
+++ grep -c 'usb-storage: device scan complete'
++ '[' 0 -lt 1 ']'
++ '[' 15 -lt 15 ']'
++ '[' -z '' ']'
++ echo
++ '[' 1 = 0 ']'
++ for i in rd brd edd dm-mod xennet xenblk
++ modprobe rd
++ for i in rd brd edd dm-mod xennet xenblk
++ modprobe brd
++ for i in rd brd edd dm-mod xennet xenblk
++ modprobe edd
++ for i in rd brd edd dm-mod xennet xenblk
++ modprobe dm-mod
++ for i in rd brd edd dm-mod xennet xenblk
++ modprobe xennet
++ for i in rd brd edd dm-mod xennet xenblk
++ modprobe xenblk
++ '[' no = no ']'
++ '[' -f /config.oempartition ']'
++ Echo 'Including oem partition info file'
++ local option=
++ local 'prefix====&gt;'
++ local optn=
++ local opte=
++ getopts bne option
++ shift 0
++ echo '===&gt; Including oem partition info file'
++ OPTIND=1
++ importFile
++ IFS='
+	'
++ read line
++ echo 'OEM_BOOT_TITLE=&quot;sled-11-oem-preload&quot;'
++ grep -qi '^#'
+++ echo 'OEM_BOOT_TITLE=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f1
++ key=OEM_BOOT_TITLE
+++ echo 'OEM_BOOT_TITLE=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f2-
++ item='&quot;sled-11-oem-preload&quot;'
++ '[' -z OEM_BOOT_TITLE ']'
++ '[' -z '&quot;sled-11-oem-preload&quot;' ']'
++ echo '&quot;sled-11-oem-preload&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'OEM_BOOT_TITLE=&quot;sled-11-oem-preload&quot;'
++ test 0 = 1
++ eval export 'OEM_BOOT_TITLE\=&quot;sled-11-oem-preload&quot;'
+++ export OEM_BOOT_TITLE=sled-11-oem-preload
+++ OEM_BOOT_TITLE=sled-11-oem-preload
++ read line
++ '[' '!' -z '' ']'
++ IFS=' 	
+'
++ Echo 'Searching for boot device...'
++ local option=
++ local 'prefix====&gt;'
++ local optn=
++ local opte=
++ getopts bne option
++ shift 0
++ echo '===&gt; Searching for boot device...'
++ OPTIND=1
++ '[' no = no ']'
++ searchBIOSBootDevice
++ IFS=' 	
+'
++ local h=/usr/sbin/hwinfo
++ local 'c=Device File:|BIOS id'
+++ /usr/sbin/hwinfo --disk
+++ grep -E 'Device File:|BIOS id'
+++ sed '-es@(.*)@@'
+++ cut -f2 -d:
+++ tr -d ' '
++ local 'ddevs=/dev/sda
+0x80'
++ local cmpd=/tmp/mbrids
++ local ifix=0
++ local matched
++ local bios
++ local file
++ local pred
++ for curd in '$ddevs'
++ '[' /dev/sda = 0x80 ']'
++ pred=/dev/sda
++ for curd in '$ddevs'
++ '[' 0x80 = 0x80 ']'
++ bios=/dev/sda
++ break
++ '[' '!' -z 1 ']'
++ CDMount silent
++ local silent=silent
++ local count=0
++ local ecode=0
++ local cdopt
++ mkdir -p /cdrom
++ '[' -f /.profile ']'
++ importFile
++ IFS='
+	'
++ read line
++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f1
++ key=kiwi_iname
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f2-
++ item='&quot;initrd-oemboot-suse-SLED11&quot;'
++ '[' -z kiwi_iname ']'
++ '[' -z '&quot;initrd-oemboot-suse-SLED11&quot;' ']'
++ echo '&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ test 0 = 1
++ eval export 'kiwi_iname\=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ export kiwi_iname=initrd-oemboot-suse-SLED11
+++ kiwi_iname=initrd-oemboot-suse-SLED11
++ read line
++ echo 'kiwi_timezone=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_timezone
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_timezone ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_timezone=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_timezone\=&quot;&quot;'
+++ export kiwi_timezone=
+++ kiwi_timezone=
++ read line
++ echo 'kiwi_type=&quot;cpio&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f1
++ key=kiwi_type
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f2-
++ item='&quot;cpio&quot;'
++ '[' -z kiwi_type ']'
++ '[' -z '&quot;cpio&quot;' ']'
++ echo '&quot;cpio&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_type=&quot;cpio&quot;'
++ test 0 = 1
++ eval export 'kiwi_type\=&quot;cpio&quot;'
+++ export kiwi_type=cpio
+++ kiwi_type=cpio
++ read line
++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_usbdrivers
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ '[' -z kiwi_usbdrivers ']'
++ '[' -z '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;' ']'
++ echo '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_usbdrivers\=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ export kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
+++ kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
++ read line
++ echo 'kiwi_language=&quot;en_US&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f1
++ key=kiwi_language
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f2-
++ item='&quot;en_US&quot;'
++ '[' -z kiwi_language ']'
++ '[' -z '&quot;en_US&quot;' ']'
++ echo '&quot;en_US&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_language=&quot;en_US&quot;'
++ test 0 = 1
++ eval export 'kiwi_language\=&quot;en_US&quot;'
+++ export kiwi_language=en_US
+++ kiwi_language=en_US
++ read line
++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f1
++ key=kiwi_revision
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f2-
++ item='&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ '[' -z kiwi_revision ']'
++ '[' -z '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;' ']'
++ echo '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ test 0 = 1
++ eval export 'kiwi_revision\=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ export kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
+++ kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
++ read line
++ echo 'kiwi_profiles=&quot;default,std&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f1
++ key=kiwi_profiles
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f2-
++ item='&quot;default,std&quot;'
++ '[' -z kiwi_profiles ']'
++ '[' -z '&quot;default,std&quot;' ']'
++ echo '&quot;default,std&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_profiles=&quot;default,std&quot;'
++ test 0 = 1
++ eval export 'kiwi_profiles\=&quot;default,std&quot;'
+++ export kiwi_profiles=default,std
+++ kiwi_profiles=default,std
++ read line
++ echo 'kiwi_boottheme=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_boottheme
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_boottheme ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_boottheme=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_boottheme\=&quot;&quot;'
+++ export kiwi_boottheme=
+++ kiwi_boottheme=
++ read line
++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f1
++ key=kiwi_oemtitle
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f2-
++ item='&quot;sled-11-oem-preload&quot;'
++ '[' -z kiwi_oemtitle ']'
++ '[' -z '&quot;sled-11-oem-preload&quot;' ']'
++ echo '&quot;sled-11-oem-preload&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ test 0 = 1
++ eval export 'kiwi_oemtitle\=&quot;sled-11-oem-preload&quot;'
+++ export kiwi_oemtitle=sled-11-oem-preload
+++ kiwi_oemtitle=sled-11-oem-preload
++ read line
++ echo 'kiwi_keytable=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_keytable
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_keytable ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_keytable=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_keytable\=&quot;&quot;'
+++ export kiwi_keytable=
+++ kiwi_keytable=
++ read line
++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f1
++ key=kiwi_iversion
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f2-
++ item='&quot;2.7.1&quot;'
++ '[' -z kiwi_iversion ']'
++ '[' -z '&quot;2.7.1&quot;' ']'
++ echo '&quot;2.7.1&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iversion=&quot;2.7.1&quot;'
++ test 0 = 1
++ eval export 'kiwi_iversion\=&quot;2.7.1&quot;'
+++ export kiwi_iversion=2.7.1
+++ kiwi_iversion=2.7.1
++ read line
++ echo 'kiwi_size=&quot;60M&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f1
++ key=kiwi_size
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f2-
++ item='&quot;60M&quot;'
++ '[' -z kiwi_size ']'
++ '[' -z '&quot;60M&quot;' ']'
++ echo '&quot;60M&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_size=&quot;60M&quot;'
++ test 0 = 1
++ eval export 'kiwi_size\=&quot;60M&quot;'
+++ export kiwi_size=60M
+++ kiwi_size=60M
++ read line
++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f1
++ key=kiwi_delete
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f2-
++ item='&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ '[' -z kiwi_delete ']'
++ '[' -z '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;' ']'
++ echo '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ test 0 = 1
++ eval export 'kiwi_delete\=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ export 'kiwi_delete=PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
+++ kiwi_delete='PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
++ read line
++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_drivers
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ '[' -z kiwi_drivers ']'
++ '[' -z '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;' ']'
++ echo '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_drivers\=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ export 'kiwi_drivers=crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
+++ kiwi_drivers='crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
++ read line
++ '[' '!' -z '' ']'
++ IFS=' 	
+'
++ searchBIOSBootDevice
++ IFS=' 	
+'
++ local h=/usr/sbin/hwinfo
++ local 'c=Device File:|BIOS id'
+++ /usr/sbin/hwinfo --disk
+++ grep -E 'Device File:|BIOS id'
+++ sed '-es@(.*)@@'
+++ cut -f2 -d:
+++ tr -d ' '
++ local 'ddevs=/dev/sda
+0x80'
++ local cmpd=/tmp/mbrids
++ local ifix=0
++ local matched
++ local bios
++ local file
++ local pred
++ for curd in '$ddevs'
++ '[' /dev/sda = 0x80 ']'
++ pred=/dev/sda
++ for curd in '$ddevs'
++ '[' 0x80 = 0x80 ']'
++ bios=/dev/sda
++ break
++ '[' '!' -z 1 ']'
++ CDMount silent
++ local silent=silent
++ local count=0
++ local ecode=0
++ local cdopt
++ mkdir -p /cdrom
++ '[' -f /.profile ']'
++ importFile
++ IFS='
+	'
++ read line
++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f1
++ key=kiwi_iname
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f2-
++ item='&quot;initrd-oemboot-suse-SLED11&quot;'
++ '[' -z kiwi_iname ']'
++ '[' -z '&quot;initrd-oemboot-suse-SLED11&quot;' ']'
++ echo '&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ test 0 = 1
++ eval export 'kiwi_iname\=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ export kiwi_iname=initrd-oemboot-suse-SLED11
+++ kiwi_iname=initrd-oemboot-suse-SLED11
++ read line
++ echo 'kiwi_timezone=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_timezone
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_timezone ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_timezone=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_timezone\=&quot;&quot;'
+++ export kiwi_timezone=
+++ kiwi_timezone=
++ read line
++ echo 'kiwi_type=&quot;cpio&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f1
++ key=kiwi_type
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f2-
++ item='&quot;cpio&quot;'
++ '[' -z kiwi_type ']'
++ '[' -z '&quot;cpio&quot;' ']'
++ echo '&quot;cpio&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_type=&quot;cpio&quot;'
++ test 0 = 1
++ eval export 'kiwi_type\=&quot;cpio&quot;'
+++ export kiwi_type=cpio
+++ kiwi_type=cpio
++ read line
++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_usbdrivers
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ '[' -z kiwi_usbdrivers ']'
++ '[' -z '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;' ']'
++ echo '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_usbdrivers\=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ export kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
+++ kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
++ read line
++ echo 'kiwi_language=&quot;en_US&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f1
++ key=kiwi_language
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f2-
++ item='&quot;en_US&quot;'
++ '[' -z kiwi_language ']'
++ '[' -z '&quot;en_US&quot;' ']'
++ echo '&quot;en_US&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_language=&quot;en_US&quot;'
++ test 0 = 1
++ eval export 'kiwi_language\=&quot;en_US&quot;'
+++ export kiwi_language=en_US
+++ kiwi_language=en_US
++ read line
++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f1
++ key=kiwi_revision
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f2-
++ item='&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ '[' -z kiwi_revision ']'
++ '[' -z '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;' ']'
++ echo '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ test 0 = 1
++ eval export 'kiwi_revision\=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ export kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
+++ kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
++ read line
++ echo 'kiwi_profiles=&quot;default,std&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f1
++ key=kiwi_profiles
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f2-
++ item='&quot;default,std&quot;'
++ '[' -z kiwi_profiles ']'
++ '[' -z '&quot;default,std&quot;' ']'
++ echo '&quot;default,std&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_profiles=&quot;default,std&quot;'
++ test 0 = 1
++ eval export 'kiwi_profiles\=&quot;default,std&quot;'
+++ export kiwi_profiles=default,std
+++ kiwi_profiles=default,std
++ read line
++ echo 'kiwi_boottheme=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_boottheme
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_boottheme ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_boottheme=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_boottheme\=&quot;&quot;'
+++ export kiwi_boottheme=
+++ kiwi_boottheme=
++ read line
++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f1
++ key=kiwi_oemtitle
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f2-
++ item='&quot;sled-11-oem-preload&quot;'
++ '[' -z kiwi_oemtitle ']'
++ '[' -z '&quot;sled-11-oem-preload&quot;' ']'
++ echo '&quot;sled-11-oem-preload&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ test 0 = 1
++ eval export 'kiwi_oemtitle\=&quot;sled-11-oem-preload&quot;'
+++ export kiwi_oemtitle=sled-11-oem-preload
+++ kiwi_oemtitle=sled-11-oem-preload
++ read line
++ echo 'kiwi_keytable=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_keytable
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_keytable ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_keytable=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_keytable\=&quot;&quot;'
+++ export kiwi_keytable=
+++ kiwi_keytable=
++ read line
++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f1
++ key=kiwi_iversion
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f2-
++ item='&quot;2.7.1&quot;'
++ '[' -z kiwi_iversion ']'
++ '[' -z '&quot;2.7.1&quot;' ']'
++ echo '&quot;2.7.1&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iversion=&quot;2.7.1&quot;'
++ test 0 = 1
++ eval export 'kiwi_iversion\=&quot;2.7.1&quot;'
+++ export kiwi_iversion=2.7.1
+++ kiwi_iversion=2.7.1
++ read line
++ echo 'kiwi_size=&quot;60M&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f1
++ key=kiwi_size
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f2-
++ item='&quot;60M&quot;'
++ '[' -z kiwi_size ']'
++ '[' -z '&quot;60M&quot;' ']'
++ echo '&quot;60M&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_size=&quot;60M&quot;'
++ test 0 = 1
++ eval export 'kiwi_size\=&quot;60M&quot;'
+++ export kiwi_size=60M
+++ kiwi_size=60M
++ read line
++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f1
++ key=kiwi_delete
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f2-
++ item='&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ '[' -z kiwi_delete ']'
++ '[' -z '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;' ']'
++ echo '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ test 0 = 1
++ eval export 'kiwi_delete\=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ export 'kiwi_delete=PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
+++ kiwi_delete='PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
++ read line
++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_drivers
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ '[' -z kiwi_drivers ']'
++ '[' -z '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;' ']'
++ echo '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_drivers\=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ export 'kiwi_drivers=crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
+++ kiwi_drivers='crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
++ read line
++ '[' '!' -z '' ']'
++ IFS=' 	
+'
++ searchBIOSBootDevice
++ IFS=' 	
+'
++ local h=/usr/sbin/hwinfo
++ local 'c=Device File:|BIOS id'
+++ /usr/sbin/hwinfo --disk
+++ grep -E 'Device File:|BIOS id'
+++ sed '-es@(.*)@@'
+++ cut -f2 -d:
+++ tr -d ' '
++ local 'ddevs=/dev/sda
+0x80'
++ local cmpd=/tmp/mbrids
++ local ifix=0
++ local matched
++ local bios
++ local file
++ local pred
++ for curd in '$ddevs'
++ '[' /dev/sda = 0x80 ']'
++ pred=/dev/sda
++ for curd in '$ddevs'
++ '[' 0x80 = 0x80 ']'
++ bios=/dev/sda
++ break
++ '[' '!' -z 1 ']'
++ CDMount silent
++ local silent=silent
++ local count=0
++ local ecode=0
++ local cdopt
++ mkdir -p /cdrom
++ '[' -f /.profile ']'
++ importFile
++ IFS='
+	'
++ read line
++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f1
++ key=kiwi_iname
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f2-
++ item='&quot;initrd-oemboot-suse-SLED11&quot;'
++ '[' -z kiwi_iname ']'
++ '[' -z '&quot;initrd-oemboot-suse-SLED11&quot;' ']'
++ echo '&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ test 0 = 1
++ eval export 'kiwi_iname\=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ export kiwi_iname=initrd-oemboot-suse-SLED11
+++ kiwi_iname=initrd-oemboot-suse-SLED11
++ read line
++ echo 'kiwi_timezone=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_timezone
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_timezone ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_timezone=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_timezone\=&quot;&quot;'
+++ export kiwi_timezone=
+++ kiwi_timezone=
++ read line
++ echo 'kiwi_type=&quot;cpio&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f1
++ key=kiwi_type
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f2-
++ item='&quot;cpio&quot;'
++ '[' -z kiwi_type ']'
++ '[' -z '&quot;cpio&quot;' ']'
++ echo '&quot;cpio&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_type=&quot;cpio&quot;'
++ test 0 = 1
++ eval export 'kiwi_type\=&quot;cpio&quot;'
+++ export kiwi_type=cpio
+++ kiwi_type=cpio
++ read line
++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_usbdrivers
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ '[' -z kiwi_usbdrivers ']'
++ '[' -z '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;' ']'
++ echo '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_usbdrivers\=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ export kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
+++ kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
++ read line
++ echo 'kiwi_language=&quot;en_US&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f1
++ key=kiwi_language
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f2-
++ item='&quot;en_US&quot;'
++ '[' -z kiwi_language ']'
++ '[' -z '&quot;en_US&quot;' ']'
++ echo '&quot;en_US&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_language=&quot;en_US&quot;'
++ test 0 = 1
++ eval export 'kiwi_language\=&quot;en_US&quot;'
+++ export kiwi_language=en_US
+++ kiwi_language=en_US
++ read line
++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f1
++ key=kiwi_revision
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f2-
++ item='&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ '[' -z kiwi_revision ']'
++ '[' -z '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;' ']'
++ echo '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ test 0 = 1
++ eval export 'kiwi_revision\=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ export kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
+++ kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
++ read line
++ echo 'kiwi_profiles=&quot;default,std&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f1
++ key=kiwi_profiles
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f2-
++ item='&quot;default,std&quot;'
++ '[' -z kiwi_profiles ']'
++ '[' -z '&quot;default,std&quot;' ']'
++ echo '&quot;default,std&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_profiles=&quot;default,std&quot;'
++ test 0 = 1
++ eval export 'kiwi_profiles\=&quot;default,std&quot;'
+++ export kiwi_profiles=default,std
+++ kiwi_profiles=default,std
++ read line
++ echo 'kiwi_boottheme=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_boottheme
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_boottheme ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_boottheme=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_boottheme\=&quot;&quot;'
+++ export kiwi_boottheme=
+++ kiwi_boottheme=
++ read line
++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f1
++ key=kiwi_oemtitle
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f2-
++ item='&quot;sled-11-oem-preload&quot;'
++ '[' -z kiwi_oemtitle ']'
++ '[' -z '&quot;sled-11-oem-preload&quot;' ']'
++ echo '&quot;sled-11-oem-preload&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ test 0 = 1
++ eval export 'kiwi_oemtitle\=&quot;sled-11-oem-preload&quot;'
+++ export kiwi_oemtitle=sled-11-oem-preload
+++ kiwi_oemtitle=sled-11-oem-preload
++ read line
++ echo 'kiwi_keytable=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_keytable
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_keytable ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_keytable=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_keytable\=&quot;&quot;'
+++ export kiwi_keytable=
+++ kiwi_keytable=
++ read line
++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f1
++ key=kiwi_iversion
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f2-
++ item='&quot;2.7.1&quot;'
++ '[' -z kiwi_iversion ']'
++ '[' -z '&quot;2.7.1&quot;' ']'
++ echo '&quot;2.7.1&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iversion=&quot;2.7.1&quot;'
++ test 0 = 1
++ eval export 'kiwi_iversion\=&quot;2.7.1&quot;'
+++ export kiwi_iversion=2.7.1
+++ kiwi_iversion=2.7.1
++ read line
++ echo 'kiwi_size=&quot;60M&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f1
++ key=kiwi_size
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f2-
++ item='&quot;60M&quot;'
++ '[' -z kiwi_size ']'
++ '[' -z '&quot;60M&quot;' ']'
++ echo '&quot;60M&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_size=&quot;60M&quot;'
++ test 0 = 1
++ eval export 'kiwi_size\=&quot;60M&quot;'
+++ export kiwi_size=60M
+++ kiwi_size=60M
++ read line
++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f1
++ key=kiwi_delete
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f2-
++ item='&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ '[' -z kiwi_delete ']'
++ '[' -z '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;' ']'
++ echo '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ test 0 = 1
++ eval export 'kiwi_delete\=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ export 'kiwi_delete=PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
+++ kiwi_delete='PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
++ read line
++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_drivers
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ '[' -z kiwi_drivers ']'
++ '[' -z '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;' ']'
++ echo '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_drivers\=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ export 'kiwi_drivers=crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
+++ kiwi_drivers='crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
++ read line
++ '[' '!' -z '' ']'
++ IFS=' 	
+'
++ searchBIOSBootDevice
++ IFS=' 	
+'
++ local h=/usr/sbin/hwinfo
++ local 'c=Device File:|BIOS id'
+++ /usr/sbin/hwinfo --disk
+++ grep -E 'Device File:|BIOS id'
+++ sed '-es@(.*)@@'
+++ cut -f2 -d:
+++ tr -d ' '
++ local 'ddevs=/dev/sda
+0x80'
++ local cmpd=/tmp/mbrids
++ local ifix=0
++ local matched
++ local bios
++ local file
++ local pred
++ for curd in '$ddevs'
++ '[' /dev/sda = 0x80 ']'
++ pred=/dev/sda
++ for curd in '$ddevs'
++ '[' 0x80 = 0x80 ']'
++ bios=/dev/sda
++ break
++ '[' '!' -z 1 ']'
++ CDMount silent
++ local silent=silent
++ local count=0
++ local ecode=0
++ local cdopt
++ mkdir -p /cdrom
++ '[' -f /.profile ']'
++ importFile
++ IFS='
+	'
++ read line
++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f1
++ key=kiwi_iname
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f2-
++ item='&quot;initrd-oemboot-suse-SLED11&quot;'
++ '[' -z kiwi_iname ']'
++ '[' -z '&quot;initrd-oemboot-suse-SLED11&quot;' ']'
++ echo '&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ test 0 = 1
++ eval export 'kiwi_iname\=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ export kiwi_iname=initrd-oemboot-suse-SLED11
+++ kiwi_iname=initrd-oemboot-suse-SLED11
++ read line
++ echo 'kiwi_timezone=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_timezone
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_timezone ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_timezone=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_timezone\=&quot;&quot;'
+++ export kiwi_timezone=
+++ kiwi_timezone=
++ read line
++ echo 'kiwi_type=&quot;cpio&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f1
++ key=kiwi_type
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f2-
++ item='&quot;cpio&quot;'
++ '[' -z kiwi_type ']'
++ '[' -z '&quot;cpio&quot;' ']'
++ echo '&quot;cpio&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_type=&quot;cpio&quot;'
++ test 0 = 1
++ eval export 'kiwi_type\=&quot;cpio&quot;'
+++ export kiwi_type=cpio
+++ kiwi_type=cpio
++ read line
++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_usbdrivers
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ '[' -z kiwi_usbdrivers ']'
++ '[' -z '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;' ']'
++ echo '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_usbdrivers\=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ export kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
+++ kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
++ read line
++ echo 'kiwi_language=&quot;en_US&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f1
++ key=kiwi_language
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f2-
++ item='&quot;en_US&quot;'
++ '[' -z kiwi_language ']'
++ '[' -z '&quot;en_US&quot;' ']'
++ echo '&quot;en_US&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_language=&quot;en_US&quot;'
++ test 0 = 1
++ eval export 'kiwi_language\=&quot;en_US&quot;'
+++ export kiwi_language=en_US
+++ kiwi_language=en_US
++ read line
++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f1
++ key=kiwi_revision
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f2-
++ item='&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ '[' -z kiwi_revision ']'
++ '[' -z '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;' ']'
++ echo '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ test 0 = 1
++ eval export 'kiwi_revision\=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ export kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
+++ kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
++ read line
++ echo 'kiwi_profiles=&quot;default,std&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f1
++ key=kiwi_profiles
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f2-
++ item='&quot;default,std&quot;'
++ '[' -z kiwi_profiles ']'
++ '[' -z '&quot;default,std&quot;' ']'
++ echo '&quot;default,std&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_profiles=&quot;default,std&quot;'
++ test 0 = 1
++ eval export 'kiwi_profiles\=&quot;default,std&quot;'
+++ export kiwi_profiles=default,std
+++ kiwi_profiles=default,std
++ read line
++ echo 'kiwi_boottheme=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_boottheme
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_boottheme ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_boottheme=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_boottheme\=&quot;&quot;'
+++ export kiwi_boottheme=
+++ kiwi_boottheme=
++ read line
++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f1
++ key=kiwi_oemtitle
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f2-
++ item='&quot;sled-11-oem-preload&quot;'
++ '[' -z kiwi_oemtitle ']'
++ '[' -z '&quot;sled-11-oem-preload&quot;' ']'
++ echo '&quot;sled-11-oem-preload&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ test 0 = 1
++ eval export 'kiwi_oemtitle\=&quot;sled-11-oem-preload&quot;'
+++ export kiwi_oemtitle=sled-11-oem-preload
+++ kiwi_oemtitle=sled-11-oem-preload
++ read line
++ echo 'kiwi_keytable=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_keytable
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_keytable ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_keytable=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_keytable\=&quot;&quot;'
+++ export kiwi_keytable=
+++ kiwi_keytable=
++ read line
++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f1
++ key=kiwi_iversion
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f2-
++ item='&quot;2.7.1&quot;'
++ '[' -z kiwi_iversion ']'
++ '[' -z '&quot;2.7.1&quot;' ']'
++ echo '&quot;2.7.1&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iversion=&quot;2.7.1&quot;'
++ test 0 = 1
++ eval export 'kiwi_iversion\=&quot;2.7.1&quot;'
+++ export kiwi_iversion=2.7.1
+++ kiwi_iversion=2.7.1
++ read line
++ echo 'kiwi_size=&quot;60M&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f1
++ key=kiwi_size
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f2-
++ item='&quot;60M&quot;'
++ '[' -z kiwi_size ']'
++ '[' -z '&quot;60M&quot;' ']'
++ echo '&quot;60M&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_size=&quot;60M&quot;'
++ test 0 = 1
++ eval export 'kiwi_size\=&quot;60M&quot;'
+++ export kiwi_size=60M
+++ kiwi_size=60M
++ read line
++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f1
++ key=kiwi_delete
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f2-
++ item='&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ '[' -z kiwi_delete ']'
++ '[' -z '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;' ']'
++ echo '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ test 0 = 1
++ eval export 'kiwi_delete\=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ export 'kiwi_delete=PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
+++ kiwi_delete='PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
++ read line
++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_drivers
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ '[' -z kiwi_drivers ']'
++ '[' -z '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;' ']'
++ echo '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_drivers\=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ export 'kiwi_drivers=crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
+++ kiwi_drivers='crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
++ read line
++ '[' '!' -z '' ']'
++ IFS=' 	
+'
++ searchBIOSBootDevice
++ IFS=' 	
+'
++ local h=/usr/sbin/hwinfo
++ local 'c=Device File:|BIOS id'
+++ /usr/sbin/hwinfo --disk
+++ grep -E 'Device File:|BIOS id'
+++ sed '-es@(.*)@@'
+++ cut -f2 -d:
+++ tr -d ' '
++ local 'ddevs=/dev/sda
+0x80'
++ local cmpd=/tmp/mbrids
++ local ifix=0
++ local matched
++ local bios
++ local file
++ local pred
++ for curd in '$ddevs'
++ '[' /dev/sda = 0x80 ']'
++ pred=/dev/sda
++ for curd in '$ddevs'
++ '[' 0x80 = 0x80 ']'
++ bios=/dev/sda
++ break
++ '[' '!' -z 1 ']'
++ CDMount silent
++ local silent=silent
++ local count=0
++ local ecode=0
++ local cdopt
++ mkdir -p /cdrom
++ '[' -f /.profile ']'
++ importFile
++ IFS='
+	'
++ read line
++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f1
++ key=kiwi_iname
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f2-
++ item='&quot;initrd-oemboot-suse-SLED11&quot;'
++ '[' -z kiwi_iname ']'
++ '[' -z '&quot;initrd-oemboot-suse-SLED11&quot;' ']'
++ echo '&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ test 0 = 1
++ eval export 'kiwi_iname\=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ export kiwi_iname=initrd-oemboot-suse-SLED11
+++ kiwi_iname=initrd-oemboot-suse-SLED11
++ read line
++ echo 'kiwi_timezone=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_timezone
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_timezone ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_timezone=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_timezone\=&quot;&quot;'
+++ export kiwi_timezone=
+++ kiwi_timezone=
++ read line
++ echo 'kiwi_type=&quot;cpio&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f1
++ key=kiwi_type
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f2-
++ item='&quot;cpio&quot;'
++ '[' -z kiwi_type ']'
++ '[' -z '&quot;cpio&quot;' ']'
++ echo '&quot;cpio&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_type=&quot;cpio&quot;'
++ test 0 = 1
++ eval export 'kiwi_type\=&quot;cpio&quot;'
+++ export kiwi_type=cpio
+++ kiwi_type=cpio
++ read line
++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_usbdrivers
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ '[' -z kiwi_usbdrivers ']'
++ '[' -z '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;' ']'
++ echo '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_usbdrivers\=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ export kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
+++ kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
++ read line
++ echo 'kiwi_language=&quot;en_US&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f1
++ key=kiwi_language
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f2-
++ item='&quot;en_US&quot;'
++ '[' -z kiwi_language ']'
++ '[' -z '&quot;en_US&quot;' ']'
++ echo '&quot;en_US&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_language=&quot;en_US&quot;'
++ test 0 = 1
++ eval export 'kiwi_language\=&quot;en_US&quot;'
+++ export kiwi_language=en_US
+++ kiwi_language=en_US
++ read line
++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f1
++ key=kiwi_revision
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f2-
++ item='&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ '[' -z kiwi_revision ']'
++ '[' -z '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;' ']'
++ echo '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ test 0 = 1
++ eval export 'kiwi_revision\=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ export kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
+++ kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
++ read line
++ echo 'kiwi_profiles=&quot;default,std&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f1
++ key=kiwi_profiles
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f2-
++ item='&quot;default,std&quot;'
++ '[' -z kiwi_profiles ']'
++ '[' -z '&quot;default,std&quot;' ']'
++ echo '&quot;default,std&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_profiles=&quot;default,std&quot;'
++ test 0 = 1
++ eval export 'kiwi_profiles\=&quot;default,std&quot;'
+++ export kiwi_profiles=default,std
+++ kiwi_profiles=default,std
++ read line
++ echo 'kiwi_boottheme=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_boottheme
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_boottheme ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_boottheme=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_boottheme\=&quot;&quot;'
+++ export kiwi_boottheme=
+++ kiwi_boottheme=
++ read line
++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f1
++ key=kiwi_oemtitle
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f2-
++ item='&quot;sled-11-oem-preload&quot;'
++ '[' -z kiwi_oemtitle ']'
++ '[' -z '&quot;sled-11-oem-preload&quot;' ']'
++ echo '&quot;sled-11-oem-preload&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ test 0 = 1
++ eval export 'kiwi_oemtitle\=&quot;sled-11-oem-preload&quot;'
+++ export kiwi_oemtitle=sled-11-oem-preload
+++ kiwi_oemtitle=sled-11-oem-preload
++ read line
++ echo 'kiwi_keytable=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_keytable
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_keytable ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_keytable=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_keytable\=&quot;&quot;'
+++ export kiwi_keytable=
+++ kiwi_keytable=
++ read line
++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f1
++ key=kiwi_iversion
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f2-
++ item='&quot;2.7.1&quot;'
++ '[' -z kiwi_iversion ']'
++ '[' -z '&quot;2.7.1&quot;' ']'
++ echo '&quot;2.7.1&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iversion=&quot;2.7.1&quot;'
++ test 0 = 1
++ eval export 'kiwi_iversion\=&quot;2.7.1&quot;'
+++ export kiwi_iversion=2.7.1
+++ kiwi_iversion=2.7.1
++ read line
++ echo 'kiwi_size=&quot;60M&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f1
++ key=kiwi_size
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f2-
++ item='&quot;60M&quot;'
++ '[' -z kiwi_size ']'
++ '[' -z '&quot;60M&quot;' ']'
++ echo '&quot;60M&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_size=&quot;60M&quot;'
++ test 0 = 1
++ eval export 'kiwi_size\=&quot;60M&quot;'
+++ export kiwi_size=60M
+++ kiwi_size=60M
++ read line
++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f1
++ key=kiwi_delete
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f2-
++ item='&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ '[' -z kiwi_delete ']'
++ '[' -z '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;' ']'
++ echo '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ test 0 = 1
++ eval export 'kiwi_delete\=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ export 'kiwi_delete=PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
+++ kiwi_delete='PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
++ read line
++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_drivers
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ '[' -z kiwi_drivers ']'
++ '[' -z '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;' ']'
++ echo '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_drivers\=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ export 'kiwi_drivers=crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
+++ kiwi_drivers='crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
++ read line
++ '[' '!' -z '' ']'
++ IFS=' 	
+'
++ searchBIOSBootDevice
++ IFS=' 	
+'
++ local h=/usr/sbin/hwinfo
++ local 'c=Device File:|BIOS id'
+++ /usr/sbin/hwinfo --disk
+++ grep -E 'Device File:|BIOS id'
+++ sed '-es@(.*)@@'
+++ cut -f2 -d:
+++ tr -d ' '
++ local 'ddevs=/dev/sda
+0x80'
++ local cmpd=/tmp/mbrids
++ local ifix=0
++ local matched
++ local bios
++ local file
++ local pred
++ for curd in '$ddevs'
++ '[' /dev/sda = 0x80 ']'
++ pred=/dev/sda
++ for curd in '$ddevs'
++ '[' 0x80 = 0x80 ']'
++ bios=/dev/sda
++ break
++ '[' '!' -z 1 ']'
++ CDMount silent
++ local silent=silent
++ local count=0
++ local ecode=0
++ local cdopt
++ mkdir -p /cdrom
++ '[' -f /.profile ']'
++ importFile
++ IFS='
+	'
++ read line
++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f1
++ key=kiwi_iname
+++ echo 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ cut -d = -f2-
++ item='&quot;initrd-oemboot-suse-SLED11&quot;'
++ '[' -z kiwi_iname ']'
++ '[' -z '&quot;initrd-oemboot-suse-SLED11&quot;' ']'
++ echo '&quot;initrd-oemboot-suse-SLED11&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iname=&quot;initrd-oemboot-suse-SLED11&quot;'
++ test 0 = 1
++ eval export 'kiwi_iname\=&quot;initrd-oemboot-suse-SLED11&quot;'
+++ export kiwi_iname=initrd-oemboot-suse-SLED11
+++ kiwi_iname=initrd-oemboot-suse-SLED11
++ read line
++ echo 'kiwi_timezone=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_timezone
+++ echo 'kiwi_timezone=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_timezone ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_timezone=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_timezone\=&quot;&quot;'
+++ export kiwi_timezone=
+++ kiwi_timezone=
++ read line
++ echo 'kiwi_type=&quot;cpio&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f1
++ key=kiwi_type
+++ echo 'kiwi_type=&quot;cpio&quot;'
+++ cut -d = -f2-
++ item='&quot;cpio&quot;'
++ '[' -z kiwi_type ']'
++ '[' -z '&quot;cpio&quot;' ']'
++ echo '&quot;cpio&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_type=&quot;cpio&quot;'
++ test 0 = 1
++ eval export 'kiwi_type\=&quot;cpio&quot;'
+++ export kiwi_type=cpio
+++ kiwi_type=cpio
++ read line
++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_usbdrivers
+++ echo 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ '[' -z kiwi_usbdrivers ']'
++ '[' -z '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;' ']'
++ echo '&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_usbdrivers=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_usbdrivers\=&quot;drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko&quot;'
+++ export kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
+++ kiwi_usbdrivers=drivers/usb/host/ehci-hcd.ko,drivers/usb/host/uhci-hcd.ko,drivers/usb/core/usbcore.ko,drivers/usb/storage/usb-storage.ko
++ read line
++ echo 'kiwi_language=&quot;en_US&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f1
++ key=kiwi_language
+++ echo 'kiwi_language=&quot;en_US&quot;'
+++ cut -d = -f2-
++ item='&quot;en_US&quot;'
++ '[' -z kiwi_language ']'
++ '[' -z '&quot;en_US&quot;' ']'
++ echo '&quot;en_US&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_language=&quot;en_US&quot;'
++ test 0 = 1
++ eval export 'kiwi_language\=&quot;en_US&quot;'
+++ export kiwi_language=en_US
+++ kiwi_language=en_US
++ read line
++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f1
++ key=kiwi_revision
+++ echo 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ cut -d = -f2-
++ item='&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ '[' -z kiwi_revision ']'
++ '[' -z '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;' ']'
++ echo '&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_revision=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
++ test 0 = 1
++ eval export 'kiwi_revision\=&quot;10032fa3bab185595d05f8ac25e835802d642c8e&quot;'
+++ export kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
+++ kiwi_revision=10032fa3bab185595d05f8ac25e835802d642c8e
++ read line
++ echo 'kiwi_profiles=&quot;default,std&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f1
++ key=kiwi_profiles
+++ echo 'kiwi_profiles=&quot;default,std&quot;'
+++ cut -d = -f2-
++ item='&quot;default,std&quot;'
++ '[' -z kiwi_profiles ']'
++ '[' -z '&quot;default,std&quot;' ']'
++ echo '&quot;default,std&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_profiles=&quot;default,std&quot;'
++ test 0 = 1
++ eval export 'kiwi_profiles\=&quot;default,std&quot;'
+++ export kiwi_profiles=default,std
+++ kiwi_profiles=default,std
++ read line
++ echo 'kiwi_boottheme=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_boottheme
+++ echo 'kiwi_boottheme=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_boottheme ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_boottheme=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_boottheme\=&quot;&quot;'
+++ export kiwi_boottheme=
+++ kiwi_boottheme=
++ read line
++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f1
++ key=kiwi_oemtitle
+++ echo 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
+++ cut -d = -f2-
++ item='&quot;sled-11-oem-preload&quot;'
++ '[' -z kiwi_oemtitle ']'
++ '[' -z '&quot;sled-11-oem-preload&quot;' ']'
++ echo '&quot;sled-11-oem-preload&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_oemtitle=&quot;sled-11-oem-preload&quot;'
++ test 0 = 1
++ eval export 'kiwi_oemtitle\=&quot;sled-11-oem-preload&quot;'
+++ export kiwi_oemtitle=sled-11-oem-preload
+++ kiwi_oemtitle=sled-11-oem-preload
++ read line
++ echo 'kiwi_keytable=&quot;&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f1
++ key=kiwi_keytable
+++ echo 'kiwi_keytable=&quot;&quot;'
+++ cut -d = -f2-
++ item='&quot;&quot;'
++ '[' -z kiwi_keytable ']'
++ '[' -z '&quot;&quot;' ']'
++ echo '&quot;&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_keytable=&quot;&quot;'
++ test 0 = 1
++ eval export 'kiwi_keytable\=&quot;&quot;'
+++ export kiwi_keytable=
+++ kiwi_keytable=
++ read line
++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f1
++ key=kiwi_iversion
+++ echo 'kiwi_iversion=&quot;2.7.1&quot;'
+++ cut -d = -f2-
++ item='&quot;2.7.1&quot;'
++ '[' -z kiwi_iversion ']'
++ '[' -z '&quot;2.7.1&quot;' ']'
++ echo '&quot;2.7.1&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_iversion=&quot;2.7.1&quot;'
++ test 0 = 1
++ eval export 'kiwi_iversion\=&quot;2.7.1&quot;'
+++ export kiwi_iversion=2.7.1
+++ kiwi_iversion=2.7.1
++ read line
++ echo 'kiwi_size=&quot;60M&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f1
++ key=kiwi_size
+++ echo 'kiwi_size=&quot;60M&quot;'
+++ cut -d = -f2-
++ item='&quot;60M&quot;'
++ '[' -z kiwi_size ']'
++ '[' -z '&quot;60M&quot;' ']'
++ echo '&quot;60M&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_size=&quot;60M&quot;'
++ test 0 = 1
++ eval export 'kiwi_size\=&quot;60M&quot;'
+++ export kiwi_size=60M
+++ kiwi_size=60M
++ read line
++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f1
++ key=kiwi_delete
+++ echo 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ cut -d = -f2-
++ item='&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ '[' -z kiwi_delete ']'
++ '[' -z '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;' ']'
++ echo '&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_delete=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
++ test 0 = 1
++ eval export 'kiwi_delete\=&quot;PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key&quot;'
+++ export 'kiwi_delete=PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
+++ kiwi_delete='PolicyKit audit-libs blocxx bootsplash-branding-SLED cpio cracklib-dict-full cracklib-dict-small cyrus-sasl db expat fillup fribidi gdbm gfxboot-branding-SLED glib2 glibc-locale gpg info insserv iproute2 irqbalance libxcrypt libxml2 libzio limal limal-perl logrotate make mdadm mingetty openldap2-client openslp pam pam-modules pcre perl perl-Bootloader perl-gettext permissions pm-utils pmtools suse-build-key'
++ read line
++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -qi '^#'
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f1
++ key=kiwi_drivers
+++ echo 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ cut -d = -f2-
++ item='&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ '[' -z kiwi_drivers ']'
++ '[' -z '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;' ']'
++ echo '&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ grep -E -q '^(&quot;|'\'')'
++ Debug 'kiwi_drivers=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
++ test 0 = 1
++ eval export 'kiwi_drivers\=&quot;crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko&quot;'
+++ export 'kiwi_drivers=crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
+++ kiwi_drivers='crypto/*,drivers/virtio/*,drivers/block/cciss.ko,drivers/block/virtio_blk.ko,drivers/char/hw_random/virtio-rng.ko,drivers/net/virtio_net.ko,drivers/md/*,drivers/block/loop.ko,drivers/hid/*,drivers/ide/*,fs/ext3/*,fs/ext2/*,fs/fat/*,fs/vfat/*,fs/binfmt_aout.ko,fs/binfmt_misc.ko,fs/mbcache.ko,fs/quota_v1.ko,fs/quota_v2.ko,fs/jbd/*,fs/hfs/*,fs/exportfs/*,fs/squashfs/*,fs/nls/nls_utf8.ko,fs/nls/nls_cp437.ko,fs/nls/nls_iso8859-1.ko,fs/fuse/*,fs/udf/*,drivers/ata/*,drivers/scsi/*,drivers/message/fusion/*,drivers/cdrom/*,drivers/parport/*,drivers/char/lp.ko,drivers/acpi/dock.ko,drivers/firmware/edd.ko'
++ read line
++ '[' '!' -z '' ']'
++ IFS=' 	
+'
++ searchBIOSBootDevice
++ IFS=' 	
+'
++ local h=/usr/sbin/hwinfo
++ local 'c=Device File:|BIOS id'
+++ /usr/sbin/hwinfo --disk
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001344.html">[Kiwi-users] Susestudio LiveUSB and Iso Image
+</A></li>
+	<LI>Next message: <A HREF="001346.html">[Kiwi-users] can't apply OEM image to VM machine
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1345">[ date ]</a>
+              <a href="thread.html#1345">[ thread ]</a>
+              <a href="subject.html#1345">[ subject ]</a>
+              <a href="author.html#1345">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

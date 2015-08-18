@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Wyse V90
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Wyse%20V90&In-Reply-To=%3C20091023095424.GA29389%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001491.html">
+   <LINK REL="Next"  HREF="001493.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Wyse V90</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Wyse%20V90&In-Reply-To=%3C20091023095424.GA29389%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Wyse V90">ms at novell.com
+       </A><BR>
+    <I>Fri Oct 23 11:54:24 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001491.html">[Kiwi-users] Wyse V90
+</A></li>
+        <LI>Next message: <A HREF="001493.html">[Kiwi-users] Wyse V90
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1492">[ date ]</a>
+              <a href="thread.html#1492">[ thread ]</a>
+              <a href="subject.html#1492">[ subject ]</a>
+              <a href="author.html#1492">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> On Thu, Oct 22, 2009 at 11:20 PM, Cody Grosskopf &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cgrossko at wusd.org</A>&gt; wrote:
+</I>&gt;<i> &gt; I have a Wyse V90 that will not boot, the error is:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Checking Server name: tftp.
+</I>&gt;<i> &gt; Server: tftp. not found
+</I>&gt;<i> &gt; Can't assign SERVER IP/name ... fatal error
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Not sure why this particular client will not boot, we have several other HP
+</I>&gt;<i> &gt; T5730 Thin Clients that boot perfectly fine. In fact, just thinking now this
+</I>&gt;<i> &gt; V90 client boot just fine before I did updates, could the updates possibly
+</I>&gt;<i> &gt; have broken something?
+</I>&gt;<i> &gt;
+</I>&gt;<i> Possible, can you boot in debug mode and get /var/log/boot.kiwi from the client?
+</I>
+This does not sound like a kiwi problem but a problem with the
+DHCP server. The kiwi code which tries to find the TFTP server works
+like this:
+
+1) it checks if there is a host tftp.$DNSDOMAIN
+2) if that doesn't exists it assumes the DHCP server is also
+   the TFTP server and tries to assign $DHCPSIADDR or $DHCPSID
+
+all those tests failed in your network. Therefore I assume your
+DHCP server is misconfigured. The DHCP client creates a file with
+information provided by the server this file is in
+
+   /var/lib/dhcpcd/dhcpcd-*.info
+
+you can pxe boot with the kernel option 
+
+   kiwidebug=1
+
+and check in the shell what contents are in that file
+Additionally the /var/log/boot.kiwi file tells use more as
+cyberorg suggested
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001491.html">[Kiwi-users] Wyse V90
+</A></li>
+	<LI>Next message: <A HREF="001493.html">[Kiwi-users] Wyse V90
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1492">[ date ]</a>
+              <a href="thread.html#1492">[ thread ]</a>
+              <a href="subject.html#1492">[ subject ]</a>
+              <a href="author.html#1492">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

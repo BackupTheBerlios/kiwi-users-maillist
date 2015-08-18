@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Minimal X configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Minimal%20X%20configuration&In-Reply-To=%3C1214385690.24860.21.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000735.html">
+   <LINK REL="Next"  HREF="000737.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Minimal X configuration</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Minimal%20X%20configuration&In-Reply-To=%3C1214385690.24860.21.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] Minimal X configuration">roger at opq.se
+       </A><BR>
+    <I>Wed Jun 25 11:21:29 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000735.html">[Kiwi-users] Minimal X configuration
+</A></li>
+        <LI>Next message: <A HREF="000737.html">[Kiwi-users] Minimal X configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#736">[ date ]</a>
+              <a href="thread.html#736">[ thread ]</a>
+              <a href="subject.html#736">[ subject ]</a>
+              <a href="author.html#736">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2008-06-25 at 10:21 +0200, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi Justin,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; What I've found so far is that the image I'm building is (obviously) quite 
+</I>&gt;<i> &gt; large with all of these packages.  I'd like to export as much as possible 
+</I>&gt;<i> &gt; to the clients via NFS, but when the clients boot, I'm running them right 
+</I>&gt;<i> &gt; out of memory when they untar the rootfs.tar.
+</I>&gt;<i> 
+</I>&gt;<i> I think a possible solution would be to use an overlay filesystem
+</I>&gt;<i> instead of the split tree. It will allow you to mount the NFS share
+</I>&gt;<i> together with an overlay portion working in RAM. To do this your
+</I>&gt;<i> config.&lt;MAC&gt; should look like the following:
+</I>&gt;<i> 
+</I>&gt;<i> 	NFSROOT=192.168.100.20;/tmp/kiwi-test
+</I>&gt;<i> 	UNIONFS_CONFIG=/dev/ram1,nfs,aufs
+</I>
+This NFS volume must contain the individual files, whereas an NBD volume
+is a single image that contains the individual files that gets served,
+right?
+
+When using NFS, I wonder if some image containing the files couldn't be
+mounted on the server (via loop), and this gets exported via NFS. So,
+NFS is serving the individual files. They are just stored in a single
+mounted file. Does Linux even support this sort of thing? The reason for
+wanting to do this is that such an image is far easier to distribute /
+maintain than a directory tree. In my case, this file system is
+read-only.
+
+Any hints?
+
+
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Kapellgr&#228;nd 7
+P.O. Box 4205
+SE-102 65 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+And remember:
+
+It is RSofT and there is always something under construction. 
+It is like talking about large city with all constructions finished. 
+Not impossible, but very unlikely.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000735.html">[Kiwi-users] Minimal X configuration
+</A></li>
+	<LI>Next message: <A HREF="000737.html">[Kiwi-users] Minimal X configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#736">[ date ]</a>
+              <a href="thread.html#736">[ thread ]</a>
+              <a href="subject.html#736">[ subject ]</a>
+              <a href="author.html#736">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

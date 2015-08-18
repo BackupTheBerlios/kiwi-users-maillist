@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%202.38-59.1%20%20initrd%20kernel%20panic&In-Reply-To=%3C482C01BE.4000300%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000640.html">
+   <LINK REL="Next"  HREF="000642.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%202.38-59.1%20%20initrd%20kernel%20panic&In-Reply-To=%3C482C01BE.4000300%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic">bernd at ixsoft.de
+       </A><BR>
+    <I>Thu May 15 11:26:22 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000640.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+        <LI>Next message: <A HREF="000642.html">[Kiwi-users] kiwi new partition layout
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#641">[ date ]</a>
+              <a href="thread.html#641">[ thread ]</a>
+              <a href="subject.html#641">[ subject ]</a>
+              <a href="author.html#641">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+&gt;<i> Hi Bernd,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hmm, this is quite different from most other distributions, where the 
+</I>&gt;&gt;<i> bootable partition can be FAT16 or FAT32, so to improve booting
+</I>&gt;&gt;<i> with syslinux on broken BIOS systems
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Oh that remembers me that you told me to have a look into isolinux
+</I>&gt;<i> as alternative boot loader for the USB sticks. I'm sorry I didn't
+</I>&gt;<i> thought that a single boot partition based on FAT is also &quot;required&quot;
+</I>&gt;<i> here. 
+</I>Well, I think I wanted to write the .pm for syslinux, but I did not find 
+the time yet.
+&gt;<i> The reason for not having a single /boot partition has happened
+</I>&gt;<i> because of size reasons. Together with the partition alignment and 
+</I>&gt;<i> the filesystem overhead this was requested by some people which was
+</I>&gt;<i> the reason why we changed it. Frankly said it also sounds rather
+</I>&gt;<i> weird to fix BIOS bugs by the geometry of a boot partition :)
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>I am not sure if we fix BIOS bugs or prevent grub from doing something 
+wrongly.
+We are living in a real world with real customers, and they tell us that 
+the failure
+for booting with grub is around 15-20% and the failure with syslinux is 
+only a fraction.
+So what should I do - using syslinux over grub sounds more reasonable 
+than trying
+to convince people to buy a new mainboard or flash their BIOS..
+&gt;&gt;<i> Of course we could always use extlinux, but grub is AFAIK not the best 
+</I>&gt;&gt;<i> choice for booting a USB device.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> That's what I have heared too. Some people point me to grub2 which
+</I>&gt;<i> should be better ?
+</I>I haven't had a chance to try this yet, is this package in opensuse 11?
+&gt;<i>  I agree it would make sense to have alternative
+</I>&gt;<i> boot loaders available. At the moment this is only grub which also
+</I>&gt;<i> sucks for ppc and other archs. A clean implementation which leaves
+</I>&gt;<i> us the choice for either a) or b) would be the best I think. Perhaps
+</I>&gt;<i> the perl-bootloader module could help us to implement that in a
+</I>&gt;<i> clean way. 
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Probably the real work has been already done with the isolinux 
+bootloader for CDs/DVDs.
+I think all we need to do is use the code there and modify it a bit - 
+but I don't understand
+enough about the internal architecture of kiwi to be able to use it in a 
+clean way.
+I could hack some spaghetti code to make it work very quickly, but you 
+won't like this ;-)
+&gt;&gt;<i> Also, putting the boot section into the writeable partition has the 
+</I>&gt;&gt;<i> disadvantage that you
+</I>&gt;&gt;<i> cannot &quot;reset&quot; the USB stick to factory defaults by just formatting the 
+</I>&gt;&gt;<i> third partition with ext3 ;-)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Hmm, sorry I think I don't get the point. The original /boot information
+</I>&gt;<i> can be preserved as compressed data on the read-only partition. In case
+</I>&gt;<i> of resetting these values they can be obtained from there
+</I>&gt;<i>   
+</I>The stick created with 2.38-61 looks like this:
+part1   squashfs
+part2   ext3/aufs
+The boot information is in part2. So if I format part2, booting 
+information will disappear.
+Previously, booting information was in part1, squashfs in part2 and 
+ext3/aufs was in part3.
+So when formatting part3, I could reset the stick to factory defaults?
+I think a cleaner approach might have been to have part1 containing the 
+squashfs+boot loader stuff,
+so part2 only contains user data and no vital system information.
+But I'm not sure if there is a performance penalty if squashfs doesn't 
+have it's own partition and is
+just another file on a FatNN/extN partition. And this approach might not 
+be suitable for LTSP or VMs.
+
+-- 
+Mit freundlichem Gru&#223;
+
+Kind Regards
+
+Bernd Hentig
+---
+             ixsoft.de - Ihr Spezialist f&#252;r Linux&amp;BSD
+        verion GmbH, Gesch&#228;ftsbereich ixsoft, HRB 11618 FF
+     Gesch&#228;ftsf&#252;hrer: Bernd Hentig, EU-USt-Nr.: DE 256 168 957 
+          Unter den Buchen 22E, D-16244 Altenhof, Germany
+          Voice ++49 333 63 46 100 Fax ++49 333 63 46 109
+                     eMail <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Bernd.Hentig at ixsoft.de</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 300 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080515/c4764494/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080515/c4764494/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000640.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+	<LI>Next message: <A HREF="000642.html">[Kiwi-users] kiwi new partition layout
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#641">[ date ]</a>
+              <a href="thread.html#641">[ thread ]</a>
+              <a href="subject.html#641">[ subject ]</a>
+              <a href="author.html#641">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

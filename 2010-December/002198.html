@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /dev/ram1 limitation 128MB
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/ram1%20limitation%20128MB&In-Reply-To=%3CPine.LNX.4.64.1012101157490.19716%40general.elte.hu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002195.html">
+   <LINK REL="Next"  HREF="002199.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /dev/ram1 limitation 128MB</H1>
+    <B>Kalman Szabo</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/ram1%20limitation%20128MB&In-Reply-To=%3CPine.LNX.4.64.1012101157490.19716%40general.elte.hu%3E"
+       TITLE="[Kiwi-users] /dev/ram1 limitation 128MB">szaboka at general.elte.hu
+       </A><BR>
+    <I>Fri Dec 10 12:02:35 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002195.html">[Kiwi-users] /dev/ram1 limitation 128MB
+</A></li>
+        <LI>Next message: <A HREF="002199.html">[Kiwi-users] /dev/ram1 limitation 128MB
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2198">[ date ]</a>
+              <a href="thread.html#2198">[ thread ]</a>
+              <a href="subject.html#2198">[ subject ]</a>
+              <a href="author.html#2198">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+concerning the patch. You might also consider adding a 
+modprobe.d/99-local.conf file to the
+
+[kiwi] / system / boot / ix86 / netboot / suse-11.3 / root / etc /
+
+with the
+
+option brd rd_size=512000
+
+line, otherwise it wont work (at least it was not working in my setup).
+
+BEst
+KAlman
+
+On Thu, 9 Dec 2010, Marcus Sch&#228;fer wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> using the latest kiwi and having a problem. As suggested by the
+</I>&gt;&gt;<i> manual I am using the ext3 filesystem and /dev/ram1 device. The
+</I>&gt;&gt;<i> problem is, that the size of this device seems to be fixed to 128
+</I>&gt;&gt;<i> MB, the system image would need at least 2 times more. After playing
+</I>&gt;&gt;<i> with the 'ramdisk_size' boot option and reading in the kiwi-scripts,
+</I>&gt;&gt;<i> I could not find out how to increase it.
+</I>&gt;<i>
+</I>&gt;<i> There are two ways to setup the size of the ramdisk used by the
+</I>&gt;<i> brd (alias 'rd') kernel ramdisk driver:
+</I>&gt;<i>
+</I>&gt;<i> 1) if you are using a kernel which has the ramdisk driver compiled
+</I>&gt;<i>   in (not a module) you can specify the following kernel boot
+</I>&gt;<i>   parameters in your pxe config file:
+</I>&gt;<i>
+</I>&gt;<i>   ramdisk_blocksize=4096 ramdisk_size=512000
+</I>&gt;<i>
+</I>&gt;<i> 2) if you are using a kernel which provides the ramdisk driver
+</I>&gt;<i>   as a module (brd.ko) you can set the size only by a modprobe
+</I>&gt;<i>   configuration before the driver is loaded. kiwi does that
+</I>&gt;<i>   for you but you should check if it did it correctly. I suggest
+</I>&gt;<i>   to boot with the kernel boot option 'kiwidebug=1'. In the
+</I>&gt;<i>   exception shell which you get if the size is not ok you can
+</I>&gt;<i>   check the following:
+</I>&gt;<i>
+</I>&gt;<i>   * lsmod | grep rd
+</I>&gt;<i>     ==&gt; loaded y/n ?
+</I>&gt;<i>
+</I>&gt;<i>   * cat /etc/modprobe.conf.local
+</I>&gt;<i>     you should see something like
+</I>&gt;<i>
+</I>&gt;<i>     rd_size=512000
+</I>&gt;<i>
+</I>&gt;<i>     ==&gt; does this reflect your setup ?
+</I>&gt;<i>
+</I>&gt;<i>   The brd module is loaded manually by the kiwi initrd not by
+</I>&gt;<i>   udev. At least this was the case when I tested it the last
+</I>&gt;<i>   time. If you think the options were ignored you can try to
+</I>&gt;<i>   unload/reload the module:
+</I>&gt;<i>
+</I>&gt;<i>   rmmod brd
+</I>&gt;<i>   insmod brd rd_size=512000
+</I>&gt;<i>   mke2fs /dev/ram2
+</I>&gt;<i>
+</I>&gt;<i>   ==&gt; how big is it ?
+</I>&gt;<i>
+</I>&gt;<i> and last but not least if your system has only 128MB of ram
+</I>&gt;<i> you can't have more :-) The kernel docs might also be helpful:
+</I>&gt;<i>
+</I>&gt;<i>   <A HREF="http://www.mjmwired.net/kernel/Documentation/ramdisk.txt">http://www.mjmwired.net/kernel/Documentation/ramdisk.txt</A>
+</I>&gt;<i>
+</I>&gt;&gt;<i> Where exactly can I change the size and number of the /dev/ram*
+</I>&gt;&gt;<i> device-files?
+</I>&gt;<i>
+</I>&gt;<i> The maximum number of brd devices can be set with the
+</I>&gt;<i> module option 'rd_nr'. By default 16 devices are created.
+</I>&gt;<i> Information about a module can be obtained by:
+</I>&gt;<i>
+</I>&gt;<i>   modinfo brd
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> -- 
+</I>&gt;<i> Public Key available
+</I>&gt;<i> gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> -------------------------------------------------------
+</I>&gt;<i> Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i> Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i> FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i> GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i> -------------------------------------------------------
+</I>&gt;<i>
+</I></PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002195.html">[Kiwi-users] /dev/ram1 limitation 128MB
+</A></li>
+	<LI>Next message: <A HREF="002199.html">[Kiwi-users] /dev/ram1 limitation 128MB
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2198">[ date ]</a>
+              <a href="thread.html#2198">[ thread ]</a>
+              <a href="subject.html#2198">[ subject ]</a>
+              <a href="author.html#2198">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

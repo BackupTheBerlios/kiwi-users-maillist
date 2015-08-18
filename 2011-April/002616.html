@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Upgrading%20to%20kiwi-4.84-237.1.i586&In-Reply-To=%3C20110405161015.GA16422%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002615.html">
+   <LINK REL="Next"  HREF="002618.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Upgrading%20to%20kiwi-4.84-237.1.i586&In-Reply-To=%3C20110405161015.GA16422%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586">ms at suse.de
+       </A><BR>
+    <I>Tue Apr  5 18:10:15 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002615.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+        <LI>Next message: <A HREF="002618.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2616">[ date ]</a>
+              <a href="thread.html#2616">[ thread ]</a>
+              <a href="subject.html#2616">[ subject ]</a>
+              <a href="author.html#2616">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> What was the rational for changing that?
+</I>
+check if the binary exists mainly I guess. But Robert can answer
+this question better
+
+&gt;<i> Please note the following principle design issue with the above change to use KIWILocator::getExecPath().
+</I>&gt;<i> 
+</I>&gt;<i> When propagating the full path to zypper or any other tool from the kiwi host to the kiwi target there is an implicit dependency between the host and the target. Such implicit dependencies and propagation of configuration information ($PATH in this case) should be avoided if possible.
+</I>&gt;<i> 
+</I>&gt;<i> Imagine: In the future the zypper binary might move to a new location in the filesystem hierarchy. In this case it would be impossible to create the new OS via kiwi as zypper or other tools would be called with the wrong explicit path.
+</I>&gt;<i> 
+</I>&gt;<i> Why not make the path to zypper and other tools implicit instead of explicit?
+</I>
+Hmm, I think you are right even though according to FHS /usr/bin/zypper
+is the correct place and it should not change.
+
+@Robert, what do you think. Can we change getExecPath in a way that
+we check if 'which' returns something good we return only the name
+not the entire path because we know that path is found later too
+
+&gt;<i> Martin Konold
+</I>&gt;<i> P.S.: I am a very happy kiwi user so please don't get the above opinions about implicit dependencies and design issues wrong.
+</I>
+:<i>) never mind, I'm open for good criticism, and basically I agree with you
+</I>
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002615.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+	<LI>Next message: <A HREF="002618.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2616">[ date ]</a>
+              <a href="thread.html#2616">[ thread ]</a>
+              <a href="subject.html#2616">[ subject ]</a>
+              <a href="author.html#2616">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

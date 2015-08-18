@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Advice on use of patterns
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Advice%20on%20use%20of%20patterns&In-Reply-To=%3C20110302081934.GA2661%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002407.html">
+   <LINK REL="Next"  HREF="002409.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Advice on use of patterns</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Advice%20on%20use%20of%20patterns&In-Reply-To=%3C20110302081934.GA2661%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Advice on use of patterns">ms at suse.de
+       </A><BR>
+    <I>Wed Mar  2 09:19:34 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002407.html">[Kiwi-users] Advice on use of patterns
+</A></li>
+        <LI>Next message: <A HREF="002409.html">[Kiwi-users] Advice on use of patterns
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2408">[ date ]</a>
+              <a href="thread.html#2408">[ thread ]</a>
+              <a href="subject.html#2408">[ subject ]</a>
+              <a href="author.html#2408">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> My questions are:
+</I>&gt;<i> 
+</I>&gt;<i> 1. Does kiwi just pass the pattern on to zypper and leave it to zypper
+</I>&gt;<i> to figure this out? I would imagine so.
+</I>
+yes this is correct if zypper is used as package manager
+
+&gt;<i> 2. What is the best way to see what packages a specific pattern on a
+</I>&gt;<i> specific openSUSE release will cause to be installed? I guess this is
+</I>&gt;<i> not specifically a kiwi issue. But I think kiwi is a tool that works
+</I>&gt;<i> best when one uses patterns rather than specific package names. 
+</I>
+
+  kiwi --info /path/to/your/image/description --select packages
+
+this will print the solved package list. If you substract the
+packages you added directly you will see what the patterns
+would put into the image
+
+Other than that if the image is the same distro as your buildsystem
+is you can run 'zypper patinfo name'
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002407.html">[Kiwi-users] Advice on use of patterns
+</A></li>
+	<LI>Next message: <A HREF="002409.html">[Kiwi-users] Advice on use of patterns
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2408">[ date ]</a>
+              <a href="thread.html#2408">[ thread ]</a>
+              <a href="subject.html#2408">[ subject ]</a>
+              <a href="author.html#2408">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

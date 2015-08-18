@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20create%20partition%20table%20on%3A%20/dev/sda%0A%09after%20kiwi%20update%20to%201.68-29.1&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90233B131%40zuk35exm60.ds.mot.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000072.html">
+   <LINK REL="Next"  HREF="000076.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1</H1>
+    <B>Mair Wolfgang-awm013</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20create%20partition%20table%20on%3A%20/dev/sda%0A%09after%20kiwi%20update%20to%201.68-29.1&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90233B131%40zuk35exm60.ds.mot.com%3E"
+       TITLE="[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1">wolfgang.mair at motorola.com
+       </A><BR>
+    <I>Tue Oct  9 22:05:38 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000072.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+        <LI>Next message: <A HREF="000076.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#74">[ date ]</a>
+              <a href="thread.html#74">[ thread ]</a>
+              <a href="subject.html#74">[ subject ]</a>
+              <a href="author.html#74">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hwinfo --storage brings me two (I guess) items. I tried to copy this output somewhere (rcp scp ftp tftp mount...) but could not find anything working. How can I copy this output somewhere, so that I can put it into the mail? 
+The item I can see is the '0100 SCSI storage controller'
+Driver Status: mptspi is not active
+Driver Activation Cmd: modprobe mptspi
+
+I manually executed the modprobe mptspi command and vola.... Fdisk -l lists me the drive as it should do. 
+
+Btw, all dirs are mounted
+
+Wolfgang
+
+
+
+
+-----Original Message-----
+From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>] 
+Sent: Tuesday, October 09, 2007 19:05
+To: Mair Wolfgang-awm013
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] Failed to create partition table on: /dev/sda after kiwi update to 1.68-29.1
+
+Hi,
+
+&gt;<i> It doesn't see any hard drive at all. 
+</I>&gt;<i> 
+</I>&gt;<i> I did a fdisk -l and it gave me nothing back. 
+</I>&gt;<i> 
+</I>&gt;<i> And lsmod gives me:
+</I>&gt;<i> 
+</I>&gt;<i> Sd_mod
+</I>&gt;<i> Scsi_mod
+</I>&gt;<i> Af_packet
+</I>&gt;<i> Pcnet32
+</I>&gt;<i> mii
+</I>&gt;<i> 
+</I>&gt;<i> Anything else I can check?
+</I>
+- kiwi calls &quot;hwinfo --storage&quot; to detect the disk. What does it print ? 
+- is proc / sysfs / etc... mounted ?
+
+Regards,
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000072.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+	<LI>Next message: <A HREF="000076.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#74">[ date ]</a>
+              <a href="thread.html#74">[ thread ]</a>
+              <a href="subject.html#74">[ subject ]</a>
+              <a href="author.html#74">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

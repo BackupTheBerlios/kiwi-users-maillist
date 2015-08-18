@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Adding two NICs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20two%20NICs&In-Reply-To=%3C4CBF55E1.20805%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002086.html">
+   <LINK REL="Next"  HREF="002088.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Adding two NICs</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20two%20NICs&In-Reply-To=%3C4CBF55E1.20805%40novell.com%3E"
+       TITLE="[Kiwi-users] Adding two NICs">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Oct 20 22:49:37 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002086.html">[Kiwi-users] Adding two NICs
+</A></li>
+        <LI>Next message: <A HREF="002088.html">[Kiwi-users] Adding two NICs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2087">[ date ]</a>
+              <a href="thread.html#2087">[ thread ]</a>
+              <a href="subject.html#2087">[ subject ]</a>
+              <a href="author.html#2087">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 10/20/2010 04:29 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">john.lund at emc.com</A> wrote:
+&gt;<i> Hi Robert,
+</I>&gt;<i> 
+</I>&gt;<i> Is there a reason that 2+ nics cannot be configured for VMs? 
+</I>
+Not that I know of, other than there is no implementation at the moment.
+In the end this just gets written to the appropriate config file.
+
+&gt;<i> Is this something that hasn't been requested of kiwi yet? And if so, where do I place that request.
+</I>
+I think Prudhvi sent the request to the devel list. Implementation
+should be relatively straight forward. Marcus is away at the moment and
+I am not certain whether or not he thinks we should support this.
+
+Robert
+
+&gt;<i> 
+</I>&gt;<i> Thank you
+</I>&gt;<i> John Lund
+</I>&gt;<i> EMC Development
+</I>&gt;<i> (508) 249-5473
+</I>&gt;<i> (571) 484-0139 Mobile
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;&gt;<i> On 10/18/2010 12:37 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Prudhvi_Tella at Dell.com</A> wrote:
+</I>&gt;&gt;&gt;<i> Is it possible to configure the VM to have two network adapters? I
+</I>&gt;&gt;<i> added the following, but I get parse errors during build:
+</I>&gt;&gt;&gt;<i> &lt;vmwarenic driver=&quot;e1000&quot; interface=&quot;0&quot; mode=&quot;bridged&quot;/&gt;
+</I>&gt;&gt;&gt;<i> &lt;vmwarenic driver=&quot;e1000&quot; interface=&quot;1&quot; mode=&quot;bridged&quot;/&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Sorry, you can only configure 1 interface.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Robert
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Thanks,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Prudhvi.
+</I>&gt;&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;<i> Software Engineer Consultant                          LINUX
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;&gt;<i> 781-464-8147
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Novell
+</I>&gt;&gt;<i> Making IT Work As One
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ------------------------------
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> End of Kiwi-users Digest, Vol 45, Issue 9
+</I>&gt;&gt;<i> *****************************************
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002086.html">[Kiwi-users] Adding two NICs
+</A></li>
+	<LI>Next message: <A HREF="002088.html">[Kiwi-users] Adding two NICs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2087">[ date ]</a>
+              <a href="thread.html#2087">[ thread ]</a>
+              <a href="subject.html#2087">[ subject ]</a>
+              <a href="author.html#2087">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

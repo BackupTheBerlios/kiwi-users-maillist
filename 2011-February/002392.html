@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oem preload to ISO image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20preload%20to%20ISO%20image&In-Reply-To=%3C1298550962.27633.25.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002388.html">
+   <LINK REL="Next"  HREF="002389.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oem preload to ISO image</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20preload%20to%20ISO%20image&In-Reply-To=%3C1298550962.27633.25.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] oem preload to ISO image">roger at opq.se
+       </A><BR>
+    <I>Thu Feb 24 13:36:02 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002388.html">[Kiwi-users] oem preload to ISO image
+</A></li>
+        <LI>Next message: <A HREF="002389.html">[Kiwi-users] oem preload to ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2392">[ date ]</a>
+              <a href="thread.html#2392">[ thread ]</a>
+              <a href="subject.html#2392">[ subject ]</a>
+              <a href="author.html#2392">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2011-02-22 at 16:36 -0500, Robert Schweikert wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> On 02/22/2011 05:05 PM, Roger Oberholtzer wrote:
+</I>&gt;<i> &gt; I have built an oem preload image that deploys on a USB stick. I am
+</I>&gt;<i> &gt; quite happy with the results. Thanks to all for the help I needed to get
+</I>&gt;<i> &gt; this working.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; FTHOI, I thought I would try to make the image so it can be deployed
+</I>&gt;<i> &gt; from an ISO image. So, I set installiso=&quot;true&quot; in config.xml. Nothing
+</I>&gt;<i> &gt; else is changed. Well, it gets quite far. At the last, it fails as seen
+</I>&gt;<i> &gt; below. It does this lots of times and eventually fails. And for many
+</I>&gt;<i> &gt; different files. I just took the complaints at the very start.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Feb-22 18:47:00 &lt;1&gt; : Creating ISO image...
+</I>&gt;<i> &gt; Feb-22 18:47:00 &lt;1&gt; : EXEC [pwd]
+</I>&gt;<i> &gt; Feb-22 18:47:00 &lt;1&gt; : EXEC [mktemp /tmp/kiso-sort-XXXXXX 2&gt;&amp;1]
+</I>&gt;<i> &gt; Feb-22 18:47:00 &lt;1&gt; : EXEC [mktemp -q -d /tmp/kiso-loader-XXXXXX 2&gt;&amp;1]
+</I>&gt;<i> &gt; Feb-22 18:47:00 &lt;1&gt; : EXEC [chmod 755 /tmp/kiso-loader-ujtMr0]
+</I>&gt;<i> &gt; Feb-22 18:47:00 &lt;1&gt; : EXEC [cd /home/roger/source.18.00/RSofT_Diskless/kiwi/RSofT-preload-openSUSE-11.2/image/kiwicdinst.KoBHbj &amp;&amp; genisoimage -R -J -f -b boot/grub/stage2 -no-emul-boot -V &quot;KIWI CD/DVD Installation&quot; -boot-load-size 4 -boot-info-table -udf -allow-limited-size -o /home/roger/source.18.00/RSofT_Diskless/kiwi/RSofT-preload-openSUSE-11.2/image/RSofT-11.2-oem-preload.i686-1.1.3.iso . 2&gt;&amp;1]
+</I>&gt;<i> &gt;    failed
+</I>&gt;<i> &gt; Feb-22 19:11:56 &lt;3&gt; : Failed creating ISO image: Warning: -follow-links does not always work correctly; be careful.
+</I>&gt;<i> &gt; I: -input-charset not specified, using utf-8 (detected in locale settings)
+</I>&gt;<i> &gt; genisoimage: Too many levels of symbolic links. File ./var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp/var/lib/ntp is not readable - ignoring
+</I>&gt;<i> &gt; genisoimage: Too many levels of symbolic links. File ./boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/vmlinuz is not readable - ignoring
+</I>&gt;<i> &gt; genisoimage: Too many levels of symbolic links. File ./boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot is not readable - ignoring
+</I>&gt;<i> &gt; genisoimage: Too many levels of symbolic links. File ./boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/boot/initrd is not readable - ignoring
+</I>&gt;<i> &gt; genisoimage: No such file or directory. File ./etc/alternatives/jre_1.6.0 is not readable - ignoring
+</I>&gt;<i> &gt; genisoimage: No such file or directory. File ./etc/alternatives/keytool is not readable - ignoring
+</I>&gt;<i> &gt; genisoimage: No such file or directory. File ./etc/alternatives/jre is not readable - ignoring
+</I>&gt;<i> &gt; genisoimage: No such file or directory. File ./etc/alternatives/jre_openjdk is not readable - ignoring
+</I>&gt;<i> &gt; genisoimage: No such file or directory. File ./etc/alternatives/jre_1.6.0_exports is not readable - ignoring
+</I>&gt;<i> &gt; genisoimage: No such file or directory. File ./etc/alternatives/jre_exports is not readable - ignoring
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Did I miss something?
+</I>&gt;<i> 
+</I>&gt;<i> This looks very suspicious of a corrupted unpacked image tree. What do
+</I>&gt;<i> you get with:-&gt; ls -l UNPACKED_IMAGE_DIR/
+</I>
+On a regular openSUSE install (not just here in kiwi), in /boot, there
+is a link to '.' called 'boot'. Check any regular install of openSUSE. I
+recall seeing this link for a very long time. So, the image_root
+directory looks like any installed one would look like. On a regular
+openSUSE install, in /boot, you can type 'cd boot' until the cows come
+home. Go try it.
+
+Same for /var/lib/ntp/var/lib, where there is a link to ../..
+
+In fact, there are a number of these occurrences.
+
+I would imagine that these links should not be followed when making the
+ISO image, as it is the link itself that is wanted. Perhaps there is a
+missing option when making the ISO image?
+
+The other link that causes problems is /dev/fd/3. This on is odd in that
+the log complains about it, but I do not see the file in the tree.
+Perhaps there is something active in the tree when it is built?
+
+A final thing is that image-root/etc/alternatives has links to things
+that only exist in the CD image. For example:
+
+	java -&gt; /usr/lib/jvm/jre-1.6.0-openjdk/bin/java
+
+The destination does exist in the DVD image but not on the host system.
+The kiwi build complains it cannot be found. That would only happen if
+the ISO build was following symlinks - which is obviously should not be
+doing.
+
+I see the -f option is used in the genisoimage command. This must be
+incorrect. Especially since image_root is not chroot'd when the DVD
+image is made. Something that points to /usr would point to /usr on the
+host system, and not on the DVD.
+
+
+
+&gt;<i> 
+</I>&gt;<i> -&gt; ls -l UNPACKED_IMAGE_DIR/etc/alternatives/*
+</I>&gt;<i> -&gt; ls -l UNPACKED_IMAGE_DIR/
+</I>&gt;<i> -&gt; ls -l UNPACKED_IMAGE_DIR/var/lib/
+</I>&gt;<i> -&gt; ls -l UNPACKED_IMAGE_DIR/var/lib/ntp
+</I>&gt;<i> 
+</I>&gt;<i> Robert
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center                LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i> 
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i> 
+</I>
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002388.html">[Kiwi-users] oem preload to ISO image
+</A></li>
+	<LI>Next message: <A HREF="002389.html">[Kiwi-users] oem preload to ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2392">[ date ]</a>
+              <a href="thread.html#2392">[ thread ]</a>
+              <a href="subject.html#2392">[ subject ]</a>
+              <a href="author.html#2392">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] VMDK for ESX
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMDK%20for%20ESX&In-Reply-To=%3C478B365948C8D1479951067B1C47DD919AC9D47082%40AUSX7MCPC101.AMER.DELL.COM%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002053.html">
+   <LINK REL="Next"  HREF="002046.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] VMDK for ESX</H1>
+    <B>Prudhvi_Tella at Dell.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMDK%20for%20ESX&In-Reply-To=%3C478B365948C8D1479951067B1C47DD919AC9D47082%40AUSX7MCPC101.AMER.DELL.COM%3E"
+       TITLE="[Kiwi-users] VMDK for ESX">Prudhvi_Tella at Dell.com
+       </A><BR>
+    <I>Wed Sep 29 17:50:25 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002053.html">[Kiwi-users] VMDK for ESX
+</A></li>
+        <LI>Next message: <A HREF="002046.html">[Kiwi-users] VMDK for ESX
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2058">[ date ]</a>
+              <a href="thread.html#2058">[ thread ]</a>
+              <a href="subject.html#2058">[ subject ]</a>
+              <a href="author.html#2058">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Using ovftool I am able to run my VM on ESX. Thanks for the help.
+
+&gt;<i> -----Original Message-----
+</I>&gt;<i> From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>]
+</I>&gt;<i> Sent: Wednesday, September 29, 2010 3:59 AM
+</I>&gt;<i> To: Tella, Prudhvi
+</I>&gt;<i> Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> Subject: Re: [Kiwi-users] VMDK for ESX
+</I>&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I am using kiwi to create VMWare format VMDK and VMX. I can play it using
+</I>&gt;<i> VMPlayer, however, I could not run the VM in ESX without converting it using
+</I>&gt;<i> VCenter Converter. Is there a way to make ESX/i compatible VMDK using kiwi
+</I>&gt;<i> or is there a command line tool that could convert it?
+</I>&gt;<i> 
+</I>&gt;<i> iirc ESX requires the image to be in the ovf format. If you have the ovftool for
+</I>&gt;<i> Linux installed:
+</I>&gt;<i> 
+</I>&gt;<i>   <A HREF="http://www.vmware.com/appliances/getting-started/learn/ovf.html">http://www.vmware.com/appliances/getting-started/learn/ovf.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> you can change your xml from
+</I>&gt;<i> 
+</I>&gt;<i>    format=&quot;vmdk&quot;
+</I>&gt;<i> 
+</I>&gt;<i> into
+</I>&gt;<i> 
+</I>&gt;<i>    format=&quot;ovf&quot;
+</I>&gt;<i> 
+</I>&gt;<i> kiwi will then call ovftool to create an image in ovf format which should run
+</I>&gt;<i> on ESX too
+</I>&gt;<i> 
+</I>&gt;<i> the ovftool from VMware is a binary only tool which we are not allowed to
+</I>&gt;<i> distribute so you need to manage the installation yourself.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>
+Prudhvi Tella
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002053.html">[Kiwi-users] VMDK for ESX
+</A></li>
+	<LI>Next message: <A HREF="002046.html">[Kiwi-users] VMDK for ESX
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2058">[ date ]</a>
+              <a href="thread.html#2058">[ thread ]</a>
+              <a href="subject.html#2058">[ subject ]</a>
+              <a href="author.html#2058">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

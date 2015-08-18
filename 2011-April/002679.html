@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Stick-Image wouldn't boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C201104221317.04275.hj.beckers%40onlinehome.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002674.html">
+   <LINK REL="Next"  HREF="002681.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Stick-Image wouldn't boot</H1>
+    <B>Hermann J. Beckers</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C201104221317.04275.hj.beckers%40onlinehome.de%3E"
+       TITLE="[Kiwi-users] Stick-Image wouldn't boot">hj.beckers at onlinehome.de
+       </A><BR>
+    <I>Fri Apr 22 13:17:03 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002674.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+        <LI>Next message: <A HREF="002681.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2679">[ date ]</a>
+              <a href="thread.html#2679">[ thread ]</a>
+              <a href="subject.html#2679">[ subject ]</a>
+              <a href="author.html#2679">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Robert,
+
+thanks for your explanations 
+
+...
+&gt;<i> &gt; 
+</I>&gt;<i> &gt; So it seems a image generated as &quot;usb stick/hard disk image&quot; can't be
+</I>&gt;<i> &gt; used both ways?
+</I>&gt;<i> 
+</I>&gt;<i> Correct
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Or what am I doing wrong?
+</I>&gt;<i> 
+</I>&gt;<i> No, you are not doing anything wrong. When the image boots for the first
+</I>&gt;<i> time a &quot;generic/special&quot; initrd runs. This initrd is responsible for
+</I>&gt;<i> expanding the file system (as you observed on the stick) and it also
+</I>&gt;<i> creates a new initrd that is specific to the device the image is booted
+</I>&gt;<i> from. The image gets permanently altered when this happens.
+</I>&gt;<i> 
+</I>&gt;<i> Thus, after you boot from the stick you have an initrd on the stick that
+</I>&gt;<i> works for the stick, if you first boot in qemu, you'll end up with an
+</I>&gt;<i> initrd for qemu.
+</I>&gt;<i> 
+</I>The stick works only on the netbook, where it was initialized. Booting my 
+notebook with this stick it still shows &quot;waiting for .... to appear&quot;. That 
+can't be the right way. Would I be better of using another img format?
+
+I need a small linux with user accounting, X11 not a must. It should fit on a 
+1 Gb, better 512 MB stick. But most important: It MUST boot on almost any USB-
+bootable PC.
+
+Because of the requirement &quot;user accounting&quot; me thinks I can't use the wiki 
+suggestion of dd'ing a live cd onto the stick and adding a partition at the 
+end of the stick with fdisk? Should I try something like damn small linux or 
+tinycore linux?
+
+Thanks 
+hjb
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002674.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+	<LI>Next message: <A HREF="002681.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2679">[ date ]</a>
+              <a href="thread.html#2679">[ thread ]</a>
+              <a href="subject.html#2679">[ subject ]</a>
+              <a href="author.html#2679">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20mount%20root%20filesystem%20%28kiwi%202.02%29&In-Reply-To=%3C20071213135742.GA12629%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000173.html">
+   <LINK REL="Next"  HREF="000177.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20mount%20root%20filesystem%20%28kiwi%202.02%29&In-Reply-To=%3C20071213135742.GA12629%40suse.de%3E"
+       TITLE="[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)">ms at suse.de
+       </A><BR>
+    <I>Thu Dec 13 14:57:42 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000173.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+        <LI>Next message: <A HREF="000177.html">[Kiwi-users] New module KIWIUtil.pm, changed module KIWIXML.pm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#174">[ date ]</a>
+              <a href="thread.html#174">[ thread ]</a>
+              <a href="subject.html#174">[ subject ]</a>
+              <a href="author.html#174">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> it seems that &quot;kiwidebug=1&quot; has no effect in my case.
+</I>
+which version of kiwi do you use ? 
+ 
+   rpm -qa | grep kiwi
+
+&gt;<i> Sorry, I meant qemu -hda /dev/sda of course ... this is the way I am
+</I>&gt;<i> checking the other bootstick systems.
+</I>
+The usbboot initrd was made for USB sticks only so its first task
+is to search for a USB stick. The qemu -hda emulation emulates a disk
+and no USB stack that's why it failes. There is another boot type
+called oem (oemboot) which is used to deploy a preload system onto
+a disk no matter if this disk is a USB stick or a &quot;real&quot; disk
+
+&gt;<i> Out of curiosity - why is there a separate boot partition for the
+</I>&gt;<i> opensuse sticks?
+</I>
+The boot image and the system image are different entities. In your
+case the system image is a read-only squashfs filesystem which you can't
+access via the grub bootloader. According to this a single boot partition
+with the size of the initrd+kernel+ext2-fs overhead is created and used
+for the boot process
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000173.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+	<LI>Next message: <A HREF="000177.html">[Kiwi-users] New module KIWIUtil.pm, changed module KIWIXML.pm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#174">[ date ]</a>
+              <a href="thread.html#174">[ thread ]</a>
+              <a href="subject.html#174">[ subject ]</a>
+              <a href="author.html#174">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

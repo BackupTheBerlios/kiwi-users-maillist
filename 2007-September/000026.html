@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-ltsp-setup problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-ltsp-setup%20problem&In-Reply-To=%3C200709180946.18516.markd%40hotdesk.biz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000025.html">
+   <LINK REL="Next"  HREF="000027.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-ltsp-setup problem</H1>
+    <B>Mark Dickie</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-ltsp-setup%20problem&In-Reply-To=%3C200709180946.18516.markd%40hotdesk.biz%3E"
+       TITLE="[Kiwi-users] kiwi-ltsp-setup problem">markd at hotdesk.biz
+       </A><BR>
+    <I>Tue Sep 18 10:46:18 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000025.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+        <LI>Next message: <A HREF="000027.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26">[ date ]</a>
+              <a href="thread.html#26">[ thread ]</a>
+              <a href="subject.html#26">[ subject ]</a>
+              <a href="author.html#26">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Just tried to run kiwi-ltsp-setup -s again and I'm still getting the same 
+errors.
+
+Sep-17 11:31 &lt;1&gt; : Adding user: linux [users]   failed
+Sep-17 11:31 &lt;1&gt; : chroot: cannot run command `/usr/sbin/useradd': No such 
+file or directory
+   failed
+Sep-17 11:31 &lt;3&gt; : Couldn't setup image system   failed
+
+And
+
+Sep-17 11:34 &lt;1&gt; : Checking for package: kernel-default   failed
+Sep-17 11:34 &lt;3&gt; : Package kernel-default is not installed   skipped
+
+I checked rpm -q pwdutils and got pwdutils-3.1.4-24, also I tried rpm -q 
+kernel-default and got kernel-default-2.6.22.5-18.  Still not very sure what 
+I'm doing wrong.
+
+Thanks for all the tips guys
+On Tuesday 18 September 2007 09:35:24 you wrote:
+&gt;<i> On 9/18/07, Mark Dickie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">markd at hotdesk.biz</A>&gt; wrote:
+</I>&gt;<i> &gt; I mounted the DVD at /mnt/10.3 so was able to go with the configuration
+</I>&gt;<i> &gt; default and I entered all my network information.  Also I tried to
+</I>&gt;<i> &gt; install
+</I>&gt;<i>
+</I>&gt;<i> OK, that is a good idea.
+</I>&gt;<i>
+</I>&gt;<i> &gt; the version of smart suggested in the wiki but found I already had a
+</I>&gt;<i> &gt; newer version (smart-0.51-51) installed so I left it alone.  I just ran
+</I>&gt;<i> &gt; kiwi-ltsp-setup -p and got the following message.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; KIWI-LTSP: 2007-09-18 03:58:56: ====== Starting ======
+</I>&gt;<i> &gt; KIWI-LTSP: 2007-09-18 03:58:56: Checking for mandatory packages.
+</I>&gt;<i> &gt; KIWI-LTSP: 2007-09-18 03:58:57: All mandatory packages are installed
+</I>&gt;<i> &gt; KIWI-LTSP: 2007-09-18 03:58:57: ====== Setup completed ======
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; So I guess it's okay on that front.
+</I>&gt;<i>
+</I>&gt;<i> Yes, everything is set.
+</I>&gt;<i>
+</I>&gt;<i> good luck
+</I>&gt;<i>
+</I>&gt;<i> -J
+</I>
+
+
+-- 
+Mark Robert Dickie
+Virtual Desk Limited
+E <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">markd at hotdesk.biz</A>
+T 08450043348
+M 07917710719
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000025.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+	<LI>Next message: <A HREF="000027.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26">[ date ]</a>
+              <a href="thread.html#26">[ thread ]</a>
+              <a href="subject.html#26">[ subject ]</a>
+              <a href="author.html#26">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

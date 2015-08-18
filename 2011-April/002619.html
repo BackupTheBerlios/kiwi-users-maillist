@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Upgrading%20to%20kiwi-4.84-237.1.i586&In-Reply-To=%3C4D9B4BFE.4040602%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002626.html">
+   <LINK REL="Next"  HREF="002617.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Upgrading%20to%20kiwi-4.84-237.1.i586&In-Reply-To=%3C4D9B4BFE.4040602%40novell.com%3E"
+       TITLE="[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Apr  5 19:06:06 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002626.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+        <LI>Next message: <A HREF="002617.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2619">[ date ]</a>
+              <a href="thread.html#2619">[ thread ]</a>
+              <a href="subject.html#2619">[ subject ]</a>
+              <a href="author.html#2619">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 04/05/2011 12:00 PM, EXTERNAL Konold Martin (Firma, RtP2/TEF72) wrote:
+&gt;<i> Hi Marcus,
+</I>&gt;<i>
+</I>&gt;&gt;<i> *argl* yes this is the problem. There is a KIWILocator::getExecPath()
+</I>&gt;&gt;<i> function which does a 'which zypper'. The result in your case is
+</I>&gt;&gt;<i> '/usr/lib/qt4/bin/zypper' and we store that value for all tasks
+</I>&gt;&gt;<i> including the one happening in the chroot. Inside the chroot you
+</I>&gt;&gt;<i> don't have libqt4-devel installed which means the bin link does not
+</I>&gt;&gt;<i> exist and thus zypper can't be found
+</I>&gt;<i> Yes.
+</I>&gt;<i>
+</I>&gt;&gt;<i> In older kiwi versions we just called zypper without searching the
+</I>&gt;&gt;<i> location before.
+</I>&gt;<i> What was the rational for changing that?
+</I>
+The rational was the reverse problem you are stumbling over at the 
+moment, where the hard coded paths in KIWI caused problems.
+&gt;<i> Please note the following principle design issue with the above change to use KIWILocator::getExecPath().
+</I>&gt;<i>
+</I>&gt;<i> When propagating the full path to zypper or any other tool from the kiwi host to the kiwi target there is an implicit dependency between the host and the target. Such implicit dependencies and propagation of configuration information ($PATH in this case) should be avoided if possible.
+</I>
+I agree with this. We need to find a solution that decouples the target 
+system and the build system.
+
+&gt;<i> Imagine: In the future the zypper binary might move to a new location in the filesystem hierarchy. In this case it would be impossible to create the new OS via kiwi as zypper or other tools would be called with the wrong explicit path.
+</I>&gt;<i>
+</I>&gt;<i> Why not make the path to zypper and other tools implicit instead of explicit?
+</I>&gt;<i>
+</I>&gt;<i> E.g. using the output from &quot;rpm -qf&quot; within the chrooted environment or a traditional search path?
+</I>
+Sorry, I don't follow your logic here. In the end all we know is that we 
+are looking for &quot;zypper&quot; and we do not really know where it lives.
+
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002626.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+	<LI>Next message: <A HREF="002617.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2619">[ date ]</a>
+              <a href="thread.html#2619">[ thread ]</a>
+              <a href="subject.html#2619">[ subject ]</a>
+              <a href="author.html#2619">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

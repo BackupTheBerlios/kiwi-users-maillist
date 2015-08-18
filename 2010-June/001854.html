@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with iso image in qemu
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20iso%20image%20in%20qemu&In-Reply-To=%3C20100620090400.GA3418%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001853.html">
+   <LINK REL="Next"  HREF="001855.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with iso image in qemu</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20iso%20image%20in%20qemu&In-Reply-To=%3C20100620090400.GA3418%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Issues with iso image in qemu">ms at novell.com
+       </A><BR>
+    <I>Sun Jun 20 11:04:00 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001853.html">[Kiwi-users] Issues with iso image in qemu
+</A></li>
+        <LI>Next message: <A HREF="001855.html">[Kiwi-users] kiwi: Weekly report 2010-06-13 - 2010-06-18...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1854">[ date ]</a>
+              <a href="thread.html#1854">[ thread ]</a>
+              <a href="subject.html#1854">[ subject ]</a>
+              <a href="author.html#1854">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> More info:
+</I>&gt;<i> 
+</I>&gt;<i> On 06/18/2010 12:03 PM, Robert Schweikert wrote:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; On 06/18/2010 11:52 AM, Marcus Sch&#228;fer wrote:
+</I>&gt;<i> &gt;&gt; Hi,
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; As of a recent version of Kiwi I am unable to test OEM images in iso
+</I>&gt;<i> &gt;&gt;&gt; format with qemu. I get
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; &quot;Failed to detect CD/DVD or USB drive&quot;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; message and then a reboot exception.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; # kiwi --version
+</I>&gt;<i> &gt;&gt;&gt; Jun-18 10:59:57 &lt;1&gt; : kiwi version v4.42
+</I>&gt;<i> &gt;&gt;&gt; GIT Commit: 101552039f9be1abd70dd5449bb01c95c21d9e00
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; Considering the recent issue with the VMware image (see mail earlier
+</I>&gt;<i> &gt;&gt;&gt; this week) I think something fundamental is broken.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; I can't reproduce this...
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;  kiwidebug=1
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; and do some checks in the shell ?
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; are you building factory images (11.3) ?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Building SLES 11 SP1 on openSUSE 11.2.
+</I>&gt;<i> 
+</I>&gt;<i> Using the same image description but with the SLES 11 .iso as repo
+</I>&gt;<i> instead of SLES 11 SP1 everything works as expected.
+</I>&gt;<i> 
+</I>&gt;<i> Thus it looks like a SLES 11 SP1 issue.
+</I>
+Could you talk to Steffen Winterfeldt (snwint) and Alexander Graf (agraf)
+about this. I think it could be a kvm, qemu or kernel problem or
+some new requirement within the initrd to make hwinfo detect
+hardware again
+
+This doesn't sound good :(
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001853.html">[Kiwi-users] Issues with iso image in qemu
+</A></li>
+	<LI>Next message: <A HREF="001855.html">[Kiwi-users] kiwi: Weekly report 2010-06-13 - 2010-06-18...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1854">[ date ]</a>
+              <a href="thread.html#1854">[ thread ]</a>
+              <a href="subject.html#1854">[ subject ]</a>
+              <a href="author.html#1854">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

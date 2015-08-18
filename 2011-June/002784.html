@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi fails to create ovf format image.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20fails%20to%20create%20ovf%20format%20image.&In-Reply-To=%3C6BC7A19413B95840B0B301508A060DEC5EDDA1CF76%40MX17A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002781.html">
+   <LINK REL="Next"  HREF="002787.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi fails to create ovf format image.</H1>
+    <B>vijay.kumar at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20fails%20to%20create%20ovf%20format%20image.&In-Reply-To=%3C6BC7A19413B95840B0B301508A060DEC5EDDA1CF76%40MX17A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] kiwi fails to create ovf format image.">vijay.kumar at emc.com
+       </A><BR>
+    <I>Wed Jun 15 21:16:38 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002781.html">[Kiwi-users] kiwi fails to create ovf format image.
+</A></li>
+        <LI>Next message: <A HREF="002787.html">[Kiwi-users] kiwi fails to create ovf format image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2784">[ date ]</a>
+              <a href="thread.html#2784">[ thread ]</a>
+              <a href="subject.html#2784">[ subject ]</a>
+              <a href="author.html#2784">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Attaching the &quot;create.log&quot; for more information. Did anyone faced this issue, I am not able to understand why kiwi is calling ovftool with &quot;-bf&quot; which is not a valid option with 1.0 and 2.0 versions of ovftool. Then it might be the issue of kiwi version. Could anyone please let me know which version of kiwi is compatible with ovftool version 2.0.1.
+
+Thanks,
+
+Vijay Kumar | Associate Principal Release Engineer | RSA, The Security Divison of EMC
+
+Office +91 80 6737 6230 | Cell +91 98807 61334
+
+
+
+www.rsa.com&lt;<A HREF="http://www.rsa.com">http://www.rsa.com</A>&gt;
+
+
+
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A> [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A>] On Behalf Of <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">vijay.kumar at emc.com</A>
+Sent: Wednesday, June 15, 2011 11:01 PM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+Subject: [Kiwi-users] kiwi fails to create ovf format image.
+
+
+
+I have kiwi version v3.74 and VMware ovftool 2.0.1 (build-260188) installed, kiwi is the default which comes bundled with suse studio onsite 1.1.
+
+Creation of vmdk format image works good but kiwi fails to create OVF format image with the following error.
+
+&lt;error&gt;
+
+[*** log excerpt follows, last 1 Kbyte ***]
+
+d/dev/hydra/appliance/data-integration/image/dataintegration2.x86_64-0.0.3.ovf -l create.log 2&gt;&amp;1]
+
+Jun-15 16:31:56 &lt;1&gt; : EXEC [sed -i -e 's;disk;scsi-hardDisk;' /home/build/hydra-appliance-build/dev/hydra/appliance/data-integration/image/dataintegration2.x86_64-0.0.3.vmx]
+
+    failed
+
+Jun-15 16:31:56 &lt;3&gt; : Couldn't create OVF image: Unknown option `-bf'
+
+    failed
+
+Jun-15 16:31:56 &lt;1&gt; : EXEC [mktemp -q /tmp/kiwi-xmlused.XXXXXX]
+
+Jun-15 16:31:56 &lt;1&gt; : EXEC [mktemp -q /tmp/kiwi-xmlorig.XXXXXX]
+
+Jun-15 16:31:56 &lt;1&gt; : EXEC [cp -a /tmp/config.xml /tmp/kiwi-xmlorig.IP5z9W]
+
+Jun-15 16:31:56 &lt;1&gt; : EXEC [sed -i -e 's!&gt;&lt;!&gt;\n&lt;!'g -e 's!\t!!'g /tmp/kiwi-xmlused.GwYcp9]
+
+Jun-15 16:31:56 &lt;1&gt; : EXEC [sed -i -e 's!\t!!'g /tmp/kiwi-xmlorig.IP5z9W]
+
+Jun-15 16:31:56 &lt;1&gt; : EXEC [sort /tmp/kiwi-xmlused.GwYcp9 -o /tmp/kiwi-xmlused.GwYcp9]
+
+Jun-15 16:31:56 &lt;1&gt; : EXEC [sort /tmp/kiwi-xmlorig.IP5z9W -o /tmp/kiwi-xmlorig.IP5z9W]
+
+Jun-15 16:31:56 &lt;1&gt; : EXEC [diff -uwB /tmp/kiwi-xmlorig.IP5z9W /tmp/kiwi-xmlused.GwYcp9 2&gt;&amp;1]
+
+[*** end ***]
+
+&lt;/error&gt;
+
+Thanks,
+
+Vijay Kumar | Associate Principal Release Engineer | RSA, The Security Divison of EMC
+
+Office +91 80 6737 6230 | Cell +91 98807 61334
+
+
+
+www.rsa.com&lt;<A HREF="http://www.rsa.com">http://www.rsa.com</A>&gt;
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110615/24815ab6/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110615/24815ab6/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: create.log
+Type: application/octet-stream
+Size: 20499 bytes
+Desc: create.log
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110615/24815ab6/attachment.obj">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110615/24815ab6/attachment.obj</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002781.html">[Kiwi-users] kiwi fails to create ovf format image.
+</A></li>
+	<LI>Next message: <A HREF="002787.html">[Kiwi-users] kiwi fails to create ovf format image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2784">[ date ]</a>
+              <a href="thread.html#2784">[ thread ]</a>
+              <a href="subject.html#2784">[ subject ]</a>
+              <a href="author.html#2784">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

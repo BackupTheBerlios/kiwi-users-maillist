@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi-ltsp with AoE/fatclient problem - KLA server	doesn't start
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi-ltsp%20with%20AoE/fatclient%20problem%20-%20KLA%20server%0A%09doesn%27t%20start&In-Reply-To=%3Ck2jb317ae5c1004302153p4dfaa1cdm3fff51f9383cd6da%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001794.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi-ltsp with AoE/fatclient problem - KLA server	doesn't start</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi-ltsp%20with%20AoE/fatclient%20problem%20-%20KLA%20server%0A%09doesn%27t%20start&In-Reply-To=%3Ck2jb317ae5c1004302153p4dfaa1cdm3fff51f9383cd6da%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Kiwi-ltsp with AoE/fatclient problem - KLA server	doesn't start">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Sat May  1 06:53:02 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001794.html">[Kiwi-users] Kiwi-ltsp with AoE/fatclient problem - KLA server	doesn't start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1792">[ date ]</a>
+              <a href="thread.html#1792">[ thread ]</a>
+              <a href="subject.html#1792">[ subject ]</a>
+              <a href="author.html#1792">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Apr 30, 2010 at 11:22 PM, Allan Wiese &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">allanwiese at gmail.com</A>&gt; wrote:
+&gt;<i> Hello everybody.
+</I>&gt;<i>
+</I>&gt;<i> I'm getting some problems with kiwi-ltsp with AoE.
+</I>&gt;<i>
+</I>&gt;<i> After follow all the steps found in AoE and Fatclient howtos, when I try to
+</I>&gt;<i> restart the kla server, it gives me the message bellow:
+</I>&gt;<i>
+</I>&gt;<i> Shutting down kiwi-ltsp with AoE (kla)&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; done
+</I>&gt;<i> Starting kiwi-ltsp with AoE (kla)&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; failed
+</I>&gt;<i>
+</I>&gt;<i> What could be causing this problem?
+</I>&gt;<i>
+</I>Ignore that error, it is a bug in the script, check &quot;ps ax | grep
+vblade&quot; to see if the service is running, if not then start it
+manually:
+
+ vbladed 0 1 eth0 /path/to/imagename.img
+
+Change eth0 to the device you are using and 0 1 to whatever numbers
+used in /srv/tftpboot/KIWI/config.MAC AOEROOT=/dev/etherd/e0.1
+
+BTW, this method is deprecated, LTSP upstream now has fatclient
+support using LDM, instructions for setting up image for that will be
+posted soon, I have copied this mail to the students working on that
+project to do the needful.
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001794.html">[Kiwi-users] Kiwi-ltsp with AoE/fatclient problem - KLA server	doesn't start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1792">[ date ]</a>
+              <a href="thread.html#1792">[ thread ]</a>
+              <a href="subject.html#1792">[ subject ]</a>
+              <a href="author.html#1792">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

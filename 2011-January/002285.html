@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Additional packages needed in OEM (DVD) boot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Additional%20packages%20needed%20in%20OEM%20%28DVD%29%20boot%20image&In-Reply-To=%3COF7BD612C8.C3D303A3-ON87257825.004E9FAD-87257825.0050A948%40infoprint.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002281.html">
+   <LINK REL="Next"  HREF="002286.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Additional packages needed in OEM (DVD) boot image</H1>
+    <B>J Mixer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Additional%20packages%20needed%20in%20OEM%20%28DVD%29%20boot%20image&In-Reply-To=%3COF7BD612C8.C3D303A3-ON87257825.004E9FAD-87257825.0050A948%40infoprint.com%3E"
+       TITLE="[Kiwi-users] Additional packages needed in OEM (DVD) boot image">j.mixer at infoprint.com
+       </A><BR>
+    <I>Thu Jan 27 15:43:40 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002281.html">[Kiwi-users] Keyboard and KDE
+</A></li>
+        <LI>Next message: <A HREF="002286.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2285">[ date ]</a>
+              <a href="thread.html#2285">[ thread ]</a>
+              <a href="subject.html#2285">[ subject ]</a>
+              <a href="author.html#2285">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus,
+
+It's been a while since you responded to this thread and I'm just getting 
+a chance to respond.
+
+I'd like to investigate using a &quot;Live&quot; kiwi build for my complex 
+installation and I would like your opinion.   Here is why I need so my 
+&quot;function&quot; in my initrd:
+
+1.  I am using the kiwi built installation to install an openSuse 11.1 on 
+a full &quot;rack&quot; of machines in manufacturing.  The machines are straight out 
+of the PC factory and have no configuration.  The installation needs to be 
+completely automated.  The initially loaded machine (lets call it the 
+&quot;Head Node&quot;) is installed first and then is the master for loading all the 
+rest of the machines in the system.  The Head Node contains a megaraid-sas 
+driven hard disk card that must be configured (automatically) before the 
+machine can boot from the hard disk.  The tool to do this requires some 
+special libraries be available.
+
+Rather than having so much in the initial booted initrd, would it be more 
+straight forward to have the first initrd load a &quot;bigger&quot; squashfs 
+filesystem (built by kiwi) into memory switch the kernel over to that, and 
+run all my &quot;special&quot; code from that bigger filesystem?  I would need a 
+couple of suggestions on how to configure this build and then an 
+additional build that would be the &quot;real&quot;, hard disk based Linux that the 
+&quot;bigger&quot; filesystem would load onto the hard disk.
+
+2.  The Linux on the Head Node sets up a TFTP, DHCP, and NFS server to 
+allow all the rest of the machines in the rack (call these the &quot;Remote 
+Nodes&quot;) to PXE (network) boot from the head node.  The difficulty here is 
+that the Head Node sets up each of the Remote Nodes to initially boot from 
+the network, but each of the remote nodes must have the capability to 
+change there own boot order back to the hard disk before booting from the 
+hard disk.  This causes another reason to have a large initial initrd OR a 
+&quot;bigger&quot; filesystem that is loaded into memory to do the &quot;heavy lifting&quot;.
+
+Please get back to me when you can.
+
+Regards,
+
+J.
+
+J. Mixer
+Control Unit Development
+Phone: 720.663.3532
+Email: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">j.mixer at infoprint.com</A>
+infoprint.com
+Linux: May the source be with you. 
+
+
+
+
+Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; 
+12/09/2010 02:08 AM
+
+To
+J Mixer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">j.mixer at infoprint.com</A>&gt;
+cc
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject
+Re: [Kiwi-users] Additional packages needed in OEM (DVD) boot image
+
+
+
+
+
+
+Hi J,
+
+&gt;<i> We run our own install script  in the boot image of our OEM build,  We 
+</I>&gt;<i> need to run a binary executable that requires libstdc++.so.6 while 
+</I>running 
+&gt;<i> in the boot image. 
+</I>
+Uhm, *urgl* why do you want to that in the boot image ?
+
+&gt;<i> (i.e. our of the DVD's initrd )  I attempted to 
+</I>&gt;<i> request that the libstdc++43 package be included in the boot image with 
+</I>&gt;<i> the following line in the config.xml:
+</I>&gt;<i> 
+</I>&gt;<i> &lt;package name=&quot;libstdc++43&quot; bootinclude=&quot;true&quot;/&gt;
+</I>
+Well the initrd is kept as small as possible therefore all not directly
+linked libraries are ripped out. A small subset of dl loaded libraries
+are excluded from that process though.
+
+&gt;<i> The library was not included in the boot image initrd.  Is there an 
+</I>&gt;<i> architected way to include extra simple software packages in the boot 
+</I>&gt;<i> image initrd?  (The bootinclude=&quot;true&quot; for the megaraid_sas driver 
+</I>package 
+&gt;<i> worked great!)
+</I>
+bootincluding of drivers, configurations and friends was the intention
+behind the feature. Installing additional software into the bootimage by
+a bootinclude has always the same problem that the code which makes the
+initrd small will rip out all the stuff which is not required to the
+job this initrd code was made for.
+
+Let me suggest another way:
+
+1) install the software in your system image without bootinclude !
+
+2) decide whether the code you want to run really needs to run
+   inside the initrd or not:
+
+   a) Assuming it doesn't have to run in the initrd
+   =================================================
+
+   - write a runlevel script which calls your software and place the
+     script in etc/init.d/ in your root/ overlay files tree of the
+     system image description
+ 
+   - activate the service to run on boot by adding the following
+     in your config.sh script of the system image description
+
+     suseInsertService name
+
+   b) Assuming it has to run in the initrd for whatever reason
+   ============================================================
+
+   - write a script called 'preCallInit.sh' which calls your software
+   - place that script in a tarball so that it is listed with the
+     following path and name
+
+     /kiwi-hooks/preCallInit.sh
+
+   - assuming the tarballs name is preCallInit.tgz then put that
+     file in your system image description directory at the same
+     level were your config.xml lives
+
+   - add the following line in your system image config.xml:
+
+     &lt;archive name=&quot;preCallInit.tgz&quot; bootinclude=&quot;true&quot;/&gt;
+ 
+     This will install the script in the initrd too and it
+     will not be removed as it could happen with add-on libs
+     The preCallInit hook runs inside the initrd exactly before
+     calling the system init prozess. At that stage the root
+     mount point has already moved into the system image which
+     means you can access all software installed in the system
+     image and that also includes your installer or whatever you
+     would like to call
+
+I hope that solves your problem. Any other place in the initrd
+would require a code change imho and that also means you need to
+maintain the code yourself ;)
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+
+_____________________________________________________________________________
+&quot;This message and any attachments are solely for the intended recipient and may contain confidential or privileged information. If you are not the intended recipient, any disclosure, copying, use, or distribution of the information included in this message and any attachments is prohibited. If you have received this communication in error, please notify us by reply e-mail and immediately and permanently delete this message and any attachments. Thank you.&quot; _____________________________________________________________________________
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110127/44e4dceb/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110127/44e4dceb/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: image/gif
+Size: 743 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110127/44e4dceb/attachment.gif">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110127/44e4dceb/attachment.gif</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002281.html">[Kiwi-users] Keyboard and KDE
+</A></li>
+	<LI>Next message: <A HREF="002286.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2285">[ date ]</a>
+              <a href="thread.html#2285">[ thread ]</a>
+              <a href="subject.html#2285">[ subject ]</a>
+              <a href="author.html#2285">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

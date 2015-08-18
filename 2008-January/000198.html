@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%20an%0A%09image%20with%20kiwi&In-Reply-To=%3C200801021423.58890.ml%40radoeka.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000197.html">
+   <LINK REL="Next"  HREF="000199.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] errors of uninstalled packages when building an	image with kiwi</H1>
+    <B>Richard Bos</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%20an%0A%09image%20with%20kiwi&In-Reply-To=%3C200801021423.58890.ml%40radoeka.nl%3E"
+       TITLE="[Kiwi-users] errors of uninstalled packages when building an	image with kiwi">ml at radoeka.nl
+       </A><BR>
+    <I>Wed Jan  2 14:23:58 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000197.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+        <LI>Next message: <A HREF="000199.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#198">[ date ]</a>
+              <a href="thread.html#198">[ thread ]</a>
+              <a href="subject.html#198">[ subject ]</a>
+              <a href="author.html#198">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Op Wednesday 02 January 2008 10:30:54 schreef Marcus Sch&#228;fer:
+&gt;<i> Hi Richard,
+</I>&gt;<i>
+</I>&gt;<i> &gt; I was about to shut down my computer, I'm therefor just assuming that you
+</I>&gt;<i> &gt; would not mind to I sent you the config file (sorry if this was the wrong
+</I>&gt;<i> &gt; the assumption).  It's a 500k file (not too big).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I hope that you find some time (plus spirit perhaps ;) ) to actually test
+</I>&gt;<i> &gt; 'my' config file.  The base is example/test2 plus added packages.
+</I>&gt;<i> &gt; For a long time I was able to  create bootable iso images, but than this
+</I>&gt;<i> &gt; stopped suddenly. Hopefully you can determine what it is wrong???
+</I>&gt;<i>
+</I>&gt;<i> I have created and tested the iso image with your image description.
+</I>&gt;<i> I didn't change anything just extract the tarball and use the description:
+</I>&gt;<i>
+</I>&gt;<i>    kiwi --prepare /tmp/kiwi-kh --root /tmp/kiwi-test
+</I>&gt;<i>    kiwi --create /tmp/kiwi-test --type iso -d /tmp
+</I>&gt;<i>
+</I>&gt;<i> I got:
+</I>&gt;<i>
+</I>&gt;<i>    -rw-r--r-- 1 root root 435M 2008-01-01 18:23
+</I>&gt;<i> /tmp/kolab-horde.i686-1.1.4.iso
+</I>&gt;<i>
+</I>&gt;<i> and I ran:
+</I>&gt;<i>
+</I>&gt;<i>    qemu -cdrom /tmp/kolab-horde.i686-1.1.4.iso
+</I>&gt;<i>
+</I>&gt;<i> and all works fine :)
+</I>&gt;<i>
+</I>&gt;<i> Attached you'll find the kiwi prepare and create logs.
+</I>&gt;<i> Maybe your problems are not directly related to kiwi ?
+</I>
+Thanks.  I compared both logs with the logs that I obtained from my own kiwi 
+build.  The one from the prepare looks quite similar.  The big differences 
+are the order that the packages are installed, but that is done by smart.
+
+The log file for the creation part is quite different.  The diff starts here 
+after the images.sh files is called, yours is:
+Jan-01 18:22:08 &lt;1&gt; : images.sh: LALA
+mine is:
+Jan-02 12:56:29 &lt;1&gt; : images.sh: Configure image: 
+[initrd-isoboot-suse-10.3]...
+
+It looks like you're using your own images.sh script, is that possible?
+
+While you get:
++ test -f /.kconfig
++ . /.kconfig
++ test -f /.profile
++ . /.profile
+++ timezone=
+++ language=
+++ version=2.1.2
+++ name=initrd-isoboot-suse-10.3
+++ 
+
+I get:
+make: Entering directory `/usr/share/gfxboot/themes/SuSE'
+[ -e boot.config ] || { mkdir po ; ../../bin/adddir ../SuSE . ; }
+[ ! -f po/Makefile ] || make -C po clean
+make[1]: Entering directory `/usr/share/gfxboot/themes/SuSE/po'
+rm -f text.inc *.tr *~
+make[1]: Leaving directory `/usr/share/gfxboot/themes/SuSE/po'
+rm -f bootdir installdir *~
+rm -rf boot install
+make: Leaving directory `/usr/share/gfxboot/themes/SuSE'
+make: Entering directory `/usr/share/gfxboot/themes/SuSE'
+make -C po
+make[1]: Entering directory `/usr/share/gfxboot/themes/SuSE/po'
+bin/po2txt --product=&quot;openSUSE 10.3&quot; bootloader.pot &gt;en.tr
+bin/po2txt --product=&quot;openSUSE 10.3&quot; af.po &gt;af.tr
+bin/po2txt --product=&quot;openSUSE 10.3&quot; ar.po &gt;ar.tr
+
+I have added the full create log and the isoboot/suse-10.3/images.sh, perhaps 
+you can determine what the image.sh does in my case.
+
+
+ps: I have been able to run the example/test1 image succesfully in qemu.
+
+
+-- 
+Richard Bos
+We are borrowing the world of our children,
+It is not inherited from our parents.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: images.sh
+Type: application/x-shellscript
+Size: 814 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080102/d23e7059/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080102/d23e7059/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000197.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+	<LI>Next message: <A HREF="000199.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#198">[ date ]</a>
+              <a href="thread.html#198">[ thread ]</a>
+              <a href="subject.html#198">[ subject ]</a>
+              <a href="author.html#198">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

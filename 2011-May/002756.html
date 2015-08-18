@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] layout of  vmx type image regarding SSDs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20layout%20of%20%20vmx%20type%20image%20regarding%20SSDs&In-Reply-To=%3C20110531103922.GA30241%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002755.html">
+   <LINK REL="Next"  HREF="002757.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] layout of  vmx type image regarding SSDs</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20layout%20of%20%20vmx%20type%20image%20regarding%20SSDs&In-Reply-To=%3C20110531103922.GA30241%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] layout of  vmx type image regarding SSDs">ms at suse.de
+       </A><BR>
+    <I>Tue May 31 12:39:23 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002755.html">[Kiwi-users] layout of  vmx type image regarding SSDs
+</A></li>
+        <LI>Next message: <A HREF="002757.html">[Kiwi-users] layout of  vmx type image regarding SSDs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2756">[ date ]</a>
+              <a href="thread.html#2756">[ thread ]</a>
+              <a href="subject.html#2756">[ subject ]</a>
+              <a href="author.html#2756">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm building a LimeJeOS image based on openSUSE 11.4
+</I>&gt;<i> kiwi version v4.87
+</I>&gt;<i> 
+</I>&gt;<i> I found that copying the resulting LimeJeOS-openSUSE-11.4.i686-1.11.4.raw
+</I>&gt;<i> file onto a SSD disk (using dd) works, but is somewhat suboptimal,
+</I>&gt;<i> because the layout of the .raw image does not fit to a SSD device.
+</I>&gt;<i> 
+</I>&gt;<i> in particular:
+</I>&gt;<i> 1.
+</I>&gt;<i> # dd if=./mt-compile-11.4-out/LimeJeOS-openSUSE-11.4.i686-1.11.4.raw
+</I>&gt;<i> of=/dev/sdc bs=1M
+</I>&gt;<i> # fdisk -l /dev/sdc
+</I>&gt;<i> Disk /dev/sdc: 8065 MB, 8065548288 bytes
+</I>&gt;<i> 4 heads, 32 sectors/track, 123070 cylinders, total 15753024 sectors
+</I>&gt;<i> Units = sectors of 1 * 512 = 512 bytes
+</I>&gt;<i> Sector size (logical/physical): 512 bytes / 512 bytes
+</I>&gt;<i> I/O size (minimum/optimal): 512 bytes / 512 bytes
+</I>&gt;<i> Disk identifier: 0x944f6757
+</I>&gt;<i>    Device Boot      Start         End      Blocks   Id  System
+</I>&gt;<i> /dev/sdc1   *          32     1505279      752624   83  Linux
+</I>&gt;<i> -----------------------^^
+</I>&gt;<i> should be 2048 or whatever fdisk or parted know about the device.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 2.
+</I>&gt;<i> When creating a partition manually, the offset of the first
+</I>&gt;<i> partition is 2048, which is good for SSD devices.
+</I>&gt;<i> # fdisk -l /dev/sdc
+</I>&gt;<i> ...
+</I>&gt;<i>    Device Boot      Start         End      Blocks   Id  System
+</I>&gt;<i> /dev/sdc1            2048     2099199     1048576   83  Linux
+</I>&gt;<i> ---------------------^^^^
+</I>&gt;<i> 
+</I>&gt;<i> I have looked into /usr/share/kiwi/modules/KIWIBoot.pm, but I'm
+</I>&gt;<i> uncertain, how and where to change the behaviour.
+</I>
+Problem is that kiwi calls parted with &quot;-a cyl&quot; which aligns to
+cylinders and is backward compatible to older parted versions.
+The reason for this is if you align to 2048 and build an older
+distro (example 11.2) then it's not possible to safely repartition
+that disk with the old parted of that distro.
+
+In your case this is not a problem because you use 11.4.
+Attached is a patch which should help:
+
+I will add an option in kiwi to set the alignment type
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.patch
+Type: text/x-patch
+Size: 1075 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110531/c72600d2/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110531/c72600d2/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002755.html">[Kiwi-users] layout of  vmx type image regarding SSDs
+</A></li>
+	<LI>Next message: <A HREF="002757.html">[Kiwi-users] layout of  vmx type image regarding SSDs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2756">[ date ]</a>
+              <a href="thread.html#2756">[ thread ]</a>
+              <a href="subject.html#2756">[ subject ]</a>
+              <a href="author.html#2756">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

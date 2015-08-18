@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110318084225.GA11008%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002509.html">
+   <LINK REL="Next"  HREF="002478.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110318084225.GA11008%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Fri Mar 18 09:42:25 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002509.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002478.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2508">[ date ]</a>
+              <a href="thread.html#2508">[ thread ]</a>
+              <a href="subject.html#2508">[ subject ]</a>
+              <a href="author.html#2508">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I did already make the .desktop file..but to what does this .desktop
+</I>&gt;<i> file actually point too that will be there after the first boot?
+</I>&gt;<i> I noticed after the first boot that the USB fat partition mounts in
+</I>&gt;<i> /media.  Actually with this particular USB drive the path is
+</I>&gt;<i> /media/910E-c98C.   Ok so I can't point the .desktop file at that
+</I>&gt;<i> specific path because the &quot;910E-c98C&quot; part of the path will
+</I>&gt;<i> change/vary with different USB drives...so what can I point this
+</I>&gt;<i> .desktop file at that will be consistent with any USB drive?
+</I>
+You can point it to /media. I'm not aware of a method to
+have a unique name for the fat partition on each different USB
+stick.
+
+Other than that I can only safely say that the fat
+partition is always the first partition on the stick. So you could
+write a script which checks which device is the currently
+active partition and if the device is clear the first partition on
+this device is the fat partition. You then can let the script
+mount that device to a persistent mount point for example
+/media/stickstorage or something. The .desktop file
+can then point to /media/stickstorage. The script must run on each
+boot an can be placed in for example /etc/init.d/boot.local
+as part of your image overlay files
+
+The following script should work for you
+
+--------snip-------
+
+  function dn {
+     local part=$1
+     local part_new=$(echo $part | sed -e 's@\(^.*\)\(p.*$\)@\1@')
+     if [ $part = $part_new ];then
+         part_new=$(echo $part | sed -e 's@\(^.*\)\([0-9].*$\)@\1@')
+     fi
+     echo $part_new
+  }
+
+  bootdev=$(dn $(pvdisplay -c | cut -f1 -d:))
+
+  mkdir -p /media/stickstorage
+  mount ${bootdev}1 /media/stickstorage
+
+--------snap----------
+
+&gt;<i> Also after the second boot the file manager now shows the mounted fat
+</I>&gt;<i> partition as &quot;325 MB Filesystem&quot;.  Is this label for this editable?
+</I>&gt;<i> Is this a Kiwi changeable thing?
+</I>
+sorry don't have any influence about what the filemanager says
+about the fat partition.
+
+&gt;<i> The last question is what would be the behavior if i changed kiwi's
+</I>&gt;<i> element &quot;ramonly=&quot;true&quot;&quot; to &quot;false&quot;?
+</I>
+In that case the OS writes the data persistently on the stick
+instead of the RAM
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002509.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002478.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2508">[ date ]</a>
+              <a href="thread.html#2508">[ thread ]</a>
+              <a href="subject.html#2508">[ subject ]</a>
+              <a href="author.html#2508">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

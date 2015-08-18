@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Missing swap on SLES11 SP1 based oem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Missing%20swap%20on%20SLES11%20SP1%20based%20oem&In-Reply-To=%3C20110513083735.GA15323%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002716.html">
+   <LINK REL="Next"  HREF="002718.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Missing swap on SLES11 SP1 based oem</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Missing%20swap%20on%20SLES11%20SP1%20based%20oem&In-Reply-To=%3C20110513083735.GA15323%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Missing swap on SLES11 SP1 based oem">ms at suse.de
+       </A><BR>
+    <I>Fri May 13 10:37:35 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002716.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+        <LI>Next message: <A HREF="002718.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2717">[ date ]</a>
+              <a href="thread.html#2717">[ thread ]</a>
+              <a href="subject.html#2717">[ subject ]</a>
+              <a href="author.html#2717">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+&gt;<i> first post here so please be gentle.
+</I>
+:<i>-)
+</I>
+&gt;<i> We have been building a SLES11 based oem-iso using kiwi 4.60 
+</I>&gt;<i> (on openSuSE 11.3) without any problems. For the last week I have
+</I>&gt;<i> been trying to do the same with SLES11 SP1 without success.
+</I>
+your build machine is still 11.3 and hasn't changed right ?
+
+&gt;<i> Build process completes without any errors. Turned out that the
+</I>&gt;<i> swap-partition is missing on the disk after installing the iso.
+</I>
+my first guess is that the target disk wasn't big enough according
+to the oem- and/or default settings. To understand more about the
+problem the file: /var/log/boot.kiwi after first deployment is
+required. Just login after kiwi has installed the machine and post
+the file.
+
+Additionally your image config XML file would be helpful too
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002716.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+	<LI>Next message: <A HREF="002718.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2717">[ date ]</a>
+              <a href="thread.html#2717">[ thread ]</a>
+              <a href="subject.html#2717">[ subject ]</a>
+              <a href="author.html#2717">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

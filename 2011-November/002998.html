@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /sbin/init no such file or not executable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/sbin/init%20no%20such%20file%20or%20not%20executable&In-Reply-To=%3CCAL9YKOUk0Wy3nPQfBaLahn3XPvy3_sexw0JNg50OoP%3DGt3w6VQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002997.html">
+   <LINK REL="Next"  HREF="003000.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /sbin/init no such file or not executable</H1>
+    <B>Mike Turchenkov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/sbin/init%20no%20such%20file%20or%20not%20executable&In-Reply-To=%3CCAL9YKOUk0Wy3nPQfBaLahn3XPvy3_sexw0JNg50OoP%3DGt3w6VQ%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] /sbin/init no such file or not executable">mclaudt at gmail.com
+       </A><BR>
+    <I>Sun Nov 20 00:39:24 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002997.html">[Kiwi-users] /sbin/init no such file or not executable
+</A></li>
+        <LI>Next message: <A HREF="003000.html">[Kiwi-users] /sbin/init no such file or not executable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2998">[ date ]</a>
+              <a href="thread.html#2998">[ thread ]</a>
+              <a href="subject.html#2998">[ subject ]</a>
+              <a href="author.html#2998">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sorry, I should google before asking.
+<A HREF="https://bugzillafiles.novell.org/attachment.cgi?id=435111">https://bugzillafiles.novell.org/attachment.cgi?id=435111</A>
+
+Just to increase indexation i repeat it here:
+
+&gt;<i>From 5f36851e9ae5cdd9070acdb6875bff69d46b0e40 Mon Sep 17 00:00:00 2001
+</I>From: Frederic Crozat &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fcrozat at suse.com</A>&gt;
+Date: Fri, 17 Jun 2011 15:06:48 +0200
+Subject: [PATCH] allow /sbin/init to be a absolute symlink (needed for systemd)
+
+---
+ modules/KIWILinuxRC.sh |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/modules/KIWILinuxRC.sh b/modules/KIWILinuxRC.sh
+index 66c50ad..8b19f4a 100644
+--- a/modules/KIWILinuxRC.sh
++++ b/modules/KIWILinuxRC.sh
+@@ -5031,7 +5031,7 @@ function validateRootTree {
+ 	# check whether that mount is a valid system tree or not. Therefore
+ 	# some sanity checks are made here
+ 	# ----
+-	if [ ! -x /mnt/sbin/init ];then
++	if [ ! -x /mnt/sbin/init -a ! -L /mnt/sbin/init ];then
+ 		systemException &quot;/sbin/init no such file or not executable&quot; &quot;reboot&quot;
+ 	fi
+ }
+-- 
+1.7.3.4
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002997.html">[Kiwi-users] /sbin/init no such file or not executable
+</A></li>
+	<LI>Next message: <A HREF="003000.html">[Kiwi-users] /sbin/init no such file or not executable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2998">[ date ]</a>
+              <a href="thread.html#2998">[ thread ]</a>
+              <a href="subject.html#2998">[ subject ]</a>
+              <a href="author.html#2998">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

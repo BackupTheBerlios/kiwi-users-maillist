@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110307192805.GB7421%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002426.html">
+   <LINK REL="Next"  HREF="002434.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110307192805.GB7421%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Mon Mar  7 20:28:06 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002426.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002434.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2432">[ date ]</a>
+              <a href="thread.html#2432">[ thread ]</a>
+              <a href="subject.html#2432">[ subject ]</a>
+              <a href="author.html#2432">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Erich,
+
+&gt;<i> We have needed a bootable usbstick carrying an installable system.
+</I>&gt;<i> We do it like this:
+</I>&gt;<i> 
+</I>&gt;<i> 1.
+</I>&gt;<i> The usb stick has *no* partition and is formatted FAT32, so it can
+</I>&gt;<i> be handled by Windows.
+</I>&gt;<i> 
+</I>&gt;<i> 2.
+</I>&gt;<i> The usbstick contains
+</I>&gt;<i> a. a live image, which contains the root file system of the &quot;live&quot; system.
+</I>&gt;<i>    It consists of 3 files
+</I>&gt;<i>    1  rootfs.raw
+</I>&gt;<i>    2  vmlinuz
+</I>&gt;<i>    3  initrd
+</I>&gt;<i> b. a target image, maybe specialized to the particular target hardware
+</I>&gt;<i>    in question
+</I>&gt;<i>    4  target.raw.gz
+</I>&gt;<i> c. syslinux
+</I>&gt;<i>    5. syslinux.cfg etc.
+</I>&gt;<i> d. install-to-disk script
+</I>&gt;<i> 
+</I>&gt;<i> The usbstick is made bootable, booting from the stick will start syslinux,
+</I>&gt;<i> which in turn will load the kernel (2), the initial ram disk (3) and loop
+</I>&gt;<i> mount the rootfs.raw as READ ONLY. A writeable layer is added using aufs.
+</I>&gt;<i> 
+</I>&gt;<i> The content of the stick itself is made available as /usb/1.
+</I>&gt;<i> The install-to-disk script is called like any application and will install
+</I>&gt;<i> the target.raw.gz image to the disk in the target system. The install-to-disk
+</I>&gt;<i> script will analyze the disk size, calculate sizes of the desired partitions.
+</I>&gt;<i> The image is installed using
+</I>&gt;<i>    gzip -cd target.raw.gz | dd of=/dev/sdXXX bs=1M
+</I>&gt;<i> Then the partition table is corrected using fdisk or similar, and after that
+</I>&gt;<i> fsck and resize2fs will expand the root fs to its final size.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> The driving reason for doing it this way was, that the boot stick is created
+</I>&gt;<i> on a Windows system, which is not under our control. So using ext2fsd or
+</I>&gt;<i> similar on Windows was no option.
+</I>&gt;<i> 
+</I>&gt;<i> The above mentioned images are all created using kiwi.
+</I>
+Thanks for this report. There are some new aspects in it which
+I did not thought about. I think you had to modify the linuxrc code
+in the initrd in order to mount the rootfs.raw on the fat fs ?
+
+nice stick solution :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002426.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002434.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2432">[ date ]</a>
+              <a href="thread.html#2432">[ thread ]</a>
+              <a href="subject.html#2432">[ subject ]</a>
+              <a href="author.html#2432">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

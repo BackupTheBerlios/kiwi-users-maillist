@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi and SLES 10 SP1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20SLES%2010%20SP1&In-Reply-To=%3C20090703130332.GA17603%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001255.html">
+   <LINK REL="Next"  HREF="001248.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi and SLES 10 SP1</H1>
+    <B>Peter Schinagl</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20SLES%2010%20SP1&In-Reply-To=%3C20090703130332.GA17603%40novell.com%3E"
+       TITLE="[Kiwi-users] Kiwi and SLES 10 SP1">peters at novell.com
+       </A><BR>
+    <I>Fri Jul  3 15:03:33 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001255.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+        <LI>Next message: <A HREF="001248.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1247">[ date ]</a>
+              <a href="thread.html#1247">[ thread ]</a>
+              <a href="subject.html#1247">[ subject ]</a>
+              <a href="author.html#1247">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcin,
+
+if i do understand you right you would like to build something like the
+&quot;normal&quot; SUSE medias for installing an OS plus your own packages or a 
+changed selection of our rpms.
+
+For that reason we have the YaST2 Product Creator available.
+
+KIWI is more an image creator, which normally means all software is
+pre-installed in that image.
+
+squashfs and aufs are used for compressing a filesystem which is e.g. used
+for Live CDs. Additionally they are not supported on SLE.
+
+Furthermore SLES 10 SP1 is out of support, so this would be a bad choice
+to start a project on it. SP2 is the actual service pack and we are in the
+beta phase for SP3 - so please think about that.
+
+Greetings
+ Peter
+
+
+
+On Fri, Jul 03, 2009 at 01:58:09PM +0200, Marcin M. Jessa wrote:
+&gt;<i> Hi guys.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I work on a project where we (have to) use SLES 10.1 and we would like 
+</I>&gt;<i> to create a custom boot CD based on it.
+</I>&gt;<i> Unfortunately all the howtos, documents and config examples are for SLES 
+</I>&gt;<i> 10.2 and newer.
+</I>&gt;<i> They all mention usage of squashfs [1] and aufs [2] but there are no 
+</I>&gt;<i> versions available for SLES 10.1
+</I>&gt;<i> Do you guys have config files for SLES10.1?
+</I>&gt;<i> Was SLES 10.1 even created with Kiwi?
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> [1]: <A HREF="http://download.opensuse.org/repositories/home:/mopp:/squashfs/">http://download.opensuse.org/repositories/home:/mopp:/squashfs/</A>
+</I>&gt;<i> [2]: <A HREF="http://download.opensuse.org/repositories/home:/mopp:/aufs/">http://download.opensuse.org/repositories/home:/mopp:/aufs/</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Cheers
+</I>&gt;<i> Marcin
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+Peter Schinagl - Technical ISV Relationship Manager
+SUSE LINUX Products GmbH,Maxfeldstrasse 5, 90409 N&#252;rnberg,Germany
+Tel  : +49-911-74053-684           Mobil: +49-179-1308082
+Email: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">peter.schinagl at suse.de</A>
+-----------------------------------------------------------------
+SUSE LINUX Products GmbH, GF: Markus Rex, HRB 16746 (AG N&#252;rnberg)
+-----------------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001255.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+	<LI>Next message: <A HREF="001248.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1247">[ date ]</a>
+              <a href="thread.html#1247">[ thread ]</a>
+              <a href="subject.html#1247">[ subject ]</a>
+              <a href="author.html#1247">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

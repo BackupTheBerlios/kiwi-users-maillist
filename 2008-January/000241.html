@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Controlling display size in vmware image?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Controlling%20display%20size%20in%20vmware%20image%3F&In-Reply-To=%3C20080123094454.GB15056%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000240.html">
+   <LINK REL="Next"  HREF="000248.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Controlling display size in vmware image?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Controlling%20display%20size%20in%20vmware%20image%3F&In-Reply-To=%3C20080123094454.GB15056%40suse.de%3E"
+       TITLE="[Kiwi-users] Controlling display size in vmware image?">ms at suse.de
+       </A><BR>
+    <I>Wed Jan 23 10:44:54 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000240.html">[Kiwi-users] Controlling display size in vmware image?
+</A></li>
+        <LI>Next message: <A HREF="000248.html">[Kiwi-users] Some hints for PXE / NFS Users when using vmware
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#241">[ date ]</a>
+              <a href="thread.html#241">[ thread ]</a>
+              <a href="subject.html#241">[ subject ]</a>
+              <a href="author.html#241">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> How do I control the display size for the kwliveCD vmware image?  I'd
+</I>&gt;<i> like to default to 1024x768.
+</I>
+you mean you want that resolution to be set automatically ?
+if yes you can write a small sax2 batch script. Just put in a file
+for example:
+
+	Screen &gt; [X] -&gt; Depth-&gt; 16 -&gt; Modes  = &quot;1024x768&quot;
+
+this will enable 1024x768 for the 16bit color depth
+sax2 is called as part of the service:
+
+	/etc/init.d/create_xconf
+
+if you change the call to be
+
+	sax2 -c 0 -a -b &lt;your-batch-script&gt;
+
+it should activate the resolution you want
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000240.html">[Kiwi-users] Controlling display size in vmware image?
+</A></li>
+	<LI>Next message: <A HREF="000248.html">[Kiwi-users] Some hints for PXE / NFS Users when using vmware
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#241">[ date ]</a>
+              <a href="thread.html#241">[ thread ]</a>
+              <a href="subject.html#241">[ subject ]</a>
+              <a href="author.html#241">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

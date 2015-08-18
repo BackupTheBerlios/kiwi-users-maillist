@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] New KIWI layout, new issues.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C20110321083737.GA22137%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002519.html">
+   <LINK REL="Next"  HREF="002521.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] New KIWI layout, new issues.</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C20110321083737.GA22137%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] New KIWI layout, new issues.">ms at suse.de
+       </A><BR>
+    <I>Mon Mar 21 09:37:37 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002519.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+        <LI>Next message: <A HREF="002521.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2520">[ date ]</a>
+              <a href="thread.html#2520">[ thread ]</a>
+              <a href="subject.html#2520">[ subject ]</a>
+              <a href="author.html#2520">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Mar-21 08:44:46 &lt;1&gt; : Using profile(s): default,std                done       
+</I>&gt;<i> Use of uninitialized value $profiles in split at /usr/share/kiwi/modules/KIWIRuntimeChecker.pm line 277.                                                
+</I>
+something for Robert to fix in his check, but surely not critical
+
+well, just to make sure we are really talking about a kernel/fuse
+thing here. Could you try to use the latest kernel just for a check ?
+I posted you the link to the repo in one of my former mails.
+You said you can't use that kernel which I understand but I want
+to make sure if this is a kernel problem or not
+
+something else you should make sure is, if you can mount the
+clicfs over AoE without kiwi code in between. So try this:
+
+   modprobe aoe
+   vblade 0 1 eth0 image-file.clicfs
+
+login to another machine (best using a 11.2 machine)
+
+   modprobe aoe
+   clicfs -m 512 /dev/etherd/e0.1 /mnt
+   size=`stat -c %s /mnt/fsdata.ext3`
+   size=$((size/512))
+
+   tune2fs -m 0 /mnt/fsdata.ext3
+   tune2fs -i 0 /mnt/fsdata.ext3
+   resize2fs /mnt/fsdata.ext3 $size&quot;s&quot;
+   
+   mount -o loop,noatime,nodiratime,errors=remount-ro,barrier=0 \ 
+       /mnt/fsdata.ext3 /mnt
+
+   chroot /mnt bash
+
+   ==&gt; do something like &quot;find /&quot; to make the filesystem busy
+
+Does this work ? It's exactly the code kiwi calls
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002519.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+	<LI>Next message: <A HREF="002521.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2520">[ date ]</a>
+              <a href="thread.html#2520">[ thread ]</a>
+              <a href="subject.html#2520">[ subject ]</a>
+              <a href="author.html#2520">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110304134831.GA5075%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002422.html">
+   <LINK REL="Next"  HREF="002407.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110304134831.GA5075%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Fri Mar  4 14:48:31 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002422.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002407.html">[Kiwi-users] Advice on use of patterns
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2423">[ date ]</a>
+              <a href="thread.html#2423">[ thread ]</a>
+              <a href="subject.html#2423">[ subject ]</a>
+              <a href="author.html#2423">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Hmmm  I have to try to get this to work otherwise this project is a
+</I>&gt;<i> total waste of time.
+</I>
+Sometimes this happens ;)
+
+&gt;<i> I'm almost positive that Matt (the author of Image Writer) told me
+</I>&gt;<i> that this would work.  Today I'm going to look at my notes on what he
+</I>&gt;<i> said (3 months ago) and see if he recommended to do anything different
+</I>&gt;<i> to achieve what I'm looking for.
+</I>
+Matt suggested to create a usb image instead of a hybrid iso.
+This indeed can be a solution because along with the usb image
+type you use the &quot;kiwi --bootstick ...&quot; call which deploys directly
+to your stick. Problem ist the current code doesn't support to
+create a data partition as part of this deployment
+
+&gt;<i> When plug in this USB drive into a Linux machine the storage partition
+</I>&gt;<i> shows up in the file manager as &quot;CDROM&quot;.  I'm assuming it does this
+</I>&gt;<i> because it's a hybrid and the CDROM label is the result of OS seeing
+</I>&gt;<i> this partition as an ISO.
+</I>
+yes and if label means volid you can check with isoinfo if the volid
+is set to CDROM. If so this can be changed by the volid=&quot;...&quot; attribute
+in your &lt;type&gt; section of the config.xml
+
+&gt;<i> I was going to try reversing the partition order...but I'm sure you
+</I>&gt;<i> guys thought of that.  I assume if I did that, the image wouldn't boot
+</I>&gt;<i> from it?
+</I>
+yes the boot code assumes partition 1 is the root device
+
+Did you ever test to have a USB with a partition table where the
+first partition is a fat partition and the second one is a linux
+partition. Can Windows cope with that or does it complain too ?
+
+If that works and you are switching to the usb image type there
+are still patches to kiwi required:
+
+1) change the usb deployment code to create a data partition
+   first and the OS parts after it. That's in KIWIBoot.pm
+
+2) change the usb boot code to allow shifting the OS partitions
+   after the data partition. That's in usbboot/suse-linuxrc
+
+This can be done quick and dirty but a clean solution would
+take more time. I also think Robert Schweikert had the plan
+to implement this in kiwi some time ago
+
+So I'm afraid maybe you should roam and search other live
+distro's or builder which are more Windows friendly. I would
+be very interested how they solve that problem. 
+
+Thanks for your feedback and sorry if you think it
+was a waste of time. Hope you will find a solution which
+works for you
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002422.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002407.html">[Kiwi-users] Advice on use of patterns
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2423">[ date ]</a>
+              <a href="thread.html#2423">[ thread ]</a>
+              <a href="subject.html#2423">[ subject ]</a>
+              <a href="author.html#2423">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

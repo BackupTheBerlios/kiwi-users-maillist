@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie questions/clarification
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3C20080616081721.GA3494%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000696.html">
+   <LINK REL="Next"  HREF="000701.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie questions/clarification</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3C20080616081721.GA3494%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Newbie questions/clarification">ms at novell.com
+       </A><BR>
+    <I>Mon Jun 16 10:17:22 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000696.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+        <LI>Next message: <A HREF="000701.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#700">[ date ]</a>
+              <a href="thread.html#700">[ thread ]</a>
+              <a href="subject.html#700">[ subject ]</a>
+              <a href="author.html#700">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Justin,
+
+&gt;<i> I've got some basic newbie questions concerning the use of kiwi to build 
+</I>&gt;<i> netboot/pxeboot images.
+</I>&gt;<i> 
+</I>&gt;<i> What is the difference?
+</I>
+the netboot term references the boot image (the initrd) which controls
+the boot process initiated by a PXE boot based protocol. Along with
+this boot image there is also a package called kiwi-pxeboot. This packages
+provides the basic directory structure and some PXE default configuration
+files which are sufficient to work with the netboot boot image. 
+
+&gt;<i> In the documentation, there is a reference to the 
+</I>&gt;<i> ability to use kiwi to create a bootable image that will be held 
+</I>&gt;<i> completely within the client's memory.  But I'm also getting the 
+</I>&gt;<i> impression that one is intended for use in a case where the client would 
+</I>&gt;<i> be installing based on the kiwi image.
+</I>
+yes both is possible and even more. The netboot boot image is able
+to work in different modes:
+
+- system image completely in RAM
+- system image partially in RAM and local storage
+- system image completely on local storage
+- system image remotely mounted via NFS (network file system)
+- system image remotely mounted via NBD (network block device)
+
+&gt;<i> My goal is to serve an image (via NFS or NBD, it doesn't make a difference 
+</I>&gt;<i> to me) that completely resides in memory. I want to be able to reboot the 
+</I>&gt;<i> client at any point and just be back to the original image.  The only 
+</I>&gt;<i> application the client will run is rdesktop, so I don't need audio or any 
+</I>&gt;<i> local storage whatsoever.
+</I>&gt;<i> 
+</I>&gt;<i> I'm currently using kiwi-ltsp to accomplish this, but I really don't think 
+</I>&gt;<i> that I need the terminal server aspect that this features.  I just want 
+</I>&gt;<i> the client to essentially load a live-image and run rdesktop in full 
+</I>&gt;<i> screen mode.
+</I>
+I agree you don't need the terminal aspects here. So to make this work
+you need the following:
+
+1) a system image tree exported via NFS or NBD
+2) a PXE boot server based on the directory structure from the
+   kiwi-pxeboot package
+3) a netboot boot image and kernel built with kiwi
+4) a config.&lt;MAC&gt; configuration file which includes one line
+   telling netboot to use NBD or NFS
+
+Would you mind to jump in and tell us according to the list
+above at which point you are currently and what problems needs
+to be solved.
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000696.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+	<LI>Next message: <A HREF="000701.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#700">[ date ]</a>
+              <a href="thread.html#700">[ thread ]</a>
+              <a href="subject.html#700">[ subject ]</a>
+              <a href="author.html#700">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

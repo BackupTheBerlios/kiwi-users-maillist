@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Athentication problem heppen on LiveCD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Athentication%20problem%20heppen%20on%20LiveCD&In-Reply-To=%3C47546D03.F132.00B1.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000156.html">
+   <LINK REL="Next"  HREF="000158.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Athentication problem heppen on LiveCD</H1>
+    <B>Kazuhiro Takagi</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Athentication%20problem%20heppen%20on%20LiveCD&In-Reply-To=%3C47546D03.F132.00B1.0%40novell.com%3E"
+       TITLE="[Kiwi-users] Athentication problem heppen on LiveCD">KTakagi at novell.com
+       </A><BR>
+    <I>Mon Dec  3 12:54:06 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000156.html">[Kiwi-users] oemboot suse10.2 - kernel cannot find root device
+</A></li>
+        <LI>Next message: <A HREF="000158.html">[Kiwi-users] Athentication problem heppen on LiveCD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#157">[ date ]</a>
+              <a href="thread.html#157">[ thread ]</a>
+              <a href="subject.html#157">[ subject ]</a>
+              <a href="author.html#157">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list,
+
+I'm attempting to create a SLED10 LiveCD using Kiwi, but I am having a
+problem.
+
+I wrote the user specification listed below. it's test case.
+But &quot;Authentication error&quot; happened. It looks like no user define in
+/etc/passwd.
+It did not ask the password.
+----------------------------------------------------------
+  &lt;users group=&quot;users&quot;&gt;
+        &lt;user name=&quot;linux&quot; pwd=&quot;&quot; home=&quot;/home/linux&quot;/&gt;
+        &lt;user name=&quot;root&quot; pwd=&quot;&quot; home=&quot;/root&quot;/&gt;
+  &lt;/users&gt;
+----------------------------------------------------------
+
+I checked in ram image.
+ - /etc/passwd, /etc/shadow, /etc/group, /etc/nologin
+ - PAM configuration
+
+It looks like no problem. What is the check point to investigate?
+There is no problem when created openSUSE10.3 LiveCD.
+
+Any help would be greatly appreciated.
+
+Thanks,
+Kazuhiro Takagi
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000156.html">[Kiwi-users] oemboot suse10.2 - kernel cannot find root device
+</A></li>
+	<LI>Next message: <A HREF="000158.html">[Kiwi-users] Athentication problem heppen on LiveCD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#157">[ date ]</a>
+              <a href="thread.html#157">[ thread ]</a>
+              <a href="subject.html#157">[ subject ]</a>
+              <a href="author.html#157">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

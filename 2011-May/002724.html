@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] fixupOverlayFilesOwnership issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20fixupOverlayFilesOwnership%20issue&In-Reply-To=%3C291A23B717F9104985651112DB6C365F284168E1F9%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002721.html">
+   <LINK REL="Next"  HREF="002725.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] fixupOverlayFilesOwnership issue</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20fixupOverlayFilesOwnership%20issue&In-Reply-To=%3C291A23B717F9104985651112DB6C365F284168E1F9%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] fixupOverlayFilesOwnership issue">john.lund at emc.com
+       </A><BR>
+    <I>Fri May 13 21:09:33 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002721.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+        <LI>Next message: <A HREF="002725.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2724">[ date ]</a>
+              <a href="thread.html#2724">[ thread ]</a>
+              <a href="subject.html#2724">[ subject ]</a>
+              <a href="author.html#2724">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>It looks like there some issue in r 4.8.8 with fixupOverlayFilesOwnership in KIWIRoot.pm. (on SLES 11 SP1 system)  Excerpt from my build file:
+
+May-13 09:29:07 &lt;1&gt; : EXEC [chroot /home/autobuild/SLES-mozy-gen3/Output~/kiwi/image/boot-VMX.8U6F69/kiwi-VMXboot-2089 chown -c root:root &quot; kiwi&quot; 2&gt;&amp;1]
+May-13 09:29:07 &lt;2&gt; : FixupOwner: Failed to fixup ownership of /home/autobuild/SLES-mozy-gen3/Output~/kiwi/image/boot-VMX.8U6F69/kiwi-VMXboot-2089/ kiwi: chown: cannot access ` kiwi': No such file or directory  skipped
+May-13 09:29:07 &lt;1&gt; : EXEC [chroot /home/autobuild/SLES-mozy-gen3/Output~/kiwi/image/boot-VMX.8U6F69/kiwi-VMXboot-2089 chown -c root:root &quot; kiwi&quot; 2&gt;&amp;1]
+May-13 09:29:07 &lt;2&gt; : FixupOwner: Failed to fixup ownership of /home/autobuild/SLES-mozy-gen3/Output~/kiwi/image/boot-VMX.8U6F69/kiwi-VMXboot-2089/ kiwi: chown: cannot access ` kiwi': No such file or directory  skipped
+May-13 09:29:07 &lt;1&gt; : EXEC [chroot /home/autobuild/SLES-mozy-gen3/Output~/kiwi/image/boot-VMX.8U6F69/kiwi-VMXboot-2089 chown -c root:root &quot; kiwi&quot; 2&gt;&amp;1]
+May-13 09:29:07 &lt;2&gt; : FixupOwner: Failed to fixup ownership of /home/autobuild/SLES-mozy-gen3/Output~/kiwi/image/boot-VMX.8U6F69/kiwi-VMXboot-2089/ kiwi: chown: cannot access ` kiwi': No such file or directory  skipped
+
+Is this something that has been found/fixed already?  If not, is there anything I can provide to help find/fix the problem?
+
+Thank you,
+John Lund
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002721.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+	<LI>Next message: <A HREF="002725.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2724">[ date ]</a>
+              <a href="thread.html#2724">[ thread ]</a>
+              <a href="subject.html#2724">[ subject ]</a>
+              <a href="author.html#2724">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

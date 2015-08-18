@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] squashfs problem in building the SLES10SP2 Live	CD	with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20squashfs%20problem%20in%20building%20the%20SLES10SP2%20Live%09CD%0A%09with%20kiwi&In-Reply-To=%3C20090616074234.GB7327%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001203.html">
+   <LINK REL="Next"  HREF="001208.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] squashfs problem in building the SLES10SP2 Live	CD	with kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20squashfs%20problem%20in%20building%20the%20SLES10SP2%20Live%09CD%0A%09with%20kiwi&In-Reply-To=%3C20090616074234.GB7327%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] squashfs problem in building the SLES10SP2 Live	CD	with kiwi">ms at novell.com
+       </A><BR>
+    <I>Tue Jun 16 09:42:34 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001203.html">[Kiwi-users] squashfs problem in building the SLES10SP2 Live CD	with kiwi
+</A></li>
+        <LI>Next message: <A HREF="001208.html">[Kiwi-users] squashfs problem in building the SLES10SP2 Live	CD	with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1205">[ date ]</a>
+              <a href="thread.html#1205">[ thread ]</a>
+              <a href="subject.html#1205">[ subject ]</a>
+              <a href="author.html#1205">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I want to build a Live CD on SLES10SP2 according to the guide  
+</I>&gt;<i> <A HREF="http://en.opensuse.org/Build_Service/KIWI/SLES10SP2">http://en.opensuse.org/Build_Service/KIWI/SLES10SP2</A>
+</I>&gt;<i> 
+</I>&gt;<i> Everything looked all right. I got the ISO luckily.
+</I>&gt;<i> /tmp/myiso-result/suse-10.2-live-iso.x86_64-2.5.1.iso
+</I>&gt;<i> 
+</I>&gt;<i> I booted the qemu VM with the iso, but it failed at:
+</I>&gt;<i> ---------------
+</I>&gt;<i> mount -t  squashfs /dev/loop1 /read-only
+</I>&gt;<i> mount: unknow filesystem type 'squashfs'
+</I>&gt;<i> --------------
+</I>&gt;<i> 
+</I>&gt;<i> any idea about it? thanks.
+</I>
+The problem is that there is no squashfs and/or aufs available
+on SLE10 by default. If you remove the 
+
+  flags=&quot;...&quot;
+
+attribute from your config.xml kiwi generates an old style
+live iso with a fixed set of read/write directories and
+without any compression
+
+squashfs basically works on SLE10 but you need to package
+it first and include it into the
+/usr/share/kiwi/image/isoboot/suse-SLES10/config.xml
+file to have it in your initrd. After that you can use
+the flags=&quot;compressed&quot; style in your system image config.xml
+to have at least a compressed iso.
+
+With aufs (overlay mount) there is no chance to use it
+with the SLE10 kernel *afaik*
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001203.html">[Kiwi-users] squashfs problem in building the SLES10SP2 Live CD	with kiwi
+</A></li>
+	<LI>Next message: <A HREF="001208.html">[Kiwi-users] squashfs problem in building the SLES10SP2 Live	CD	with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1205">[ date ]</a>
+              <a href="thread.html#1205">[ thread ]</a>
+              <a href="subject.html#1205">[ subject ]</a>
+              <a href="author.html#1205">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

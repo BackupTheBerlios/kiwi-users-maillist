@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] fixupOverlayFilesOwnership issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20fixupOverlayFilesOwnership%20issue&In-Reply-To=%3C4DD17451.3090200%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002729.html">
+   <LINK REL="Next"  HREF="002731.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] fixupOverlayFilesOwnership issue</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20fixupOverlayFilesOwnership%20issue&In-Reply-To=%3C4DD17451.3090200%40novell.com%3E"
+       TITLE="[Kiwi-users] fixupOverlayFilesOwnership issue">rschweikert at novell.com
+       </A><BR>
+    <I>Mon May 16 21:00:33 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002729.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+        <LI>Next message: <A HREF="002731.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2730">[ date ]</a>
+              <a href="thread.html#2730">[ thread ]</a>
+              <a href="subject.html#2730">[ subject ]</a>
+              <a href="author.html#2730">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Natcho,
+
+On 05/16/2011 02:16 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">natcho.natchev at emc.com</A> wrote:
+&gt;<i> Hi Robert and Marcus,
+</I>&gt;<i>
+</I>&gt;<i> I work with John on this, so here is my analysis of where the things break:
+</I>&gt;<i>
+</I>&gt;<i> /usr/share/kiwi/modules/KIWIManager.pm, line 1753:
+</I>&gt;<i>
+</I>&gt;<i>          print $fd &quot;   tar -tvf $idesc/\$i | grep -v ^d | cut -c49- | cut -f1 -d-&quot;;
+</I>&gt;<i>          print $fd &quot;&gt;&gt;  $root/bootincluded_archives.filelist\n&quot;;
+</I>
+I think it should look like this:
+
+print $fd &quot;  tar -tvf $idesc/\$i | grep -v ^d | cut -c49- | cut -f1 -d ' '&quot;;
+
+i.e. replace -d- with -d ' '
+
+There is a space after -d and a spece between the single quotes. With 
+this change the file we are writing will look as follows:
+
+kiwi-hooks/preHWdetect.sh
+kiwi-hooks/preCallInit.sh
+
+When we loop through this file line by line we have the proper filename 
+for the ownership change.
+
+Can you test this change?
+
+Thanks,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002729.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+	<LI>Next message: <A HREF="002731.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2730">[ date ]</a>
+              <a href="thread.html#2730">[ thread ]</a>
+              <a href="subject.html#2730">[ subject ]</a>
+              <a href="author.html#2730">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

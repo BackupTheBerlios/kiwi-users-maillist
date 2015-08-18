@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] New module KIWIUtil.pm, changed module KIWIXML.pm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20module%20KIWIUtil.pm%2C%20changed%20module%20KIWIXML.pm&In-Reply-To=%3C200712131824.19598.jcborn%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000174.html">
+   <LINK REL="Next"  HREF="000175.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] New module KIWIUtil.pm, changed module KIWIXML.pm</H1>
+    <B>Jan-Christoph Bornschlegel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20module%20KIWIUtil.pm%2C%20changed%20module%20KIWIXML.pm&In-Reply-To=%3C200712131824.19598.jcborn%40suse.de%3E"
+       TITLE="[Kiwi-users] New module KIWIUtil.pm, changed module KIWIXML.pm">jcborn at suse.de
+       </A><BR>
+    <I>Thu Dec 13 18:24:18 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000174.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+        <LI>Next message: <A HREF="000175.html">[Kiwi-users] v2.04 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#177">[ date ]</a>
+              <a href="thread.html#177">[ thread ]</a>
+              <a href="subject.html#177">[ subject ]</a>
+              <a href="author.html#177">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hej Fruities,
+
+I just submitted two little changes:
+I wrote some methods in KIWIXML.pm that were only used in the CreateInstsource 
+context.
+
+Those methods were not really connected to XML issues, so I decided to split 
+them off into a new module which contains nothing except them.
+
+For anyone who uses either &quot;splitPath&quot; or &quot;expandFilename&quot;, please change your 
+settings, include the new module and complain to me ;)
+
+For the purpose I use these methods they work fine, but if anybody has a good 
+enhancement or bugfix, please let me know.
+
+
+So long,
+Jan
+
+-- 
+Jan-Christoph Bornschlegel (Build Service Team)
+SUSE LINUX Products GmbH, GF: Markus Rex, HRB 16746 (AG N&#252;rnberg)
+-----------------------------------------------------------------
+No music playing at present.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000174.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+	<LI>Next message: <A HREF="000175.html">[Kiwi-users] v2.04 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#177">[ date ]</a>
+              <a href="thread.html#177">[ thread ]</a>
+              <a href="subject.html#177">[ subject ]</a>
+              <a href="author.html#177">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

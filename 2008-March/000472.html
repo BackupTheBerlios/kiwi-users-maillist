@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C1205345214.4560.11.camel%40pesol.grn.es%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000467.html">
+   <LINK REL="Next"  HREF="000473.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Troubles with SLED10-SP1 LiveDVD</H1>
+    <B>Jordi Bruguera i Cortada</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C1205345214.4560.11.camel%40pesol.grn.es%3E"
+       TITLE="[Kiwi-users] Troubles with SLED10-SP1 LiveDVD">jordi at grn.es
+       </A><BR>
+    <I>Wed Mar 12 19:06:54 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000467.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+        <LI>Next message: <A HREF="000473.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#472">[ date ]</a>
+              <a href="thread.html#472">[ thread ]</a>
+              <a href="subject.html#472">[ subject ]</a>
+              <a href="author.html#472">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>El dt 11 de 03 del 2008 a les 16:20 +0100, en/na Marcus Sch&#228;fer va
+escriure:
+
+Marcus,
+
+I've repeated the tests with kiwi 2.37 with the same results
+as in 2.36.
+
+Yes, the rootfs.tar file is uncompressed inside the squashfs now,
+but no improvement with the RAM memory problem. The created
+LiveCD still needs 688MB of RAM to start.
+
+Any idea on where can I search for savings in RAM ?
+
+thanks a lot,
+
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Ok, updated to 2.36 and done all tests.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Right, the file rootfs.tar.gz contains complete /var /etc and /home
+</I>&gt;<i> &gt; ( with files and directories ), the rest ( /lib /usr ... ) are real
+</I>&gt;<i> &gt; dirs with simlinks to files to the read-only part. This is OK as
+</I>&gt;<i> &gt; you've stated.
+</I>&gt;<i> 
+</I>&gt;<i> ok
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; * The log you sent shows:
+</I>&gt;<i> &gt; &gt;   252MB left in tmpfs and 143MB required for the uncompressed archive
+</I>&gt;<i> &gt; &gt;   With the latest kiwi version we allow up to 512MB for a tmpfs but
+</I>&gt;<i> &gt; &gt;   that's not a problem for you. My problem is that I think my RAM space
+</I>&gt;<i> &gt; &gt;   calculation could be wrong because if we extract the tarball into
+</I>&gt;<i> &gt; &gt;   a tmpfs the tar and gzip programs also requires RAM space to operate.
+</I>&gt;<i> &gt; &gt;   Maybe there are RAM caches when extracting which gets freed afterwards
+</I>&gt;<i> &gt; &gt;   but during the process we may need more RAM space. It would be
+</I>&gt;<i> &gt; &gt;   interesting if you can try to run that image within qemu and call
+</I>&gt;<i> &gt; &gt;   it like the following:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;     qemu -cdrom &lt;the-iso&gt; -m 512
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;   does that work ? if not it should work with -m 1024 as you already
+</I>&gt;<i> &gt; &gt;   have tested. I would like to know in case of a successful boot how
+</I>&gt;<i> &gt; &gt;   much RAM is still available (cat /proc/meminfo).
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I'm using VMWare Workstation 6, hope this is not an inconvenience.
+</I>&gt;<i> &gt; If you think it is, I'll switch to qemu.
+</I>&gt;<i> 
+</I>&gt;<i> it doesn't matter which virtualisation platform you use. I use
+</I>&gt;<i> qemu just because it's easier to become installed :) 
+</I>&gt;<i> 
+</I>&gt;<i> &gt; No, it still doesn't boot with 512 MB of RAM. Now I need 688 MB, which
+</I>&gt;<i> &gt; is far less than 800 MB of my last try, un still far from the desired
+</I>&gt;<i> &gt; 512 MBminimum.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The tests where run at intervals of 4 MB of RAM and 688 resulted the
+</I>&gt;<i> &gt; first RAM value which booted OK, the memory data you asked for
+</I>&gt;<i> &gt; a successful boot is shown above in the email.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for all your tests I really appreciate it. I have done some
+</I>&gt;<i> tests myself too and I think I could imagine what the problem is.
+</I>&gt;<i> the rootfs tarball exists as a compressed tarball on a compressed
+</I>&gt;<i> filesystem. When kiwi uncompresses this tarball into RAM space
+</I>&gt;<i> the system also needs RAM space for the decompression of this file
+</I>&gt;<i> from the filesystem and it needs RAM for the tar program in order
+</I>&gt;<i> to be able to uncompress the compressed tarball. According to this
+</I>&gt;<i> it's about 3 times more RAM compared to the size of the tar file
+</I>&gt;<i> assuming a compression rate of 50%
+</I>&gt;<i> 
+</I>&gt;<i> I think it is not a good idea to have the tarball as compressed
+</I>&gt;<i> file because it gets compressed by the compressed squashfs
+</I>&gt;<i> filesystem anywayJ. Therefore I changed the archive creation
+</I>&gt;<i> and don't create a compressed tarball.
+</I>&gt;<i> 
+</I>&gt;<i> But when the system untar's the archive into RAM it still needs
+</I>&gt;<i> more RAM than the archive itself because the file is read as
+</I>&gt;<i> an entity from the compressed filesystem. Therefore I estimated
+</I>&gt;<i> that the system needs twice the size of the archive to be able
+</I>&gt;<i> to uncompress the archive into RAM. I don't know if this would
+</I>&gt;<i> work reliable but in my tests it was at least better than
+</I>&gt;<i> before :)
+</I>&gt;<i> 
+</I>&gt;<i> I will checkin the change into version 2.37 maybe you can give
+</I>&gt;<i> it a try again. Your tar file was compressed about 150MB so I guess
+</I>&gt;<i> it will be about 300MB uncompressed. The squashfs filesystem will
+</I>&gt;<i> compress that again and your image will not change its size. When
+</I>&gt;<i> this 300MB tarball needs to be untared into RAM you need temporary
+</I>&gt;<i> about 600MB of RAM space. That's more than your 512MB limit. At
+</I>&gt;<i> the moment I don't know how we could prevent that. I'm sorry
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>-- 
+---
+Jordi Bruguera i Cortada &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jordi at grn.es</A>&gt;
+Consultor en Programari Lliure
+LPIC1-ID: 000001116 - Novell CLP10
+Linux User #21587
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000467.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+	<LI>Next message: <A HREF="000473.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#472">[ date ]</a>
+              <a href="thread.html#472">[ thread ]</a>
+              <a href="subject.html#472">[ subject ]</a>
+              <a href="author.html#472">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Attempts to make a live USB stick reboots
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Attempts%20to%20make%20a%20live%20USB%20stick%20reboots&In-Reply-To=%3C20090731101047.GA3069%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001322.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Attempts to make a live USB stick reboots</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Attempts%20to%20make%20a%20live%20USB%20stick%20reboots&In-Reply-To=%3C20090731101047.GA3069%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Attempts to make a live USB stick reboots">ms at novell.com
+       </A><BR>
+    <I>Fri Jul 31 12:10:47 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001322.html">[Kiwi-users] Attempts to make a live USB stick reboots
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1323">[ date ]</a>
+              <a href="thread.html#1323">[ thread ]</a>
+              <a href="subject.html#1323">[ subject ]</a>
+              <a href="author.html#1323">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Jul-30 21:59:59 &lt;1&gt; : EXEC [mount -o loop
+</I>&gt;<i> usb-image/suse-11.1-live-stick.i686-1.1.2 /tmp/kiwiboot.6AtvOa 2&gt;&amp;1]
+</I>&gt;<i> Jul-30 21:59:59 &lt;3&gt; : Failed to loop mount
+</I>&gt;<i> usb-image/suse-11.1-live-stick.i686-1.1.2 to: /tmp/kiwiboot.6AtvOa:
+</I>&gt;<i> mount: according to mtab
+</I>&gt;<i> /home/kiwi/usb-image/suse-11.1-live-stick.i686-1.1.2 is already mounted
+</I>&gt;<i> on /tmp/kiwiboot.6AtvOa as loop
+</I>&gt;<i>    failed
+</I>
+there are other people reporting that issue too but I'm afraid
+I don't see that in any of my tests. So the mount call
+failed because according to the contents of /etc/mtab
+/home/kiwi/usb-image/suse-11.1-live-stick.i686-1.1.2 is already
+mounted. Can you check your system if:
+
+a) this is true by checking /proc/mounts
+b) if it is not true fix your mtab by calling
+   cat /proc/mounts &gt; /etc/mtab
+
+I think it would be good if I can access a system where that
+error happened because I have no clue why there are these
+hanging mounts.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001322.html">[Kiwi-users] Attempts to make a live USB stick reboots
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1323">[ date ]</a>
+              <a href="thread.html#1323">[ thread ]</a>
+              <a href="subject.html#1323">[ subject ]</a>
+              <a href="author.html#1323">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

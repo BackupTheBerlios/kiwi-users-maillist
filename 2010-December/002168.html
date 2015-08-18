@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Secondary Package Installations Question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Secondary%20Package%20Installations%20Question&In-Reply-To=%3C4CF68EB9.5050509%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002167.html">
+   <LINK REL="Next"  HREF="002169.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Secondary Package Installations Question</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Secondary%20Package%20Installations%20Question&In-Reply-To=%3C4CF68EB9.5050509%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] Secondary Package Installations Question">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Wed Dec  1 19:06:49 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002167.html">[Kiwi-users] Secondary Package Installations Question
+</A></li>
+        <LI>Next message: <A HREF="002169.html">[Kiwi-users] FW: [Bug 654404] kiwi: additional hook script support
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2168">[ date ]</a>
+              <a href="thread.html#2168">[ thread ]</a>
+              <a href="subject.html#2168">[ subject ]</a>
+              <a href="author.html#2168">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+ooh, that is something I had not even thought of, thanks.. I'll look
+into that and see what I can find.
+
+On 12/01/2010 01:50 PM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> I had a question around post boot package installations, of which I
+</I>&gt;&gt;<i> don't think there currently is any mechanism to do so, but I figured I'd
+</I>&gt;&gt;<i> ask just in case I'm miss-understanding the documentation, or something
+</I>&gt;&gt;<i> is not yet fully documented.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I work with a &quot;locked down&quot; image, most, if not all applications that
+</I>&gt;&gt;<i> are installed on a particular image, are validated on a version by
+</I>&gt;&gt;<i> version basis, then locked at that version until another review cycle
+</I>&gt;&gt;<i> comes around. However, there is one in-house package that undergoes
+</I>&gt;&gt;<i> enough changes during development that it simply extends the development
+</I>&gt;&gt;<i> time by having to rebuild an entire image each time a new version is cut.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'd like to be able to provide them with an image where the image itself
+</I>&gt;&gt;<i> is locked down, but this package is &quot;transferred&quot; to the host during the
+</I>&gt;&gt;<i> installation/booting stage, and installed. This could potentially save
+</I>&gt;&gt;<i> many hours over the course of a week for these developers because they
+</I>&gt;&gt;<i> wont need to keep rebuilding an updated image. They would simply stage
+</I>&gt;&gt;<i> the new file into place, update the image's KIWI configuration file,
+</I>&gt;&gt;<i> reboot the terminal and viola it'll download the new package.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Does something like this currently exist in KIWI?
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Hmm, not sure if I understand it correctly but if the base image is
+</I>&gt;<i> not allowed to change due to long building time the only way of updating
+</I>&gt;<i> the appliance is by using an update repo. The appliance itself only
+</I>&gt;<i> needs to add this update repo as package source to zypper and call
+</I>&gt;<i>
+</I>&gt;<i>     zypper up
+</I>&gt;<i>
+</I>&gt;<i> via a boot script or something. The update repo itself just contains
+</I>&gt;<i> the packages which needs to fly in. It would work the way you want
+</I>&gt;<i> it: dump the &quot;locked down&quot; image and it will update itself by the
+</I>&gt;<i> update canditates of your update repo. Of course you need to setup
+</I>&gt;<i> and maintain such an update repo but that's not too hard I guess
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002167.html">[Kiwi-users] Secondary Package Installations Question
+</A></li>
+	<LI>Next message: <A HREF="002169.html">[Kiwi-users] FW: [Bug 654404] kiwi: additional hook script support
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2168">[ date ]</a>
+              <a href="thread.html#2168">[ thread ]</a>
+              <a href="subject.html#2168">[ subject ]</a>
+              <a href="author.html#2168">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with clicfs ext3 corruption
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20clicfs%20ext3%20corruption&In-Reply-To=%3C20110208093750.GA7082%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002299.html">
+   <LINK REL="Next"  HREF="002303.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with clicfs ext3 corruption</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20clicfs%20ext3%20corruption&In-Reply-To=%3C20110208093750.GA7082%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Issues with clicfs ext3 corruption">ms at suse.de
+       </A><BR>
+    <I>Tue Feb  8 10:37:50 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002299.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+        <LI>Next message: <A HREF="002303.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2300">[ date ]</a>
+              <a href="thread.html#2300">[ thread ]</a>
+              <a href="subject.html#2300">[ subject ]</a>
+              <a href="author.html#2300">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Process followed to edit the clicfs:
+</I>&gt;<i> clicfs -m 120 /srv/kiwi-ltsp/i386.img /mnt
+</I>&gt;<i> cp /mnt/fsdata.ext3 /tmp/
+</I>&gt;<i> resize2fs /tmp/fsdata.ext3 1G
+</I>&gt;<i> mount -o loop /tmp/fsdata.ext3 /mnt/
+</I>&gt;<i> 
+</I>&gt;<i> # Copy files to the fs, eg
+</I>&gt;<i> cp x11vnc-script /mnt/etc/init.d/x11vnc
+</I>&gt;<i> 
+</I>&gt;<i> umount /mnt
+</I>&gt;<i> 
+</I>&gt;<i> e2fsck -f /tmp/fsdata.ext3
+</I>&gt;<i> resize2fs /tmp/fsdata.ext3 -M
+</I>&gt;<i> mkclicfs fsdata.ext3 /srv/kiwi-ltsp/test.cfs
+</I>
+I think the problem is that you did not free the clicfs itself
+you mounted the clicfs to /mnt and then you loop mounted the fsdata.ext3
+to the same mount point. This is ok but imho you have to umount
+/mnt twice now
+
+  umount /mnt
+  umount /mnt
+
+  e2fsck -f /tmp/fsdata.ext3
+  resize2fs /tmp/fsdata.ext3 -M
+  mkclicfs fsdata.ext3 /srv/kiwi-ltsp/test.cfs
+
+This should work.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002299.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+	<LI>Next message: <A HREF="002303.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2300">[ date ]</a>
+              <a href="thread.html#2300">[ thread ]</a>
+              <a href="subject.html#2300">[ subject ]</a>
+              <a href="author.html#2300">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

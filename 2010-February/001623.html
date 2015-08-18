@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to stop rpm public key server access
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20stop%20rpm%20public%20key%20server%20access&In-Reply-To=%3C20100201132937.GB7989%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001621.html">
+   <LINK REL="Next"  HREF="001624.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to stop rpm public key server access</H1>
+    <B>Christoph Thiel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20stop%20rpm%20public%20key%20server%20access&In-Reply-To=%3C20100201132937.GB7989%40suse.de%3E"
+       TITLE="[Kiwi-users] How to stop rpm public key server access">cthiel at suse.de
+       </A><BR>
+    <I>Mon Feb  1 14:29:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001621.html">[Kiwi-users] How to stop rpm public key server access
+</A></li>
+        <LI>Next message: <A HREF="001624.html">[Kiwi-users] How to stop rpm public key server access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1623">[ date ]</a>
+              <a href="thread.html#1623">[ thread ]</a>
+              <a href="subject.html#1623">[ subject ]</a>
+              <a href="author.html#1623">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+On Mon, Feb 01, 2010 at 11:57:00AM +0100, Hans-Peter Jansen wrote:
+&gt;<i> &gt; I have the same problem when using smart as packagemanager. kiwi
+</I>&gt;<i> &gt; imports the existing local build keys before calling any packagemanager
+</I>&gt;<i> &gt; function. It does the import by the following code:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   Importing build keys...
+</I>&gt;<i> &gt;   cd $root/rpm-sigs &amp;&amp; /usr/lib/rpm/gnupg/dumpsigs
+</I>&gt;<i> &gt;   rpm -r $root --import $sigs/gpg-pubke*
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; All it does is adding existing local keys into the rpm database
+</I>&gt;<i> &gt; inside the chroot. But smart keeps trying to receive public keys
+</I>&gt;<i> &gt; from the network and fails if they can't be loaded. I couldn't
+</I>&gt;<i> &gt; find a way how to prevent that in smart :(
+</I>&gt;<i> 
+</I>&gt;<i> The attached patch might help. But after applying this, smart stumbled on 
+</I>&gt;<i> other issues, I have forgotten... 
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I CC'ed the smart maintainer maybe he knows more.
+</I>&gt;<i> &gt; Christoph could you take a look ?
+</I>
+I thought kiwi disabled rpm-check-signatures all the time&#223; Or there was an
+option to doing so in config.xml.
+
+Is smart looking for an rpm key that is already in the rpm.db? It should
+only look for keys not in the db...
+
+
+&gt;<i> --- KIWIManager.pm.orig	2010-01-20 00:39:54.734034302 +0100
+</I>&gt;<i> +++ KIWIManager.pm	2010-01-20 00:41:06.862844649 +0100
+</I>&gt;<i> @@ -133,7 +133,8 @@ sub new {
+</I>&gt;<i>  	$this-&gt;{smart}       = [
+</I>&gt;<i>  		$packageManager{smart},
+</I>&gt;<i>  		&quot;--data-dir=$dataDir&quot;,
+</I>&gt;<i> -		&quot;-o remove-packages=false&quot;
+</I>&gt;<i> +		&quot;-o remove-packages=false&quot;,
+</I>&gt;<i> +		&quot;-o rpm-check-signatures=false&quot;
+</I>&gt;<i>  	];
+</I>&gt;<i>  	$this-&gt;{smartroot}   = [
+</I>&gt;<i>  		&quot;-o rpm-root=$root&quot;
+</I>
+
+Best,
+Christoph
+-- 
+Christoph Thiel, Tech. Project Management, Research &amp; Development
+SUSE LINUX Products GmbH, GF: Markus Rex, HRB 16746 (AG N&#252;rnberg)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001621.html">[Kiwi-users] How to stop rpm public key server access
+</A></li>
+	<LI>Next message: <A HREF="001624.html">[Kiwi-users] How to stop rpm public key server access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1623">[ date ]</a>
+              <a href="thread.html#1623">[ thread ]</a>
+              <a href="subject.html#1623">[ subject ]</a>
+              <a href="author.html#1623">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Preload%20OEM%20image%20not%20Shutdown%20or%20halt%20problem%20at%0A%20end%20off%20booting&In-Reply-To=%3C20110522081446.GA19232%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002746.html">
+   <LINK REL="Next"  HREF="002749.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Preload%20OEM%20image%20not%20Shutdown%20or%20halt%20problem%20at%0A%20end%20off%20booting&In-Reply-To=%3C20110522081446.GA19232%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting">ms at suse.de
+       </A><BR>
+    <I>Sun May 22 10:14:46 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002746.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end	off booting
+</A></li>
+        <LI>Next message: <A HREF="002749.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting [ Solved ]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2747">[ date ]</a>
+              <a href="thread.html#2747">[ thread ]</a>
+              <a href="subject.html#2747">[ subject ]</a>
+              <a href="author.html#2747">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have created a OEM image of OpenSuSE 11.4 with Split type.  Every thing is
+</I>&gt;<i> working fine except shutdown or halt.
+</I>&gt;<i> 
+</I>&gt;<i> I am not able to able to turnoff system / thinclient .
+</I>&gt;<i> 
+</I>&gt;<i> when I press shutdown button or halt command at then end off boot process i
+</I>&gt;<i> get error *&quot;No more process left in this runlevel&quot;* but at this stage
+</I>&gt;<i> thinclient should power off.
+</I>
+This might be related to the splitted root tree. If the root tree
+can't be umounted because it's still busy for some reason the shutdown
+process hangs here. You can write your own runlevel script which
+kicks in before that happens and call &quot;reboot -f&quot; if it's safe
+
+of course that's only a workaround. It would be good to know why
+it hangs
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002746.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end	off booting
+</A></li>
+	<LI>Next message: <A HREF="002749.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting [ Solved ]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2747">[ date ]</a>
+              <a href="thread.html#2747">[ thread ]</a>
+              <a href="subject.html#2747">[ subject ]</a>
+              <a href="author.html#2747">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D5A573A.7020305%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002321.html">
+   <LINK REL="Next"  HREF="002324.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D5A573A.7020305%40novell.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Feb 15 11:36:42 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002321.html">[Kiwi-users] nis users?
+</A></li>
+        <LI>Next message: <A HREF="002324.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2323">[ date ]</a>
+              <a href="thread.html#2323">[ thread ]</a>
+              <a href="subject.html#2323">[ subject ]</a>
+              <a href="author.html#2323">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Chris,
+
+Please subscribe to
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+
+and lets move the discussion to the kiwi list. This really has nothing
+to do with the build service. Plus the discussion might be useful to
+other Kiwi users that are not on the build service list.
+
+On 02/14/2011 08:58 PM, Chris Cunha wrote:
+&gt;<i> Thanks Robert very much for all the information.
+</I>&gt;<i> I inserted the this line within the rest of the package section.
+</I>&gt;<i> 
+</I>&gt;<i> 	&lt;packages type=&quot;image&quot; patternType=&quot;onlyRequired&quot;&gt;
+</I>&gt;<i>                 &lt;package name=&quot;wdiff&quot;/&gt;
+</I>&gt;<i>                 &lt;package name=&quot;lockdev&quot;/&gt;
+</I>&gt;<i> 		&lt;ignore name=&quot;lxde-common-branding-openSUSE&quot;/&gt;
+</I>&gt;<i> &lt;/packages&gt;
+</I>&gt;<i> Despite this line being inserted into the package list this SUSE
+</I>&gt;<i> package still conflicts with my branding package.  If I disable
+</I>&gt;<i> (comment out) the pattern &quot;lxde&quot; this issue goes away, however there
+</I>&gt;<i> are other packages from the &quot;lxde&quot; patter that I need. 
+</I>
+The &lt;ignore&gt; element does not work because the conflicting package is
+&quot;hidden&quot; in a pattern. zypper knows about pattern names and how to find
+them, thus, Kiwi does not need to build a list of packages inside a
+pattern. This implies that Kiwi never sees the
+&quot;lxde-common-branding-openSUSE&quot; name as a package and therefore it
+cannot be removed/ignored.
+
+&gt;<i> This has
+</I>&gt;<i> happened some other packages as well. I really hopeing that the
+</I>&gt;<i> &quot;ignore&quot; element would work to finally resolve this issue.  Any idea
+</I>&gt;<i> what's going on here. 
+</I>
+See above.
+
+&gt;<i> Is my syntax incorrect in my example?
+</I>
+The syntax is correct. You can try the replace attribute, i.e.
+
+&lt;package name=&quot;MY_BRANDING_PACKAGE&quot;
+replaces=&quot;xde-common-branding-openSUSE&quot;/&gt;
+
+Packages with the &quot;replaces&quot; attribute are handled differently than the
+&lt;ignore&gt; elements.
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002321.html">[Kiwi-users] nis users?
+</A></li>
+	<LI>Next message: <A HREF="002324.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2323">[ date ]</a>
+              <a href="thread.html#2323">[ thread ]</a>
+              <a href="subject.html#2323">[ subject ]</a>
+              <a href="author.html#2323">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

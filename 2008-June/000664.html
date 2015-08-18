@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Couldn't find any removable USB storage devices
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Couldn%27t%20find%20any%20removable%20USB%20storage%20devices&In-Reply-To=%3C20080609075041.GA15789%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000659.html">
+   <LINK REL="Next"  HREF="000666.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Couldn't find any removable USB storage devices</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Couldn%27t%20find%20any%20removable%20USB%20storage%20devices&In-Reply-To=%3C20080609075041.GA15789%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Couldn't find any removable USB storage devices">ms at novell.com
+       </A><BR>
+    <I>Mon Jun  9 09:50:41 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000659.html">[Kiwi-users] Couldn't find any removable USB storage devices
+</A></li>
+        <LI>Next message: <A HREF="000666.html">[Kiwi-users] Couldn't find any removable USB storage devices
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#664">[ date ]</a>
+              <a href="thread.html#664">[ thread ]</a>
+              <a href="subject.html#664">[ subject ]</a>
+              <a href="author.html#664">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Running this:
+</I>&gt;<i> 
+</I>&gt;<i>  kiwi --bootstick
+</I>&gt;<i> /mnt/sdb5/usb-test/initrd-usbboot-suse-11.0.i686-2.1.1.splash.gz \
+</I>&gt;<i>  --bootstick-system /mnt/sdb5/usb-test/usb-test.i686-1.0.0
+</I>&gt;<i> --bootstick-device /dev/sdc
+</I>&gt;<i> 
+</I>&gt;<i> Kiwi says : &quot;Couldn't find any removable USB storage devices&quot;
+</I>&gt;<i> 
+</I>&gt;<i> Here is what fdisk shows:
+</I>&gt;<i> 
+</I>&gt;<i> Disk /dev/sdc: 8178 MB, 8178892800 bytes
+</I>&gt;<i> 252 heads, 62 sectors/track, 1022 cylinders
+</I>&gt;<i> Units = cylinders of 15624 * 512 = 7999488 bytes
+</I>&gt;<i> Disk identifier: 0x00000000
+</I>
+The usbboot boot image type is for USB stick systems only. The initrd
+code searches for disks which has the removable=1 flag set which doesn't
+apply to your disk (flash disk). I think usbboot boot image is the
+wrong choice for your setup. This looks more like an oem to me so
+oemboot might be better.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000659.html">[Kiwi-users] Couldn't find any removable USB storage devices
+</A></li>
+	<LI>Next message: <A HREF="000666.html">[Kiwi-users] Couldn't find any removable USB storage devices
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#664">[ date ]</a>
+              <a href="thread.html#664">[ thread ]</a>
+              <a href="subject.html#664">[ subject ]</a>
+              <a href="author.html#664">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

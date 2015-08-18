@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with image building using ver 4.30
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20image%20building%20using%20ver%204.30&In-Reply-To=%3C4BD08185020000F0000A810B%40victor.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001775.html">
+   <LINK REL="Next"  HREF="001778.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with image building using ver 4.30</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20image%20building%20using%20ver%204.30&In-Reply-To=%3C4BD08185020000F0000A810B%40victor.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Issues with image building using ver 4.30">ragupta at novell.com
+       </A><BR>
+    <I>Thu Apr 22 13:34:05 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001775.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+        <LI>Next message: <A HREF="001778.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1777">[ date ]</a>
+              <a href="thread.html#1777">[ thread ]</a>
+              <a href="subject.html#1777">[ subject ]</a>
+              <a href="author.html#1777">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+I have applied the patch, reverted the spare value back to 1.3 and started the build. 
+
+Lets hope for the best.  
+
+Will update you once the build is done. 
+
+Thanks for the quick help. 
+
+Regards, 
+Rahul
+
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; 4/22/2010 16:37 &gt;&gt;&gt;
+</I>Hi,
+
+&gt;<i> I get the same results as you do (see below). My build system is SLED 11+updates
+</I>&gt;<i>
+</I>&gt;<i> Filesystem            Size  Used Avail Use% Mounted on
+</I>&gt;<i> /dev/loop4             31M  5.2M   24M  19% /mnt/loop
+</I>&gt;<i> 
+</I>&gt;<i> I have already tried the option you suggested. If you look at the log file, you will see the following line.
+</I>
+I'm so stupid. I use the option &quot;-T ext3&quot; but want to specify the filesystem
+type only. But the option &quot;-t ext3&quot; should be used to do that because -T
+has a different meaning which causes the parameters we set to be useless
+
+Can you change spare back to 1.3 and apply the attached patch
+
+Thanks
+
+Regards,
+Marcus
+--
+Public Key available
+gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+-------------------------------------------------------
+Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+Tel: 0911-740 53 0             Maxfeldstrasse 5
+FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+<A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+-------------------------------------------------------
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100422/2060491e/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100422/2060491e/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001775.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+	<LI>Next message: <A HREF="001778.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1777">[ date ]</a>
+              <a href="thread.html#1777">[ thread ]</a>
+              <a href="subject.html#1777">[ subject ]</a>
+              <a href="author.html#1777">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

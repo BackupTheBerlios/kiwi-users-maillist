@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB size allocation problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20size%20allocation%20problem&In-Reply-To=%3C20071118094639.GA25428%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000140.html">
+   <LINK REL="Next"  HREF="000142.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB size allocation problem</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20size%20allocation%20problem&In-Reply-To=%3C20071118094639.GA25428%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] USB size allocation problem">ms at suse.de
+       </A><BR>
+    <I>Sun Nov 18 10:46:40 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000140.html">[Kiwi-users] USB size allocation problem
+</A></li>
+        <LI>Next message: <A HREF="000142.html">[Kiwi-users] USB size allocation problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Prepare and Create both go without error. But, when trying to get kiwi
+</I>&gt;<i> to put it onto the USB I get an error:
+</I>&gt;<i> 
+</I>&gt;<i> ---------------
+</I>&gt;<i> opensuse:/media # kiwi --bootstick
+</I>&gt;<i> /tmp/kiwi-output/initrd-usbboot-suse-10.3.i686-2.1.1.gz
+</I>&gt;<i> --bootstick-system /tm
+</I>&gt;<i> Nov-18 02:34 &lt;1&gt; : Creating boot USB stick from:
+</I>&gt;<i> /tmp/kiwi-output/initrd-usbboot-suse-10.3.i686-2.1.1.gz...
+</I>&gt;<i> Nov-18 02:34 &lt;1&gt; : Setting up splash screen...
+</I>&gt;<i> Nov-18 02:34 &lt;1&gt; : Creating initial boot structure
+</I>&gt;<i> Nov-18 02:34 &lt;1&gt; : Importing grub stages for stick boot
+</I>&gt;<i> Nov-18 02:34 &lt;1&gt; : Found following removable USB devices:
+</I>&gt;<i> Nov-18 02:34 &lt;1&gt; : ---&gt; 076B11800247 at /dev/sdb
+</I>&gt;<i> Nov-18 02:34 &lt;1&gt; : Your choice (enter device name): /dev/sdb
+</I>&gt;<i> Nov-18 02:35 &lt;1&gt; : Creating grub menu list file...
+</I>&gt;<i> Nov-18 02:35 &lt;1&gt; : Creating stick image
+</I>&gt;<i> Nov-18 02:35 &lt;1&gt; : Creating partition table on: /dev/sdb
+</I>&gt;<i> Nov-18 02:35 &lt;1&gt; : Dumping initrd image to stick
+</I>&gt;<i> Nov-18 02:35 &lt;3&gt; : Couldn't dump image to stick: dd: writing
+</I>&gt;<i> `/dev/sdb1': No space left on device
+</I>&gt;<i> 620+0 records in
+</I>&gt;<i> 619+0 records out
+</I>&gt;<i> 20315648 bytes (20 MB) copied, 4.32705 s, 4.7 MB/s
+</I>&gt;<i> 
+</I>&gt;<i> Nov-18 02:35 &lt;3&gt; : KIWI exited with error(s)
+</I>&gt;<i> -------------
+</I>&gt;<i> 
+</I>&gt;<i> It runs out of space; it allocated the space on the USB as:
+</I>&gt;<i> 
+</I>&gt;<i> ------------------
+</I>&gt;<i> Disk /dev/sdb: 2063 MB, 2063073280 bytes
+</I>&gt;<i> 64 heads, 62 sectors/track, 1015 cylinders
+</I>&gt;<i> Units = cylinders of 3968 * 512 = 2031616 bytes
+</I>&gt;<i> Disk identifier: 0x00000000
+</I>&gt;<i> 
+</I>&gt;<i>    Device Boot      Start         End      Blocks   Id  System
+</I>&gt;<i> /dev/sdb1   *           1          10       19839+  83  Linux
+</I>&gt;<i> /dev/sdb2              11         391      755904   83  Linux
+</I>&gt;<i> /dev/sdb3             392        1015     1238016   83  Linux
+</I>&gt;<i> ------------------
+</I>&gt;<i> As to the size of the image itself:
+</I>&gt;<i> 
+</I>&gt;<i> opensuse:/home/francis # du -h /tmp/kiwi-output
+</I>&gt;<i> 787M    /tmp/kiwi-output
+</I>&gt;<i> 
+</I>&gt;<i> Basically just using a slightly altered kwLiveCD config file (well,
+</I>&gt;<i> whole folder/config) from SVN now. Running the latest (1.90) KIWI.
+</I>
+Hmm, could you try it again but make sure there are no active
+mounts to the USB stick. If you plugin the stick most linux systems
+automatically mount the stick partitions, umount them before
+you call kiwi --bootstick ... 
+
+If the problem still appears and the partition is really too small
+for the initrd it looks like a kiwi bug then
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000140.html">[Kiwi-users] USB size allocation problem
+</A></li>
+	<LI>Next message: <A HREF="000142.html">[Kiwi-users] USB size allocation problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Unbiassed suggestion
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unbiassed%20suggestion&In-Reply-To=%3C20110721125942.GA382%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002841.html">
+   <LINK REL="Next"  HREF="002842.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Unbiassed suggestion</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unbiassed%20suggestion&In-Reply-To=%3C20110721125942.GA382%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Unbiassed suggestion">ms at suse.de
+       </A><BR>
+    <I>Thu Jul 21 14:59:42 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002841.html">[Kiwi-users] Unbiassed suggestion
+</A></li>
+        <LI>Next message: <A HREF="002842.html">[Kiwi-users] openSUSE 11.4 64-bit OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2843">[ date ]</a>
+              <a href="thread.html#2843">[ thread ]</a>
+              <a href="subject.html#2843">[ subject ]</a>
+              <a href="author.html#2843">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, 
+
+&gt;<i> For one of the pilot-projects around here, they build a bootable encrypted USB-stick, just containing Gnome-desktop, LUKS, OpenSC, NX-client, ICA-client, openvpn, Linphone and some small stuff. Allthough i pointed them to kiwi, they decided in their infinite wisdom to do everything with Ubuntu and create some spagetty-code to create the images.....
+</I>
+This happens quite often unfortunately. Even though I work for SuSE
+and I'm pro SuSE I'm also pro other distros and I really appreciate
+contributions from other distributions. My time does not permit to
+go around for promotion, negotiations and talks to the right people
+at RH, Debian, Ubuntu and others which is most likely the cause for
+less trust or the easier solution to do everything themselves. The
+design of kiwi at least does not lock out others and is intentionally
+open for all distributions. The idea behind that was to let distro
+experts contribute the differences and share all the common parts.
+I think it's still a long way to get there but I'm confident to
+convince people for a more clean solution as soon as the &quot;spagetty-code&quot;
+strikes back in terms of maintenance and bugs :) 
+
+&gt;<i> Currently they find out that a lot of drievers for the latest
+</I>&gt;<i> USB-wifi-dongels are not present in the default ubuntu repo.
+</I>
+Were you able to find those drivers in other distro kernel packages ?
+
+&gt;<i> As long as the pilot runs, i've got the possibility to present another
+</I>&gt;<i> option: - either let them continue, with U-11.04 (with the problems
+</I>&gt;<i> with Unity etc etc)
+</I>&gt;<i> - OpenSuSE_11.4 default
+</I>&gt;<i> - OpenSuSE_11.4 with kernel-of-the-day
+</I>&gt;<i> - OpenSuSE_Tumbleweed.
+</I>&gt;<i> 
+</I>&gt;<i> So, if maximum number of drivers (VGA, wifi) is the goal, 
+</I>&gt;<i> which option gets me the best results?
+</I>
+- If you have the drivers packaged no matter if they are part of one
+  of the distro kernels or as a distro kernel-module-package (kmp)
+  it would be easy to add and maintain them using a kiwi image
+  description.
+
+- If you only have access to the code but no one has ever packaged
+  it and that kernel source is somewhere in an orphaned tree at the
+  distro side it is hard for kiwi to use that kernel 
+
+&gt;<i> At least Greg-KH works fulltime at kernels at SuSE. From Ubuntu i've
+</I>&gt;<i> heard that they obain most of their kernelpatches from other distro's,
+</I>&gt;<i> so i really wonder how fast they can produce new drivers...
+</I>
+I can't tell about Ubuntus effort in creating the distro kernel, because
+I don't know the process there. If you are right and they update from
+what others do I think one of the distros which actively takes part in the
+kernel development is more flexible But:
+
+* convincing the kernel people to include a driver is a technical and
+  most often political decision which needs time and flair ;)
+
+* if the driver doesn't scratch an itch and has no business relation
+  it might be even harder to get that thing into the kernel
+  
+&gt;<i> I'm looking for an un-biased suggestion. (Obviously any
+</I>&gt;<i> SuSE-versions integrates best with kiwi, but I am allready pro-SuSE )
+</I>
+Well I think you should ask yourself the following questions:
+
+- Does the distro provide an imaging toolkit like kiwi ?
+
+- Does the distro provide all the software you need in the image
+  or are there external repositories providing the software for
+  that distro ?
+
+- Does the distro kernel package include all drivers or are
+  there external kmp drivers for that distro kernel available ?
+
+- Is all the software including the kernel in a maintained area
+  or is there the risk of a single point of failure somewhere in
+  the process ?
+
+Does this make sense ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002841.html">[Kiwi-users] Unbiassed suggestion
+</A></li>
+	<LI>Next message: <A HREF="002842.html">[Kiwi-users] openSUSE 11.4 64-bit OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2843">[ date ]</a>
+              <a href="thread.html#2843">[ thread ]</a>
+              <a href="subject.html#2843">[ subject ]</a>
+              <a href="author.html#2843">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

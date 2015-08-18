@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C4D964BCA.6060004%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002595.html">
+   <LINK REL="Next"  HREF="002597.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C4D964BCA.6060004%40novell.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">rschweikert at novell.com
+       </A><BR>
+    <I>Sat Apr  2 00:03:54 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002595.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002597.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2596">[ date ]</a>
+              <a href="thread.html#2596">[ thread ]</a>
+              <a href="subject.html#2596">[ subject ]</a>
+              <a href="author.html#2596">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+&lt;snip&gt;
+
+&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi guys,
+</I>&gt;&gt;&gt;<i> Ok I could make the writeable OS work.  I removed the &quot;ramonly&quot;
+</I>&gt;&gt;&gt;<i> element but I'm still having issues with streaming video.  The video
+</I>&gt;&gt;&gt;<i> would run and then freeze and lock the system up.  I've also tried
+</I>&gt;&gt;&gt;<i> &quot;ramonly=false&quot; but the results where the same.
+</I>&gt;&gt;&gt;<i> chris
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The strange thing is that it starts streaming then stops with the
+</I>&gt;&gt;<i> video player looking like it trying to buffer more video but it never
+</I>&gt;&gt;<i> recovers.  Actually nothing will function at all.  I'm forced to dump
+</I>&gt;&gt;<i> the power or ctrl+alt+backspace.  With ctrl+alt+backspace instead of
+</I>&gt;&gt;<i> it bringing me back to LXDM login window it's a black screen with a
+</I>&gt;&gt;<i> blinking cursor.   For 5 years I've been working with live images (not
+</I>&gt;&gt;<i> on USB flash drives) and never ran into this issue.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> quotes
+</I>&gt;&gt;&gt;<i> Well, you have to make a tradeoff somewhere, live is full of compromises ;)
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i> - use your OEM image and let the system be read/write
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i> or
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i> - use a hybrid ISO image and give up your FAT storage partition
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i> You have to decide what is more important, the ability to share files with Windoze or having the system be read only.
+</I>&gt;<i>
+</I>&gt;<i> I have decided that I can make the read/write image work as I can make
+</I>&gt;<i> it behave similar to a live image when it comes to the users profile
+</I>&gt;<i> but after disabling &quot;ramonly&quot; element I have almost the same issue.
+</I>&gt;<i> Is there anything else that should be done to make this image run
+</I>&gt;<i> correctly in terms of the video issues?  If the image is now caching
+</I>&gt;<i> to the USB drive what would cause this problem?
+</I>&gt;<i>
+</I>
+Sorry I don't quite understand your confusion. Let me try a different 
+approach to explaining this.
+
+When you use a &quot;ramonly&quot; OEM image the image itself will load a lot of 
+it's data into RAM and thus eat up chunks of RAM that cannot be used by 
+applications running from the stick. Therefore applications are likely 
+to start swapping quickly. Swapping has a negative effect on 
+performance, especially on a USB stick as the transfer rate over USB is 
+not the fastest.
+
+When you use an OEM image that allows read and write less of the system 
+data is loaded into RAM, therefore applications will not start swapping 
+as early as compared to the &quot;ramonly&quot; system. However, there is no 
+guarantee that a given application will not swap. Swapping has a 
+negative effect.........
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002595.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002597.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2596">[ date ]</a>
+              <a href="thread.html#2596">[ thread ]</a>
+              <a href="subject.html#2596">[ subject ]</a>
+              <a href="author.html#2596">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

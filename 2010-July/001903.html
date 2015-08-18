@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%0A%09re-partition%09/dev/sda&In-Reply-To=%3C20100715172521.GA7589%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001902.html">
+   <LINK REL="Next"  HREF="001905.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%0A%09re-partition%09/dev/sda&In-Reply-To=%3C20100715172521.GA7589%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda">ms at novell.com
+       </A><BR>
+    <I>Thu Jul 15 19:25:21 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001902.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+        <LI>Next message: <A HREF="001905.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1903">[ date ]</a>
+              <a href="thread.html#1903">[ thread ]</a>
+              <a href="subject.html#1903">[ subject ]</a>
+              <a href="author.html#1903">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> If I've understood the documentation, changing the major version number
+</I>&gt;<i> of a PXE based image &quot;should&quot; tell the client that this is a brand new
+</I>&gt;<i> image and that the disks should get repartitioned with what ever
+</I>&gt;<i> partitioning format was defined in the config.xml file, correct?
+</I>
+yes. If you followed the process like this:
+
+1) change the version number in the XML. The &lt;version&gt; element
+2) rebuild the images. You should see that the image file names
+   now contain another version number in its name
+3) transfer the images to the /srv/tftpboot/[image|boot] directories
+   on your pxe boot server
+4) adapt the config.&lt;MAC&gt; in /srv/tftpboot/KIWI accordingly
+5) reboot the client. The client should report on boot that
+   a new version was found and the old one will be wiped
+
+&gt;<i> If so, I'm running into an issue where a PXE install is simply trying to
+</I>&gt;<i> use the last 54 Mbytes of storage that never got assigned during my
+</I>&gt;<i> first couple of runs. However, I did make a small change to the
+</I>&gt;<i> partitioning system from a standard pxedeploy structure to a split
+</I>&gt;<i> structure and then back again.
+</I>
+This is interesting. I never tried this but the current kiwi
+code removes the entire partition table first before it starts
+the new setup. In any case the /var/log/boot.kiwi file is helpful
+
+&gt;<i>                 &lt;version&gt;2.0.0&lt;/version&gt;
+</I>
+This is the version you need to change. The version is common
+over all image types. Alternatively you can force a reload of the
+image with
+
+   RELOAD_IMAGE=yes
+
+in the config.&lt;MAC&gt; assigned to the client
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001902.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+	<LI>Next message: <A HREF="001905.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1903">[ date ]</a>
+              <a href="thread.html#1903">[ thread ]</a>
+              <a href="subject.html#1903">[ subject ]</a>
+              <a href="author.html#1903">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

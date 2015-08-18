@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with Network boot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20Network%20boot%20image&In-Reply-To=%3C20080609082357.GA16150%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000663.html">
+   <LINK REL="Next"  HREF="000669.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with Network boot image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20Network%20boot%20image&In-Reply-To=%3C20080609082357.GA16150%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Issues with Network boot image">ms at novell.com
+       </A><BR>
+    <I>Mon Jun  9 10:23:57 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000663.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+        <LI>Next message: <A HREF="000669.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#667">[ date ]</a>
+              <a href="thread.html#667">[ thread ]</a>
+              <a href="subject.html#667">[ subject ]</a>
+              <a href="author.html#667">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am using a Network boot image and it works fine if the PXE setup is available. However, in the absence of network connectivity the system fails to boot.
+</I>&gt;<i> 
+</I>&gt;<i> Is this the expected behavior ?
+</I>
+If your system image does not provide initrd + kernel + grub, yes
+
+&gt;<i> I see that the KIWI Image deployment script is supposed to install the kernel and initrd and configure GRUB on the local disk. But I have seen that the &quot;initrd&quot; creation and GRUB configuration fails.
+</I>
+I guess because your system image doesn't include it. Some people remove
+/boot from their system image to save space. That's ok but you loose the
+possibility to boot standalone
+
+&gt;<i> Has anybody been able to get the Netboot image to boot locally in the absence of a PXE server. If so, can you please share your experiences on how this can be achieved.
+</I>
+It works on my terminal here but I took care that my system image includes
+everything which is required to boot stand alone. The reason why it hasn't
+worked for you can be checked in the /var/log/boot.kiwi file
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000663.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+	<LI>Next message: <A HREF="000669.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#667">[ date ]</a>
+              <a href="thread.html#667">[ thread ]</a>
+              <a href="subject.html#667">[ subject ]</a>
+              <a href="author.html#667">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

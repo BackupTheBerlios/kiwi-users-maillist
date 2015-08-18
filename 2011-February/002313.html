@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi preload image failure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C1297340692.5499.136.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002312.html">
+   <LINK REL="Next"  HREF="002314.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi preload image failure</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C1297340692.5499.136.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] kiwi preload image failure">roger at opq.se
+       </A><BR>
+    <I>Thu Feb 10 13:24:52 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002312.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+        <LI>Next message: <A HREF="002314.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2313">[ date ]</a>
+              <a href="thread.html#2313">[ thread ]</a>
+              <a href="subject.html#2313">[ subject ]</a>
+              <a href="author.html#2313">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-02-10 at 13:04 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I just rebuilt everything to be sure. The resizing takes much longer
+</I>&gt;<i> &gt; compared to the EXT4 resize, which happened almost immediately. But this
+</I>&gt;<i> &gt; seems not to fail now. So, one step forward.
+</I>&gt;<i> 
+</I>&gt;<i> So it's a 11.2 ext4 issue. You can report that... don't know if
+</I>&gt;<i> anybody will fix it for the old distro though
+</I>
+I can probably live with ext3. Isn't it possible to update a file system
+from ext3 to ext4? If so, I could do that as a final step. 
+
+&gt;<i> &gt; After the resizing, the system makes some complaints about various
+</I>&gt;<i> &gt; things not being writable. Unfortunately they zip off the screen before
+</I>&gt;<i> &gt; I can see them all. They were things like:
+</I>&gt;<i> 
+</I>&gt;<i> Well you are creating a split image and that means you decide what's
+</I>&gt;<i> writable and what's not. That's done by the split section. kiwi's
+</I>&gt;<i> default split section looks like this:
+</I>&gt;<i> 
+</I>&gt;<i>    &lt;split&gt;
+</I>&gt;<i>     &lt;persistent&gt;
+</I>&gt;<i>         &lt;file name=&quot;/var&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/var/*&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/boot&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/boot/*&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/etc&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/etc/*&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/home&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/home/*&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/tmp&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/tmp/*&quot;/&gt;
+</I>&gt;<i>     &lt;/persistent&gt;
+</I>&gt;<i>    &lt;/split&gt;
+</I>
+I am using whatever is in the preload example. I would expect that at
+least to boot. Whatever foolish things I may then attempt would be my
+own problem. Perhaps this is a 11.3 thing. I hope not...
+
+&gt;<i> These are the minimum write requirements in order to be able to
+</I>&gt;<i> login to the system. Of course depending on what you are doing more
+</I>&gt;<i> parts of the system must be writable which is always the tough 
+</I>&gt;<i> task when creating a split image
+</I>
+What I thought I was doing was making an image that I could boot, and it
+would (1) copy an image on to a hard disk, (2) the partitions resized,
+(3) some yast questions asked (license, timezone, etc) (4) and then the
+system operate as a 'regular' system (not split).
+
+In the preload scenario, it seems that #1 and #2 are happening as I
+expected. #3 and #4 are not.
+
+As to #3, I have seen this working with a live image on a USB stick. It
+seemed to work rather well. 
+
+Can I make a preload system that is not split, and all is in partitions
+as you would get in an install?
+
+
+
+
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002312.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+	<LI>Next message: <A HREF="002314.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2313">[ date ]</a>
+              <a href="thread.html#2313">[ thread ]</a>
+              <a href="subject.html#2313">[ subject ]</a>
+              <a href="author.html#2313">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

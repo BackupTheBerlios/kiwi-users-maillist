@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] 32 bit vs. 64 bit
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%2032%20bit%20vs.%2064%20bit&In-Reply-To=%3C20090428200338.GA4822%40idefix.dms.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001081.html">
+   <LINK REL="Next"  HREF="001085.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] 32 bit vs. 64 bit</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%2032%20bit%20vs.%2064%20bit&In-Reply-To=%3C20090428200338.GA4822%40idefix.dms.net%3E"
+       TITLE="[Kiwi-users] 32 bit vs. 64 bit">ms at novell.com
+       </A><BR>
+    <I>Tue Apr 28 22:03:38 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001081.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+        <LI>Next message: <A HREF="001085.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1083">[ date ]</a>
+              <a href="thread.html#1083">[ thread ]</a>
+              <a href="subject.html#1083">[ subject ]</a>
+              <a href="author.html#1083">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Robert,
+
+&gt;<i> For learning purposes I've created a configuration that produces an image 
+</I>&gt;<i> with autologin (in console mode, i.e. init3) and X server startup. This 
+</I>&gt;<i> works nicely on 32 bit when testing with qemu -cdrom image.iso, but with a 
+</I>&gt;<i> 64 bit image on x86-64 I am running into X server issue:
+</I>&gt;<i>
+</I>&gt;<i> qemu-kvm -cdrom image.iso
+</I>&gt;<i>
+</I>&gt;<i> produces the output shown in the attachement. Any help to address this is 
+</I>&gt;<i> appreciated.
+</I>
+The problem is that you don't have a module path for 64bit set
+in your xorg.conf. You need to have it like that
+
+  ModulePath    &quot;/usr/X11R6/lib/modules&quot;
+  ModulePath    &quot;/usr/X11R6/lib64/modules&quot;
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001081.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+	<LI>Next message: <A HREF="001085.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1083">[ date ]</a>
+              <a href="thread.html#1083">[ thread ]</a>
+              <a href="subject.html#1083">[ subject ]</a>
+              <a href="author.html#1083">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] get rid of the --prebuiltbootimage code
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20get%20rid%20of%20the%20--prebuiltbootimage%20code&In-Reply-To=%3C4E3029E0.60606%40suse.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002875.html">
+   <LINK REL="Next"  HREF="002877.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] get rid of the --prebuiltbootimage code</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20get%20rid%20of%20the%20--prebuiltbootimage%20code&In-Reply-To=%3C4E3029E0.60606%40suse.com%3E"
+       TITLE="[Kiwi-users] get rid of the --prebuiltbootimage code">rjschwei at suse.com
+       </A><BR>
+    <I>Wed Jul 27 17:08:16 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002875.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+        <LI>Next message: <A HREF="002877.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2876">[ date ]</a>
+              <a href="thread.html#2876">[ thread ]</a>
+              <a href="subject.html#2876">[ subject ]</a>
+              <a href="author.html#2876">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 07/27/2011 10:37 AM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi All,
+</I>&gt;<i>
+</I>&gt;<i> I'd like to remove/refactor support for the --prebuiltbootimage
+</I>&gt;<i> code. As you might know you can give kiwi a path to an already
+</I>&gt;<i> built initrd and it will use that file just as it is. And that's
+</I>&gt;<i> exactly the problem. During the development of kiwi some options
+</I>&gt;<i> has been added which allows to add modifications to the initrd
+</I>&gt;<i> which are configured as part of the system image description.
+</I>&gt;<i> For example bootinclude=&quot;true&quot; or LVM configuration, or OEM
+</I>&gt;<i> parameters for the swapspace, etc etc
+</I>&gt;<i>
+</I>&gt;<i> That means we have created a more and more important connection
+</I>&gt;<i> between the setup in the system image and the boot image.
+</I>&gt;<i> Thus using a static prebuilt version of a boot image (initrd)
+</I>&gt;<i> causes trouble sooner or later.
+</I>&gt;<i>
+</I>&gt;<i> I'd like to remove that code and add an option which allows to
+</I>&gt;<i> recycle an existing root tree like we have it with --recycle-root
+</I>&gt;<i> for the system image. So something like --boot-recycle-root
+</I>&gt;<i>
+</I>&gt;<i> That way the system would be more stable:
+</I>&gt;<i>
+</I>&gt;<i> - support for base root of the system image
+</I>&gt;<i> - support for base root of the boot image
+</I>&gt;<i>
+</I>&gt;<i> - support for image caches for system images
+</I>&gt;<i> - support for image caches for boot images
+</I>&gt;<i>
+</I>&gt;<i> - no support for prebuilt static boot images anymore
+</I>&gt;<i>
+</I>&gt;<i> Any objections ?
+</I>
+I am not sure that the new features really preclude the current feature, 
+i.e. why would the --prebuiltbootimage option need to be removed. I have 
+not looked at the code, but it cannot be all that much code or all that 
+difficult to maintain.
+
+My thought is that this is still very useful for an oem image where the 
+hardware is very well defined and the initrd can be cut down and 
+targeted for just the given hardware.
+
+I am not opposed to the idea, just not sure why we would need to remove 
+the existing option in this case.
+
+Later,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweik at ca.ibm.com</A>
+781-464-8147
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002875.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+	<LI>Next message: <A HREF="002877.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2876">[ date ]</a>
+              <a href="thread.html#2876">[ thread ]</a>
+              <a href="subject.html#2876">[ subject ]</a>
+              <a href="author.html#2876">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

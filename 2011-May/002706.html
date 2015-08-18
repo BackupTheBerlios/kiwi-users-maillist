@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] specify eth device in pxe kiwi boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20specify%20eth%20device%20in%20pxe%20kiwi%20boot&In-Reply-To=%3C1305026530.31881.34.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002705.html">
+   <LINK REL="Next"  HREF="002707.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] specify eth device in pxe kiwi boot</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20specify%20eth%20device%20in%20pxe%20kiwi%20boot&In-Reply-To=%3C1305026530.31881.34.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] specify eth device in pxe kiwi boot">roger at opq.se
+       </A><BR>
+    <I>Tue May 10 13:22:10 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002705.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+        <LI>Next message: <A HREF="002707.html">[Kiwi-users] specify eth device in pxe kiwi boot [SOLVED]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2706">[ date ]</a>
+              <a href="thread.html#2706">[ thread ]</a>
+              <a href="subject.html#2706">[ subject ]</a>
+              <a href="author.html#2706">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>We have a funny piece of hardware that we want to boot with KIWI/PXE.
+The problem is that it has two NIC, but only one of them allows booting
+via PXE. The initial part seems to be ok. But at some point, the kiwi
+boot process does a dhcp request on eth0. It is at the point shortly
+after the boot process prints &quot;Loading KIWI PXE Boot-System...&quot; At that
+time, a DHCP request ss done on eth0.
+
+As it turns out, this is not the port we can enable to do a PXE boot. We
+have looked to see if we can disable this NIC in the BIOS. But either it
+cannot be done, or it is very well hidden.
+
+My question is, is there a way to specify, at boot time, which NIC to
+use for this dhcp request? 
+
+
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002705.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+	<LI>Next message: <A HREF="002707.html">[Kiwi-users] specify eth device in pxe kiwi boot [SOLVED]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2706">[ date ]</a>
+              <a href="thread.html#2706">[ thread ]</a>
+              <a href="subject.html#2706">[ subject ]</a>
+              <a href="author.html#2706">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

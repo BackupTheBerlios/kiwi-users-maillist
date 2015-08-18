@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to stop rpm public key server access
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20stop%20rpm%20public%20key%20server%20access&In-Reply-To=%3C201002011157.00700.hpj%40urpla.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001619.html">
+   <LINK REL="Next"  HREF="001623.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to stop rpm public key server access</H1>
+    <B>Hans-Peter Jansen</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20stop%20rpm%20public%20key%20server%20access&In-Reply-To=%3C201002011157.00700.hpj%40urpla.net%3E"
+       TITLE="[Kiwi-users] How to stop rpm public key server access">hpj at urpla.net
+       </A><BR>
+    <I>Mon Feb  1 11:57:00 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001619.html">[Kiwi-users] How to stop rpm public key server access
+</A></li>
+        <LI>Next message: <A HREF="001623.html">[Kiwi-users] How to stop rpm public key server access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1621">[ date ]</a>
+              <a href="thread.html#1621">[ thread ]</a>
+              <a href="subject.html#1621">[ subject ]</a>
+              <a href="author.html#1621">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Monday 01 February 2010, 10:29:34 Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; Using the same source repository, yast2 mounted iso or local rpm-dir, I
+</I>&gt;<i> &gt; can run yast, smart, zypper and install packages no problem. However
+</I>&gt;<i> &gt; when running kiwi it keeps wanting to get the rpm keys from a public
+</I>&gt;<i> &gt; key server which doesn't work because I'm behind a corporate firewall. 
+</I>&gt;<i> &gt; I see the kiwi log say it's importing build keys so either it is not
+</I>&gt;<i> &gt; working or kiwi wants to do it anyway. I do have
+</I>&gt;<i> &gt; &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt; but I have no idea
+</I>&gt;<i> &gt; what that's really means.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; How do I get kiwi to use the existing public keys and/or force it to
+</I>&gt;<i> &gt; not need them.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; SLES 10, kiwi-3.94-80.1.  Using the suse-SLE10-JeOS template (not
+</I>&gt;<i> &gt; modified).  Bellow is the image-root.log
+</I>&gt;<i>
+</I>&gt;<i> I have the same problem when using smart as packagemanager. kiwi
+</I>&gt;<i> imports the existing local build keys before calling any packagemanager
+</I>&gt;<i> function. It does the import by the following code:
+</I>&gt;<i>
+</I>&gt;<i>   Importing build keys...
+</I>&gt;<i>   cd $root/rpm-sigs &amp;&amp; /usr/lib/rpm/gnupg/dumpsigs
+</I>&gt;<i>   rpm -r $root --import $sigs/gpg-pubke*
+</I>&gt;<i>
+</I>&gt;<i> All it does is adding existing local keys into the rpm database
+</I>&gt;<i> inside the chroot. But smart keeps trying to receive public keys
+</I>&gt;<i> from the network and fails if they can't be loaded. I couldn't
+</I>&gt;<i> find a way how to prevent that in smart :(
+</I>
+The attached patch might help. But after applying this, smart stumbled on 
+other issues, I have forgotten... 
+
+&gt;<i> I CC'ed the smart maintainer maybe he knows more.
+</I>&gt;<i> Christoph could you take a look ?
+</I>&gt;<i>
+</I>&gt;<i> Thanks
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi-fix-smart-chksig.diff
+Type: text/x-diff
+Size: 376 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100201/aacaf9c9/attachment.diff">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100201/aacaf9c9/attachment.diff</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001619.html">[Kiwi-users] How to stop rpm public key server access
+</A></li>
+	<LI>Next message: <A HREF="001623.html">[Kiwi-users] How to stop rpm public key server access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1621">[ date ]</a>
+              <a href="thread.html#1621">[ thread ]</a>
+              <a href="subject.html#1621">[ subject ]</a>
+              <a href="author.html#1621">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

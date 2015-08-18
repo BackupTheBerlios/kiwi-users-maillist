@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi or package issue?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3CAANLkTi%3DQ56uwnF105%3D%3DEvp2MBLxzRiCeuG5-ZbdDhOi0%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002533.html">
+   <LINK REL="Next"  HREF="002535.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi or package issue?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3CAANLkTi%3DQ56uwnF105%3D%3DEvp2MBLxzRiCeuG5-ZbdDhOi0%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Kiwi or package issue?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Wed Mar 23 17:37:00 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002533.html">[Kiwi-users] Broadcom drivers/kernel module
+</A></li>
+        <LI>Next message: <A HREF="002535.html">[Kiwi-users] Fwd: Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2534">[ date ]</a>
+              <a href="thread.html#2534">[ thread ]</a>
+              <a href="subject.html#2534">[ subject ]</a>
+              <a href="author.html#2534">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+I had a bit of a mishap the other day where my config.xml file had
+been deleted to the trash bin while deleting other files.  I restored
+the config.xml file by confirming the time/date to make sure I had the
+correct version of this file.  As far as I could tell it was the
+correct one.
+However after running kiwi to create a new image and testing that
+image I notice an issue with two package that were previously resolved
+before this &quot;delete/restore&quot; issue.
+
+If you guys remember I had an issue with the package
+lxde-common-branding-openSUSE conflicting with my version of this
+package.  The issue was related to a conflict string in the spec file.
+ I was unsuccessful in getting the maintainer of this package to
+remove this string so Marcus recommended a few options.  Based on
+these options I choose to have my package(s) stored locally in the
+image (within the overlay file tree) and using the config.sh file to
+remove the SUSE version and install my branded version of this file.
+Up until now this worked great.  However it isnt' working now and I'm
+out of things to look at to find the source of the problem.
+
+The lxde-common-branding-openSUSE package provides some images for
+logout, menus and script to logout and login.  My package provides the
+same exact items and deps.  The config.sh  script has:
+
+# Activate services
+#--------------------------------------
+suseActivateDefaultServices
+suseInsertService boot.device-mapper
+
+#unistallation of the Suse branding package leaving the deps behind
+and installing SOS branding in it's place.
+rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch
+rpm -i /opt/SOS/lxde-common-branding-SOS-11.3-32.1.noarch.rpm
+rpm -e --nodeps desktop-data-openSUSE-11.3-1.3.noarch
+rpm -i /opt/SOS/desktop-data-SOS-11.3-15.1.noarch.rpm
+rm -rf /opt/SOS
+
+which uninstalls the SUSE version and installs my branded version of
+theses package.  It always worked before.   Now when I an working in
+this image I can see that the menu and logout images are not correct.
+I CD over to /usr/share/lxde/images (in this recently built image) and
+sure enough the SUSE image are still there.  So by the looks of it the
+config.sh script isn't running because when I do a &quot;rpm -e --nodeps
+lxde-common-branding-openSUSE-11.3-54.2.noarch&quot; manually in a terminal
+it removes all the image and scripts on the system related to the SUSE
+version of this package.  I then tried to install my version of the
+package which is in /opt/SOS with the same command that the config.sh
+script is running which is &quot;rpm -i
+/opt/SOS/lxde-common-branding-SOS-11.3-32.1.noarch.rpm&quot; and it's
+indicating &quot;failed dependencies: desktop-data-openSUSE is need by
+lxde-common-branding-SOS&quot;   Since when?!
+I'm guessing maybe this isn't an issue at all with the package as this
+all worked fine up until the deletion and restore of my config.xml
+file.
+I've been trying to figure out what happened to cause this for over a
+day now and can't seem to figure out what happend.  Here is the
+config.xml file <A HREF="http://paste.opensuse.org/79011903">http://paste.opensuse.org/79011903</A>
+
+Thanks guys for any help with this.
+chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002533.html">[Kiwi-users] Broadcom drivers/kernel module
+</A></li>
+	<LI>Next message: <A HREF="002535.html">[Kiwi-users] Fwd: Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2534">[ date ]</a>
+              <a href="thread.html#2534">[ thread ]</a>
+              <a href="subject.html#2534">[ subject ]</a>
+              <a href="author.html#2534">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Localization
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization&In-Reply-To=%3C47C55151.6080908%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000355.html">
+   <LINK REL="Next"  HREF="000393.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Localization</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization&In-Reply-To=%3C47C55151.6080908%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] Localization">bernd at ixsoft.de
+       </A><BR>
+    <I>Wed Feb 27 13:02:25 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000355.html">[Kiwi-users] Localization
+</A></li>
+        <LI>Next message: <A HREF="000393.html">[Kiwi-users] Localization
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#392">[ date ]</a>
+              <a href="thread.html#392">[ thread ]</a>
+              <a href="subject.html#392">[ subject ]</a>
+              <a href="author.html#392">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+
+I updated to kiwi 2.30, but my keyboard problem unfortunately persists :-(
+While everything else works perfectly (Kiwi is really a great tool, I 
+wish I had this for Ubuntu or Fedora), it seems I cannot set the 
+keyboard persistently to german.
+Whatever I do, after the next reboot the keyboard is set to the US-Flag 
+in KDE.
+&gt;&gt;&gt;&gt;<i> However, I added the right &quot;keytable= de-latin1-nodeadkeys.map.gz&quot; and 
+</I>&gt;&gt;&gt;&gt;<i> locale for Germany, but the KDE desktop still is coming up in US English 
+</I>&gt;&gt;&gt;&gt;<i> and the keyboard is set to english-us,pc104.
+</I>&gt;&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i> Hmm, what exactly does that mean ? Did you provide the file
+</I>&gt;&gt;&gt;<i> /etc/sysconfig/keyboard along with your image description ? 
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> No, I did not know that this was the correct method to configure language / 
+</I>&gt;&gt;<i> keyboard settings :-)
+</I>&gt;&gt;<i> I found the settings for keytable and language in SuseConfig, so I assumed 
+</I>&gt;&gt;<i> the german keyboard setting was somehow &quot;guessed&quot; by these options. My 
+</I>&gt;&gt;<i> fault ;-)
+</I>&gt;&gt;<i> Maybe there should be a &lt;keyboard&gt; tag in config.xml?
+</I>&gt;&gt;<i> If keytable is set to de-latin1, but keyboard is left to US-English, this 
+</I>&gt;&gt;<i> is not what one would expect...
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Ah ok, there is something like that. For example:
+</I>&gt;<i>
+</I>&gt;<i> 	&lt;keytable&gt;de-latin1-nodeadkeys.map.gz&lt;/keytable&gt;
+</I>&gt;<i>
+</I>&gt;<i> this will setup the sysconfig/keyboard file correctly. I don't
+</I>&gt;<i> know if you have read the mail from Tina. She also has problems with
+</I>&gt;<i> the keyboard setup which are fixed in the latest kiwi version
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Yes, I have read the kiwi.pdf and set the config.xml according to the 
+specs (I hope).
+My config.xml looks like this, so there must be some bug in here:
+...
+   &lt;version&gt;2.5&lt;/version&gt;
+    &lt;size unit=&quot;M&quot;&gt;2000&lt;/size&gt;
+    &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+    &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+    &lt;rpm-force&gt;False&lt;/rpm-force&gt;
+    &lt;keytable&gt;de-latin1-nodeadkeys.map.gz&lt;/keytable&gt;
+    &lt;!--language&gt;de_DE.UTF-8&lt;/language&gt;
+    &lt;keyboard&gt;german,pc104&lt;/keyboard--&gt;
+    &lt;locale&gt;de_DE.UTF-8&lt;/locale&gt;
+    &lt;timezone&gt;Europe/Berlin&lt;/timezone&gt;
+...
+
+I know that keyboard and language cannot be set in kiwi.conf yet (so 
+they are commented), but keytable should be correct?
+I checked that 
+/usr/share/kbd/keymaps/i386/qwertz/de-latin1-nodeadkeys.map.gz exists, too.
+
+The resulting entry in /etc/sysconfig/language is
+RC_LANG=&quot;de_DE.UTF-8&quot;
+
+and /etc/sysconfig/keyboard looks like this (which is obviously wrong 
+unless I manually adjust keyboard before creating the initrd):
+
+KEYTABLE=&quot;de-latin1-nodeadkeys.map.gz&quot;
+
+YAST_KEYBOARD=&quot;english-us,pc104&quot;
+
+
+...
+&gt;<i>
+</I>&gt;<i> after you have changed the console keyboard setup you need to
+</I>&gt;<i> recreate the xorg.conf by calling:
+</I>&gt;<i>
+</I>&gt;<i> 	sax2 -r
+</I>&gt;<i>
+</I>&gt;<i> the -r switch tells sax to re-detect everything including the
+</I>&gt;<i> keyboard environment. sax maps the console settings into X11 settings
+</I>&gt;<i> then
+</I>&gt;<i>   
+</I>Yes, I tried this in the live system (running AUFS), but the setting was 
+again US-English after restart. Argh!
+I am not sure if I should try to do this in the chroot-environment 
+already, since the monitor and mouse settings will be different in each 
+user PC, depending on where the stick or CD are inserted. The only 
+constant is a German keyboard and German locale, the rest is 
+autodetected (most of the time).
+
+Thanks for any hint ;-)
+
+Bernd
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 300 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080227/74d82610/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080227/74d82610/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000355.html">[Kiwi-users] Localization
+</A></li>
+	<LI>Next message: <A HREF="000393.html">[Kiwi-users] Localization
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#392">[ date ]</a>
+              <a href="thread.html#392">[ thread ]</a>
+              <a href="subject.html#392">[ subject ]</a>
+              <a href="author.html#392">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

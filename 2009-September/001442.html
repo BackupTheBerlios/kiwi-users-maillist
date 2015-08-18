@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [Kiwi-ltsp-users] Old etherboot client will not	work with pxe boot loader
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BKiwi-ltsp-users%5D%20Old%20etherboot%20client%20will%20not%0A%09work%20with%20pxe%20boot%20loader&In-Reply-To=%3Cb317ae5c0909110713g6888da41o40b874d35181f5ac%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001441.html">
+   <LINK REL="Next"  HREF="001444.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [Kiwi-ltsp-users] Old etherboot client will not	work with pxe boot loader</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BKiwi-ltsp-users%5D%20Old%20etherboot%20client%20will%20not%0A%09work%20with%20pxe%20boot%20loader&In-Reply-To=%3Cb317ae5c0909110713g6888da41o40b874d35181f5ac%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] [Kiwi-ltsp-users] Old etherboot client will not	work with pxe boot loader">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Fri Sep 11 16:13:41 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001441.html">[Kiwi-users] custom SLES 10 install CD
+</A></li>
+        <LI>Next message: <A HREF="001444.html">[Kiwi-users] [Kiwi-ltsp-users] Old etherboot client will	not	work with pxe boot loader
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1442">[ date ]</a>
+              <a href="thread.html#1442">[ thread ]</a>
+              <a href="subject.html#1442">[ subject ]</a>
+              <a href="author.html#1442">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Sep 10, 2009 at 10:48 PM, Marcel Oliver
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">m.oliver at jacobs-university.de</A>&gt; wrote:
+&gt;<i> Dear Kiwi-LTSP experts:
+</I>&gt;<i>
+</I>&gt;<i> I have some old LTSP thin clients which ran off LTSP 4 on OpenSUSE
+</I>&gt;<i> 10.0 for a long time without hitch. &#160;They are equipped with a custom
+</I>&gt;<i> made etherboot PROM, the model is Level One FNC-0109TX (RTL 8139D
+</I>&gt;<i> Chip).
+</I>&gt;<i>
+</I>&gt;<i> Now that we upgraded to LTSP 5 on OpenSUSE 11.1, these clients won't
+</I>&gt;<i> boot any more; the boot loader on the client complains that pxelinux.0
+</I>&gt;<i> is &quot;not a valid image&quot;. &#160;I presume that with an etherboot PROM it
+</I>&gt;<i> should not even be necessary to fetch another bootloader, it
+</I>&gt;<i> presumably can get the linux kernel straigt away as it did with LTSP
+</I>&gt;<i> 4. &#160;However, simply inserting
+</I>&gt;<i>
+</I>&gt;<i> &#160;filename &quot;boot/linux-ltsp&quot;;
+</I>&gt;<i>
+</I>&gt;<i> into the dhcpd.conf file for these clients does not help, the
+</I>&gt;<i> etherboot boot loader also considers linux-ltsp &quot;not a valid image&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Any ideas short of swapping the network cards to PXE booting ones?
+</I>&gt;<i>
+</I>
+I don't think KIWI supports etherboot.
+
+Schaefi is it possible to build etherboot image?
+
+Ciao
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001441.html">[Kiwi-users] custom SLES 10 install CD
+</A></li>
+	<LI>Next message: <A HREF="001444.html">[Kiwi-users] [Kiwi-ltsp-users] Old etherboot client will	not	work with pxe boot loader
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1442">[ date ]</a>
+              <a href="thread.html#1442">[ thread ]</a>
+              <a href="subject.html#1442">[ subject ]</a>
+              <a href="author.html#1442">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

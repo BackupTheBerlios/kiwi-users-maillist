@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CAANLkTi%3DxYY3NCHieDG--ZjUfaPPMUBPtrsuFgjvxWs6C%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002592.html">
+   <LINK REL="Next"  HREF="002594.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CAANLkTi%3DxYY3NCHieDG--ZjUfaPPMUBPtrsuFgjvxWs6C%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Apr  1 15:52:30 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002592.html">[Kiwi-users] LiveISO create Error on SLES 11 ia64
+</A></li>
+        <LI>Next message: <A HREF="002594.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2593">[ date ]</a>
+              <a href="thread.html#2593">[ thread ]</a>
+              <a href="subject.html#2593">[ subject ]</a>
+              <a href="author.html#2593">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Mar 31, 2011 at 1:54 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Perfect. :(
+</I>&gt;&gt;<i> This is going to be a huge issue. &#160; Big enought to derail the whole
+</I>&gt;&gt;<i> project....damn.
+</I>&gt;&gt;<i> I pulled up a task manager to monitor the RAM usage. &#160;The machine that
+</I>&gt;&gt;<i> I was testing has 1GB of RAM yet at it's peek during streaming it was
+</I>&gt;&gt;<i> at it's peek usage at 540MB. &#160;The CPU looks like it maxed out a few
+</I>&gt;&gt;<i> times but like you said once the swapping starts the OS is useless.
+</I>&gt;&gt;<i> So what is the cure? &#160; Not use &quot;ramonly&quot; setting?
+</I>&gt;<i>
+</I>&gt;<i> Well, you have to make a tradeoff somewhere, live is full of compromises ;)
+</I>&gt;<i>
+</I>&gt;<i> - use your OEM image and let the system be read/write
+</I>&gt;<i>
+</I>&gt;<i> or
+</I>&gt;<i>
+</I>&gt;<i> - use a hybrid ISO image and give up your FAT storage partition
+</I>&gt;<i>
+</I>&gt;<i> You have to decide what is more important, the ability to share files with
+</I>&gt;<i> Windoze or having the system be read only.
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>Hi guys,
+Ok I could make the writeable OS work.  I removed the &quot;ramonly&quot;
+element but I'm still having issues with streaming video.  The video
+would run and then freeze and lock the system up.  I've also tried
+&quot;ramonly=false&quot; but the results where the same.
+chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002592.html">[Kiwi-users] LiveISO create Error on SLES 11 ia64
+</A></li>
+	<LI>Next message: <A HREF="002594.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2593">[ date ]</a>
+              <a href="thread.html#2593">[ thread ]</a>
+              <a href="subject.html#2593">[ subject ]</a>
+              <a href="author.html#2593">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

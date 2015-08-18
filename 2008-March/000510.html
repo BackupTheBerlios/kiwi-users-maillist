@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Announcement: KIWI-LTSP 0.3.14 for openSUSE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Announcement%3A%20KIWI-LTSP%200.3.14%20for%20openSUSE&In-Reply-To=%3Cb317ae5c0803162227h32169663y802aa441eeefc48%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000509.html">
+   <LINK REL="Next"  HREF="000511.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Announcement: KIWI-LTSP 0.3.14 for openSUSE</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Announcement%3A%20KIWI-LTSP%200.3.14%20for%20openSUSE&In-Reply-To=%3Cb317ae5c0803162227h32169663y802aa441eeefc48%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Announcement: KIWI-LTSP 0.3.14 for openSUSE">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Mon Mar 17 06:27:25 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000509.html">[Kiwi-users] rootfs.tar size calculation issue
+</A></li>
+        <LI>Next message: <A HREF="000511.html">[Kiwi-users] Announcement: KIWI-LTSP 0.3.14 for openSUSE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#510">[ date ]</a>
+              <a href="thread.html#510">[ thread ]</a>
+              <a href="subject.html#510">[ subject ]</a>
+              <a href="author.html#510">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Community
+
+I am happy to announce yet another milestone of KIWI-LTSP development.
+KIWI-LTSP is LTSP5 implementation in openSUSE using KIWI imaging
+technology.
+
+Instructions to get you started are here: <A HREF="http://en.opensuse.org/LTSP">http://en.opensuse.org/LTSP</A>
+
+Installation is still as simple as 1-click to install all the required
+packages, one configuration file and one command kiwi-ltsp-setup -s.
+
+Developer's page, bug tracker, mailing lists:
+<A HREF="http://developer.novell.com/wiki/index.php/KIWI-LTSP">http://developer.novell.com/wiki/index.php/KIWI-LTSP</A>
+
+We won an award in the process of working on this project :)
+<A HREF="http://www.efytimes.com/efytimes/24867/news.htm">http://www.efytimes.com/efytimes/24867/news.htm</A> and
+<A HREF="http://www.openitis.com/openitis/project_view.php?id=130,">http://www.openitis.com/openitis/project_view.php?id=130,</A> this
+motivated me to fill up gsoc organization application..
+
+There are tons of improvements all around. Some of the enhancements are :
+
+* Improved performance, now clients with as little as 128M ram would
+be able to work.
+* Image sizes are greatly reduced, resulting in less build time and
+low resource requirement on the client.
+* New LDM theme and shiny new logo thanks to BiswajyotiM.
+* New package ltsp-server that installs all the configuration files
+and scripts required to run on the server.
+* It is now possible to select language and session from LDM (earlier
+ldm used nc command in stead of netcat)
+* lts.conf moved out of chroot image, this will allow you to change
+anything that that config without having to re-create squashfs image.
+* If you want any other configuration files to be served they can be
+put in /srv/tftpboot/KIWI and enter it in /srv/tftpboot/config.MAC(or
+config.default), see /usr/share/doc/packages/kiwi/kiwi.pdf for more
+information.
+* This is the first release that has packages built for openSUSE
+Factory, openSUSE 10.3 and Fedora 8. On Fedora of course you need to
+use your local image building tools that Warren has been working on.
+* Couple of switches are added to kiwi-ltsp-setup commandline tool to
+facilitate power users to build/configure selected component.
+* Local media such as USB disks and CD/DVD now automatically mount,
+they show up in /tmp/.$USER-ltspfs. If you want them to show up on
+your desktop instead, SUID /usr/bin/lbmount.
+* We now use PulseAudio for sound, everything should work out of box
+without any configuration, however flash or any videos will suck bad.
+
+Known Issue:
+
+* Local hard disk does not mount for some reason
+* Does not boot clients with less than 128M ram
+
+Thank you shaefi - KIWI developer, ogra, vagrantc, gadi, warren and
+all the LTPS developers and captain_magnus - KIWI-LTSP co-developer.
+
+Have fun with it, and do share your wishes and report bugs of which I
+am sure will be plenty.
+
+Apologies for posting on so many groups and if you get this more than one.
+
+-J
+
+-- 
+CyberOrg Info
+openSUSE - It's green, mean and rocks on your machine
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000509.html">[Kiwi-users] rootfs.tar size calculation issue
+</A></li>
+	<LI>Next message: <A HREF="000511.html">[Kiwi-users] Announcement: KIWI-LTSP 0.3.14 for openSUSE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#510">[ date ]</a>
+              <a href="thread.html#510">[ thread ]</a>
+              <a href="subject.html#510">[ subject ]</a>
+              <a href="author.html#510">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

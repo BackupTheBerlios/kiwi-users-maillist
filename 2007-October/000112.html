@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] FW: error preparing xen image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20FW%3A%20error%20preparing%20xen%20image&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90240B738%40zuk35exm60.ds.mot.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000111.html">
+   <LINK REL="Next"  HREF="000113.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] FW: error preparing xen image</H1>
+    <B>Mair Wolfgang-awm013</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20FW%3A%20error%20preparing%20xen%20image&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90240B738%40zuk35exm60.ds.mot.com%3E"
+       TITLE="[Kiwi-users] FW: error preparing xen image">wolfgang.mair at motorola.com
+       </A><BR>
+    <I>Mon Oct 29 14:49:26 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000111.html">[Kiwi-users] v1.77 released
+</A></li>
+        <LI>Next message: <A HREF="000113.html">[Kiwi-users] FW: error preparing xen image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I'm trying to prepare a xen image opensuse 10.3 on opensuse 10.3. 
+
+As package list I've installed a xen guest on a system and extracted the
+package list to put it into the config.xml file.
+
+
+This is the preferences section:
+
+  &lt;preferences&gt;
+    &lt;type primary=&quot;true&quot; boot=&quot;xenboot/suse-10.3&quot;
+filesystem=&quot;ext3&quot;&gt;xen&lt;/type&gt;
+    &lt;type boot=&quot;netboot/suse-10.3&quot; filesystem=&quot;ext3&quot;&gt;pxe&lt;/type&gt;
+    &lt;version&gt;2.0&lt;/version&gt;
+    &lt;size unit=&quot;M&quot;&gt;3200&lt;/size&gt;
+    &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+    &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+    &lt;rpm-force&gt;False&lt;/rpm-force&gt;
+    &lt;locale&gt;en_US.UTF-8&lt;/locale&gt;
+    &lt;defaultdestination&gt;/kiwi/image&lt;/defaultdestination&gt;
+    &lt;defaultroot&gt;/kiwi/root&lt;/defaultroot&gt;
+  &lt;/preferences&gt;
+
+
+kiwi --prepare /export/kiwi/descr --root=/export/kiwi/root --type xen
+
+
+Oct-29 09:39 &lt;1&gt; : Reset RPM signature check to: True
+done
+Oct-29 09:39 &lt;1&gt; : Creating Xen package list
+Oct-29 09:39 &lt;3&gt; : Couldn't create xen package list
+failed
+Oct-29 09:39 &lt;3&gt; : Image installation failed
+failed
+Oct-29 09:39 &lt;1&gt; : Logfile available at: /export/kiwi/root.log
+done
+Use of uninitialized value in string eq at /usr/sbin/kiwi line 1041.
+Oct-29 09:39 &lt;3&gt; : KIWI exited with error(s)
+done
+
+
+Where does this xen package list come from? Am I missing something?
+
+Thanks
+Wolfgang
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000111.html">[Kiwi-users] v1.77 released
+</A></li>
+	<LI>Next message: <A HREF="000113.html">[Kiwi-users] FW: error preparing xen image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

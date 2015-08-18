@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi and SLES 10 SP1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20SLES%2010%20SP1&In-Reply-To=%3C4A4E734D.1090600%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001248.html">
+   <LINK REL="Next"  HREF="001253.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi and SLES 10 SP1</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20SLES%2010%20SP1&In-Reply-To=%3C4A4E734D.1090600%40novell.com%3E"
+       TITLE="[Kiwi-users] Kiwi and SLES 10 SP1">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Jul  3 23:08:29 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001248.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+        <LI>Next message: <A HREF="001253.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1249">[ date ]</a>
+              <a href="thread.html#1249">[ thread ]</a>
+              <a href="subject.html#1249">[ subject ]</a>
+              <a href="author.html#1249">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcin M. Jessa wrote:
+&gt;<i> Peter Schinagl wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hi Marcin,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> if i do understand you right you would like to build something like the
+</I>&gt;&gt;<i> &quot;normal&quot; SUSE medias for installing an OS plus your own packages or a 
+</I>&gt;&gt;<i> changed selection of our rpms.
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Yes, I want to create a custom bootable DVD. I want it to boot the system,
+</I>&gt;<i> run a shell script to automatically partition the HD and install a 
+</I>&gt;<i> predefined
+</I>&gt;<i> set of packages to that HD and make it bootable.
+</I>&gt;<i>   
+</I>This is accomplished by using the OEM image type.
+&gt;&gt;<i> For that reason we have the YaST2 Product Creator available.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> KIWI is more an image creator, which normally means all software is
+</I>&gt;&gt;<i> pre-installed in that image.
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>     
+</I>&gt;<i> I don't quite understand you here. There are a few predefined
+</I>&gt;<i> KIWI &quot;profiles&quot; which let you create images
+</I>&gt;<i> for different kind of usage - CD/DVD, usb sticks etc.
+</I>&gt;<i> They all allow to also define a set of applications to be installed.
+</I>&gt;<i> How is that different from YaST2 Product Creator?
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> squashfs and aufs are used for compressing a filesystem which is e.g. used
+</I>&gt;&gt;<i> for Live CDs. Additionally they are not supported on SLE.
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Ok, thanks for that info.
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Furthermore SLES 10 SP1 is out of support, so this would be a bad choice
+</I>&gt;&gt;<i> to start a project on it. SP2 is the actual service pack and we are in the
+</I>&gt;&gt;<i> beta phase for SP3 - so please think about that.
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>     
+</I>&gt;<i> What can I say... the project is for a very conservative business and
+</I>&gt;<i> SLES 10 SP1 is what we have been and will use for quite a while...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Marcin
+</I>&gt;<i>   
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Fri, Jul 03, 2009 at 01:58:09PM +0200, Marcin M. Jessa wrote:
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i> Hi guys.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I work on a project where we (have to) use SLES 10.1 and we would like 
+</I>&gt;&gt;&gt;<i> to create a custom boot CD based on it.
+</I>&gt;&gt;&gt;<i> Unfortunately all the howtos, documents and config examples are for SLES 
+</I>&gt;&gt;&gt;<i> 10.2 and newer.
+</I>&gt;&gt;&gt;<i> They all mention usage of squashfs [1] and aufs [2] but there are no 
+</I>&gt;&gt;&gt;<i> versions available for SLES 10.1
+</I>&gt;&gt;&gt;<i> Do you guys have config files for SLES10.1?
+</I>&gt;&gt;&gt;<i> Was SLES 10.1 even created with Kiwi?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> [1]: <A HREF="http://download.opensuse.org/repositories/home:/mopp:/squashfs/">http://download.opensuse.org/repositories/home:/mopp:/squashfs/</A>
+</I>&gt;&gt;&gt;<i> [2]: <A HREF="http://download.opensuse.org/repositories/home:/mopp:/aufs/">http://download.opensuse.org/repositories/home:/mopp:/aufs/</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Cheers
+</I>&gt;&gt;&gt;<i> Marcin
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>   
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001248.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+	<LI>Next message: <A HREF="001253.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1249">[ date ]</a>
+              <a href="thread.html#1249">[ thread ]</a>
+              <a href="subject.html#1249">[ subject ]</a>
+              <a href="author.html#1249">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

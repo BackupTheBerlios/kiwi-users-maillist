@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Create extra (swap) partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20extra%20%28swap%29%20partition&In-Reply-To=%3C20100113105931.GA16240%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001580.html">
+   <LINK REL="Next"  HREF="001582.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Create extra (swap) partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20extra%20%28swap%29%20partition&In-Reply-To=%3C20100113105931.GA16240%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Create extra (swap) partition">ms at novell.com
+       </A><BR>
+    <I>Wed Jan 13 11:59:31 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001580.html">[Kiwi-users] Create extra (swap) partition
+</A></li>
+        <LI>Next message: <A HREF="001582.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1581">[ date ]</a>
+              <a href="thread.html#1581">[ thread ]</a>
+              <a href="subject.html#1581">[ subject ]</a>
+              <a href="author.html#1581">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> thanks for your answer. I use the vmx image as a raw image of fixed size and
+</I>&gt;<i> copy it with dd to a disk.
+</I>&gt;<i> 
+</I>&gt;<i> The oem type is in my understanding a installation system (it resizes itself
+</I>&gt;<i> or copys itself to the target disk). I don't want my system to behave this
+</I>&gt;<i> way.
+</I>&gt;<i> 
+</I>&gt;<i> Is it possible to deactivate the installation functionality from the oem
+</I>&gt;<i> type?
+</I>
+an oem is also a raw image but with the capability to adapt itself to
+a new disk geomtry. It doesn't matter if this disk is a real disk or a
+virtual disk. The additional creation of an installation image containing
+the oem can be easily switched off. Simply don't specify any format 
+attribute in your type section.
+
+    &lt;type filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.2&quot;&gt;oem&lt;/type&gt;
+
+this will also create a .raw disk file which you can dump with dd as
+you did before. On first boot of that image it will repartition itself
+according to your setup. During that process also the swap partition
+is created and activated
+
+The initial deployment takes a bit longer compared to a standard vmx
+because of that repartition stuff. I hope this is not a problem in
+your case
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001580.html">[Kiwi-users] Create extra (swap) partition
+</A></li>
+	<LI>Next message: <A HREF="001582.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1581">[ date ]</a>
+              <a href="thread.html#1581">[ thread ]</a>
+              <a href="subject.html#1581">[ subject ]</a>
+              <a href="author.html#1581">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

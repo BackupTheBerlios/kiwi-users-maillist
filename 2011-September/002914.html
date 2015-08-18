@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] KIWI VMX build problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI%20VMX%20build%20problem&In-Reply-To=%3C20110902085612.GA28320%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002912.html">
+   <LINK REL="Next"  HREF="002916.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] KIWI VMX build problem</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI%20VMX%20build%20problem&In-Reply-To=%3C20110902085612.GA28320%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] KIWI VMX build problem">ms at suse.de
+       </A><BR>
+    <I>Fri Sep  2 10:56:12 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002912.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+        <LI>Next message: <A HREF="002916.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2914">[ date ]</a>
+              <a href="thread.html#2914">[ thread ]</a>
+              <a href="subject.html#2914">[ subject ]</a>
+              <a href="author.html#2914">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Yah, seems odd eh? I like to find weird problems &#8230; :)
+</I>
+I don't like that ;-)
+
+&gt;<i> I do the build in two stages as I do mods on the intermediary stage (compile software not available as packages) and then use that stage for the final build to either ISO/PXE or VMX.
+</I>&gt;<i> 
+</I>&gt;<i> deployment:~ # kiwi --prepare Source --root prepare
+</I>&gt;<i> deployment:~ # kiwi --create prepare --destdir result-vmx --type vmx --add-profile vmxFlavour
+</I>&gt;<i> 
+</I>&gt;<i> So nothing particularly special.
+</I>&gt;<i> Here's the vmxFlavour portion of the config:
+</I>&gt;<i> ..
+</I>
+right and the exact same call worked here... what the heck
+So does the following work for you:
+
+   kiwi --convert path/to/file.raw --type vmx
+
+It will run the same format conversion code as if you implicitly
+request it in a create call.
+
+I'm using the latest code from git but it's not far away from
+your version and I'm not aware of that issue to be reported/fixed
+So kind of strange... ssh to your machine ? is that possible 
+if we don't find the bug ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002912.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+	<LI>Next message: <A HREF="002916.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2914">[ date ]</a>
+              <a href="thread.html#2914">[ thread ]</a>
+              <a href="subject.html#2914">[ subject ]</a>
+              <a href="author.html#2914">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

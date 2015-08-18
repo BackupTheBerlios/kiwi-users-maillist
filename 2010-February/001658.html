@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3CFB7CBAC8C916CD40A03367E1DA5EBA9A044A6CE9%40srvcom02.master.dns%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001657.html">
+   <LINK REL="Next"  HREF="001661.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?</H1>
+    <B>Mies, Christian</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3CFB7CBAC8C916CD40A03367E1DA5EBA9A044A6CE9%40srvcom02.master.dns%3E"
+       TITLE="[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?">Christian.Mies at it-novum.com
+       </A><BR>
+    <I>Mon Feb  8 10:23:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001657.html">[Kiwi-users] KIWI-LTSP + Citrix + Sound
+</A></li>
+        <LI>Next message: <A HREF="001661.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1658">[ date ]</a>
+              <a href="thread.html#1658">[ thread ]</a>
+              <a href="subject.html#1658">[ subject ]</a>
+              <a href="author.html#1658">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi List,
+with the 'type=&quot;compressed&quot;' - Option in config.xml the Image is
+starting now. 
+When SLES11 try to load haldaemon a lot of Errors comes up. I see, that
+Directories cannot be mounted rw. In the kiwi.pdf the Split Option is
+described. I tried following Statement in config.xml:
+
+        &lt;preferences&gt;
+                &lt;type image=&quot;iso&quot; boot=&quot;isoboot/suse-SLES11&quot;
+flags=&quot;compressed&quot;&gt;&lt;/type&gt;
+                &lt;version&gt;1.1.1&lt;/version&gt;
+                &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+                &lt;locale&gt;en_US&lt;/locale&gt;
+                &lt;keytable&gt;us.map.gz&lt;/keytable&gt;
+                &lt;timezone&gt;Europe/Berlin&lt;/timezone&gt;
+        &lt;/preferences&gt;
+        &lt;repository type=&quot;yast2&quot; alias=&quot;local&quot; priority=&quot;99&quot;&gt;
+                &lt;source path=&quot;<A HREF="dir:///mnt/download">dir:///mnt/download</A>&quot;/&gt;
+        &lt;/repository&gt;
+        &lt;repository type=&quot;yast2&quot; alias=&quot;SDK-Repo&quot; priority=&quot;99&quot;&gt;
+                &lt;source
+path=&quot;<A HREF="http://demeter.uni-regensburg.de/SLES11-SDK-x86/DVD1">http://demeter.uni-regensburg.de/SLES11-SDK-x86/DVD1</A>&quot;/&gt;
+        &lt;/repository&gt;
+        &lt;split&gt;
+                &lt;temporary&gt;
+                &lt;file name=&quot;/boot/&quot;/&gt;
+                &lt;file name=&quot;/boot/*&quot;/&gt;
+                &lt;file name=&quot;/var/&quot;/&gt;
+                &lt;file name=&quot;/var/*&quot;/&gt;
+                &lt;file name=&quot;/etc/&quot;/&gt;
+                &lt;file name=&quot;/etc/*&quot;/&gt;
+                &lt;file name=&quot;/tmp/&quot;/&gt;
+                &lt;file name=&quot;/tmp/*&quot;/&gt;
+                &lt;file name=&quot;/proc/&quot;/&gt;
+                &lt;file name=&quot;/proc/*&quot;/&gt;
+                &lt;file name=&quot;/dev/&quot;/&gt;
+                &lt;file name=&quot;/dev/*&quot;/&gt;
+                &lt;/temporary&gt;
+        &lt;/split&gt;
+
+If I try to prepare my Image, I'll get the following Message.
+
+sles11:/tmp/test # kiwi -p /tmp/test --root /tmp/mysys --type iso
+--logfile terminal
+Feb-08 10:17:04 &lt;1&gt; : Setting log file to: terminal
+Feb-08 10:17:04 &lt;1&gt; : Reading image description [Prepare]...
+Feb-08 10:17:04 &lt;1&gt; : EXEC [uname -m]
+Feb-08 10:17:05 &lt;3&gt; : Schema validation failed   failed
+Feb-08 10:17:05 &lt;3&gt; : Element image has extra content: split
+
+Feb-08 10:17:05 &lt;3&gt; : Use the jing command for more details
+Feb-08 10:17:05 &lt;3&gt; : The following requires jing to be installed
+Feb-08 10:17:05 &lt;3&gt; : jing /usr/share/kiwi/modules/KIWISchema.rng
+/tmp/test/config.xml
+Feb-08 10:17:05 &lt;3&gt; : KIWI exited with error(s)   done
+
+I installed 'jing' by zypper, but nothing changed.
+
+Any help will be appreciated..
+
+Regards
+Christian
+
+i.A. Christian Mies
+Senior Consultant
+
+Tel: +49 (661) 103-874      	(-333)  
+Fax: +49 (661) 103-17874            (-334)
+mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Christian.Mies at it-novum.com</A>
+
+ 
+
+it-novum GmbH .  Edelzeller Strasse 44 . 36043 Fulda  . <A HREF="http://www.it-novum.com">http://www.it-novum.com</A>
+Handelsregister Amtsgericht Fulda, HRB 1934 . Geschaftsfuhrer: Michael Kienle . Sitz der Gesellschaft: Fulda
+
+
+Der Inhalt dieser E-Mail ist vertraulich. Wenn Sie nicht der eigentliche Empfaenger sein sollten, informieren Sie bitte sofort den Absender oder vernichten umgehend diese Mail. Jegliche unerlaubte Vervielfaeltigung oder Weiterleitung dieser Mail ist strengstens verboten.
+This e-mail may contain confidential and/or priviledged information. If you are not the intended recepient (or have received this e-mail in error) please notify the sender immediately and destroy this e-mail. Any unauthorised copying, disclosure or distribution of material in this e-mail is strictly forbidden.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001657.html">[Kiwi-users] KIWI-LTSP + Citrix + Sound
+</A></li>
+	<LI>Next message: <A HREF="001661.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1658">[ date ]</a>
+              <a href="thread.html#1658">[ thread ]</a>
+              <a href="subject.html#1658">[ subject ]</a>
+              <a href="author.html#1658">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

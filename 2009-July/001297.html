@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Setting the size of a VMware disk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20size%20of%20a%20VMware%20disk&In-Reply-To=%3C4A687488.4040308%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001296.html">
+   <LINK REL="Next"  HREF="001298.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Setting the size of a VMware disk</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20size%20of%20a%20VMware%20disk&In-Reply-To=%3C4A687488.4040308%40novell.com%3E"
+       TITLE="[Kiwi-users] Setting the size of a VMware disk">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Jul 23 16:32:40 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001296.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+        <LI>Next message: <A HREF="001298.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1297">[ date ]</a>
+              <a href="thread.html#1297">[ thread ]</a>
+              <a href="subject.html#1297">[ subject ]</a>
+              <a href="author.html#1297">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;&gt;<i> I don't think so. If you set &lt;size unit=&quot;G&quot;&gt;50&lt;/size&gt; the result is
+</I>&gt;&gt;&gt;<i> a 50GB virtual disk for oem and vmx that's correct. But this size
+</I>&gt;&gt;&gt;<i> setup has no impact on the repartitioning done by the oem initrd on
+</I>&gt;&gt;&gt;<i> first boot. It still will use the available space on the hard drive
+</I>&gt;&gt;&gt;<i> as you configured it with the oem- options. Which oem- Options have
+</I>&gt;&gt;&gt;<i> you set ?
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> Here are the OEM options used.  I think I am more confused than before what 
+</I>&gt;&gt;<i> &lt;size/&gt; means.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;oem-boot-title&gt;A string&lt;/oem-boot-title&gt;
+</I>&gt;&gt;<i> &lt;oem-reboot&gt;yes&lt;/oem-reboot&gt;
+</I>&gt;&gt;<i> &lt;oem-swap&gt;yes&lt;/oem-swap&gt;
+</I>&gt;&gt;<i> &lt;!-- 128 GB swap partition --&gt;
+</I>&gt;&gt;<i> &lt;oem-swapsize&gt;131072&lt;/oem-swapsize&gt;
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> ok by default the repartition code will create a 10GB root
+</I>&gt;<i> filesystem and will use the rest - swap for the home partition where
+</I>&gt;<i> people need the space. If you want another size for the root
+</I>&gt;<i> partition use
+</I>&gt;<i>
+</I>&gt;<i>    &lt;oem-systemsize&gt;...&lt;/oem-systemsize&gt;
+</I>&gt;<i>
+</I>&gt;<i> if you don't want to take care for the root size at all just
+</I>&gt;<i> set:
+</I>&gt;<i>
+</I>&gt;<i>    &lt;oem-home&gt;no&lt;/oem-home&gt;
+</I>&gt;<i>
+</I>&gt;<i> this will prevent an extra home partition and will simply use
+</I>&gt;<i> all the space - swap
+</I>&gt;<i>   
+</I>Thanks, almost there. The 10 GB root works, actually matches the spec I 
+have. However, the installer that gets run after the OEM image is dumped 
+onto the machine will create a volume group with the remaining disk 
+space thus having a swap partition that takes the rest of the space, 
+i.e. larger than specified (128GB) does not really work.
+
+also is there a way to specify the partition number? For example if I 
+wanted the swap space to be the first partition /dev/sda1, can this be done?
+
+Thanks,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001296.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+	<LI>Next message: <A HREF="001298.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1297">[ date ]</a>
+              <a href="thread.html#1297">[ thread ]</a>
+              <a href="subject.html#1297">[ subject ]</a>
+              <a href="author.html#1297">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

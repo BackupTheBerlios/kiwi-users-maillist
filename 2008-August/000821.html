@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Tuning ext2/3 filesystem options
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Tuning%20ext2/3%20filesystem%20options&In-Reply-To=%3C1219956050.16986.113.camel%40megam.ott1.byward.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000824.html">
+   <LINK REL="Next"  HREF="000823.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Tuning ext2/3 filesystem options</H1>
+    <B>Peter Bowen</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Tuning%20ext2/3%20filesystem%20options&In-Reply-To=%3C1219956050.16986.113.camel%40megam.ott1.byward.net%3E"
+       TITLE="[Kiwi-users] Tuning ext2/3 filesystem options">pzb at novell.com
+       </A><BR>
+    <I>Thu Aug 28 22:40:50 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000824.html">[Kiwi-users] KIWI Image Processing : Image installation failed
+</A></li>
+        <LI>Next message: <A HREF="000823.html">[Kiwi-users] Tuning ext2/3 filesystem options
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#821">[ date ]</a>
+              <a href="thread.html#821">[ thread ]</a>
+              <a href="subject.html#821">[ subject ]</a>
+              <a href="author.html#821">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I am working on building an image that uses ext3.  I would like to
+change the Maximum mount count to -1 and Check interval to 0 to disable
+automatic filesystem checks.  This requires running:
+
+tune2fs -i 0 -c -1 /path/to/device
+
+I cannot find a way to do this with kiwi.  Is there a way, or do I need
+to do it by hand?
+
+Thanks.
+Peter
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000824.html">[Kiwi-users] KIWI Image Processing : Image installation failed
+</A></li>
+	<LI>Next message: <A HREF="000823.html">[Kiwi-users] Tuning ext2/3 filesystem options
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#821">[ date ]</a>
+              <a href="thread.html#821">[ thread ]</a>
+              <a href="subject.html#821">[ subject ]</a>
+              <a href="author.html#821">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

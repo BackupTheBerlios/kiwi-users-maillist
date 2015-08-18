@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Graphics issue on T61 Lenovo laptop
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Graphics%20issue%20on%20T61%20Lenovo%20laptop&In-Reply-To=%3C4ADC5CD1.6040609%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001484.html">
+   <LINK REL="Next"  HREF="001486.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Graphics issue on T61 Lenovo laptop</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Graphics%20issue%20on%20T61%20Lenovo%20laptop&In-Reply-To=%3C4ADC5CD1.6040609%40novell.com%3E"
+       TITLE="[Kiwi-users] Graphics issue on T61 Lenovo laptop">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Oct 19 14:34:25 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001484.html">[Kiwi-users] Graphics issue on T61 Lenovo laptop
+</A></li>
+        <LI>Next message: <A HREF="001486.html">[Kiwi-users] Root device with uuid
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1485">[ date ]</a>
+              <a href="thread.html#1485">[ thread ]</a>
+              <a href="subject.html#1485">[ subject ]</a>
+              <a href="author.html#1485">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I've created an appliance on a USB stick that has some firstboot code 
+</I>&gt;&gt;<i> and is based on SLED 11, thus it also displays the EULA in a nice 
+</I>&gt;&gt;<i> graphical way, when it works.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The USB stick system works fine in general but has issues on the T61. 
+</I>&gt;&gt;<i> When booting for the first time on the T61, the display is messed up. 
+</I>&gt;&gt;<i> The screen has Grey lines on it as if the graphics hardware is not 
+</I>&gt;&gt;<i> supported. However, AFAIK a regular install DVD of SLED 11 has no such 
+</I>&gt;&gt;<i> issues on the T61.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Further, if the firstboot is completed on a different system and the 
+</I>&gt;&gt;<i> stick is then moved to the T61 it is possible to run the USB based 
+</I>&gt;&gt;<i> system from the stick and the graphics works just fine.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Any ideas what's going on here, and how to fix the problem?
+</I>&gt;<i> 
+</I>&gt;<i> My guess ist that the xorg.conf used on first boot is not appropriate
+</I>&gt;<i> to display the graphics correctly. I think you have a static etc/X11/xorg.conf
+</I>&gt;<i> provided with your image description is that correct ? 
+</I>
+That is correct. It is the same file that can be found in 
+/usr/share/doc/packages/kiwi/examples/suse-11.1/suse-live-stick as I 
+based the appliance on this configuration.
+
+-&gt; diff root/etc/X11/xorg.conf 
+/usr/share/doc/packages/kiwi/examples/suse-11.1/suse-live-stick/root/etc/X11/xorg.conf
+-&gt;
+
+You should be
+&gt;<i> able to find that file in your overlay tree below the root/ directory.
+</I>&gt;<i> You can replace it with the one working for you. (Of course this will
+</I>&gt;<i> most likely limit the graphics to the T61 which is not one you want on
+</I>&gt;<i> a USB stick I guess)
+</I>&gt;<i> 
+</I>&gt;<i> The kiwi example xorg.conf files are the same one which we use to
+</I>&gt;<i> start the initial graphics setup when performing a standard DVD
+</I>&gt;<i> based installation. I'm wondering why the screen is messed up with
+</I>&gt;<i> it. The file used is this one (kiwi-templates must be installed):
+</I>&gt;<i> 
+</I>&gt;<i>   /usr/share/kiwi/image/suse-SLE11-JeOS/root/etc/X11/xorg.conf
+</I>
+There is one diff, but I am not sure why this difference would have the 
+described effect.
+
+-&gt; diff root/etc/X11/xorg.conf 
+/usr/share/kiwi/image/suse-SLE11-JeOS/root/etc/X11/xorg.conf7d6
+&lt;   ModulePath		&quot;/usr/lib/xorg/modules&quot;
+
+and by extension of course:
+
+-&gt; diff 
+/usr/share/doc/packages/kiwi/examples/suse-11.1/suse-live-stick/root/etc/X11/xorg.conf 
+/usr/share/kiwi/image/suse-SLE11-JeOS/root/etc/X11/xorg.conf
+7d6
+&lt;   ModulePath		&quot;/usr/lib/xorg/modules&quot;
+
+I know it doesn't work on a T400 but I thought the T61 is expected to 
+work as the hardware is not the latest and greatest.
+
+Robert
+&gt;<i> 
+</I>&gt;<i> This is a generic fbdev based configuration which should work
+</I>&gt;<i> on nearly all systems and to my knowledge it's the same we
+</I>&gt;<i> use for the standard installation. You can double check that
+</I>&gt;<i> with Stefan Dirsch &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sndirsch at novell.com</A>&gt; though
+</I>&gt;<i> 
+</I>&gt;<i> Hope that helps
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Narcus
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001484.html">[Kiwi-users] Graphics issue on T61 Lenovo laptop
+</A></li>
+	<LI>Next message: <A HREF="001486.html">[Kiwi-users] Root device with uuid
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1485">[ date ]</a>
+              <a href="thread.html#1485">[ thread ]</a>
+              <a href="subject.html#1485">[ subject ]</a>
+              <a href="author.html#1485">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

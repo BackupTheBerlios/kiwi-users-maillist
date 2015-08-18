@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Difference in what services are started on system image between Kiwi versions 3.01 and 4.65
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Difference%20in%20what%20services%20are%20started%20on%20system%0A%20image%20between%20Kiwi%20versions%203.01%20and%204.65&In-Reply-To=%3C20101208082636.GA28695%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002177.html">
+   <LINK REL="Next"  HREF="002183.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Difference in what services are started on system image between Kiwi versions 3.01 and 4.65</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Difference%20in%20what%20services%20are%20started%20on%20system%0A%20image%20between%20Kiwi%20versions%203.01%20and%204.65&In-Reply-To=%3C20101208082636.GA28695%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Difference in what services are started on system image between Kiwi versions 3.01 and 4.65">ms at novell.com
+       </A><BR>
+    <I>Wed Dec  8 09:26:36 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002177.html">[Kiwi-users] Difference in what services are started on system image between Kiwi versions 3.01 and 4.65
+</A></li>
+        <LI>Next message: <A HREF="002183.html">[Kiwi-users] /dev/ram1 limitation 128MB
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2180">[ date ]</a>
+              <a href="thread.html#2180">[ thread ]</a>
+              <a href="subject.html#2180">[ subject ]</a>
+              <a href="author.html#2180">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I know that there have been a &quot;world&quot; of changes in kiwi between 3.01 and 
+</I>&gt;<i> 4.65 and am not surprised by some differences.  Is there a way to 
+</I>&gt;<i> determine (i.e. a place to look for) which services Kiwi enables/disables 
+</I>&gt;<i> on startup?  (Now that I look at config.sh, probably a pointer to: 
+</I>&gt;<i> suseActivateDefaultServices)
+</I>
+I'm sorry that you had trouble with this and I must admit that the
+default service setup has changed between 3.01 and 4.65. So you are right
+if you have used only the suseActivateDefaultServices() function
+it might happen that the result of active services is different
+compared to the old version. The reason is that the old
+suseActivateDefaultServices() was too 'clever' activating too many
+services which was the reason why we change it to the default service
+set used by a standard installation.
+
+That said it's good to setup those services which you rely on by
+an explicit insert call in your config.sh script. I have the following
+in my scripts:
+
+   #======================================
+   # Functions...
+   #--------------------------------------
+   test -f /.kconfig &amp;&amp; . /.kconfig
+   test -f /.profile &amp;&amp; . /.profile
+
+   ...
+
+   #======================================
+   # Activate/remove services
+   #--------------------------------------
+   suseInsertService sshd
+   suseInsertService boot.device-mapper
+   suseRemoveService avahi-dnsconfd
+   suseRemoveService avahi-daemon
+   ...
+
+That will also survive a kiwi update ;) The default services might
+also be different according to the distro version so calling it
+is ok but for services which have to be enabled I would put in
+a suseInsertService ... call
+
+Sorry for any inconvenience you had
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002177.html">[Kiwi-users] Difference in what services are started on system image between Kiwi versions 3.01 and 4.65
+</A></li>
+	<LI>Next message: <A HREF="002183.html">[Kiwi-users] /dev/ram1 limitation 128MB
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2180">[ date ]</a>
+              <a href="thread.html#2180">[ thread ]</a>
+              <a href="subject.html#2180">[ subject ]</a>
+              <a href="author.html#2180">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

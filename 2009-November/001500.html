@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Failed to load network module
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20load%20network%20module&In-Reply-To=%3Cbc4bc5d00911150842q27e2fdf0w9eef437db92938ba%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001499.html">
+   <LINK REL="Next"  HREF="001501.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Failed to load network module</H1>
+    <B>Eduardo Dominguez</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20load%20network%20module&In-Reply-To=%3Cbc4bc5d00911150842q27e2fdf0w9eef437db92938ba%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Failed to load network module">eduardodmz at gmail.com
+       </A><BR>
+    <I>Sun Nov 15 17:42:52 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001499.html">[Kiwi-users] Failed to load network module
+</A></li>
+        <LI>Next message: <A HREF="001501.html">[Kiwi-users] Failed to load network module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1500">[ date ]</a>
+              <a href="thread.html#1500">[ thread ]</a>
+              <a href="subject.html#1500">[ subject ]</a>
+              <a href="author.html#1500">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>J,
+
+well, I just tried this and ended up with the following error on boot:
+
+  /proc/sys/kernel/sysrq: No such file or directory
+
+Also, it first complains about not finding vesamenu.c32, something
+that I don't remember seeing before.
+
+On Thu, Nov 12, 2009 at 11:19 PM, CyberOrg &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jigish.gohil at gmail.com</A>&gt; wrote:
+&gt;<i> On Fri, Nov 13, 2009 at 1:08 AM, Eduardo Dominguez &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">eduardodmz at gmail.com</A>&gt; wrote:
+</I>&gt;&gt;<i> One of my thin clients, an Acer Aspire L320, stops while booting
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160;Network module: failed to load network module.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The Aspire L320 is supported by the e1000 driver, which I added to the
+</I>&gt;&gt;<i> lts.conf file like so:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160;MODULE_01=e1000.o
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But this doesnt change anything, the clients won't boot.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Am I missing something?
+</I>&gt;&gt;<i>
+</I>&gt;<i> Please install the latest kiwi-desc-ltsp, kiwi-ltsp-prebuilt-unstable
+</I>&gt;<i> and kiwi-ltsp-bootimages-unstable, then run &quot;kiwi-ltsp-setup -c&quot; after
+</I>&gt;<i> backing up your lts.conf. e1000 module is in the netboot initrd so it
+</I>&gt;<i> should work, MODULE_01=e1000.o is not required on openSUSE. If you
+</I>&gt;<i> still cannot boot, select debug option from the boot menu and get us
+</I>&gt;<i> /var/log/kiwi.log from the client.
+</I>&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i>
+</I>&gt;<i> -J
+</I>&gt;<i>
+</I>
+
+
+-- 
+Eduardo
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001499.html">[Kiwi-users] Failed to load network module
+</A></li>
+	<LI>Next message: <A HREF="001501.html">[Kiwi-users] Failed to load network module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1500">[ date ]</a>
+              <a href="thread.html#1500">[ thread ]</a>
+              <a href="subject.html#1500">[ subject ]</a>
+              <a href="author.html#1500">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

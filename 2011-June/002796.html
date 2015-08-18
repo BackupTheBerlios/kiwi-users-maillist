@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] LVM - LVRoot resize, unexpected inconsistency
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20-%20LVRoot%20resize%2C%20unexpected%20inconsistency&In-Reply-To=%3C291A23B717F9104985651112DB6C365F28566D9459%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002816.html">
+   <LINK REL="Next"  HREF="002797.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] LVM - LVRoot resize, unexpected inconsistency</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20-%20LVRoot%20resize%2C%20unexpected%20inconsistency&In-Reply-To=%3C291A23B717F9104985651112DB6C365F28566D9459%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] LVM - LVRoot resize, unexpected inconsistency">john.lund at emc.com
+       </A><BR>
+    <I>Tue Jun 28 16:26:35 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002816.html">[Kiwi-users] broken kiwi
+</A></li>
+        <LI>Next message: <A HREF="002797.html">[Kiwi-users] LVM - LVRoot resize, unexpected inconsistency
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2796">[ date ]</a>
+              <a href="thread.html#2796">[ thread ]</a>
+              <a href="subject.html#2796">[ subject ]</a>
+              <a href="author.html#2796">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>When installing an oem ISO image, built with LVM (Root, Swap, /var, /root2 partitions defined with sizes in config.xml) I'm getting an fsck inconsistency error (/var/log/boot.kiwi extract):
+
+...
+deviceResize=/dev/AtmosVG/LVRoot
++ fstypeRootFS=ext3
++ '[' '!' -z ']'
++ isFSTypeReadOnly
++ '[' ext3 = squashfs ']'
++ '[' ext3 = clicfs ']'
++ return 1
++ '[' '!' -z /dev/AtmosVG/LVRoot ']'
++ partitionSize /dev/AtmosVG/LVRoot
++ '[' '!' -z '' ']'
++ '[' -z '' ']'
++ resizeFilesystem /dev/AtmosVG/LVRoot
++ local deviceResize=/dev/AtmosVG/LVRoot
++ local callme=
++ local ramdisk=0
++ local resize_fs
++ local resize_lucks
++ local check
++ grep -qi /dev/ram
++ echo /dev/AtmosVG/LVRoot
++ '[' -z ext3 ']'
++ resize_lucks='luksResize /dev/AtmosVG/LVRoot'
++ '[' ext3 = reiserfs ']'
++ '[' ext3 = ext2 ']'
++ '[' ext3 = ext3 ']'
++ Echo 'Resize EXT3 filesystem to full partition space...'
++ '[' 0 = 0 ']'
++ set +x
++ echo '[  566.091709] Resize EXT3 filesystem to full partition space...'
++ '[' 0 = 0 ']'
++ set +x
++ resize_fs='resize2fs -f -F -p /dev/AtmosVG/LVRoot'
++ check='e2fsck -p /dev/AtmosVG/LVRoot'
++ '[' 0 -eq 1 ']'
++ '[' -z '' ']'
++ '[' 0 -eq 0 ']'
++ eval luksResize /dev/AtmosVG/LVRoot
+++ luksResize /dev/AtmosVG/LVRoot
+++ local ldev=/dev/AtmosVG/LVRoot
+++ '[' '!' '' = yes ']'
+++ return
++ eval resize2fs -f -F -p /dev/AtmosVG/LVRoot
+++ resize2fs -f -F -p /dev/AtmosVG/LVRoot
+resize2fs 1.41.9 (22-Aug-2009)
++ '[' '!' 0 = 0 ']'
++ '[' 0 -eq 0 ']'
++ e2fsck -p /dev/AtmosVG/LVRoot
+
+
+/dev/AtmosVG/LVRoot: UNEXPECTED INCONSISTENCY; RUN fsck MANUALLY.
+        (i.e., without -a or -p options)
+
+The system seems starts to boot, and then forces login as root, showing the following message:
+fsck failed. Please repair manually and reboot.  The root file system is currently mounted read-only.  To remount it read-write do:
+        bash# mount -n -o remount,rw /
+Attention:  Only CONTROL-D will reboot the system in this maintenance mode.  Shutdown or reboot will not work.
+Give root password for login:
+If I run fsck manually and reboot, everything seems fine.
+I get this error with kiwi 4.91.2,   I do not get this error with kiwi 4.88 (plus patches) at this time.  I'm building using SLES 11 SP1 - plus updates from the official repositories.
+
+Is there anything else I can do to troubleshoot/obtain more details on the root cause of the file system inconsistency?
+
+Thank you,
+John Lund
+EMC Atmos - Access &amp; Platform Team
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002816.html">[Kiwi-users] broken kiwi
+</A></li>
+	<LI>Next message: <A HREF="002797.html">[Kiwi-users] LVM - LVRoot resize, unexpected inconsistency
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2796">[ date ]</a>
+              <a href="thread.html#2796">[ thread ]</a>
+              <a href="subject.html#2796">[ subject ]</a>
+              <a href="author.html#2796">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

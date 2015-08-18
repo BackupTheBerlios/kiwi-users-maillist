@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20mount%20root%20filesystem%20%28kiwi%202.02%29&In-Reply-To=%3C20071212202327.GA25455%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000170.html">
+   <LINK REL="Next"  HREF="000173.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20mount%20root%20filesystem%20%28kiwi%202.02%29&In-Reply-To=%3C20071212202327.GA25455%40suse.de%3E"
+       TITLE="[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)">ms at suse.de
+       </A><BR>
+    <I>Wed Dec 12 21:23:27 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000170.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+        <LI>Next message: <A HREF="000173.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#171">[ date ]</a>
+              <a href="thread.html#171">[ thread ]</a>
+              <a href="subject.html#171">[ subject ]</a>
+              <a href="author.html#171">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> checking EXT2 write extend
+</I>&gt;<i> Failed to mount root filesystem
+</I>&gt;<i> reboot Exception: reboot in 60 seconds
+</I>
+I guess a problem with the aufs mount. Just repeat the process and
+add the following kernel option when the grub screen appears
+
+	kiwidebug=1
+
+after that you will get a shell when the reboot Exception happens.
+Now you can change to the error console which is on console 3 where
+you should see a lot more information about the failure. On console
+4 you can see the errors the kernel throws if any
+
+&gt;<i> Configuration 2: qemu -cdrom /dev/sda
+</I>&gt;<i> Boots the splash screen, then tells me that it can't find a USB stick,
+</I>&gt;<i> and dies.
+</I>
+That's not a good test with a USB stick image because with that emulation
+the system can't find a USB stick... because there is no one
+
+&gt;<i> I also found that the splash screen only lets me select US English as
+</I>&gt;<i> keyboard, where can I localize this?
+</I>
+This code is not completed yet. I'm working on this
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000170.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+	<LI>Next message: <A HREF="000173.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#171">[ date ]</a>
+              <a href="thread.html#171">[ thread ]</a>
+              <a href="subject.html#171">[ subject ]</a>
+              <a href="author.html#171">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

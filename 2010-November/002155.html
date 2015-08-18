@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011231715.30794.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002154.html">
+   <LINK REL="Next"  HREF="002156.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011231715.30794.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory">javier at opensuse.org
+       </A><BR>
+    <I>Tue Nov 23 17:15:24 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002154.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+        <LI>Next message: <A HREF="002156.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2155">[ date ]</a>
+              <a href="thread.html#2155">[ thread ]</a>
+              <a href="subject.html#2155">[ subject ]</a>
+              <a href="author.html#2155">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>El Martes, 23 de Noviembre de 2010 15:37:01 Marcus Sch&#228;fer escribi&#243;:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; &gt; * Another question I have is; Do you change the disk file kiwi
+</I>&gt;<i> &gt; &gt; &gt; created
+</I>&gt;<i> &gt; &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &gt;   in some way ? I mean the log you posted showed me only the boot
+</I>&gt;<i> &gt; &gt; &gt;   process not the install process which could mean you have
+</I>&gt;<i> &gt; &gt; &gt;   transfered the kiwi generated raw disk file into a 8GB or 5.05GB
+</I>&gt;<i> &gt; &gt; &gt;   disk yourself ? is this correct ?.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; That's right. I dd'ed the raw image myself. And this raw image is just
+</I>&gt;<i> &gt; &gt; what kiwi generated.. I didn't touch it in any way.
+</I>&gt;<i> 
+</I>&gt;<i> Can you tell me the dd command you used ? did you dd the .raw file
+</I>&gt;<i> into another disk file or did you simply add empty blocks to the
+</I>&gt;<i> existing .raw file ? If you dd'ed the .raw into another file can you
+</I>&gt;<i> tell me more about that file. I mean was it empty or did it contain
+</I>&gt;<i> another operating system ? My guess is that in that case some LVM
+</I>&gt;<i> metadata survived on the disk and that causes the problems you saw
+</I>&gt;<i> on boot of that disk
+</I>
+dd if=/path/Open-PC_image.raw of=/dev/sdc bs=32k
+sdc is another disk attached to a VirtualBox machine, where I always put my 
+kiwi images for testing. So before, sdc contained an openSUSE-based OS.
+This is the first time that I have the busy /home partition issue.
+
+&gt;<i> Basically the preferred way to setup a X-GB disk from a .raw file
+</I>&gt;<i> is just by adding empty space at the end of the file:
+</I>&gt;<i> 
+</I>&gt;<i>    dd if=/dev/zero of=file.raw bs=1 count=1 seek=5G conv=notrunc
+</I>&gt;<i> 
+</I>&gt;<i> after that you have turned your .raw into a 5G disk. You also
+</I>&gt;<i> can convert that .raw file into a vmdk or any other format. That
+</I>&gt;<i> way you can be sure there is no &quot;crap&quot; on the disk causing conflicts
+</I>
+The problem is that I don't know the size of the real computers' hard disks. I 
+would like it to be one size fits all (if possible).
+
+Image with patch tested! :-)
+I don't get the unlink or busy messages anymore. Regarding sizes:
+LVRoot: 5.02 GB, LVSwap: 1.00 GB, LVhome: 1.03 GB and 904 MB unassigned free 
+space. /dev/sda1 uses 60.05 MB (/lvmboot) and /dev/sda2 uses 7.94 GB (LVM). 
+I have just realized that I forgot to change one thing. I have
+&lt;volume name=&quot;/home&quot; freespace=&quot;1024M&quot;/&gt;
+instead of
+&lt;volume name=&quot;/home&quot; size=&quot;1024M&quot;/&gt;
+I am going to rebuild the image &quot;with size&quot;. More info later :-)
+
+One small detail: kiwi names the lvs LVRoot and LVhome. Is it possible to call 
+it LVHome (with the H in uppercase so that it matches the naming style)?
+
+(Offtopic). Do you happen to know any app that converts raw to Acronis' and/or 
+Norton Ghost's format?
+
+
+Thanks,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101123/f93fa984/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101123/f93fa984/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002154.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+	<LI>Next message: <A HREF="002156.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2155">[ date ]</a>
+              <a href="thread.html#2155">[ thread ]</a>
+              <a href="subject.html#2155">[ subject ]</a>
+              <a href="author.html#2155">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

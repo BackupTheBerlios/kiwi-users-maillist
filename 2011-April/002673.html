@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Stick-Image wouldn't boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C201104211644.10606.hj.beckers%40onlinehome.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002672.html">
+   <LINK REL="Next"  HREF="002674.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Stick-Image wouldn't boot</H1>
+    <B>Hermann J. Beckers</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C201104211644.10606.hj.beckers%40onlinehome.de%3E"
+       TITLE="[Kiwi-users] Stick-Image wouldn't boot">hj.beckers at onlinehome.de
+       </A><BR>
+    <I>Thu Apr 21 16:44:10 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002672.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+        <LI>Next message: <A HREF="002674.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2673">[ date ]</a>
+              <a href="thread.html#2673">[ thread ]</a>
+              <a href="subject.html#2673">[ subject ]</a>
+              <a href="author.html#2673">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am Donnerstag, 21. April 2011 schrieb Hermann J. Beckers:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> I build am small/minimal OS-11.3 usb-image on susestudio. This images boots
+</I>&gt;<i> when I use it in qemu (&quot;qemu -boot c -hda image.raw -m 384 -monitor
+</I>&gt;<i> stdio&quot;). It also works after copying/writing the image to an stick, still
+</I>&gt;<i> using qemu (&quot;qemu -boot c -hda /dev/sdc &quot;).
+</I>&gt;<i> 
+</I>&gt;<i> But booting from this stick on a USB-bootable net/notebook stops depending
+</I>&gt;<i> on the boot menu entry used. The following is /boot/grub/menu.lst:
+</I>&gt;<i> 
+</I>...
+&gt;<i> Using the first entry it stops &quot;waiting for /dev/disk/by ... to appear&quot;.
+</I>&gt;<i> Using the second entry (modified to point to /dev/sda1) it drops me into
+</I>&gt;<i> the busybox shell?
+</I>&gt;<i> 
+</I>Reply to myself:
+
+I made a new *raw file and copied this file to my stick and made the first 
+boot in my netbook. The firstboot script started and initialized and expanded 
+the partition and the first and subsequent boots were successfull. So I dd'd 
+the stick back to my harddisk as an raw file. Now qemu can't boot this image 
+and gives the above mentioned &quot;waiting for .. to appear&quot; message. Trying to 
+use qemu with the stick as boot images gives the same result.
+
+Using qemu with the freshly downloaded, unused raw file goes the same way as 
+the first stick boot (firstboot script, initialization, expanding partition).
+
+So it seems a image generated as &quot;usb stick/hard disk image&quot; can't be used 
+both ways? Or what am I doing wrong?
+
+Yours
+hjb
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002672.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+	<LI>Next message: <A HREF="002674.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2673">[ date ]</a>
+              <a href="thread.html#2673">[ thread ]</a>
+              <a href="subject.html#2673">[ subject ]</a>
+              <a href="author.html#2673">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

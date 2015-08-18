@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110317090345.GA8357%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002499.html">
+   <LINK REL="Next"  HREF="002502.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110317090345.GA8357%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Thu Mar 17 10:03:46 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002499.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002502.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2500">[ date ]</a>
+              <a href="thread.html#2500">[ thread ]</a>
+              <a href="subject.html#2500">[ subject ]</a>
+              <a href="author.html#2500">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; Also I booted another time and the /lvmboot directory wasn't there in
+</I>&gt;<i> &gt; the file tree at all (on the live image) but the USB fat partition was
+</I>&gt;<i> &gt; mounted in /media? What the heck is going on here?
+</I>&gt;<i> 
+</I>&gt;<i> This is also correct and the reason is because you want a ram-only
+</I>&gt;<i> system by intention and that means everything written on first boot
+</I>&gt;<i> will vanish after the second boot. As the lvmboot is just a bind link
+</I>&gt;<i> to your fat partition created on first boot to setup all subsequent
+</I>&gt;<i> boots, the link is gone after reboot
+</I>
+another reason for this is, you can't update the kernel while
+running a ram-only OS. /boot would be persistently writable for
+such an update but all the modules the new kernel will bring in
+would be stored in RAM and are therefore gone on reboot. According
+to this you wouldn't be able to boot the system after such an update
+which is also a reason why we don't mount the boot partition to
+/boot (/lvmboot) inside the live-os if it's ram-only
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002499.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002502.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2500">[ date ]</a>
+              <a href="thread.html#2500">[ thread ]</a>
+              <a href="subject.html#2500">[ subject ]</a>
+              <a href="author.html#2500">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

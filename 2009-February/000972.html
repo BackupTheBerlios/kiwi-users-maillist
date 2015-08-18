@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi changes since circa openSUSE 10.3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20changes%20since%20circa%20openSUSE%2010.3&In-Reply-To=%3C1234185430.18069.62.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000974.html">
+   <LINK REL="Next"  HREF="000973.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi changes since circa openSUSE 10.3</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20changes%20since%20circa%20openSUSE%2010.3&In-Reply-To=%3C1234185430.18069.62.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] kiwi changes since circa openSUSE 10.3">roger at opq.se
+       </A><BR>
+    <I>Mon Feb  9 14:17:09 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000974.html">[Kiwi-users] swap order of split image parts
+</A></li>
+        <LI>Next message: <A HREF="000973.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#972">[ date ]</a>
+              <a href="thread.html#972">[ thread ]</a>
+              <a href="subject.html#972">[ subject ]</a>
+              <a href="author.html#972">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Last time I made new KIWI-based images was for openSUSE 10.3. I have
+decided to try my hand at making images for openSUSE 11.1 using the
+latest kiwi in the repository for that release. Just so I do not get too
+far behind!
+
+I make an image used for PXE diskless systems that access root via nbd.
+
+After sorting out the various obvious things in my new 11.1 install (add
+squashfs, change smart to zypper in my kiwi scripts, etc), I have gotten
+to a point I don't know how to get past.
+
+I decided to start with
+the /usr/share/kiwi/image/netboot/suse-11.1/config.xml script, and then
+make changes as I see fit based on my previous 10.3 script. The first
+change was that I wanted pxe images, so I changed
+
+	&lt;type bootprofile=&quot;default&quot;&gt;cpio&lt;/type&gt;
+
+to be:
+
+	&lt;type filesystem=&quot;squashfs&quot; boot=&quot;netboot/suse-11.1&quot;&gt;pxe&lt;/type&gt;
+
+which seems sort of the right thing to do. What I am unsure about is the
+bootprofile= and boot= options. I think I want to use the diskless
+profile defined in the config.xml file. How do I specify that I want to
+use that profile? And, if I specify bootprofile= what is the function of
+the boot= option? I did look at the wiki, but I think I do not know what
+I am looking for. The answer is most likely staring me in the face.
+
+But the real show stopper is that kiwi no longer finds my config.sh and
+image.sh scripts. They are in the current directory when I start kiwi.
+That did work before. I get a message that it is looking
+for /tmp/config.sh. I think this is a chroot place. I do not specify
+this anywhere. Where/how is that now specified?
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000974.html">[Kiwi-users] swap order of split image parts
+</A></li>
+	<LI>Next message: <A HREF="000973.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#972">[ date ]</a>
+              <a href="thread.html#972">[ thread ]</a>
+              <a href="subject.html#972">[ subject ]</a>
+              <a href="author.html#972">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

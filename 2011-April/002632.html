@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110408070630.GA20663%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002639.html">
+   <LINK REL="Next"  HREF="002606.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110408070630.GA20663%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">ms at suse.de
+       </A><BR>
+    <I>Fri Apr  8 09:06:30 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002639.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002606.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2632">[ date ]</a>
+              <a href="thread.html#2632">[ thread ]</a>
+              <a href="subject.html#2632">[ subject ]</a>
+              <a href="author.html#2632">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Marcus does the auto location/mount of the fat partition script that
+</I>&gt;<i> you gave me run on the very first boot?  I'm just trying to think of
+</I>&gt;<i> any scripts that we/I added that may have the potintial to cause this
+</I>&gt;<i> issue.  It has nothing to do with Firefox's user profile....I've saved
+</I>&gt;<i> the entire /var/logs folder and will compare it to the second boot
+</I>&gt;<i> versions.
+</I>
+The script I gave you can't have such an impact it just looks up
+the root device and mounts the fat partition for you, nothing more
+I you feel it might be related to this you can simply umount
+the fat partition and see if it makes a difference but I'm sure
+it will not
+
+&gt;<i> Looking at Firefox more closely I noticed that on the second boot it
+</I>&gt;<i> starts to cache/buffer the video as it plays.  The buffered video
+</I>&gt;<i> preload ahead of the playing video like normal.  However after about 3
+</I>&gt;<i> seconds of preloaded video is buffered or cached the indicator of this
+</I>&gt;<i> buffered video actually goes backwards until it meets the same point
+</I>&gt;<i> at the playing video indicator.  It's at this point that the video
+</I>&gt;<i> stops and will not play again.
+</I>
+ok, so I think the system starts to swap at that point and
+things go down then. It would be interesting to know about the
+available memory in a first boot system and in a second boot
+system. Just gather the information from 'cat /proc/meminfo' 
+I also would like to see the information from 'cat /proc/mount'
+from the first and the second boot. I also need the file
+'/var/log/boot.kiwi' from first and second boot
+
+&gt;<i> If this is a swap file or lack of
+</I>&gt;<i> space problem why would it only happen on the second boot and not the
+</I>&gt;<i> first
+</I>
+can't say that so far
+
+&gt;<i> Since the minimum RAM needs to be 1gb I set the swap file at
+</I>&gt;<i> 1500...although I think it should be double the ram amout at 2000mb.
+</I>&gt;<i> Is there any other settings that you can think of in the Kiwi config
+</I>&gt;<i> file that might make a difference here?
+</I>
+nope
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002639.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002606.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2632">[ date ]</a>
+              <a href="thread.html#2632">[ thread ]</a>
+              <a href="subject.html#2632">[ subject ]</a>
+              <a href="author.html#2632">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

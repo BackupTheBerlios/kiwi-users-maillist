@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] PXE Boot wrong kernel Version
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20wrong%20kernel%20Version&In-Reply-To=%3C20080123113701.GA5405%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000243.html">
+   <LINK REL="Next"  HREF="000245.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] PXE Boot wrong kernel Version</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20wrong%20kernel%20Version&In-Reply-To=%3C20080123113701.GA5405%40suse.de%3E"
+       TITLE="[Kiwi-users] PXE Boot wrong kernel Version">ms at suse.de
+       </A><BR>
+    <I>Wed Jan 23 12:37:01 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000243.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+        <LI>Next message: <A HREF="000245.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#244">[ date ]</a>
+              <a href="thread.html#244">[ thread ]</a>
+              <a href="subject.html#244">[ subject ]</a>
+              <a href="author.html#244">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ralf,
+
+&gt;<i> Ok
+</I>&gt;<i> 
+</I>&gt;<i> it was late yesterday.
+</I>&gt;<i> One again:
+</I>&gt;<i> First step
+</I>&gt;<i> kiwi --prepare /usr/share/doc/packages/kiwi/examples/test1 --root
+</I>&gt;<i> /tmp/mysystem
+</I>&gt;<i> second step
+</I>&gt;<i> kiwi --create /tmp/mysystem -d /tmp/mystem-result --type pxe
+</I>&gt;<i> 
+</I>&gt;<i> Files in /tmp/mystem-result
+</I>&gt;<i> are image, initrd and kernel
+</I>
+yes
+
+&gt;<i> I moved these file into the directories of the tftp/pxe Server and made
+</I>&gt;<i> copies for initrd and linux used in the default-file.
+</I>
+so just to make sure:
+
+- you copied the initrd and kernel files to /srv/tftpboot/boot/ ?
+- you configured PXE to use this files by correct links (linux,initrd) ?
+- you can see on the boot screen of the client that the PXE Bios
+  picks up this linux and initrd files ?
+- you copied the system image and md5sum file to /srv/tftpboot/image ?
+- your config.&lt;MAC&gt; in /srv/tftpboot/KIWI/ points to the correct
+  system image located in /srv/tftpboot/image ?
+ 
+&gt;<i> What can I do to check about versions etc.?
+</I>
+the kernel version is part of the initrd* file name. If you want to
+check if this kernel is also part of your system image you can loop
+mount the image file and check if /lib/modules/* includes the kernel.
+But I'm sure if one kiwi create process creates all the files in
+/tmp/mystem-result they are all based on the same kernel
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000243.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+	<LI>Next message: <A HREF="000245.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#244">[ date ]</a>
+              <a href="thread.html#244">[ thread ]</a>
+              <a href="subject.html#244">[ subject ]</a>
+              <a href="author.html#244">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

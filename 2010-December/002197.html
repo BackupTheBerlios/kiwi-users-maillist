@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] 4.67 problems with kiwi-hooks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%204.67%20problems%20with%20kiwi-hooks&In-Reply-To=%3C20101210082345.GA5625%40localhost.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002196.html">
+   <LINK REL="Next"  HREF="002202.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] 4.67 problems with kiwi-hooks</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%204.67%20problems%20with%20kiwi-hooks&In-Reply-To=%3C20101210082345.GA5625%40localhost.fritz.box%3E"
+       TITLE="[Kiwi-users] 4.67 problems with kiwi-hooks">ms at suse.de
+       </A><BR>
+    <I>Fri Dec 10 09:23:46 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002196.html">[Kiwi-users] 4.67 problems with kiwi-hooks
+</A></li>
+        <LI>Next message: <A HREF="002202.html">[Kiwi-users] kiwi: Weekly report 2010-12-05 - 2010-12-10...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2197">[ date ]</a>
+              <a href="thread.html#2197">[ thread ]</a>
+              <a href="subject.html#2197">[ subject ]</a>
+              <a href="author.html#2197">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+&gt;<i> I cannot seem to get the all the kiwi-hooks files working.  I am using the preHWdetect.sh, postImageDump.sh, and preCAllInit.sh scripts.
+</I>&gt;<i> I have all the files in my &lt;source&gt;/root/kiwi-hooks directory.  All the scripts are not picked up by kiwi.
+</I>&gt;<i> I have also tried archiving the scripts in the kiwi-hooks directory, and including the archive as follows in my config.xml:
+</I>&gt;<i> &lt;archive name=&quot;emc-kiwi-hooks.tar.gz&quot; bootinclude=&quot;true&quot;/&gt;
+</I>&gt;<i> Where the archive is placed in the &lt;source&gt; directory.
+</I>&gt;<i> Again I believe the preHWdetect.sh and postImageDump.sh scripts are not being picked up.  (I think the preCallInit script is still being pulled from the &lt;source&gt;/root/kiwi-hooks directory.
+</I>&gt;<i> 
+</I>&gt;<i> How should I be setting up the kiwi-hooks files in my kiwi &lt;source&gt; directory?  Do the kiwi-hooks files need to be copied manually into the boot &#8220;root&#8221; to make this work?
+</I>&gt;<i> 
+</I>&gt;<i> In looking at the prepared image-root, I do not see any of the files from my &lt;source&gt;/root overlay directory in the &lt;image-root&gt;/root directory, and I'm pretty sure they had been there prior to using 4.67.  Has this functionality changed?
+</I>
+I think this is a regression due to the XML changes we did in 4.67. I tested
+the kiwi-hooks stuff today with the patches I made the last days and it
+worked. I will submit 4.68 in an hour so it should work for you again soon.
+I have tested it the following way:
+
+  cd /usr/share/kiwi/image/suse-11.3-JeOS
+  mkdir kiwi-hooks
+  vi kiwi-hooks/preHWdetect.sh
+
+  ...added some echo statement as script code
+
+  chmod u+x kiwi-hooks/preHWdetect.sh
+  tar -czf preHWdetect.tgz kiwi-hooks/
+  rm -rf kiwi-hooks
+  vi config.xml
+
+  &lt;archive name=&quot;preHWdetect.tgz&quot; bootinclude=&quot;true&quot;/&gt;
+
+  kiwi -p suse-11.3-JeOS --root /tmp/kiwi-11.3
+  kiwi --create /tmp/kiwi-11.3 -d /tmp/mytest --type oem
+
+  qemu-kvm -cdrom LimeJeOS-openSUSE-11.3.x86_64-1.11.3.iso \
+           -hda mydisk -boot d
+
+  watched the /var/log/boot.kiwi log and found my hook
+  was called
+  
+I'm sorry for any inconvenience
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002196.html">[Kiwi-users] 4.67 problems with kiwi-hooks
+</A></li>
+	<LI>Next message: <A HREF="002202.html">[Kiwi-users] kiwi: Weekly report 2010-12-05 - 2010-12-10...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2197">[ date ]</a>
+              <a href="thread.html#2197">[ thread ]</a>
+              <a href="subject.html#2197">[ subject ]</a>
+              <a href="author.html#2197">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

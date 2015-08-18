@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Package name weirdness/question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Package%20name%20weirdness/question&In-Reply-To=%3C20090619102756.GA26160%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001213.html">
+   <LINK REL="Next"  HREF="001215.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Package name weirdness/question</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Package%20name%20weirdness/question&In-Reply-To=%3C20090619102756.GA26160%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Package name weirdness/question">ms at novell.com
+       </A><BR>
+    <I>Fri Jun 19 12:27:56 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001213.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+        <LI>Next message: <A HREF="001215.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1214">[ date ]</a>
+              <a href="thread.html#1214">[ thread ]</a>
+              <a href="subject.html#1214">[ subject ]</a>
+              <a href="author.html#1214">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Robert,
+
+&gt;<i> How can one consistently determine whet package names are expected?
+</I>&gt;<i> 
+</I>&gt;<i> For example, trying to create an image that contains ImageMagic requires
+</I>&gt;<i> the following:
+</I>&gt;<i> 
+</I>&gt;<i> &lt;package name=&quot;ImageMagick-6.4.3.6-5.3&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> just using
+</I>&gt;<i> 
+</I>&gt;<i> &lt;package name=&quot;ImageMagick&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> triggers a &quot;package not found&quot; error. Yet, with GIMP one can get away with:
+</I>
+I can hardly believe that. If you call
+
+   rpm -q ImageMagick --qf %{NAME}
+
+you will get the name which can be resolved by the packagemanager.
+In case of ImageMagick the result is ImageMagick. So I think some
+other error causes the &quot;not found&quot; problem. Are you really sure
+the ImageMagick package exists in the desired arch on the repo(s)
+you specified for building ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001213.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+	<LI>Next message: <A HREF="001215.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1214">[ date ]</a>
+              <a href="thread.html#1214">[ thread ]</a>
+              <a href="subject.html#1214">[ subject ]</a>
+              <a href="author.html#1214">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

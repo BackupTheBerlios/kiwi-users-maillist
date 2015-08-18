@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] split image type and read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A6046A%40XCH-NW-04P.nw.nos.boeing.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000442.html">
+   <LINK REL="Next"  HREF="000458.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] split image type and read-only</H1>
+    <B>Mattes, David</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A6046A%40XCH-NW-04P.nw.nos.boeing.com%3E"
+       TITLE="[Kiwi-users] split image type and read-only">david.mattes at boeing.com
+       </A><BR>
+    <I>Thu Mar  6 18:35:26 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000442.html">[Kiwi-users] split image type and read-only
+</A></li>
+        <LI>Next message: <A HREF="000458.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#457">[ date ]</a>
+              <a href="thread.html#457">[ thread ]</a>
+              <a href="subject.html#457">[ subject ]</a>
+              <a href="author.html#457">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt; You are right I got your point. You want to say &quot;all ... except ...&quot;
+</I>&gt;<i> &gt; That can't be expressed with the current split section at 
+</I>&gt;<i> the moment 
+</I>&gt;<i> &gt; and is worth an enhancement bug report:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 	<A HREF="https://bugzilla.novell.com/show_bug.cgi?id=366510">https://bugzilla.novell.com/show_bug.cgi?id=366510</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; just set yourself to CC if you have a novell bugzilla 
+</I>&gt;<i> account. I will 
+</I>&gt;<i> &gt; take care asap.
+</I>&gt;<i> 
+</I>&gt;<i> Attached is a patch which allows you to specify exceptions. 
+</I>&gt;<i> It also fixes a bug when creating read-write links on files
+</I>&gt;<i> 
+</I>&gt;<i> Something like the following is possible:
+</I>&gt;<i> 
+</I>&gt;<i> 	&lt;split&gt;
+</I>&gt;<i>         &lt;temporary&gt;
+</I>&gt;<i>             &lt;!-- allow read/write access to: --&gt;
+</I>&gt;<i>             &lt;file name=&quot;/var&quot;/&gt;
+</I>&gt;<i>             &lt;file name=&quot;/var/*&quot;/&gt;
+</I>&gt;<i>             &lt;!-- but not on this file: --&gt;
+</I>&gt;<i>             &lt;except name=&quot;/etc/shadow&quot;/&gt;
+</I>&gt;<i>         &lt;/temporary&gt;
+</I>&gt;<i>         &lt;persistent&gt;
+</I>&gt;<i>             &lt;!-- allow persistent read/write access to: --&gt;
+</I>&gt;<i>             &lt;file name=&quot;/etc&quot;/&gt;
+</I>&gt;<i>             &lt;file name=&quot;/etc/*&quot;/&gt;
+</I>&gt;<i>             &lt;!-- but not on this file: --&gt;
+</I>&gt;<i>             &lt;except name=&quot;/etc/passwd&quot;/&gt;
+</I>&gt;<i>         &lt;/persistent&gt;
+</I>&gt;<i>     &lt;/split&gt;
+</I>&gt;<i> 
+</I>&gt;<i> I think this is what you you requested. Would you mind to 
+</I>&gt;<i> give it a test ?
+</I>
+I'll give you the example I'm working with, for /var:
+	&lt;split&gt;
+        &lt;temporary&gt;
+            &lt;!-- allow read/write access to: --&gt;
+            &lt;file name=&quot;/var&quot;/&gt;
+            &lt;file name=&quot;/var/*&quot;/&gt;
+            &lt;!-- but not on this file: --&gt;
+            &lt;except name=&quot;/var/lib/locatedb&quot;/&gt;
+            &lt;!-- but not on this directory: --&gt;
+            &lt;except name=&quot;/var/lib/rpm&quot;/&gt;
+        &lt;/temporary&gt;
+        &lt;persistent&gt;
+            &lt;!-- allow persistent read/write access to: --&gt;
+            &lt;file name=&quot;/var/log&quot;/&gt;
+            &lt;file name=&quot;/var/log/*&quot;/&gt;
+        &lt;/persistent&gt;
+    &lt;/split&gt;
+
+And it looks like the patch works!
+
+I really appreciate the effort to come up with something that will work for my needs, but I'm really starting to doubt the split-image approach will work for me.
+
+Another problem is the initrd.  I want my devices to boot from the drive (CF card in my case) without PXE, so I use the KIWI_INITRD parameter in the config.MAC file.  This downloads a workable initrd into the image when the device is imaged.  However, it would be extremely convoluted to get the initrd into the read-only image part.  So now I have to have /boot exist in the read-write partition.  The same headaches apply for grub configuration files, and in general to making any persistent changes to the read-only partition without re-imaging the device or going through contortions to make the read-only tree consistent across reboots.
+
+I don't even really need a read-write partition - maybe it was a mistake to make you think I did.  I think it is useful for me, but not at all necessary - I was planning on keeping /var/log/ in the persistent partition and that's it - since I can remote syslog.
+
+Do you have a kiwi image recommendation for an autonomous (no PXE-boot) diskful read-only image that can be mounted read-write when desired to make persistent OS updates without having to re-image the device?  I do really like the PXE-boot approach to loading the image onto the device, but the PXE-boot is just for initial device provisioning/configuration.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000442.html">[Kiwi-users] split image type and read-only
+</A></li>
+	<LI>Next message: <A HREF="000458.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#457">[ date ]</a>
+              <a href="thread.html#457">[ thread ]</a>
+              <a href="subject.html#457">[ subject ]</a>
+              <a href="author.html#457">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

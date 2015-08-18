@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] lts.conf ignores parameters
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20lts.conf%20ignores%20parameters&In-Reply-To=%3C200803142258.31128.bart%40geesink.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000503.html">
+   <LINK REL="Next"  HREF="000505.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] lts.conf ignores parameters</H1>
+    <B>Bart Geesink</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20lts.conf%20ignores%20parameters&In-Reply-To=%3C200803142258.31128.bart%40geesink.org%3E"
+       TITLE="[Kiwi-users] lts.conf ignores parameters">bart at geesink.org
+       </A><BR>
+    <I>Fri Mar 14 16:58:31 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000503.html">[Kiwi-users] lts.conf ignores parameters
+</A></li>
+        <LI>Next message: <A HREF="000505.html">[Kiwi-users] lts.conf ignores parameters
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#504">[ date ]</a>
+              <a href="thread.html#504">[ thread ]</a>
+              <a href="subject.html#504">[ subject ]</a>
+              <a href="author.html#504">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Friday 14 March 2008 20:38:00 CyberOrg wrote:
+
+&gt;<i> Variables are read by getltspcfg from the ltsp_config sourced right at
+</I>&gt;<i> the top of the init script.
+</I>&gt;<i>
+</I>&gt;<i> configure_x.sh called in &quot;start&quot; section then creates
+</I>&gt;<i> /etc/X11/xorg.conf. X (ldm) is started after this.
+</I>&gt;<i>
+</I>&gt;<i> ssh into the client and see xorg.conf if it has your changes.
+</I>A temporary xorg.conf is created in /tmp, called /tmp/xorg.conf.new. /ect is 
+not writable since it's a read only image (both NBD and NFS). I assume that 
+the only way to work around this is to add a writable share and add 
+COMBINED_IMAGE=yes ?
+
+configure-x.sh has this at the top:
+if [ -n &quot;${X_CONF}&quot; ]; then
+    exit
+fi
+So that would explain why the other options in my lts.conf are not used. I 
+will try to remove X_CONF from the lts.conf and see if the other options are 
+respected then. I will be able to do this on Monday, as it is weekend and the 
+server is at work...
+
+The question remains however, why X_CONF in lts.conf is not used (or why the 
+file set by that parameter is not used). 
+I searched through the different scripts, but can't really find a place where 
+$X_CONF is set as the xorg.conf file.  
+
+Thanks a lot for all the help,
+Bart
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000503.html">[Kiwi-users] lts.conf ignores parameters
+</A></li>
+	<LI>Next message: <A HREF="000505.html">[Kiwi-users] lts.conf ignores parameters
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#504">[ date ]</a>
+              <a href="thread.html#504">[ thread ]</a>
+              <a href="subject.html#504">[ subject ]</a>
+              <a href="author.html#504">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

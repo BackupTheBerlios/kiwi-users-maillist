@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] schema validation problem with v2.38
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20schema%20validation%20problem%20with%20v2.38&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A6049A%40XCH-NW-04P.nw.nos.boeing.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000476.html">
+   <LINK REL="Next"  HREF="000478.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] schema validation problem with v2.38</H1>
+    <B>Mattes, David</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20schema%20validation%20problem%20with%20v2.38&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A6049A%40XCH-NW-04P.nw.nos.boeing.com%3E"
+       TITLE="[Kiwi-users] schema validation problem with v2.38">david.mattes at boeing.com
+       </A><BR>
+    <I>Thu Mar 13 17:42:11 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000476.html">[Kiwi-users] schema validation problem with v2.38
+</A></li>
+        <LI>Next message: <A HREF="000478.html">[Kiwi-users] schema validation problem with v2.38
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#477">[ date ]</a>
+              <a href="thread.html#477">[ thread ]</a>
+              <a href="subject.html#477">[ subject ]</a>
+              <a href="author.html#477">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I just upgraded to v2.38 from v2.28 and now my config.xml 
+</I>&gt;<i> is not valid:
+</I>&gt;<i> &gt;  
+</I>&gt;<i> &gt; A3945578!mattes# kiwi -x endbox-sled10sp1/
+</I>&gt;<i> &gt;  
+</I>&gt;<i> &gt; failed
+</I>&gt;<i> &gt; Mar-13 09:08:18 &lt;3&gt; : Scheme validation failed failed
+</I>&gt;<i> &gt; Mar-13 09:08:18 &lt;3&gt; : Invalid attribute fsreadonly for element type
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Here is the relevant section of the config.xml:
+</I>&gt;<i> &gt;     &lt;preferences&gt;
+</I>&gt;<i> &gt; 	&lt;type fsreadwrite=&quot;ext3&quot; fsreadonly=&quot;ext3&quot;&gt;split&lt;/type&gt;
+</I>&gt;<i> &gt; 	&lt;version&gt;0.1.3&lt;/version&gt;
+</I>&gt;<i> &gt; 	&lt;size unit=&quot;M&quot;&gt;512&lt;/size&gt;
+</I>&gt;<i> &gt; 	&lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+</I>&gt;<i> &gt; 	&lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+</I>&gt;<i> &gt; 	&lt;timezone&gt;America/Los_Angeles&lt;/timezone&gt;
+</I>&gt;<i> &gt;     &lt;/preferences&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I'm confused!  The schema doc
+</I>&gt;<i> &gt; (/usr/share/doc/packages/kiwi/kiwi.xsd.html) uses the filesystem 
+</I>&gt;<i> &gt; attribute instead of fsreadwrite and fsreadonly, but the 
+</I>&gt;<i> ChangeLog for
+</I>&gt;<i> &gt; v2.31 says we are using kiwi schema v2.0 which requires the 
+</I>&gt;<i> attributes 
+</I>&gt;<i> &gt; fsreadwrite/fsreadonly for the split image type.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Any clues?
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, I forgot you are the one who use a fsreadonly which in 
+</I>&gt;<i> fact is _not_ a readonly filesystem. The current schema 
+</I>&gt;<i> allows only &quot;squashfs&quot; as valid fsreadonly filesystem.
+</I>&gt;<i> See /usr/share/kiwi/modules/KIWIScheme.rnc:876
+</I>&gt;<i> 
+</I>
+I guess it is just semantics, but in my mind, I am the one who wants a true read-only filesystem - a filesystem that DOES NOT allow any writes during filesystem operation.  I would describe your squashfs-based read-only fs as a filesystem that persists across system boots.  But during system operation, your &quot;read-only&quot; filesystem is very much write-able.  My point is: when you unpack a rootfs tarball into tmpfs, that is not a read-only filesystem.  The usefulness of either of these approaches just depends on the use case, but it's difficult here using the same words to describe different operating modes and requirements.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000476.html">[Kiwi-users] schema validation problem with v2.38
+</A></li>
+	<LI>Next message: <A HREF="000478.html">[Kiwi-users] schema validation problem with v2.38
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#477">[ date ]</a>
+              <a href="thread.html#477">[ thread ]</a>
+              <a href="subject.html#477">[ subject ]</a>
+              <a href="author.html#477">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

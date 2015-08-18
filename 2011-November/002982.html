@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Persistent Partition using PXE boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20Partition%20using%20PXE%20boot&In-Reply-To=%3C20111103084407.GA9577%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002981.html">
+   <LINK REL="Next"  HREF="002983.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Persistent Partition using PXE boot</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20Partition%20using%20PXE%20boot&In-Reply-To=%3C20111103084407.GA9577%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] Persistent Partition using PXE boot">ms at suse.de
+       </A><BR>
+    <I>Thu Nov  3 09:44:07 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002981.html">[Kiwi-users] Persistent Partition using PXE boot
+</A></li>
+        <LI>Next message: <A HREF="002983.html">[Kiwi-users] Persistent Partition using PXE boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2982">[ date ]</a>
+              <a href="thread.html#2982">[ thread ]</a>
+              <a href="subject.html#2982">[ subject ]</a>
+              <a href="author.html#2982">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;    Is there any way to keep a partition that does not touch the kiwi boot
+</I>&gt;<i> &gt;    with a new version.
+</I>&gt;<i> &gt;    The idea is to upgrade computers using PXE but not erase all the
+</I>&gt;<i> &gt;    partitions, keep for example de partition 4 mounted in /myData. To keep
+</I>&gt;<i> &gt;    for example de data files of mysql database.
+</I>&gt;<i> 
+</I>&gt;<i> It is possible to skip the partition code with a hook script.
+</I>&gt;<i> You should first read about hook scripts here:
+</I>&gt;<i> <A HREF="http://isny.homelinux.com/data/kiwi.html#sec.hooks">http://isny.homelinux.com/data/kiwi.html#sec.hooks</A>
+</I>&gt;<i> 
+</I>&gt;<i> The hook scripts you need here must be called
+</I>&gt;<i> 
+</I>&gt;<i>    prepartition.sh
+</I>&gt;<i>    postpartition.sh
+</I>&gt;<i> 
+</I>&gt;<i> * prepartition.sh
+</I>&gt;<i> 
+</I>&gt;<i>   # simulate local boot, to skip ptable setup
+</I>&gt;<i>   LOCAL_BOOT=yes
+</I>&gt;<i> 
+</I>&gt;<i> * postpartition.sh
+</I>&gt;<i> 
+</I>&gt;<i>   # restore hook changes
+</I>&gt;<i>   LOCAL_BOOT=no
+</I>
+PS:
+
+latest version of kiwi 4.98.13 is required... will submit it today
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002981.html">[Kiwi-users] Persistent Partition using PXE boot
+</A></li>
+	<LI>Next message: <A HREF="002983.html">[Kiwi-users] Persistent Partition using PXE boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2982">[ date ]</a>
+              <a href="thread.html#2982">[ thread ]</a>
+              <a href="subject.html#2982">[ subject ]</a>
+              <a href="author.html#2982">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

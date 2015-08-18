@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Persistent diskless setup with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3C1263553183.4905.35.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001586.html">
+   <LINK REL="Next"  HREF="001588.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Persistent diskless setup with kiwi</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3C1263553183.4905.35.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] Persistent diskless setup with kiwi">roger at opq.se
+       </A><BR>
+    <I>Fri Jan 15 11:59:43 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001586.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+        <LI>Next message: <A HREF="001588.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1587">[ date ]</a>
+              <a href="thread.html#1587">[ thread ]</a>
+              <a href="subject.html#1587">[ subject ]</a>
+              <a href="author.html#1587">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2010-01-15 at 02:46 +0100, Hans-Peter Jansen wrote:
+&gt;<i> Dear Marcus and the other kiwis around,
+</I>&gt;<i> 
+</I>&gt;<i> I'm in the need to get a 11.1 diskless setup going quickly, since I failed 
+</I>&gt;<i> to adapt a current kernel (necessary because of new hardware) to a well 
+</I>&gt;<i> established, rock solid SuSE 9.3 Prof. based diskless desktop setup for a 
+</I>&gt;<i> company.. None of the desktops has any kind of persistent storage, btw.
+</I>&gt;<i> 
+</I>&gt;<i> This setup is pretty simple: an installation into a directory is exported 
+</I>&gt;<i> ro (e.g. the result of kiwi --prepare), adjusted to diskless needs (a few 
+</I>&gt;<i> network/ldap settings, don't stop eth0 on shutdown, a simple automatic X 
+</I>&gt;<i> setup with sax). All nodes boot from the same kernel/initrd, which 
+</I>&gt;<i> overlays a node specific rw nfs path (with aufs). 
+</I>&gt;<i> 
+</I>&gt;<i> The beauty of this setup is, that I'm able to adjust each node to specific 
+</I>&gt;<i> needs: cdrom, sound, X _once_ (e.g. with YaST). I could even install 
+</I>&gt;<i> special rpms to selected hosts, if I want, but I'm still enjoying the 
+</I>&gt;<i> install once, use everywhere property, even if it's five years old now..
+</I>&gt;<i> 
+</I>&gt;<i> It looks like current technologies in this area are not able to mimic that 
+</I>&gt;<i> fully out of the box. Aufs cannot use a nfs mount for its xino file, and I 
+</I>&gt;<i> do not want to give up on the two nfs mounts, either. But I might want to 
+</I>&gt;<i> add nfs or nbd based swap (now, that's available). Looks like, that I need 
+</I>&gt;<i> to use an tmpfs for the xino.
+</I>&gt;<i> 
+</I>&gt;<i> It would be kind, if you/someone could give me a few hints, what would be 
+</I>&gt;<i> the best way to realize this with the help of kiwi. Is there an interest 
+</I>&gt;<i> to add this functionality to netboot/suse-11.1, or should I create a new 
+</I>&gt;<i> image for that. Any pitfalls, I should be aware of?
+</I>&gt;<i> 
+</I>&gt;<i> At the moment, I'm toying with a config based on suse-pxe-client, but it
+</I>&gt;<i> behaves a bit strange:
+</I>&gt;<i> 
+</I>&gt;<i> [    7.940325] Checking for config file: config.default
+</I>&gt;<i> [    7.950183] Waiting for USB device scan to complete..................
+</I>&gt;<i> brd: module loaded
+</I>&gt;<i> device-mapper: uevent: version 1.0.3
+</I>&gt;<i> device-mapper: ioctl: 4.14.0-ioctl (2008-04-23) initialised: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">dm-devel at redhat.com</A>
+</I>&gt;<i> [   23.214372] Have size: /dev/ram1 -&gt; 524288000 Bytes [ 500 MB ]
+</I>&gt;<i> [   23.215222] Need size: 56250368 Bytes [ 53 MB ]
+</I>&gt;<i> [   23.218740] Loading image/lisa-11.1-pxe-client.i686-1.2.8 [/dev/ram1 BS:4096 Byte]...
+</I>&gt;<i> [   25.365511] Download complete, checking data...
+</I>&gt;<i> [   25.643032] Image checksum test: fine :-)
+</I>&gt;<i> squashfs: version 3.4 (2008/08/26) Phillip Lougher
+</I>&gt;<i> SQUASHFS error: Major/Minor mismatch, trying to mount newer 4.0 filesystem
+</I>&gt;<i> SQUASHFS error: Please update your kernel
+</I>&gt;<i> 
+</I>&gt;<i> 15 seconds wasted for searching some usb devices :-( Whould be cool the get 
+</I>&gt;<i> rid of it. The userspace squashfs on the server is from the filesystems repo.
+</I>
+I agree about the USB searching. I would also like to disable it.
+
+&gt;<i> 
+</I>&gt;<i> If I mount the --prepare path:
+</I>&gt;<i> 
+</I>&gt;<i> Setting up (localfs) network interfaces:
+</I>&gt;<i>     lo        name: 0
+</I>&gt;<i>     lo        IP address: 127.0.0.1/8   
+</I>&gt;<i>               IP address: 127.0.0.2/8                                                                        done
+</I>&gt;<i>     eth0      device: nVidia Corporation MCP78S [GeForce 8200] Ethernet (rev a2)
+</I>&gt;<i>     eth0      is controlled by ifplugd                                                                       waiting
+</I>&gt;<i> Waiting for mandatory devices:  eth0 __NSC__
+</I>&gt;<i> 29 28 26 25 24 23 22 20 19 18 17 16 14 13 12 11 9 8 7 6 5 3 2 1 0 
+</I>&gt;<i>     eth0      device: nVidia Corporation MCP78S [GeForce 8200] Ethernet (rev a2)
+</I>&gt;<i>     eth0      ifplugd is running
+</I>&gt;<i>     eth0      cable is connected
+</I>&gt;<i>     eth0      DHCP4 client (dhcpcd) is running
+</I>&gt;<i>     eth0      . . . but is still waiting for data
+</I>&gt;<i>     eth0      IP address: 172.16.23.189/24                                                                   waiting
+</I>&gt;<i>     eth0      interface could not be set up until now                                                        failed
+</I>&gt;<i> Setting up service (localfs) network  .  .  .  .  .  .  .  .  .  .                                           failed
+</I>
+I get a similar listing (ifplugd stuff, cable connected), except for the
+failing. On the dhcpd server, in /var/log/messages (if it is a Linux
+box), you should see the DHCP requests twice: once from the PXE request,
+and again for the kernel request that is failing. Do you see both
+requests in the server's log file? Mine look like this:
+
+
+Dec 11 08:14:14 acme dhcpd: DHCPDISCOVER from 00:30:48:56:38:ce via eth1
+Dec 11 08:14:14 acme dhcpd: DHCPOFFER on 10.2.10.34 to 00:30:48:56:38:ce via eth1
+Dec 11 08:14:18 acme dhcpd: DHCPREQUEST for 10.2.10.34 (10.2.10.41) from 00:30:48:56:38:ce via eth1
+Dec 11 08:14:18 acme dhcpd: DHCPACK on 10.2.10.34 to 00:30:48:56:38:ce via eth1
+Dec 11 08:14:18 acme in.tftpd[7888]: tftp: client does not accept options
+Dec 11 08:14:38 acme dhcpd: DHCPDISCOVER from 00:30:48:56:38:ce via eth1
+Dec 11 08:14:38 acme dhcpd: DHCPOFFER on 10.2.10.34 to 00:30:48:56:38:ce via eth1
+Dec 11 08:14:38 acme dhcpd: DHCPREQUEST for 10.2.10.34 (10.2.10.41) from 00:30:48:56:38:ce via eth1
+Dec 11 08:14:38 acme dhcpd: DHCPACK on 10.2.10.34 to 00:30:48:56:38:ce via eth1
+
+The tftp between the two requests is the load of the kernel. It seems
+like your second request is failing. What does the server say?
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001586.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+	<LI>Next message: <A HREF="001588.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1587">[ date ]</a>
+              <a href="thread.html#1587">[ thread ]</a>
+              <a href="subject.html#1587">[ subject ]</a>
+              <a href="author.html#1587">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

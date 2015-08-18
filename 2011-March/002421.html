@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110304104421.GC7184%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002420.html">
+   <LINK REL="Next"  HREF="002422.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110304104421.GC7184%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Fri Mar  4 11:44:21 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002420.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002422.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2421">[ date ]</a>
+              <a href="thread.html#2421">[ thread ]</a>
+              <a href="subject.html#2421">[ subject ]</a>
+              <a href="author.html#2421">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Update.
+</I>&gt;<i> Thanks guys for setting me straight on this. Ok the two partitions
+</I>&gt;<i> worked well.  When the OS is running off the USB drive there is
+</I>&gt;<i> another partition to store data on.  The issue is if I place this
+</I>&gt;<i> USB drive in a Windows machine (XP, Vista, 7) it indicates that the
+</I>&gt;<i> USB drive needs to be formated for it to be used.
+</I>
+Thanks for the feedback. I really have to blame on Windows here.
+Sorry man but a USB stick is a disk and it can have more than
+one partition. Forcing the user to kill everything on the storage
+just because the first partition is something Windows doesn't
+understand is insanely pointing into the wrong direction.
+
+&gt;<i>  So I think it
+</I>&gt;<i> evident that the formating used in this case isn't correct or the
+</I>&gt;<i> order in which the partitions is incorrect. Is it possible that the
+</I>&gt;<i> Fat partition is &quot;after&quot; the Ext4 partition and that's why Windows
+</I>&gt;<i> isn't seeing it?
+</I>
+Problem is that the fat partition is not the first partition but
+the second. I think when you plug in a usb stick on Windows it
+doesn't expect any partition table here and look for a data
+container and not a disk
+
+At the moment I don't know how to fix this. It's because when
+you create a hybrid image (an iso with a partition table in it)
+it will always have the OS on the first partition. That's because
+you don't know about the real geometry of the USB stick you put
+that image onto, so you have to start at the beginning which is
+the same place Windows looks for something it understands :( 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002420.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002422.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2421">[ date ]</a>
+              <a href="thread.html#2421">[ thread ]</a>
+              <a href="subject.html#2421">[ subject ]</a>
+              <a href="author.html#2421">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

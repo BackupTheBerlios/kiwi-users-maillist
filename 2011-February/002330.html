@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D5AE5EE.6000802%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002331.html">
+   <LINK REL="Next"  HREF="002332.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D5AE5EE.6000802%40novell.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Feb 15 21:45:34 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002331.html">[Kiwi-users] /etc/hosts
+</A></li>
+        <LI>Next message: <A HREF="002332.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2330">[ date ]</a>
+              <a href="thread.html#2330">[ thread ]</a>
+              <a href="subject.html#2330">[ subject ]</a>
+              <a href="author.html#2330">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Chris,
+
+On 02/15/2011 02:28 PM, Chris Cunha wrote:
+&gt;<i> On Tue, Feb 15, 2011 at 7:14 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>     &lt;packages type=&quot;image&quot; patternType=&quot;onlyRequired&quot;&gt;
+</I>&gt;&gt;&gt;&gt;<i>                 &lt;package name=&quot;wdiff&quot;/&gt;
+</I>&gt;&gt;&gt;&gt;<i>                 &lt;package name=&quot;lockdev&quot;/&gt;
+</I>&gt;&gt;&gt;&gt;<i>             &lt;ignore name=&quot;lxde-common-branding-openSUSE&quot;/&gt;
+</I>&gt;&gt;&gt;&gt;<i> &lt;/packages&gt;
+</I>&gt;&gt;&gt;&gt;<i> Despite this line being inserted into the package list this SUSE
+</I>&gt;&gt;&gt;&gt;<i> package still conflicts with my branding package.  If I disable
+</I>&gt;&gt;&gt;&gt;<i> (comment out) the pattern &quot;lxde&quot; this issue goes away, however there
+</I>&gt;&gt;&gt;&gt;<i> are other packages from the &quot;lxde&quot; patter that I need.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The &lt;ignore&gt; element does not work because the conflicting package is
+</I>&gt;&gt;&gt;<i> &quot;hidden&quot; in a pattern. zypper knows about pattern names and how to find
+</I>&gt;&gt;&gt;<i> them, thus, Kiwi does not need to build a list of packages inside a
+</I>&gt;&gt;&gt;<i> pattern. This implies that Kiwi never sees the
+</I>&gt;&gt;&gt;<i> &quot;lxde-common-branding-openSUSE&quot; name as a package and therefore it
+</I>&gt;&gt;&gt;<i> cannot be removed/ignored.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This is correct. I implemented the ignore element for the packages
+</I>&gt;&gt;<i> list only. When using another than the zypper packagemanager kiwi
+</I>&gt;&gt;<i> resolves the patterns itself (using satsolver) and in the result
+</I>&gt;&gt;<i> list you can ignore packages which are not pulled in by a hard
+</I>&gt;&gt;<i> requirement. With zypper we just pass the pattern name and let
+</I>&gt;&gt;<i> zypper do all the rest which has the downside that we cannot
+</I>&gt;&gt;<i> influence what is going to be installed in a pattern. The only
+</I>&gt;&gt;<i> solution here is to add the package into the delete section
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  &lt;packages type=&quot;delete&quot;&gt;
+</I>&gt;&gt;<i>    &lt;package name=&quot;lxde-common-branding-openSUSE&quot;/&gt;
+</I>&gt;&gt;<i>  &lt;/packages&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> and make sure your config.sh includes the following function call:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  suseRemovePackagesMarkedForDeletion
+</I>&gt;&gt;<i>
+</I>
+&gt;<i> 
+</I>&gt;<i> This is my last post on this subject in this mailing list. I apologize
+</I>&gt;<i> to the Build Service ML about this off subject post.   I've sent an
+</I>&gt;<i> email to subscribe to the Kiwi ML but haven't received a reply yet.
+</I>&gt;<i> Robert S.  If you have any way to speed up my subscription to this ML please do.
+</I>&gt;<i> 
+</I>&gt;<i> None of the last few suggestions have worked.  I'm a bit confused on
+</I>&gt;<i> this issue.  Isn't this rebrand situation one of the more common uses
+</I>&gt;<i> for Kiwi? 
+</I>
+Maybe yes, but I do not know. For re-branding people may not necessarily
+create their own packages, but rather use the method documented here:
+
+<A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen#Custom_GRUB_and_boot_splash_images">http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen#Custom_GRUB_and_boot_splash_images</A>
+
+Thus, there are no packaging conflicts. Further the branding packages
+are generally separate as in
+
+bootsplash-branding-openSUSE
+gfxboot-branding-openSUSE
+
+rather than being part of a pattern. You are running into trouble
+because the definition of the LXDE pattern includes the branding packages.
+
+These branding packages for some reason or another cause a conflict.
+However, that there is a conflict sounds fishy to begin with. I suspect
+that your branding packages are putting files in the same location as
+the distribution supplied packages and that's why the conflict is
+triggered. Different branding packages should put their files into
+different directories, then there is no opportunity for conflicts.
+Anyway, I am going on a &quot;clean up the world&quot; tangent now and will stop.
+
+&gt;<i> I would have thought that replacing a default SUSE package
+</I>&gt;<i> with and OEM branding package would be fairly common, no?
+</I>
+Probably, as mentioned above the packages are separate by default and
+thus in the &quot;common&quot; case one just does not install the openSUSE
+branding packages. The problem is the pattern.
+
+&gt;<i> I was told by at least 3 Novell guys that the &quot;delete&quot; section is used
+</I>&gt;<i> to remove the package during the configuration of the installed OS.
+</I>&gt;<i> So anything added to the &quot;delete&quot; section (in the config.xml/kiwi
+</I>&gt;<i> file) will not have any effect on this problem as this problem has to
+</I>&gt;<i> do with the package being installed by the pattern in the image's
+</I>&gt;<i> &quot;prepare&quot; stages of the build. 
+</I>
+Yes, delete happens after the install.
+
+&gt;<i> Also it appears that adding the line &quot;
+</I>&gt;<i> suseRemovePackagesMarkedForDeletion&quot; as suggested will also have no
+</I>&gt;<i> effect on this issue as that script (config.sh) runs after the
+</I>&gt;<i> packages are &quot;installed&quot; in the &quot;prepare&quot; stage of the kiwi image
+</I>&gt;<i> build.
+</I>&gt;<i> 
+</I>&gt;<i> What I am very surprised with is that the &quot;replaces&quot; element added to
+</I>&gt;<i> the package line doesn't work either.  That was really disappointing.
+</I>&gt;<i> I thought for sure this would work.  The other thing that makes no
+</I>&gt;<i> sense is how clearly the kiwi docs .pdf file states that if this
+</I>&gt;<i> problem exists...then use the &quot;ignore&quot; element to resolve it.
+</I>
+I will take a look at the doc and re-word it to make this less
+ambiguous. I'll submit a patch for this.
+
+&gt;<i> 
+</I>&gt;<i> So does this mean that I now have to add each package that each
+</I>&gt;<i> pattern contains and leave out the ones that are being replaced by our
+</I>&gt;<i> OEM packages?
+</I>
+Yes, and no. You can take the approach of basically expanding the list
+of packages that are part of the pattern in the config.xml file.
+However, the root cause is really not the use of the pattern but rather
+the packages that cause the conflict. If I were in your shoes I would
+work on understanding why the packages conflict and then fix the
+conflicts, I know back to &quot;clean up the world&quot; mode.
+
+If you just have newer versions of things that are already there you can
+just give your packages higher version numbers. The package manager will
+pick them up automatically and you do not have to list them in
+config.xml at all.
+
+&gt;<i> If so how can we confirm EXACTLY what packages are contained in the
+</I>&gt;<i> pattern package? 
+</I>
+Information about patterns are found in suse/setup/descr/ on the media.
+I do not know where the source of the patterns resides, probably
+somewhere in the buildservice.
+
+&gt;<i> I've tried Yast GUI under Patterns. This proved to
+</I>&gt;<i> be not an accurate means of  packages contained in the pattern.
+</I>&gt;<i> Is the rule of thumb that if your doing a rebrand of SUSE you can't
+</I>&gt;<i> use Patterns in your config.xml /kiwi file?
+</I>
+No, this is a problem with the LXDE pattern. IMHO, the LXDE pattern
+should not contain the branding packages, but at the same token your own
+branding packages should not put files into locations used by packages
+that get delivered with the distribution.
+
+&gt;<i> 
+</I>&gt;<i> I noticed (before this branding/replacement issue) that having
+</I>&gt;<i> patterns in the config.xml file would cause another unwanted issue and
+</I>&gt;<i> that is after the final ISO image is made and your using the installed
+</I>&gt;<i> iso/image that you just made with Kiwi if you open Yast's GUI Package
+</I>&gt;<i> Manager it will got out and try to install tons of packages that were
+</I>&gt;<i> intentionally left out of the package list in my config.xml file. So
+</I>&gt;<i> even though only the packages that I wanted were installed (I can
+</I>&gt;<i> confirm this by just looking around in the working OS) when Yast is
+</I>&gt;<i> opened it wants to download/upgrade all the packages that were in the
+</I>&gt;<i> patterns.....I guess that's where it's getting this list from.
+</I>
+A couple of thoughts on this. First if you are building your image
+without including the online update repositories, or an up to date local
+copy thereof, then you should expect the package manager to tell you
+about available updates if the updates repo is configured. If you don't
+configure the updates repo on the system you are building then you will
+not have this issue. Second, you probably have a difference between
+recommended and required packages. In your config.xml file I suspect you
+use patternType=&quot;onlyRequired&quot;. Then when you fire up the package
+manager on your image it will probably look for the recommended packages
+as well. Thus, you get a list of additional packages to install. I do
+not know how to tell the YaST package manager via configuration to
+ignore recommended packages.
+
+Another role in this is obviously played by the configured repositories
+in your image. If you do not configure any repos then the package
+manager has nothing to pull packages from.
+
+Thus your update strategy has a major impact on this behavior.
+
+&gt;<i> So, what is the best way to confirm what packages are contained in the
+</I>&gt;<i> patterns. 
+</I>
+Look in the pattern definition, see above where to find it.
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002331.html">[Kiwi-users] /etc/hosts
+</A></li>
+	<LI>Next message: <A HREF="002332.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2330">[ date ]</a>
+              <a href="thread.html#2330">[ thread ]</a>
+              <a href="subject.html#2330">[ subject ]</a>
+              <a href="author.html#2330">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

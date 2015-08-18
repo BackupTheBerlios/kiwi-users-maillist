@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie questions/clarification
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3COF633C1260.BC2E11A6-ON8625746A.004FFB02-8625746A.005267F0%40academy.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000702.html">
+   <LINK REL="Next"  HREF="000705.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie questions/clarification</H1>
+    <B>justin.kinney at academy.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3COF633C1260.BC2E11A6-ON8625746A.004FFB02-8625746A.005267F0%40academy.com%3E"
+       TITLE="[Kiwi-users] Newbie questions/clarification">justin.kinney at academy.com
+       </A><BR>
+    <I>Mon Jun 16 16:59:28 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000702.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+        <LI>Next message: <A HREF="000705.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#704">[ date ]</a>
+              <a href="thread.html#704">[ thread ]</a>
+              <a href="subject.html#704">[ subject ]</a>
+              <a href="author.html#704">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> so first of all you don't need to build the boot image manually.
+</I>&gt;<i> kiwi does that for you automatically. Your problem is you need a
+</I>&gt;<i> system image description to start with. Let's have a look at the
+</I>&gt;<i> example provided with the kiwi-doc package. It makes much sense
+</I>&gt;<i> to have this one installed too. After that you will find an example
+</I>&gt;<i> system image descriptions in /usr/share/doc/packages/kiwi/examples.
+</I>&gt;<i> I suggest to take a look at the
+</I>
+&gt;<i> suse-pxe-client
+</I>
+&gt;<i> example. If you open the file suse-pxe-client/config.xml you will
+</I>&gt;<i> see the system image description. If you check the type line you will
+</I>&gt;<i> see the following:
+</I>
+&gt;<i> &lt;type filesystem=&quot;squashfs&quot; boot=&quot;netboot/suse-10.3&quot;&gt;pxe&lt;/type&gt;
+</I>
+&gt;<i> This means your system image is based on a compressed filesystem
+</I>&gt;<i> (squashfs) and the boot=... information tells kiwi to build the initrd
+</I>&gt;<i> from the /usr/share/kiwi/image/netboot/suse-10.3 description.
+</I>
+&gt;<i> For a first start I recommend to change &quot;squashfs&quot; into &quot;ext3&quot; to
+</I>&gt;<i> avoid possible problems with the aufs overlay filesystem as you
+</I>&gt;<i> intend to use NBD root.
+</I>
+&gt;<i> &gt; I'm thinking that I need to create a config directory structure 
+</I>(including
+&gt;<i> &gt; config.xml for my image, and other scripts as needed).  But how do I 
+</I>tie
+&gt;<i> &gt; the netboot initrd together with this system image?  I'm pretty sure 
+</I>it is
+&gt;<i> &gt; done based on the &quot;&lt;type&gt;&quot; block in my images' config.xml, but some
+</I>&gt;<i> &gt; clarification would help here.
+</I>
+&gt;<i> I think you almost got the picture :) I'm sure the information above
+</I>&gt;<i> helps you to complete the gaps. Once you have your system image 
+</I>description
+&gt;<i> the kiwi --prepare call creates the new root of your image. A subsequent
+</I>&gt;<i> call of kiwi --create will create all images including the boot images
+</I>&gt;<i> in the specified destination directory. The boot image will be named
+</I>&gt;<i> initrd-... I recommend to have a look into the pxe chapter of the 
+</I>kiwi.pdf
+&gt;<i> which is installed with the kiwi-doc package. You will find a step by 
+</I>step
+&gt;<i> guide how to setup the remote boot and more.
+</I>
+&gt;<i> For NBD root you need to make sure your new root tree is exported 
+</I>correctly
+&gt;<i> using the nbd-server application. You also should test if you can
+</I>&gt;<i> successfully mount the root tree by nbd-client plus mount /dev/nbd0 ...
+</I>&gt;<i> before you start your client to be sure the remote mount works in
+</I>&gt;<i> principal
+</I>
+The explanation above helps alot. 
+
+So, kiwi --create leaves me with everything I need (the boot image and the 
+system image) to boot and use the client system, in the form of an image.
+
+Now, in practice, here is what I'm getting:
+
+1. The client pxe boots fine, loads the initrd, and then begins to 
+download the image.  If I switch to the 3rd VT, I can see it running atftp 
+to grab the image from the server.
+2. Once the image is downloaded, the client continues, but ends with an 
+error indicating that the kernel versions don't match (I assume between 
+the boot image and the system image).
+3. I've attached my system image configuration below, as well as my 
+config.default from /srv/tftpboot/KIWI
+
+
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;image schemeversion=&quot;2.0&quot; name=&quot;ltsp-suse-10.3&quot;&gt;
+        &lt;description type=&quot;system&quot;&gt;
+                &lt;author&gt;Justin Kinney&lt;/author&gt;
+                &lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">justin.kinney at academy.com</A>&lt;/contact&gt;
+                &lt;specification&gt;Academy Test System&lt;/specification&gt;
+        &lt;/description&gt;
+        &lt;preferences&gt;
+                &lt;type primary=&quot;true&quot; filesystem=&quot;ext3&quot; 
+boot=&quot;netboot/suse-10.3&quot;&gt;pxe&lt;/type&gt;
+                &lt;version&gt;0.0.1&lt;/version&gt;
+                &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+                &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+                &lt;rpm-force&gt;True&lt;/rpm-force&gt;
+        &lt;/preferences&gt;
+        &lt;users group=&quot;users&quot;&gt;
+                &lt;user name=&quot;demo&quot; 
+pwd=&quot;$2a$05$D05gnhPHL3WkvnpCNMB1T.s9bQgt5T4GY0wydpHV4XznqjtrwHPNG&quot; 
+home=&quot;/home/demo&quot;/&gt;
+        &lt;/users&gt;
+        &lt;repository type=&quot;yast2&quot;&gt;
+                &lt;source path=&quot;/opt/opensuse-10.3&quot;/&gt;
+        &lt;/repository&gt;
+        &lt;packages type=&quot;image&quot; patternType=&quot;onlyRequired&quot;&gt;
+                &lt;package name=&quot;subversion&quot;/&gt;
+                &lt;package name=&quot;xorg-x11&quot;/&gt;
+                &lt;package name=&quot;xorg-x11-libs&quot;/&gt;
+                &lt;package name=&quot;xorg-x11-devel&quot;/&gt;
+                &lt;package name=&quot;xorg-x11-server&quot;/&gt;
+                &lt;opensusePattern name=&quot;default&quot;/&gt;
+                &lt;opensusePattern name=&quot;base&quot;/&gt;
+                &lt;opensusePattern name=&quot;default&quot;/&gt;
+                &lt;opensusePattern name=&quot;console&quot;/&gt;
+                &lt;opensusePattern name=&quot;remote_desktop&quot;/&gt;
+                &lt;opensusePattern name=&quot;x11&quot;/&gt;
+                &lt;opensusePattern name=&quot;xfce&quot;/&gt;
+                &lt;ignore  name=&quot;smtp_daemon&quot;/&gt;
+        &lt;/packages&gt;
+    &lt;packages type=&quot;bootstrap&quot;&gt;
+        &lt;package name=&quot;glibc-locale&quot;/&gt;
+        &lt;package name=&quot;filesystem&quot;/&gt;
+    &lt;/packages&gt;
+&lt;/image&gt;
+
+
+config.default:
+#NBDROOT=192.168.1.1;2000;/dev/nbd0;9572;/dev/nbd1
+IMAGE=/dev/ram1;ltsp-suse-10.3.i686;0.0.1;192.168.1.1;4096
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080616/66860d27/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080616/66860d27/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000702.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+	<LI>Next message: <A HREF="000705.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#704">[ date ]</a>
+              <a href="thread.html#704">[ thread ]</a>
+              <a href="subject.html#704">[ subject ]</a>
+              <a href="author.html#704">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

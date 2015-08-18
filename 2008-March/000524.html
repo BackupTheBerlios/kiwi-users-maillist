@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with network module during boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20network%20module%20during%20boot&In-Reply-To=%3C20080325163217.GA21632%40idefix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000523.html">
+   <LINK REL="Next"  HREF="000525.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with network module during boot</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20network%20module%20during%20boot&In-Reply-To=%3C20080325163217.GA21632%40idefix%3E"
+       TITLE="[Kiwi-users] Problem with network module during boot">ms at suse.de
+       </A><BR>
+    <I>Tue Mar 25 17:32:17 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000523.html">[Kiwi-users] Problem with network module during boot
+</A></li>
+        <LI>Next message: <A HREF="000525.html">[Kiwi-users] Problem with network module during boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#524">[ date ]</a>
+              <a href="thread.html#524">[ thread ]</a>
+              <a href="subject.html#524">[ subject ]</a>
+              <a href="author.html#524">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> This is my first post to kiwi-users list, so I want to say hello to 
+</I>&gt;<i> everyone :)
+</I>
+Welcome in the Fruit Lovers community :-)
+
+&gt;<i> I have installed KIWI-LTSP on openSUSE 10.3 x86_64. When I try to boot first 
+</I>&gt;<i> thin client, it displays an information:
+</I>&gt;<i> 
+</I>&gt;<i> Creating device nodes with udev
+</I>&gt;<i> Boot logging started on /dev/tty1 (/dev/console) at Tue Mar 25 12:10:50 2008
+</I>&gt;<i> -----&gt; Starting boot shell on tty2
+</I>&gt;<i> -----&gt; Boot-Logging enabled on /dev/tty3
+</I>&gt;<i> -----&gt; Kernel logging enabled on: /dev/tty4
+</I>&gt;<i> -----&gt; Network module: Failed to load network module!
+</I>&gt;<i> -----&gt; rebootException: error consoles at Alt-F3/F4
+</I>&gt;<i> -----&gt; rebootException: reboot in 120 sec...
+</I>&gt;<i> 
+</I>&gt;<i> Error console shows that client tries to load 8139too module. Thin client has 
+</I>&gt;<i> Realtek 8139 based NIC.
+</I>
+if you boot with the kernel parameter
+
+	kiwidebug=1
+
+you will get a shell instead of a reboot exception. The kernel parameter
+in case of a PXE boot needs to be setup in the pxe configuration file
+on the boot server
+
+the shell allows you to investigate the problem more detailed.
+If you got the shell call:
+
+	hwinfo --netcard
+
+and provide the information displayed.
+
+The information on the kernel console Alt-F4 should give us more
+information why the module loading has failed. I think the 8139too
+module is the correct one
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000523.html">[Kiwi-users] Problem with network module during boot
+</A></li>
+	<LI>Next message: <A HREF="000525.html">[Kiwi-users] Problem with network module during boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#524">[ date ]</a>
+              <a href="thread.html#524">[ thread ]</a>
+              <a href="subject.html#524">[ subject ]</a>
+              <a href="author.html#524">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

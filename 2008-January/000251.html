@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Customizing ISO live cd graphical grub screen
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Customizing%20ISO%20live%20cd%20graphical%20grub%20screen&In-Reply-To=%3C4799ABE4.D947.00D8.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000250.html">
+   <LINK REL="Next"  HREF="000232.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Customizing ISO live cd graphical grub screen</H1>
+    <B>Yuki Ohtsuka</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Customizing%20ISO%20live%20cd%20graphical%20grub%20screen&In-Reply-To=%3C4799ABE4.D947.00D8.0%40novell.com%3E"
+       TITLE="[Kiwi-users] Customizing ISO live cd graphical grub screen">yohtsuka at novell.com
+       </A><BR>
+    <I>Fri Jan 25 01:28:41 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000250.html">[Kiwi-users] Customizing ISO live cd graphical grub screen
+</A></li>
+        <LI>Next message: <A HREF="000232.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#251">[ date ]</a>
+              <a href="thread.html#251">[ thread ]</a>
+              <a href="subject.html#251">[ subject ]</a>
+              <a href="author.html#251">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All,
+
+I can configured it.
+# vi cdboot/isolinux.cfg
+
+default Live-System
+
+# Live-System
+label Live-System
+  kernel linux
+  append initrd=initrd ramdisk_size=512000 ramdisk_blocksize=4096 splash=silent showopts
+
+# hard disk
+label Hard-Disk
+  localboot 0x80
+
+implicit    1
+gfxboot     bootlogo
+display     isolinux.msg
+prompt      1
+timeout     200
+
+Thanks a lot.
+Have fun!
+Yuki
+
+
+&gt;&gt;&gt;<i> Yuki Ohtsuka 2008/01/24 20:39 &gt;&gt;&gt;
+</I>Hi Marcus san,
+
+Thank you for your good advice.
+
+We are customizing the theme-NLD.
+Now, we are using attached theme.
+I want to more one of the title. please check the attached JPG.
+
+- delete the Failsafe-xxx
+- delete the Memory Test
+
+How to configure the grub menu?
+
+Would you let us know please again.
+Thanks in advice,
+Yuki
+
+&gt;&gt;&gt;<i> Marcus Sch(A$B'G(Ber &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; 2008/01/23 3:58 &gt;&gt;&gt;
+</I>Hi,
+
+&gt;<i> I'd like to customize the graphical grub screen for live cd.
+</I>&gt;<i> Could you suggest?
+</I>&gt;<i> 
+</I>&gt;<i>  - Delete Function-key indication
+</I>&gt;<i>  - Default language -&gt; ja
+</I>&gt;<i>  - Customize grub menu list
+</I>
+Just have a look at the suseGFXBoot function in KIWIConfig.sh.
+If you want to &quot;brand&quot; your boot and bootsplash you need to include
+the appropriate files in /usr/share/gfxboot.
+
+I CC'ed a member of my team who already did that for a project
+we are working on. Maybe he can give you more details
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch$B'G(Ber (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N$B!S(Bnberg
+ GF: Markus Rex                 HRB: 16746 (AG N$B!S(Bnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+_______________________________________________
+Kiwi-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A> 
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: SLED10SP1_grub_MENU1.JPG
+Type: image/jpeg
+Size: 54733 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080125/3cc1f796/attachment.jpe">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080125/3cc1f796/attachment.jpe</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000250.html">[Kiwi-users] Customizing ISO live cd graphical grub screen
+</A></li>
+	<LI>Next message: <A HREF="000232.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#251">[ date ]</a>
+              <a href="thread.html#251">[ thread ]</a>
+              <a href="subject.html#251">[ subject ]</a>
+              <a href="author.html#251">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

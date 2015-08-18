@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problem with using &lt;split&gt;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%20with%20using%20%3Csplit%3E&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A60409%40XCH-NW-04P.nw.nos.boeing.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000341.html">
+   <LINK REL="Next"  HREF="000344.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problem with using &lt;split&gt;</H1>
+    <B>Mattes, David</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%20with%20using%20%3Csplit%3E&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A60409%40XCH-NW-04P.nw.nos.boeing.com%3E"
+       TITLE="[Kiwi-users] problem with using &lt;split&gt;">david.mattes at boeing.com
+       </A><BR>
+    <I>Wed Feb 20 23:26:30 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000341.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+        <LI>Next message: <A HREF="000344.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#342">[ date ]</a>
+              <a href="thread.html#342">[ thread ]</a>
+              <a href="subject.html#342">[ subject ]</a>
+              <a href="author.html#342">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> I see, my problem was I was NOT using absolute paths!  Might be good to warn the user if pathnames do not start with '/`.
+
+&gt;<i> -----Original Message-----
+</I>&gt;<i> From: Mattes, David 
+</I>&gt;<i> Sent: Wednesday, February 20, 2008 12:44 PM
+</I>&gt;<i> To: Mattes, David; Marcus Sch&#228;fer
+</I>&gt;<i> Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> Subject: RE: [Kiwi-users] problem with using &lt;split&gt;
+</I>&gt;<i> 
+</I>&gt;<i> This patch got past the problem:
+</I>&gt;<i> 
+</I>&gt;<i> --- KIWIImage.pm.dist   2008-02-20 12:29:58.000000000 -0800
+</I>&gt;<i> +++ KIWIImage.pm        2008-02-20 12:39:02.000000000 -0800
+</I>&gt;<i> @@ -1335,7 +1335,7 @@
+</I>&gt;<i>                 my $createTmpTree = sub {
+</I>&gt;<i>                         my $file  = $_;
+</I>&gt;<i>                         my $dir   = $File::Find::dir;
+</I>&gt;<i> -                       my $path  = &quot;$dir/$file&quot;;
+</I>&gt;<i> +                       my $path  = &quot;$File::Find::name&quot;;
+</I>&gt;<i>                         my $target= $path;
+</I>&gt;<i>                         $target =~ s#$imageTree#$imageTreeTmp#;
+</I>&gt;<i>                         my $rerooted = $path; @@ -1355,7 +1355,7 @@
+</I>&gt;<i>                                 symlink ($rerooted, $target);
+</I>&gt;<i>                         }
+</I>&gt;<i>                 };
+</I>&gt;<i> -               find(\&amp;$createTmpTree, $imageTree);
+</I>&gt;<i> +               find({ wanted=&gt; \&amp;$createTmpTree, no_chdir=&gt;1}, 
+</I>&gt;<i> + $imageTree);
+</I>&gt;<i>                 my @tempFiles = $sxml -&gt; getSplitTempFiles ();
+</I>&gt;<i>                 if ($nopersistent) {
+</I>&gt;<i>                         push (@tempFiles, @persistFiles);
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I'm still not getting the rootfs.tar.gz tarball showing up, 
+</I>&gt;<i> so more digging.... 
+</I>&gt;<i> 
+</I>&gt;<i> &gt; -----Original Message-----
+</I>&gt;<i> &gt; From: Mattes, David
+</I>&gt;<i> &gt; Sent: Wednesday, February 20, 2008 11:05 AM
+</I>&gt;<i> &gt; To: Marcus Sch&#228;fer
+</I>&gt;<i> &gt; Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> &gt; Subject: Re: [Kiwi-users] problem with using &lt;split&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I've been digging deeper and finding an issue earlier on.  
+</I>&gt;<i> &gt; When I run kiwi -c, I'm getting an error in the
+</I>&gt;<i> &gt; KIWIImage.pm::createImageSplit() method:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Can't call method &quot;mode&quot; on an undefined value at 
+</I>&gt;<i> &gt; /usr/share/kiwi/modules/KIWIImage.pm line 1344.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I'm wondering why, in createTmpTree callback function, you 
+</I>&gt;<i> are using 
+</I>&gt;<i> &gt; lstat instead of stat?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; My &lt;split&gt; section in config.xml looks like:
+</I>&gt;<i> &gt;     &lt;split&gt;
+</I>&gt;<i> &gt;       &lt;persistent&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/etc&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/boot&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/root&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/home&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/mnt&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/etc/passwd&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/etc/group&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/etc/shadow&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/etc/fstab&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/etc/mtab&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/etc/init.d/.depend*&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/boot/*&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/var/cache/fontconfig&quot;/&gt;
+</I>&gt;<i> &gt; 	    &lt;file name=&quot;/var/lib/rpm&quot;/&gt;
+</I>&gt;<i> &gt;       &lt;/persistent&gt;
+</I>&gt;<i> &gt;     &lt;/split&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; BTW, I upgraded to latest kiwi-2.28-28.1
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Thanks!
+</I>&gt;<i> &gt; David
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Hi,
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &gt; I'm trying to develop a diskful split image so that 
+</I>&gt;<i> there are no 
+</I>&gt;<i> &gt; &gt; &gt; writes to disk during normal operation.  I'm using the
+</I>&gt;<i> &gt; &gt; &lt;split&gt; element
+</I>&gt;<i> &gt; &gt; &gt; to specify read-only and read-write (linked into tmpfs)
+</I>&gt;<i> &gt; &gt; files in the image.
+</I>&gt;<i> &gt; &gt; &gt; When I try to deploy the image with PXE, linuxrc gets hung
+</I>&gt;<i> &gt; &gt; up on the
+</I>&gt;<i> &gt; &gt; &gt; 'validateRootTree' function, checking for /mnt/sbin/init.  
+</I>&gt;<i> &gt; &gt; What exists
+</I>&gt;<i> &gt; &gt; &gt; in /mnt is:
+</I>&gt;<i> &gt; &gt; &gt; /mnt/read-only
+</I>&gt;<i> &gt; &gt; &gt; /mnt/read-write
+</I>&gt;<i> &gt; &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &gt; /mnt/read-only/sbin/init exists.
+</I>&gt;<i> &gt; &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &gt; What is the recommended approach here to make this 
+</I>&gt;<i> work?  Modify 
+</I>&gt;<i> &gt; &gt; &gt; KIWILinuxRC.sh?
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; I guess something before has failed. maybe you stumbled over the 
+</I>&gt;<i> &gt; &gt; problem that the &quot;tar&quot; program is missing within the 
+</I>&gt;<i> initrd. To be 
+</I>&gt;<i> &gt; &gt; more specific the information on the error console Alt-F3 
+</I>&gt;<i> would be 
+</I>&gt;<i> &gt; &gt; useful
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &gt; BTW, I'm using kiwi-2.20-29.1
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; you should consider an upgrade to the latest version 2.27 we have 
+</I>&gt;<i> &gt; &gt; fixed at least the tar problem there
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Regards,
+</I>&gt;<i> &gt; &gt; Marcus
+</I>&gt;<i> &gt; &gt; --
+</I>&gt;<i> &gt; &gt;  Public Key available
+</I>&gt;<i> &gt; &gt;  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &gt; &gt;  -------------------------------------------------------
+</I>&gt;<i> &gt; &gt;  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i> &gt; &gt;  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i> &gt; &gt;  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i> &gt; &gt;  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &gt; &gt;  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i> &gt; &gt;  -------------------------------------------------------
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; Kiwi-users mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i> &gt; 
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000341.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+	<LI>Next message: <A HREF="000344.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#342">[ date ]</a>
+              <a href="thread.html#342">[ thread ]</a>
+              <a href="subject.html#342">[ subject ]</a>
+              <a href="author.html#342">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

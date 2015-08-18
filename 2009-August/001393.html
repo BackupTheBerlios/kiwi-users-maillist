@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] isohybrid error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20isohybrid%20error&In-Reply-To=%3C20090818103850.GC5209%40open-xchange.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001390.html">
+   <LINK REL="Next"  HREF="001392.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] isohybrid error</H1>
+    <B>Carsten Hoeger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20isohybrid%20error&In-Reply-To=%3C20090818103850.GC5209%40open-xchange.com%3E"
+       TITLE="[Kiwi-users] isohybrid error">choeger at open-xchange.com
+       </A><BR>
+    <I>Tue Aug 18 12:38:50 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001390.html">[Kiwi-users] isohybrid error
+</A></li>
+        <LI>Next message: <A HREF="001392.html">[Kiwi-users] isohybrid error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1393">[ date ]</a>
+              <a href="thread.html#1393">[ thread ]</a>
+              <a href="subject.html#1393">[ subject ]</a>
+              <a href="author.html#1393">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Aug 18, Marcus Sch&#228;fer wrote:
+
+&gt;<i> &gt; The image creation fails with
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Aug-18 11:37:37 &lt;1&gt; : Setting up hybrid ISO...Aug-18 11:37:39 &lt;3&gt; : Failed to
+</I>&gt;<i> &gt; call isohybrid: /usr/bin/isohybrid:
+</I>&gt;<i> &gt; oxlive-result/ox-live-iso-desktop.i686-0.0.2.iso: bootloader does not have a
+</I>&gt;<i> &gt; isolinux.bin hybrid signature.Note that isolinux-debug.bin does not support
+</I>&gt;<i> &gt; hybrid booting.
+</I>&gt;<i> 
+</I>&gt;<i> yeah the problem ist that the repository you install the image from
+</I>&gt;<i> also needs to be able to access the syslinux 3.82 package. kiwi always try
+</I>&gt;<i> to use the tools as they are provided by the repository to stay compatible
+</I>&gt;<i> with the distro version and certification agreements. So what you need
+</I>&gt;<i> to do is the following:
+</I>&gt;<i> 
+</I>&gt;<i> - create a directory e.g.: /tmp/mytools
+</I>&gt;<i> - copy the syslinux 3.82 package into that directory
+</I>&gt;<i> - add this repository to your config.xml
+</I>&gt;<i> 
+</I>&gt;<i>   &lt;repository type=&quot;rpm-dir&quot; status=&quot;fixed&quot;&gt;
+</I>&gt;<i>       &lt;source path=&quot;/tmp/mytools&quot;/&gt;
+</I>&gt;<i>   &lt;/repository&gt;
+</I>&gt;<i> 
+</I>&gt;<i> - run kiwi again
+</I>&gt;<i> 
+</I>&gt;<i> this will cause your image to contain the latest version of syslinux
+</I>&gt;<i> and allows kiwi to use the correct binary when creating the hybrid.
+</I>&gt;<i> 
+</I>&gt;<i> So it's important that you understand that the new version
+</I>&gt;<i> of syslinux is required on your building machine as well as in
+</I>&gt;<i> your repository. kiwi calls isohybrid from your building machine
+</I>&gt;<i> and on boot isolinux.bin must be able to boot that thing so
+</I>&gt;<i> both must match the same syslinux version
+</I>
+Well, the syslinux package came in from
+<A HREF="http://download.opensuse.org/repositories/KDE:/KDE4:/Factory:/Desktop/openSUSE_11.1/">http://download.opensuse.org/repositories/KDE:/KDE4:/Factory:/Desktop/openSUSE_11.1/</A>
+where it has been placed by mistake and is no longer available, now.
+I thought, it came from the Virtualization repo.
+
+Now I'm trying with
+<A HREF="http://download.opensuse.org/repositories/home:/snwint/openSUSE_11.1/">http://download.opensuse.org/repositories/home:/snwint/openSUSE_11.1/</A>
+
+Hope, that works.
+
+
+P.S.: A different question in between: When I use OEM, I can not change
+      screen resolutions in the boot menu. Is that because with OEM, syslinux
+      cannot be used and grub does not allow to change resolution?
+      That should work with the hybrid stuff, then, right?
+
+-- 
+With best regards,
+
+Carsten Hoeger
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090818/85b1dc57/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090818/85b1dc57/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001390.html">[Kiwi-users] isohybrid error
+</A></li>
+	<LI>Next message: <A HREF="001392.html">[Kiwi-users] isohybrid error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1393">[ date ]</a>
+              <a href="thread.html#1393">[ thread ]</a>
+              <a href="subject.html#1393">[ subject ]</a>
+              <a href="author.html#1393">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

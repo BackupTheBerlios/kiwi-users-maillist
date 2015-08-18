@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Graphics issue on T61 Lenovo laptop
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Graphics%20issue%20on%20T61%20Lenovo%20laptop&In-Reply-To=%3C20091019091141.GA21865%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001483.html">
+   <LINK REL="Next"  HREF="001485.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Graphics issue on T61 Lenovo laptop</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Graphics%20issue%20on%20T61%20Lenovo%20laptop&In-Reply-To=%3C20091019091141.GA21865%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Graphics issue on T61 Lenovo laptop">ms at novell.com
+       </A><BR>
+    <I>Mon Oct 19 11:11:41 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001483.html">[Kiwi-users] Graphics issue on T61 Lenovo laptop
+</A></li>
+        <LI>Next message: <A HREF="001485.html">[Kiwi-users] Graphics issue on T61 Lenovo laptop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1484">[ date ]</a>
+              <a href="thread.html#1484">[ thread ]</a>
+              <a href="subject.html#1484">[ subject ]</a>
+              <a href="author.html#1484">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I've created an appliance on a USB stick that has some firstboot code 
+</I>&gt;<i> and is based on SLED 11, thus it also displays the EULA in a nice 
+</I>&gt;<i> graphical way, when it works.
+</I>&gt;<i> 
+</I>&gt;<i> The USB stick system works fine in general but has issues on the T61. 
+</I>&gt;<i> When booting for the first time on the T61, the display is messed up. 
+</I>&gt;<i> The screen has Grey lines on it as if the graphics hardware is not 
+</I>&gt;<i> supported. However, AFAIK a regular install DVD of SLED 11 has no such 
+</I>&gt;<i> issues on the T61.
+</I>&gt;<i> 
+</I>&gt;<i> Further, if the firstboot is completed on a different system and the 
+</I>&gt;<i> stick is then moved to the T61 it is possible to run the USB based 
+</I>&gt;<i> system from the stick and the graphics works just fine.
+</I>&gt;<i> 
+</I>&gt;<i> Any ideas what's going on here, and how to fix the problem?
+</I>
+My guess ist that the xorg.conf used on first boot is not appropriate
+to display the graphics correctly. I think you have a static etc/X11/xorg.conf
+provided with your image description is that correct ? You should be
+able to find that file in your overlay tree below the root/ directory.
+You can replace it with the one working for you. (Of course this will
+most likely limit the graphics to the T61 which is not one you want on
+a USB stick I guess)
+
+The kiwi example xorg.conf files are the same one which we use to
+start the initial graphics setup when performing a standard DVD
+based installation. I'm wondering why the screen is messed up with
+it. The file used is this one (kiwi-templates must be installed):
+
+  /usr/share/kiwi/image/suse-SLE11-JeOS/root/etc/X11/xorg.conf
+
+This is a generic fbdev based configuration which should work
+on nearly all systems and to my knowledge it's the same we
+use for the standard installation. You can double check that
+with Stefan Dirsch &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sndirsch at novell.com</A>&gt; though
+
+Hope that helps
+
+Regards,
+Narcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001483.html">[Kiwi-users] Graphics issue on T61 Lenovo laptop
+</A></li>
+	<LI>Next message: <A HREF="001485.html">[Kiwi-users] Graphics issue on T61 Lenovo laptop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1484">[ date ]</a>
+              <a href="thread.html#1484">[ thread ]</a>
+              <a href="subject.html#1484">[ subject ]</a>
+              <a href="author.html#1484">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

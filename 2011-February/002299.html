@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with clicfs ext3 corruption
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20clicfs%20ext3%20corruption&In-Reply-To=%3C9B154F796B67B1488D4FBCB17AB74658D0FFC3%40vicdcex05.lfxau.linfox.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002298.html">
+   <LINK REL="Next"  HREF="002300.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with clicfs ext3 corruption</H1>
+    <B>Matthew Parslow</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20clicfs%20ext3%20corruption&In-Reply-To=%3C9B154F796B67B1488D4FBCB17AB74658D0FFC3%40vicdcex05.lfxau.linfox.com%3E"
+       TITLE="[Kiwi-users] Issues with clicfs ext3 corruption">Matthew_Parslow at linfox.com
+       </A><BR>
+    <I>Tue Feb  8 00:53:57 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002298.html">[Kiwi-users] yast missing on openSUSE LiveCD
+</A></li>
+        <LI>Next message: <A HREF="002300.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2299">[ date ]</a>
+              <a href="thread.html#2299">[ thread ]</a>
+              <a href="subject.html#2299">[ subject ]</a>
+              <a href="author.html#2299">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All,
+I'm adding x11vnc to the clicfs for kiwi-ltsp and it has some sort of
+corruption.
+ 
+Versions:
+clicfs-1.3.10-49.1
+libext2fs2-1.41.1-11.9
+e2fsprogs-1.41.1-11.9
+
+Process followed to edit the clicfs:
+clicfs -m 120 /srv/kiwi-ltsp/i386.img /mnt
+cp /mnt/fsdata.ext3 /tmp/
+resize2fs /tmp/fsdata.ext3 1G
+mount -o loop /tmp/fsdata.ext3 /mnt/
+
+# Copy files to the fs, eg
+cp x11vnc-script /mnt/etc/init.d/x11vnc
+
+umount /mnt
+
+e2fsck -f /tmp/fsdata.ext3
+resize2fs /tmp/fsdata.ext3 -M
+mkclicfs fsdata.ext3 /srv/kiwi-ltsp/test.cfs
+
+I then boot from test.cfs using nbd. The client starts fine, it starts X
+and logs in and works correctly.
+
+If I now switch to a console I can run commands normally, but the
+instant I read from /etc/init.d/x11vnc the filesystem stops working.
+
+If I cat /etc/init.d/x11vnc I receive an ELF header and some binary
+(previous iterations I have seen the start of this file, but not the
+whole file)
+
+All filesystem operations on non cached files will now fail. If I run
+dmesg before the failure, I can run it afterwards and see the following
+errors (note none of these errors occur at the time, they all occur
+AFTER the failure)
+
+Buffer I/O error on device loop0, logical block 131086
+Lost page write due to I/O error on loop0
+
+This repeats with different blocks until the FS aborts the journal and
+eventuallly dies.
+
+The problem is obviously to with the file I've added, since I can read
+all the others files without incident. - can anyone shed any light on
+this?
+
+Thanks,
+Matt
+WARNING: This email and any attachments may be confidential and subject
+to copyright. If you are not the intended recipient, you must not
+disclose or use the information contained in this email. If you have
+received this email in error, please notify the sender and permanently
+delete the email immediately. Linfox Pty Ltd and its related
+companies do not warrant that this email and any attachments are free of
+errors, viruses or tampering by third parties, and will not be
+responsible for loss or damage resulting (either directly or indirectly)
+from any such error, virus or tampering. If this is a commercial email
+within the meaning of the Spam Act, you may unsubscribe from future
+commercial emails by emailing <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">unsubscribe at linfox.com</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002298.html">[Kiwi-users] yast missing on openSUSE LiveCD
+</A></li>
+	<LI>Next message: <A HREF="002300.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2299">[ date ]</a>
+              <a href="thread.html#2299">[ thread ]</a>
+              <a href="subject.html#2299">[ subject ]</a>
+              <a href="author.html#2299">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Messed up grub menu background
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Messed%20up%20grub%20menu%20background&In-Reply-To=%3C20090917143548.GA760%40idefix.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001448.html">
+   <LINK REL="Next"  HREF="001450.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Messed up grub menu background</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Messed%20up%20grub%20menu%20background&In-Reply-To=%3C20090917143548.GA760%40idefix.suse.de%3E"
+       TITLE="[Kiwi-users] Messed up grub menu background">ms at novell.com
+       </A><BR>
+    <I>Thu Sep 17 16:35:48 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001448.html">[Kiwi-users] Messed up grub menu background
+</A></li>
+        <LI>Next message: <A HREF="001450.html">[Kiwi-users] config.xml ownership
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1449">[ date ]</a>
+              <a href="thread.html#1449">[ thread ]</a>
+              <a href="subject.html#1449">[ subject ]</a>
+              <a href="author.html#1449">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm building a SLES 10 based appliance and initially the appliance was 
+</I>&gt;<i> configure to use custom branding. However, this is now being changed 
+</I>&gt;<i> back to the default SLES branding and somehow I cannot figure out to get 
+</I>&gt;<i> the default grub background to show up. I end up being in text based 
+</I>&gt;<i> mode. Setting the bootsplash back to default worked.
+</I>&gt;<i> 
+</I>&gt;<i> I have the following settings in config.xml that AFAIK influence this 
+</I>&gt;<i> behavior.
+</I>&gt;<i> 
+</I>&gt;<i> &lt;boot-theme&gt;SLES&lt;/boot-theme&gt;
+</I>&gt;<i> &lt;package name=&quot;bootloader-theme-SLES&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i> &lt;package name=&quot;bootsplash&quot;/&gt;
+</I>&gt;<i> &lt;package name=&quot;bootsplash-theme-SuSE-SLES&quot; bootinclude=&quot;true&quot; 
+</I>&gt;<i> bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i> &lt;package name=&quot;gfxboot&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Any idea what I am missing?
+</I>
+remove this line:
+
+   &lt;package name=&quot;bootloader-theme-SLES&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+
+gfxboot on SLE10 has all you (kiwi) needs to create the default
+bootloader background
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001448.html">[Kiwi-users] Messed up grub menu background
+</A></li>
+	<LI>Next message: <A HREF="001450.html">[Kiwi-users] config.xml ownership
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1449">[ date ]</a>
+              <a href="thread.html#1449">[ thread ]</a>
+              <a href="subject.html#1449">[ subject ]</a>
+              <a href="author.html#1449">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

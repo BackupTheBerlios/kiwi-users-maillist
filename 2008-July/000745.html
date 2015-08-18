@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users]  Auto Login
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%20Auto%20Login&In-Reply-To=%3Cb317ae5c0807010153lc923cfauce00077f722ed8%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000744.html">
+   <LINK REL="Next"  HREF="000746.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users]  Auto Login</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%20Auto%20Login&In-Reply-To=%3Cb317ae5c0807010153lc923cfauce00077f722ed8%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users]  Auto Login">cyberorg at opensuse.org
+       </A><BR>
+    <I>Tue Jul  1 10:53:09 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000744.html">[Kiwi-users] Auto Login
+</A></li>
+        <LI>Next message: <A HREF="000746.html">[Kiwi-users] debayan wants to keep up with you on Twitter
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#745">[ date ]</a>
+              <a href="thread.html#745">[ thread ]</a>
+              <a href="subject.html#745">[ subject ]</a>
+              <a href="author.html#745">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>---------- Forwarded message ----------
+From: David Kirk &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">davidrkirk at gmail.com</A>&gt;
+Date: Tue, Jul 1, 2008 at 10:52 AM
+Subject: Re: [Kiwi-users] Auto Login
+To: CyberOrg &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyberorg at opensuse.org</A>&gt;
+
+
+Hey,
+
+&gt;<i> You are missing one more variable:
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> [00:1C:C4:8C:9E:70]
+</I>&gt;<i>       LDM_AUTOLOGIN=true  #&lt;----Missing this
+</I>&gt;&gt;<i>    LDM_USERNAME=kiosk1
+</I>&gt;&gt;<i>    LDM_PASSWORD=kiosk1password
+</I>
+Thanks.  That did the trick.  I didn't see that on whatever page told
+me about the LDM_USERNAME and LDM_PASSWORD (because it wasn't there).
+<A HREF="http://doc.ubuntu.com/edubuntu/edubuntu/handbook/C/customizing-thin-client.html">http://doc.ubuntu.com/edubuntu/edubuntu/handbook/C/customizing-thin-client.html</A>
+
+I don't have a blog, but this is what I've done.  Feel free to publish
+it somewhere if you want.
+
+We have an Intranet for our staff.  In the Staff Cafe we have 4 thin
+clients set up specifically to access the Intranet.
+
+I installed SuSE 11.0 and put Kiwi LTSP on it.  I changed the window
+manager to icewm.  I chose icewm because it's light and easy to lock
+down.  I configured it to not have any menus.  All it can do is run
+Firefox which goes straight to the Intranet home page.
+
+I have configured some hidden key combinations so I can do some
+maintenance if necessary.
+
+  Alt-Ctrl-f will run firefox
+  Alt-Ctrl-s will run firefox --safe-mode so I can bypass the kiosk mode
+  Alt-Ctrl-t will run xterm
+
+I installed the R-Kiosk add-on for Firefox, so the users can't do
+anything stupid.
+
+If they exit from Firefox by pressing Alt-F4, they can't do anything
+with the window manager, and Firefox will automatically restart.
+
+--
+Later
+
+David Kirk
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000744.html">[Kiwi-users] Auto Login
+</A></li>
+	<LI>Next message: <A HREF="000746.html">[Kiwi-users] debayan wants to keep up with you on Twitter
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#745">[ date ]</a>
+              <a href="thread.html#745">[ thread ]</a>
+              <a href="subject.html#745">[ subject ]</a>
+              <a href="author.html#745">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

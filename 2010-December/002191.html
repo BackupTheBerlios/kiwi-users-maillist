@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem creating ISO image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20creating%20ISO%20image&In-Reply-To=%3C20101209091456.GA22182%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002187.html">
+   <LINK REL="Next"  HREF="002193.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem creating ISO image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20creating%20ISO%20image&In-Reply-To=%3C20101209091456.GA22182%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Problem creating ISO image">ms at novell.com
+       </A><BR>
+    <I>Thu Dec  9 10:14:56 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002187.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+        <LI>Next message: <A HREF="002193.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2191">[ date ]</a>
+              <a href="thread.html#2191">[ thread ]</a>
+              <a href="subject.html#2191">[ subject ]</a>
+              <a href="author.html#2191">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> After some changes in the config.xml what I got now is:
+</I>
+- what changes and where ?
+- what does 
+
+     rpm -V kiwi kiwi-desc-isoboot
+
+  tell you ?
+
+&gt;<i> # kiwi --create /kiwi/tempRoot --type iso -d /kiwi/isoImage
+</I>
+and the prepare did run on that machine without problems ?
+
+&gt;<i> /tmp/kiso-loader-45sLMU /kiwi/isoImage/CD 2&gt;&amp;1
+</I>&gt;<i> Dec-09 01:34:52 &lt;3&gt; : Failed to call /usr/bin/genisoimage: Warning:
+</I>&gt;<i> Creating ISO-9660:1999 (version 2) filesystem.
+</I>&gt;<i> Warning: ISO-9660 filenames longer than 31 may cause buffer overflows in the OS.
+</I>
+Never saw this, in this tree there must be files with filenames longer
+than 31 characters. Can you check which ones ?
+
+Can I see your config.xml
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002187.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+	<LI>Next message: <A HREF="002193.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2191">[ date ]</a>
+              <a href="thread.html#2191">[ thread ]</a>
+              <a href="subject.html#2191">[ subject ]</a>
+              <a href="author.html#2191">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

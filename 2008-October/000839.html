@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi Errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Errors&In-Reply-To=%3C20081013130148.18640%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000838.html">
+   <LINK REL="Next"  HREF="000840.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi Errors</H1>
+    <B>Sebastian Siebert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Errors&In-Reply-To=%3C20081013130148.18640%40gmx.net%3E"
+       TITLE="[Kiwi-users] Kiwi Errors">Freespacer at gmx.de
+       </A><BR>
+    <I>Mon Oct 13 15:01:48 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000838.html">[Kiwi-users] Scheme validation
+</A></li>
+        <LI>Next message: <A HREF="000840.html">[Kiwi-users] Kiwi Errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#839">[ date ]</a>
+              <a href="thread.html#839">[ thread ]</a>
+              <a href="subject.html#839">[ subject ]</a>
+              <a href="author.html#839">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I want to build a live cd on openSUSE 11 x86_64, but Kiwi stops with errors. :-(
+I have remove already the directory /var/cache/kiwi/, but the errors come again.
+
+My little config.xml:
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;image schemeversion=&quot;2.4&quot; name=&quot;suse-11.0-live-iso&quot;&gt;
+        &lt;description type=&quot;system&quot;&gt;
+                &lt;author&gt;Sebastian Siebert&lt;/author&gt;
+                &lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">freespacer at gmx.de</A>&lt;/contact&gt;
+                &lt;specification&gt;openSUSE 11.0 Minimal Live system&lt;/specification&gt;
+        &lt;/description&gt;
+        &lt;preferences&gt;
+                &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-11.0&quot; flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+                &lt;version&gt;0.0.1&lt;/version&gt;
+                &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+                &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+                &lt;rpm-force&gt;True&lt;/rpm-force&gt;
+                &lt;locale&gt;de_DE.UTF-8&lt;/locale&gt;
+                &lt;keytable&gt;de.map.gz&lt;/keytable&gt;
+        &lt;/preferences&gt;
+        &lt;repository type=&quot;yast2&quot;&gt;
+                &lt;source path=&quot;<A HREF="ftp://ftp5.gwdg.de/pub/opensuse/distribution/11.0/repo/oss">ftp://ftp5.gwdg.de/pub/opensuse/distribution/11.0/repo/oss</A>&quot; /&gt;
+        &lt;/repository&gt;
+        &lt;repository type=&quot;yast2&quot;&gt;
+                &lt;source path=&quot;<A HREF="ftp://ftp5.gwdg.de/pub/opensuse/distribution/11.0/repo/non-oss">ftp://ftp5.gwdg.de/pub/opensuse/distribution/11.0/repo/non-oss</A>&quot; /&gt;
+        &lt;/repository&gt;
+        &lt;repository type=&quot;rpm-md&quot;&gt;
+                &lt;source path=&quot;<A HREF="ftp://ftp5.gwdg.de/pub/opensuse/update/11.0">ftp://ftp5.gwdg.de/pub/opensuse/update/11.0</A>&quot; /&gt;
+        &lt;/repository&gt;
+        &lt;packages type=&quot;image&quot;&gt;
+                &lt;package name=&quot;kernel-default&quot;/&gt;
+                &lt;package name=&quot;bootsplash&quot;/&gt;
+                &lt;package name=&quot;bootsplash-branding-openSUSE&quot;/&gt;
+                &lt;package name=&quot;vim&quot;/&gt;
+                &lt;package name=&quot;mc&quot;/&gt;
+                &lt;opensusePattern name=&quot;base&quot;/&gt;
+        &lt;/packages&gt;
+        &lt;packages type=&quot;bootstrap&quot;&gt;
+                &lt;package name=&quot;filesystem&quot;/&gt;
+                &lt;package name=&quot;glibc-locale&quot;/&gt;
+        &lt;/packages&gt;
+&lt;/image&gt;
+
+The error messages on display:
+Oct-13 14:32:53 &lt;1&gt; : Initializing image system on: /src/livecd/minimal-tree...                                                 failed
+[*** log excerpt follows, screen ***]
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6(GLIBC_2.8)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libpthread.so.0()(64bit)
+
+It shows that everything goes wrong!
+
+In the log-file I found confuse entries:
+
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-11.0-79.2 at x86_64</A>
+    Ben&#246;tigt
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.2-112.1 at i586</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-120-13.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.2-73.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-118.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.11.0-31.2 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">login-3.36-3.1 at i586</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openSUSE-release-11.0-47.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-216.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.4.0-13.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.9-60.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mingetty-1.0.7s-64.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">filesystem-11.0-42.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-103.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-base-5.10.0-37.4 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.11-9.1 at i586</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">net-tools-1.60-691.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.8-14.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-utils-5.6-83.1 at i586</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">psmisc-22.6-30.1 at i586</A> (installiert)
+    Ben&#246;tigt von:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2008.6.2-2.1 at x86_64</A> (installiert)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">audit-libs-32bit-1.6.8-18.1 at x86_64</A>
+    Ben&#246;tigt
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.2-112.1 at i586</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.8-14.1 at i686</A> (installiert)
+    Ben&#246;tigt von:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">login-3.36-3.1 at i586</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-32bit-1.0.1-8.1 at x86_64</A> (installiert)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.2-112.1 at i586</A>
+    Ben&#246;tigt
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.8-14.1 at i686</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libreadline5-32bit-5.2-71.1 at x86_64</A> (installiert)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libncurses5-32bit-5.6-83.1 at x86_64</A> (installiert)
+...
+...
+32.2MB an Paketdateien sind ben&#246;tigt.173.5MB wird benutzt.
+...
+Hole Pakete..
+-&gt; <A HREF="ftp://ftp5.gwdg.de/pub/opensuse/.../cracklib-32bit-2.8.12-24.2.x86_64.rpm">ftp://ftp5.gwdg.de/pub/opensuse/.../cracklib-32bit-2.8.12-24.2.x86_64.rpm</A>
+cracklib-32bit-2.8.12-24.2.x8.. ######################################## [  1%]
+...
+-&gt; <A HREF="ftp://ftp5.gwdg.de/pub/opensuse/.../libattr-32bit-2.4.39-40.1.x86_64.rpm">ftp://ftp5.gwdg.de/pub/opensuse/.../libattr-32bit-2.4.39-40.1.x86_64.rpm</A>
+libattr-32bit-2.4.39-40.1.x86.. ######################################## [ 98%]
+python-2.5.2-26.2.x86_64.rpm    ######################################## [100%]
+...
+&#220;bermittle Transaktion ...
+FEHLER!: fillup-1.42-216.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: fillup-1.42-216.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: fillup-1.42-216.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: fillup-1.42-216.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: fillup-1.42-216.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: libncurses5-5.6-83.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: libncurses5-5.6-83.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: libncurses5-5.6-83.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: libncurses5-5.6-83.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: libncurses5-5.6-83.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: libncurses5-5.6-83.1 ben&#246;tigt libdl.so.2()(64bit)
+FEHLER!: libncurses5-5.6-83.1 ben&#246;tigt libdl.so.2(GLIBC_2.2.5)(64bit)
+FEHLER!: libsqlite3-0-3.5.7-17.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: libsqlite3-0-3.5.7-17.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: libsqlite3-0-3.5.7-17.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: libsqlite3-0-3.5.7-17.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: libsqlite3-0-3.5.7-17.1 ben&#246;tigt libpthread.so.0()(64bit)
+FEHLER!: libsqlite3-0-3.5.7-17.1 ben&#246;tigt libpthread.so.0(GLIBC_2.2.5)(64bit)
+FEHLER!: libbz2-1-1.0.5-13.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: libbz2-1-1.0.5-13.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: libbz2-1-1.0.5-13.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: libbz2-1-1.0.5-13.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: libbz2-1-1.0.5-13.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: net-tools-1.60-691.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: net-tools-1.60-691.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: net-tools-1.60-691.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: net-tools-1.60-691.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: net-tools-1.60-691.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: mingetty-1.0.7s-64.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: mingetty-1.0.7s-64.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: mingetty-1.0.7s-64.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: mingetty-1.0.7s-64.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: mingetty-1.0.7s-64.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: libvolume_id-120-13.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: libvolume_id-120-13.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: libvolume_id-120-13.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: libvolume_id-120-13.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: libvolume_id-120-13.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: glibc-locale-2.8-14.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: glibc-locale-2.8-14.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: gdbm-1.8.3-344.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: gdbm-1.8.3-344.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: zlib-1.2.3-113.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: zlib-1.2.3-113.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: zlib-1.2.3-113.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: zlib-1.2.3-113.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libc.so.6(GLIBC_2.3.2)(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libcrypt.so.1()(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libcrypt.so.1(GLIBC_2.2.5)(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libdl.so.2()(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libdl.so.2(GLIBC_2.2.5)(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libm.so.6()(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libm.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libpthread.so.0()(64bit)
+FEHLER!: perl-base-5.10.0-37.4 ben&#246;tigt libpthread.so.0(GLIBC_2.2.5)(64bit)
+FEHLER!: insserv-1.11.0-31.2 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: insserv-1.11.0-31.2 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: insserv-1.11.0-31.2 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: insserv-1.11.0-31.2 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: insserv-1.11.0-31.2 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: libreadline5-5.2-71.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: libreadline5-5.2-71.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: libreadline5-5.2-71.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: libreadline5-5.2-71.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: libreadline5-5.2-71.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: libopenssl0_9_8-0.9.8g-47.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: libopenssl0_9_8-0.9.8g-47.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: libopenssl0_9_8-0.9.8g-47.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: libopenssl0_9_8-0.9.8g-47.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: libopenssl0_9_8-0.9.8g-47.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: libopenssl0_9_8-0.9.8g-47.1 ben&#246;tigt libc.so.6(GLIBC_2.7)(64bit)
+FEHLER!: libopenssl0_9_8-0.9.8g-47.1 ben&#246;tigt libdl.so.2()(64bit)
+FEHLER!: libopenssl0_9_8-0.9.8g-47.1 ben&#246;tigt libdl.so.2(GLIBC_2.2.5)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libc.so.6(GLIBC_2.7)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libcrypt.so.1()(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libcrypt.so.1(GLIBC_2.2.5)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libdb-4.5.so()(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libdl.so.2()(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libdl.so.2(GLIBC_2.2.5)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libm.so.6()(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libm.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libnsl.so.1()(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libnsl.so.1(GLIBC_2.2.5)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libpthread.so.0()(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libpthread.so.0(GLIBC_2.2.5)(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libutil.so.1()(64bit)
+FEHLER!: python-2.5.2-26.2 ben&#246;tigt libutil.so.1(GLIBC_2.2.5)(64bit)
+FEHLER!: diffutils-2.8.7-118.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: diffutils-2.8.7-118.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: diffutils-2.8.7-118.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: diffutils-2.8.7-118.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: diffutils-2.8.7-118.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: diffutils-2.8.7-118.1 ben&#246;tigt librt.so.1()(64bit)
+FEHLER!: diffutils-2.8.7-118.1 ben&#246;tigt librt.so.1(GLIBC_2.2.5)(64bit)
+FEHLER!: cpio-2.9-60.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: cpio-2.9-60.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: cpio-2.9-60.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: cpio-2.9-60.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: cpio-2.9-60.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt libc.so.6(GLIBC_2.7)(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt libm.so.6()(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt libm.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt librt.so.1()(64bit)
+FEHLER!: findutils-4.4.0-13.1 ben&#246;tigt librt.so.1(GLIBC_2.2.5)(64bit)
+FEHLER!: sed-4.1.5-103.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: sed-4.1.5-103.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: sed-4.1.5-103.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: sed-4.1.5-103.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: sed-4.1.5-103.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: grep-2.5.2-73.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: grep-2.5.2-73.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: grep-2.5.2-73.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: grep-2.5.2-73.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: grep-2.5.2-73.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: python-xml-2.5.2-26.2 ben&#246;tigt libpython2.5.so.1.0
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libc.so.6(GLIBC_2.7)(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libcrypt.so.1()(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libcrypt.so.1(GLIBC_2.2.5)(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libpthread.so.0()(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libpthread.so.0(GLIBC_2.2.5)(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libpthread.so.0(GLIBC_2.3.2)(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libutil.so.1()(64bit)
+FEHLER!: sysvinit-2.86-148.1 ben&#246;tigt libutil.so.1(GLIBC_2.2.5)(64bit)
+FEHLER!: udev-120-13.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: udev-120-13.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: udev-120-13.1 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: udev-120-13.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: udev-120-13.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: aaa_base-11.0-79.2 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: aaa_base-11.0-79.2 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: aaa_base-11.0-79.2 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: aaa_base-11.0-79.2 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: aaa_base-11.0-79.2 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: permissions-2008.6.2-2.1 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: permissions-2008.6.2-2.1 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: permissions-2008.6.2-2.1 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: permissions-2008.6.2-2.1 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6()(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6(GLIBC_2.2.5)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6(GLIBC_2.3)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6(GLIBC_2.3.4)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6(GLIBC_2.4)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libc.so.6(GLIBC_2.8)(64bit)
+FEHLER!: smart-0.52-90.2 ben&#246;tigt libpthread.so.0()(64bit)
+
+Sorry about german messages, but you can see installed packages are
+some i586 and x86_64 merging architecture.
+Can anybody find out the problem of Kiwi?
+
+Kind regards,
+Sebastian
+-- 
+GMX startet ShortView.de. Hier findest Du Leute mit Deinen Interessen!
+Jetzt dabei sein: <A HREF="http://www.shortview.de/wasistshortview.php?mc=sv_ext_mf@gmx">http://www.shortview.de/wasistshortview.php?mc=sv_ext_mf@gmx</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000838.html">[Kiwi-users] Scheme validation
+</A></li>
+	<LI>Next message: <A HREF="000840.html">[Kiwi-users] Kiwi Errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#839">[ date ]</a>
+              <a href="thread.html#839">[ thread ]</a>
+              <a href="subject.html#839">[ subject ]</a>
+              <a href="author.html#839">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

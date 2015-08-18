@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] PXE + NFS read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20%2B%20NFS%20read-only&In-Reply-To=%3CC088D3516432C643AC828162A5164A7F08CD09F0%40se3lmwbibaw.COMMUN.AD.SNCF.FR%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002473.html">
+   <LINK REL="Next"  HREF="002475.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] PXE + NFS read-only</H1>
+    <B>BONNETOT Jean-Daniel (EXT THALES)</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20%2B%20NFS%20read-only&In-Reply-To=%3CC088D3516432C643AC828162A5164A7F08CD09F0%40se3lmwbibaw.COMMUN.AD.SNCF.FR%3E"
+       TITLE="[Kiwi-users] PXE + NFS read-only">ext.thales.jean-daniel.bonnetot at sncf.fr
+       </A><BR>
+    <I>Mon Mar 14 11:21:48 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002473.html">[Kiwi-users] PXE + NFS read-only
+</A></li>
+        <LI>Next message: <A HREF="002475.html">[Kiwi-users] PXE + NFS read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2474">[ date ]</a>
+              <a href="thread.html#2474">[ thread ]</a>
+              <a href="subject.html#2474">[ subject ]</a>
+              <a href="author.html#2474">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Ok, I see. The NFS solution as you described doesn't match with my needs.
+I want to boot many systems at the same time and plugging them on NFS root.
+
+I will try AOE if my environment allow this ;)
+If not, I will use full TFTP boot, longer but maybe more simple.
+
+Thanks for your help.
+
+---
+Jean-Daniel Bonnetot
+
+-----Message d'origine-----
+De : Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>] 
+Envoy&#233; : dimanche 13 mars 2011 22:46
+&#192; : BONNETOT Jean-Daniel (EXT THALES)
+Cc : <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Objet : Re: [Kiwi-users] PXE + NFS read-only
+
+Hi,
+
+&gt;<i> Since few days, I try to build a kiwi system which use PXE to boot 
+</I>&gt;<i> kernel/initrd, use NFS as root filesystem and RAM as read-write device 
+</I>&gt;<i> over NFS.
+</I>&gt;<i> I thought this kind of configuration was standard but apparently not, 
+</I>&gt;<i> I found very few documentation and it seems to be outdated.
+</I>
+kind of standard is a NFS root filesystem, but as soon as it comes to the point that you want to use an overlay technique which bypasses all write actions into RAM for example, things start to become more complex unfortunately.
+
+&gt;<i> The main problem is around unionfs. Aufs was used in previous versions 
+</I>&gt;<i> but this FS is no more available on OpenSuse. The documentation says :
+</I>&gt;<i> &quot;The recommended compressed filesystem type for the system image is 
+</I>&gt;<i> squashfs.&quot; and &quot;UNIONFS_CONFIG=/dev/ram1,nfs,aufs&quot;
+</I>&gt;<i>  
+</I>&gt;<i> If I understand, clicfs can be used instead of squashfs but unionfs 
+</I>&gt;<i> part still be not available...
+</I>&gt;<i>  
+</I>&gt;<i> Does anyone have similar working configuration ?
+</I>
+unionfs and aufs didn't made it into the kernel so they are not supported anymore as you know. I recently changed the docs, they were pretty much out of date, sorry for this
+
+Now there is only clicfs a fuse based filesystem. The following has worked for me when writing happens into RAM
+
+--------------
+config.xml
+--------------
+
+   &lt;type image=&quot;pxe&quot; filesystem=&quot;clicfs&quot; boot=&quot;netboot/suse-11.3&quot;&gt;
+
+
+=============================
+NFS exported clic tree
+-----------------------------
+
+* config.&lt;MAC&gt;
+ 
+   NFSROOT=NFS.Server.IP.address;/path/to/root/tree
+
+* NFS Export
+
+  1) mount the clicfs image with the cow pointing to the RAM
+
+     clicfs -m 512 image-file.clicfs /path/to/root/tree
+
+  2) export /path/to/root/tree in /etc/exports suitable for
+     root over NFS mount
+  
+===&gt; the client RAM is not used for writing. All write
+     actions happens into the RAM of the NFS server
+
+
+=============================
+AOE exported clic tree
+-----------------------------
+
+* config.&lt;MAC&gt;
+   
+   AOEROOT=/dev/etherd/e0.1
+
+* AOE Export
+
+  1) losetup /dev/loop0 image-file.clicfs
+  2) vbladed 0 1 eth0 /dev/loop0
+
+===&gt; the client RAM is used for writing
+
+
+If you have decided for a setup and found problems with it please boot with the kernel parameter
+
+   kiwidebug=1
+
+and send the /var/log/boot.kiwi file
+
+Thanks
+
+Regards,
+Marcus   
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------
+Ce message et toutes les pi&#232;ces jointes sont &#233;tablis &#224; l'intention exclusive de ses destinataires et sont confidentiels. L'int&#233;grit&#233; de ce message n'&#233;tant pas assur&#233;e sur Internet, la SNCF ne peut &#234;tre tenue responsable des alt&#233;rations qui pourraient se produire sur son contenu. Toute publication, utilisation, reproduction, ou diffusion, m&#234;me partielle, non autoris&#233;e pr&#233;alablement par la SNCF, est strictement interdite. Si vous n'&#234;tes pas le destinataire de ce message, merci d'en avertir imm&#233;diatement l'exp&#233;diteur et de le d&#233;truire.
+-------
+This message and any attachments are intended solely for the addressees and are confidential. SNCF may not be held responsible for their contents whose accuracy and completeness cannot be guaranteed over the Internet. Unauthorized use, disclosure, distribution, copying, or any part thereof is strictly prohibited. If you are not the intended recipient of this message, please notify the sender immediately and delete it. 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002473.html">[Kiwi-users] PXE + NFS read-only
+</A></li>
+	<LI>Next message: <A HREF="002475.html">[Kiwi-users] PXE + NFS read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2474">[ date ]</a>
+              <a href="thread.html#2474">[ thread ]</a>
+              <a href="subject.html#2474">[ subject ]</a>
+              <a href="author.html#2474">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

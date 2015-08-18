@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB with syslinux
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20with%20syslinux&In-Reply-To=%3C47CE8989.2090409%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000446.html">
+   <LINK REL="Next"  HREF="000449.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB with syslinux</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20with%20syslinux&In-Reply-To=%3C47CE8989.2090409%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] USB with syslinux">bernd at ixsoft.de
+       </A><BR>
+    <I>Wed Mar  5 12:52:41 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000446.html">[Kiwi-users] USB with syslinux
+</A></li>
+        <LI>Next message: <A HREF="000449.html">[Kiwi-users] USB with syslinux
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#447">[ date ]</a>
+              <a href="thread.html#447">[ thread ]</a>
+              <a href="subject.html#447">[ subject ]</a>
+              <a href="author.html#447">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Marcus,
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> the current --bootstick option with kiwi only uses grub.
+</I>&gt;&gt;<i> Grub will only work on about 80-90% of all USB sticks since there are 
+</I>&gt;&gt;<i> frequent problems with geometry and BIOS.
+</I>&gt;&gt;<i> syslinux will boot on about 95% since it does not need any geometry (if I 
+</I>&gt;&gt;<i> understood this correctly).
+</I>&gt;&gt;<i> Is there a way to provide a bootstick with a syslinux boot method from 
+</I>&gt;&gt;<i> kiwi?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> at the moment; no
+</I>&gt;<i> kiwi uses grub for all image types except iso's. I know this will
+</I>&gt;<i> be a problem if we extend the support to other architectures too.
+</I>&gt;<i>   
+</I>&gt;<i> I'm sorry but I don't have time to take care for implementing
+</I>&gt;<i> other boot manager setups. I would be glad for any help in that area
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>I had a look into the kiwi .pm modules and if I find the time, I will 
+try my luck and send you the diffs ;-)
+
+However, to be successful with this, a more current version of syslinux 
+for openSuse will be necessary that also includes the gfxboot patches. I 
+am using Ubuntu syslinux right now to create a working graphical boot 
+splash for openSuse 10.3; I am not sure if this is the recommended method...
+Ah yes, the Ubuntu syslinux fixed all problems for me and I now have a 
+nice openSuse flash image that boots nearly everything 8-]
+
+-- 
+Mit freundlichem Gru&#223;
+
+Kind Regards
+
+Bernd Hentig
+---
+             ixsoft.de - Ihr Spezialist f&#252;r Linux&amp;BSD
+        verion GmbH, Gesch&#228;ftsbereich ixsoft, HRB 11618 FF
+     Gesch&#228;ftsf&#252;hrer: Bernd Hentig, EU-USt-Nr.: DE 256 168 957 
+          Unter den Buchen 22E, D-16244 Altenhof, Germany
+          Voice ++49 333 63 46 100 Fax ++49 333 63 46 109
+                     eMail <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Bernd.Hentig at ixsoft.de</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 300 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080305/8a297c6a/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080305/8a297c6a/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000446.html">[Kiwi-users] USB with syslinux
+</A></li>
+	<LI>Next message: <A HREF="000449.html">[Kiwi-users] USB with syslinux
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#447">[ date ]</a>
+              <a href="thread.html#447">[ thread ]</a>
+              <a href="subject.html#447">[ subject ]</a>
+              <a href="author.html#447">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

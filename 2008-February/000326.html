@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Possible bug in kiwi 2.27-28.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Possible%20bug%20in%20kiwi%202.27-28.1&In-Reply-To=%3C20080219160609.GA23296%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000325.html">
+   <LINK REL="Next"  HREF="000327.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Possible bug in kiwi 2.27-28.1</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Possible%20bug%20in%20kiwi%202.27-28.1&In-Reply-To=%3C20080219160609.GA23296%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Possible bug in kiwi 2.27-28.1">ms at suse.de
+       </A><BR>
+    <I>Tue Feb 19 17:06:11 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000325.html">[Kiwi-users] Possible bug in kiwi 2.27-28.1
+</A></li>
+        <LI>Next message: <A HREF="000327.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#326">[ date ]</a>
+              <a href="thread.html#326">[ thread ]</a>
+              <a href="subject.html#326">[ subject ]</a>
+              <a href="author.html#326">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Tina,
+
+&gt;<i> I'm trying to produce a working .vmdk image with kiwi but after updating to the latest available version for 10.3 from openSUSE:Tools (2.27-28.1) it wont start anymore and reports errors you can see here: <A HREF="http://pastebin.ca/909802">http://pastebin.ca/909802</A> . My config.xml can be seen here: <A HREF="http://pastebin.ca/909814">http://pastebin.ca/909814</A> .
+</I>
+It seems you have a checksum created (or accidently copied) in your
+system image description. You should find a file called:
+
+	config/suse-server-10.3/.checksum.md5
+
+if this file exists kiwi checks if the md5 information matches the
+description. but in your case it failed because the md5 information
+contains md5 hashes for stuff like linuxrc which is only present in
+boot image descriptions but not in system image description.
+
+* I guess this md5 file exists there by accident. So the solution is
+  to simply remove the mentioned file and try again :-)
+
+* A first look into your config.xml tells me that this image
+  description is a clone of a boot image description which you 
+  now use as a system image description. That's not a good start
+  Please do _not_ use any boot image descriptions from
+  /usr/share/kiwi/image/*boot as base description for your
+  own image. If you need something to start with refer to one
+  of the examples in:
+
+    /usr/share/doc/packages/kiwi/examples
+
+  or use one of the templates used by others from here:
+
+    <A HREF="https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images">https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images</A>
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000325.html">[Kiwi-users] Possible bug in kiwi 2.27-28.1
+</A></li>
+	<LI>Next message: <A HREF="000327.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#326">[ date ]</a>
+              <a href="thread.html#326">[ thread ]</a>
+              <a href="subject.html#326">[ subject ]</a>
+              <a href="author.html#326">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

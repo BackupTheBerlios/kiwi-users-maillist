@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] ssh -X into a KIWI system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20ssh%20-X%20into%20a%20KIWI%20system&In-Reply-To=%3C1276515294.30798.118.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001833.html">
+   <LINK REL="Next"  HREF="001835.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] ssh -X into a KIWI system</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20ssh%20-X%20into%20a%20KIWI%20system&In-Reply-To=%3C1276515294.30798.118.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] ssh -X into a KIWI system">roger at opq.se
+       </A><BR>
+    <I>Mon Jun 14 13:34:54 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001833.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+        <LI>Next message: <A HREF="001835.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1834">[ date ]</a>
+              <a href="thread.html#1834">[ thread ]</a>
+              <a href="subject.html#1834">[ subject ]</a>
+              <a href="author.html#1834">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-06-14 at 12:59 +0200, Carsten Hoeger wrote:
+&gt;<i> On Mon, Jun 14, Roger Oberholtzer wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; AFAIR all you need in order to have X exported is to install xorg-x11-xauth.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; That is in newer X packages. I am running this in openSUSE 10.3? Sorry I
+</I>&gt;<i> &gt; forgot to mention that...
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Anyway, that package contains /usr/bin/xauth. If X is not running on the
+</I>&gt;<i> &gt; KIWI image, will the files that xauth fiddles with exist? Meaning, will
+</I>&gt;<i> &gt; xauth work? It seems odd to have to start X locally just so a program
+</I>&gt;<i> &gt; can open a port on a different machine to send X stuff. 
+</I>&gt;<i> 
+</I>&gt;<i> No need to start X. As soon as xauth is installed, X forwarding works (check
+</I>&gt;<i> with env | grep DISPLAY).
+</I>&gt;<i> 
+</I>&gt;<i> Are you sure, that X11Forwarding isn't disabled on that system?
+</I>
+It is enabled on the system from which I am connecting. Need it be
+enabled on the system I ssh into as well?
+
+When I get access to the systems in question I will try adding the xauth
+program. Seems mysterious that it only needs to exist. Who runs it?
+Perhaps the remote sshd?
+
+The systems are out on the road now sorting out camera issues. These
+diskless openSUSE systems store images and provide access to GigEVision
+high resolution cameras. We are trying to get ready for some test
+measurements of bicycle paths in Germany. The remote application I want
+to run is a control tool that comes from the camera manufacturer. It
+will help us configure the cameras.
+
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001833.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+	<LI>Next message: <A HREF="001835.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1834">[ date ]</a>
+              <a href="thread.html#1834">[ thread ]</a>
+              <a href="subject.html#1834">[ subject ]</a>
+              <a href="author.html#1834">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

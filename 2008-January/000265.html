@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] PXE Boot a new problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20a%20new%20problem&In-Reply-To=%3C47A02E29.8020404%40comline.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000260.html">
+   <LINK REL="Next"  HREF="000267.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] PXE Boot a new problem</H1>
+    <B>Ralf Prengel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20a%20new%20problem&In-Reply-To=%3C47A02E29.8020404%40comline.de%3E"
+       TITLE="[Kiwi-users] PXE Boot a new problem">ralf.prengel at comline.de
+       </A><BR>
+    <I>Wed Jan 30 08:58:33 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000260.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+        <LI>Next message: <A HREF="000267.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#265">[ date ]</a>
+              <a href="thread.html#265">[ thread ]</a>
+              <a href="subject.html#265">[ subject ]</a>
+              <a href="author.html#265">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus Sch&#228;fer schrieb:
+Unpacking stops after some seconds and I ve no idea why.
+&gt;<i> 
+</I>&gt;<i> So you don't use NFS root at the moment but the &quot;standard&quot; atftp
+</I>&gt;<i> based deployment method correct ? In this case you should first
+</I>&gt;<i> have a look into your atftpd configuration. You should disable
+</I>&gt;<i> multicast at all in a first try:
+</I>&gt;<i> 
+</I>&gt;<i> 	vi /etc/sysconfig/atftpd
+</I>&gt;<i> 	ATFTPD_OPTIONS=&quot;--daemon --no-multicast&quot;
+</I>&gt;<i> 
+</I>&gt;<i> restart atftpd, try again and run
+</I>&gt;<i> 
+</I>&gt;<i> 	tail -f /var/log/messages
+</I>&gt;<i> 
+</I>&gt;<i> while the client &quot;unpack/download&quot; the image
+</I>
+1)
+tftp was installed
+so i removed it
+2)
+atftp installed
+3)
+nothing works
+the client doesn't recieve files any longer.
+
+I m using the standard rpm Package.
+telnet localhost 69 on my pxe server  = conection refusesd
+ps ax shows /usr/sbin/atftpd running
+netstat -ap shows tftp but without status listen
+
+firewall ist not running
+no apparmor installed
+
+surely a simple mistake but I ve no idea where to search,.
+
+
+
+
+-- 
+i.A. Ralf Prengel
+Customer Care Manager
+Comline AG
+Hauert 8
+D-44227 Dortmund/Germany
+
+Fon +49231 97575- 904
+Fax +49231 97575- 905
+EMail <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ralf.prengel at comline.de</A>
+
+www.comline.de
+Vorstand Stephan Schilling,Erwin Leonhardi
+Aufsichtsrat Dr. Franz Schoser (Vorsitzender)
+HR Dortmund B 14570
+USt.-ID-Nr. DE 124727422
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000260.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+	<LI>Next message: <A HREF="000267.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#265">[ date ]</a>
+              <a href="thread.html#265">[ thread ]</a>
+              <a href="subject.html#265">[ subject ]</a>
+              <a href="author.html#265">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

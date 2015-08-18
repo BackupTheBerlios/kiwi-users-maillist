@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] creating 11.2 ISO image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20creating%2011.2%20ISO%20image&In-Reply-To=%3C830475.37413.qm%40web56502.mail.re3.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001704.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] creating 11.2 ISO image</H1>
+    <B>Zdravko Angelov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20creating%2011.2%20ISO%20image&In-Reply-To=%3C830475.37413.qm%40web56502.mail.re3.yahoo.com%3E"
+       TITLE="[Kiwi-users] creating 11.2 ISO image">zdravko_angelov at yahoo.com
+       </A><BR>
+    <I>Sun Feb 28 17:12:25 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001704.html">[Kiwi-users] Boot problem live USB 11.2
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1705">[ date ]</a>
+              <a href="thread.html#1705">[ thread ]</a>
+              <a href="subject.html#1705">[ subject ]</a>
+              <a href="author.html#1705">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt; I built the example template from 
+</I>&gt;<i> /usr/share/doc/packages/kiwi/examples/suse-11.2/suse-live-iso on this system:
+</I>&gt;<i> &gt; OS: openSUSE 11.2
+</I>&gt;<i> &gt; kernel: 2.6.31.5-0.1-default
+</I>&gt;<i> &gt; kiwi: v3.74
+</I>&gt;<i> &gt; doc: version 4.17 from February 18, 2010
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; but I get an .iso image that does not include the read-only file system. This 
+</I>&gt;<i> is the result:
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root  23M 2010-02-24 11:47 suse-11.2-live-iso.i686-2.5.1.iso
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root 922M 2010-02-24 11:39 
+</I>&gt;<i> suse-11.2-live-iso-read-only.i686-2.5.1
+</I>&gt;<i> &gt; lrwxrwxrwx1 root root   39 2010-02-24 10:50 
+</I>&gt;<i> suse-11.2-live-iso-read-only.i686-2.5.1.clicfs -&gt; 
+</I>&gt;<i> suse-11.2-live-iso-read-only.i686-2.5.1
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root   48 2010-02-24 11:05 
+</I>&gt;<i> suse-11.2-live-iso-read-only.i686-2.5.1.md5
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Of course when I boot the iso it goes well up to the point of mounting root, 
+</I>&gt;<i> which fails. 
+</I>&gt;<i> &gt; Does anybody have an idea what I am doing wrong?
+</I>&gt;<i> 
+</I>&gt;<i> This is this strange problem of genisoimage not including symlinked
+</I>&gt;<i> files. I never was able to reproduce that problem. when kiwi calls
+</I>&gt;<i> mkisofs/genisoimage it creates a symlink to the .clicfs file.
+</I>&gt;<i> Your are the second who reported that the generated iso doesn't
+</I>&gt;<i> have that file included.
+</I>&gt;<i> 
+</I>&gt;<i> Attached is a fix which moves the file instead of linking but
+</I>&gt;<i> it really shouldn't be required:
+</I>&gt;<i> 
+</I>&gt;<i>    patch -p0 &lt; kiwi.dif
+</I>&gt;<i> 
+</I>&gt;<i> and call kiwi again after that patch
+</I>&gt;<i> 
+</I>&gt;<i> If that solves your problem I'm eager to understand why it
+</I>&gt;<i> did not work with the iso tools you used out of the box
+</I>
+
+Marcus,
+
+thank you for the response! The patch worked! 
+It is indeed a genisoimage problem. Looking at the log files, there is no difference in the kiwi execution with and without the patch, except:
+
+1. a difference in package installation order (irrelevant)
+2. the patch
+4436,4437c4436
+&lt; EXEC [mv image_iso/live-suse-read-only.i686-2.5.1 /tmp/kiwi-cdboot./kiwi-cdboot-/CD]
+&lt; EXEC [rm image_iso/live-suse-read-only.i686-2.5.1.*]
+---
+&gt;<i> EXEC [ln -s image_iso/live-suse-read-only.i686-2.5.1 /tmp/kiwi-cdboot./kiwi-cdboot-/CD/live-suse-read-only.i686-2.5.1]
+</I>
+
+The call to genisoimage is in both cases also the same. 
+
+When I ran genisoimage loose, on the image source tree prepared by kiwi, the log begins with:
+&quot;Warning: -follow-links does not always work correctly; be careful.&quot;
+But its logging is not detailed at all, so that's I all I could find. 
+The genisoimage version I use is 1.1.9-3.2, the default that comes with suse 11.2.
+
+Cheers,
+Zdravko
+
+
+
+      
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001704.html">[Kiwi-users] Boot problem live USB 11.2
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1705">[ date ]</a>
+              <a href="thread.html#1705">[ thread ]</a>
+              <a href="subject.html#1705">[ subject ]</a>
+              <a href="author.html#1705">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

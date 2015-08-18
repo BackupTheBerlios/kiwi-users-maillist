@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C20110215121453.GA3095%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002323.html">
+   <LINK REL="Next"  HREF="002325.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C20110215121453.GA3095%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">ms at suse.de
+       </A><BR>
+    <I>Tue Feb 15 13:14:53 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002323.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+        <LI>Next message: <A HREF="002325.html">[Kiwi-users] /etc/hosts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2324">[ date ]</a>
+              <a href="thread.html#2324">[ thread ]</a>
+              <a href="subject.html#2324">[ subject ]</a>
+              <a href="author.html#2324">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; 	&lt;packages type=&quot;image&quot; patternType=&quot;onlyRequired&quot;&gt;
+</I>&gt;<i> &gt;                 &lt;package name=&quot;wdiff&quot;/&gt;
+</I>&gt;<i> &gt;                 &lt;package name=&quot;lockdev&quot;/&gt;
+</I>&gt;<i> &gt; 		&lt;ignore name=&quot;lxde-common-branding-openSUSE&quot;/&gt;
+</I>&gt;<i> &gt; &lt;/packages&gt;
+</I>&gt;<i> &gt; Despite this line being inserted into the package list this SUSE
+</I>&gt;<i> &gt; package still conflicts with my branding package.  If I disable
+</I>&gt;<i> &gt; (comment out) the pattern &quot;lxde&quot; this issue goes away, however there
+</I>&gt;<i> &gt; are other packages from the &quot;lxde&quot; patter that I need. 
+</I>&gt;<i> 
+</I>&gt;<i> The &lt;ignore&gt; element does not work because the conflicting package is
+</I>&gt;<i> &quot;hidden&quot; in a pattern. zypper knows about pattern names and how to find
+</I>&gt;<i> them, thus, Kiwi does not need to build a list of packages inside a
+</I>&gt;<i> pattern. This implies that Kiwi never sees the
+</I>&gt;<i> &quot;lxde-common-branding-openSUSE&quot; name as a package and therefore it
+</I>&gt;<i> cannot be removed/ignored.
+</I>
+This is correct. I implemented the ignore element for the packages
+list only. When using another than the zypper packagemanager kiwi
+resolves the patterns itself (using satsolver) and in the result
+list you can ignore packages which are not pulled in by a hard
+requirement. With zypper we just pass the pattern name and let
+zypper do all the rest which has the downside that we cannot
+influence what is going to be installed in a pattern. The only
+solution here is to add the package into the delete section
+
+  &lt;packages type=&quot;delete&quot;&gt;
+    &lt;package name=&quot;lxde-common-branding-openSUSE&quot;/&gt;
+  &lt;/packages&gt;
+
+and make sure your config.sh includes the following function call: 
+
+  suseRemovePackagesMarkedForDeletion
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002323.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+	<LI>Next message: <A HREF="002325.html">[Kiwi-users] /etc/hosts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2324">[ date ]</a>
+              <a href="thread.html#2324">[ thread ]</a>
+              <a href="subject.html#2324">[ subject ]</a>
+              <a href="author.html#2324">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

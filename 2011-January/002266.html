@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] lvm and OEM image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20lvm%20and%20OEM%20image&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2732D6ED46%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002263.html">
+   <LINK REL="Next"  HREF="002269.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] lvm and OEM image</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20lvm%20and%20OEM%20image&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2732D6ED46%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] lvm and OEM image">john.lund at emc.com
+       </A><BR>
+    <I>Thu Jan 20 20:29:18 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002263.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+        <LI>Next message: <A HREF="002269.html">[Kiwi-users] lvm and OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2266">[ date ]</a>
+              <a href="thread.html#2266">[ thread ]</a>
+              <a href="subject.html#2266">[ subject ]</a>
+              <a href="author.html#2266">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I don't see a swap partition getting created/used when using LVM.
+
+I have the following lines in my &lt;oemconfig&gt; section with the OEM type section that is being built:
+&lt;oem-swap&gt;true&lt;/oem-swap&gt;
+&lt;oem-swapsize&gt;2048&lt;/oem-swapsize&gt;
+When I do not use LVM (have no &lt;systemdisk&gt; section,  don't use --lvm on command line, or have lvm=&quot;true&quot; in the type field) the resulting image installs and creates a swap partition of the specified size.  However If I have the &lt;systemdisk&gt; settings, and thus use LVM.   I don't see that a swap partition is created/used.  I've also used &quot;--lvm&quot; on the command line, and tried to set the type attribute lvm=&quot;true&quot;.  I done both individually and together.  I still don't see a swap partition being generated no matter how I set the config.xml to use LVM.
+
+I have tried adding a swap volume entry in the systemdisk: I tried to explicitly add a 2 GB volume named Swap to the systemdisk entry, and see if that works.  I was hoping it wouldn't want me to create a root/Swap directory, but it did.
+
+I have also added an empty directory (root2) to the root overlay and put that into the &lt;systemdisk&gt; attributes as follows:
+            &lt;systemdisk name=&quot;MyVG&quot;&gt;
+&lt;volume name=&quot;root2&quot; size=&quot;8G&quot; /&gt;
+ &lt;volume name=&quot;var&quot; freespace=&quot;2G&quot; /&gt;
+            &lt;/systemdisk&gt;
+The LVroot2 partition gets created (size is right at 8GB) by the builds with LVM enabled, and the var partition is just over 2GB.  So I don't think this is an issue with LVM
+
+Looking at the LVM pv, it looks like there is plenty of free space (Free PE 3041- Total PE 7763 - PE size in Kbyte 4096) so it shouldn't be a space issue causing the swap lvm partition to not be created.
+
+I've looked in  /var/log/*.log for mention of LVswap, or LVSwap, but the only mentions are at the end of the boot.kiwi file where it seems to be checking if a var is equal to /dev/MyVG/LVSwap.  Is there some other place I can look to troubleshoot why the swap partition isn't being created when using LVM?
+
+It also looks like the lvm=&quot;true&quot; attribute in the type field isn't kosher with the current schema:
+jing /usr/share/kiwi/modules/KIWISchema.rng source/config.xml
+/home/autobuild/mauisrc/kiwi/AtmosISO/source/config.xml:32:223: error: attribute &quot;lvm&quot; not allowed at this point; ignored
+/home/autobuild/mauisrc/kiwi/AtmosISO/source/config.xml:56:182: error: attribute &quot;lvm&quot; not allowed at this point; ignored
+
+What is the correct way to configure a swap partition with the OEM type when using LVM?
+
+Thank you,
+John Lund
+EMC Atmos - Access &amp; Platform Team
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002263.html">[Kiwi-users] Problem creating ISO image
+</A></li>
+	<LI>Next message: <A HREF="002269.html">[Kiwi-users] lvm and OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2266">[ date ]</a>
+              <a href="thread.html#2266">[ thread ]</a>
+              <a href="subject.html#2266">[ subject ]</a>
+              <a href="author.html#2266">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

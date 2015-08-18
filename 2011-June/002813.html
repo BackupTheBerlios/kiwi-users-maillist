@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Unable to reduce size of OEM split image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20reduce%20size%20of%20OEM%20split%20image&In-Reply-To=%3C20110629155002.GA3291%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002812.html">
+   <LINK REL="Next"  HREF="002811.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Unable to reduce size of OEM split image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20reduce%20size%20of%20OEM%20split%20image&In-Reply-To=%3C20110629155002.GA3291%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Unable to reduce size of OEM split image">ms at suse.de
+       </A><BR>
+    <I>Wed Jun 29 17:50:02 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002812.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+        <LI>Next message: <A HREF="002811.html">[Kiwi-users] [studio-devel] image caches, some improvements
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2813">[ date ]</a>
+              <a href="thread.html#2813">[ thread ]</a>
+              <a href="subject.html#2813">[ subject ]</a>
+              <a href="author.html#2813">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> The patch works. The size of .raw file is down to 776 MB, which is gr8 
+</I>&gt;<i> 
+</I>&gt;<i> The partition geometry now looks like this: 
+</I>&gt;<i> 
+</I>&gt;<i> -------------------------------------- 
+</I>&gt;<i> Model:  (file) 
+</I>&gt;<i> Disk /home/KIWI/myimage/SLED11-TC-Intel-1G.i686-1.0.4.raw: 814MB 
+</I>&gt;<i> Sector size (logical/physical): 512B/512B 
+</I>&gt;<i> Partition Table: msdos 
+</I>&gt;<i> 
+</I>&gt;<i> Number  Start   End    Size   Type     File system  Flags                             
+</I>&gt;<i>  1      32.3kB  699MB  699MB  primary               , , , , , , , , , type=83, ,      
+</I>&gt;<i>  2      699MB   806MB  107MB  primary  ext3         boot, , , , , , , , , type=83, ,  
+</I>&gt;<i> -------------------------------------- 
+</I>
+great that's the expected behavior, ok I will clean it up a bit and
+check it in to the git
+
+Thanks for testing
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002812.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+	<LI>Next message: <A HREF="002811.html">[Kiwi-users] [studio-devel] image caches, some improvements
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2813">[ date ]</a>
+              <a href="thread.html#2813">[ thread ]</a>
+              <a href="subject.html#2813">[ subject ]</a>
+              <a href="author.html#2813">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

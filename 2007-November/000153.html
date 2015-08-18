@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi help to create SLED10
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help%20to%20create%20SLED10&In-Reply-To=%3C47500AC4.F132.00B1.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000151.html">
+   <LINK REL="Next"  HREF="000152.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi help to create SLED10</H1>
+    <B>Kazuhiro Takagi</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help%20to%20create%20SLED10&In-Reply-To=%3C47500AC4.F132.00B1.0%40novell.com%3E"
+       TITLE="[Kiwi-users] kiwi help to create SLED10">KTakagi at novell.com
+       </A><BR>
+    <I>Fri Nov 30 05:05:56 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000151.html">[Kiwi-users] kiwi help to create SLED10
+</A></li>
+        <LI>Next message: <A HREF="000152.html">[Kiwi-users] v1.94 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#153">[ date ]</a>
+              <a href="thread.html#153">[ thread ]</a>
+              <a href="subject.html#153">[ subject ]</a>
+              <a href="author.html#153">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+ 
+Thank you for the suggestion.
+I tried to use yast2-product-creater, but I was unable to create a image when use SLED10 repository.
+
+Thanks,
+Kazuhiro Takagi
+&gt;&gt;&gt;<i> 10:08 &#21320;&#24460; &#12398; 2007/11/21 &#12398;&#12513;&#12483;&#12475;&#12540;&#12472; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">200711211408.11100.pnemec at suse.cz</A>&gt;:
+</I>Dne Wednesday 21 November 2007 12:45:30 Kazuhiro Takagi napsal(a):
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> Thank you for the suggestion.
+</I>&gt;<i> It is solved after clean up /root. Here was chaos.
+</I>&gt;<i>
+</I>&gt;<i> BTW, is there typically SLED10 config or sample with GUI. ?
+</I>Maybe you can try Product Creator Yast GUI - it is in openSUSE 10.3 or 
+download it from 
+<A HREF="http://download.opensuse.org/distribution/10.3/repo/oss/suse/noarch/yast2-product-creator-2.15.8-2.noarch.rpm">http://download.opensuse.org/distribution/10.3/repo/oss/suse/noarch/yast2-product-creator-2.15.8-2.noarch.rpm</A> 
+Pavel
+
+&gt;<i>
+</I>&gt;<i> Thanks,
+</I>&gt;<i>
+</I>&gt;<i> &gt;&gt;&gt;  6:15 &#21320;&#24460; &#12398; 2007/11/21 &#12398;&#12513;&#12483;&#12475;&#12540;&#12472; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">20071121091537.GA7053 at D7.ddts.net</A>&gt;:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; I'm attempting to create a SLED10 LiveCD using Kiwi, but I am having a
+</I>&gt;<i> &gt;&gt; problem.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; o  Installed openSUSE 10.3
+</I>&gt;<i> &gt;&gt; o  Copied contents of DVD to /mounts/SLED10
+</I>&gt;<i> &gt;&gt; o  Created config.xml and build other environment
+</I>&gt;<i> &gt;&gt;  - Typed
+</I>&gt;<i> &gt;&gt;    &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-SLED10-SP1&quot;
+</I>&gt;<i> &gt;&gt; flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; flags=&quot;unified&quot; not a good idea for SLE products, they don't provide
+</I>&gt;<i> &gt; aufs/unionfs and squashfs. Just remove the flags attribute
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;  - Typed
+</I>&gt;<i> &gt;&gt;     &lt;source path=&quot;/mounts/SLED10&quot;/&gt;
+</I>&gt;<i> &gt;&gt; o  Run kiwi --prepare /usr/share/kiwi/image/SLED10-thin --root
+</I>&gt;<i> &gt;&gt; /root/mkdvd
+</I>&gt;<i> &gt;&gt;       this runs successfully
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; ok
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; o  Run kiwi --create /root/mkdvd -d /root
+</I>&gt;<i> &gt;&gt;      Error message is displayed:
+</I>&gt;<i> &gt;&gt; Nov-21 15:20 &lt;1&gt; : Copying boot image and kernel [i386]cp: target
+</I>&gt;<i> &gt;&gt; `/tmp/kiwi-cdboot.E14559/kiwi-cdboot-14498/CD/boot/i386/loader/linux' is
+</I>&gt;<i> &gt;&gt; not a directory
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; What kind of mistake do I do? Any help would be greatly appreciated.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Hmm, that could happen if the glob match:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;    /root/initrd-isoboot-suse-SLED10*i686*.kernel
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; matches multiple files which shouldn't happen. Maybe the environment
+</I>&gt;<i> &gt; of /root is not clean or there is another kiwi process running.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Regards,
+</I>&gt;<i> &gt; Marcus
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A> 
+</I>
+
+
+-- 
+Pavel Nemec
+Software Engineer
+---------------------------------------------------------------------  
+SuSE CR, s.r.o.                             e-mail: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pnemec at suse.cz</A> 
+Lihovarska 1060/12                          tel:+420 284 028 981 
+190 00 Praha 9                              fax:+420 296 542 374   
+Ceska republika                             <A HREF="http://www.suse.cz">http://www.suse.cz</A>    
+---------------------------------------------------------------------
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20071130/87ee9975/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20071130/87ee9975/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000151.html">[Kiwi-users] kiwi help to create SLED10
+</A></li>
+	<LI>Next message: <A HREF="000152.html">[Kiwi-users] v1.94 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#153">[ date ]</a>
+              <a href="thread.html#153">[ thread ]</a>
+              <a href="subject.html#153">[ subject ]</a>
+              <a href="author.html#153">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie KIWI questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20KIWI%20questions&In-Reply-To=%3C20080211140716.GA3843%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000302.html">
+   <LINK REL="Next"  HREF="000303.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie KIWI questions</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20KIWI%20questions&In-Reply-To=%3C20080211140716.GA3843%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Newbie KIWI questions">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 11 15:07:16 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000302.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+        <LI>Next message: <A HREF="000303.html">[Kiwi-users] Error while creating a &quot;split&quot; image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#305">[ date ]</a>
+              <a href="thread.html#305">[ thread ]</a>
+              <a href="subject.html#305">[ subject ]</a>
+              <a href="author.html#305">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Roger,
+
+&gt;<i> I do need and want a kernel :)
+</I>
+:<i>-)
+</I>
+&gt;<i> I was just playing with where I specified
+</I>&gt;<i> the kernel: in the boot or in the image part. Just to see what effect,
+</I>&gt;<i> if any, this had. In one test, I did not specify it in either. I
+</I>&gt;<i> expected the image build to fail. To my surprise it did not fail. But
+</I>&gt;<i> the boot only got so far. Thus my question.
+</I>
+yeah the creation of an image is not always a guarantee for the
+functionality. You can create an image without any kernel and kiwi
+will not complain at that point. To give the creator of the image an
+impression of whether this image is valid in terms of functionality
+we are currently implementing a test system which allows you to check
+the integrity of the operating system. This is not only an image thing
+it's useful for the OS in general. These tests will come as package(s)
+which you can easily include in a kiwi image description. The result
+of such a test would complain in your case that there is no kernel
+anymore :) Well the test implementation is work in progress and also
+not kiwi specific that's something we make for the distribution and
+also for the packages of the distribution
+
+At the moment people learn the hard way what to do and what is better
+not to do. I'm sorry for that but it increases your skill level a lot :)
+
+&gt;<i> OK. But I have been playing with your nice wyse setup. In there, you
+</I>&gt;<i> remove unused kernel modules via the images.sh script. This works fine
+</I>&gt;<i> for me as well, so I plan on using that method. Given the name of the
+</I>&gt;<i> script, I am guessing that this only removes modules from the system
+</I>&gt;<i> image. What modules are in the boot image? Is there any control over
+</I>&gt;<i> that?
+</I>
+The boot image is even smaller. In the boot image only those kernel
+modules which are listed in the &lt;*drivers&gt; section are included everything
+else is removed. Just look at for example
+
+	/usr/share/kiwi/image/isoboot/suse-10.3/
+
+&gt;<i> I think this gets X as well: hal-&gt;PolicyKit-&gt;ConsoleKit-&gt;libx11.so.6
+</I>&gt;<i> 
+</I>&gt;<i> The offending package is ConsoleKit, which gets pulled in just about
+</I>&gt;<i> anywhere. Which means you will probably always have X. I think the
+</I>&gt;<i> 'best' that can be done is to remove X from the image, knowing that it
+</I>&gt;<i> will not be needed. At least the obvious parts can be deleted.
+</I>&gt;<i> 
+</I>&gt;<i> Given that ConsoleKit should presumably work at run level 3, I am
+</I>&gt;<i> confused how it can require x11. I would think it should be sensed
+</I>&gt;<i> dynamically. But that is an issue for the ConsoleKit guys.
+</I>
+you are right our systems includes in any case a libX11. I know there
+was a reason for it but I can't remember. The good thing is X has
+been splitted into many subpackages so you will not get the complete
+X system at one time 
+
+&gt;<i> Yes indeed. I am happily booting and all. I am just playing with
+</I>&gt;<i> refinements and image trimming.
+</I>
+jo and that's unfortunately the most time consuming part of creating an
+image description. The smaller it should be the more time you need to
+get it down and still working
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000302.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+	<LI>Next message: <A HREF="000303.html">[Kiwi-users] Error while creating a &quot;split&quot; image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#305">[ date ]</a>
+              <a href="thread.html#305">[ thread ]</a>
+              <a href="subject.html#305">[ subject ]</a>
+              <a href="author.html#305">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

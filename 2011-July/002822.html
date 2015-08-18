@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20net/pxe%20boot%20and%20NFS%20%20setuid%20problem&In-Reply-To=%3C20110705075518.GA8156%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002821.html">
+   <LINK REL="Next"  HREF="002823.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20net/pxe%20boot%20and%20NFS%20%20setuid%20problem&In-Reply-To=%3C20110705075518.GA8156%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem">ms at suse.de
+       </A><BR>
+    <I>Tue Jul  5 09:55:19 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002821.html">[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem
+</A></li>
+        <LI>Next message: <A HREF="002823.html">[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2822">[ date ]</a>
+              <a href="thread.html#2822">[ thread ]</a>
+              <a href="subject.html#2822">[ subject ]</a>
+              <a href="author.html#2822">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> When it starts to boot the image from NFS it hangs mounting proc, the
+</I>&gt;<i> fault being the setuid bit is set on mount.
+</I>&gt;<i> If I remove all setuid settings from all in /bin it gets to loading the
+</I>&gt;<i> desktop but gets stuck with other problems I assume are related
+</I>&gt;<i> (permission looking issues)
+</I>&gt;<i> e.g. &quot;SSH daemon/var/lib//empty must be owned by root...&quot;
+</I>&gt;<i> &quot;gdm could not create display access file: Unable to change permissions
+</I>&gt;<i> of '/var/run/gdm/auth-for-gdm-LhFfAf'&quot;
+</I>&gt;<i> 
+</I>&gt;<i> [also ifplugd is missing by default]
+</I>&gt;<i> 
+</I>&gt;<i> I notice it mounts with sec=sys , but depending on what your read this
+</I>&gt;<i> appears to mean different things.
+</I>&gt;<i> All files folders are permission 4294967294 which I assume is as a
+</I>&gt;<i> result of this.
+</I>&gt;<i> 
+</I>&gt;<i> From reading the nfs4 docs it seems setuid on mount is defaulted to
+</I>&gt;<i> enabled, yet doesn't seem to work? 
+</I>&gt;<i> I am sure the answer is simple but I cannot work it out - I hope someone
+</I>&gt;<i> can help!
+</I>&gt;<i> 
+</I>&gt;<i> My exports file is
+</I>&gt;<i> (rw,root_squash,no_subtree_check)
+</I>
+Hmm, did you give your exported tree a test ?
+
+   mount -t nfs &lt;ip&gt;:/source /mnt
+   chroot /mnt bash
+   mount -t proc /proc /proc # works or not ?
+   ls -ld /var/lib//empty    # permission bits ?
+   ... and so on
+
+can you reproduce any of the issues in that case ?
+if yes I think it has something to do with your NFS export
+if not it could be related to how kiwi mounts the NFS root
+
+&gt;<i> [also ifplugd is missing by default]
+</I>
+you can add ifplugd to the package list in studio
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002821.html">[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem
+</A></li>
+	<LI>Next message: <A HREF="002823.html">[Kiwi-users] Kiwi net/pxe boot and NFS  setuid problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2822">[ date ]</a>
+              <a href="thread.html#2822">[ thread ]</a>
+              <a href="subject.html#2822">[ subject ]</a>
+              <a href="author.html#2822">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

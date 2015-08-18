@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-hooks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-hooks&In-Reply-To=%3C4CD179A5.9050209%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002093.html">
+   <LINK REL="Next"  HREF="002096.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-hooks</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-hooks&In-Reply-To=%3C4CD179A5.9050209%40novell.com%3E"
+       TITLE="[Kiwi-users] kiwi-hooks">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Nov  3 16:03:01 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002093.html">[Kiwi-users] kiwi-hooks
+</A></li>
+        <LI>Next message: <A HREF="002096.html">[Kiwi-users] kiwi-hooks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2094">[ date ]</a>
+              <a href="thread.html#2094">[ thread ]</a>
+              <a href="subject.html#2094">[ subject ]</a>
+              <a href="author.html#2094">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 11/03/2010 10:51 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">john.lund at emc.com</A> wrote:
+&gt;<i> I'm trying to use the preHWdetect.sh and postImageDump.sh hooks when creating an oem ISO image.  However the install ISO generated doesn't seem to be including them.  I've placed the files in my &lt;source&gt;/root/kiwi-hooks directory of my projects kiwi config files.  I can see them after the kiwi prepare step in the &lt;image-root&gt;/root/kiwi-hooks directory.  But after I build and run an install from the ISO image, it does not have these scripts.
+</I>
+The scripts do not get dumped onto the target system, thus after install
+there is no trace of the scripts.
+
+Robert
+&gt;<i> 
+</I>&gt;<i> I can see in the boot.kiw file that it looks for the file to run the script, but it does not find the file:
+</I>&gt;<i> runHook preHWdetect
+</I>&gt;<i> HOOK=/kiwi-hooks/preHWdetect.sh
+</I>&gt;<i> '[' -e /kiwi-hooks/preHWdetect.sh ']'
+</I>&gt;<i> '[' -z '' ']'
+</I>&gt;<i> USBStickDevice install
+</I>&gt;<i> ...
+</I>&gt;<i> How do these hook script files get onto the boot media?  Do they need to be added into the kiwi boot configuration root directory?
+</I>&gt;<i> 
+</I>&gt;<i> Thank you,
+</I>&gt;<i> 
+</I>&gt;<i> (Using kiwi 4.6.1 version GIT Commit: 243912f3be57ad24976ac2d18f967835fdbe91d5)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> John Lund
+</I>&gt;<i> EMC Centera Development
+</I>&gt;<i> (508) 249-5473
+</I>&gt;<i> (571) 484-0139 Mobile
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002093.html">[Kiwi-users] kiwi-hooks
+</A></li>
+	<LI>Next message: <A HREF="002096.html">[Kiwi-users] kiwi-hooks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2094">[ date ]</a>
+              <a href="thread.html#2094">[ thread ]</a>
+              <a href="subject.html#2094">[ subject ]</a>
+              <a href="author.html#2094">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

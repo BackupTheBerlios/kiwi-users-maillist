@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] usbstick boots of from single vfat partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20usbstick%20boots%20of%20from%20single%20vfat%20partition&In-Reply-To=%3C20091103112717.GA26317%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001498.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] usbstick boots of from single vfat partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20usbstick%20boots%20of%20from%20single%20vfat%20partition&In-Reply-To=%3C20091103112717.GA26317%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] usbstick boots of from single vfat partition">ms at novell.com
+       </A><BR>
+    <I>Tue Nov  3 12:27:17 CET 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001498.html">[Kiwi-users] Failed to load network module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1497">[ date ]</a>
+              <a href="thread.html#1497">[ thread ]</a>
+              <a href="subject.html#1497">[ subject ]</a>
+              <a href="author.html#1497">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm trying to create a usbstick&#160; with a single vfat partition that boots of
+</I>&gt;<i> linux with a root-fs image file.
+</I>
+I think what you want is a hybrid live system which allows you to
+have both a stick with a vfat for data and a linux system with read/write
+functionality. If you plan to use openSUSE 11.2 the following should
+work for you: <A HREF="http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/">http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/</A>
+
+This special iso image contains a partition table and is therefore
+exported like a disk to the system. You can run fdisk on the iso
+and create your vfat data partition for data and a linux partition
+for the OS.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001498.html">[Kiwi-users] Failed to load network module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1497">[ date ]</a>
+              <a href="thread.html#1497">[ thread ]</a>
+              <a href="subject.html#1497">[ subject ]</a>
+              <a href="author.html#1497">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

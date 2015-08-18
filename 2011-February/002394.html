@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /home in an oem preload image.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/home%20in%20an%20oem%20preload%20image.&In-Reply-To=%3C20110225141324.GA30865%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002393.html">
+   <LINK REL="Next"  HREF="002380.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /home in an oem preload image.</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/home%20in%20an%20oem%20preload%20image.&In-Reply-To=%3C20110225141324.GA30865%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] /home in an oem preload image.">ms at suse.de
+       </A><BR>
+    <I>Fri Feb 25 15:13:24 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002393.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+        <LI>Next message: <A HREF="002380.html">[Kiwi-users] [Kiwi-devel] Google summer of code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2394">[ date ]</a>
+              <a href="thread.html#2394">[ thread ]</a>
+              <a href="subject.html#2394">[ subject ]</a>
+              <a href="author.html#2394">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> How can I get the script to use the name it discovered and used when
+</I>&gt;<i> writing the /etc/fstab, when it is adding the partition and formatting
+</I>&gt;<i> it? Or is there some other solution?
+</I>
+kiwi stores the disk device name in the variable 
+
+  $imageDiskDevice
+
+it should be possible to access the value from within your
+script if the kiwi initrd called init(). That's because the
+exported environment should be available to all sub-processes
+I did not test this though
+
+Other than that you can find the matching root device by
+parsing proc/mounts. The disk-by-id values can be resolved
+into raw device names and so you can get the disk.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002393.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+	<LI>Next message: <A HREF="002380.html">[Kiwi-users] [Kiwi-devel] Google summer of code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2394">[ date ]</a>
+              <a href="thread.html#2394">[ thread ]</a>
+              <a href="subject.html#2394">[ subject ]</a>
+              <a href="author.html#2394">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

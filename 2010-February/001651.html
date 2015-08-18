@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Configuration failure for Live CD with SLES11?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Configuration%20failure%20for%20Live%20CD%20with%20SLES11%3F&In-Reply-To=%3CFB7CBAC8C916CD40A03367E1DA5EBA9A0444F3B7%40srvcom02.master.dns%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001672.html">
+   <LINK REL="Next"  HREF="001653.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Configuration failure for Live CD with SLES11?</H1>
+    <B>Mies, Christian</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Configuration%20failure%20for%20Live%20CD%20with%20SLES11%3F&In-Reply-To=%3CFB7CBAC8C916CD40A03367E1DA5EBA9A0444F3B7%40srvcom02.master.dns%3E"
+       TITLE="[Kiwi-users] Configuration failure for Live CD with SLES11?">Christian.Mies at it-novum.com
+       </A><BR>
+    <I>Fri Feb  5 09:39:23 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001672.html">[Kiwi-users] My continuing saga...
+</A></li>
+        <LI>Next message: <A HREF="001653.html">[Kiwi-users] Configuration failure for Live CD with SLES11?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1651">[ date ]</a>
+              <a href="thread.html#1651">[ thread ]</a>
+              <a href="subject.html#1651">[ subject ]</a>
+              <a href="author.html#1651">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi List,
+I've played around with Kiwi. I try to create a Live CD off an migrated
+System.
+What I've done:
+*) created an virtual Machine with SLES11 and a self - compiled Nagios
+System
+*) kiwi --migrate mySys --destdir /tmp/test --logfile terminal
+*) kiwi --migrate mysys -d /tmp/mysys -nofiles
+*) moved all neccessary Files from root-modified and root-nopackage to
+root
+*) modified config.sh (removed VMWare Lines) 
+*) modified config.xml as attached
+*) execute 'kiwi -p /tmp/test --root /tmp/mysys --type iso --logfile
+terminal'
+*) execute 'kiwi --create /tmp/mysys -d /tmp/myresult --type iso'
+
+Everything works perfect until now. If I try to boot the ISO Image, I
+get a Kernel Error, that the Root Filesystem cannot be mounted. (see
+Image attached)
+
+Any ideas how to fix this issue? Where is my fault?
+
+Thanks for your help and regards,
+Christian 
+
+
+i.A. Christian Mies
+Consultant Systemmanagement
+
+Tel: +49 (661) 103-874      	(-333)  
+Fax: +49 (661) 103-17874            (-334)
+mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Christian.Mies at it-novum.com</A>
+
+ 
+
+it-novum GmbH .  Edelzeller Strasse 44 . 36043 Fulda  . <A HREF="http://www.it-novum.com">http://www.it-novum.com</A>
+Handelsregister Amtsgericht Fulda, HRB 1934 . Geschaftsfuhrer: Michael Kienle . Sitz der Gesellschaft: Fulda
+
+
+Der Inhalt dieser E-Mail ist vertraulich. Wenn Sie nicht der eigentliche Empfaenger sein sollten, informieren Sie bitte sofort den Absender oder vernichten umgehend diese Mail. Jegliche unerlaubte Vervielfaeltigung oder Weiterleitung dieser Mail ist strengstens verboten.
+This e-mail may contain confidential and/or priviledged information. If you are not the intended recepient (or have received this e-mail in error) please notify the sender immediately and destroy this e-mail. Any unauthorised copying, disclosure or distribution of material in this e-mail is strictly forbidden.
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kernel-error.gif
+Type: image/gif
+Size: 19500 bytes
+Desc: kernel-error.gif
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100205/aed77128/attachment.gif">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100205/aed77128/attachment.gif</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: config.xml
+Type: text/xml
+Size: 2713 bytes
+Desc: config.xml
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100205/aed77128/attachment.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100205/aed77128/attachment.xml</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001672.html">[Kiwi-users] My continuing saga...
+</A></li>
+	<LI>Next message: <A HREF="001653.html">[Kiwi-users] Configuration failure for Live CD with SLES11?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1651">[ date ]</a>
+              <a href="thread.html#1651">[ thread ]</a>
+              <a href="subject.html#1651">[ subject ]</a>
+              <a href="author.html#1651">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

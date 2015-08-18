@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oemboot problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oemboot%20problems&In-Reply-To=%3C20070928144407.GA20024%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000050.html">
+   <LINK REL="Next"  HREF="000052.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oemboot problems</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oemboot%20problems&In-Reply-To=%3C20070928144407.GA20024%40suse.de%3E"
+       TITLE="[Kiwi-users] oemboot problems">ms at suse.de
+       </A><BR>
+    <I>Fri Sep 28 16:44:07 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000050.html">[Kiwi-users] oemboot problems
+</A></li>
+        <LI>Next message: <A HREF="000052.html">[Kiwi-users] KIWI-LTSP 0.3.10 for openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#51">[ date ]</a>
+              <a href="thread.html#51">[ thread ]</a>
+              <a href="subject.html#51">[ subject ]</a>
+              <a href="author.html#51">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; &gt; 1.  what is the difference between using a VMX image type like:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;vmdk&quot;&gt;vmx&lt;/type&gt; 
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; and running 'kiwi --installcd' on it after creation, and the following
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;iso&quot;&gt;vmx&lt;/type&gt;
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; where the 'kiwi --installcd' step is unnecessary.  The two iso's created
+</I>&gt;<i> &gt; &gt; are not identical.  And neither work completely for me, which brings me
+</I>&gt;<i> &gt; &gt; to my next point
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; You can't use --installcd if your boot image is not the oemboot image.
+</I>&gt;<i> &gt; That's because the code for installing the system is in the oemboot
+</I>&gt;<i> &gt; boot image only. The vmxboot is meant for booting a virtual disk
+</I>&gt;<i> &gt; without the possibility of installing or re-partitioning, so in
+</I>&gt;<i> &gt; principal if used within a full virtual machine like VMware.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I'm a bit confused about your answer;
+</I>&gt;<i> 
+</I>&gt;<i> &lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;iso&quot;&gt;vmx&lt;/type&gt; 
+</I>&gt;<i> 
+</I>&gt;<i> functions as a &quot;vmware&quot; image rather than an &quot;install&quot; image?  The
+</I>&gt;<i> &quot;Installation from CD/DVD or USB stick&quot; section of kiwi.pdf suggests
+</I>&gt;<i> using it for an installer...  Is the documentation wrong?
+</I>
+Sorry forgot my answer, what I have said was crap
+
+You are right there is no difference in:
+
+   &lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;vmdk&quot;&gt;vmx&lt;/type&gt;
+   kiwi --installcd .../initrd-oemboot-... --installcd-system ...
+
+and
+
+   &lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;iso&quot;&gt;vmx&lt;/type&gt;
+
+The format=&quot;iso&quot; causes the system to call exactly the same code compared
+to kiwi --installcd so there shouldn't be any difference.
+
+I'm sorry I thought you would have used another boot image.
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000050.html">[Kiwi-users] oemboot problems
+</A></li>
+	<LI>Next message: <A HREF="000052.html">[Kiwi-users] KIWI-LTSP 0.3.10 for openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#51">[ date ]</a>
+              <a href="thread.html#51">[ thread ]</a>
+              <a href="subject.html#51">[ subject ]</a>
+              <a href="author.html#51">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] What is a &quot;SaT solver&quot;?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20What%20is%20a%20%22SaT%20solver%22%3F&In-Reply-To=%3C20080428084327.GA30122%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000599.html">
+   <LINK REL="Next"  HREF="000604.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] What is a &quot;SaT solver&quot;?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20What%20is%20a%20%22SaT%20solver%22%3F&In-Reply-To=%3C20080428084327.GA30122%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] What is a &quot;SaT solver&quot;?">ms at suse.de
+       </A><BR>
+    <I>Mon Apr 28 10:43:28 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000599.html">[Kiwi-users] What is a &quot;SaT solver&quot;?
+</A></li>
+        <LI>Next message: <A HREF="000604.html">[Kiwi-users] What is a &quot;SaT solver&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#601">[ date ]</a>
+              <a href="thread.html#601">[ thread ]</a>
+              <a href="subject.html#601">[ subject ]</a>
+              <a href="author.html#601">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I tried to setup some fresh image with the help of &quot;opensusePattern&quot; 
+</I>&gt;<i> instead of plain &lt;package&gt; tags.
+</I>&gt;<i> This is the resulting error message:
+</I>&gt;<i> 
+</I>&gt;<i> Apr-25 23:41:22 &lt;1&gt; : Setting up SaT solver...
+</I>&gt;<i> Apr-25 23:41:22 &lt;3&gt; : --&gt; No SaT plugin installed                    failed
+</I>&gt;<i> Apr-25 23:41:22 &lt;2&gt; : SaT solver setup failed, using generic module  skipped
+</I>&gt;<i> Apr-25 23:41:22 &lt;1&gt; : Including pattern: kde
+</I>&gt;<i> 
+</I>&gt;<i> Where can I find this &quot;SaT solver&quot; or documentation about this?
+</I>
+the satsolver is the new package solver which is available the first
+time on SUSE 11.0 which doesn't exist yet :-) kiwi is already prepared
+to use the satsolver for solving the patterns into a list of packages.
+I have implemented support for it as a plugin because I don't want
+you all to install suse 11.0 in order to be able to solve patterns :)
+Therefore of no plugin exists the old (my own written) pattern solver
+code is used
+
+It's not problematic if you don't have the sat plugin. The advantage of
+the satsolver is that it is incredibly fast. The plugin wil automatically
+appear in the kiwi packages of the distribution which provides support
+for it.
+
+If you want to read the documentation of the satsolver you can
+try to install the libsatsolver-devel package from one of the
+zypper (yast package manager) backport packages:
+
+	<A HREF="http://download.opensuse.org/repositories/zypp:/Backport/">http://download.opensuse.org/repositories/zypp:/Backport/</A>
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000599.html">[Kiwi-users] What is a &quot;SaT solver&quot;?
+</A></li>
+	<LI>Next message: <A HREF="000604.html">[Kiwi-users] What is a &quot;SaT solver&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#601">[ date ]</a>
+              <a href="thread.html#601">[ thread ]</a>
+              <a href="subject.html#601">[ subject ]</a>
+              <a href="author.html#601">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

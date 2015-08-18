@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Tiny documentation bug in kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Tiny%20documentation%20bug%20in%20kiwi&In-Reply-To=%3C52759108.2040509%40public-files.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003106.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Tiny documentation bug in kiwi</H1>
+    <B>Yarny</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Tiny%20documentation%20bug%20in%20kiwi&In-Reply-To=%3C52759108.2040509%40public-files.de%3E"
+       TITLE="[Kiwi-users] Tiny documentation bug in kiwi">Yarny at public-files.de
+       </A><BR>
+    <I>Sun Nov  3 00:55:52 CET 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003106.html">[Kiwi-users] Tiny documentation bug in kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3105">[ date ]</a>
+              <a href="thread.html#3105">[ thread ]</a>
+              <a href="subject.html#3105">[ subject ]</a>
+              <a href="author.html#3105">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+&quot;kiwi --help&quot; suggests an argument
+for the --recycle-root option:
+&gt;<i> Image Preparation/Creation in two steps:
+</I>&gt;<i>     kiwi -p | --prepare &lt;image-path&gt;
+</I>&gt;<i>        [ --root &lt;image-root&gt; ]
+</I>&gt;<i>        [ --recycle-root &lt;base-root-dir&gt; [ --force-bootstrap ]] ||
+</I>&gt;<i>        [ --cache &lt;dir&gt; ]
+</I>&gt;<i>     kiwi -c | --create  &lt;image-root&gt; -d &lt;destination&gt;
+</I>&gt;<i>        [ --type &lt;image-type&gt; ]
+</I>&gt;<i>        [ --recycle-root &lt;base-boot-dir&gt; [ --force-bootstrap ]]
+</I>I never added an argument there, and if I read
+kiwi.pl correctly, there simply shouldn't be any.
+
+If you agree, the attached patch fixed the help message.
+
+Best wishes
+-- Yarny
+
+P.S.: I'm too lazy to open a bug report
+for this minor doc bug.  Hope that's ok. -- Y
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-kiwi-help-No-argument-for-recycle-root.patch
+Type: text/x-patch
+Size: 1102 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20131103/8da731f8/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20131103/8da731f8/attachment.bin</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003106.html">[Kiwi-users] Tiny documentation bug in kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3105">[ date ]</a>
+              <a href="thread.html#3105">[ thread ]</a>
+              <a href="subject.html#3105">[ subject ]</a>
+              <a href="author.html#3105">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

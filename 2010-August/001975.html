@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Can an OEM image be installed via PXE boot?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%20an%20OEM%20image%20be%20installed%20via%20PXE%20boot%3F&In-Reply-To=%3C20100816070253.GA26384%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001974.html">
+   <LINK REL="Next"  HREF="001976.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Can an OEM image be installed via PXE boot?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%20an%20OEM%20image%20be%20installed%20via%20PXE%20boot%3F&In-Reply-To=%3C20100816070253.GA26384%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Can an OEM image be installed via PXE boot?">ms at novell.com
+       </A><BR>
+    <I>Mon Aug 16 09:02:53 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001974.html">[Kiwi-users] Can an OEM image be installed via PXE boot?
+</A></li>
+        <LI>Next message: <A HREF="001976.html">[Kiwi-users] kiwi-pxeboot package install location
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1975">[ date ]</a>
+              <a href="thread.html#1975">[ thread ]</a>
+              <a href="subject.html#1975">[ subject ]</a>
+              <a href="author.html#1975">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I've got a question about using an OEM image for PXE boot installation of that image.  Is this possible using the existing processes in kiwi?  I looked in the documentation and cookbooks online but didn't find what I was looking for.
+</I>&gt;<i> 
+</I>&gt;<i> To be clear I want to build an oem image, and then use the compressed OEM image in a PXE environment to install new systems.
+</I>
+yes that works. 
+
+  1) create an OEM install ISO (installiso=&quot;true&quot;)
+
+  2) loop mount the created .iso file to /mnt and copy the following
+     files to the PXE boot server:
+
+     * copy /mnt/boot/initrd  =&gt; /srv/tftpboot/boot
+     * copy /mnt/boot/linux   =&gt; /srv/tftpboot/boot
+
+     * copy /mnt/image.gz     =&gt; /srv/tftpboot/image
+     * copy /mnt/image.gz.md5 =&gt; /srv/tftpboot/image
+
+  3) set the kernel commandline parameter
+
+      pxe=1
+
+     via the append line in your PXE configuration.
+     Alternatively the image can be stored on a FTP,HTTP server
+     specified via the kiwiserver and kiwiservertype append
+     information
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001974.html">[Kiwi-users] Can an OEM image be installed via PXE boot?
+</A></li>
+	<LI>Next message: <A HREF="001976.html">[Kiwi-users] kiwi-pxeboot package install location
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1975">[ date ]</a>
+              <a href="thread.html#1975">[ thread ]</a>
+              <a href="subject.html#1975">[ subject ]</a>
+              <a href="author.html#1975">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

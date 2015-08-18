@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20kiwi%20to%20build%20SLED%2011%20image%0A%20-%09Cracklib-dict-full%20question&In-Reply-To=%3C4A1D8371.3010203%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001142.html">
+   <LINK REL="Next"  HREF="001144.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full question</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20kiwi%20to%20build%20SLED%2011%20image%0A%20-%09Cracklib-dict-full%20question&In-Reply-To=%3C4A1D8371.3010203%40novell.com%3E"
+       TITLE="[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full question">rschweikert at novell.com
+       </A><BR>
+    <I>Wed May 27 20:16:17 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001142.html">[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full	question
+</A></li>
+        <LI>Next message: <A HREF="001144.html">[Kiwi-users] Using kiwi to build SLED 11 image	-	Cracklib-dict-full question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1143">[ date ]</a>
+              <a href="thread.html#1143">[ thread ]</a>
+              <a href="subject.html#1143">[ subject ]</a>
+              <a href="author.html#1143">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jose,
+
+Jose,
+
+You can add packages in config.xml in the &lt;packages&gt; element, take a
+look at the cookbook at <A HREF="http://en.opensuse.org/Build_Service/KIWI/Cookbook">http://en.opensuse.org/Build_Service/KIWI/Cookbook</A>
+
+To add cracklib-dict-full you would need to add
+
+&lt;package name=&quot;cracklib-dict-full&quot;/&gt;
+
+HTH
+Robert
+
+Jose Betancourt wrote:
+&gt;<i> Hello list,
+</I>&gt;<i>
+</I>&gt;<i> I'm a newbie to the list.
+</I>&gt;<i>
+</I>&gt;<i> I'm using Kiwi to build a VMware-based image with SLED 11 instead of
+</I>&gt;<i> OpenSUSE.
+</I>&gt;<i> I've borrowed the config.xml provided under
+</I>&gt;<i> /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-vm-guest and I
+</I>&gt;<i> was able to run the first stage (kiwi -p) with no issues (after making
+</I>&gt;<i> the necessary changes to the names of the pattern and bootsplash).
+</I>&gt;<i>
+</I>&gt;<i> I'm trying to run the kiwi --create step next, but I'm running into
+</I>&gt;<i> the following problem:
+</I>&gt;<i>
+</I>&gt;<i> + /usr/bin/zypper --non-interactive --no-gpg-checks --reposd-dir
+</I>&gt;<i> /var/cache/kiwi/zypper --cache-dir /var/cache/kiwi/zypper
+</I>&gt;<i> --raw-cache-dir /var/cache/kiwi/zypper --root
+</I>&gt;<i> /tmp/kiwi-VMX.Eo1RsV/kiwi-VMXboot-800 install
+</I>&gt;<i> --auto-agree-with-licenses --no-recommends cracklib-dict-small
+</I>&gt;<i> diffutils filesystem glibc-locale glibc.i586 procps zypper
+</I>&gt;<i> + SPID=1203
+</I>&gt;<i> + wait 1203
+</I>&gt;<i> Loading repository data...
+</I>&gt;<i> Reading installed packages...
+</I>&gt;<i> 'cracklib-dict-small' not found.
+</I>&gt;<i> + ECODE=104
+</I>&gt;<i> + echo 104
+</I>&gt;<i> + exit 104
+</I>&gt;<i>
+</I>&gt;<i> If I understand correctly, it's looking for cracklib-dict-small, but
+</I>&gt;<i> SLED has cracklib-dict-full.  I don't see a place in the config.xml
+</I>&gt;<i> file  or images.sh script where to make the changes and put
+</I>&gt;<i> cracklib-full-dict.   Or do I need to install cracklib-dict-small and
+</I>&gt;<i> take out full?
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i>
+</I>&gt;<i> Jose Betancourt
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>   
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001142.html">[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full	question
+</A></li>
+	<LI>Next message: <A HREF="001144.html">[Kiwi-users] Using kiwi to build SLED 11 image	-	Cracklib-dict-full question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1143">[ date ]</a>
+              <a href="thread.html#1143">[ thread ]</a>
+              <a href="subject.html#1143">[ subject ]</a>
+              <a href="author.html#1143">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

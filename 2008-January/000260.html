@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] PXE Boot a new problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20a%20new%20problem&In-Reply-To=%3C20080129093638.GA21608%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000259.html">
+   <LINK REL="Next"  HREF="000265.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] PXE Boot a new problem</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20a%20new%20problem&In-Reply-To=%3C20080129093638.GA21608%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] PXE Boot a new problem">ms at suse.de
+       </A><BR>
+    <I>Tue Jan 29 10:36:39 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000259.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+        <LI>Next message: <A HREF="000265.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#260">[ date ]</a>
+              <a href="thread.html#260">[ thread ]</a>
+              <a href="subject.html#260">[ subject ]</a>
+              <a href="author.html#260">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Marcus Sch&#228;fer schrieb:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; Pxe-booting works fine when unpacking the image manual.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; What does &quot;unpacking the image manual&quot; mean. In case of a PXE
+</I>&gt;<i> &gt; NFS-Root boot the complete root tree already exists as NFS
+</I>&gt;<i> &gt; exported directory. kiwi has no need to unpack/download anything
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I think I'm on the wrong track :)
+</I>&gt;<i> 
+</I>&gt;<i> Ok,
+</I>&gt;<i> once again.
+</I>&gt;<i> Normally only the imagefile is stored in the directory and Kiwi must
+</I>&gt;<i> unpack these files.
+</I>&gt;<i> The problem:
+</I>&gt;<i> Unpacking stops after some seconds and I ve no idea why.
+</I>
+So you don't use NFS root at the moment but the &quot;standard&quot; atftp
+based deployment method correct ? In this case you should first
+have a look into your atftpd configuration. You should disable
+multicast at all in a first try:
+
+	vi /etc/sysconfig/atftpd
+	ATFTPD_OPTIONS=&quot;--daemon --no-multicast&quot;
+
+restart atftpd, try again and run
+
+	tail -f /var/log/messages
+
+while the client &quot;unpack/download&quot; the image
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000259.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+	<LI>Next message: <A HREF="000265.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#260">[ date ]</a>
+              <a href="thread.html#260">[ thread ]</a>
+              <a href="subject.html#260">[ subject ]</a>
+              <a href="author.html#260">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

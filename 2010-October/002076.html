@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-10-03 - 2010-10-08...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-10-03%20-%202010-10-08...&In-Reply-To=%3C20101011091353.GA13658%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002075.html">
+   <LINK REL="Next"  HREF="002077.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-10-03 - 2010-10-08...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-10-03%20-%202010-10-08...&In-Reply-To=%3C20101011091353.GA13658%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-10-03 - 2010-10-08...">ms at novell.com
+       </A><BR>
+    <I>Mon Oct 11 11:13:53 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002075.html">[Kiwi-users] Help needed: RPM doc exclusion is not working for me ?
+</A></li>
+        <LI>Next message: <A HREF="002077.html">[Kiwi-users] btrfs problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2076">[ date ]</a>
+              <a href="thread.html#2076">[ thread ]</a>
+              <a href="subject.html#2076">[ subject ]</a>
+              <a href="author.html#2076">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.62 2010-10-03 - 2010-10-08
+--------------------------------------------------
+most important changes for last weeks release...
+
+commit 151c861393a05de56cfefb5513a83d3548c3d46c
+commit baa6d8f6fbc036a4c10e79ec807500bc0116182b
+
+  added vfb (virtual framebuffer configuration) to the xenconfig file
+  written by kiwi. This allows easy graphics console access with
+  the virt-viewer program. If you want to run the xen domU in text
+  mode you have to manually pass the option xencons=tty in the pygrub
+  boot menu
+
+commit f455c3467e08ffc2c8f9ac082cc6dd58c85d98b0
+
+  added support for setting up the boottimeout value prior
+  to the default value in the config.xml &lt;type&gt; section.
+  the unit for the timeout value is seconds if grub is used
+  as the boot loader and 1/10 seconds if syslinux is used
+    
+  &lt;type ... boottimeout=&quot;20&quot;&gt;
+            ...
+  &lt;/type&gt;
+
+commit 618f4393f2c607036de5b164007bfbf37d58de33
+
+  call udevPending before checking /sys/bus/usb/devices. This
+  was important make the USB check work
+
+commit 45bd81cabe923bd744c909cb6ea502ed36135cd6
+
+  update documentation
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002075.html">[Kiwi-users] Help needed: RPM doc exclusion is not working for me ?
+</A></li>
+	<LI>Next message: <A HREF="002077.html">[Kiwi-users] btrfs problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2076">[ date ]</a>
+              <a href="thread.html#2076">[ thread ]</a>
+              <a href="subject.html#2076">[ subject ]</a>
+              <a href="author.html#2076">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

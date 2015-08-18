@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oem image USB Boot Problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20image%20USB%20Boot%20Problem&In-Reply-To=%3CCABKsJ%3DQ%2BwxRTfYbCbQrYQ6QZwMM3NQ6NPPLzGD2fDVL4jvd-gA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002925.html">
+   <LINK REL="Next"  HREF="002936.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oem image USB Boot Problem</H1>
+    <B>marcin kowalski</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20image%20USB%20Boot%20Problem&In-Reply-To=%3CCABKsJ%3DQ%2BwxRTfYbCbQrYQ6QZwMM3NQ6NPPLzGD2fDVL4jvd-gA%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] oem image USB Boot Problem">yoshi314 at gmail.com
+       </A><BR>
+    <I>Mon Sep  5 10:27:37 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002925.html">[Kiwi-users] oem image USB Boot Problem
+</A></li>
+        <LI>Next message: <A HREF="002936.html">[Kiwi-users] oem image USB Boot Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2926">[ date ]</a>
+              <a href="thread.html#2926">[ thread ]</a>
+              <a href="subject.html#2926">[ subject ]</a>
+              <a href="author.html#2926">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>i had an old desktop with intel 945 chipset and it would always give me a
+&quot;boot error&quot; with syslinux, while the usb stick would work on other
+computers. I also have a similar issue on a box with intel D945GCLF2 mb
+which is a bit more modern hardware.
+
+You might want to try formatting the usb device into usb-zip compatibility
+mode with syslinux's mkdiskimage, installing syslinux on it, and then
+copying over the files.
+
+<A HREF="http://www.knoppix.net/wiki/Bootable_USB_Key#Large_USB_keys">http://www.knoppix.net/wiki/Bootable_USB_Key#Large_USB_keys</A>
+
+Or you could try a usb stick of different size.
+
+2011/9/3 Michael Taubert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">tm at salestv.de</A>&gt;
+
+&gt;<i> Hi!
+</I>&gt;<i>
+</I>&gt;<i> I'm facing this problem too, and did not got a solution. The same stick
+</I>&gt;<i> runs on any other hardware I got hands on. I was fiddling around and I'm
+</I>&gt;<i> close to say that it's a bios problem somehow. But that's just a guess.
+</I>&gt;<i>
+</I>&gt;<i> If you find a solution, I would be happy too. This problem has been
+</I>&gt;<i> discussed on irc too, without a solution, yet.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Am 03.09.2011 um 13:05 schrieb Hanumant Borwandkar &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">hanumant100 at gmail.com</A>
+</I>&gt;<i> &gt;:
+</I>&gt;<i>
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I am facing booting problem when deploying OEM image using installstick
+</I>&gt;<i> on specific Intel Motherboards (atom based D425KT)., Also i have tried using
+</I>&gt;<i>  bootloader=&quot;syslinux&quot; in my config.xml but no luck.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; when booting desktop hungs on &quot;Loading Grub 1.5&quot; without syslinux
+</I>&gt;<i> &gt; when booting desktop blank screen (no activity) with syslinux bootloader
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I am trying to install OEM image using installstick (usb) and target
+</I>&gt;<i> storage device is also USB DOM/ SSD size is 4GB.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Could you please help me out if there any option's available for the same
+</I>&gt;<i> in updated KIWI release, I am using KIWI 4.87.1
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Regards,
+</I>&gt;<i> &gt; Hanumant Borwandkar
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; Kiwi-users mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110905/0c03dd64/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110905/0c03dd64/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002925.html">[Kiwi-users] oem image USB Boot Problem
+</A></li>
+	<LI>Next message: <A HREF="002936.html">[Kiwi-users] oem image USB Boot Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2926">[ date ]</a>
+              <a href="thread.html#2926">[ thread ]</a>
+              <a href="subject.html#2926">[ subject ]</a>
+              <a href="author.html#2926">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

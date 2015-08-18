@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D64072D.8030206%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002385.html">
+   <LINK REL="Next"  HREF="002384.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D64072D.8030206%40novell.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Feb 22 19:57:49 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002385.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+        <LI>Next message: <A HREF="002384.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2383">[ date ]</a>
+              <a href="thread.html#2383">[ thread ]</a>
+              <a href="subject.html#2383">[ subject ]</a>
+              <a href="author.html#2383">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 02/22/2011 01:24 PM, Chris Cunha wrote:
+&lt;snip&gt;
+&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> Hi Robert,
+</I>&gt;<i> Hey thanks again for the help on this.  I realize that I'm a bit thick
+</I>&gt;<i> headed. It's not intentional.  After writing the developer/package of
+</I>&gt;<i> LXDE I'm a bit disappointed with the reply. (displayed at the end of
+</I>&gt;<i> this message)
+</I>&gt;<i> Due to this I'm going to try placing my LXDE-common-branding-SOS
+</I>&gt;<i> packaged RPM file in the overlay tree of Kiwi.  I've read the tutorial
+</I>&gt;<i> on the GFXBoot and Bootsplash package and who it was integrated into
+</I>&gt;<i> the kiwi image.  This seems very similar but instead of the package
+</I>&gt;<i> contents being tared the will be be installed as an RPM.
+</I>&gt;<i> I included in my &quot;config.sh&quot; file the commands
+</I>&gt;<i> 
+</I>&gt;<i> &quot;rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch&quot;
+</I>&gt;<i> &quot;rpm -i lxde-common-branding-SOS-11.3-30.1.noarch&quot;
+</I>&gt;<i> 
+</I>&gt;<i> A couple of questions.
+</I>&gt;<i> 1) Does the RPM command have to be placed in a specific place within
+</I>&gt;<i> the config.sh file?
+</I>
+Should be done prior to the call to the suseConfig call.
+
+&gt;<i> 2) In the config.xml file I know I have to add a line or two.  Am I
+</I>&gt;<i> adding an &lt;archive&gt; line? 
+</I>
+No, you are not, you are removing lines from config.xml. The files in
+the overlay tree (under root) get included in the image automatically.
+
+Note here, that there is one problem. If you are customizing the
+background for the bootsplash and the grub menu you cannot use this
+approach. There reason being that there is no way for you to get these
+packages into the initrd which is where they need to be to customize the
+bootsplash and grub menu.
+
+&gt;<i> I assume that this line would be just for
+</I>&gt;<i> the Tar archive only.
+</I>&gt;<i> Currently kiwi is pulling this lxde-common-branding-SOS package from
+</I>&gt;<i> my repo but now it's going to be installing from a local source. 
+</I>
+In this case you are doing the installation, Kiwi is out of the picture.
+Kiwi just executed config.sh at the root level of the unpacked image
+tree at the end of the prepare step.
+
+&gt;<i> I
+</I>&gt;<i> placed this RPM withing the overlay tree in /opt/branding/  How is
+</I>&gt;<i> this done?
+</I>
+Not sure I understand the question but in your configuration tree you
+should have
+
+root/opt/branding/
+
+this turns into /opt/branding/ when referencing it in config.sh
+
+&gt;<i> 3) Do I also have to add the bootinclude=&quot;true&quot; string in the package line?
+</I>
+You cannot reference the packages in config.xml, see comment above about
+the initrd problem.
+
+&gt;<i> 4) If the Tar archive is to be used I would place the tar file in the
+</I>&gt;<i> kiwi discription directory with the &quot;root&quot; overlay folder, config.xml
+</I>&gt;<i> and config.sh files correct?
+</I>
+Yes the tarball is at the same level as config.xml etc. as documented.
+
+&gt;<i> 
+</I>&gt;<i> I'm looking for a branding solution that will be consistent regardless
+</I>&gt;<i> of what somebody else did in a spec file.  If including the said
+</I>&gt;<i> branding package in RPM form works like this every time I would apt to
+</I>&gt;<i> go with this method...or if the Tar archive is faster (I assume it
+</I>&gt;<i> would be if the RPM isn't already made) then I would go in this
+</I>&gt;<i> direction.
+</I>&gt;<i> 
+</I>&gt;<i> In this particular circumstance I have already made the RPM for this
+</I>&gt;<i> package but for the sake of using one method (for now) should I just
+</I>&gt;<i> download the source files from my RPM and tarball the contents.  It
+</I>&gt;<i> seems like the end results is the same...and the config.sh file
+</I>&gt;<i> wouldn't need to be tweaked as the RPMs wouldn't be used at all.
+</I>
+This sounds like you still have conceptual difficulties, however, I am
+not sure how to explain things differently than they are documented.
+
+- If you use you RPM branding packages, the only way to get them into
+the image is via overlay tree and then installing the packages yourself
+via config.sh. There is no way to change the bootsplash and grub menu
+this way as the packages will NOT end up in the initrd
+
+- If you use a tarball use &lt;archive ....bootinclude=&quot;true&quot;/&gt; in
+config.xml, follow the documented example.
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002385.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+	<LI>Next message: <A HREF="002384.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2383">[ date ]</a>
+              <a href="thread.html#2383">[ thread ]</a>
+              <a href="subject.html#2383">[ subject ]</a>
+              <a href="author.html#2383">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

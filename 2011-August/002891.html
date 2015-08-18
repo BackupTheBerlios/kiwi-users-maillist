@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Keyboard Layout
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Keyboard%20Layout&In-Reply-To=%3C20110808082513.GA21943%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002889.html">
+   <LINK REL="Next"  HREF="002897.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Keyboard Layout</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Keyboard%20Layout&In-Reply-To=%3C20110808082513.GA21943%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Keyboard Layout">ms at suse.de
+       </A><BR>
+    <I>Mon Aug  8 10:25:13 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002889.html">[Kiwi-users] RAID configuration
+</A></li>
+        <LI>Next message: <A HREF="002897.html">[Kiwi-users] kiwi: Weekly report 2011-08-07 - 2011-08-12...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2891">[ date ]</a>
+              <a href="thread.html#2891">[ thread ]</a>
+              <a href="subject.html#2891">[ subject ]</a>
+              <a href="author.html#2891">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Not sure if this is is linked to Kiwi or OpenSUSE but after each build the
+</I>&gt;<i> default keyboard layout is changed to German. Below are the relevant
+</I>&gt;<i> settings in the config file, has anyone else run into this behavior before?
+</I>&gt;<i> 
+</I>&gt;<i> &lt;locale&gt;en_US&lt;/locale&gt;
+</I>&gt;<i> &lt;keytable&gt;us.map.gz&lt;/keytable&gt;
+</I>&gt;<i> &lt;timezone&gt;US/Eastern&lt;/timezone&gt;
+</I>
+Hmm, that's strange. Do you have use overlay files like
+etc/sysconfig/keyboard in your image description ? Do you run
+yast or other configuration tools on first boot of the system
+
+The keytable from config.xml is evaluated if the function
+suseConfig() runs. This is normally done in config.sh. In other
+words the setup of the keytable normally happens at the end
+of the kiwi prepare step. So you can check if the keytable
+is setup correctly after your kiwi prepare step is done. If
+it's still ok at that stage it must be something which runs
+on boot of the image
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002889.html">[Kiwi-users] RAID configuration
+</A></li>
+	<LI>Next message: <A HREF="002897.html">[Kiwi-users] kiwi: Weekly report 2011-08-07 - 2011-08-12...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2891">[ date ]</a>
+              <a href="thread.html#2891">[ thread ]</a>
+              <a href="subject.html#2891">[ subject ]</a>
+              <a href="author.html#2891">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

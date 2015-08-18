@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /lib/firmware in PXE diskless image initrd
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/lib/firmware%20in%20PXE%20diskless%20image%20initrd&In-Reply-To=%3C20100113140040.GA426%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001582.html">
+   <LINK REL="Next"  HREF="001584.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /lib/firmware in PXE diskless image initrd</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/lib/firmware%20in%20PXE%20diskless%20image%20initrd&In-Reply-To=%3C20100113140040.GA426%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] /lib/firmware in PXE diskless image initrd">ms at novell.com
+       </A><BR>
+    <I>Wed Jan 13 15:00:40 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001582.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+        <LI>Next message: <A HREF="001584.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1583">[ date ]</a>
+              <a href="thread.html#1583">[ thread ]</a>
+              <a href="subject.html#1583">[ subject ]</a>
+              <a href="author.html#1583">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have a system that uses the Intel e100 driver. The last KIWI image I
+</I>&gt;<i> made for this type of system was with openSUSE 10.3, when, it seems, the
+</I>&gt;<i> e100 driver did not load any firmware. The e100 driver in openSUSE 11.2,
+</I>&gt;<i> however, does require firmware. I see in the failed boot that the
+</I>&gt;<i> firmware file was not found, and it is indeed not present.
+</I>
+We had a similar problem with an adaptec driver. And I recently added
+at least that firmware to be present in the initrd. It's this kiwi
+changelog entry:
+
+-------------------------------------------------------------------
+Thu Dec 17 12:04:12 CET 2009 - <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>
+
+- removed adaptec-firmware from SLED boot images. The package
+  does not exist on SLED (bnc #562224)
+
+With this change the /lib/firmware directory will not be removed
+from the initrd as it was before. So you have a good chance if you
+add the eventual missing firmware package that it stays inside the
+initrd :-)
+
+&gt;<i> I see that the root file that I eventually mount (nbd or aoe) does
+</I>&gt;<i> contain all the firmware in /lib/firmware/&lt;kervelVersion&gt;. However, the
+</I>&gt;<i> initrd does not contain /lib/firmware at all. And it is then that this
+</I>&gt;<i> is needed, as that is when the e100 driver is loaded: before the main
+</I>&gt;<i> image is mounted.
+</I>
+yep this is fixed if you use the kiwi version with the fix mentioned
+above. The initrd's created now have all kernel installed firmware's
+on board
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001582.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+	<LI>Next message: <A HREF="001584.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1583">[ date ]</a>
+              <a href="thread.html#1583">[ thread ]</a>
+              <a href="subject.html#1583">[ subject ]</a>
+              <a href="author.html#1583">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

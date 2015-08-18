@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Perhaps a bit OT: Adding something to files generated	with KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Perhaps%20a%20bit%20OT%3A%20Adding%20something%20to%20files%20generated%0A%09with%20KIWI&In-Reply-To=%3C1242402023.9856.11.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001122.html">
+   <LINK REL="Next"  HREF="001124.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Perhaps a bit OT: Adding something to files generated	with KIWI</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Perhaps%20a%20bit%20OT%3A%20Adding%20something%20to%20files%20generated%0A%09with%20KIWI&In-Reply-To=%3C1242402023.9856.11.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] Perhaps a bit OT: Adding something to files generated	with KIWI">roger at opq.se
+       </A><BR>
+    <I>Fri May 15 17:40:23 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001122.html">[Kiwi-users] /etc/init.d/.depend.* scripts attacked during	firstboot
+</A></li>
+        <LI>Next message: <A HREF="001124.html">[Kiwi-users] Perhaps a bit OT: Adding something to files generated with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1123">[ date ]</a>
+              <a href="thread.html#1123">[ thread ]</a>
+              <a href="subject.html#1123">[ subject ]</a>
+              <a href="author.html#1123">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have a set of diskless images that are working great. I generated them
+on a system I no longer have. I am not quite ready to release any new
+images as I am still in testing.
+
+A user has a new VME card (one of the places where we run the
+KIWI-generated images) that has a newer ethernet card. So, I would like
+to add the e1000.ko file to this system. It is a diskless system that
+boots via PXE.
+
+My questions are:
+
+1) Would it be enough to add it to the initrd image? The driver is
+loaded 'automatically' by the openSUSE startup scripts.
+
+2) If the answer to #1 is yes, how? initrd-w is a zipped CPIO archive.
+Would I just gunzip it, unpack it, add the file to /lib/modules/...,
+then rearchive/zip it again? What is the correct cpio command to
+unpack/pack the archive?
+
+I realize this is perhaps not really kiwi related, and may be a more
+general Linux/initrd question. But I guess it is not unrelated,
+either...
+
+Any and all help would be welcome.
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001122.html">[Kiwi-users] /etc/init.d/.depend.* scripts attacked during	firstboot
+</A></li>
+	<LI>Next message: <A HREF="001124.html">[Kiwi-users] Perhaps a bit OT: Adding something to files generated with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1123">[ date ]</a>
+              <a href="thread.html#1123">[ thread ]</a>
+              <a href="subject.html#1123">[ subject ]</a>
+              <a href="author.html#1123">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Image checksum test failed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Image%20checksum%20test%20failed&In-Reply-To=%3CAANLkTi%3DLjvnTt%2BqWXpF8QCx_Dqr9H0KC8Y%2BJT5zbUV7u%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002224.html">
+   <LINK REL="Next"  HREF="002229.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Image checksum test failed</H1>
+    <B>Mike Turchenkov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Image%20checksum%20test%20failed&In-Reply-To=%3CAANLkTi%3DLjvnTt%2BqWXpF8QCx_Dqr9H0KC8Y%2BJT5zbUV7u%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Image checksum test failed">mclaudt at gmail.com
+       </A><BR>
+    <I>Thu Dec 23 20:03:09 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002224.html">[Kiwi-users] pxeboot client image failing on downloading md5 sum
+</A></li>
+        <LI>Next message: <A HREF="002229.html">[Kiwi-users] Image checksum test failed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2225">[ date ]</a>
+              <a href="thread.html#2225">[ thread ]</a>
+              <a href="subject.html#2225">[ subject ]</a>
+              <a href="author.html#2225">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, thanks a lot for such a nice program.
+
+All isos work fine.
+
+I'm trying to learn pxe boot for parallel cluster under openSUSE 11.2.
+
+It loads fine but on checking data stage I get &quot;Image checksum test failed&quot;.
+
+Excluding cable problem and data corruption.
+
+Partition size? I have 2 Gb virtual hard disk, and in
+./KIWI/config.&lt;MAC&gt; there is
+
+DISK=/dev/sda
+PART=5;S;x,251;L;/,x;L;x,
+IMAGE=/dev/sda2;suse-11.2-pxe-client.x86_64;1.2.8;192.168.0.7;4096
+UNIONFS_CONFIG=/dev/sda3,/dev/sda2,clicfs
+
+So it seems to be enough.
+
+Wrong checksum?  Probably yes, but how check it?
+
+I do
+
+# md5sum  suse-11.2-pxe-client.x86_64-1.2.8
+e9dd51b67486c2aea274ce17baf77865  suse-11.2-pxe-client.x86_64-1.2.8
+
+but md5 content differs
+
+# cat  suse-11.2-pxe-client.x86_64-1.2.8.md5
+ca2830f91270b8d44875c406bf006b80   8000 32768
+
+Also .md5 file seems not to be the right md5 checksum file, cause when I
+#md5sum -c suse-11.2-pxe-client.x86_64-1.2.8.md5
+md5sum:  8000 32768: No such file or directory
+ 8000 32768: FAILED open or read
+md5sum: WARNING: 1 of 1 listed file could not be read
+
+If I generate the right checksum file
+
+# md5sum  suse-11.2-pxe-client.x86_64-1.2.8 &gt;
+suse-11.2-pxe-client.x86_64-1.2.8.md5
+
+I also get errors
+
+Any help or comments wil be appreciated, thanks.
+
+Mike.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002224.html">[Kiwi-users] pxeboot client image failing on downloading md5 sum
+</A></li>
+	<LI>Next message: <A HREF="002229.html">[Kiwi-users] Image checksum test failed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2225">[ date ]</a>
+              <a href="thread.html#2225">[ thread ]</a>
+              <a href="subject.html#2225">[ subject ]</a>
+              <a href="author.html#2225">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

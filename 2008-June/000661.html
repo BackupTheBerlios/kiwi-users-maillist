@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Building oemboot split image with 2.38 SVN: Revision:	1311 fails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Building%20oemboot%20split%20image%20with%202.38%20SVN%3A%20Revision%3A%0A%091311%20fails&In-Reply-To=%3C484D099C.EE07.00F0.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000707.html">
+   <LINK REL="Next"  HREF="000665.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Building oemboot split image with 2.38 SVN: Revision:	1311 fails</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Building%20oemboot%20split%20image%20with%202.38%20SVN%3A%20Revision%3A%0A%091311%20fails&In-Reply-To=%3C484D099C.EE07.00F0.0%40novell.com%3E"
+       TITLE="[Kiwi-users] Building oemboot split image with 2.38 SVN: Revision:	1311 fails">ragupta at novell.com
+       </A><BR>
+    <I>Mon Jun  9 07:14:44 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000707.html">[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+        <LI>Next message: <A HREF="000665.html">[Kiwi-users] Building oemboot split image with 2.38 SVN:	Revision: 1311 fails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#661">[ date ]</a>
+              <a href="thread.html#661">[ thread ]</a>
+              <a href="subject.html#661">[ subject ]</a>
+              <a href="author.html#661">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I was trying to build an OEMBOOT ISO Image of type split. Everything was going fine till I encountered the following error
+
+
+Jun-09 09:53:00 &lt;1&gt; : Creating install ISO image
+Jun-09 09:53:00 &lt;1&gt; : Creating image MD5 sum...                                                                                 done
+Jun-09 09:53:03 &lt;1&gt; : Searching for free loop device...                                                                         done
+Jun-09 09:53:03 &lt;1&gt; : Binding virtual disk to loop device                                                                       done
+Jun-09 09:53:03 &lt;1&gt; : Setup device mapper for virtual partition access                                                          done
+Jun-09 09:53:04 &lt;3&gt; : Failed to mount system partition: Usage: mount -V                 : print version
+       mount -h                 : print this help
+       mount                    : list mounted filesystems
+       mount -l                 : idem, including volume labels
+So far the informational part. Next the mounting.
+
+
+
+The log file shows the following
+
+Jun-09 09:53:00 &lt;1&gt; : Creating install ISO image
+Jun-09 09:53:00 &lt;1&gt; : Creating image MD5 sum...
+Jun-09 09:53:00 &lt;1&gt; : EXEC [factor 511705088]
+Jun-09 09:53:00 &lt;1&gt; : EXEC [cat /SLES10/KIWI/myimage/cbec-sled10.i686-3.2.4.raw | md5sum - | cut -f 1 -d-]
+Jun-09 09:53:03 &lt;1&gt; : EXEC [echo &quot;108a0c327890864e0f5c1b9a493622a4   62464 8192&quot; &gt; /SLES10/KIWI/myimage/cbec-sled10.i686-3.2.4.md5]
+   done
+Jun-09 09:53:03 &lt;1&gt; : EXEC [/sbin/losetup -d /dev/loop2]
+Jun-09 09:53:03 &lt;1&gt; : EXEC [mktemp -q -d /tmp/kiwicdinst.XXXXXX]
+Jun-09 09:53:03 &lt;1&gt; : Searching for free loop device...
+Jun-09 09:53:03 &lt;1&gt; : EXEC [/sbin/losetup /dev/loop0 2&gt;&amp;1]
+Jun-09 09:53:03 &lt;1&gt; : EXEC [/sbin/losetup /dev/loop1 2&gt;&amp;1]
+Jun-09 09:53:03 &lt;1&gt; : EXEC [/sbin/losetup /dev/loop2 2&gt;&amp;1]
+   done
+Jun-09 09:53:03 &lt;1&gt; : Binding virtual disk to loop device
+Jun-09 09:53:03 &lt;1&gt; : EXEC [/sbin/losetup /dev/loop2 /SLES10/KIWI/myimage/cbec-sled10.i686-3.2.4.raw 2&gt;&amp;1]
+   done
+Jun-09 09:53:03 &lt;1&gt; : Setup device mapper for virtual partition access
+Jun-09 09:53:03 &lt;1&gt; : EXEC [/sbin/kpartx -a /dev/loop2 2&gt;&amp;1]
+   done
+Jun-09 09:53:04 &lt;1&gt; : EXEC [dd if=/dev/mapper/loop2p2 bs=128k count=1 2&gt;/dev/null | file -]
+Jun-09 09:53:04 &lt;1&gt; : EXEC [mount -t  /dev/mapper/loop2p2 /tmp/kiwicdinst.V13646 2&gt;&amp;1]
+Jun-09 09:53:04 &lt;3&gt; : Failed to mount system partition: Usage: mount -V                 : print version
+       mount -h                 : print this help
+       mount                    : list mounted filesystems
+       mount -l                 : idem, including volume labels
+So far the informational part. Next the mounting.
+
+
+Looking at the KIWIBoot.pm , it seems that the filesystem type is not being detected while attempting to mount the loop device.  Not sure why this is happening.
+
+I am building an image based on SLED 10 SP1 and I am using &quot;squashfs&quot; for the RO partition and &quot;reiserfs&quot; for the RW partition.
+
+I have filed a BUG on this #398381
+
+Regards,
+Rahul
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000707.html">[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+	<LI>Next message: <A HREF="000665.html">[Kiwi-users] Building oemboot split image with 2.38 SVN:	Revision: 1311 fails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#661">[ date ]</a>
+              <a href="thread.html#661">[ thread ]</a>
+              <a href="subject.html#661">[ subject ]</a>
+              <a href="author.html#661">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

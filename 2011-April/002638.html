@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2011-04-03 - 2011-04-08...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202011-04-03%20-%202011-04-08...&In-Reply-To=%3C20110411082835.GA30450%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002617.html">
+   <LINK REL="Next"  HREF="002640.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2011-04-03 - 2011-04-08...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202011-04-03%20-%202011-04-08...&In-Reply-To=%3C20110411082835.GA30450%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2011-04-03 - 2011-04-08...">ms at suse.de
+       </A><BR>
+    <I>Mon Apr 11 10:28:35 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002617.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002640.html">[Kiwi-users] LVRoot fails to mount on reboot of OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2638">[ date ]</a>
+              <a href="thread.html#2638">[ thread ]</a>
+              <a href="subject.html#2638">[ subject ]</a>
+              <a href="author.html#2638">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.85 2011-04-03 - 2011-04-08
+--------------------------------------------------
+most important changes for last weeks release
+
+-------------------------
+P1 bug fixes
+-------------------------
+commit f590ba9c8e17843bb4cd19cc2b30915a8b6a545a
+
+    - in KIWIRoot.pm the fixupOverlayFilesOwnership() function
+      fails to quote the filaname which results in problems with
+      files/directories with spaces in their names.
+
+commit 2c16b29535b28be08b4dfd2424c4a74dbf9e4753
+
+    - don't use the result of a getExecPath() call happened outside
+      of the chroot, for a command call inside the chroot. It might
+      happen that the path to the binary is different inside the
+      chroot and thus can't be found
+
+commit accc80ec49207ef24661091ed57652f35f8324d7
+
+    - Fixing bnc#679099 - Imagewriter still requires HAL
+
+commit 3bbc82d010ae217c05722848a9a27c9d1cf06fca
+
+    - if the target-device option is used kiwi normally doesn't
+      create a disk image file until the image file is created
+      by a dump off from the target device. SuSE studio requires
+      the size information of the target disk before the dump off
+      happens, because it creates that target device internally.
+      Therefore this patch makes sure that a image disk file is
+      created before the dump off happens
+
+commit 7954bf3bed5845f4ece4991ef17f8f2978c8fbee
+
+    - fixed KIWICommandLine::setLogFile, it breaks for 'terminal' logging
+    - fixed KIWICommandLine::setAdditionalRepos, it breaks if
+      numAlias and or numPrios is zero
+
+commit bdcffa72373aadf6b105f21c4c3ba2393bfd236c
+
+    - fixed solvable creation for old distros (sle10) providing
+      uncompressed versions of suse/setup/descr/packages file
+
+commit f68ac83dde234edf90739dcc2a54e9bf2b20c3d9
+    
+    - fixed init(), creation of global kiwi log object is
+      required for KIWIQX execution logging
+
+--------------------------
+Code restructuring
+--------------------------
+commit 04b742a0b7889909e368b96d27ab4e0cb010b75e
+
+    - renamed the test implementation and data base directory to be
+      consistent with other tests, i.e. start with kiwi
+
+commit 1fa62210fdffc48f8346663769aa05f5d1d9934b
+
+    - added unit tests for the new KIWIXMLInfo object. Also
+      break up the bigger tests into smaller test cases
+
+commit 92d1a7358cc1152f4831f4be32192d65419540a0
+
+    - added a new KIWIXMLInfo object and eliminate the
+      listXMLInfo() function from kiwi.pl
+
+--------------------------
+Features
+--------------------------
+commit 7c95b9b3b5f03785979587d1b43441644b1008d2
+
+    - Added a new consistency check and unit tests to ensure that
+      config.xml files specifying an image type that requires an
+      initrd set the boot attribute on the &lt;type&gt; element.
+
+commit 5109267e325b0b54779cbbf29de6fe0724788713
+
+    - added support for ZFCP devices for the s390 architecture
+
+commit b9e41c5c00137db6efef35ba9465debfa363d827
+
+    - moved from fat16 (0x6) to fat32 (0xc) for syslinux setup
+
+
+Have Fun :-)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002617.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002640.html">[Kiwi-users] LVRoot fails to mount on reboot of OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2638">[ date ]</a>
+              <a href="thread.html#2638">[ thread ]</a>
+              <a href="subject.html#2638">[ subject ]</a>
+              <a href="author.html#2638">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

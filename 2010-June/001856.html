@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-06-20 - 2010-06-25...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-06-20%20-%202010-06-25...&In-Reply-To=%3C20100625140448.GA21597%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001855.html">
+   <LINK REL="Next"  HREF="001857.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-06-20 - 2010-06-25...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-06-20%20-%202010-06-25...&In-Reply-To=%3C20100625140448.GA21597%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-06-20 - 2010-06-25...">ms at novell.com
+       </A><BR>
+    <I>Fri Jun 25 16:04:48 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001855.html">[Kiwi-users] kiwi: Weekly report 2010-06-13 - 2010-06-18...
+</A></li>
+        <LI>Next message: <A HREF="001857.html">[Kiwi-users] Need help with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1856">[ date ]</a>
+              <a href="thread.html#1856">[ thread ]</a>
+              <a href="subject.html#1856">[ subject ]</a>
+              <a href="author.html#1856">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.43 2010-06-20 - 2010-06-25
+--------------------------------------------------
+most important changes for this weeks release...
+
+GIT: fixed copy of root tree into final image. We used
+     cp -a $source/* $dest which did not match the dot files
+     in $source/.* Therefore I changed this to use a tar
+     based copy
+
+if there are hidden overlay files in / they don't end up
+in the final image. This is fixed with this patch
+
+GIT: added oem-inplace-recovery option which allows creation
+     of the recovery tarball at first deployment instead of
+     creating the tarball and store it inside the image
+
+if you use an oem image with recovery support enabled the
+recovery tarball normally is stored in the image itself
+and is moved into the recovery partition on first deployment.
+With the option above one can request the creation of this
+recovery tarball at deployment time instead of creating
+it at build time. This reduces the size of the image but
+also increases the initial deployment time
+
+GIT: use cylinder based alignment with new parted version
+     2.2.x. This fixes the oem repartition code for systems
+     which uses parted &gt;= 2.2.x build on a parted 1.9.x build
+     system. Also removed unused functions: partedGetSectors
+     and partedStartCylinder
+
+when building an image with old parted (on suse 11.2) for
+a newer distro like 11.3 the repartitioning will destroy
+the data inside the partitions. This fix can handle that
+case. What's still a problem is creating an image for an
+older distro with new parted on 11.3 for example. Still
+searching for a solution here
+
+GIT: fixed &lt;image name=&quot;...&quot;/&gt; attribute validation, space
+     and / is not allowed for this attribute
+
+It's not allowed to have spaces in name. this fix checks
+that at the early XML validation time
+
+GIT:  started support for s390 imaging:
+      * zipl support in kiwi. This is still work in progress only
+        the skeleton at the required code points has been added.
+      * adapted the JeOS sle11 template to provided a profile
+        for x86 and s390 packages
+      * also added vmxboot and oemboot bootimages to be build
+        The code there will work as initrd for an s390 guest
+        within kvm
+
+We would like to support the creation of guest images for
+kvm on s390. I started to add the relevant code paths which
+needs to change but the implementation is not ready to use
+so far 
+
+GIT:  fixed split section evaluation (bnc #615121)
+
+if the split type is used there was an error if one excludes
+a temporary path which is reserved for later use as a persistent
+path 
+
+Remember to have fun :)
+
+Wish you all a great weekend
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001855.html">[Kiwi-users] kiwi: Weekly report 2010-06-13 - 2010-06-18...
+</A></li>
+	<LI>Next message: <A HREF="001857.html">[Kiwi-users] Need help with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1856">[ date ]</a>
+              <a href="thread.html#1856">[ thread ]</a>
+              <a href="subject.html#1856">[ subject ]</a>
+              <a href="author.html#1856">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

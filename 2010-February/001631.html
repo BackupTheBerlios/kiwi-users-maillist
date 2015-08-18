@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] NFSROOT and UNIONFS_CONFIG touble
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20NFSROOT%20and%20UNIONFS_CONFIG%20touble&In-Reply-To=%3C201002012117.43124.hpj%40urpla.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001629.html">
+   <LINK REL="Next"  HREF="001634.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] NFSROOT and UNIONFS_CONFIG touble</H1>
+    <B>Hans-Peter Jansen</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20NFSROOT%20and%20UNIONFS_CONFIG%20touble&In-Reply-To=%3C201002012117.43124.hpj%40urpla.net%3E"
+       TITLE="[Kiwi-users] NFSROOT and UNIONFS_CONFIG touble">hpj at urpla.net
+       </A><BR>
+    <I>Mon Feb  1 21:17:42 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001629.html">[Kiwi-users] NFSROOT and UNIONFS_CONFIG touble
+</A></li>
+        <LI>Next message: <A HREF="001634.html">[Kiwi-users] NFSROOT and UNIONFS_CONFIG touble
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1631">[ date ]</a>
+              <a href="thread.html#1631">[ thread ]</a>
+              <a href="subject.html#1631">[ subject ]</a>
+              <a href="author.html#1631">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Monday 01 February 2010, 19:02:45 Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; &gt; Any idea on how this could happen?
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; sorry no idea, after suse-preinit kiwi's code is done. Do you have
+</I>&gt;<i> &gt; &gt; set &quot;errors=remount-ro&quot; somewhere on your filesystems ?
+</I>&gt;<i>
+</I>&gt;<i> found the problem. the root fsck causes this. Here is a patch
+</I>&gt;<i> which fixes this:
+</I>&gt;<i>
+</I>&gt;<i>         #======================================
+</I>&gt;<i>         # don't call root filesystem check
+</I>&gt;<i>         #--------------------------------------
+</I>&gt;<i> -       if [ &quot;$haveClicFS&quot; = &quot;yes&quot; ];then
+</I>&gt;<i> -               # FIXME: clicfs doesn't like this umount tricks
+</I>&gt;<i> +       if [ &quot;$haveClicFS&quot; = &quot;yes&quot; ] || [ ! -z &quot;$NFSROOT&quot; ] ;then
+</I>&gt;<i> +               # FIXME: clicfs / NFS doesn't like this umount tricks
+</I>&gt;<i>                 export ROOTFS_FSCK=&quot;0&quot;
+</I>&gt;<i>                 return
+</I>&gt;<i>         fi
+</I>
+Great. Thanks, Marcus.
+
+Do you have specific reasons to call test twice in such expressions. I 
+guess, that 
+
+	if [ &quot;$haveClicFS&quot; = &quot;yes&quot; -o -n &quot;$NFSROOT&quot; ] ;then
+
+would evaluate a tiny bit quicker. Are there any boot shell anomalies, 
+that I should be aware of?
+
+&gt;<i> works for me on my wyse clients. I'm currently testing aufs
+</I>&gt;<i> with an NFS overlay, the kernel crashed... well
+</I>
+Okay, these aren't exactly good news, but does it look similar to this 
+one:
+
+BUG: unable to handle kernel paging request at 4b6453d1
+IP: [&lt;f91c970d&gt;] :nfs:nfs3_proc_setattr+0x6c/0xda
+*pde = 00000000 
+Oops: 0000 [#1] SMP 
+last sysfs file: /sys/devices/pci0000:00/0000:00:0a.0/net/eth0/address
+Modules linked in: ipv6 aufs(N) squashfs nfs lockd nfs_acl sunrpc dm_mod brd af_packet usbhid hid ff_memless ohci_hcd id
+e_pci_generic amd74xx ide_core ata_generic pata_amd ahci libata scsi_mod ehci_hcd dock forcedeth usbcore
+Supported: No
+
+Pid: 1516, comm: mount Tainted: G          (2.6.27.42-0.1-default #1)
+EIP: 0060:[&lt;f91c970d&gt;] EFLAGS: 00210202 CPU: 3
+EIP is at nfs3_proc_setattr+0x6c/0xda [nfs]
+EAX: 4b645361 EBX: c181bd60 ECX: 00000000 EDX: 00000000
+ESI: c181bf5c EDI: c181bd48 EBP: f751fe48 ESP: c181bd1c
+ DS: 007b ES: 007b FS: 00d8 GS: 0033 SS: 0068
+Process mount (pid: 1516, ti=c181a000 task=f7110d80 task.ti=c181a000)
+Stack: f751fe48 f91c7bc2 f751fd28 c181bf5c 00000000 00000000 00000000 f91f3068 
+       c181bd24 c181bd60 00000000 f91db4f0 c181bf5c f751fe48 c181bd60 f91bd968 
+       f7538744 00000000 00000000 c181bdfc c181bdbc 00000000 00000020 c016ac70 
+Call Trace:
+ [&lt;f91bd968&gt;] nfs_setattr+0xe8/0x104 [nfs]
+ [&lt;c0198390&gt;] fnotify_change+0x196/0x2f3
+ [&lt;f916f7d5&gt;] call_notify_change+0x55/0x110 [aufs]
+ [&lt;f916f8b9&gt;] vfsub_fnotify_change+0x29/0x80 [aufs]
+ [&lt;f916f91f&gt;] vfsub_notify_change+0xf/0x20 [aufs]
+ [&lt;f918953c&gt;] aufs_do_setattr+0x57c/0x880 [aufs]
+ [&lt;c0198372&gt;] fnotify_change+0x178/0x2f3
+ [&lt;c0184d20&gt;] chown_common+0x7b/0x8e
+ [&lt;c0184d8d&gt;] sys_fchown+0x5a/0x7d
+ [&lt;c0103a0d&gt;] sysenter_do_call+0x12/0x21
+ [&lt;ffffe430&gt;] 0xffffe430
+ =======================
+Code: 44 24 1c 68 30 1f f9 89 44 24 20 89 5c 24 24 74 0c c7 04 24 02 ef 1d f9 e8 fe 20 17 c7 8b 06 f6 c4 20 74 19 8b 46 
+30 85 c0 74 0c &lt;8b&gt; 40 70 85 c0 74 05 8b 40 0c eb 02 31 c0 89 44 24 28 66 c7 03 
+EIP: [&lt;f91c970d&gt;] nfs3_proc_setattr+0x6c/0xda [nfs] SS:ESP 0068:c181bd1c
+---[ end trace c2579dc1974905b1 ]---
+
+If yes, then I reported it at least once to Jeff Mahoney:
+
+[opensuse-kernel] aufs crash in nfs3_proc_setattr with 2.6.27.39-0.2.1
+
+I'm going to file a bug report, and attach your KIWILinuxRC.sh fix to get 
+him going quickly.
+
+Cheers,
+Pete
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001629.html">[Kiwi-users] NFSROOT and UNIONFS_CONFIG touble
+</A></li>
+	<LI>Next message: <A HREF="001634.html">[Kiwi-users] NFSROOT and UNIONFS_CONFIG touble
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1631">[ date ]</a>
+              <a href="thread.html#1631">[ thread ]</a>
+              <a href="subject.html#1631">[ subject ]</a>
+              <a href="author.html#1631">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

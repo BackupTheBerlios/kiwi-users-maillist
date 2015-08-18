@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D5FBA44.7090700%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002359.html">
+   <LINK REL="Next"  HREF="002381.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D5FBA44.7090700%40novell.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">rschweikert at novell.com
+       </A><BR>
+    <I>Sat Feb 19 13:40:36 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002359.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+        <LI>Next message: <A HREF="002381.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2361">[ date ]</a>
+              <a href="thread.html#2361">[ thread ]</a>
+              <a href="subject.html#2361">[ subject ]</a>
+              <a href="author.html#2361">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+&lt;snip&gt;
+&gt;&gt;<i>
+</I>&gt;<i> Hi guys,
+</I>&gt;<i> I emailed the LXDE maintainer about this issue but still haven't herd
+</I>&gt;<i> back from him yet.
+</I>&gt;<i> I'm trying so hard to understand and get the flow of all this but so
+</I>&gt;<i> far nothing has gone smoothly enough for me to get comfortable with
+</I>&gt;<i> anything.  We talked about getting the contents of this package and
+</I>&gt;<i> using the Tar method to installing it and I assume that it would also
+</I>&gt;<i> work using the Overlay file method, 
+</I>
+No, it will not work using the overlay method. Some of the branding
+stuff needs to be in the initrd and this can only be accomplished via a
+package or archive, you need to use the bootinclude=&quot;true&quot; attribute
+setting.
+
+&gt;<i> both would be a problem if the
+</I>&gt;<i> package manager updated these file. 
+</I>
+How can the package manager update &quot;these files&quot; when according to your
+earlier comment you placed all your branding into directories that are
+unique to your branding strategy?
+
+The only thing that could happen is that an update overwrites the
+configuration file that points to your branding. IN that case you are
+dealing with a zypper bug.
+
+&gt;<i> I would think the results would
+</I>&gt;<i> be that my branding (at least the branding that was installed by one
+</I>&gt;<i> of these two methods) would be overwritten with the default Suse
+</I>&gt;<i> version.
+</I>&gt;<i> 
+</I>&gt;<i> Will mentioned that since I have the RPM package for this branding
+</I>&gt;<i> package that it could be used in a similar way to Tar file method but
+</I>&gt;<i> that I wouldn't get overwritten by the package manager during an
+</I>&gt;<i> update.  He had a meeting to go to so that's all I have on this.  Does
+</I>&gt;<i> he mean that the RPM can be &quot;tar-ed&quot; and is installed like a tar
+</I>&gt;<i> file?? 
+</I>
+Sorry, I do not know what you mean. Since you appear to struggle with
+this concept, have you tried to built the Kiwi example that shows how to
+brand the bootmenu and splash screen? If not, you should follow this, it
+might clarify many of the things you appear to have troubles with.
+
+&gt;<i> I checked the kiwi PDF docs and can't find anything on this.
+</I>&gt;<i> 
+</I>&gt;<i> Can the RPM be &quot;forced&quot; in?
+</I>
+No, Kiwi has no way to interact with the package manager other than
+saying &quot;go install this stuff&quot;.
+
+&gt;<i> 
+</I>&gt;<i> There are sooo many questions I have regarding this sort of stuff.
+</I>&gt;<i> When it comes to branding/re-branding that I'm at the mercy of whoever
+</I>&gt;<i> packaged the originals Suse packages.
+</I>&gt;<i> 
+</I>&gt;<i> Is there a way that if I built all the branding package that these
+</I>&gt;<i> RPMs can be installed in to the image without the &quot;overwrite&quot; issues?
+</I>
+See my previous message about putting the rpms in the overlay tree and
+then using config.sh to get the packages installed.
+
+&gt;<i> I would think that if the RPMs are of the branding packages are used
+</I>&gt;<i> that the PM would &quot;know&quot; that they are there as compared to the tar
+</I>&gt;<i> and overlay method the PM wouldn't know the branding packages were
+</I>&gt;<i> there.  I guess it would be the difference between managed and
+</I>&gt;<i> unmanaged package installations.
+</I>&gt;<i> 
+</I>&gt;<i> If this is possible I assume the config.xml file would have to be
+</I>&gt;<i> tweaked to have the repos section allow for local installs of the
+</I>&gt;<i> RPMs?
+</I>&gt;<i> Would the &quot;image.sh&quot; script have to actually install the RPMs?
+</I>
+See above and previous mail in this thread. It does help to read the
+answers we provide ;)
+
+Later,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002359.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+	<LI>Next message: <A HREF="002381.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2361">[ date ]</a>
+              <a href="thread.html#2361">[ thread ]</a>
+              <a href="subject.html#2361">[ subject ]</a>
+              <a href="author.html#2361">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

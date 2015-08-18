@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] build from template suse-11.4-JeOS with templates	installed failed.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20build%20from%20template%20suse-11.4-JeOS%20with%20templates%0A%09installed%20failed.&In-Reply-To=%3C3a283908aeb0eee39334545301c96682%40teksavvy.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002733.html">
+   <LINK REL="Next"  HREF="002736.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] build from template suse-11.4-JeOS with templates	installed failed.</H1>
+    <B>michael.esch</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20build%20from%20template%20suse-11.4-JeOS%20with%20templates%0A%09installed%20failed.&In-Reply-To=%3C3a283908aeb0eee39334545301c96682%40teksavvy.com%3E"
+       TITLE="[Kiwi-users] build from template suse-11.4-JeOS with templates	installed failed.">michael.esch at teksavvy.com
+       </A><BR>
+    <I>Tue May 17 02:07:36 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002733.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+        <LI>Next message: <A HREF="002736.html">[Kiwi-users] build from template suse-11.4-JeOS with templates installed failed.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2735">[ date ]</a>
+              <a href="thread.html#2735">[ thread ]</a>
+              <a href="subject.html#2735">[ subject ]</a>
+              <a href="author.html#2735">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, I was following the instructions from the KiWi Cookbook Get Juiced and ran into a error that I cannot seem to fix.  Here is the error from my terminal:
+
+linux-deqj:/home/mike/kiwi # mkdir /tmp/myjeos
+linux-deqj:/home/mike/kiwi # kiwi --build suse-11.4-JeOS --destdir /tmp/myjeos --type iso
+May-16 19:22:42 &lt;1&gt; : Reading image description [Prepare]...
+May-16 19:22:42 &lt;2&gt; : Description provides no MD5 hash, check                                           skipped
+May-16 19:22:42 &lt;3&gt; : Couldn't locate configuration directory suse-11.4-JeOS                            failed
+May-16 19:22:42 &lt;3&gt; : KIWI exited with error(s) 
+
+Previously I did a kiwi --list and got
+
+linux-deqj:/home/mike/kiwi # kiwi --list
+May-16 19:16:23 &lt;1&gt; : suse-SLE11-JeOS
+May-16 19:16:24 &lt;1&gt; : Using profile(s): vmxFlavour                   done
+ -&gt; Version: 1.1.0                                                   done
+May-16 19:16:24 &lt;1&gt; : suse-11.3-JeOS
+May-16 19:16:24 &lt;1&gt; : Using profile(s): vmxFlavour                   done
+ -&gt; Version: 1.11.3                                                  done
+May-16 19:16:25 &lt;1&gt; : suse-11.1-JeOS
+May-16 19:16:25 &lt;1&gt; : Using profile(s): vmxFlavour                   done
+ -&gt; Version: 1.1.0                                                   done
+May-16 19:16:26 &lt;1&gt; : suse-11.4-JeOS
+May-16 19:16:26 &lt;1&gt; : Using profile(s): vmxFlavour                   done
+ -&gt; Version: 1.11.4                                                  done
+ ....
+
+When I installed KiWi I selected all of the kiwi packages I could find inside Install/Remove Software.  Can someone share with me where I am going wrong in building from this template?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002733.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+	<LI>Next message: <A HREF="002736.html">[Kiwi-users] build from template suse-11.4-JeOS with templates installed failed.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2735">[ date ]</a>
+              <a href="thread.html#2735">[ thread ]</a>
+              <a href="subject.html#2735">[ subject ]</a>
+              <a href="author.html#2735">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

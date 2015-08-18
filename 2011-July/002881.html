@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] RAID configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3C20110728095813.GA8299%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002880.html">
+   <LINK REL="Next"  HREF="002885.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] RAID configuration</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3C20110728095813.GA8299%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] RAID configuration">ms at suse.de
+       </A><BR>
+    <I>Thu Jul 28 11:58:14 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002880.html">[Kiwi-users] RAID configuration
+</A></li>
+        <LI>Next message: <A HREF="002885.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2881">[ date ]</a>
+              <a href="thread.html#2881">[ thread ]</a>
+              <a href="subject.html#2881">[ subject ]</a>
+              <a href="author.html#2881">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I applied the patch and there were a couple of issues. The DHCP code
+</I>&gt;<i> worked perfectly, 
+</I>&gt;<i> but the dmraid code changes didn't quite:
+</I>&gt;<i> 
+</I>&gt;<i> 1. The line 'dmraid -a -y -p' in KIWILinuxRC.sh should not have a '-' before the 'y'. 
+</I>&gt;<i> That is, it should read:
+</I>&gt;<i> 
+</I>&gt;<i> 	dmraid -a y -p
+</I>
+ah, me so stupid, fixed :)
+
+&gt;<i> 2. Oddly, with the dmraid additions to probeDevices, the device was
+</I>&gt;<i> actually found by 
+</I>&gt;<i> 
+</I>&gt;<i> 	hwinfo --disk --listmd
+</I>&gt;<i> 
+</I>&gt;<i> but the device name is /dev/dm-0 instead of /dev/mapper/lsi... 
+</I>&gt;<i> What's interesting about that is that the 'function ddn' changes I did
+</I>&gt;<i> earlier don't work, and, furthermore, I'm not entirely sure how they 
+</I>&gt;<i> should be changed as I don't know the full naming conventions of the dmraid
+</I>&gt;<i> device. In this particular example, the raw device is /dev/dm-0 and the first
+</I>&gt;<i> partition is /dev/dm-1. That seems straightforward enough but if this was 
+</I>&gt;<i> installed on a machine that had two raid devices, I have no idea what they
+</I>&gt;<i> would be labelled. For now, I added the following to ddn and it did the job:
+</I>&gt;<i> 
+</I>&gt;<i> 	if echo $1 | grep -q &quot;^\/dev\/dm-&quot; ; then 
+</I>&gt;<i> 		echo &quot;/dev/dm-&quot;$2 
+</I>&gt;<i> 		return 
+</I>&gt;<i> 	fi 
+</I>&gt;<i> 
+</I>&gt;<i> Maybe if you have more details on what multiple devices can be called, you'll
+</I>&gt;<i> have a better idea of what 'ddn' should look like.
+</I>
+That's ok now but the install code should not use the /dev/dm-xx device
+names. They are not persistent. I changed the code to use the udev 
+device names /dev/disk/by-id. That way the convention for partitions is
+also clear with -part[Nr]. The code should be clean for any storage
+device now
+
+&gt;<i> Anyway, thanks for the quick turnaround on the patches! Much appreciated.
+</I>&gt;<i> I'm very happy now! :)
+</I>
+I will push out the changes now and you will find them in the next
+release v4.94.x (plan for release is on Friday). It would be great
+if you can give that version a test again
+
+Other than that if you have such a controller laying around unused
+I'd like to ask if I can borrow one for testing and to keep the
+code working
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002880.html">[Kiwi-users] RAID configuration
+</A></li>
+	<LI>Next message: <A HREF="002885.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2881">[ date ]</a>
+              <a href="thread.html#2881">[ thread ]</a>
+              <a href="subject.html#2881">[ subject ]</a>
+              <a href="author.html#2881">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

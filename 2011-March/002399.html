@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Network auto detection
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Network%20auto%20detection&In-Reply-To=%3CC088D3516432C643AC828162A5164A7F08AF8980%40se3lmwbibaw.COMMUN.AD.SNCF.FR%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002430.html">
+   <LINK REL="Next"  HREF="002406.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Network auto detection</H1>
+    <B>BONNETOT Jean-Daniel (EXT THALES)</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Network%20auto%20detection&In-Reply-To=%3CC088D3516432C643AC828162A5164A7F08AF8980%40se3lmwbibaw.COMMUN.AD.SNCF.FR%3E"
+       TITLE="[Kiwi-users] Network auto detection">ext.thales.jean-daniel.bonnetot at sncf.fr
+       </A><BR>
+    <I>Tue Mar  1 09:34:37 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002430.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+        <LI>Next message: <A HREF="002406.html">[Kiwi-users] Network auto detection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2399">[ date ]</a>
+              <a href="thread.html#2399">[ thread ]</a>
+              <a href="subject.html#2399">[ subject ]</a>
+              <a href="author.html#2399">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+ Hello,
+
+Thanks for your answer.
+I'd like to build a minimal system, so NetworkManager is not the best choice for me.
+
+It seems everything is ready to bring up my interfaces except loading modules. That's normal ?
+
+Best regards
+---
+
+Jean-Daniel Bonnetot 
+
+
+
+
+-----Message d'origine-----
+De : <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A> [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A>] De la part de Robert Schweikert
+Envoy&#233; : lundi 28 f&#233;vrier 2011 15:54
+&#192; : <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Objet : Re: [Kiwi-users] Network auto detection
+
+Hi,
+
+On 02/28/2011 09:36 AM, BONNETOT Jean-Daniel (EXT THALES) wrote:
+&gt;<i> Hello,
+</I>&gt;<i>  
+</I>&gt;<i> I'm trying to build live opensuse 11.3 iso.
+</I>&gt;<i> I can generate iso and boot on it but i have no network interface.
+</I>&gt;<i>  
+</I>&gt;<i> I have to modprobe network module manualy to bring up my interfaces.
+</I>&gt;<i> Is it possible to have an auto detection of network cards ?
+</I>&gt;<i>  
+</I>&gt;<i> I use /usr/share/doc/packages/kiwi/examples/suse-11.3/suse-live-iso/ 
+</I>&gt;<i> as configuration.
+</I>
+Did you also copy the overlay tree from the example?
+
+The overlay tree in the example contains the network configuration for dhcp. Another option would be to enable network manager using
+
+baseUpdateSysConfig /etc/sysconfig/network/config NETWORKMANAGER yes
+
+in config.sh
+
+
+HTH,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+_______________________________________________
+Kiwi-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+-------
+Ce message et toutes les pi&#232;ces jointes sont &#233;tablis &#224; l'intention exclusive de ses destinataires et sont confidentiels. L'int&#233;grit&#233; de ce message n'&#233;tant pas assur&#233;e sur Internet, la SNCF ne peut &#234;tre tenue responsable des alt&#233;rations qui pourraient se produire sur son contenu. Toute publication, utilisation, reproduction, ou diffusion, m&#234;me partielle, non autoris&#233;e pr&#233;alablement par la SNCF, est strictement interdite. Si vous n'&#234;tes pas le destinataire de ce message, merci d'en avertir imm&#233;diatement l'exp&#233;diteur et de le d&#233;truire.
+-------
+This message and any attachments are intended solely for the addressees and are confidential. SNCF may not be held responsible for their contents whose accuracy and completeness cannot be guaranteed over the Internet. Unauthorized use, disclosure, distribution, copying, or any part thereof is strictly prohibited. If you are not the intended recipient of this message, please notify the sender immediately and delete it. 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002430.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+	<LI>Next message: <A HREF="002406.html">[Kiwi-users] Network auto detection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2399">[ date ]</a>
+              <a href="thread.html#2399">[ thread ]</a>
+              <a href="subject.html#2399">[ subject ]</a>
+              <a href="author.html#2399">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

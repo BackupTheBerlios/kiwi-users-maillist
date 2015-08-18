@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] dependancy problem?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20dependancy%20problem%3F&In-Reply-To=%3C20081103160719.GA4522%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000865.html">
+   <LINK REL="Next"  HREF="000867.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] dependancy problem?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20dependancy%20problem%3F&In-Reply-To=%3C20081103160719.GA4522%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] dependancy problem?">ms at novell.com
+       </A><BR>
+    <I>Mon Nov  3 17:07:19 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000865.html">[Kiwi-users] dependancy problem?
+</A></li>
+        <LI>Next message: <A HREF="000867.html">[Kiwi-users] dependancy problem?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#866">[ date ]</a>
+              <a href="thread.html#866">[ thread ]</a>
+              <a href="subject.html#866">[ subject ]</a>
+              <a href="author.html#866">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm pretty new to kiwi, but I've had early success.
+</I>&gt;<i> That's a testament to great work!
+</I>
+Thanks that are good news :-)
+
+&gt;<i> However, I've had some issues, too.
+</I>&gt;<i> I'm trying to build a system with kde4 using opensuse11.1(betaXX)
+</I>&gt;<i> 
+</I>&gt;<i> I was using this:
+</I>&gt;<i> 
+</I>&gt;<i>        &lt;packages type=&quot;image&quot;&gt;
+</I>&gt;<i>                &lt;package name=&quot;kernel-default&quot;/&gt;
+</I>&gt;<i>                &lt;package name=&quot;bootsplash&quot;/&gt;
+</I>&gt;<i>                &lt;package name=&quot;bootsplash-branding-openSUSE&quot;/&gt;
+</I>&gt;<i>                &lt;package name=&quot;vim&quot;/&gt;
+</I>&gt;<i>                &lt;opensusePattern name=&quot;default&quot;/&gt;
+</I>&gt;<i>                &lt;opensusePattern name=&quot;kde4&quot;/&gt;
+</I>&gt;<i>        &lt;/packages&gt;
+</I>&gt;<i> 
+</I>&gt;<i> but it did not include kdm. Even so, when I tried to log in (using
+</I>&gt;<i> xdm) I got an error about dbus.
+</I>
+yep that's because no recommended packages have been installed
+the way you setup your packages section. Just include the following
+and it should work:
+
+    &lt;packages type=&quot;image&quot; patternType=&quot;plusRecommended&quot;&gt;
+        &lt;package name=&quot;kernel-default&quot;/&gt;
+        &lt;package name=&quot;bootsplash&quot;/&gt;
+        &lt;package name=&quot;bootsplash-branding-openSUSE&quot;/&gt;
+        &lt;package name=&quot;vim&quot;/&gt;
+        &lt;opensusePattern name=&quot;base&quot;/&gt;
+        &lt;opensusePattern name=&quot;kde4&quot;/&gt;
+    &lt;/packages&gt;
+
+&gt;<i> however, why weren't they included if they were necessary for
+</I>&gt;<i> operation? Is this a patterns problem wherein the pattern for kde4 is
+</I>&gt;<i> missing the prequirement?
+</I>
+inside of the patterns you have a distinction between required
+recommended and suggested. if you don't specify any level only
+the required packages will be installed but this does not mean
+the system has everything to run smooth in all areas. Especially
+on the desktop side you really need the recommended packages too.
+
+It sounds odd, yes it does but that's how the policy applies for
+the opensuse patterns which I can't change. I did not make recommended
+to be the default to allow small images based on patterns too
+but as result of that people suffering the consequences of
+setting a patternType 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000865.html">[Kiwi-users] dependancy problem?
+</A></li>
+	<LI>Next message: <A HREF="000867.html">[Kiwi-users] dependancy problem?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#866">[ date ]</a>
+              <a href="thread.html#866">[ thread ]</a>
+              <a href="subject.html#866">[ subject ]</a>
+              <a href="author.html#866">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

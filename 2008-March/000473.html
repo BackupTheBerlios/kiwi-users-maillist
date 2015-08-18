@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C20080313082010.GA19310%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000472.html">
+   <LINK REL="Next"  HREF="000519.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Troubles with SLED10-SP1 LiveDVD</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C20080313082010.GA19310%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Troubles with SLED10-SP1 LiveDVD">ms at suse.de
+       </A><BR>
+    <I>Thu Mar 13 09:20:10 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000472.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+        <LI>Next message: <A HREF="000519.html">[Kiwi-users] [SOLVED] Re:  Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#473">[ date ]</a>
+              <a href="thread.html#473">[ thread ]</a>
+              <a href="subject.html#473">[ subject ]</a>
+              <a href="author.html#473">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Yes, the rootfs.tar file is uncompressed inside the squashfs now,
+</I>&gt;<i> but no improvement with the RAM memory problem. The created
+</I>&gt;<i> LiveCD still needs 688MB of RAM to start.
+</I>
+yes that's what I've feared. your rootfs tarball is about 300MB
+now and to extract it into RAM from within a compressed filesystem
+(squashfs) the filesystem layer needs RAM to uncompress the requested
+file and we need the RAM space to store the tar contents in a
+tmpfs. As I said I don't have a solution to prevent that.
+
+&gt;<i> Any idea on where can I search for savings in RAM ?
+</I>
+Well your split section said you have /etc and /var and /home
+which should live in RAM completely. You should think of:
+
+a) Do I need all of /etc to be writable ?
+b) Do I need all of /home to be writable ?
+
+if you can shrink down the size of the rootfs tarball you need
+less RAM space
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000472.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+	<LI>Next message: <A HREF="000519.html">[Kiwi-users] [SOLVED] Re:  Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#473">[ date ]</a>
+              <a href="thread.html#473">[ thread ]</a>
+              <a href="subject.html#473">[ subject ]</a>
+              <a href="author.html#473">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

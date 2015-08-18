@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] repo problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20repo%20problem&In-Reply-To=%3C4A579641.3010604%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001277.html">
+   <LINK REL="Next"  HREF="001279.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] repo problem</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20repo%20problem&In-Reply-To=%3C4A579641.3010604%40novell.com%3E"
+       TITLE="[Kiwi-users] repo problem">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Jul 10 21:28:01 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001277.html">[Kiwi-users] repo problem
+</A></li>
+        <LI>Next message: <A HREF="001279.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1278">[ date ]</a>
+              <a href="thread.html#1278">[ thread ]</a>
+              <a href="subject.html#1278">[ subject ]</a>
+              <a href="author.html#1278">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks, that did the trick.
+
+Mike Kienenberger wrote:
+&gt;<i> When I add it to the package manager, it shows up as a &quot;YUM&quot;
+</I>&gt;<i> repository rather than a Yast repository.
+</I>&gt;<i>
+</I>&gt;<i> I think you need to use type &quot;rpm-md&quot; rather than &quot;yast2&quot; for &quot;YUM&quot;
+</I>&gt;<i> repositories.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Fri, Jul 10, 2009 at 1:43 PM, Robert
+</I>&gt;<i> Schweikert&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Been looking at this for a while now and cannot figure out why my repo
+</I>&gt;&gt;<i> spec is being rejectd, help is appreciated:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;repository type=&quot;yast2&quot;&gt;
+</I>&gt;&gt;<i>        &lt;source
+</I>&gt;&gt;<i> path=&quot;<A HREF="http://download.opensuse.org/repositories/home:/miniwark:/dmidecode/openSUSE_11.1">http://download.opensuse.org/repositories/home:/miniwark:/dmidecode/openSUSE_11.1</A>&quot;/&gt;
+</I>&gt;&gt;<i>    &lt;/repository&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> kiwi --prepare ./useGDM -root /tmp/gdmTest
+</I>&gt;&gt;<i> Jul-10 13:37:37 &lt;1&gt; : Reading image description [Prepare]...
+</I>&gt;&gt;<i> Jul-10 13:37:37 &lt;2&gt; : Description provides no MD5 hash, check        skipped
+</I>&gt;&gt;<i> Jul-10 13:37:37 &lt;1&gt; : Checking for default baseroot in XML data...   notset
+</I>&gt;&gt;<i> Jul-10 13:37:37 &lt;1&gt; : Set root log: /tmp/gdmTest.27900.screenrc.log..done
+</I>&gt;&gt;<i> Jul-10 13:37:37 &lt;1&gt; : Setting up package manager: zypper             done
+</I>&gt;&gt;<i> Jul-10 13:37:37 &lt;1&gt; : Creating default template files for new root sydone
+</I>&gt;&gt;<i> Jul-10 13:37:38 &lt;1&gt; : Importing build keys...                        done
+</I>&gt;&gt;<i> Jul-10 13:37:39 &lt;1&gt; : Adding bootstrap zypper service: media_os1164  done
+</I>&gt;&gt;<i> Jul-10 13:37:39 &lt;1&gt; : Adding bootstrap zypper service:
+</I>&gt;&gt;<i> http:__download.opensuse.org_repositories_home:_miniwark:_dmidecode_openSUSE_11.1
+</I>&gt;&gt;<i> done
+</I>&gt;&gt;<i> Jul-10 13:37:39 &lt;1&gt; : --&gt; Requesting pattern:base                    done
+</I>&gt;&gt;<i> Jul-10 13:37:39 &lt;1&gt; : Creating VMware package list                   done
+</I>&gt;&gt;<i> Jul-10 13:37:39 &lt;1&gt; : Initializing image system on: /tmp/gdmTest...  failed
+</I>&gt;&gt;<i> [*** log excerpt follows, screen ***]
+</I>&gt;&gt;<i> Skipping repository
+</I>&gt;&gt;<i> 'http:__download.opensuse.org_repositories_home:_miniwark:_dmidecode_openSUSE_11.1'
+</I>&gt;&gt;<i> because of the above error.
+</I>&gt;&gt;<i> Retrieving repository 'media_os1164' metadata [done]
+</I>&gt;&gt;<i> Building repository 'media_os1164' cache [done]
+</I>&gt;&gt;<i> Some of the repositories have not been refreshed because of an error.
+</I>&gt;&gt;<i> + SPID=28230
+</I>&gt;&gt;<i> + wait 28230
+</I>&gt;&gt;<i> + test 4 = 0
+</I>&gt;&gt;<i>  ECODE=1
+</I>&gt;&gt;<i> + echo 1
+</I>&gt;&gt;<i> + exit 1
+</I>&gt;&gt;<i> [*** end ***]
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks,
+</I>&gt;&gt;<i> Robert
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;<i> Software Engineer Consultant                          LINUX
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;&gt;<i> 781-464-8147
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Novell
+</I>&gt;&gt;<i> Making IT Work As One
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001277.html">[Kiwi-users] repo problem
+</A></li>
+	<LI>Next message: <A HREF="001279.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1278">[ date ]</a>
+              <a href="thread.html#1278">[ thread ]</a>
+              <a href="subject.html#1278">[ subject ]</a>
+              <a href="author.html#1278">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

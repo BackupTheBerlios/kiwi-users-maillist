@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimH8HX_73npESXHRaZsbCrHHdcXEPEG4eqGdnQS%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002514.html">
+   <LINK REL="Next"  HREF="002516.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimH8HX_73npESXHRaZsbCrHHdcXEPEG4eqGdnQS%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Mar 18 17:31:01 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002514.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002516.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2515">[ date ]</a>
+              <a href="thread.html#2515">[ thread ]</a>
+              <a href="subject.html#2515">[ subject ]</a>
+              <a href="author.html#2515">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Mar 18, 2011 at 11:18 AM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Stressful stuff. :(
+</I>&gt;&gt;<i> Marcus thanks for continuing to answer these questions and trying to
+</I>&gt;&gt;<i> address the problems. &#160;I know this is getting old. &#160;This inconsistent
+</I>&gt;&gt;<i> behavior is concerning to me because it must work the same on all
+</I>&gt;&gt;<i> machines otherwise what's the point.
+</I>&gt;<i>
+</I>&gt;<i> Again, it goes back to taking control of the situation rather than letting
+</I>&gt;<i> some &quot;automagic&quot; happen.
+</I>&gt;<i>
+</I>&gt;<i> Setup your own mount point point and use the script snippets that Marcus has
+</I>&gt;<i> already posted. Once you have the script in place make sure you disable all
+</I>&gt;<i> the automount settings in your desktop environment. Then it will always work
+</I>&gt;<i> the same, for every USB stick you produce and on whatever machine you choose
+</I>&gt;<i> to boot. There's a reason for the &quot;plug and pray&quot; nickname ;)
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> One more thing that I notice after I started using the OEM image
+</I>&gt;&gt;<i> compared to the ISO image is when booting now the OEM image will
+</I>&gt;&gt;<i> always boot in verbose mode (with the bootsplash image behind) where
+</I>&gt;&gt;<i> as with the ISO boot it would show the progress bootsplash screen.
+</I>&gt;&gt;<i> Any idea what's up with that?
+</I>&gt;<i>
+</I>&gt;<i> This should only happen during first boot, i.e. when the virtual file system
+</I>&gt;<i> expands to take over the rest of the disk.
+</I>&gt;<i>
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+I see your point Robert.  The script that Marcus wrote is working
+well.  It's just a matter of disabling the automount that is currently
+happening.  But where the config file that is telling the OS to
+automount the fat partition is beyond me.  I can't find it! It's not
+part of /etc/fstab.... I'm assuming that the script responsible is
+located in the users profile and not in a global location like
+/etc...but it where?  It only mounts the fat partition which is the
+first partition on the USB flash drive...any other partitions (like
+ones on an existing hard drive installed on the machine) don't mount.
+So it as to be looking for the fat partition to mount it...right?
+
+The verbose mode is on every boot not just the first one...but I
+disabled that in the config file and rebuilt the image and it seems to
+work in normal bootspash mode now.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002514.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002516.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2515">[ date ]</a>
+              <a href="thread.html#2515">[ thread ]</a>
+              <a href="subject.html#2515">[ subject ]</a>
+              <a href="author.html#2515">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

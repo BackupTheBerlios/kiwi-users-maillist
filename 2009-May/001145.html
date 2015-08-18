@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image - Live-Stick System error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3Cacbb082e0905290747s562e7fe5t7a89bc0426ae7774%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001144.html">
+   <LINK REL="Next"  HREF="001146.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image - Live-Stick System error</H1>
+    <B>Julien VIELLE</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3Cacbb082e0905290747s562e7fe5t7a89bc0426ae7774%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image - Live-Stick System error">jvielle at gmail.com
+       </A><BR>
+    <I>Fri May 29 16:47:43 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001144.html">[Kiwi-users] Using kiwi to build SLED 11 image	-	Cracklib-dict-full question
+</A></li>
+        <LI>Next message: <A HREF="001146.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1145">[ date ]</a>
+              <a href="thread.html#1145">[ thread ]</a>
+              <a href="subject.html#1145">[ subject ]</a>
+              <a href="author.html#1145">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I'm trying to put my image on a Usb key. I did my prepare and my create
+without error (using the switch usb kiwi -c oemprepare-sled11 --fs-inodesize
+128 --type usb -d oemcreateUSB-sled11) until here everything work well.
+here the output of the oemcreateUSB directory
+======================================================================================================================
+ ls -lh oemcreateUSB-sled11/
+total 1.4G
+lrwxrwxrwx 1 root root   30 2009-05-29 15:38
+essilor-suse-sled11.i686-0.1.0.ext3 -&gt; essilor-suse-sled11.i686-0.1.0
+-rw-r--r-- 1 root root 1.3G 2009-05-29 15:45
+essilor-suse-sled11.i686-0.1.0.gz
+-rw-r--r-- 1 root root   60 2009-05-29 15:59
+essilor-suse-sled11.i686-0.1.0.md5
+-rw-r--r-- 1 root root  37M 2009-05-29 16:02
+initrd-usbboot-suse-SLED11.i686-2.1.1
+lrwxrwxrwx 1 root root   66 2009-05-29 16:02
+initrd-usbboot-suse-SLED11.i686-2.1.1.kernel -&gt;
+initrd-usbboot-suse-SLED11.i686-2.1.1.kernel.2.6.27.21-0.1-default
+-rw-r--r-- 1 root root 2.4M 2009-05-29 16:02
+initrd-usbboot-suse-SLED11.i686-2.1.1.kernel.2.6.27.21-0.1-default
+-rw-r--r-- 1 root root   45 2009-05-29 16:02
+initrd-usbboot-suse-SLED11.i686-2.1.1.md5
+-rw-r--r-- 1 root root  15M 2009-05-29 16:02
+initrd-usbboot-suse-SLED11.i686-2.1.1.splash.gz
+======================================================================================================================
+
+After if I understand everything correctly i have to put my image on the
+stick using this command:
+kiwi --bootstick
+oemcreateUSB-sled11/initrd-usbboot-suse-SLED11.i686-2.1.1.splash.gz
+--bootstick-system oemcreateUSB-sled11/essilor-suse-sled11.i686-0.1.0.gz
+--bootstick-device /dev/sdb
+
+And unfortunately I got this error
+
+======================================================================================================================
+kiwi --bootstick
+oemcreateUSB-sled11/initrd-usbboot-suse-SLED11.i686-2.1.1.splash.gz
+--bootstick-system oemcreateUSB-sled11/essilor-suse-sled11.i686-0.1.0.gz
+--bootstick-device /dev/sdb
+May-29 16:36:58 &lt;1&gt; : Creating boot USB stick from:
+oemcreateUSB-sled11/initrd-usbboot-suse-SLED11.i686-2.1.1.splash.gz...
+May-29 16:36:58 &lt;1&gt; : Binding virtual disk to loop
+device                                                         done
+May-29 16:36:58 &lt;1&gt; : Setup device mapper for ISO install
+image                                                   done
+May-29 16:36:58 &lt;3&gt; : System image mount failed: Usage: mount
+-V                 : print version
+       mount -h                 : print this help
+       mount                    : list mounted filesystems
+       mount -l                 : idem, including volume labels
+So far the informational part. Next the mounting.
+The command is `mount [-t fstype] something somewhere'.
+Details found in /etc/fstab may be omitted.
+       mount -a [-t|-O] ...     : mount all stuff from /etc/fstab
+       mount device             : mount device at the known place
+       mount directory          : mount known device here
+       mount -t type dev dir    : ordinary mount command
+Note that one does not really mount a device, one mounts
+a filesystem (of the given type) found on the device.
+One can also mount an already visible directory tree elsewhere:
+       mount --bind olddir newdir
+or move a subtree:
+       mount --move olddir newdir
+One can change the type of mount containing the directory dir:
+       mount --make-shared dir
+       mount --make-slave dir
+       mount --make-private dir
+       mount --make-unbindable dir
+One can change the type of all the mounts in a mount subtree
+containing the directory dir:
+       mount --make-rshared dir
+       mount --make-rslave dir
+       mount --make-rprivate dir
+       mount --make-runbindable dir
+A device can be given by name, say /dev/hda1 or /dev/cdrom,
+or by label, using  -L label  or by uuid, using  -U uuid .
+Other options: [-nfFrsvw] [-o options] [-p passwdfd].
+For many more details, say  man 8 mount .
+=======================================================================================================================
+
+If someone have an idea any helps will be appreciated thank you by advance
+
+Regards,
+
+Julien Vielle
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090529/1448ae65/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090529/1448ae65/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001144.html">[Kiwi-users] Using kiwi to build SLED 11 image	-	Cracklib-dict-full question
+</A></li>
+	<LI>Next message: <A HREF="001146.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1145">[ date ]</a>
+              <a href="thread.html#1145">[ thread ]</a>
+              <a href="subject.html#1145">[ subject ]</a>
+              <a href="author.html#1145">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issue with partition creation on USB stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C20081118090816.GB3046%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000897.html">
+   <LINK REL="Next"  HREF="000898.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issue with partition creation on USB stick</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C20081118090816.GB3046%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Issue with partition creation on USB stick">ms at novell.com
+       </A><BR>
+    <I>Tue Nov 18 10:08:17 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000897.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+        <LI>Next message: <A HREF="000898.html">[Kiwi-users] kiwi sat plugin unusable with kiwi buildservice	packages for SUSE	11.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#896">[ date ]</a>
+              <a href="thread.html#896">[ thread ]</a>
+              <a href="subject.html#896">[ subject ]</a>
+              <a href="author.html#896">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have 2 split images which were based on the same xml definition. One of them use ext3 for both read-only and read-write parts and the other one uses squashfs for the read-only part. I want to compare performance on both situations.
+</I>&gt;<i> 
+</I>&gt;<i> Size for the ext3-only image:
+</I>&gt;<i> 
+</I>&gt;<i> . cb-live-stick.i686-0.2.0 - 3.6GB
+</I>&gt;<i> . cb-live-stick-read-write.i686-0.2.1 - 92MB
+</I>&gt;<i> 
+</I>&gt;<i> Size for the squashfs + ext3 image:
+</I>&gt;<i> 
+</I>&gt;<i> . cb-live-stick.i686-0.2.1 - 1.2GB
+</I>&gt;<i> . cb-live-stick-read-write.i686-0.2.1 - 92 MB
+</I>
+I think there is a bug in kiwi when deploying the split portions onto
+the stick. I will test it today and let you know if I can reproduce
+the problem.
+
+&gt;<i> I'm sure the stick wasn't mounted before calling 'kiwi --bootstick'. I know that because I tried it several times, with the stick mounted and with it not mounted.
+</I>
+ok
+
+&gt;<i> Btw, it's also clear that the issue isn't related to kiwi upgrade, but to some change I made to the image definition. As I also upgraded kiwi, I thought it was related.
+</I>
+Could you remember which change that was ? might be helpful :-)
+
+Stay tuned I let you know what I'll find
+
+Regards,
+Marucs
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000897.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+	<LI>Next message: <A HREF="000898.html">[Kiwi-users] kiwi sat plugin unusable with kiwi buildservice	packages for SUSE	11.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#896">[ date ]</a>
+              <a href="thread.html#896">[ thread ]</a>
+              <a href="subject.html#896">[ subject ]</a>
+              <a href="author.html#896">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

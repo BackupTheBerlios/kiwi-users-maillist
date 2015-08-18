@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi-users%20Digest%2C%20Vol%2044%2C%20Issue%209&In-Reply-To=%3C201009132002.19353.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002024.html">
+   <LINK REL="Next"  HREF="002025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi-users%20Digest%2C%20Vol%2044%2C%20Issue%209&In-Reply-To=%3C201009132002.19353.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9">javier at opensuse.org
+       </A><BR>
+    <I>Mon Sep 13 20:02:15 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002024.html">[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9
+</A></li>
+        <LI>Next message: <A HREF="002025.html">[Kiwi-users] config.sh not applied in final image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2027">[ date ]</a>
+              <a href="thread.html#2027">[ thread ]</a>
+              <a href="subject.html#2027">[ subject ]</a>
+              <a href="author.html#2027">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Lunes, 13 de Septiembre de 2010 16:55:55 caoshouying escribi&#243;:
+&gt;<i> &#20110; 2010&#24180;09&#26376;11&#26085; 06:00, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-request at lists.berlios.de</A> &#20889;&#36947;:
+</I>&gt;<i> &gt; Hi Kevin, On Viernes, 10 de Septiembre de 2010 10:03:52 kevin cao
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; escribi?:
+</I>&gt;<i> &gt;&gt; &gt;  Hi, all
+</I>&gt;<i> &gt;&gt; &gt;  
+</I>&gt;<i> &gt;&gt; &gt;      On build.opensuse.org, I made a project named &quot;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>home:kevincao&lt;<A HREF="https://build.opensuse.org/project/show?project=home%3Akevi">https://build.opensuse.org/project/show?project=home%3Akevi</A>
+&gt;<i> &gt; nc
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt; &gt;  ao&gt;&quot; and a package &quot;kiwitest&quot;. I want to make a images like &quot;KDE 
+</I>Four
+&gt;<i> &gt;&gt; &gt;  Live&lt;<A HREF="http://home.kde.org/%7Ebinner/kde-four-live/">http://home.kde.org/%7Ebinner/kde-four-live/</A>&gt;&quot;,
+</I>&gt;<i> &gt;&gt; &gt;  so I down all files and upload to my package. I also changed the &quot;Raw
+</I>&gt;<i> &gt;&gt; &gt;  config&quot; and added the following lines:
+</I>&gt;<i> &gt;&gt; &gt;  &lt;build&gt;
+</I>&gt;<i> &gt;&gt; &gt;  
+</I>&gt;<i> &gt;&gt; &gt;       &lt;enable repository=&quot;images&quot;/&gt;
+</I>&gt;<i> &gt;&gt; &gt;      
+</I>&gt;<i> &gt;&gt; &gt;      &lt;disable/&gt;
+</I>&gt;<i> &gt;&gt; &gt;  
+</I>&gt;<i> &gt;&gt; &gt;  &lt;/build&gt;
+</I>&gt;<i> &gt;&gt; &gt;  
+</I>&gt;<i> &gt;&gt; &gt;  But I got the result &quot;broken&quot;.
+</I>&gt;<i> &gt;&gt; &gt;  How can I build a image on build.opensuse.org, Please help me.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; AFAIK, KIWI image building is not enabled on the Build Service's home
+</I>&gt;<i> &gt; projects by default (requires lots of resources). It can be enabled on a
+</I>&gt;<i> &gt; user's home project if there is a good reason for it. Nevertheless, you
+</I>&gt;<i> &gt; may branch kde- four-live, build it locally with your own modifications
+</I>&gt;<i> &gt; and even submit your enhancements as well;-)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The relevant commands are:
+</I>&gt;<i> &gt; osc branch KDE:Medias kde-four-live
+</I>&gt;<i> &gt; osc co home:yourusername:branches:KDE:Medias/kde-four-live
+</I>&gt;<i> &gt; cd home\:yourusername\:branches\:KDE\:Medias/kde-four-live/
+</I>&gt;<i> &gt; osc build
+</I>&gt;<i> 
+</I>&gt;<i> when I did &quot;osc build&quot; as follow, I got the following result:
+</I>&gt;<i> linux-hsls:~/home:kevincao:branches:KDE:Medias/kde-four-live # osc build
+</I>&gt;<i> Building kde-four-live.kiwi for images/x86_64
+</I>&gt;<i> Getting buildinfo from server and store to
+</I>&gt;<i> /root/home:kevincao:branches:KDE:Medias/kde-four-live/.osc/_buildinfo-image
+</I>&gt;<i> s-x86_64.xml Getting buildconfig from server and store to
+</I>&gt;<i> /root/home:kevincao:branches:KDE:Medias/kde-four-live/.osc/_buildconfig-ima
+</I>&gt;<i> ges-x86_64 buildinfo is broken... 
+</I>
+[...]
+
+&gt;<i> 
+</I>&gt;<i> what's wrong with that? How can I get the image?
+</I>&gt;<i> Help me please.
+</I>
+At that time, some packages were being rebuilt (in KDE:Release:45 mainly). 
+You can also check the status of kde-reloaded at 
+<A HREF="https://build.opensuse.org/package/show?package=kde-">https://build.opensuse.org/package/show?package=kde-</A>
+reloaded&amp;project=KDE%3AMedias
+
+
+Greetings,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100913/6d5e3c9d/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100913/6d5e3c9d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002024.html">[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9
+</A></li>
+	<LI>Next message: <A HREF="002025.html">[Kiwi-users] config.sh not applied in final image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2027">[ date ]</a>
+              <a href="thread.html#2027">[ thread ]</a>
+              <a href="subject.html#2027">[ subject ]</a>
+              <a href="author.html#2027">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Failed to detect CD/DVD or USB drive in 3.51
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20detect%20CD/DVD%20or%20USB%20drive%20in%203.51&In-Reply-To=%3C20090522121606.GA26384%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001134.html">
+   <LINK REL="Next"  HREF="001136.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Failed to detect CD/DVD or USB drive in 3.51</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20detect%20CD/DVD%20or%20USB%20drive%20in%203.51&In-Reply-To=%3C20090522121606.GA26384%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Failed to detect CD/DVD or USB drive in 3.51">ms at novell.com
+       </A><BR>
+    <I>Fri May 22 14:16:07 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001134.html">[Kiwi-users] Failed to detect CD/DVD or USB drive in 3.51
+</A></li>
+        <LI>Next message: <A HREF="001136.html">[Kiwi-users] VMX image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1135">[ date ]</a>
+              <a href="thread.html#1135">[ thread ]</a>
+              <a href="subject.html#1135">[ subject ]</a>
+              <a href="author.html#1135">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Hi Carlos,
+</I>&gt;<i> I think the bug is related to incorrect IFS value.
+</I>&gt;<i> Please refer to Bug 505943 and have a try
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://bugzilla.novell.com/show_bug.cgi?id=505943">https://bugzilla.novell.com/show_bug.cgi?id=505943</A>
+</I>&gt;<i> 
+</I>&gt;<i> On Fri, May 22, 2009 at 5:29 AM, Carlos Goncalves
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cgoncalves at opensuse.org</A>&gt; wrote:
+</I>&gt;<i> &gt; On Thursday 21 May 2009 12:50:11 Anthony Wong wrote:
+</I>&gt;<i> &gt;&gt; I used kiwi 3.51.80.1 to build an OEM image. When I use Virtualbox to
+</I>&gt;<i> &gt;&gt; load the ISO, I got the error as shown in the screenshot. So now I
+</I>&gt;<i> &gt;&gt; downgraded kiwi back to 3.41 from
+</I>&gt;<i> &gt;&gt; <A HREF="http://download.opensuse.org/repositories/home:/hschaa/11.1-Update">http://download.opensuse.org/repositories/home:/hschaa/11.1-Update</A> and
+</I>&gt;<i> &gt;&gt; I don't have the error any more. So, did I bump into any bugs in 3.51?
+</I>&gt;<i> &gt;&gt; Attached is the config.xml I use. Thanks a lot.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Testing openSUSE Moblin I stumbled on that error, too, though and iirc it was
+</I>&gt;<i> &gt; just after the installation process when I was supposed to remove the CD
+</I>&gt;<i> &gt; (using ISO though).
+</I>
+could you run the system with kiwidebug=1 and store the log file
+/var/log/boot.kiwi. The information there will show us exactly what
+happened.
+
+I have fixed the CDDevice function according to #505943 but I
+doubt that this was the cause of the problem
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001134.html">[Kiwi-users] Failed to detect CD/DVD or USB drive in 3.51
+</A></li>
+	<LI>Next message: <A HREF="001136.html">[Kiwi-users] VMX image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1135">[ date ]</a>
+              <a href="thread.html#1135">[ thread ]</a>
+              <a href="subject.html#1135">[ subject ]</a>
+              <a href="author.html#1135">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

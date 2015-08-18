@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Setting up splash screen
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20up%20splash%20screen&In-Reply-To=%3C49BECB24.2060506%40jcosby.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001018.html">
+   <LINK REL="Next"  HREF="001033.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Setting up splash screen</H1>
+    <B>Jon Cosby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20up%20splash%20screen&In-Reply-To=%3C49BECB24.2060506%40jcosby.com%3E"
+       TITLE="[Kiwi-users] Setting up splash screen">jon at jcosby.com
+       </A><BR>
+    <I>Mon Mar 16 22:56:52 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001018.html">[Kiwi-users] Setting up splash screen
+</A></li>
+        <LI>Next message: <A HREF="001033.html">[Kiwi-users] Setting up splash screen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1024">[ date ]</a>
+              <a href="thread.html#1024">[ thread ]</a>
+              <a href="subject.html#1024">[ subject ]</a>
+              <a href="author.html#1024">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> * Did you modify anything in /usr/share/kiwi/image/usbboot/suse-11.1 ?
+</I>&gt;&gt;<i> Just the image description.
+</I>&gt;<i> 
+</I>&gt;<i> That means you didn't change anything below the above mentioned
+</I>&gt;<i> directory only your own system image description, right ?
+</I>&gt;<i> 
+</I>
+The description and the checksum, but nothing below it.
+
+&gt;&gt;&gt;<i> * Do you have enough space for you image in /tmp
+</I>&gt;&gt;<i> That could be the problem. I have 13.3 GB available, I'll try a
+</I>&gt;&gt;<i> different partition, What is usually required?
+</I>&gt;<i> 
+</I>&gt;<i> Ah 13 GB is enough :-))
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, could you send the kiwi calls you made so I can try to
+</I>&gt;<i> reproduce that problem
+</I>&gt;<i> 
+</I>
+I first prepare the image by
+
+kiwi --prepare /usr/share/kiwi/image/usbboot/suse-11.1 --root
+/home/jon/live/usb/tmp --logfile terminal
+
+Nothing seems wrong at this point. In creating the image,
+
+kiwi --type usb --create /home/jon/live/usb/tmp -d
+/home/jon/live/usb/image --logfile terminal
+
+kiwi looks for kconfig, which it can't find, but continues until it
+reaches the splash screen. Then the hang and quit. I don't notice any
+other errors or warnings. I've tried this three times from scratch, but
+get the same result.
+
+
+
+Jon
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001018.html">[Kiwi-users] Setting up splash screen
+</A></li>
+	<LI>Next message: <A HREF="001033.html">[Kiwi-users] Setting up splash screen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1024">[ date ]</a>
+              <a href="thread.html#1024">[ thread ]</a>
+              <a href="subject.html#1024">[ subject ]</a>
+              <a href="author.html#1024">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

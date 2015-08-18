@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Article : How to make openSUSE 11.1 KDE 3.5 LiveCD or LiveDVD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Article%20%3A%20How%20to%20make%20openSUSE%2011.1%20KDE%203.5%20LiveCD%0A%20or%20LiveDVD&In-Reply-To=%3C49614A8F.5090705%40cesmail.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000922.html">
+   <LINK REL="Next"  HREF="000924.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Article : How to make openSUSE 11.1 KDE 3.5 LiveCD or LiveDVD</H1>
+    <B>M. Edward (Ed) Borasky</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Article%20%3A%20How%20to%20make%20openSUSE%2011.1%20KDE%203.5%20LiveCD%0A%20or%20LiveDVD&In-Reply-To=%3C49614A8F.5090705%40cesmail.net%3E"
+       TITLE="[Kiwi-users] Article : How to make openSUSE 11.1 KDE 3.5 LiveCD or LiveDVD">znmeb at cesmail.net
+       </A><BR>
+    <I>Mon Jan  5 00:47:27 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000922.html">[Kiwi-users] Article : How to make openSUSE 11.1 KDE 3.5	LiveCD or LiveDVD
+</A></li>
+        <LI>Next message: <A HREF="000924.html">[Kiwi-users] Article : How to make openSUSE 11.1 KDE 3.5 LiveCD	or LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#925">[ date ]</a>
+              <a href="thread.html#925">[ thread ]</a>
+              <a href="subject.html#925">[ subject ]</a>
+              <a href="author.html#925">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Carlos Goncalves wrote:
+&gt;<i> On Sunday 04 January 2009 19:56:50 <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">znmeb at cesmail.net</A> wrote:
+</I>&gt;&gt;<i> 1. I added the repositories, but the packages there just seem to be a
+</I>&gt;&gt;<i> README file. Are there other packages somewhere else that actually
+</I>&gt;&gt;<i> build the USB images?
+</I>&gt;<i> 
+</I>&gt;<i> The package which builds the ISO is kiwi-image-livecd-kde3 (LiveCD) and kiwi-
+</I>&gt;<i> image-usb-kde3 (LiveUSB). Note that you won't be able to build it using build 
+</I>&gt;<i> service because you don't have root access, like I don't have either so in 
+</I>&gt;<i> order to build you will have to build locally:
+</I>&gt;<i> 
+</I>&gt;<i> osc co home:cgoncalves:LiveCD kiwi-image-livecd-kde3
+</I>&gt;<i> osc build --userootforbuild PLATFORM ARCH kiwi-image-livecd-kde3.spec
+</I>&gt;<i> 
+</I>&gt;&gt;<i> 2. I am downloading the KDE 3 USB image from the site now. How do I
+</I>&gt;&gt;<i> install it? Do I unzip the &quot;gz&quot; and just copy the &quot;.raw&quot; file directly
+</I>&gt;&gt;<i> to &quot;/dev/sdb&quot; with &quot;dd&quot;??
+</I>&gt;<i> 
+</I>&gt;<i> gzip -cd &lt;download&gt;.raw.gz | dd of=/dev/&lt;device_name&gt; bs=4096
+</I>&gt;<i> 
+</I>
+Thanks!! I got the USB stick to boot. It's an 8 GB stick and it is very
+slow, so I am going to try to find a smaller faster one. Meanwhile, I'll
+try to build the x86_64 version on my machine to see what happens.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000922.html">[Kiwi-users] Article : How to make openSUSE 11.1 KDE 3.5	LiveCD or LiveDVD
+</A></li>
+	<LI>Next message: <A HREF="000924.html">[Kiwi-users] Article : How to make openSUSE 11.1 KDE 3.5 LiveCD	or LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#925">[ date ]</a>
+              <a href="thread.html#925">[ thread ]</a>
+              <a href="subject.html#925">[ subject ]</a>
+              <a href="author.html#925">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

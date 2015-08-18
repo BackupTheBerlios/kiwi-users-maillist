@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] isohybrid error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20isohybrid%20error&In-Reply-To=%3C20090818094649.GB5209%40open-xchange.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001395.html">
+   <LINK REL="Next"  HREF="001389.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] isohybrid error</H1>
+    <B>Carsten Hoeger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20isohybrid%20error&In-Reply-To=%3C20090818094649.GB5209%40open-xchange.com%3E"
+       TITLE="[Kiwi-users] isohybrid error">choeger at open-xchange.com
+       </A><BR>
+    <I>Tue Aug 18 11:46:49 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001395.html">[Kiwi-users] Title for OEM boot
+</A></li>
+        <LI>Next message: <A HREF="001389.html">[Kiwi-users] isohybrid error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1388">[ date ]</a>
+              <a href="thread.html#1388">[ thread ]</a>
+              <a href="subject.html#1388">[ subject ]</a>
+              <a href="author.html#1388">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I'm trying to build an isohybrid image following
+
+<A HREF="http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/">http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/</A>
+
+I have the following packages/versions installed:
+
+kiwi-desc-vmxboot-3.74-25.1
+kiwi-desc-isoboot-3.74-25.1
+kiwi-instsource-plugins-openSUSE-11-1-2.1-1.5
+kiwi-3.74-25.1
+kiwi-instsource-3.74-25.1
+kiwi-doc-3.74-25.1
+kiwi-desc-oemboot-3.74-25.1
+syslinux-3.82-45.1
+kiwi-tools-3.74-25.1
+kiwi-desc-usbboot-3.74-25.1
+kiwi-templates-3.74-25.1
+
+The image creation fails with
+
+Aug-18 11:37:37 &lt;1&gt; : Setting up hybrid ISO...Aug-18 11:37:39 &lt;3&gt; : Failed to
+call isohybrid: /usr/bin/isohybrid:
+oxlive-result/ox-live-iso-desktop.i686-0.0.2.iso: bootloader does not have a
+isolinux.bin hybrid signature.Note that isolinux-debug.bin does not support
+hybrid booting.
+                                                                                       failed
+                                                                                       failed
+Aug-18 11:37:39 &lt;3&gt; : Failed to create hybrid ISO image
+failed
+[*** log excerpt follows, last 1 Kbyte ***]
+ r-UDREwH /tmp/kiwi-cdboot.BgGpcO/kiwi-cdboot-31821/CD 2&gt;&amp;1]
+ Aug-18 11:37:35 &lt;1&gt; : EXEC [rm -f /tmp/kiso-sort-Vs4CPs 2&gt;&amp;1]
+ Aug-18 11:37:35 &lt;1&gt; : EXEC [rm -rf /tmp/kiso-loader-UDREwH 2&gt;&amp;1]
+ Aug-18 11:37:35 &lt;1&gt; : Relocating boot catalog from sector 52 to 20   done
+ Aug-18 11:37:37 &lt;1&gt; : Setting up hybrid ISO...
+ Aug-18 11:37:37 &lt;1&gt; : EXEC [isohybrid -id 0x6a202443 -type 0x83
+oxlive-result/ox-live-iso-desktop.i686-0.0.2.iso 2&gt;&amp;1]
+ Aug-18 11:37:39 &lt;3&gt; : Failed to call isohybrid: /usr/bin/isohybrid:
+oxlive-result/ox-live-iso-desktop.i686-0.0.2.iso: bootloader does not have a
+isolinux.bin hybrid signature.Note that isolinux-debug.bin does not support
+hybrid booting.
+    failed
+    failed
+ Aug-18 11:37:39 &lt;3&gt; : Failed to create hybrid ISO image   failed
+ Aug-18 11:37:39 &lt;1&gt; : EXEC [rm -rf /tmp/kiwi-cdboot.BgGpcO/kiwi-cdboot-31821]
+ Aug-18 11:37:39 &lt;1&gt; : EXEC [rm -rf /tmp/kiwi-cdboot.BgGpcO]
+ Aug-18 11:37:40 &lt;1&gt; : EXEC [cp oxlive.31821.screenrc.log
+/tmp/kiwi-cdboot.BgGpcO/kiwi-cdboot-31821/.broken 2&gt;&amp;1]
+ [*** end ***]
+
+
+Does that mean I need a even newer version of syslinux?
+
+I'm using clicfs from
+
+<A HREF="http://download.opensuse.org/repositories/server:/ltsp/openSUSE_11.1/">http://download.opensuse.org/repositories/server:/ltsp/openSUSE_11.1/</A>
+
+
+-- 
+With best regards,
+
+Carsten Hoeger
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090818/b4e88858/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090818/b4e88858/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001395.html">[Kiwi-users] Title for OEM boot
+</A></li>
+	<LI>Next message: <A HREF="001389.html">[Kiwi-users] isohybrid error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1388">[ date ]</a>
+              <a href="thread.html#1388">[ thread ]</a>
+              <a href="subject.html#1388">[ subject ]</a>
+              <a href="author.html#1388">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

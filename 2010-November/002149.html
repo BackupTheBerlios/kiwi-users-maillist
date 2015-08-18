@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] obs kiwi build: nothing provides ciutils
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20obs%20kiwi%20build%3A%20nothing%20provides%20ciutils&In-Reply-To=%3C20101122150031.GB30643%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002145.html">
+   <LINK REL="Next"  HREF="002146.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] obs kiwi build: nothing provides ciutils</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20obs%20kiwi%20build%3A%20nothing%20provides%20ciutils&In-Reply-To=%3C20101122150031.GB30643%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] obs kiwi build: nothing provides ciutils">ms at novell.com
+       </A><BR>
+    <I>Mon Nov 22 16:00:31 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002145.html">[Kiwi-users] obs kiwi build: nothing provides ciutils
+</A></li>
+        <LI>Next message: <A HREF="002146.html">[Kiwi-users] How can I build a 64-bit image on a 32-bit system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2149">[ date ]</a>
+              <a href="thread.html#2149">[ thread ]</a>
+              <a href="subject.html#2149">[ subject ]</a>
+              <a href="author.html#2149">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am trying to build my kiwi image on obs as well and I can't; I'm getting 
+</I>&gt;<i> unresolvable &quot;nothing provides ciutils.&quot; (the build doesn't even start). I 
+</I>&gt;<i> have talked with Adrian Schr&#246;ter and he told me that it could be an obs/kiwi 
+</I>&gt;<i> regression and that I should talk with Marcus Sch&#228;fer.
+</I>
+well yes and no :)
+
+&gt;<i> The same image builds fine using kiwi locally.
+</I>
+that means kiwi is not the problem here *puh* :)
+
+&gt;<i> I have added the Virtualization:Appliances repo to my path to repository 
+</I>&gt;<i> images on obs in order to use the latest version of KIWI and I get the same 
+</I>&gt;<i> unresolvable error.
+</I>&gt;<i> ciutils is part of my &quot;Substitute: kiwi-boot:oemboot&quot;
+</I>&gt;<i> <A HREF="https://build.opensuse.org/project/prjconf?project=spins%3Aopen-pc%3A11.3">https://build.opensuse.org/project/prjconf?project=spins%3Aopen-pc%3A11.3</A>
+</I>
+you have your own oemboot code ? if so which project provids ciutils ?
+I can't find it which might be the reason why obs can't find it too
+
+&gt;<i> The image that doesn't build is open-pc-release (nor open-pc-image which is a 
+</I>&gt;<i> clone except for the filesystem, it uses ext3) 
+</I>&gt;<i> <A HREF="https://build.opensuse.org/project/monitor?project=spins%3Aopen-pc%3Aimages">https://build.opensuse.org/project/monitor?project=spins%3Aopen-pc%3Aimages</A>
+</I>&gt;<i> open-pc-factory builds fine but it doesn't have the spins:open-pc:kde repo. 
+</I>&gt;<i> Can that make such a difference?
+</I>
+I'm not the best person to ask this. imho the buildservice cleanly resolve
+dependencies if it can't I also ask Adrian for the reasons. I'm wondering
+that he pointed you back to me ?
+
+@Adrian: kiwi builds locally so something must be wrong in setting up
+         the buildenvironment for kiwi inside obs. Couly you take a look
+         here
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002145.html">[Kiwi-users] obs kiwi build: nothing provides ciutils
+</A></li>
+	<LI>Next message: <A HREF="002146.html">[Kiwi-users] How can I build a 64-bit image on a 32-bit system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2149">[ date ]</a>
+              <a href="thread.html#2149">[ thread ]</a>
+              <a href="subject.html#2149">[ subject ]</a>
+              <a href="author.html#2149">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

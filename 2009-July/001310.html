@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] umount devpts: not found
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20umount%20devpts%3A%20not%20found&In-Reply-To=%3C20090729113837.GA12926%40idefix.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001309.html">
+   <LINK REL="Next"  HREF="001312.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] umount devpts: not found</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20umount%20devpts%3A%20not%20found&In-Reply-To=%3C20090729113837.GA12926%40idefix.suse.de%3E"
+       TITLE="[Kiwi-users] umount devpts: not found">ms at novell.com
+       </A><BR>
+    <I>Wed Jul 29 13:38:37 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001309.html">[Kiwi-users] umount devpts: not found
+</A></li>
+        <LI>Next message: <A HREF="001312.html">[Kiwi-users] Strange error while deploying OEM image using USB boot	disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1310">[ date ]</a>
+              <a href="thread.html#1310">[ thread ]</a>
+              <a href="subject.html#1310">[ subject ]</a>
+              <a href="author.html#1310">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I just installed kiwi 3.59.80.1 on openSuse 11.1 and tried to prepare
+</I>&gt;<i> diverse images (that used to work with kiwi 3.0.1, but I also
+</I>&gt;<i> reinstalled the openSuse machine several times since the last build).
+</I>&gt;<i> Unfortunately, during the prepare stage, I always see these errors:
+</I>&gt;<i> 
+</I>&gt;<i> Jul-27 17:14:53 &lt;1&gt; : Umount failed: umount: devpts: Nicht gefunden
+</I>&gt;<i> umount: /tmp/kiwi-cd/dev/pts ist nicht eingeh&#228;ngt
+</I>&gt;<i> umount: devpts: Nicht gefunden
+</I>&gt;<i> umount: /tmp/kiwi-cd/dev/pts ist nicht eingeh&#228;ngt
+</I>&gt;<i> Jul-27 17:14:53 &lt;2&gt; : Umount failed: calling lazy umount
+</I>&gt;<i> 
+</I>&gt;<i> Jul-27 17:14:53 &lt;1&gt; : Umounting path: /tmp/kiwi-cd/sys
+</I>&gt;<i> Jul-27 17:14:53 &lt;1&gt; : EXEC [umount &quot;/tmp/kiwi-cd/sys&quot; 2&gt;&amp;1]
+</I>&gt;<i> Jul-27 17:14:53 &lt;1&gt; : Umount failed: umount: sysfs: Nicht gefunden
+</I>&gt;<i> umount: /tmp/kiwi-cd/sys ist nicht eingeh&#228;ngt
+</I>&gt;<i> umount: sysfs: Nicht gefunden
+</I>&gt;<i> umount: /tmp/kiwi-cd/sys ist nicht eingeh&#228;ngt
+</I>&gt;<i> Jul-27 17:14:53 &lt;2&gt; : Umount failed: calling lazy umount
+</I>&gt;<i> 
+</I>&gt;<i> Jul-27 17:14:53 &lt;1&gt; : Umounting path: /tmp/kiwi-cd/dev
+</I>&gt;<i> Jul-27 17:14:53 &lt;1&gt; : EXEC [umount &quot;/tmp/kiwi-cd/dev&quot; 2&gt;&amp;1]
+</I>&gt;<i> Jul-27 17:14:53 &lt;1&gt; : Umounting path: /tmp/kiwi-cd/proc
+</I>&gt;<i> Jul-27 17:14:53 &lt;1&gt; : EXEC [umount &quot;/tmp/kiwi-cd/proc&quot; 2&gt;&amp;1]
+</I>&gt;<i> Jul-27 17:14:53 &lt;1&gt; : Umount failed: umount: proc: Nicht gefunden
+</I>&gt;<i> umount: /tmp/kiwi-cd/proc ist nicht eingeh&#228;ngt
+</I>&gt;<i> umount: proc: Nicht gefunden
+</I>&gt;<i> umount: /tmp/kiwi-cd/proc ist nicht eingeh&#228;ngt
+</I>&gt;<i> Jul-27 17:14:53 &lt;2&gt; : Umount failed: calling lazy umount
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> The installation of all packages work ok, the kiwi-cd directory looks ok
+</I>&gt;<i> to me.
+</I>
+The above are just warnings. kiwi mounted these path's while
+installing the packages so it also took care to umount it but
+somehow they are already umounted. It might be the case that
+your config.sh script umounts them could that be possible ?
+
+Anyway this is not a problem, the tree is valid
+
+&gt;<i> Do I have to revert to kiwi 3.0.1 from the main repository?
+</I>
+3.01 just hides this messages :-))
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001309.html">[Kiwi-users] umount devpts: not found
+</A></li>
+	<LI>Next message: <A HREF="001312.html">[Kiwi-users] Strange error while deploying OEM image using USB boot	disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1310">[ date ]</a>
+              <a href="thread.html#1310">[ thread ]</a>
+              <a href="subject.html#1310">[ subject ]</a>
+              <a href="author.html#1310">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

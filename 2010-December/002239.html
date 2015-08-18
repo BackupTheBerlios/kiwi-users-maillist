@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Is kiwi capable to destroy data on partition (except image partition)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Is%20kiwi%20capable%20to%20destroy%20data%20on%20partition%0A%20%28except%20image%20partition%29&In-Reply-To=%3C20101228203939.GA13198%40localhost.speedport.ip%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002236.html">
+   <LINK REL="Next"  HREF="002240.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Is kiwi capable to destroy data on partition (except image partition)</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Is%20kiwi%20capable%20to%20destroy%20data%20on%20partition%0A%20%28except%20image%20partition%29&In-Reply-To=%3C20101228203939.GA13198%40localhost.speedport.ip%3E"
+       TITLE="[Kiwi-users] Is kiwi capable to destroy data on partition (except image partition)">ms at suse.de
+       </A><BR>
+    <I>Tue Dec 28 21:39:40 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002236.html">[Kiwi-users] Is kiwi capable to destroy data on partition (except	image partition)
+</A></li>
+        <LI>Next message: <A HREF="002240.html">[Kiwi-users] Is kiwi capable to destroy data on partition (except image partition)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2239">[ date ]</a>
+              <a href="thread.html#2239">[ thread ]</a>
+              <a href="subject.html#2239">[ subject ]</a>
+              <a href="author.html#2239">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Or all my partitions (except image partition) are safe and in case of
+</I>&gt;<i> problems kiwi just stops and will not corrupt any existing non-root
+</I>&gt;<i> partition by repartition?
+</I>&gt;<i> 
+</I>&gt;<i> E.g.
+</I>&gt;<i> 
+</I>&gt;<i> PART=5;S;x,200;L;/,100;L;/mountpoint,
+</I>&gt;<i> 
+</I>&gt;<i> Can I not to bother about safety of data on sda3 during some repartition
+</I>&gt;<i> after pxeboot?
+</I>
+all data on the disk specified by DISK=... will be lost because
+kiwi creates a new partition table and wipes the existing one
+in this imaging mode. if you want to have some parts on the disk
+not touched it might be better to use kiwi just to create the root
+filesystem image and write your own boot code as clone from netboot
+suitable to deploy this image on your client machines.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002236.html">[Kiwi-users] Is kiwi capable to destroy data on partition (except	image partition)
+</A></li>
+	<LI>Next message: <A HREF="002240.html">[Kiwi-users] Is kiwi capable to destroy data on partition (except image partition)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2239">[ date ]</a>
+              <a href="thread.html#2239">[ thread ]</a>
+              <a href="subject.html#2239">[ subject ]</a>
+              <a href="author.html#2239">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

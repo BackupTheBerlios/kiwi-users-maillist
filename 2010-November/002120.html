@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20using%20%22kiwi%20-i%20--select%20packages%22&In-Reply-To=%3C291A23B717F9104985651112DB6C365F27304D7636%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002117.html">
+   <LINK REL="Next"  HREF="002122.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20using%20%22kiwi%20-i%20--select%20packages%22&In-Reply-To=%3C291A23B717F9104985651112DB6C365F27304D7636%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;">john.lund at emc.com
+       </A><BR>
+    <I>Mon Nov 15 22:42:27 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002117.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+        <LI>Next message: <A HREF="002122.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2120">[ date ]</a>
+              <a href="thread.html#2120">[ thread ]</a>
+              <a href="subject.html#2120">[ subject ]</a>
+              <a href="author.html#2120">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> ok, logging is broken in this mode :( Attached is a patch which fixes
+</I>
+&gt;<i> the logging. Could you apply it with:
+</I>
+&gt;<i>
+</I>
+&gt;<i>    patch -p0 &lt; kiwi.dif
+</I>
+&gt;<i>
+</I>
+&gt;<i> After that try the kiwi call above again. You should see more
+</I>
+&gt;<i> information now.
+</I>
+
+
+I see more lots of output now.  Not sure what it is trying to do when it is failing:
+
+Nov-15 16:32:17 &lt;1&gt; : EXEC [(gzip -cd /var/cache/kiwi/satsolver/packages-1.gz /var/cache/kiwi/satsolver/32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/apparmor-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/apparmor-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/base-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/base-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/Basis-Devel-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/Basis-Devel-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/dhcp_dns_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/dhcp_dns_server-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/directory_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/directory_server-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/documentation-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/documentation-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/Dom0-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/Dom0-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/file_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/file_server-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/gateway_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/gateway_server-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/gnome-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/gnome-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/jeos-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/jeos-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/kde-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/kde-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/lamp_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/lamp_server-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/laptop-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/laptop-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/mail_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/mail_server-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/Minimal-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/Minimal-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/ofed-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/ofed-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/oracle_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/oracle_server-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/print_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/print_server-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/sap_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/sap_server-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/WBEM-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/WBEM-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/x11-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/x11-32bit-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/xen_server-11-38.13.9.x86_64.pat.gz /var/cache/kiwi/satsolver/xen_server-32bit-11-38.13.9.x86_64.pat.gz ;cat /var/cache/kiwi/satsolver/packages-1 ) | susetags2solv &gt; /var/cache/kiwi/satsolver/primary-4 2&gt;/dev/null]
+
+   failed
+
+Nov-15 16:32:17 &lt;3&gt; : --&gt; Can't create SaT solvable file   failed
+
+
+
+Full output is attached.
+
+
+
+Thank you,
+
+John Lund
+
+EMC Centera Development
+
+(508) 249-5473
+
+(571) 484-0139 Mobile
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101115/26ce066a/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101115/26ce066a/attachment.html</A>&gt;
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: kiwilog.txt
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101115/26ce066a/attachment.txt">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101115/26ce066a/attachment.txt</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002117.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+	<LI>Next message: <A HREF="002122.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2120">[ date ]</a>
+              <a href="thread.html#2120">[ thread ]</a>
+              <a href="subject.html#2120">[ subject ]</a>
+              <a href="author.html#2120">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

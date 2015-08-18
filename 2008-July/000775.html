@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Updating nbd-client in kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Updating%20nbd-client%20in%20kiwi&In-Reply-To=%3C20080715121904.GA14859%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000774.html">
+   <LINK REL="Next"  HREF="000776.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Updating nbd-client in kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Updating%20nbd-client%20in%20kiwi&In-Reply-To=%3C20080715121904.GA14859%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Updating nbd-client in kiwi">ms at novell.com
+       </A><BR>
+    <I>Tue Jul 15 14:19:05 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000774.html">[Kiwi-users] Updating nbd-client in kiwi
+</A></li>
+        <LI>Next message: <A HREF="000776.html">[Kiwi-users] Live CD custom grub entries
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#775">[ date ]</a>
+              <a href="thread.html#775">[ thread ]</a>
+              <a href="subject.html#775">[ subject ]</a>
+              <a href="author.html#775">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am building an image for a diskless system. As I mentioned way back on
+</I>&gt;<i> the list, I have issues with nbd when booting over a fast network. The
+</I>&gt;<i> nbd developers want me to replace the nbd-client with a newer version
+</I>&gt;<i> (2.9.11). I have built the new version as binaries and would like to use
+</I>&gt;<i> them. My first attempt was to replace the old nbd-client with my new one
+</I>&gt;<i> when my install.sh script runs. In fact, this works. But I have a
+</I>&gt;<i> feeling that the nbd-client that gets replaced at this time is not the
+</I>&gt;<i> one used when mounting / via nbd during boot. It is the one I see after
+</I>&gt;<i> the mount is finished. That is, the nbd-client that would get replaced
+</I>&gt;<i> when the install.sh script gets run is not the one in the initrd image,
+</I>&gt;<i> but the one in the image that nbd eventually mounts.
+</I>&gt;<i> 
+</I>&gt;<i> Could it be this way? And if so, what is a better way to be sure that my
+</I>&gt;<i> nbd-client is the one used during initial boot?
+</I>&gt;<i> 
+</I>&gt;<i> Sorry if this is not a clear description...
+</I>
+you need the new version of nbd-client in your boot image (initrd)
+that's correct. In order to have it there you can copy the binary
+to the correct boot image description.
+
+Example:
+
+  boot image is /usr/share/kiwi/image/netboot/suse-11.0
+
+In this case the following should work:
+
+	cd /usr/share/kiwi/image/netboot/suse-11.0
+	mkdir -p root/usr/sbin/
+	cp nbd-client root/usr/sbin/
+
+re-create your image.
+
+NOTE:
+you now have a binary file in your boot image description.
+This is evil :) but serves best to give it a test with a new
+version of a program. If you know the new version works you
+should have the program as part of a package and let kiwi install
+it 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000774.html">[Kiwi-users] Updating nbd-client in kiwi
+</A></li>
+	<LI>Next message: <A HREF="000776.html">[Kiwi-users] Live CD custom grub entries
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#775">[ date ]</a>
+              <a href="thread.html#775">[ thread ]</a>
+              <a href="subject.html#775">[ subject ]</a>
+              <a href="author.html#775">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

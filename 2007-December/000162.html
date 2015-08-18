@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to insert a kernel module in KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20insert%20a%20kernel%20module%20in%20KIWI&In-Reply-To=%3C475EA4AC.F132.00B1.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000161.html">
+   <LINK REL="Next"  HREF="000163.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to insert a kernel module in KIWI</H1>
+    <B>Kazuhiro Takagi</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20insert%20a%20kernel%20module%20in%20KIWI&In-Reply-To=%3C475EA4AC.F132.00B1.0%40novell.com%3E"
+       TITLE="[Kiwi-users] How to insert a kernel module in KIWI">KTakagi at novell.com
+       </A><BR>
+    <I>Tue Dec 11 06:54:35 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000161.html">[Kiwi-users] v2.00 released
+</A></li>
+        <LI>Next message: <A HREF="000163.html">[Kiwi-users] How to insert a kernel module in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list,
+ 
+Sorry, it may easy question.
+ 
+I want to insert a additional kernel module to image.
+It is squashfs.ko. I create a compressed image from SLED10.
+ 
+I tried to add to config.xml
+ 
+ &lt;drivers type=&quot;drivers&quot;&gt;
+            :
+       &lt;file name=&quot;fs/squashfs.ko&quot;/&gt;
+            :
+ 
+and module is inserted to correct directory. Also add module name to
+INITRD_MODULES in sysconfig/kernel.
+But &quot;Failed to mount RO root filesystem&quot;.
+ 
+Could you tell me right way?
+ 
+Any help would be greatly appreciated.
+Thanks,
+Kazuhiro Takagi
+ 
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20071211/aac5ca0a/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20071211/aac5ca0a/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000161.html">[Kiwi-users] v2.00 released
+</A></li>
+	<LI>Next message: <A HREF="000163.html">[Kiwi-users] How to insert a kernel module in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

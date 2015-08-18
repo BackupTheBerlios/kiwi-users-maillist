@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C20080709083919.GA5633%40e210.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000758.html">
+   <LINK REL="Next"  HREF="000750.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C20080709083919.GA5633%40e210.suse.de%3E"
+       TITLE="[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD">ms at novell.com
+       </A><BR>
+    <I>Wed Jul  9 10:39:19 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000758.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+        <LI>Next message: <A HREF="000750.html">[Kiwi-users] commit mails broken?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#759">[ date ]</a>
+              <a href="thread.html#759">[ thread ]</a>
+              <a href="subject.html#759">[ subject ]</a>
+              <a href="author.html#759">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> It is a great feature, I ever hear. I think, I love Kiwi. ;-)
+</I>
+:<i>-)
+</I>
+&gt;<i> &gt; 2) you can use zypper or smart inside the image after the first
+</I>&gt;<i> &gt;    deployment. So if your system runs and you have installed for example
+</I>&gt;<i> &gt;    smart you can add the update repository with 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;       smart channel add ...
+</I>&gt;<i> &gt;       smart upgrade 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;    depending on the image type the changes might be in RAM only
+</I>&gt;<i> &gt;    ( for example on live ISO's) so this might not be a good idea
+</I>&gt;<i> 
+</I>&gt;<i> This suggestion isn't a good idea, but it can implemented in an emergency.
+</I>&gt;<i> If someone need software from repository, so it can add easier to 
+</I>&gt;<i> running system.
+</I>&gt;<i> But at next reboot, all added or updated software are gone. :-/
+</I>
+for the iso type, yes you are right
+
+&gt;<i> My next step are compiling a software and adding this to live cd.
+</I>&gt;<i> I think, the step to compile for live cd as follows:
+</I>&gt;<i> 1. ./configure --prefix=/usr
+</I>&gt;<i> 2. make
+</I>&gt;<i> 3. copy source directory to the same subfolder in live-cd-directory like 
+</I>&gt;<i> the host-system
+</I>&gt;<i> 4. chrooting into the new system and install with command &quot;make install&quot;
+</I>&gt;<i> 
+</I>&gt;<i> But some execute file need library, so I find out the shared library 
+</I>&gt;<i> with &quot;readelf -d program&quot;
+</I>&gt;<i> and adding the missing library to the package of config.xml. Right?
+</I>&gt;<i> 
+</I>&gt;<i> Is that the best way to add any compiled software to live cd?
+</I>
+The best way is to package your software put the result into a
+directory and set that directory along with a coresponding &lt;package&gt;
+line as additional repository in your config.xml
+
+That's the best and the cleanest solution but also the most time
+consuming one.
+
+If I had to compile from source I also do that within the new root
+tree (chroot). This means I have to have all software to compile the
+program installed in my new root tree. People might say this is bad
+because the devlopment kit is needed only to compile but not to
+run the software. That's true but it's a clean way to compile the
+code
+
+The solution you've chosen works too but it's easy to stumble over
+multiple possible traps:
+
+- if the host you compile the software on is not on the same version
+  compared to the system in your new root tree, the compiled binary
+  could work but don't have to
+
+- the configure call resolves the buld environment correctly but
+  there is no guarantee that this requirements are also correct in
+  your new root tree. If you copy the tree after make and run make
+  install inside the new root you risk a broken installation.
+  missing libraries are only one problem there could be other
+  programs/configurations missing.
+   
+I think if it's your own software or a small program you can go
+that way but don't try to do that with for example openoffice :-)
+There are also many public repositories out there which package nearly
+every program.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000758.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+	<LI>Next message: <A HREF="000750.html">[Kiwi-users] commit mails broken?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#759">[ date ]</a>
+              <a href="thread.html#759">[ thread ]</a>
+              <a href="subject.html#759">[ subject ]</a>
+              <a href="author.html#759">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

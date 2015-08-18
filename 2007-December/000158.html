@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Athentication problem heppen on LiveCD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Athentication%20problem%20heppen%20on%20LiveCD&In-Reply-To=%3C20071203130953.GA16799%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000157.html">
+   <LINK REL="Next"  HREF="000159.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Athentication problem heppen on LiveCD</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Athentication%20problem%20heppen%20on%20LiveCD&In-Reply-To=%3C20071203130953.GA16799%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Athentication problem heppen on LiveCD">ms at suse.de
+       </A><BR>
+    <I>Mon Dec  3 14:09:54 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000157.html">[Kiwi-users] Athentication problem heppen on LiveCD
+</A></li>
+        <LI>Next message: <A HREF="000159.html">[Kiwi-users] Starting X Font Server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#158">[ date ]</a>
+              <a href="thread.html#158">[ thread ]</a>
+              <a href="subject.html#158">[ subject ]</a>
+              <a href="author.html#158">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I wrote the user specification listed below. it's test case.
+</I>&gt;<i> But &quot;Authentication error&quot; happened. It looks like no user define in
+</I>&gt;<i> /etc/passwd.
+</I>&gt;<i> It did not ask the password.
+</I>&gt;<i> ----------------------------------------------------------
+</I>&gt;<i>   &lt;users group=&quot;users&quot;&gt;
+</I>&gt;<i>         &lt;user name=&quot;linux&quot; pwd=&quot;&quot; home=&quot;/home/linux&quot;/&gt;
+</I>&gt;<i>         &lt;user name=&quot;root&quot; pwd=&quot;&quot; home=&quot;/root&quot;/&gt;
+</I>&gt;<i>   &lt;/users&gt;
+</I>&gt;<i> ----------------------------------------------------------
+</I>
+First of all this users section would put root into the
+group users. I think this is not a good idea. I found this section
+in the current liveCD description and changed it accordingly.
+I recommend to do that too
+
+	&lt;users group=&quot;users&quot;&gt;
+		&lt;user name=&quot;linux&quot; pwd=&quot;&quot; home=&quot;/home/linux&quot;/&gt;
+	&lt;//users&gt;
+	&lt;users group=&quot;root&quot;&gt;
+		&lt;user name=&quot;root&quot; pwd=&quot;&quot; home=&quot;/root&quot;/&gt;
+	&lt;/users&gt;
+
+&gt;<i> I checked in ram image.
+</I>&gt;<i>  - /etc/passwd, /etc/shadow, /etc/group, /etc/nologin
+</I>&gt;<i>  - PAM configuration
+</I>&gt;<i> 
+</I>&gt;<i> It looks like no problem. What is the check point to investigate?
+</I>&gt;<i> There is no problem when created openSUSE10.3 LiveCD.
+</I>
+From the section above both users should be able to login
+without password. For the root user this is not possible except
+you call something like:
+
+	passwd -d root
+	pam-config -a --nullok
+
+To check at least the linux user you can chroot into the
+prepared tree and call su there
+
+	chroot /path/to/image/root bash
+	su linux
+	su root
+
+Last but not least:
+The package resmgr must be installed
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000157.html">[Kiwi-users] Athentication problem heppen on LiveCD
+</A></li>
+	<LI>Next message: <A HREF="000159.html">[Kiwi-users] Starting X Font Server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#158">[ date ]</a>
+              <a href="thread.html#158">[ thread ]</a>
+              <a href="subject.html#158">[ subject ]</a>
+              <a href="author.html#158">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

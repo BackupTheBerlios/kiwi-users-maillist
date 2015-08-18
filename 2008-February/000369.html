@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] split image type and read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C20080225172435.GB12104%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000368.html">
+   <LINK REL="Next"  HREF="000370.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] split image type and read-only</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C20080225172435.GB12104%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] split image type and read-only">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 25 18:24:36 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000368.html">[Kiwi-users] split image type and read-only
+</A></li>
+        <LI>Next message: <A HREF="000370.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#369">[ date ]</a>
+              <a href="thread.html#369">[ thread ]</a>
+              <a href="subject.html#369">[ subject ]</a>
+              <a href="author.html#369">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I've been using the &lt;split&gt; element, hoping I could achieve
+</I>&gt;<i> a read-only diskful image. But after building several images and
+</I>&gt;<i> looking through the kiwi modules, I think &quot;read-only&quot; might be a
+</I>&gt;<i> misnomer.  To me,	read-only implies that no writes are possible;
+</I>&gt;<i> yet when the image is	booted, a mount command shows that this
+</I>&gt;<i> &quot;read-only&quot; partition is mounted read-write. I think I understand
+</I>&gt;<i> the read-write partition to allow some file persistence.
+</I>
+It is true we are mounting the read-only partition read-write.
+We do that because we assume the read-only partition to use a
+read-only filesystem like for example squashfs. But in principal
+you are right we should add a
+
+	-o ro 
+
+to the mount of the read-only part. Snorp I think we should change:
+
+	if ! mount -t auto $roDevice /read-only &gt;/dev/null;then
+        return 1
+    fi
+
+to
+
+	if ! mount -t auto -o ro $roDevice /read-only &gt;/dev/null;then
+        return 1
+    fi
+
+&gt;<i> I'm also having a hard time understanding the logic
+</I>&gt;<i> behind the contortions in the mountSystemCombined function from
+</I>&gt;<i> KIWILinuxRC.sh:
+</I>
+Ha Ha yeah that's a bit magic and should be more documented. I'll
+try to explain:
+
+ 1) mount the read-only partition to a /read-only mount point
+ 2) mount a tmpfs to /mnt and extract the writable but temporary
+    in RAM data into it (tarball) /mnt will become the later
+    root directory (/)
+ 3) create a read-only mountpoint below /mnt
+ 4) move the /read-only mount into the tmpfs (/mnt) mount
+    all the read-only links which have been created as part of the tarball
+    will become valid if /mnt becomes /
+ *  NOW OPTIONALLY
+ 5) mount the read-write partition to a /mnt/read-write mount point
+ 6) create a link named /read-write because all the links created
+    in the tarball are pointing to /read-write
+
+===&gt; now move /mnt to / and got the tree
+===&gt; I know it's weird. Snorp would you mind to add some comments
+     to your magic :-) Thanks 
+
+&gt;<i> What am I missing???  Can I use the &lt;split&gt; element to
+</I>&gt;<i> achieve an image where no disk writes are possible to the read-only
+</I>&gt;<i> partition, unless I specifically remount it read-write?
+</I>
+I think yes if we add the -o ro option. Anyway you shouldn't
+see any write action to /read-only at the moment 
+
+&gt;<i> Also, what is the effect of using &quot;ext3,cramfs&quot; as the
+</I>&gt;<i> filesystem attribute for the &lt;type&gt; element?  Does this make the
+</I>&gt;<i> read-write partition a cramfs filesystem?  If so, then what is the
+</I>&gt;<i> meaning of read-write in this case?  Note: I haven't successfully
+</I>&gt;<i> used cramfs because I keep exceeding the cramfs size limit.
+</I>
+First of all I have dropped support for cramfs because it has
+a size limit which is not acceptable for system images. People always
+run into that issue and squashfs is the better compressed filesystem
+and doesn't have that problem
+
+the effect of &quot;ext3,cramfs&quot; would be an ext3 based read-write partition
+and a cramfs based read-only partition. In this case the mount options
+wouldn't matter because you can mount it only read-only. People use
+the split type most often with:
+
+	filesystem=&quot;ext3,squashfs&quot;
+
+which means put all my &lt;split&gt; section data into an ext3 partition
+and use the rest as compressed read-only squashfs based data
+
+Hope that helps a bit ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000368.html">[Kiwi-users] split image type and read-only
+</A></li>
+	<LI>Next message: <A HREF="000370.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#369">[ date ]</a>
+              <a href="thread.html#369">[ thread ]</a>
+              <a href="subject.html#369">[ subject ]</a>
+              <a href="author.html#369">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

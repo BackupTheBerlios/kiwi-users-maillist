@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Image checksum test failed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Image%20checksum%20test%20failed&In-Reply-To=%3C20101228204720.GA26053%40localhost.speedport.ip%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002229.html">
+   <LINK REL="Next"  HREF="002226.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Image checksum test failed</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Image%20checksum%20test%20failed&In-Reply-To=%3C20101228204720.GA26053%40localhost.speedport.ip%3E"
+       TITLE="[Kiwi-users] Image checksum test failed">ms at suse.de
+       </A><BR>
+    <I>Tue Dec 28 21:47:20 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002229.html">[Kiwi-users] Image checksum test failed
+</A></li>
+        <LI>Next message: <A HREF="002226.html">[Kiwi-users] Image checksum test failed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2241">[ date ]</a>
+              <a href="thread.html#2241">[ thread ]</a>
+              <a href="subject.html#2241">[ subject ]</a>
+              <a href="author.html#2241">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm trying to learn pxe boot for parallel cluster under openSUSE 11.2.
+</I>&gt;<i> It loads fine but on checking data stage I get &quot;Image checksum test failed&quot;.
+</I>&gt;<i> Excluding cable problem and data corruption.
+</I>&gt;<i> Partition size? I have 2 Gb virtual hard disk, and in
+</I>&gt;<i> ./KIWI/config.&lt;MAC&gt; there is
+</I>&gt;<i> 
+</I>&gt;<i> DISK=/dev/sda
+</I>&gt;<i> PART=5;S;x,251;L;/,x;L;x,
+</I>&gt;<i> IMAGE=/dev/sda2;suse-11.2-pxe-client.x86_64;1.2.8;192.168.0.7;4096
+</I>&gt;<i> UNIONFS_CONFIG=/dev/sda3,/dev/sda2,clicfs
+</I>
+I used the latest kiwi version to reproduce this and it worked
+fine on my test system. I changed the config.&lt;MAC&gt; as follows:
+
+  DISK=/dev/sda
+  PART=5;S;x,251;83;/,x;83;x,
+  IMAGE=/dev/sda2;LimeJeOS-openSUSE-11.3.x86_64;1.11.3;192.168.100.2;4096
+  UNIONFS_CONFIG=/dev/sda3,/dev/sda2,clicfs
+  PARTITIONER=parted
+
+I checked the created md5 files as follows:
+
+  cat LimeJeOS-openSUSE-11.3.x86_64-1.11.3.md5
+
+  65a6c76e45b2489bdfa91d74145773b5   4153 28977
+
+  md5sum LimeJeOS-openSUSE-11.3.x86_64-1.11.3.clicfs
+
+  65a6c76e45b2489bdfa91d74145773b5  LimeJeOS-openSUSE-11.3.x86_64-1.11.3.clicfs
+
+which kiwi version did you use ? Your checks are correct the md5
+sum must match. You can't check the md5sum with the '-c' option
+though because for kiwi I additionally add the blocks and block-size
+information needed for atftp download so it's not an original .md5
+file suitable for -c anymore
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002229.html">[Kiwi-users] Image checksum test failed
+</A></li>
+	<LI>Next message: <A HREF="002226.html">[Kiwi-users] Image checksum test failed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2241">[ date ]</a>
+              <a href="thread.html#2241">[ thread ]</a>
+              <a href="subject.html#2241">[ subject ]</a>
+              <a href="author.html#2241">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

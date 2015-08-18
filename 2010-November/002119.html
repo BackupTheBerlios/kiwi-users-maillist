@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] LVM by default on OEM images?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20by%20default%20on%20OEM%20images%3F&In-Reply-To=%3C4CE1850D.9050202%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002118.html">
+   <LINK REL="Next"  HREF="002121.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] LVM by default on OEM images?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20by%20default%20on%20OEM%20images%3F&In-Reply-To=%3C4CE1850D.9050202%40novell.com%3E"
+       TITLE="[Kiwi-users] LVM by default on OEM images?">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Nov 15 20:07:57 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002118.html">[Kiwi-users] LVM by default on OEM images?
+</A></li>
+        <LI>Next message: <A HREF="002121.html">[Kiwi-users] LVM by default on OEM images?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2119">[ date ]</a>
+              <a href="thread.html#2119">[ thread ]</a>
+              <a href="subject.html#2119">[ subject ]</a>
+              <a href="author.html#2119">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 11/15/2010 12:25 PM, Javier Llorente wrote:
+&gt;<i> Hello list-mates,
+</I>&gt;<i> 
+</I>&gt;<i> I have recently rebuilt an OEM image using the latest version of kiwi (4.64), 
+</I>&gt;<i> deployed it and booted it up. For my suprise, it had a LVM setup. I haven't 
+</I>&gt;<i> changed anything partition-wise and before it just had two ext4 
+</I>&gt;<i> partitions+swap (no lvm attribute). Has anything changed or is it me? :-)
+</I>
+Kiwi has changed, the home partition creation is no longer supported as
+a partition. For any configuration using &lt;oem-home&gt;true&lt;/oem-home&gt;, as
+in your case, Kiwi now creates a volume for the home &quot;partition&quot; and
+thus LVM is automatically setup.
+
+You can run
+
+-&gt; xsltproc -o new.xml /usr/share/kiwi/xsl/master.xsl
+PATH_TO_YOUR/config.xml
+
+and then diff new.xml and config.xml to see the changes to the
+configuration Kiwi automatically applies.
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002118.html">[Kiwi-users] LVM by default on OEM images?
+</A></li>
+	<LI>Next message: <A HREF="002121.html">[Kiwi-users] LVM by default on OEM images?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2119">[ date ]</a>
+              <a href="thread.html#2119">[ thread ]</a>
+              <a href="subject.html#2119">[ subject ]</a>
+              <a href="author.html#2119">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

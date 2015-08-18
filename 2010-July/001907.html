@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%0A%09re-partition%09/dev/sda&In-Reply-To=%3C4C447A95.6080708%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001906.html">
+   <LINK REL="Next"  HREF="001909.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%0A%09re-partition%09/dev/sda&In-Reply-To=%3C4C447A95.6080708%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Mon Jul 19 18:17:25 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001906.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+        <LI>Next message: <A HREF="001909.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1907">[ date ]</a>
+              <a href="thread.html#1907">[ thread ]</a>
+              <a href="subject.html#1907">[ subject ]</a>
+              <a href="author.html#1907">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Thanks for the response. Unfortunately the terminals are not grouped by
+IP, but by function. In addition the MAC addresses are not group-able
+via the standard PXE abilities due to a mix of hardware vendors being used.
+
+What would the feasibility of incorporating a means of being able to
+create a groups file that would act as a third layer on top of the PXE
+structure?
+
+We are attempting to transition off of Thinstation as that project has
+had little to no activity over the last few years, and we really need to
+be able to update/upgrade images as new applications come online. One of
+the most useful facilities we use extensively that Thinstation provides
+is the groups capabilities and environment variable loading facilities
+to &quot;tweak&quot; each station group.
+
+
+On 07/16/2010 11:46 AM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Something that has occurred to me, that I can't find any details on in
+</I>&gt;&gt;<i> the documentation, is that I really don't want to have to manually
+</I>&gt;&gt;<i> create 400+ config.xx:xx:xx:xx:xx:xx files when I finally start to
+</I>&gt;&gt;<i> deploy this image, and not all of the systems are doing the same thing,
+</I>&gt;&gt;<i> so I really need to create 10-15 &quot;groups&quot; where these systems will be
+</I>&gt;&gt;<i> linked into.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Other then maintaining 400+ symlinks to simulate groups, is there a
+</I>&gt;&gt;<i> defined/proper way to group like systems into a common config structure?
+</I>&gt;&gt;<i>     
+</I>&gt;<i> kiwi supports the same search algorithm than pxe does. If there is
+</I>&gt;<i> no .MAC config found it searches for a hex representation of the
+</I>&gt;<i> ip address. So you can group by the four tuples of the ip address.
+</I>&gt;<i> Would that work for you ? See the searchAlternativeConfig()
+</I>&gt;<i> function in /usr/share/kiwi/modules/KIWILinuxRC.sh
+</I>&gt;<i>
+</I>&gt;<i> At the end of that search there is the config.default which is
+</I>&gt;<i> loaded. So if most of your machines have the same setup you can
+</I>&gt;<i> use config.default and maintain a &quot;black&quot; list
+</I>&gt;<i>
+</I>&gt;<i> Another grouping is not possible at the moment so you need to
+</I>&gt;<i> live with links to the MAC in that case. I'm sorry
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001906.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+	<LI>Next message: <A HREF="001909.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1907">[ date ]</a>
+              <a href="thread.html#1907">[ thread ]</a>
+              <a href="subject.html#1907">[ subject ]</a>
+              <a href="author.html#1907">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

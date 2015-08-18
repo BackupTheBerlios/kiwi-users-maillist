@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] using config.xml with multiple profiles...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20using%20config.xml%20with%20multiple%20profiles...&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2732CBA016%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002258.html">
+   <LINK REL="Next"  HREF="002259.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] using config.xml with multiple profiles...</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20using%20config.xml%20with%20multiple%20profiles...&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2732CBA016%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] using config.xml with multiple profiles...">john.lund at emc.com
+       </A><BR>
+    <I>Mon Jan 17 22:46:07 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002258.html">[Kiwi-users] using config.xml with multiple profiles...
+</A></li>
+        <LI>Next message: <A HREF="002259.html">[Kiwi-users] question on command line --add-repo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2257">[ date ]</a>
+              <a href="thread.html#2257">[ thread ]</a>
+              <a href="subject.html#2257">[ subject ]</a>
+              <a href="author.html#2257">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Please ignore my previous email.  I found my problem.  Jing didn't care about catching a space in front of one of the profile names in a section where I was using multiple profiles on a packages line like so:
+&lt;packages type=&quot;image&quot; profiles=&quot;FirstProfile,&lt;space&gt;SecondProfile&quot;
+but kiwi was catching it just fine.  Still not getting a complete build yet.  I think the issues may be with our config.xml, so I'll keep looking there, sorry for the trouble.
+
+John Lund
+EMC Atmos - Access &amp; Platform Team
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+_____________________________________________
+From: Lund, John
+Sent: Monday, January 17, 2011 4:19 PM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: using config.xml with multiple profiles...
+
+
+We have been using a kiwi config.xml that has multiple profiles and would like to continue doing this.  We have been trying out the 4.70 build, and are getting the following error:
+Found reference to profile  AtmosDevelop but this profile does not exist.
+I don't think we are doing anything not allowed in our config.xml.  Just to be sure I checked our config file via jing against the KIWISchema.rng and I don't get any error messages back.  Are there any known issues with multiple profiles and 4.70?
+
+I'll try to reproduce this problem with a small problems set.
+
+Thank you,
+John Lund
+EMC Atmos - Access &amp; Platform Team
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002258.html">[Kiwi-users] using config.xml with multiple profiles...
+</A></li>
+	<LI>Next message: <A HREF="002259.html">[Kiwi-users] question on command line --add-repo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2257">[ date ]</a>
+              <a href="thread.html#2257">[ thread ]</a>
+              <a href="subject.html#2257">[ subject ]</a>
+              <a href="author.html#2257">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

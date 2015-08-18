@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image - Live-Stick System error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3Cacbb082e0906020326l2384a5a8ua45f6e8b41941193%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001147.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image - Live-Stick System error</H1>
+    <B>Julien VIELLE</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3Cacbb082e0906020326l2384a5a8ua45f6e8b41941193%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image - Live-Stick System error">jvielle at gmail.com
+       </A><BR>
+    <I>Tue Jun  2 12:26:06 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001147.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1148">[ date ]</a>
+              <a href="thread.html#1148">[ thread ]</a>
+              <a href="subject.html#1148">[ subject ]</a>
+              <a href="author.html#1148">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+You are completely right I have inherited my usb image from
+an oem image description. but I have also updated the config .xml to add the
+appropriated type. Here you will find the header of my config.xml
+==================================================================
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;image schemeversion=&quot;2.4&quot; name=&quot;essilor-suse-sled11&quot; displayname=&quot;Master
+Essilor&quot;&gt;
+    &lt;description type=&quot;system&quot;&gt;
+          &lt;specification&gt;suse-SLED11 oem Preload Essilor&lt;/specification&gt;
+    &lt;/description&gt;
+    &lt;!-- ************************************ --&gt;
+    &lt;!-- IMAGE TYPES DEFINITIONS  --&gt;
+    &lt;preferences&gt;
+        &lt;type primary=&quot;true&quot; filesystem=&quot;ext3&quot;
+boot=&quot;/usr/share/kiwi/image/oemboot/suse-SLED11-essilor&quot;
+format=&quot;iso&quot;&gt;oem&lt;/type&gt;
+        &lt;type filesystem=&quot;ext3&quot;
+boot=&quot;/usr/share/kiwi/image/netboot/suse-SLED11-essilor&quot;&gt;pxe&lt;/type&gt;
+        &lt;type filesystem=&quot;ext3&quot;
+boot=&quot;/usr/share/kiwi/image/usbboot/suse-SLED11-essilor&quot;&gt;usb&lt;/type&gt;
+          &lt;!--type filesystem=&quot;ext3&quot; boot=&quot;vmxboot/suse-SLED11-essilor&quot;
+format=&quot;vmdk&quot;&gt;vmx&lt;/type--&gt;
+        &lt;type boot=&quot;/usr/share/kiwi/image/isoboot/suse-SLED11-essilor&quot;
+flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+====================================================================
+
+And unfortunatly I have the problem described in my first mail.
+
+Regards,
+
+Julien Vielle
+
+On Sun, May 31, 2009 at 9:21 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; Hi all,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'm trying to put my image on a Usb key. I did my prepare and my create
+</I>&gt;<i> &gt; without error (using the switch usb kiwi -c oemprepare-sled11
+</I>&gt;<i> --fs-inodesize
+</I>&gt;<i> &gt; 128 --type usb -d oemcreateUSB-sled11) until here everything work well.
+</I>&gt;<i> &gt; here the output of the oemcreateUSB directory
+</I>&gt;<i> &gt;
+</I>&gt;<i> ======================================================================================================================
+</I>&gt;<i> &gt;  ls -lh oemcreateUSB-sled11/
+</I>&gt;<i> &gt; total 1.4G
+</I>&gt;<i> &gt; lrwxrwxrwx 1 root root   30 2009-05-29 15:38
+</I>&gt;<i> &gt; essilor-suse-sled11.i686-0.1.0.ext3 -&gt; essilor-suse-sled11.i686-0.1.0
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root 1.3G 2009-05-29 15:45
+</I>&gt;<i> &gt; essilor-suse-sled11.i686-0.1.0.gz
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root   60 2009-05-29 15:59
+</I>&gt;<i> &gt; essilor-suse-sled11.i686-0.1.0.md5
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root  37M 2009-05-29 16:02
+</I>&gt;<i> &gt; initrd-usbboot-suse-SLED11.i686-2.1.1
+</I>&gt;<i> &gt; lrwxrwxrwx 1 root root   66 2009-05-29 16:02
+</I>&gt;<i> &gt; initrd-usbboot-suse-SLED11.i686-2.1.1.kernel -&gt;
+</I>&gt;<i> &gt; initrd-usbboot-suse-SLED11.i686-2.1.1.kernel.2.6.27.21-0.1-default
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root 2.4M 2009-05-29 16:02
+</I>&gt;<i> &gt; initrd-usbboot-suse-SLED11.i686-2.1.1.kernel.2.6.27.21-0.1-default
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root   45 2009-05-29 16:02
+</I>&gt;<i> &gt; initrd-usbboot-suse-SLED11.i686-2.1.1.md5
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root  15M 2009-05-29 16:02
+</I>&gt;<i> &gt; initrd-usbboot-suse-SLED11.i686-2.1.1.splash.gz
+</I>&gt;<i> &gt;
+</I>&gt;<i> ======================================================================================================================
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; After if I understand everything correctly i have to put my image on the
+</I>&gt;<i> &gt; stick using this command:
+</I>&gt;<i> &gt; kiwi --bootstick
+</I>&gt;<i> &gt; oemcreateUSB-sled11/initrd-usbboot-suse-SLED11.i686-2.1.1.splash.gz
+</I>&gt;<i> &gt; --bootstick-system oemcreateUSB-sled11/essilor-suse-sled11.i686-0.1.0.gz
+</I>&gt;<i> &gt; --bootstick-device /dev/sdb
+</I>&gt;<i>
+</I>&gt;<i> This call is correct but...
+</I>&gt;<i>
+</I>&gt;<i> &gt; May-29 16:36:58 &lt;1&gt; : Setup device mapper for ISO install
+</I>&gt;<i>
+</I>&gt;<i> this looks like you have inherited your usb image from
+</I>&gt;<i> an oem image description, also the &quot;oemcreateUSB-sled11&quot; let me
+</I>&gt;<i> think that. Is that true ? if yes I guess your image
+</I>&gt;<i> description &lt;type&gt; line contains the format=&quot;iso&quot; attribute ?
+</I>&gt;<i> maybe you just have changed oem to usb and that causes the
+</I>&gt;<i> problem. You can have multiple type lines in an image
+</I>&gt;<i> description but a usb type should only look like this:
+</I>&gt;<i>
+</I>&gt;<i>  &lt;type filesystem=&quot;...&quot; boot=&quot;usbboot/...&quot;&gt;usb&lt;/type&gt;
+</I>&gt;<i>
+</I>&gt;<i> nothing more. Could you check the config.xml of your tree:
+</I>&gt;<i>
+</I>&gt;<i>  oemprepare-sled11/image/config.xml
+</I>&gt;<i>
+</I>&gt;<i> You can adapt the file directly and call create again
+</I>&gt;<i>
+</I>&gt;<i> I think I sould add more rules for the type line.
+</I>&gt;<i> Does anybody know how I can restrict an xml element
+</I>&gt;<i> to a specific set of attributes in a RelaxNG scheme ?
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/668d815a/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/668d815a/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001147.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1148">[ date ]</a>
+              <a href="thread.html#1148">[ thread ]</a>
+              <a href="subject.html#1148">[ subject ]</a>
+              <a href="author.html#1148">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

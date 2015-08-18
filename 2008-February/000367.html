@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] split image type and read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A60419%40XCH-NW-04P.nw.nos.boeing.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000366.html">
+   <LINK REL="Next"  HREF="000368.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] split image type and read-only</H1>
+    <B>Mattes, David</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A60419%40XCH-NW-04P.nw.nos.boeing.com%3E"
+       TITLE="[Kiwi-users] split image type and read-only">david.mattes at boeing.com
+       </A><BR>
+    <I>Mon Feb 25 17:57:24 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000366.html">[Kiwi-users] split image type and read-only
+</A></li>
+        <LI>Next message: <A HREF="000368.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#367">[ date ]</a>
+              <a href="thread.html#367">[ thread ]</a>
+              <a href="subject.html#367">[ subject ]</a>
+              <a href="author.html#367">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> 
+
+
+________________________________
+
+	From: James Willcox [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">snorp at novell.com</A>] 
+	Sent: Monday, February 25, 2008 8:52 AM
+	To: Mattes, David
+	Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+	Subject: Re: [Kiwi-users] split image type and read-only
+	
+	
+	David,
+	
+	
+	
+	
+	On Mon, Feb 25, 2008 at 10:42 AM, Mattes, David
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">david.mattes at boeing.com</A>&gt; wrote:
+	
+
+		I've been using the &lt;split&gt; element, hoping I could
+achieve a read-only
+		diskful image.  But after building several images and
+looking through
+		the kiwi modules, I think &quot;read-only&quot; might be a
+misnomer.  To me,
+		read-only implies that no writes are possible; yet when
+the image is
+		booted, a mount command shows that this &quot;read-only&quot;
+partition is mounted
+		read-write.  I think I understand the read-write
+partition to allow some
+		file persistence.
+		
+		I'm also having a hard time understanding the logic
+behind the
+		contortions in the mountSystemCombined function from
+KIWILinuxRC.sh:
+		
+		function mountSystemCombined {
+		       local mountDevice=$1
+		       local roDevice=$mountDevice
+		       local rwDevice=`getNextPartition $mountDevice`
+		       mkdir /read-only &gt;/dev/null
+		       modprobe squashfs &gt;/dev/null 2&gt;&amp;1
+		       if ! mount -t auto $roDevice /read-only
+&gt;<i>/dev/null;then
+</I>		               return 1
+		       fi
+		       mount -t tmpfs none /mnt &gt;/dev/null || return 1
+		       cd /mnt &amp;&amp; tar xvfz /read-only/rootfs.tar.gz
+&gt;<i>/dev/null &amp;&amp; cd /
+</I>		       mkdir /mnt/read-only &gt;/dev/null
+		       mount --move /read-only /mnt/read-only &gt;/dev/null
+		       rm -rf /read-only &gt;/dev/null
+		       ln -s /mnt/read-only /read-only &gt;/dev/null ||
+return 1
+		       if sfdisk -s $rwDevice &amp;&gt;/dev/null;then
+		               mkdir /mnt/read-write &gt;/dev/null
+		               mount $rwDevice /mnt/read-write
+&gt;<i>/dev/null
+</I>		               rm -f /read-write &gt;/dev/null
+		               ln -s /mnt/read-write /read-write
+&gt;<i>/dev/null
+</I>		       fi
+		}
+		
+		
+		What am I missing???  Can I use the &lt;split&gt; element to
+achieve an image
+		where no disk writes are possible to the read-only
+partition, unless I
+		specifically remount it read-write?
+		
+		Also, what is the effect of using &quot;ext3,cramfs&quot; as the
+filesystem
+		attribute for the &lt;type&gt; element?  Does this make the
+read-write
+		partition a cramfs filesystem?  If so, then what is the
+meaning of
+		read-write in this case?  Note: I haven't successfully
+used cramfs
+		because I keep exceeding the cramfs size limit.
+		
+
+
+	When I was working on implementing this feature, I sent a mail
+to the kiwi-devel list that you may not have seen.  You can read it from
+the archives here:
+<A HREF="https://lists.berlios.de/pipermail/kiwi-devel/2007-November/000245.html">https://lists.berlios.de/pipermail/kiwi-devel/2007-November/000245.html</A>
+	
+	Basically if you only have a &lt;temporary&gt; section under &lt;split&gt;
+(or no &lt;split&gt; at all), everything will be either read-only or writable
+only via tmpfs.  So no disk writes occur.  Hopefully that helps.
+	
+	Thanks,
+	James
+
+	Thanks, James, I see that, but nevertheless I think it would be
+better if the read-only partition were mounted read-only, yet this is
+not possible as many files are in an open rw state.
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/fd7d691b/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/fd7d691b/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000366.html">[Kiwi-users] split image type and read-only
+</A></li>
+	<LI>Next message: <A HREF="000368.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#367">[ date ]</a>
+              <a href="thread.html#367">[ thread ]</a>
+              <a href="subject.html#367">[ subject ]</a>
+              <a href="author.html#367">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] VMX image creation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMX%20image%20creation&In-Reply-To=%3C20090607202320.GA14094%40idefix.dms.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001156.html">
+   <LINK REL="Next"  HREF="001158.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] VMX image creation</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMX%20image%20creation&In-Reply-To=%3C20090607202320.GA14094%40idefix.dms.net%3E"
+       TITLE="[Kiwi-users] VMX image creation">ms at novell.com
+       </A><BR>
+    <I>Sun Jun  7 22:23:20 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001156.html">[Kiwi-users] VMX image creation
+</A></li>
+        <LI>Next message: <A HREF="001158.html">[Kiwi-users] VMX image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1157">[ date ]</a>
+              <a href="thread.html#1157">[ thread ]</a>
+              <a href="subject.html#1157">[ subject ]</a>
+              <a href="author.html#1157">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Thanks again, Marcus. This is the first time I've changed one of the boot
+</I>&gt;<i> image descriptors and I removed the change after I determined it didn't
+</I>&gt;<i> help. I've attached the image description I'm using currently.
+</I>
+I have attached a patch for your config.xml
+
+&gt;<i> Even though the boot image descriptors show a different directory name,
+</I>&gt;<i> they're just copies of the originals.
+</I>
+Are you really sure, I believe that if 
+
+   for i in /usr/share/kiwi/image/*boot;do
+      diff -u -r $i/suse-11.1 $i/ViewOpenLive-2.0
+   done
+
+shows no differences (guessing that 11.1 is the target distro)
+:<i>-) sorry for being paranoid
+</I>
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: config.xml.dif
+Type: video/dv
+Size: 1712 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090607/dcd3b31a/attachment.dif">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090607/dcd3b31a/attachment.dif</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001156.html">[Kiwi-users] VMX image creation
+</A></li>
+	<LI>Next message: <A HREF="001158.html">[Kiwi-users] VMX image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1157">[ date ]</a>
+              <a href="thread.html#1157">[ thread ]</a>
+              <a href="subject.html#1157">[ subject ]</a>
+              <a href="author.html#1157">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

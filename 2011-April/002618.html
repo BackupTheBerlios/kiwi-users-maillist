@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Upgrading%20to%20kiwi-4.84-237.1.i586&In-Reply-To=%3CB326DCECA83A2E44BE98082EA1A715FA14EBFD576C%40SI-MBX13.de.bosch.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002616.html">
+   <LINK REL="Next"  HREF="002621.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586</H1>
+    <B>EXTERNAL Konold Martin (Firma, RtP2/TEF72)</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Upgrading%20to%20kiwi-4.84-237.1.i586&In-Reply-To=%3CB326DCECA83A2E44BE98082EA1A715FA14EBFD576C%40SI-MBX13.de.bosch.com%3E"
+       TITLE="[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586">external.Martin.Konold at de.bosch.com
+       </A><BR>
+    <I>Tue Apr  5 18:33:59 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002616.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+        <LI>Next message: <A HREF="002621.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2618">[ date ]</a>
+              <a href="thread.html#2618">[ thread ]</a>
+              <a href="subject.html#2618">[ subject ]</a>
+              <a href="author.html#2618">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+Hi Robert,
+
+&gt;<i> &gt; Why not make the path to zypper and other tools implicit
+</I>&gt;<i> instead of explicit?
+</I>&gt;<i>
+</I>&gt;<i> Hmm, I think you are right even though according to FHS
+</I>&gt;<i> /usr/bin/zypper is the correct place and it should not change.
+</I>
+Yes, but a potential but valid use case is that there are good reasons (e.g. security issue, special feature, additional tracing support, ...) to have on the host a local version of zypper installed in e.g /usr/local/bin/zypper which might even internally call the real SuSE zypper from /usr/bin/zypper.
+
+This would be totally fine and valid from a FHS point of view while breaking kiwi unnecessarily as I would expect kiwi to use the zypper binaries as provided from the zypper rpm.
+
+&gt;<i> @Robert, what do you think. Can we change getExecPath in a way that
+</I>&gt;<i> we check if 'which' returns something good we return only the name
+</I>&gt;<i> not the entire path because we know that path is found later too
+</I>
+I would prefer an approach with less fragile heuristic.
+
+How is zypper placed in the chrooted environment?
+
+&gt;<i>From there it is deterministic where the zypper binary is living. (e.g via the output from rpm or search the $PATH within the chrooted environment or store the path when copying the file)
+</I>
+&gt;<i> :) never mind, I'm open for good criticism, and basically I agree with you
+</I>
+I am glad to read that.
+
+Anyway I think it is best to wait for Robert and learn about the rationale.
+
+Best regards
+
+Martin Konold
+
+Robert Bosch GmbH
+Automotive Electronics (RtP2/TEF72)
+Postfach 13 42
+72703 Reutlingen
+GERMANY
+www.bosch.com
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">external.martin.konold at de.bosch.com</A>
+
+Sitz: Stuttgart, Registergericht: Amtsgericht Stuttgart, HRB 14000;
+Aufsichtsratsvorsitzender: Hermann Scholl; Gesch&#228;ftsf&#252;hrung: Franz Fehrenbach, Siegfried Dais;
+Bernd Bohr, Rudolf Colm, Volkmar Denner, Wolfgang Malchow, Peter Marks,
+Peter Tyroller; Stefan Asenkerschbaumer, Uwe Raschke, Wolf-Henning Scheider
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002616.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+	<LI>Next message: <A HREF="002621.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2618">[ date ]</a>
+              <a href="thread.html#2618">[ thread ]</a>
+              <a href="subject.html#2618">[ subject ]</a>
+              <a href="author.html#2618">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

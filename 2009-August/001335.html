@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] storage and lan hardware matching
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20storage%20and%20lan%20hardware%20matching&In-Reply-To=%3C20090805163859.GA16430%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001333.html">
+   <LINK REL="Next"  HREF="001336.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] storage and lan hardware matching</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20storage%20and%20lan%20hardware%20matching&In-Reply-To=%3C20090805163859.GA16430%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] storage and lan hardware matching">ms at novell.com
+       </A><BR>
+    <I>Wed Aug  5 18:38:59 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001333.html">[Kiwi-users] hybrid live systems (openSUSE 11.2)
+</A></li>
+        <LI>Next message: <A HREF="001336.html">[Kiwi-users] Network setup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1335">[ date ]</a>
+              <a href="thread.html#1335">[ thread ]</a>
+              <a href="subject.html#1335">[ subject ]</a>
+              <a href="author.html#1335">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; The storage repartitioning according to the real geometry and
+</I>&gt;<i> &gt; the possible oem- variables in config.xml happens on first boot
+</I>&gt;<i> &gt; of the system.
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> So as long as I meet the minimum space requirements and the correct drivers are present, this shouldn't be a problem, correct?
+</I>
+yes, and if you don't meet the space requirements the re-partitioning is
+skipped and the system boots with the virtual geometry inside the image
+
+&gt;<i> &gt; the lan setup is not part of the kiwi boot process. That can
+</I>&gt;<i> &gt; be automated by using yast2 firstboot. You can store the yast2
+</I>&gt;<i> &gt; firstboot xml file as part of your image description and kiwi will
+</I>&gt;<i> &gt; setup the environment in a way that yast is called with that firstboot
+</I>&gt;<i> &gt; file on firstboot 
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> Is the lan hardware detected on first boot?
+</I>
+only when using the pxe image type the lan setup is done
+inside the initrd. Loading the correct nic driver is done
+by udev in a very friendly way so there is no modprobe alias
+or something required. The nic setup of course must be done
+by some settings given before (yast firstboot xml file)
+if you know the image will be used inside a network with
+dhcp you also can include a static ifcfg- file telling
+the system to get the IP from the dhcp. In this very simple
+case you don't need a custom nic setup with yast
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001333.html">[Kiwi-users] hybrid live systems (openSUSE 11.2)
+</A></li>
+	<LI>Next message: <A HREF="001336.html">[Kiwi-users] Network setup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1335">[ date ]</a>
+              <a href="thread.html#1335">[ thread ]</a>
+              <a href="subject.html#1335">[ subject ]</a>
+              <a href="author.html#1335">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

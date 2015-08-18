@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Persistent diskless setup with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3C201002010048.08868.hpj%40urpla.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001617.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Persistent diskless setup with kiwi</H1>
+    <B>Hans-Peter Jansen</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3C201002010048.08868.hpj%40urpla.net%3E"
+       TITLE="[Kiwi-users] Persistent diskless setup with kiwi">hpj at urpla.net
+       </A><BR>
+    <I>Mon Feb  1 00:48:08 CET 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001617.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1615">[ date ]</a>
+              <a href="thread.html#1615">[ thread ]</a>
+              <a href="subject.html#1615">[ subject ]</a>
+              <a href="author.html#1615">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+sorry for this late answer, but I'm forced to get up to speed quickly, while 
+exercising the flu.. :-(
+
+On Friday 15 January 2010, 15:41:44 Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; This setup is pretty simple: an installation into a directory is
+</I>&gt;<i> &gt; exported ro (e.g. the result of kiwi --prepare), adjusted to diskless
+</I>&gt;<i> &gt; needs (a few network/ldap settings, don't stop eth0 on shutdown, a
+</I>&gt;<i> &gt; simple automatic X setup with sax). All nodes boot from the same
+</I>&gt;<i> &gt; kernel/initrd, which overlays a node specific rw nfs path (with aufs).
+</I>&gt;<i>
+</I>&gt;<i> One thing you should have in mind is that aufs is not supported by
+</I>&gt;<i> the kernel community there are some design aspects which are not accepted
+</I>&gt;<i> by the kernel people and therefore aufs is already not part of 11.2
+</I>&gt;<i> anymore. So a concept based on aufs will unfortunately not survive
+</I>&gt;<i> very long
+</I>
+Yes, I know. But the relation between distribution and kernel matters were 
+always divergent. Of course, if Al vetoes, Junjiro has a bad stand. And 
+Linus seems to be willing to wait, until a union fs comes out of his 
+neighborhood from Valerie Aurora (and Jan Blunck). But both seem to be 
+busy, thus this project isn't on any fast lane, I fear.
+
+I haven't checked the clicfs appoach, but given the amount of special code, 
+that is needed in KIWILinuxRC.sh and suse-linuxrc for it, I'm somewhat 
+reluctant.
+
+Funny enough, if aufs goes away, what will kiwi do? It uses it for accessing 
+the repos (for unknown reasons..). At least, it does strange things, if 
+kiwi cannot load aufs (it leaves strange mount points lying around, which 
+need to be mkdir'ed before they can be unmounted again.
+
+&gt;<i> I think you are using aufs because you want to separate the write actions
+</I>&gt;<i> per client into a network location which makes sense to me. kiwi could
+</I>&gt;<i> arrange your current setup with aufs but I don't recommend to make use
+</I>&gt;<i> of it. 
+</I>
+Okay, as a project maintainer, you have to say that. But I'm happy, if I get 
+to the point, where I was in 2005. Unfortunately it isn't all that easy. 
+Looks like NFSROOT isn't exercised with UNIONFS_CONFIG setups for some time 
+as problems in suse-linuxrc and friends indicate. I'm preparing a separate 
+mail for that.
+
+&gt;<i> As an alternative you can think of a clicfs based image with 
+</I>&gt;<i> AoE (Ata over Ethernet). It works that way:
+</I>&gt;<i>
+</I>&gt;<i> - the basic image is a compressed clicfs file which is exported via
+</I>&gt;<i>   AoE (vbladed). Each client mounts the exported block device as it's
+</I>&gt;<i> root
+</I>
+Are you sure about clicfs? The usual pattern I found in kiwi and ltsp is 
+using a squashfs. Apart from the persistence aspects, I was able to 
+exercise this approach the last week, and it seems quick and stable.
+
+Unfortunately, my squashfs image is about 3GB now, and it's creation time is 
+hard to stand. More important, I'm loosing some power: serving that bunch 
+via NFS, I'm able to apply quick fixes - with mksquashfs in between, it's 
+heavily delayed, but I cannot switch the AoE images quickly - I need to 
+wait until all clients are shut down. 
+
+&gt;<i> - the copy-on-write actions go to a cow file or into RAM. The location
+</I>&gt;<i>   for the cow file can also be an nfs exported rw space. At the moment
+</I>&gt;<i>   I have implemented writing to RAM, writing into a cow file on NFS is
+</I>&gt;<i>   still missing but can be done in a day
+</I>
+That sounds interesting, but again, I'm loosing performance, as I do access 
+and modify the read-write parts. Is that at least possible with this 
+approach? (IOW, is that cow file mountable, examinable and modifyable?)
+
+&gt;<i> &gt; It looks like current technologies in this area are not able to mimic
+</I>&gt;<i> &gt; that fully out of the box. Aufs cannot use a nfs mount for its xino
+</I>&gt;<i> &gt; file, and I do not want to give up on the two nfs mounts, either. But I
+</I>&gt;<i> &gt; might want to add nfs or nbd based swap (now, that's available). Looks
+</I>&gt;<i> &gt; like, that I need to use an tmpfs for the xino.
+</I>&gt;<i>
+</I>&gt;<i> As I said I wouldn't use aufs at all for a new concept. If the machine
+</I>&gt;<i> needs to swap you can use swap over NFS. imho that's fast enough and
+</I>&gt;<i> mainframe architectures like s390 does that too :)
+</I>
+Funnies again, the network filesystem is degraded to paging work, and block 
+devices are exported all over the plate. Where in hell is this world 
+steering? ;-)
+
+&gt;<i> &gt; It would be kind, if you/someone could give me a few hints, what would
+</I>&gt;<i> &gt; be the best way to realize this with the help of kiwi. Is there an
+</I>&gt;<i> &gt; interest to add this functionality to netboot/suse-11.1, or should I
+</I>&gt;<i> &gt; create a new image for that. Any pitfalls, I should be aware of?
+</I>&gt;<i>
+</I>&gt;<i> There is always a lot of interest to add something useful for the
+</I>&gt;<i> people using kiwi :-) I could add the missing functionality into kiwi
+</I>&gt;<i> if you think clicfs and AoE is something you would like to test
+</I>&gt;<i> I have that on my plate anyway it's bug: #570960
+</I>&gt;<i>
+</I>&gt;<i> &gt; 15 seconds wasted for searching some usb devices :-( Whould be cool the
+</I>&gt;<i> &gt; get rid of it.
+</I>&gt;<i>
+</I>&gt;<i> I'm working on that too it's bug: #570961
+</I>
+Okay, thanks for all these propositions. They're really appreciated, and for 
+the sake of it, the responses from Roger and CyberOrg, too. Thanks guys.
+
+Marcus, be prepared for a couple of patches soon..
+
+Thanks again,
+Pete
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001617.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1615">[ date ]</a>
+              <a href="thread.html#1615">[ thread ]</a>
+              <a href="subject.html#1615">[ subject ]</a>
+              <a href="author.html#1615">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

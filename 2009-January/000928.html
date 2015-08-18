@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] LVM support in kiwi...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20support%20in%20kiwi...&In-Reply-To=%3C20090113101002.GA30143%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000927.html">
+   <LINK REL="Next"  HREF="000929.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] LVM support in kiwi...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20support%20in%20kiwi...&In-Reply-To=%3C20090113101002.GA30143%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] LVM support in kiwi...">ms at novell.com
+       </A><BR>
+    <I>Tue Jan 13 11:10:02 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000927.html">[Kiwi-users] Where's the 4adb3f23 kernel on AmazonEC ?
+</A></li>
+        <LI>Next message: <A HREF="000929.html">[Kiwi-users] LVM support in kiwi...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#928">[ date ]</a>
+              <a href="thread.html#928">[ thread ]</a>
+              <a href="subject.html#928">[ subject ]</a>
+              <a href="author.html#928">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All,
+
+I'm hoping you all had a good start into 2009 and wish you the
+best for this new year. For those of you who are interested in
+using logical volumes instead of unflexible partition tables
+the next kiwi version will come up with LVM support. All you need
+to do to activate it and play with it is add the option
+
+    kiwi --create ... --lvm
+
+as part of the kiwi create step.
+
+* Bootloaders can't access the volume group so kiwi will setup one
+  small partition with an ext2 filesystem for booting the system.
+  Inside the system /boot is referenced to this partition
+
+* Anything else is part of the volume group and can be managed
+  by the image user even after the system has booted. Especially
+  OEM vendors with special wishes can include them now as part
+  of their system image description without the need for an own
+  boot image code (initrd) 
+
+* LVM support is available for the image types oem, usb and vmx
+  it doesn't make sense for iso and xen. Concerning the pxe type
+  I'm not sure whether LVM would make sense or not. At the moment
+  I skipped supporting it but I'm open for any suggestions
+
+First kiwi version with LVM support will be 3.03
+I plan to release on Friday this week
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000927.html">[Kiwi-users] Where's the 4adb3f23 kernel on AmazonEC ?
+</A></li>
+	<LI>Next message: <A HREF="000929.html">[Kiwi-users] LVM support in kiwi...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#928">[ date ]</a>
+              <a href="thread.html#928">[ thread ]</a>
+              <a href="subject.html#928">[ subject ]</a>
+              <a href="author.html#928">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

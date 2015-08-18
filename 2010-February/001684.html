@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] OBS + KIWI = &quot;Help me please...&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OBS%20%2B%20KIWI%20%3D%20%22Help%20me%20please...%22&In-Reply-To=%3C20100222102458.GB28042%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001682.html">
+   <LINK REL="Next"  HREF="001685.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] OBS + KIWI = &quot;Help me please...&quot;</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OBS%20%2B%20KIWI%20%3D%20%22Help%20me%20please...%22&In-Reply-To=%3C20100222102458.GB28042%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] OBS + KIWI = &quot;Help me please...&quot;">ms at novell.com
+       </A><BR>
+    <I>Mon Feb 22 11:24:58 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001682.html">[Kiwi-users] OBS + KIWI = &quot;Help me please...&quot;
+</A></li>
+        <LI>Next message: <A HREF="001685.html">[Kiwi-users] OBS + KIWI = &quot;Help me please...&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1684">[ date ]</a>
+              <a href="thread.html#1684">[ thread ]</a>
+              <a href="subject.html#1684">[ subject ]</a>
+              <a href="author.html#1684">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> the case is quite simple at the first glance:
+</I>&gt;<i> 
+</I>&gt;<i> 1) we have an OBS repo where &quot;image&quot; build is allowed:
+</I>&gt;<i> <A HREF="https://build.opensuse.org/project/monitor?project=X11%3Alxde">https://build.opensuse.org/project/monitor?project=X11%3Alxde</A>
+</I>&gt;<i> 
+</I>&gt;<i> 2) i created two packages to build a &quot;hybrid&quot; oS-11.2 iso's for i586:
+</I>&gt;<i> <A HREF="https://build.opensuse.org/package/show?package=kiwi-live-lxde-i586&amp;project=X11%3Alxde">https://build.opensuse.org/package/show?package=kiwi-live-lxde-i586&amp;project=X11%3Alxde</A>
+</I>&gt;<i> 
+</I>&gt;<i> and x86_64:
+</I>&gt;<i> <A HREF="https://build.opensuse.org/package/show?package=kiwi-live-lxde-x86_64&amp;project=X11%3Alxde">https://build.opensuse.org/package/show?package=kiwi-live-lxde-x86_64&amp;project=X11%3Alxde</A>
+</I>&gt;<i> 
+</I>&gt;<i> how should i tell the OBS/kiwi that i need only images for oS-11.2 and
+</I>&gt;<i> that each package should build a single &quot;arch&quot;? so the result should be
+</I>&gt;<i> a 2 iso located in &quot;images&quot; repo. i wish to get the &quot;engine&quot; behind OBS.
+</I>&gt;<i> where can i get the info?
+</I>&gt;<i>
+</I>&gt;<i> right now both packages have a correct &quot;.kiwi&quot;/(&quot;.xml&quot;) config which is
+</I>&gt;<i> good for a local build (if repos are changed from &quot;obs:&quot; to &quot;http:&quot;).
+</I>&gt;<i> i'm getting a 240M iso's which just are a good &quot;template&quot; for further
+</I>&gt;<i> experiments.
+</I>&gt;<i> 
+</I>&gt;<i> thanks to &quot;cyberorg&quot; looked at the Factory:Live to get the basic idea:
+</I>&gt;<i> <A HREF="https://build.opensuse.org/project/monitor?project=openSUSE%3AFactory%3ALive">https://build.opensuse.org/project/monitor?project=openSUSE%3AFactory%3ALive</A>
+</I>&gt;<i> 
+</I>&gt;<i> seems that i need to create a kind of a &quot;kiwi-config&quot; somewhere in
+</I>&gt;<i> &quot;usr/share&quot; though don't understand exactly why. in general &quot;JeOS&quot;
+</I>&gt;<i> &quot;pattern&quot; as a &quot;base&quot; is all i need and the rest could/should be set via
+</I>&gt;<i> &quot;.kiwi&quot; file.
+</I>&gt;<i> 
+</I>&gt;<i> the schema to set the &quot;arch&quot; (x86_64 or i586) also out of my sight.
+</I>
+Adrian and Coolo are the ones who can help you here :) CC'ed
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001682.html">[Kiwi-users] OBS + KIWI = &quot;Help me please...&quot;
+</A></li>
+	<LI>Next message: <A HREF="001685.html">[Kiwi-users] OBS + KIWI = &quot;Help me please...&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1684">[ date ]</a>
+              <a href="thread.html#1684">[ thread ]</a>
+              <a href="subject.html#1684">[ subject ]</a>
+              <a href="author.html#1684">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTikvQFBnHhpYCVTPBCWwcQQXCnAMMg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002633.html">
+   <LINK REL="Next"  HREF="002635.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTikvQFBnHhpYCVTPBCWwcQQXCnAMMg%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Apr  8 18:07:32 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002633.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002635.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2634">[ date ]</a>
+              <a href="thread.html#2634">[ thread ]</a>
+              <a href="subject.html#2634">[ subject ]</a>
+              <a href="author.html#2634">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Apr 8, 2011 at 4:24 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> On first boot about 3/4 of the way through it switches to verbose mode
+</I>&gt;&gt;<i> and displays &quot;repartition the disk according to real geometry [parted]
+</I>&gt;&gt;<i> Flag to Invert?&quot; &#160;It's waiting for a response. &#160;This didn't show up
+</I>&gt;&gt;<i> when I had the swap file set to 1500 or 2000mb or when the fat
+</I>&gt;&gt;<i> partition was set to 4gb. &#160;I'm not sure what to do here but I ended up
+</I>&gt;&gt;<i> typing &quot;boot&quot; and and it prompted me with &quot;New State? [on]/off&quot; I
+</I>&gt;&gt;<i> choose &quot;off&quot;. &#160;Last time I choose &quot;on&quot; and when I rebooted it
+</I>&gt;&gt;<i> indicated that it could find the operating system.
+</I>&gt;<i>
+</I>&gt;<i> Hmm, never had that problem. might be related to a parted
+</I>&gt;<i> bug: <A HREF="https://bugzilla.redhat.com/show_bug.cgi?id=453799">https://bugzilla.redhat.com/show_bug.cgi?id=453799</A>
+</I>&gt;<i>
+</I>&gt;&gt;<i> Testing the Firefox profile I tried this:
+</I>&gt;&gt;<i> 1) Booted from a fresh OEM image from the flash drive
+</I>&gt;&gt;<i> 2) went to YouTube and tested the streaming of a video. &#160;As always on
+</I>&gt;&gt;<i> the first, the video played fine. &#160;It preloaded the entire video
+</I>&gt;&gt;<i> within a minute and never paused or hiccuped at all.
+</I>&gt;&gt;<i> 3) I copied the ~/.mozilla user profile to the 4GB fat partition on
+</I>&gt;&gt;<i> the flash drive
+</I>&gt;<i>
+</I>&gt;<i> ok
+</I>&gt;<i>
+</I>&gt;&gt;<i> 4) I rebooted the OS off the flash drive for the second time.
+</I>&gt;&gt;<i> 5) I opened Firefox and navigated back to YouTube (same video as
+</I>&gt;&gt;<i> before) it played for about 30-40 seconds and then stopped. &#160; As
+</I>&gt;&gt;<i> before I could see that the preloading/buffering of the video would
+</I>&gt;&gt;<i> start but would only get about a quarter of the way and then it would
+</I>&gt;&gt;<i> actually stop and go backwards towards the play indicator. &#160;That's
+</I>&gt;&gt;<i> when the video would stop.
+</I>&gt;&gt;<i> 6) I close Firefox and navigate to the fat partition on the flash
+</I>&gt;&gt;<i> drive where I saved the .mozilla profile folder from my first boot.
+</I>&gt;&gt;<i> 7) I then copy that folder and attempt to overwrite the existing .mozilla in ~/.
+</I>&gt;&gt;<i> 8) I get a bunch of errors with some of the files within that folder
+</I>&gt;&gt;<i> that read &quot;Error splicing file: No space left on device&quot;
+</I>&gt;<i>
+</I>&gt;<i> so you ran out of ram space if this is a ramonly=&quot;true&quot; image
+</I>&gt;<i> strange because I don't understand why it happens after the first
+</I>&gt;<i> boot only. The information from my former mail would help here
+</I>&gt;<i>
+</I>&gt;&gt;<i> Here is the partition table for the USB drive only.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> dev/sdb1 &#160; &#160; &#160; &#160; &#160; &#160; &#160; 2.55GB &#160; &#160; &#160; &#160; &#160;Linux native &#160; &#160; &#160; &#160;FAT
+</I>&gt;&gt;<i> dev/sdb2 &#160; &#160; &#160; &#160; &#160; &#160; &#160; 5.02GB &#160; &#160; &#160; &#160; &#160;Linux native
+</I>&gt;&gt;<i> dev/KiwiVG &#160; &#160; &#160; &#160; &#160; &#160; 5.02GB &#160; &#160; &#160; &#160; &#160;LVM2 KiwiVG
+</I>&gt;&gt;<i> dev/KiwiVG/LVComp &#160; &#160; &#160;560.00mb &#160; &#160; &#160; &#160;LV
+</I>&gt;&gt;<i> dev/KiwiVG/LVRoot &#160; &#160; &#160;3.49GB &#160; &#160; &#160; &#160; &#160;LV
+</I>&gt;&gt;<i> dev/KiwiVG/LVSwap &#160; &#160; &#160;1000.00mb &#160; &#160; &#160; LV &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;SWAP
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Which of these paritions is taking up actual space on the drive?
+</I>&gt;<i>
+</I>&gt;<i> sdb1 and sdb2. The partition table is ok
+</I>&gt;<i>
+</I>&gt;&gt;<i> FYI: &#160;I'm having the kiwi.xml file create a users profile however all
+</I>&gt;&gt;<i> of this testing is being done as the Root user in the image. &#160;It
+</I>&gt;&gt;<i> shouldn't matter anyway I would think because the user's profile is
+</I>&gt;&gt;<i> not on a separate partition.
+</I>&gt;<i>
+</I>&gt;<i> correct. And I recommend to postpone this change until we know
+</I>&gt;<i> why you ran out of space on second boot
+</I>&gt;<i>
+</I>&gt;&gt;<i> On the second boot I checked this partition table again and nothing
+</I>&gt;&gt;<i> changed
+</I>&gt;<i>
+</I>&gt;<i> That's ok and is intended
+</I>&gt;<i>
+</I>&gt;&gt;<i> I rebuilt the image again but this time did:
+</I>&gt;&gt;<i> 2000mb as the swap
+</I>&gt;&gt;<i> 4000mb as the Fat partition
+</I>&gt;&gt;<i> total image size is 6020mb
+</I>&gt;&gt;<i> Total drive space is still 7646mb
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The first boot went without any issues like before. I did NOT see the
+</I>&gt;&gt;<i> &quot;repartition the disk according to real geometry [parted]
+</I>&gt;&gt;<i> Flag to Invert?&quot; It just autologin as it was suppose to.
+</I>&gt;<i>
+</I>&gt;<i> This is because the re-partition step was skipped now because there
+</I>&gt;<i> is not enough space left for a persistent read-write partition.
+</I>&gt;<i> Even though you told the image to be ramonly kiwi prepares the stick
+</I>&gt;<i> for persistent writing if one wants to switch off ramonly at a later
+</I>&gt;<i> point in time. For that read-write part it needs some space. The
+</I>&gt;<i> size can be set by the paramater oem-systemsize. In your case this
+</I>&gt;<i> value plus your swap and fat setup exceeds the size of the USB stick
+</I>&gt;<i> which results in the repart step to be skipped and as consequence
+</I>&gt;<i> no swap partition will be created... normally not a big problem
+</I>&gt;<i> except you ran out of space
+</I>&gt;<i>
+</I>&gt;&gt;<i> I checked the parition table shows
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> dev/sdb1 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 3.91GB &#160; &#160;linux native &#160; &#160; &#160;FAT
+</I>&gt;&gt;<i> dev/sdb2 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 1.97GB &#160; &#160;linux native
+</I>&gt;&gt;<i> dev/kiwiVG &#160; &#160; &#160; &#160; &#160; &#160; &#160; 1.97GB &#160; &#160;LVM2 KiwiVG
+</I>&gt;&gt;<i> dev/kiwiVG/LVComp &#160; &#160; &#160; &#160;560.00MB &#160;LV
+</I>&gt;&gt;<i> dev/kiwiVG/LVRoot &#160; &#160; &#160; &#160;1.42GB &#160; &#160;LV
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> What happen to the Swap partition?
+</I>&gt;<i>
+</I>&gt;<i> This is ok according to the new setup
+</I>&gt;<i>
+</I>&gt;&gt;<i> Despite that lack of a Swap partition the result are the same on the
+</I>&gt;&gt;<i> first boot vs any boot after the first boot.
+</I>&gt;<i>
+</I>&gt;<i> Ok, this means the system never is in the swap condition.
+</I>&gt;<i> It looks like you simply ran out of space. But that should have
+</I>&gt;<i> happened on first boot too. I'm really wondering. As you said
+</I>&gt;<i> this is a ramonly image there is (beside the partition table change)
+</I>&gt;<i> no persistent data written. So you should have the same root
+</I>&gt;<i> filesystem size on first boot and after first boot (except your RAM
+</I>&gt;<i> size has changed). What does
+</I>&gt;<i>
+</I>&gt;<i> &#160;df -h
+</I>&gt;<i>
+</I>&gt;<i> tell you on the system where you have a swap partition
+</I>&gt;<i>
+</I>&gt;<i> I recommend to not change the swap and fat parameters all the
+</I>&gt;<i> time. Use one setup which does the repart on first boot and which
+</I>&gt;<i> allows us to safely reproduce the problem. Maybe we will find
+</I>&gt;<i> the cause of the problem then
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+Hi Marcus
+Thanks for getting involved in this issue.
+
+&gt;<i> I recommend to not change the swap and fat parameters all the
+</I>&gt;<i> time. Use one setup which does the repart on first boot and which
+</I>&gt;<i> allows us to safely reproduce the problem. Maybe we will find
+</I>&gt;<i> the cause of the problem then
+</I>
+Alright.  I will use the configuration of 1gb swap and a 2.5gb fat
+partition.  This will cause the image to resize on the first boot.
+When it prompts for the partition resize with &quot;repartition the disk
+according to real geometry [parted]
+Flag to Invert?&quot;&quot;  What should I do?  &quot;boot&quot;?   What do I choose at
+this prompt &quot;New State? [on]/off&quot;?
+So when everything is working correctly this prompted of resizing the
+partition is suppose to happen?
+If so is it possible that we can set it up do make defalt
+configs...and not prompt the user?
+
+So will a larger flash drive take care of some of this problem (or a
+small Fat and/or swap partition)?
+
+I'm creating a new image now and will use your suggestions to get more
+infomation as to what is going on.  I'll keep you posted Marcus.
+Thanks!
+chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002633.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002635.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2634">[ date ]</a>
+              <a href="thread.html#2634">[ thread ]</a>
+              <a href="subject.html#2634">[ subject ]</a>
+              <a href="author.html#2634">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

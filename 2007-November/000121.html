@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] is unionfs/aufs a requirement for using kiwi?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20is%20unionfs/aufs%20a%20requirement%20for%20using%20kiwi%3F&In-Reply-To=%3C20071102084120.GA3236%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000120.html">
+   <LINK REL="Next"  HREF="000122.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] is unionfs/aufs a requirement for using kiwi?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20is%20unionfs/aufs%20a%20requirement%20for%20using%20kiwi%3F&In-Reply-To=%3C20071102084120.GA3236%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] is unionfs/aufs a requirement for using kiwi?">ms at suse.de
+       </A><BR>
+    <I>Fri Nov  2 09:41:21 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000120.html">[Kiwi-users] is unionfs/aufs a requirement for using kiwi?
+</A></li>
+        <LI>Next message: <A HREF="000122.html">[Kiwi-users] Start autoyast on pxe client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#121">[ date ]</a>
+              <a href="thread.html#121">[ thread ]</a>
+              <a href="subject.html#121">[ subject ]</a>
+              <a href="author.html#121">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Question:
+</I>&gt;<i> Is it possible to get aufs/unionfs support in the kernel for images
+</I>&gt;<i> based on SLE10 SP1?  Without building a custom kernel?
+</I>
+I'm sorry this will not happen because aufs and unionfs are both
+&quot;problematic&quot; to become part of the kernel, especially the SP1 kernel.
+We are currently fighting to still have a kernel package available for
+our current kernel.
+
+Problem is the kernel people don't like the implementation of these
+filesystems. They see serios problems in different areas of the code.
+As far as I understand they are right with their concerns but 
+on the other hand nobody is willing to fix the code to make it 
+a clean filesystem.
+
+I think aufs or unionfs is a great tool which can be used in many
+places very easily. One can have real read-only mounts as well as
+combining filesystems of different layers into one. I'm really
+wondering why we (Novell) don't push that technology. So I'm sorry
+but that stuff will not be available for SLE products now
+
+I will continue to fighting but I can't promise a success here
+
+I'm really sorry
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000120.html">[Kiwi-users] is unionfs/aufs a requirement for using kiwi?
+</A></li>
+	<LI>Next message: <A HREF="000122.html">[Kiwi-users] Start autoyast on pxe client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#121">[ date ]</a>
+              <a href="thread.html#121">[ thread ]</a>
+              <a href="subject.html#121">[ subject ]</a>
+              <a href="author.html#121">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

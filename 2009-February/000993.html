@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] default vs pae kernel in diskless builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C20090220183523.GA5188%40idefix.dms.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000992.html">
+   <LINK REL="Next"  HREF="000983.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] default vs pae kernel in diskless builds</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C20090220183523.GA5188%40idefix.dms.net%3E"
+       TITLE="[Kiwi-users] default vs pae kernel in diskless builds">ms at novell.com
+       </A><BR>
+    <I>Fri Feb 20 19:35:23 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000992.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+        <LI>Next message: <A HREF="000983.html">[Kiwi-users] [opensuse] ATA over Ethernet on openSUSE 11.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#993">[ date ]</a>
+              <a href="thread.html#993">[ thread ]</a>
+              <a href="subject.html#993">[ subject ]</a>
+              <a href="author.html#993">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Roger,
+
+&gt;<i> I did not have the bootprofile=&quot;smp&quot; tag. So I added it. I also did not
+</I>&gt;<i> have the kernel-pae-base and aufs-kmp-pae rpms. So I added them. But
+</I>&gt;<i> things are still not working. I have attached the logs from when I made
+</I>&gt;<i> the images. Note that my logs also contain a line for each deleted
+</I>&gt;<i> kernel module, and a list of the modules that remain when my image.sh is
+</I>&gt;<i> run.
+</I>&gt;<i> 
+</I>&gt;<i> What happens now is that the boot prints &quot;Booting KIWI...&quot; and then a
+</I>&gt;<i> few lines later says &quot;Network module: Failed to load network module !&quot;
+</I>&gt;<i> 
+</I>&gt;<i> When I used kernel-default everywhere (and no bootprofile=&quot;smp&quot; or
+</I>&gt;<i> aufs-kmp-pae) it works fine. I think the drivers are there.
+</I>
+To debug this you should pass the kernel parameter
+
+   kiwidebug=1
+
+in your pxe configuration. If the kiwi boot now fails you will
+get a shell instead of a reboot exception and can debug what 
+network kernel modules was about to become loaded and why this
+failed
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000992.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+	<LI>Next message: <A HREF="000983.html">[Kiwi-users] [opensuse] ATA over Ethernet on openSUSE 11.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#993">[ date ]</a>
+              <a href="thread.html#993">[ thread ]</a>
+              <a href="subject.html#993">[ subject ]</a>
+              <a href="author.html#993">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

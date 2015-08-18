@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Another probably dumb kiwi question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Another%20probably%20dumb%20kiwi%20question&In-Reply-To=%3C1202919338.25639.129.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000310.html">
+   <LINK REL="Next"  HREF="000312.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Another probably dumb kiwi question</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Another%20probably%20dumb%20kiwi%20question&In-Reply-To=%3C1202919338.25639.129.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] Another probably dumb kiwi question">roger at opq.se
+       </A><BR>
+    <I>Wed Feb 13 17:15:37 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000310.html">[Kiwi-users] Another probably dumb kiwi question
+</A></li>
+        <LI>Next message: <A HREF="000312.html">[Kiwi-users] Another probably dumb kiwi question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#311">[ date ]</a>
+              <a href="thread.html#311">[ thread ]</a>
+              <a href="subject.html#311">[ subject ]</a>
+              <a href="author.html#311">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2008-02-13 at 16:40 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> by no means a dumb question :)
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Does kiwi take any files from the system on which you build it other
+</I>&gt;<i> &gt; than those installed by kiwi (in some place private to kiwi and not part
+</I>&gt;<i> &gt; of the system in general) or that are in a repository specified in your
+</I>&gt;<i> &gt; config.xml file?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Could the current release of kiwi be installed on, say, a SUSE 10.0
+</I>&gt;<i> &gt; system and, using a 10.3 repository, make 10.3 images?
+</I>&gt;<i> 
+</I>&gt;<i> It was designed to allow this yes. I have tested creating 10.3 images
+</I>&gt;<i> if installed on 10.1 and this works pretty well. One problem I see
+</I>&gt;<i> if you have a very old version of rpm it may be required to convert
+</I>&gt;<i> (rebuilddb) the rpm database when entering the kiwi chroot phase.
+</I>&gt;<i> 
+</I>&gt;<i> If you start preparing an image you start with an empty directory and
+</I>&gt;<i> if you use rpm based repositories the very first rpm database setup
+</I>&gt;<i> happens with the rpm installed on your build machine. Let's say you
+</I>&gt;<i> are creating an image for 10.3 than the rpm version of 10.3 will be
+</I>&gt;<i> part of your new root tree and as soon as kiwi switches into the
+</I>&gt;<i> chroot to proceed the image preparation it find an rpm database created
+</I>&gt;<i> by an older version. This is not a problem as long as the rpm
+</I>&gt;<i> versions are compatible in their db format and version. if they are
+</I>&gt;<i> not compatible the database needs to be converted. This is done
+</I>&gt;<i> by calling rpm --rebuilddb
+</I>&gt;<i> 
+</I>&gt;<i>  * at the moment this rebuilddb call is not implemented because
+</I>&gt;<i>    I didn't needed it so far
+</I>&gt;<i> 
+</I>&gt;<i>  * I'm also not sure if rebuilding works if the rpm version are
+</I>&gt;<i>    incompatible in their db version 
+</I>&gt;<i> 
+</I>&gt;<i>  * I didn't test other package managers like dpkg
+</I>&gt;<i> 
+</I>&gt;<i> I can guarantee it will work from 10.1 to latest version of suse (at
+</I>&gt;<i> the moment 11.0) _and vice versa_ What happens if your OS version is
+</I>&gt;<i> older I don't know exactly.
+</I>
+On SUSE 10.0, rpm is
+
+	rpm-4.1.1-222
+
+On SUSE 10.3, rpm is
+
+	rpm-4.4.2-140
+
+I do not know if there is a database issue between the two.
+
+I have checked the contents of the various kiwi packages and I do not
+see any files that could cause a problem if they are installed. So,
+unless there are files made on-the-fly by the rpms, there seems to be no
+danger in doing an install. Then I will just try. If I needed to rebuild
+the rpm databases, where is the best place to put this in the kiwi image
+building environment?
+
+&gt;<i> 
+</I>&gt;<i> I would really appreciate any feedback/ideas if someone already
+</I>&gt;<i> stumbled over that problem
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Kapellgr&#228;nd 7
+P.O. Box 4205
+SE-102 65 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000310.html">[Kiwi-users] Another probably dumb kiwi question
+</A></li>
+	<LI>Next message: <A HREF="000312.html">[Kiwi-users] Another probably dumb kiwi question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#311">[ date ]</a>
+              <a href="thread.html#311">[ thread ]</a>
+              <a href="subject.html#311">[ subject ]</a>
+              <a href="author.html#311">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

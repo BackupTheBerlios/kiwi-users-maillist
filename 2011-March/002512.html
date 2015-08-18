@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110318140345.GA29819%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002511.html">
+   <LINK REL="Next"  HREF="002513.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110318140345.GA29819%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Fri Mar 18 15:03:45 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002511.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002513.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2512">[ date ]</a>
+              <a href="thread.html#2512">[ thread ]</a>
+              <a href="subject.html#2512">[ subject ]</a>
+              <a href="author.html#2512">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Sorry for not being clear.  Simply put my notebook test machine when
+</I>&gt;<i> running the Live OS on the USB stick is able to access and display in
+</I>&gt;<i> the file manager the fat (300mb) partition as well as the existing
+</I>&gt;<i> hard drive partitions yet on my desktop test machine the fat partition
+</I>&gt;<i> nor the existing hard drive is assessable or viewable from the file
+</I>&gt;<i> manager.  I actually can't located the fat partition at all on this
+</I>&gt;<i> machine.  How can the same image (flash drive) on one machine show
+</I>&gt;<i> different results than another?  Nothing changed in terms of the
+</I>&gt;<i> image.
+</I>
+What you are saying is that if you turn off your notebook, plugg off
+the USB stick, put it in your desktop machine , switch on your desktop
+machine and boot from the stick, then you can't see the fat partition ?
+Well I'm sure it's still there otherwise the boot from USB would have
+failed. So if that's true than I only can imagine a problem with
+the automounter but on a ramonly image no information of the system
+before has been stored. So I'm still confused
+
+&gt;<i> Based on what Robert suggest do you guys think that your re-instate
+</I>&gt;<i> the &lt;type image=&quot;usb&quot;....&gt; element or do you think this recent change
+</I>&gt;<i> will suffice?
+</I>
+the image=&quot;usb&quot; is gone and won't come back. You can have entirely
+the same thing with the oem type and more. I don't see a reason to
+maintain two code bases where one is just an extraction of the other.
+Basically usb has survived only for the reason to create a custom
+partition table which allows to have another partition than the
+root partition as first partition. The only reason people requesting
+this was to be able to use the stick as OS _and_ as data container
+on Windows and Linux. Exactly that has been achieved with the recent
+changes to the oem type. What most people dislike with the usb
+type was that you need linux and kiwi to deploy the image on the
+stick. One had to plug in the stick and call kiwi --bootstick in
+order to deploy to the stick. So the type really wasn't very
+popular and almost all people prefer to use imageWriter which also
+brings you back to the oem or iso type
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002511.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002513.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2512">[ date ]</a>
+              <a href="thread.html#2512">[ thread ]</a>
+              <a href="subject.html#2512">[ subject ]</a>
+              <a href="author.html#2512">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

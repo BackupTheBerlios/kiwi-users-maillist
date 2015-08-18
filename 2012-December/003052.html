@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C50E0D564.8010201%40public-files.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003053.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>Yarny</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C50E0D564.8010201%40public-files.de%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">Yarny at public-files.de
+       </A><BR>
+    <I>Mon Dec 31 00:59:32 CET 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003053.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3052">[ date ]</a>
+              <a href="thread.html#3052">[ thread ]</a>
+              <a href="subject.html#3052">[ subject ]</a>
+              <a href="author.html#3052">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi kiwi-users,
+
+Is there a possibility to make kiwi install its
+unpackaged image tree into an existing directory?
+
+Background: When deploying openSUSE to a new machine, I'm using
+a handmade script which makes and mounts some filesystems
+on the fresh hard disk and then essentially runs
+ $ zypper --root /mnt/new_root in pattern:enhanced_base ...
+to install a minimal system.  Judging from the logfiles kiwi
+apparently does something very similar, but the script which
+calls zypper seems to be much more well-thought-out (using
+chroot/lxc) than my simple zypper command line above.  I tried
+to replace my zypper line with a kiwi call, with appropriate
+config.xml, but kiwi refuses to fill the mounted soon-to-be
+root file system, it insists on creating a new directory itself.
+
+Also, I'm wondering if the kiwi-approach to deploy SUSE
+installations outlined above brings any pitfalls which I might
+overlook.   Any thoughts are welcome.
+
+Best wishes for the new year
+Yarny
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003053.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3052">[ date ]</a>
+              <a href="thread.html#3052">[ thread ]</a>
+              <a href="subject.html#3052">[ subject ]</a>
+              <a href="author.html#3052">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

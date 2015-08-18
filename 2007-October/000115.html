@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Xen boot image opensuse 10.3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Xen%20boot%20image%20opensuse%2010.3&In-Reply-To=%3C20071030113122.GA25968%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000114.html">
+   <LINK REL="Next"  HREF="000116.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Xen boot image opensuse 10.3</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Xen%20boot%20image%20opensuse%2010.3&In-Reply-To=%3C20071030113122.GA25968%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Xen boot image opensuse 10.3">ms at suse.de
+       </A><BR>
+    <I>Tue Oct 30 12:31:23 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000114.html">[Kiwi-users] Xen boot image opensuse 10.3
+</A></li>
+        <LI>Next message: <A HREF="000116.html">[Kiwi-users] v1.80 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#115">[ date ]</a>
+              <a href="thread.html#115">[ thread ]</a>
+              <a href="subject.html#115">[ subject ]</a>
+              <a href="author.html#115">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I got the image created now. Unfortunatelly I am stuck again. What are
+</I>&gt;<i> all these failures during the boot?
+</I>
+these are all related to your system image and Xen. I'll try to
+explain
+
+&gt;<i> Setting up the hardware clock
+</I>&gt;<i> failed
+</I>
+there is no hardware clock in a Xen guest but by default on SuSE
+it will be setup
+
+&gt;<i> Loading keymap Couldnt open /dev/tty1
+</I>&gt;<i> Loading /usr/share/kbd/keymaps/i386/qwerty/us.map.gz
+</I>&gt;<i> failed
+</I>&gt;<i> Loading compose table latin1.add
+</I>&gt;<i> failed
+</I>&gt;<i> Stop Unicode mode
+</I>&gt;<i> Couldnt open /dev/tty1
+</I>&gt;<i> Couldnt open /dev/tty2
+</I>&gt;<i> Couldnt open /dev/tty3
+</I>&gt;<i> Couldnt open /dev/tty4
+</I>&gt;<i> Couldnt open /dev/tty5
+</I>&gt;<i> Couldnt open /dev/tty6
+</I>&gt;<i> failed
+</I>
+In Xen only one virtual terminal / framebuffer console exists.
+By default SuSE setup 6 consoles which doesn't work in a Xen guest.
+In the kiwi source repo you can find a boot script I wrote to fix
+this. It's called boot.xen and resides in the helper directory.
+You need to include that one by an insserv call in config.sh
+I didn't had time to test and make Xen boot smooth, also Xen
+is evolving very rapidly and changes from one version to the
+other are massive
+
+&gt;<i> Loading console font lat1-16.psfu  -m none G0:iso8859-1 Couldnt open
+</I>&gt;<i> /dev/tty1 Couldnt open /dev/tty2 Couldnt open /dev/tty3 Couldnt open
+</I>&gt;<i> /dev/tty4 Couldnt open /dev/tty5
+</I>&gt;<i> Couldnt open /dev/tty6
+</I>&gt;<i> failed
+</I>&gt;<i> Couldnt get a file descriptor referring to the console
+</I>
+all related to the console problem
+
+&gt;<i> Starting service kdm
+</I>&gt;<i> done
+</I>
+X11 in a Xen guest could be a problem as well...
+
+&gt;<i> Setting up network interfaces:
+</I>&gt;<i>     lo
+</I>&gt;<i>     lo        IP address: 127.0.0.1/8
+</I>&gt;<i> Checking for network time protocol daemon (NTPD):
+</I>&gt;<i> doneed
+</I>&gt;<i> Waiting for mandatory devices:  eth0 __NSC__
+</I>&gt;<i> 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+</I>&gt;<i>     eth0                                No interface found
+</I>&gt;<i> failed
+</I>&gt;<i> Setting up service network  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+</I>&gt;<i> failed
+</I>
+your Xen config file doesn't provide a NIC configuration. So your
+Xen guest doesn't have a network interface. Take a look into the
+Xen documentation
+
+&gt;<i> Checking/updating CPU microcode
+</I>&gt;<i> failed
+</I>
+There is no CPU microcode in a paravirtualized machine
+
+&gt;<i> Starting smartd startproc:  exit status of parent of /usr/sbin/smartd:
+</I>&gt;<i> 17
+</I>&gt;<i>  
+</I>&gt;<i> failed
+</I>
+you shouldn't start smartd in a Xen guest
+
+&gt;<i> xend
+</I>&gt;<i> unused
+</I>&gt;<i> xendomains
+</I>&gt;<i> unused
+</I>
+xend is required on DOM0 only not in the guests
+
+&gt;<i> done 
+</I>&gt;<i> Starting Firewall Initialization (phase 2 of 2) SuSEfirewall2: Warning:
+</I>&gt;<i> no interface active
+</I>
+no NIC
+
+&gt;<i> Master Resource Control: runlevel 5 has been
+</I>&gt;<i> reached
+</I>
+Hey that's good news :-) !!
+
+&gt;<i> Welcome to openSUSE 10.3 (i586) - Kernel 2.6.22.5-31-xen (tty1).
+</I>
+nice too :-)
+
+Hope that helps. Please have in mind xen evolves rapidly and the SuSE
+distribution is not prepared in any step of the standard boot scripts
+to take care on a Xen environment. So you need some tricks and hacks
+which of course you can include by script in the kiwi image description
+directory.
+
+But hey you got very far with Xen I think. Keep up the good run :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000114.html">[Kiwi-users] Xen boot image opensuse 10.3
+</A></li>
+	<LI>Next message: <A HREF="000116.html">[Kiwi-users] v1.80 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#115">[ date ]</a>
+              <a href="thread.html#115">[ thread ]</a>
+              <a href="subject.html#115">[ subject ]</a>
+              <a href="author.html#115">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

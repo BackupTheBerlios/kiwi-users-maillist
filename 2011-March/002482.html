@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTik8TY8XSS2M8Q-xjWBNAV7EQza9VByAO2JQygaV%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002479.html">
+   <LINK REL="Next"  HREF="002483.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTik8TY8XSS2M8Q-xjWBNAV7EQza9VByAO2JQygaV%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Mon Mar 14 16:17:11 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002479.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002483.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2482">[ date ]</a>
+              <a href="thread.html#2482">[ thread ]</a>
+              <a href="subject.html#2482">[ subject ]</a>
+              <a href="author.html#2482">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Mar 14, 2011 at 9:08 AM, Roger Oberholtzer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger at opq.se</A>&gt; wrote:
+&gt;<i> On Mon, 2011-03-14 at 08:55 -0400, Chris Cunha wrote:
+</I>&gt;&gt;<i> On Sat, Mar 12, 2011 at 10:03 PM, Robert Schweikert
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+</I>&gt;&gt;<i> &gt; Hi,
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; On 03/12/2011 09:22 AM, Chris Cunha wrote:
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; On Sat, Mar 12, 2011 at 9:01 AM, Chris Cunha&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">eportel6607 at gmail.com</A>&gt;
+</I>&gt;&gt;<i> &gt;&gt; &#160;wrote:
+</I>&gt;&gt;<i> &gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt; On Sat, Mar 12, 2011 at 5:32 AM, Robert Schweikert
+</I>&gt;&gt;<i> &gt;&gt;&gt; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; &#160;wrote:
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; &lt;snip&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; Thanks for looking.
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; To add to the weirdness I tested if Yast could install the package and
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; it could.
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; You probably have some other repo configured on your running system that
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; provides swfdec.
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; No issues.
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; Then just for the heck of it I commented out that package from my
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; config.xml file and the build failed again with the same exact error!!
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; I checked for duplicates of that package in the config.xml file and
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; it's there only once. &#160;It turns out that the other package that
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; requires it as a dep is&lt;package name=&quot;swfdec-browser-plugin&quot;/&gt;. &#160;For
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; now I disabled both of these and kiwi was able to complete it's
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; &quot;prepare&quot; stage.
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; Now on to the &quot;create&quot; stage.
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; I ran the command : &quot;kiwi --create /home/linux/SOSbuild/SOS-unpack -d
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; /home/linux/SOSbuild/SOS-final --type oem --fat-storage 300&quot;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; It ran for most of the create stage however it's gave this error
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; twice. &quot;Mar-11 20:23:31&lt;1&gt; &#160; &#160;: --&gt; &#160; &#160;Creating VMX boot image:
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; oemboot/suse-11.3...
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; Mar-11 20:23:31&lt;3&gt; &#160; &#160;: Couldn't locate configuration directory
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; /usr/share/kiwi/image/oemboot/suse-1failed&quot;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; I check the local location (on my working build machine) of
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;&gt; /usr/share/kiwi/image/. &#160;The &quot;image&quot; directory is empty.
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; Previously I wrote:
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; &quot;There is no harm in installing all the kiwi packages.&quot; The
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; /usr/share/kiwi/image directory is populated by packages named
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; kiwi-desc-*boot, for oem it would be
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; kiwi-desc-oemboot-VERSION.RELEASE.noarch
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; Just install all the kiwi packages.
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; Robert
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; --
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; Tech Lead
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; 781-464-8147
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; Novell
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; Making IT Work As One
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; _______________________________________________
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; Kiwi-users mailing list
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;&gt; Hi Robert
+</I>&gt;&gt;<i> &gt;&gt;&gt; Yes I did install all the Kiwi packages. &#160;We are talking about the 3
+</I>&gt;&gt;<i> &gt;&gt;&gt; packages that Marcus packaged up? &#160;At this link:
+</I>&gt;&gt;<i> &gt;&gt;&gt; <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances">http://download.opensuse.org/repositories/Virtualization:/Appliances</A>
+</I>&gt;&gt;<i> &gt;&gt;&gt; correct? Is there anything I missed, from another repo? &#160;I'm sure that
+</I>&gt;&gt;<i> &gt;&gt;&gt; I installed all the packages at that links location.
+</I>&gt;&gt;<i> &gt;&gt;&gt; Chris
+</I>&gt;&gt;<i> &gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; Robert.
+</I>&gt;&gt;<i> &gt;&gt; Ok I just checked Yast package manager and I notice that when I
+</I>&gt;&gt;<i> &gt;&gt; install the update rpms for kiwi that Marcus gave me it uninstalled
+</I>&gt;&gt;<i> &gt;&gt; the rest of Kiwi. &#160;So If I install the rest of kiwi from the repo it
+</I>&gt;&gt;<i> &gt;&gt; wants to downgrade the packages that I just updated. &#160;What's the best
+</I>&gt;&gt;<i> &gt;&gt; approach to this?
+</I>&gt;&gt;<i> &gt;&gt; chris
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Add the following repository to your system:
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/">http://download.opensuse.org/repositories/Virtualization:/Appliances/</A>
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; -&gt; zypper ar -f
+</I>&gt;&gt;<i> &gt; <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/">http://download.opensuse.org/repositories/Virtualization:/Appliances/</A>
+</I>&gt;&gt;<i> &gt; kiwi_dev
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Then look for the kiwi packages:
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; -&gt; zypper se kiwi
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Then install all the packages. You should end up with an installed list
+</I>&gt;&gt;<i> &gt; similar to this:
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; kiwi-config-openSUSE-11.4-6.6.3.x86_64
+</I>&gt;&gt;<i> &gt; kiwi-debuginfo-4.43-1.6.x86_64
+</I>&gt;&gt;<i> &gt; kiwi-desc-oemboot-4.80-214.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-instsource-plugins-openSUSE-11-3-0.9-11.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-debugsource-4.80-1.2.1.x86_64
+</I>&gt;&gt;<i> &gt; kiwi-tools-4.81-215.1.x86_64
+</I>&gt;&gt;<i> &gt; kiwi-pxeboot-prebuild-3.74-17.21.2.x86_64
+</I>&gt;&gt;<i> &gt; kiwi-desc-vmxboot-4.80-214.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-desc-netboot-4.80-214.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-instsource-plugins-openSUSE-11-2-0.9-14.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-templates-4.80-214.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-desc-usbboot-4.80-214.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-pxeboot-4.81-215.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-desc-isoboot-4.80-214.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-tools-imagewriter-3.74-17.21.2.x86_64
+</I>&gt;&gt;<i> &gt; kiwi-instsource-plugins-openSUSE-11-1-2.0-23.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-doc-4.81-215.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-instsource-4.80-214.1.noarch
+</I>&gt;&gt;<i> &gt; kiwi-tools-debuginfo-4.80-1.2.1.x86_64
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; This is not really than installing any other packages from any other
+</I>&gt;&gt;<i> &gt; repository.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; HTH,
+</I>&gt;&gt;<i> &gt; Robert
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; --
+</I>&gt;&gt;<i> &gt; Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;<i> &gt; Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;&gt;<i> &gt; Tech Lead
+</I>&gt;&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;&gt;<i> &gt; 781-464-8147
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Novell
+</I>&gt;&gt;<i> &gt; Making IT Work As One
+</I>&gt;&gt;<i> &gt; _______________________________________________
+</I>&gt;&gt;<i> &gt; Kiwi-users mailing list
+</I>&gt;&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi Robert,
+</I>&gt;&gt;<i> Please forgive my ignorance on this but I have a few issues.
+</I>&gt;&gt;<i> If you didn't tell me about the Kiwi devel. repos I would never had
+</I>&gt;&gt;<i> known about it. &#160;Did I miss something (I'm sure I did) that would have
+</I>&gt;&gt;<i> tipped me towards enabling this repo?
+</I>&gt;&gt;<i> I'm getting errors with this repo. &#160;In a terminal I added the repo but
+</I>&gt;&gt;<i> when trying to use this repo I get:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &quot;Retrieving repository 'kiwi_dev' metadata [error]
+</I>&gt;&gt;<i> Repository 'kiwi_dev' is invalid.
+</I>&gt;&gt;<i> [|] Repository type can't be determined.
+</I>&gt;&gt;<i> Please check if the URIs defined for this repository are pointing to a
+</I>&gt;&gt;<i> valid repository.&quot;
+</I>&gt;&gt;<i> In yast I get the same thing.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I understand to you these may be stupid or obvious questions but for
+</I>&gt;&gt;<i> me not so much. &#160;I'm just trying to make sure I understand exactly
+</I>&gt;&gt;<i> what is going on when problems like this are encountered so I can
+</I>&gt;&gt;<i> learn from thing like this.
+</I>&gt;&gt;<i> When I did try to install the 3 rpms package (kiwi, kiwi-tools, and
+</I>&gt;&gt;<i> clicfs) Yast complained about deps issues. Should I force these
+</I>&gt;&gt;<i> packages in (rpm -i --force) &#160;or should I try to using the repo that
+</I>&gt;&gt;<i> you gave me? &#160;I didn't think this would be this much trouble. &#160;Am I
+</I>&gt;&gt;<i> doing something wrong??
+</I>&gt;<i>
+</I>&gt;<i> I think there is something out of sync in the repos for this. I did an
+</I>&gt;<i> update this morning, and some of the kiwi components complained about
+</I>&gt;<i> versions and did not want to update. I have never seen this before. So I
+</I>&gt;<i> expect it is a temporary hiccup.
+</I>&gt;<i>
+</I>&gt;<i> I get:
+</I>&gt;<i>
+</I>&gt;<i> # zypper up kiwi
+</I>&gt;<i> Loading repository data...
+</I>&gt;<i> Reading installed packages...
+</I>&gt;<i> Resolving package dependencies...
+</I>&gt;<i>
+</I>&gt;<i> Problem: kiwi-desc-usbboot-4.80-214.1.i586 requires kiwi = 4.80, but this requirement cannot be provided
+</I>&gt;<i> &#160;deleted providers: kiwi-4.80-214.1.i586
+</I>&gt;<i> &#160;Solution 1: Following actions will be done:
+</I>&gt;<i> &#160;deinstallation of kiwi-desc-usbboot-4.80-214.1.i586
+</I>&gt;<i> &#160;deinstallation of kiwi-desc-ltsp-0.8.1-3.1.noarch
+</I>&gt;<i> &#160;deinstallation of easy-ltsp-0.5_081006-1.6.i586
+</I>&gt;<i> &#160;deinstallation of kiwi-ltsp-bootimages-0.8.1-2.1.noarch
+</I>&gt;<i> &#160;deinstallation of kiwi-ltsp-prebuilt-0.8.1-2.1.noarch
+</I>&gt;<i> &#160;deinstallation of ltsp-server-5.1.99-7.1.i586
+</I>&gt;<i> &#160;Solution 2: do not ask to install a solvable providing kiwi &gt; 4.80-214.1
+</I>&gt;<i> &#160;Solution 3: break kiwi-desc-usbboot by ignoring some of its dependencies
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> Chris
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Yours sincerely,
+</I>&gt;<i>
+</I>&gt;<i> Roger Oberholtzer
+</I>&gt;<i>
+</I>&gt;<i> OPQ Systems / Ramb&#246;ll RST
+</I>&gt;<i>
+</I>&gt;<i> Office: Int +46 10-615 60 20
+</I>&gt;<i> Mobile: Int +46 70-815 1696
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+</I>&gt;<i> ________________________________________
+</I>&gt;<i>
+</I>&gt;<i> Ramb&#246;ll Sverige AB
+</I>&gt;<i> Krukmakargatan 21
+</I>&gt;<i> P.O. Box 17009
+</I>&gt;<i> SE-104 62 Stockholm, Sweden
+</I>&gt;<i> www.rambollrst.se
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+Thanks Roger.
+It's just my luck!  Ok well I can't seem to win.
+What's the best cure for something like this?  Does it make sense to
+wait until the issue is resolved with the repo or is there a work
+around?
+chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002479.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002483.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2482">[ date ]</a>
+              <a href="thread.html#2482">[ thread ]</a>
+              <a href="subject.html#2482">[ subject ]</a>
+              <a href="author.html#2482">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

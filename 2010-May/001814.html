@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] OEM image in ISO format fails to appear
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20image%20in%20ISO%20format%20fails%20to%20appear&In-Reply-To=%3C4BFFDDAA.6000305%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001813.html">
+   <LINK REL="Next"  HREF="001815.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] OEM image in ISO format fails to appear</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20image%20in%20ISO%20format%20fails%20to%20appear&In-Reply-To=%3C4BFFDDAA.6000305%40novell.com%3E"
+       TITLE="[Kiwi-users] OEM image in ISO format fails to appear">rschweikert at novell.com
+       </A><BR>
+    <I>Fri May 28 17:13:46 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001813.html">[Kiwi-users] OEM image in ISO format fails to appear
+</A></li>
+        <LI>Next message: <A HREF="001815.html">[Kiwi-users] OEM image in ISO format fails to appear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1814">[ date ]</a>
+              <a href="thread.html#1814">[ thread ]</a>
+              <a href="subject.html#1814">[ subject ]</a>
+              <a href="author.html#1814">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 05/28/2010 10:01 AM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> # kiwi --version
+</I>&gt;&gt;<i> May-28 08:54:14 &lt;1&gt; : kiwi version v4.37
+</I>&gt;&gt;<i> GIT Commit: ca4d8b8799c528f926f5dd89aade35f827318ba1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When I try to test the install using qemu-kvm the install fails.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> qemu-kvm some-virtual-drive.img -cdrom my-kiwi-build-oem-image.iso -m
+</I>&gt;&gt;<i> 1024 -boot d
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The VM boots of the ISO image, i.e. I get the grub selection screen
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Boot from Harddrive
+</I>&gt;&gt;<i> Install/Restore my-title
+</I>&gt;&gt;<i> Failsafe
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I select install restore and the install procedure starts. Hanging at
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Waiting for CD/DVD devices to appear
+</I>&gt;&gt;<i> Failed to detect CD/DVD or USB drive
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This used to work just fine.
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, works for me here. Can you boot with kiwidebug=1 and
+</I>&gt;<i> tell me more about the error ? (/var/log/boot.kiwi)
+</I>
+Call me crazy on the third try it started working.Thus I have nothing to
+add.
+
+I do have a question. In this case the system did not boot and no
+install takes place. If I boot with kiwidebug=1 how would I get the
+information? In the end I end up at a rebootException with not network
+connection.
+
+Would I boot a liveCD and then mount the drive (virtual drive) to get
+the file?
+
+Thanks,
+Robert
+
+&gt;<i> 
+</I>&gt;<i> your type section is also of interest
+</I>&gt;<i> 
+</I>&gt;<i> Thanks
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001813.html">[Kiwi-users] OEM image in ISO format fails to appear
+</A></li>
+	<LI>Next message: <A HREF="001815.html">[Kiwi-users] OEM image in ISO format fails to appear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1814">[ date ]</a>
+              <a href="thread.html#1814">[ thread ]</a>
+              <a href="subject.html#1814">[ subject ]</a>
+              <a href="author.html#1814">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

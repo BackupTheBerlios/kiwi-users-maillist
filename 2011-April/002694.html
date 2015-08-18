@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oem example doesn't work
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20example%20doesn%27t%20work&In-Reply-To=%3C4DB6C4B3.2060304%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002693.html">
+   <LINK REL="Next"  HREF="002696.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oem example doesn't work</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20example%20doesn%27t%20work&In-Reply-To=%3C4DB6C4B3.2060304%40novell.com%3E"
+       TITLE="[Kiwi-users] oem example doesn't work">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Apr 26 15:12:19 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002693.html">[Kiwi-users] oem example doesn't work
+</A></li>
+        <LI>Next message: <A HREF="002696.html">[Kiwi-users] how the partition schema looks.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2694">[ date ]</a>
+              <a href="thread.html#2694">[ thread ]</a>
+              <a href="subject.html#2694">[ subject ]</a>
+              <a href="author.html#2694">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On 04/26/2011 08:34 AM, Hermann J. Beckers wrote:
+&gt;<i> Am Dienstag, 26. April 2011 schrieb Robert Schweikert:
+</I>&gt;&gt;<i> What version of Kiwi are you using?
+</I>&gt;<i>
+</I>&gt;<i> kiwi version v4.43
+</I>
+The &quot;new version&quot; of creating USB sticks was released with 4.81. Prior 
+to 4.81 you should have an &lt;type&gt; specification that looks similar to 
+the following
+
+&lt;type image=&quot;usb&quot; filesystem=&quot;....&quot; boot=&quot;usbboot/......&quot;/&gt;
+
+and then run prepare and build.
+
+The description you pointed out in your previous e-mail was changed in 
+release 4.81 or later. It appears that maybe your packages are not in 
+sync, doc package maybe ahead of the rest of kiwi?
+
+Yet the error you described is consistent with the example of 
+suse-live-stick for version 4.43, as in 4.43 the example did not have a 
+&lt;type image=&quot;oem&quot;...../&gt; specification, but in version 4.81 or later it 
+does.
+
+Something doesn't quite match.
+
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002693.html">[Kiwi-users] oem example doesn't work
+</A></li>
+	<LI>Next message: <A HREF="002696.html">[Kiwi-users] how the partition schema looks.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2694">[ date ]</a>
+              <a href="thread.html#2694">[ thread ]</a>
+              <a href="subject.html#2694">[ subject ]</a>
+              <a href="author.html#2694">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

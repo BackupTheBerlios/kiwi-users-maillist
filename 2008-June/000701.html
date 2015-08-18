@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie questions/clarification
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3COF8575016F.C48B6166-ON8625746A.0046315E-8625746A.004892ED%40academy.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000700.html">
+   <LINK REL="Next"  HREF="000702.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie questions/clarification</H1>
+    <B>justin.kinney at academy.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3COF8575016F.C48B6166-ON8625746A.0046315E-8625746A.004892ED%40academy.com%3E"
+       TITLE="[Kiwi-users] Newbie questions/clarification">justin.kinney at academy.com
+       </A><BR>
+    <I>Mon Jun 16 15:12:04 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000700.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+        <LI>Next message: <A HREF="000702.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#701">[ date ]</a>
+              <a href="thread.html#701">[ thread ]</a>
+              <a href="subject.html#701">[ subject ]</a>
+              <a href="author.html#701">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt; What is the difference?
+</I>
+&gt;<i> the netboot term references the boot image (the initrd) which controls
+</I>&gt;<i> the boot process initiated by a PXE boot based protocol. Along with
+</I>&gt;<i> this boot image there is also a package called kiwi-pxeboot. This 
+</I>packages
+&gt;<i> provides the basic directory structure and some PXE default 
+</I>configuration
+&gt;<i> files which are sufficient to work with the netboot boot image.
+</I>
+Thanks for clarifying that.
+
+&gt;<i> - system image completely in RAM
+</I>&gt;<i> - system image partially in RAM and local storage
+</I>&gt;<i> - system image completely on local storage
+</I>&gt;<i> - system image remotely mounted via NFS (network file system)
+</I>&gt;<i> - system image remotely mounted via NBD (network block device)
+</I>
+In interest of having the quickest bootup time possible, I'm thinking that 
+the NBD remote mounted system image is what I need.  Does that sound 
+correct?
+
+&gt;<i> I agree you don't need the terminal aspects here. So to make this work
+</I>&gt;<i> you need the following:
+</I>
+&gt;<i> 1) a system image tree exported via NFS or NBD
+</I>&gt;<i> 2) a PXE boot server based on the directory structure from the
+</I>&gt;<i> kiwi-pxeboot package
+</I>&gt;<i> 3) a netboot boot image and kernel built with kiwi
+</I>&gt;<i> 4) a config.&lt;MAC&gt; configuration file which includes one line
+</I>&gt;<i> telling netboot to use NBD or NFS
+</I>
+&gt;<i> Would you mind to jump in and tell us according to the list
+</I>&gt;<i> above at which point you are currently and what problems needs
+</I>&gt;<i> to be solved.
+</I>
+Thank you very much for the reply and explanations.  I'm really just 
+getting started - but here is how I understand the process (and I'd 
+appreciate it if you can correct me where I'm wrong)
+
+First, the kiwi-pxeboot package is installed, which provides the 
+/srv/tftpboot structure necessary for the clients to boot.
+Second, the kiwi-desc-netboot package is installed, which provides the 
+config.xmls and scripts necessary to build the boot image (initrd).
+
+This is the point where I need help.  If I do &quot;kiwi -c 
+/usr/share/kiwi/image/netboot/suse-10.3 -r /tmp/pxe&quot;, what am I actually 
+getting?  Just the initrd?
+If so, what is the appropriate way to build the system? 
+
+I'm thinking that I need to create a config directory structure (including 
+config.xml for my image, and other scripts as needed).  But how do I tie 
+the netboot initrd together with this system image?  I'm pretty sure it is 
+done based on the &quot;&lt;type&gt;&quot; block in my images' config.xml, but some 
+clarification would help here.
+
+Thanks in advance,
+Justin
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080616/9a1bf5ef/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080616/9a1bf5ef/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000700.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+	<LI>Next message: <A HREF="000702.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#701">[ date ]</a>
+              <a href="thread.html#701">[ thread ]</a>
+              <a href="subject.html#701">[ subject ]</a>
+              <a href="author.html#701">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

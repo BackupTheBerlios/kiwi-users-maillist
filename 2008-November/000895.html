@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issue with partition creation on USB stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C4921B45A020000AF000323DE%40sinclair.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000894.html">
+   <LINK REL="Next"  HREF="000897.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issue with partition creation on USB stick</H1>
+    <B>Vagner Farias</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C4921B45A020000AF000323DE%40sinclair.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Issue with partition creation on USB stick">vfarias at novell.com
+       </A><BR>
+    <I>Mon Nov 17 21:13:46 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000894.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+        <LI>Next message: <A HREF="000897.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#895">[ date ]</a>
+              <a href="thread.html#895">[ thread ]</a>
+              <a href="subject.html#895">[ subject ]</a>
+              <a href="author.html#895">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;&gt;<i> On 11/17/2008 at  4:17 PM, in message
+</I>&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">49219927020000AF00032372 at sinclair.provo.novell.com</A>&gt;, &quot;Vagner Farias&quot;
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">vfarias at novell.com</A>&gt; wrote: 
+
+Vagner Farias
+Linux Technology Specialist
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">vfarias at novell.com</A>
+(11) 3345-3946
+(11) 9228-5916
+
+Novell do Brasil
+Making IT Work As One*
+www.novell.com
+
+
+&gt;&gt;&gt;&gt;<i> On 11/17/2008 at  1:25 PM, in message &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">20081117152526.GA2279 at D7.ddts.net</A>&gt;,
+</I>&gt;<i> Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote: 
+</I>[..]
+&gt;<i> 
+</I>&gt;<i> Size for the ext3-only image:
+</I>&gt;<i> 
+</I>&gt;<i> . cb-live-stick.i686-0.2.0 - 3.6GB
+</I>&gt;<i> . cb-live-stick-read-write.i686-0.2.1 - 92MB
+</I>&gt;<i> 
+</I>&gt;<i> Size for the squashfs + ext3 image:
+</I>&gt;<i> 
+</I>&gt;<i> . cb-live-stick.i686-0.2.1 - 1.2GB
+</I>&gt;<i> . cb-live-stick-read-write.i686-0.2.1 - 92 MB
+</I>&gt;<i> 
+</I>&gt;<i> The primary stick I'm using is 8GB. I tried a 4 GB one only for testing, as 
+</I>&gt;<i> I thought the 8GB one could be damaged.
+</I>
+I decided to wait for the partitioning to end, while deploying the ext3-only image on the 8GB stick. The following error occurred:
+
+tesla:/home/vfarias/kiwi/stick-ext3-result # kiwi --partitioner fdisk  --bootstick initrd-usbboot-suse-SLED10.i686-2.1.1.splash.gz --bootstick-system cb-live-stick.i686-0.2.1
+Nov-17 16:21:39 &lt;1&gt; : Creating boot USB stick from: initrd-usbboot-suse-SLED10.i686-2.1.1.splash.gz...
+Nov-17 16:21:39 &lt;1&gt; : Creating initial boot structure                                                                             done
+Nov-17 16:21:39 &lt;1&gt; : Importing grub stages and graphics boot message                                                             done
+Nov-17 16:21:40 &lt;1&gt; : Found following removable USB devices:
+Nov-17 16:21:40 &lt;1&gt; : ---&gt; 5B880D000078 at /dev/sdb
+Nov-17 16:21:40 &lt;1&gt; : Your choice (enter device name): /dev/sdb
+Nov-17 16:21:43 &lt;1&gt; : Saving disk label on disk: 0x36c77548...                                                                    done
+Nov-17 16:21:43 &lt;1&gt; : Creating grub menu list file...                                                                             done
+Nov-17 16:21:44 &lt;1&gt; : Establish HAL lock for: /dev/sdb                                                                            done
+Nov-17 16:21:44 &lt;1&gt; : Creating partition table on: /dev/sdb.........................................................................................................................................................................................................................................................................................................................................................................................                                                                                                                     failed
+Nov-17 17:27:20 &lt;3&gt; : Couldn't reread partition table: Bad file descriptor                                                        failed
+[*** back trace follows ***]
+Trace Level 1 at /usr/share/kiwi/modules/KIWIBoot.pm line 723
+        KIWIBoot::setupBootStick('KIWIBoot=HASH(0x8d9f564)') called at /usr/sbin/kiwi line 953
+        main::main() called at /usr/sbin/kiwi line 2081
+[*** end ***]
+Nov-17 17:27:20 &lt;3&gt; : KIWI exited with error(s)
+
+
+Output for &quot;fdisk -l /dev/sdb&quot;:
+
+Disk /dev/sdb: 8011 MB, 8011120640 bytes
+247 heads, 62 sectors/track, 1021 cylinders
+Units = cylinders of 15314 * 512 = 7840768 bytes
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1               1         482     3690643   83  Linux
+/dev/sdb2   *         483        1021     4127123   83  Linux
+
+
+&gt;&gt;<i> If you like you can give it a try with the option:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i>    --partitioner parted
+</I>
+tesla:/home/vfarias/kiwi/stick-ext3-result # kiwi --partitioner parted  --bootstick initrd-usbboot-suse-SLED10.i686-2.1.1.splash.gz --bootstick-system cb-live-stick.i686-0.2.1
+Nov-17 18:11:53 &lt;1&gt; : Creating boot USB stick from: initrd-usbboot-suse-SLED10.i686-2.1.1.splash.gz...
+Nov-17 18:11:53 &lt;1&gt; : Creating initial boot structure                                                                             done
+Nov-17 18:11:54 &lt;1&gt; : Importing grub stages and graphics boot message                                                             done
+Nov-17 18:11:54 &lt;3&gt; : Couldn't find any removable USB storage devices                                                             failed
+[*** back trace follows ***]
+Trace Level 1 at /usr/share/kiwi/modules/KIWIBoot.pm line 593
+        KIWIBoot::setupBootStick('KIWIBoot=HASH(0x8d9f564)') called at /usr/sbin/kiwi line 953
+        main::main() called at /usr/sbin/kiwi line 2081
+[*** end ***]
+Nov-17 18:11:54 &lt;3&gt; : KIWI exited with error(s)            
+
+
+tesla:/home/vfarias/kiwi/stick-ext3-result # parted -v
+GNU Parted 1.6.25.1
+
+Any hints?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000894.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+	<LI>Next message: <A HREF="000897.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#895">[ date ]</a>
+              <a href="thread.html#895">[ thread ]</a>
+              <a href="subject.html#895">[ subject ]</a>
+              <a href="author.html#895">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110318085104.GB11008%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002507.html">
+   <LINK REL="Next"  HREF="002508.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110318085104.GB11008%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Fri Mar 18 09:51:05 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002507.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002508.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2509">[ date ]</a>
+              <a href="thread.html#2509">[ thread ]</a>
+              <a href="subject.html#2509">[ subject ]</a>
+              <a href="author.html#2509">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Why with the OEM type image is the first boot with image any different
+</I>&gt;<i> than any other boot?  With the ISO type image every boot is the
+</I>&gt;<i> same...right? 
+</I>
+The oem image is an expandable image. on first boot it expands
+itself according to the given oem-... parameters in your config.xml
+If you for example told the oem to grow to a systemsize of 2G it
+will try to do that on first boot. Of course that only can be
+done if the size of the stick allows this. There are several 
+oem parameters for details refer to the docs
+
+&gt;<i> How is it with a Live image using and OEM image type
+</I>&gt;<i> that it &quot;knows&quot; that it's the first time it's being ran compared to
+</I>&gt;<i> any other time the image is booted?
+</I>&gt;<i> So that means if I configured that .desktop file on the users Desktop
+</I>&gt;<i> to point a /media   that should work but on after the first boot and
+</I>&gt;<i> not the first?
+</I>
+you can't compare a live iso with an oem image. Of course both have
+the same root filesystem contents but their geometry is completely
+different. a live iso packs everything into an iso filesystem
+and a oem image is a virtual disk.
+
+&gt;<i> In the file manager after the first boot the 300mb partition shows up,
+</I>&gt;<i> along with the any other partition that is available, such as the
+</I>&gt;<i> existing hard drive of the computer this live USB image is running on.
+</I>&gt;<i>  The strange thing is now that we switched the config for this image
+</I>&gt;<i> from an ISO to and OEM my other test machine (on first or there after
+</I>&gt;<i> boot) doesn't show this fat partition in file manager nor does it show
+</I>&gt;<i> the existing hard drive of this test machine.  In fact I can find the
+</I>&gt;<i> fat partition on this other test machine at all.  It's not in /media
+</I>&gt;<i> and and there is no lxboot dir...This is killing me!  Any idea how one
+</I>&gt;<i> machine can show a different results than another using the same
+</I>
+Sorry no clue what you are talking about.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002507.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002508.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2509">[ date ]</a>
+              <a href="thread.html#2509">[ thread ]</a>
+              <a href="subject.html#2509">[ subject ]</a>
+              <a href="author.html#2509">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

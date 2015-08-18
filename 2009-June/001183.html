@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] --migrate option on SLED11
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20--migrate%20option%20on%20SLED11&In-Reply-To=%3C200906121150.12961.scrute%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001180.html">
+   <LINK REL="Next"  HREF="001185.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] --migrate option on SLED11</H1>
+    <B>Simon Crute</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20--migrate%20option%20on%20SLED11&In-Reply-To=%3C200906121150.12961.scrute%40novell.com%3E"
+       TITLE="[Kiwi-users] --migrate option on SLED11">scrute at novell.com
+       </A><BR>
+    <I>Fri Jun 12 12:50:12 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001180.html">[Kiwi-users] --migrate option on SLED11
+</A></li>
+        <LI>Next message: <A HREF="001185.html">[Kiwi-users] --migrate option on SLED11
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1183">[ date ]</a>
+              <a href="thread.html#1183">[ thread ]</a>
+              <a href="subject.html#1183">[ subject ]</a>
+              <a href="author.html#1183">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Friday 12 June 2009 11:31:29 you wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; Hi all,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Does the --migrate option work with sled11 ? Or is there any plans to
+</I>&gt;<i> &gt; make it work ?
+</I>&gt;<i>
+</I>&gt;<i> I didn't have much time to work on migrate so I wouldn't rely on
+</I>&gt;<i> that feature at the moment. There are nobody requesting it for a real
+</I>&gt;<i> business case which is the reason why it is a playground only atm.
+</I>&gt;<i> If there is someone willing to take over that part of kiwi and
+</I>&gt;<i> officially support it I would have no objections
+</I>
+Sadly, I'm not of the skill levels in coding to volunteer for that. 
+
+&gt;<i> The migration table: modules/KIWIMigrate.txt currently did not
+</I>&gt;<i> include repositories for SLE11 so the migration surely will not
+</I>&gt;<i> recognize SLE11 at the moment. This will not prevent the migration
+</I>&gt;<i> to run but it will leave you with some details you need to add
+</I>&gt;<i> manually afterwards
+</I>
+I did some digging, and found that, and added something for sled11
+When I then ran the --migrate it produced a stack trace. Details at the end of 
+this message 
+
+&gt;<i> I think the feature would be worth to become supported but
+</I>&gt;<i> it must be clear to the user that the result needs a human
+</I>&gt;<i> validation afterwards.
+</I>
+Absolutely. I think it's a great way to get something to start from. Probably 
+much easier for people to start from a --migrate image than a blank editor 
+screen :)
+
+
+I ran this on a sled11 install, with a addon product (the ODE addon) and all 
+updates applied installed into a 32bit VMware session. I then added the kiwi 
+repository (and opensuse11.1 to resolve a couple of RPMs) and installed kiwi. 
+
+Finally, running the --prepare gives
+
+linux-vy7x:~ # kiwi --migrate mySys --destdir /tmp/migrated --report 
+Jun-12 11:48:52 &lt;1&gt; : Starting system to image migration                                                                         
+done
+Jun-12 11:48:52 &lt;1&gt; : Results will be written to: /tmp/migrated                                                                  
+done       
++++ Basis-Devel Novell-software apparmor apparmor apparmor_opt default 
+desktop-base desktop-gnome desktop-gnome-laptop desktop-kde-laptop 
+documentation fonts fonts games games_opt gnome gnome_admin gnome_basis 
+gnome_basis_opt gnome_games gnome_imaging gnome_imaging_opt gnome_laptop 
+gnome_office gnome_office_opt gnome_utilities gnome_utilities_opt gnome_xgl 
+gnome_yast imaging imaging_opt kde3_basis_opt kde3_laptop kde3_yast 
+kde4_basis_opt kde4_laptop kernel-devel laptop multimedia office print_server 
+remote_desktop sw_management tabletpc x11 xgl yast2_install_wf                                                                                                                                     
++++ <A HREF="http://inst/sled11-i586/">http://inst/sled11-i586/</A> <A HREF="http://smt.novell.com/?credentials=NCCcredentials">http://smt.novell.com/?credentials=NCCcredentials</A> 
+<A HREF="http://inst/ode-addon-sled11-ga">http://inst/ode-addon-sled11-ga</A> <A HREF="http://smt.novell.com//repo//RPMMD/sled11-gm-">http://smt.novell.com//repo//RPMMD/sled11-gm-</A>
+ode <A HREF="http://isos/suse11.1-i386">http://isos/suse11.1-i386</A>                                                                                               
+Jun-12 11:48:54 &lt;1&gt; : Setting up SaT solver...                                                                                              
+*** buffer overflow detected ***: /usr/bin/perl terminated                                                                                  
+======= Backtrace: =========                                                                                                                
+/lib/libc.so.6(__fortify_fail+0x48)[0xb7f27db8]                                                                                             
+/lib/libc.so.6[0xb7f25dd0]                                                                                                                  
+/lib/libc.so.6[0xb7f25458]                                                                                                                  
+/lib/libc.so.6(_IO_default_xsputn+0xa0)[0xb7eabc00]                                                                                         
+/lib/libc.so.6(_IO_vfprintf+0xf74)[0xb7e7fed4]                                                                                              
+/lib/libc.so.6(__vsprintf_chk+0xa7)[0xb7f25507]                                                                                             
+/lib/libc.so.6(__sprintf_chk+0x2d)[0xb7f2544d]                                                                                              
+/usr/lib/perl5/vendor_perl/5.10.0/i586-linux-thread-
+multi/auto/KIWI/SaT/SaT.so(_wrap_Solver_getInstallList+0x269)[0xb79e9419]               
+/usr/bin/perl(Perl_pp_entersub+0xae1)[0x80e1af1]                                                                                            
+/usr/bin/perl(Perl_runops_debug+0x12f)[0x80a614f]                                                                                           
+/usr/bin/perl(perl_run+0x491)[0x80dbca1]                                                                                                    
+/usr/bin/perl(main+0xed)[0x806403d]                                                                                                         
+/lib/libc.so.6(__libc_start_main+0xe5)[0xb7e57705]                                                                                          
+/usr/bin/perl[0x8063eb1]                                               
+
+
+followed by a memory map. 
+
+
+-- 
+Simon Crute
+Novell IS&amp;T
+UK
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001180.html">[Kiwi-users] --migrate option on SLED11
+</A></li>
+	<LI>Next message: <A HREF="001185.html">[Kiwi-users] --migrate option on SLED11
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1183">[ date ]</a>
+              <a href="thread.html#1183">[ thread ]</a>
+              <a href="subject.html#1183">[ subject ]</a>
+              <a href="author.html#1183">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

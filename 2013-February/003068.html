@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C51105037.4020805%40suse.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003067.html">
+   <LINK REL="Next"  HREF="003069.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C51105037.4020805%40suse.com%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">rjschwei at suse.com
+       </A><BR>
+    <I>Tue Feb  5 01:20:07 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003067.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+        <LI>Next message: <A HREF="003069.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3068">[ date ]</a>
+              <a href="thread.html#3068">[ thread ]</a>
+              <a href="subject.html#3068">[ subject ]</a>
+              <a href="author.html#3068">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 02/04/2013 05:33 PM, Yarny wrote:
+&gt;<i> Hi Marcus and list,
+</I>&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> But bootstrapping on something non empty sounds
+</I>&gt;&gt;&gt;&gt;<i> weird to me and by the way creates a system with
+</I>&gt;&gt;&gt;&gt;<i> broken integrity
+</I>&gt;&gt;&gt;<i> In my case the root is almost empty: It contains some
+</I>&gt;&gt;&gt;<i> directories like /usr and /boot that are on separate
+</I>&gt;&gt;&gt;<i> filesystems.  I have to have these directories,
+</I>&gt;&gt;&gt;<i> but I don't think they lead to broken integrity.
+</I>&gt;&gt;<i> If you start a system with just /usr and /boot it's broken
+</I>&gt;&gt;<i> in the first place. Anyway you are saying you need data
+</I>&gt;&gt;<i> from /usr and /boot.
+</I>&gt;<i> No, /usr and /boot are empty, but they have to exist.
+</I>&gt;<i>
+</I>&gt;<i> Somehow simplified (only /usr shown here),
+</I>&gt;<i> my kiwi usage looks like this:
+</I>&gt;&gt;<i> mkfs.ext4 /dev/sda1
+</I>&gt;&gt;<i> mkfs.ext4 /dev/sdb1
+</I>&gt;&gt;<i> mkdir /tmp/my_root
+</I>&gt;&gt;<i> mount /dev/sda1 /tmp/my_root
+</I>&gt;&gt;<i> mkdir /tmp/my_root/usr
+</I>&gt;&gt;<i> mount /dev/sdb1 /tmp/my_root/usr
+</I>&gt;&gt;<i> kiwi --prepare --root /tmp/my_root --dont-recreate-new-root
+</I>&gt;<i> As you can see, /usr is pre-mounted before kiwi is called.
+</I>&gt;<i> The same holds for /boot, /tmp, and
+</I>&gt;<i> probably one or two other directories.
+</I>&gt;<i> These directories do not contain any files, so
+</I>&gt;<i> I don't think this leads to broken integrity.
+</I>&gt;<i> They just need to be created because they reside
+</I>&gt;<i> on separate filesystems on separate devices.
+</I>
+I probably missed something in this thread, thus please excuse me if the 
+following was already stated or is obvious.
+
+If /usr and /boot are mounted to a different file system and you let 
+kiwi prepare the image into this root tree, what is the expected outcome?
+
+A system you can chroot into?
+
+And the /usr and /boot is shared across many systems?
+
+Thanks,
+Robert
+
+&gt;<i>
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweik at ca.ibm.com</A>
+781-464-8147
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003067.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+	<LI>Next message: <A HREF="003069.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3068">[ date ]</a>
+              <a href="thread.html#3068">[ thread ]</a>
+              <a href="subject.html#3068">[ subject ]</a>
+              <a href="author.html#3068">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

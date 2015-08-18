@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110330075541.GB4922%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002573.html">
+   <LINK REL="Next"  HREF="002578.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110330075541.GB4922%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">ms at suse.de
+       </A><BR>
+    <I>Wed Mar 30 09:55:42 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002573.html">[Kiwi-users] live image streaming issues...swap file or other kiwi	settings?
+</A></li>
+        <LI>Next message: <A HREF="002578.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2577">[ date ]</a>
+              <a href="thread.html#2577">[ thread ]</a>
+              <a href="subject.html#2577">[ subject ]</a>
+              <a href="author.html#2577">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Marcus and Robert
+</I>&gt;<i> as you guys know I am working on a project that stores a live image on
+</I>&gt;<i> a usb flash drive.  I'm having issues when streaming flash  video that
+</I>&gt;<i> it doesn't cache fast enough.  At least that's what it seems.  At
+</I>&gt;<i> first the videos seem to play okay but the longer it runs the worst it
+</I>&gt;<i> gets until it not only won't play but the browser (firefox) is
+</I>&gt;<i> unresponsive.  Just bookmarking a site takes forever.  The browser is
+</I>&gt;<i> completely overwhelmed by the video trying to play.  I understand that
+</I>&gt;<i> USB drives in general do have different bandwidth capabilities and the
+</I>&gt;<i> one I'm using isn't the fastest one around but it's not the slowest
+</I>&gt;<i> either.
+</I>&gt;<i> 
+</I>&gt;<i> I changed the swap element in the config.xml file from 800 to 2000 it
+</I>&gt;<i> did seem to make a bit of a difference but didn't resolve the issue.
+</I>&gt;<i> Is there anything else that many help with this issue?  Maybe the
+</I>&gt;<i> &quot;ramonly&quot; element?
+</I>
+my guess is that you are running out of ram space. You should have
+in mind that you requested a live OS on stick which is compressed
+and also doesn't allow any persistent data. This means that OS
+has to do some decompression which costs CPU and bandwidth power
+and all write actions go to RAM which means you have less RAM
+than you might expect. If the video stream starts to slow down
+at a certain point in time I guess that the system now starts
+swapping which makes that kind of live OS probably pretty
+unresponsive
+
+I don't have a good solution here. You should make sure the OS
+runs on a machine with lots of RAM and the stick hardware
+is fast. kiwi uses 7/10 of the ram space according to
+
+  /proc/meminfo | grep MemFree
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002573.html">[Kiwi-users] live image streaming issues...swap file or other kiwi	settings?
+</A></li>
+	<LI>Next message: <A HREF="002578.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2577">[ date ]</a>
+              <a href="thread.html#2577">[ thread ]</a>
+              <a href="subject.html#2577">[ subject ]</a>
+              <a href="author.html#2577">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

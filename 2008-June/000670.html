@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with Network boot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20Network%20boot%20image&In-Reply-To=%3C20080609092507.GA16808%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000669.html">
+   <LINK REL="Next"  HREF="000671.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with Network boot image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20Network%20boot%20image&In-Reply-To=%3C20080609092507.GA16808%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Issues with Network boot image">ms at novell.com
+       </A><BR>
+    <I>Mon Jun  9 11:25:08 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000669.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+        <LI>Next message: <A HREF="000671.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#670">[ date ]</a>
+              <a href="thread.html#670">[ thread ]</a>
+              <a href="subject.html#670">[ subject ]</a>
+              <a href="author.html#670">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I see that the setupSUSEInitrd function in KIWILinuxRC.sh looks for System.map file in the /boot directory, which it doesn't seem to find. 
+</I>&gt;<i> 
+</I>&gt;<i> I have tried the following loop from KIWILinuxRC.sh on a running Thin Client image and it does not find the System.map file
+</I>&gt;<i> 
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> for i in `find /boot -name &quot;System.map*&quot;`;do
+</I>&gt;<i>                 systemMap=1
+</I>&gt;<i> done
+</I>&gt;<i> &lt;/snip&gt;
+</I>
+ups
+ 
+&gt;<i> However if I modify the loop slightly (as follows), then it seems to work.
+</I>&gt;<i> 
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> for i in `find /boot/ -name &quot;System.map*&quot;`;do
+</I>&gt;<i>                 systemMap=1
+</I>&gt;<i> done
+</I>&gt;<i> &lt;/snip&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Maybe this is causing the issue.
+</I>
+According to the log, yes. I will commit the following patch
+
+--- modules/KIWILinuxRC.sh      (revision 1312)
++++ modules/KIWILinuxRC.sh      (working copy)
+@@ -395,7 +395,7 @@
+        local umountProc=0
+        local umountSys=0
+        local systemMap=0
+-       for i in `find /boot -name &quot;System.map*&quot;`;do
++       for i in `find /boot/ -name &quot;System.map*&quot;`;do
+                systemMap=1
+        done
+        if [ $systemMap -eq 1 ];then
+
+
+Interesting enough it doesn't count on my system if I call
+
+	find /boot -name &quot;System.map*&quot;
+	find /boot/ -name &quot;System.map*&quot;
+
+Thanks for your effort
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000669.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+	<LI>Next message: <A HREF="000671.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#670">[ date ]</a>
+              <a href="thread.html#670">[ thread ]</a>
+              <a href="subject.html#670">[ subject ]</a>
+              <a href="author.html#670">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D7B4BBC.5020308%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002463.html">
+   <LINK REL="Next"  HREF="002465.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D7B4BBC.5020308%40novell.com%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">rschweikert at novell.com
+       </A><BR>
+    <I>Sat Mar 12 11:32:28 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002463.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002465.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2464">[ date ]</a>
+              <a href="thread.html#2464">[ thread ]</a>
+              <a href="subject.html#2464">[ subject ]</a>
+              <a href="author.html#2464">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&lt;snip&gt;
+&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Thanks for looking.
+</I>&gt;<i> To add to the weirdness I tested if Yast could install the package and
+</I>&gt;<i> it could.
+</I>
+You probably have some other repo configured on your running system that 
+provides swfdec.
+
+&gt;<i> No issues.
+</I>&gt;<i> Then just for the heck of it I commented out that package from my
+</I>&gt;<i> config.xml file and the build failed again with the same exact error!!
+</I>&gt;<i> I checked for duplicates of that package in the config.xml file and
+</I>&gt;<i> it's there only once.  It turns out that the other package that
+</I>&gt;<i> requires it as a dep is&lt;package name=&quot;swfdec-browser-plugin&quot;/&gt;.  For
+</I>&gt;<i> now I disabled both of these and kiwi was able to complete it's
+</I>&gt;<i> &quot;prepare&quot; stage.
+</I>&gt;<i>
+</I>&gt;<i> Now on to the &quot;create&quot; stage.
+</I>&gt;<i> I ran the command : &quot;kiwi --create /home/linux/SOSbuild/SOS-unpack -d
+</I>&gt;<i> /home/linux/SOSbuild/SOS-final --type oem --fat-storage 300&quot;
+</I>&gt;<i> It ran for most of the create stage however it's gave this error
+</I>&gt;<i> twice. &quot;Mar-11 20:23:31&lt;1&gt;  : --&gt;  Creating VMX boot image:
+</I>&gt;<i> oemboot/suse-11.3...
+</I>&gt;<i> Mar-11 20:23:31&lt;3&gt;  : Couldn't locate configuration directory
+</I>&gt;<i> /usr/share/kiwi/image/oemboot/suse-1failed&quot;
+</I>&gt;<i>
+</I>&gt;<i> I check the local location (on my working build machine) of
+</I>&gt;<i> /usr/share/kiwi/image/.  The &quot;image&quot; directory is empty.
+</I>
+Previously I wrote:
+
+&quot;There is no harm in installing all the kiwi packages.&quot; The 
+/usr/share/kiwi/image directory is populated by packages named 
+kiwi-desc-*boot, for oem it would be 
+kiwi-desc-oemboot-VERSION.RELEASE.noarch
+
+Just install all the kiwi packages.
+
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002463.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002465.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2464">[ date ]</a>
+              <a href="thread.html#2464">[ thread ]</a>
+              <a href="subject.html#2464">[ subject ]</a>
+              <a href="author.html#2464">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

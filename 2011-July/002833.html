@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20creating%20an%20OpenSuse%2011.4%20installation%0A%09disc&In-Reply-To=%3CCAA843w8nEmNLhzs32Et0Q00tekGdBAfyHx-BGG6o6PNCiK7OLg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002832.html">
+   <LINK REL="Next"  HREF="002834.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc</H1>
+    <B>Lluis Garrido</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20creating%20an%20OpenSuse%2011.4%20installation%0A%09disc&In-Reply-To=%3CCAA843w8nEmNLhzs32Et0Q00tekGdBAfyHx-BGG6o6PNCiK7OLg%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc">lgoster at gmail.com
+       </A><BR>
+    <I>Fri Jul 15 18:30:46 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002832.html">[Kiwi-users] kiwi: Weekly report 2011-07-10 - 2011-07-15...
+</A></li>
+        <LI>Next message: <A HREF="002834.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2833">[ date ]</a>
+              <a href="thread.html#2833">[ thread ]</a>
+              <a href="subject.html#2833">[ subject ]</a>
+              <a href="author.html#2833">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear everybody,
+
+I've been able to create an ISO that includes the updated kernel of OpenSuse
+11.4,
+i.e. kernel.2.6.37.6-0.5-desktop.
+
+However, when booting from USB at home I get this error:
+
+FATAL: /lib/modules/2.6.37-0.5-desktop/modules.dep: no such file or
+directory
+
+The modules.dep is in fact in the image the Kiwi system has generated:
+
+$ pwd
+/tmp/myiso
+$ cd lib/modules/2.6.37.6-0.5-desktop/
+$ ls -l
+total 2472
+drwxr-xr-x 12 root root   4096 14 jul 19:00 kernel
+-rw-r--r--  1 root root 602670 14 jul 19:00 modules.alias
+-rw-r--r--  1 root root 580626 14 jul 19:00 modules.alias.bin
+-rw-r--r--  1 root root   4683 26 abr 21:18 modules.builtin
+-rw-r--r--  1 root root   6220 14 jul 19:00 modules.builtin.bin
+-rw-r--r--  1 root root 268582 14 jul 19:00 modules.dep
+-rw-r--r--  1 root root 396363 14 jul 19:00 modules.dep.bin
+-rw-r--r--  1 root root    248 14 jul 19:00 modules.devname
+-rw-r--r--  1 root root 105461 26 abr 21:18 modules.order
+-rw-r--r--  1 root root    131 14 jul 19:00 modules.softdep
+-rw-r--r--  1 root root 231606 14 jul 19:00 modules.symbols
+-rw-r--r--  1 root root 295855 14 jul 19:00 modules.symbols.bin
+drwxr-xr-x  2 root root   4096 14 jul 19:00 systemtap
+drwxr-xr-x  2 root root   4096 14 jul 19:00 vdso
+$
+
+Is there any reason for which the modules.dep has not been included ?
+
+Here are the changes I did to config.xml of the template suse-live-iso just
+in case...
+
+    &lt;packages type=&quot;image&quot; patternType=&quot;plusRecommended&quot;&gt;
+        &lt;package name=&quot;bootsplash-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt;
+        &lt;package name=&quot;gfxboot-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt;
+        &lt;package name=&quot;kernel-desktop&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt; ## added
+        &lt;package
+name=&quot;kernel-desktop&quot;/&gt;
+## modifed
+        &lt;package name=&quot;ifplugd&quot;/&gt;
+        &lt;package name=&quot;vim&quot;/&gt;
+         &lt;package
+name=&quot;yast2-live-installer&quot;/&gt;
+## added
+        &lt;opensusePattern name=&quot;default&quot;/&gt;
+        &lt;opensusePattern
+name=&quot;gnome&quot;/&gt;                                                      ##
+modified
+    &lt;/packages&gt;
+
+Many thanks for your time,
+
+Best,
+
+Luis Garrido
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110715/0d48183d/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110715/0d48183d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002832.html">[Kiwi-users] kiwi: Weekly report 2011-07-10 - 2011-07-15...
+</A></li>
+	<LI>Next message: <A HREF="002834.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2833">[ date ]</a>
+              <a href="thread.html#2833">[ thread ]</a>
+              <a href="subject.html#2833">[ subject ]</a>
+              <a href="author.html#2833">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

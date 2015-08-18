@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D825ECA.105%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002516.html">
+   <LINK REL="Next"  HREF="002507.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D825ECA.105%40novell.com%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Mar 17 20:19:38 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002516.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002507.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2505">[ date ]</a>
+              <a href="thread.html#2505">[ thread ]</a>
+              <a href="subject.html#2505">[ subject ]</a>
+              <a href="author.html#2505">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+&lt;snip&gt;
+&gt;<i>
+</I>&gt;<i> Why with the OEM type image is the first boot with image any different
+</I>&gt;<i> than any other boot?
+</I>
+Because for an OEM image Kiwi creates a virtual disk image that is then 
+written to the target device (the USB stick in your case). This virtual 
+disk image takes up the minimum space possible (plus a small buffer). 
+Upon first boot the disk image needs to expand to accommodate the true 
+disk geometry of the target device, otherwise you would ot be able to 
+write any data to the disk.
+
+Now, in your case where everything happens in ram, due to the &quot;ramfs&quot; 
+value the expansion step could be skipped as we do not need to have 
+space for write operations. With &quot;ramfs&quot; we end up with a special case 
+of OEM. :(
+
+Marcus,
+
+I would advocate to go back to having &lt;type image=&quot;usb&quot;....&gt; and 
+implement as a special case of OEM, rather than have the OEM boot 
+process behave differently, depending on whether &quot;ramfs&quot; is set or not. 
+No good deed shall go unpunished ;)
+
+&gt;<i> With the ISO type image every boot is the
+</I>&gt;<i> same...right?
+</I>
+Yes, because an ISO image cannot change.
+
+&gt;<i> How is it with a Live image using and OEM image type
+</I>&gt;<i> that it &quot;knows&quot; that it's the first time it's being ran compared to
+</I>&gt;<i> any other time the image is booted?
+</I>
+An OEM image is really an image within an image. The first image is a 
+live system that has an auto-installer that installs the image onto the 
+target device. Caveat, I haven't looked at the new code in detail and 
+haven't build a new image type, we might skip the &quot;install&quot; step, but 
+clearly some code of the general OEM initrd is shared with the special 
+case OEM.
+
+&gt;<i> So that means if I configured that .desktop file on the users Desktop
+</I>&gt;<i> to point a /media   that should work but on after the first boot and
+</I>&gt;<i> not the first?
+</I>
+My first reaction would be that this should always work, but I could be 
+mistaken.
+
+&gt;<i>
+</I>&gt;<i> In the file manager after the first boot the 300mb partition shows up,
+</I>&gt;<i> along with the any other partition that is available, such as the
+</I>&gt;<i> existing hard drive of the computer this live USB image is running on.
+</I>
+This is governed by the &quot;automount&quot; rules of your desktop environment.
+
+&gt;<i>   The strange thing is now that we switched the config for this image
+</I>&gt;<i> from an ISO to and OEM my other test machine (on first or there after
+</I>&gt;<i> boot) doesn't show this fat partition in file manager nor does it show
+</I>&gt;<i> the existing hard drive of this test machine.  In fact I can find the
+</I>&gt;<i> fat partition on this other test machine at all.  It's not in /media
+</I>&gt;<i> and and there is no lxboot dir...This is killing me!  Any idea how one
+</I>&gt;<i> machine can show a different results than another using the same
+</I>&gt;<i> image?
+</I>
+Sorry I am confused in the text leading up to your question you imply 
+that the behavior is different between OEM and ISO image, then in your 
+question you say that the behavior is different for the same image.
+
+????
+
+Later,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002516.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002507.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2505">[ date ]</a>
+              <a href="thread.html#2505">[ thread ]</a>
+              <a href="subject.html#2505">[ subject ]</a>
+              <a href="author.html#2505">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Split image vs. aufs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Split%20image%20vs.%20aufs&In-Reply-To=%3C481B7211.4030702%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000610.html">
+   <LINK REL="Next"  HREF="000612.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Split image vs. aufs</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Split%20image%20vs.%20aufs&In-Reply-To=%3C481B7211.4030702%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] Split image vs. aufs">bernd at ixsoft.de
+       </A><BR>
+    <I>Fri May  2 21:57:05 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000610.html">[Kiwi-users] KIWI-LTSP+SLED10.1
+</A></li>
+        <LI>Next message: <A HREF="000612.html">[Kiwi-users] Split image vs. aufs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#611">[ date ]</a>
+              <a href="thread.html#611">[ thread ]</a>
+              <a href="subject.html#611">[ subject ]</a>
+              <a href="author.html#611">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+a normal usb image created with kiwi uses aufs for the complete 
+squashfs, so anything changed is persistent.
+I would like to limit the persistent section to e.g. &quot;/home&quot;, so any 
+changes to other files are just temporary (in RAM/tempfs) and will 
+disappear on the next reboot. This is useful on different occasions, 
+like not writing to many temporary files to the usb sticks so they don't 
+wear out too fast etc.
+How can I best achieve this selected persistence?
+I had a look at the &quot;split&quot; fs, but it seems this is only available for 
+networking images and not for usb/iso?
+Also, &quot;split&quot; r/w parts are not persistent?
+
+Thanks+Regards
+Bernd
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 311 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080502/08573e3a/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080502/08573e3a/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000610.html">[Kiwi-users] KIWI-LTSP+SLED10.1
+</A></li>
+	<LI>Next message: <A HREF="000612.html">[Kiwi-users] Split image vs. aufs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#611">[ date ]</a>
+              <a href="thread.html#611">[ thread ]</a>
+              <a href="subject.html#611">[ subject ]</a>
+              <a href="author.html#611">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

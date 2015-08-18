@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] boot failure on USB stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20boot%20failure%20on%20USB%20stick&In-Reply-To=%3C4A9EC5AC.8040003%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001424.html">
+   <LINK REL="Next"  HREF="001427.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] boot failure on USB stick</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20boot%20failure%20on%20USB%20stick&In-Reply-To=%3C4A9EC5AC.8040003%40novell.com%3E"
+       TITLE="[Kiwi-users] boot failure on USB stick">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Sep  2 21:21:16 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001424.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+        <LI>Next message: <A HREF="001427.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1426">[ date ]</a>
+              <a href="thread.html#1426">[ thread ]</a>
+              <a href="subject.html#1426">[ subject ]</a>
+              <a href="author.html#1426">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> &lt;!-- Do no create an extra partition --&gt;
+</I>&gt;&gt;&gt;<i>        &lt;oem-home&gt;false&lt;/oem-home&gt;
+</I>&gt;&gt;&gt;<i>        &lt;oem-swap&gt;true&lt;/oem-swap&gt;
+</I>&gt;&gt;&gt;<i>        &lt;!-- 128 MB swap partition --&gt;
+</I>&gt;&gt;&gt;<i>        &lt;oem-swapsize&gt;128&lt;/oem-swapsize&gt;
+</I>&gt;&gt;&gt;<i>        &lt;!-- 7.5 GB root partition --&gt;
+</I>&gt;&gt;&gt;<i>        &lt;oem-systemsize&gt;7680&lt;/oem-systemsize&gt;
+</I>&gt;&gt;&gt;<i>        &lt;oem-kiwi-initrd&gt;true&lt;/oem-kiwi-initrd&gt;
+</I>&gt;<i> 
+</I>&gt;<i> your log file showed:
+</I>&gt;<i> 
+</I>&gt;<i> diskXMBytes=7660 but you set a system size of 7680M that's too much
+</I>&gt;<i> and therefore the partitioning failed. 
+</I>
+So here is what fdisk produces for the same device:
+
+Disk /dev/sdc: 8032 MB, 8032092160 bytes
+255 heads, 63 sectors/track, 976 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Disk identifier: 0xbbe2ec92
+
+I wonder why the calculation of the size is different. Which leads me to 
+the question how one can set this up reliably in config.xml?
+
+Thanks,
+Robert
+&gt;<i> 
+</I>&gt;<i> Beside that I also fixed the check which should cover this.
+</I>&gt;<i> The changes entry is:
+</I>&gt;<i> 
+</I>&gt;<i> -------------------------------------------------------------------
+</I>&gt;<i> Fri Aug 28 12:38:12 CEST 2009 - <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> - fixed partition size check which failed if oem-systemsize
+</I>&gt;<i>   was set but the disk was smaller than the configured size
+</I>&gt;<i> 
+</I>&gt;<i> hope that helps
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001424.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+	<LI>Next message: <A HREF="001427.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1426">[ date ]</a>
+              <a href="thread.html#1426">[ thread ]</a>
+              <a href="subject.html#1426">[ subject ]</a>
+              <a href="author.html#1426">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

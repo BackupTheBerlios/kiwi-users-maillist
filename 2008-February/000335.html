@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] best way to install more packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20best%20way%20to%20install%20more%20packages&In-Reply-To=%3C1203498888.29827.89.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000334.html">
+   <LINK REL="Next"  HREF="000337.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] best way to install more packages</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20best%20way%20to%20install%20more%20packages&In-Reply-To=%3C1203498888.29827.89.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] best way to install more packages">roger at opq.se
+       </A><BR>
+    <I>Wed Feb 20 10:14:47 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000334.html">[Kiwi-users] best way to install more packages
+</A></li>
+        <LI>Next message: <A HREF="000337.html">[Kiwi-users] best way to install more packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#335">[ date ]</a>
+              <a href="thread.html#335">[ thread ]</a>
+              <a href="subject.html#335">[ subject ]</a>
+              <a href="author.html#335">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2008-02-20 at 09:36 +0100, Ralf Prengel wrote:
+&gt;<i> Hallo,
+</I>&gt;<i> 
+</I>&gt;<i> I am using the test2 file from examples to build a pxe system.
+</I>&gt;<i> My question:
+</I>&gt;<i> I need postfix and mailx in my pxe image.
+</I>&gt;<i> What is the best way to integrate these packages?
+</I>&gt;<i> I tried it with adding both packages in the xml file but allthough I saw
+</I>&gt;<i> these packages in the logfile they are not available in the pxe-system.
+</I>&gt;<i> Entering the tmp with chroot and installing the packages works but isn t
+</I>&gt;<i> there an easier way?
+</I>
+Some of the test examples have a script that removes packages not in a
+list in the script. So perhaps they are added via config.xml, and then
+removed via this script. This one got me as well. The script was called
+images.sh. If you have one, look there for this type of behavior. That
+is my best shot.
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Kapellgr&#228;nd 7
+P.O. Box 4205
+SE-102 65 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000334.html">[Kiwi-users] best way to install more packages
+</A></li>
+	<LI>Next message: <A HREF="000337.html">[Kiwi-users] best way to install more packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#335">[ date ]</a>
+              <a href="thread.html#335">[ thread ]</a>
+              <a href="subject.html#335">[ subject ]</a>
+              <a href="author.html#335">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

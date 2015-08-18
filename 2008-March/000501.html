@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] how to add own packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20how%20to%20add%20own%20packages&In-Reply-To=%3C20080314114358.GA22571%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000500.html">
+   <LINK REL="Next"  HREF="000502.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] how to add own packages</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20how%20to%20add%20own%20packages&In-Reply-To=%3C20080314114358.GA22571%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] how to add own packages">ms at suse.de
+       </A><BR>
+    <I>Fri Mar 14 12:43:58 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000500.html">[Kiwi-users] how to add own packages
+</A></li>
+        <LI>Next message: <A HREF="000502.html">[Kiwi-users] how to add own packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#501">[ date ]</a>
+              <a href="thread.html#501">[ thread ]</a>
+              <a href="subject.html#501">[ subject ]</a>
+              <a href="author.html#501">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; no the contents of your own _system_ image description stays untouched.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; the kiwi-desc-* packages provides the boot image descriptions for creating
+</I>&gt;<i> &gt; the initrd which you shouldn't have touched at all. If you had for some
+</I>&gt;<i> &gt; reasons the need for your own boot image description you should have
+</I>&gt;<i> &gt; created a copy of the description directory of your choice and rename it.
+</I>&gt;<i> &gt; In that case an update of the boot image descriptions will not touch
+</I>&gt;<i> &gt; your own stuff
+</I>&gt;<i> 
+</I>&gt;<i> ok,
+</I>&gt;<i> 
+</I>&gt;<i> but what will happen when the config.xml is redesigned by the developer.
+</I>
+sorry you are the developer/designer of your own image
+description, arent't you ?
+
+&gt;<i> In this case I ve to check both files for changes and pittfalls.
+</I>
+The question is why do you need changes in a _boot_ image description
+I have asked you that several times but you didn't answer this question.
+I also told you if your change is generic enough I would love to integrate
+it into the common boot descriptions. And if your change is somewhat
+special then you are right and you need to maintain two image descriptions
+because nobody else than you can better maintain the special changes
+you require. But again I still don't have any clue why you require
+a change in the boot image ?
+
+&gt;<i> I think an include-option to import own config-informations would be a
+</I>&gt;<i> usefull feature.
+</I>
+It would end in a mess. I'm sorry to say it like that but it's true :)
+the image description builds an entity which should have been tested
+by the designer of the description. If someone else uses that description
+he or she can easily add/delete/rename stuff but if that changes the
+original intention of the image it should be done by first creating a
+copy of the description. If the change is more like a fix it is no
+problem to store it.
+
+If you need to add software as a temporary extension to an image
+description you already have the possibility to use
+
+	--ignore-repos --set-repo/--set-repotype --add-repo
+	--add-package
+
+But I think it would help a lot if you could explain exactly
+where you see the problem
+
+Thanks 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000500.html">[Kiwi-users] how to add own packages
+</A></li>
+	<LI>Next message: <A HREF="000502.html">[Kiwi-users] how to add own packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#501">[ date ]</a>
+              <a href="thread.html#501">[ thread ]</a>
+              <a href="subject.html#501">[ subject ]</a>
+              <a href="author.html#501">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

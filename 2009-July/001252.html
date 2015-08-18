@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi and SLES 10 SP1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20SLES%2010%20SP1&In-Reply-To=%3C4A51B644.2030204%40yazzy.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001244.html">
+   <LINK REL="Next"  HREF="001254.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi and SLES 10 SP1</H1>
+    <B>Marcin M. Jessa</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20SLES%2010%20SP1&In-Reply-To=%3C4A51B644.2030204%40yazzy.org%3E"
+       TITLE="[Kiwi-users] Kiwi and SLES 10 SP1">lists at yazzy.org
+       </A><BR>
+    <I>Mon Jul  6 10:31:00 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001244.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+        <LI>Next message: <A HREF="001254.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1252">[ date ]</a>
+              <a href="thread.html#1252">[ thread ]</a>
+              <a href="subject.html#1252">[ subject ]</a>
+              <a href="author.html#1252">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Robert Schweikert wrote:
+&gt;<i> Marcin,
+</I>&gt;<i>
+</I>&gt;<i> squashfs and aufs are only available for kernels in 10.2 and the 
+</I>&gt;<i> upcoming 10.3 release. You can still create ISO images, you just 
+</I>&gt;<i> cannot compress the file system.
+</I>&gt;<i>
+</I>&gt;<i> Do not use the &quot;flags&quot; attribute in the &quot;type&quot; element and Kiwi will 
+</I>&gt;<i> create a non compressed file system. See section 8.3 in 
+</I>&gt;<i> /usr/share/doc/packages/kiwi/kiwi.pdf
+</I>&gt;<i>
+</I>Thanks, worked like a charm.
+Would it be possible to create an image with 2 different grub menus 
+pointing to 2 different compressed images, each custom and each different ?
+I would like to create a DVD with two installation options, one for a 
+server and one for a desktop.
+Each option would boot the live system, install a set of predefined 
+applications and custom config files.
+In on of the other emails in the thread you mentioned the OEM image, 
+would it work with that kind of requirements?
+
+
+Cheers,
+Marcin
+
+&gt;<i> Marcin M. Jessa wrote:
+</I>&gt;&gt;<i> Hi guys.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I work on a project where we (have to) use SLES 10.1 and we would 
+</I>&gt;&gt;<i> like to create a custom boot CD based on it.
+</I>&gt;&gt;<i> Unfortunately all the howtos, documents and config examples are for 
+</I>&gt;&gt;<i> SLES 10.2 and newer.
+</I>&gt;&gt;<i> They all mention usage of squashfs [1] and aufs [2] but there are no 
+</I>&gt;&gt;<i> versions available for SLES 10.1
+</I>&gt;&gt;<i> Do you guys have config files for SLES10.1?
+</I>&gt;&gt;<i> Was SLES 10.1 even created with Kiwi?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> [1]: <A HREF="http://download.opensuse.org/repositories/home:/mopp:/squashfs/">http://download.opensuse.org/repositories/home:/mopp:/squashfs/</A>
+</I>&gt;&gt;<i> [2]: <A HREF="http://download.opensuse.org/repositories/home:/mopp:/aufs/">http://download.opensuse.org/repositories/home:/mopp:/aufs/</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Cheers
+</I>&gt;&gt;<i> Marcin
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001244.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+	<LI>Next message: <A HREF="001254.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1252">[ date ]</a>
+              <a href="thread.html#1252">[ thread ]</a>
+              <a href="subject.html#1252">[ subject ]</a>
+              <a href="author.html#1252">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

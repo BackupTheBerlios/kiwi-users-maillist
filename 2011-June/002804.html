@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Unable to reduce size of OEM split image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20reduce%20size%20of%20OEM%20split%20image&In-Reply-To=%3C20110629105804.GA12317%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002803.html">
+   <LINK REL="Next"  HREF="002805.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Unable to reduce size of OEM split image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20reduce%20size%20of%20OEM%20split%20image&In-Reply-To=%3C20110629105804.GA12317%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Unable to reduce size of OEM split image">ms at suse.de
+       </A><BR>
+    <I>Wed Jun 29 12:58:04 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002803.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+        <LI>Next message: <A HREF="002805.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2804">[ date ]</a>
+              <a href="thread.html#2804">[ thread ]</a>
+              <a href="subject.html#2804">[ subject ]</a>
+              <a href="author.html#2804">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am trying to build a OEM split image based in SLED 11 SP1 + updates. 
+</I>&gt;<i> 
+</I>&gt;<i> Earlier I was able to keep the size of the .raw file to approx 900 MB, which could easily fit on a 1 GB Flash.  But now the same .raw file is not coming below 1.1 GB, even though the squashfs filesystem is only 647 MB 
+</I>&gt;<i> 
+</I>&gt;<i> Consequently, I am forced to suggest a Flash Disk of 2 GB instead of 1GB, thereby driving up the cost. 
+</I>&gt;<i> 
+</I>&gt;<i> I have tried changing the value of &quot;spare&quot; from 1.5 to 1.1 (in KIWIImage.pm), but that hasn't helped. 
+</I>&gt;<i> 
+</I>&gt;<i> I am using kiwi v4.91.2 
+</I>&gt;<i> 
+</I>&gt;<i> Pls help me in resolving this. I am sure something has changed in the recent versions which is causing this issue. 
+</I>&gt;<i> 
+</I>&gt;<i> Let me know if you need more details from my side. 
+</I>
+Maybe this is related to the bootsize patch recently added.
+In order to allow kernel updates the size of the boot partition
+is now bigger. You can try to edit /usr/share/kiwi/modules/KIWIBoot.pm 
+and search for
+
+   sub __getBootSize
+
+inside __getBootSize you can change $gotMB to something you prefer
+but be aware you need at least the size of the /boot data in
+your unpacked image tree
+
+Let me know if that helps.
+
+Other than that I'm sure SLED 11 SP1 + updates is bigger than
+SLED 11 GA or SLED 11 SP1 without updates. 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002803.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+	<LI>Next message: <A HREF="002805.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2804">[ date ]</a>
+              <a href="thread.html#2804">[ thread ]</a>
+              <a href="subject.html#2804">[ subject ]</a>
+              <a href="author.html#2804">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

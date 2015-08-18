@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi, deb-file and arch != x86
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%2C%20deb-file%20and%20arch%20%21%3D%20x86&In-Reply-To=%3C20080904083601.GA25363%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000829.html">
+   <LINK REL="Next"  HREF="000831.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi, deb-file and arch != x86</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%2C%20deb-file%20and%20arch%20%21%3D%20x86&In-Reply-To=%3C20080904083601.GA25363%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi, deb-file and arch != x86">ms at novell.com
+       </A><BR>
+    <I>Thu Sep  4 10:36:01 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000829.html">[Kiwi-users] kiwi, deb-file and arch != x86
+</A></li>
+        <LI>Next message: <A HREF="000831.html">[Kiwi-users] Left over processes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#830">[ date ]</a>
+              <a href="thread.html#830">[ thread ]</a>
+              <a href="subject.html#830">[ subject ]</a>
+              <a href="author.html#830">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Next problem: my packages are ARCH=arm - smart needs -o deb-arch=arm
+</I>&gt;<i> in this case. Ok, i hacked it after -o deb-root (could we add a
+</I>&gt;<i> cmdline-option?) . Now it is called like this:
+</I>
+Hmm, normally smart picks the architecture from the build system
+I guess you need that arch option because your build system isn't
+an arch based linux system, is it ? That would bring me to another
+question, rpm doesn't allow to install packages on an architecture
+which couldn't run the installed binary format, how about dpkg ?
+I mean it doesn't make much sense to build a root tree which you
+can't chroot into...
+
+&gt;<i> &#220;bermittle Transaktion ...                                                                                  (  0%)
+</I>&gt;<i> [unpack] mime-support_3.39-1
+</I>&gt;<i> [unpack] libgtk2.0-common_2.8.20-7
+</I>&gt;<i> [unpack] tzdata_2007k-1etch1
+</I>&gt;<i> [unpack] gcc-4.1-base_4.1.1-21
+</I>&gt;<i> [unpack] readline-common_5.2-2
+</I>&gt;<i> dpkg: kann das Updates-Verzeichnis &#187;/tmp/kiwi.mB3893/var/lib/dpkg/updates/&#171; nicht einlesen: Datei oder Verzeichnis nicht gefunden
+</I>&gt;<i> FEHLER!: Unterprozess dpkg hat einen Fehler ausgeworfen (2)
+</I>&gt;<i> 
+</I>&gt;<i> So there's a dpkg error ... 
+</I>&gt;<i> /tmp/kiwi.mB3893/var/lib/dpkg/updates/ doesn't exist.
+</I>
+Hmm, why does dpkg not create the updates directory ? You can try to
+patch the file
+
+	/usr/share/kiwi/moduels/KIWIRoot.pm
+
+search for dpkg and add the missing:
+
+	qxx (&quot;mkdir -p $root/var/lib/dpkg/updates&quot;);
+
+I doubt this will fix all problems :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000829.html">[Kiwi-users] kiwi, deb-file and arch != x86
+</A></li>
+	<LI>Next message: <A HREF="000831.html">[Kiwi-users] Left over processes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#830">[ date ]</a>
+              <a href="thread.html#830">[ thread ]</a>
+              <a href="subject.html#830">[ subject ]</a>
+              <a href="author.html#830">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

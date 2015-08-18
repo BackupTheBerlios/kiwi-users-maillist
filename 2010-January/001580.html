@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Create extra (swap) partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20extra%20%28swap%29%20partition&In-Reply-To=%3C0000021266%40firehome.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001579.html">
+   <LINK REL="Next"  HREF="001581.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Create extra (swap) partition</H1>
+    <B>David Feurle</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20extra%20%28swap%29%20partition&In-Reply-To=%3C0000021266%40firehome.de%3E"
+       TITLE="[Kiwi-users] Create extra (swap) partition">david at firehome.de
+       </A><BR>
+    <I>Wed Jan 13 11:46:54 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001579.html">[Kiwi-users] Create extra (swap) partition
+</A></li>
+        <LI>Next message: <A HREF="001581.html">[Kiwi-users] Create extra (swap) partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1580">[ date ]</a>
+              <a href="thread.html#1580">[ thread ]</a>
+              <a href="subject.html#1580">[ subject ]</a>
+              <a href="author.html#1580">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+ 
+
+thanks for your answer. I use the vmx image as a raw image of fixed size and
+copy it with dd to a disk.
+
+The oem type is in my understanding a installation system (it resizes itself
+or copys itself to the target disk). I don't want my system to behave this
+way.
+
+Is it possible to deactivate the installation functionality from the oem
+type?
+
+ 
+
+Best regards,
+
+ 
+
+David Feurle 
+&gt;<i>  Wed Jan 13 2010 11:14:04 CET    from  &quot;Marcus Sch&#228;fer&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novellcom</A>&gt;   
+</I>&gt;<i>Subject: Re: [Kiwi-users] Create extra (swap) partition 
+</I>&gt;<i>
+</I>&gt;<i>      Hi,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;&gt;<i>is it possible to create a swap partion when creating a vmx image? How do I
+</I>&gt;&gt;<i> configure this in the config.xml? 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 
+</I>
+&gt;<i>swapping in a virtual machine might not solve the problem. Anyway plain
+</I>&gt;<i> vmx type does not support creating a swap partition. Switch to the
+</I>&gt;<i> oem image type and you will get a swap partition. You should specify
+</I>&gt;<i> the following oem options:
+</I>&gt;<i> 
+</I>&gt;<i> &lt;oem-systemsize&gt;...&lt;/oem-systemsize&gt;
+</I>&gt;<i> &lt;oem-home&gt;false&lt;/oem-home&gt;
+</I>&gt;<i> &lt;oem-swapsize&gt;...&lt;/oem-swapsize&gt;
+</I>&gt;<i> 
+</I>&gt;<i> values are interpreted as MB
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> -- 
+</I>&gt;<i> Public Key available
+</I>&gt;<i> gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> -------------------------------------------------------
+</I>&gt;<i> Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i> Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i> FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i> GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i> -------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i>   
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100113/fa635eac/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100113/fa635eac/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001579.html">[Kiwi-users] Create extra (swap) partition
+</A></li>
+	<LI>Next message: <A HREF="001581.html">[Kiwi-users] Create extra (swap) partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1580">[ date ]</a>
+              <a href="thread.html#1580">[ thread ]</a>
+              <a href="subject.html#1580">[ subject ]</a>
+              <a href="author.html#1580">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

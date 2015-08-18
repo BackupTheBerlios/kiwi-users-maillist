@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] case inconsistency when looking for config.* files
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20case%20inconsistency%20when%20looking%20for%20config.%2A%20files&In-Reply-To=%3C4A2F7699.6050009%40intelliant.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001161.html">
+   <LINK REL="Next"  HREF="001175.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] case inconsistency when looking for config.* files</H1>
+    <B>Shrenik Bhura</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20case%20inconsistency%20when%20looking%20for%20config.%2A%20files&In-Reply-To=%3C4A2F7699.6050009%40intelliant.net%3E"
+       TITLE="[Kiwi-users] case inconsistency when looking for config.* files">shrenik.bhura at intelliant.net
+       </A><BR>
+    <I>Wed Jun 10 11:02:17 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001161.html">[Kiwi-users] Fwd:  List of opensusePatterns
+</A></li>
+        <LI>Next message: <A HREF="001175.html">[Kiwi-users] case inconsistency when looking for config.* files
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1173">[ date ]</a>
+              <a href="thread.html#1173">[ thread ]</a>
+              <a href="subject.html#1173">[ subject ]</a>
+              <a href="author.html#1173">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+When booting using the kiwi-ltsp and kiwi-netfat images I have noticed
+that it at times looks for config.ma:ca:dd:re:ss and at others for
+config.MA:CA:DD:RE:SS . I have attached the log files and excerpts from
+two different clients from two different installations for your
+consideration.
+______________________
+
+# grep config.00 /tmp/boot.kiwi.167
++ Echo 'Checking for config file: config.00:16:E6:9C:91:83'
++ echo '===&gt; Checking for config file: config.00:16:E6:9C:91:83'
++ fetchFile KIWI/config.00:16:E6:9C:91:83 /etc/config.netclient
++ local path=KIWI/config.00:16:E6:9C:91:83
++ test -z KIWI/config.00:16:E6:9C:91:83
++ atftp --option 'disable multicast' --option 'blksize ' -g -r
+KIWI/config.00:16:E6:9C:91:83 -l /etc/config.netclient 192.168.2.12
+
+kiwi-3.56-80.1
+_______________________
+
+ # grep config.00 /tmp/boot.kiwi.131
++ Echo 'Checking for config file: config.00:16:e6:16:5a:6d'
++ echo '===&gt; Checking for config file: config.00:16:e6:16:5a:6d'
++ fetchFile KIWI/config.00:16:e6:16:5a:6d /etc/config.netclient
++ local path=KIWI/config.00:16:e6:16:5a:6d
++ test -z KIWI/config.00:16:e6:16:5a:6d
++ atftp --option 'multicast disable' --option 'blksize ' -g -r
+KIWI/config.00:16:e6:16:5a:6d -l /etc/config.netclient 192.168.2.11
+
+kiwi-3.14-80.1
+______________________
+
+Due to this inconsistency it is inconvenient to automate the config.*
+creation process. However it can be taken care of by creating config
+file names in both upper and lower case but is undesirable.
+
+This looks like a kiwi initrd issue. Kindly advise.
+
+Cheers,
+SB
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: attachments.zip
+Type: application/zip
+Size: 19941 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090610/961990a2/attachment.zip">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090610/961990a2/attachment.zip</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001161.html">[Kiwi-users] Fwd:  List of opensusePatterns
+</A></li>
+	<LI>Next message: <A HREF="001175.html">[Kiwi-users] case inconsistency when looking for config.* files
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1173">[ date ]</a>
+              <a href="thread.html#1173">[ thread ]</a>
+              <a href="subject.html#1173">[ subject ]</a>
+              <a href="author.html#1173">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

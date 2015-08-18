@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Adding drivers to the system image initrd
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20drivers%20to%20the%20system%20image%20initrd&In-Reply-To=%3COF638887B1.744581E5-ON872577DD.0077CD37-872577DD.0078CB69%40infoprint.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002128.html">
+   <LINK REL="Next"  HREF="002126.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Adding drivers to the system image initrd</H1>
+    <B>J Mixer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20drivers%20to%20the%20system%20image%20initrd&In-Reply-To=%3COF638887B1.744581E5-ON872577DD.0077CD37-872577DD.0078CB69%40infoprint.com%3E"
+       TITLE="[Kiwi-users] Adding drivers to the system image initrd">j.mixer at infoprint.com
+       </A><BR>
+    <I>Tue Nov 16 23:01:54 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002128.html">[Kiwi-users] about oem-unattended mode and multiple disk systems
+</A></li>
+        <LI>Next message: <A HREF="002126.html">[Kiwi-users] Adding drivers to the system image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2125">[ date ]</a>
+              <a href="thread.html#2125">[ thread ]</a>
+              <a href="subject.html#2125">[ subject ]</a>
+              <a href="author.html#2125">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm having problems adding required drivers to the system image initrd. 
+These are additional drivers that are over and above the &quot;stock&quot; openSuse 
+11.1 image that I am using as a base.  I am using oemboot image to create 
+a CD image to load.
+
+I have been successful in altering the oemboot/suse-11.1/config.xml to 
+include a new kernel and RPMs for the new drivers that were built for this 
+new kernel.  I am also able to have the new kernel correctly installed in 
+the system image.  The new driver RPM (it is actually megaraid_sas and 
+needed to boot from the hard drive on some new hardware) is correctly 
+installed into the system image, just not the boot/initrd.
+
+I can't figure out how to force the &quot;mkinitrd&quot; that is executed while 
+chroot'd into the system image build area to include my new driver RPMs.
+
+Regards,
+
+J.
+
+J. Mixer
+Control Unit Development
+Phone: 720.663.3532
+Email: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">j.mixer at infoprint.com</A>
+infoprint.com
+Sarchasm : The gulf between the author of sarcastic wit and the person who 
+doesn't get it. 
+
+
+_____________________________________________________________________________
+&quot;This message and any attachments are solely for the intended recipient and may contain confidential or privileged information. If you are not the intended recipient, any disclosure, copying, use, or distribution of the information included in this message and any attachments is prohibited. If you have received this communication in error, please notify us by reply e-mail and immediately and permanently delete this message and any attachments. Thank you.&quot; _____________________________________________________________________________
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101116/016b3eef/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101116/016b3eef/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002128.html">[Kiwi-users] about oem-unattended mode and multiple disk systems
+</A></li>
+	<LI>Next message: <A HREF="002126.html">[Kiwi-users] Adding drivers to the system image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2125">[ date ]</a>
+              <a href="thread.html#2125">[ thread ]</a>
+              <a href="subject.html#2125">[ subject ]</a>
+              <a href="author.html#2125">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

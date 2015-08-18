@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%0A%20/dev/sda&In-Reply-To=%3C20100721091629.GA7492%40idefix.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001915.html">
+   <LINK REL="Next"  HREF="001917.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%0A%20/dev/sda&In-Reply-To=%3C20100721091629.GA7492%40idefix.suse.de%3E"
+       TITLE="[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda">ms at novell.com
+       </A><BR>
+    <I>Wed Jul 21 11:16:29 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001915.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+        <LI>Next message: <A HREF="001917.html">[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1916">[ date ]</a>
+              <a href="thread.html#1916">[ thread ]</a>
+              <a href="subject.html#1916">[ subject ]</a>
+              <a href="author.html#1916">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Now if I can find a reason for the 50/50 odds of a image booting
+</I>&gt;<i> properly with the details I posted before. The reason I mention 50/50 is
+</I>&gt;<i> that the process we get it work is as follows:
+</I>&gt;<i> 
+</I>&gt;<i> - build image, boot... works.
+</I>&gt;<i> - make changes + version increase, build image, boot... fails.
+</I>&gt;<i> - make no changes except version increase, rebuild image, boot.. works..
+</I>&gt;<i> - make changes + version increase, rebuild image... boot.. fails..
+</I>&gt;<i> - make no changes except version increase, rebuild image...works...
+</I>
+Hmm, I think it must be a problem with the data already on the disk
+Are you using the latest version of kiwi v4.49 ? if not can you give it
+a try. I had a similar problem recently which was caused by a left-over
+cow file.
+
+Just for the record you are using that kind of image type:
+
+  &lt;type image=&quot;pxe&quot; filesystem=&quot;clicfs&quot; boot=&quot;netboot/suse-11.3&quot;&gt;
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001915.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+	<LI>Next message: <A HREF="001917.html">[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1916">[ date ]</a>
+              <a href="thread.html#1916">[ thread ]</a>
+              <a href="subject.html#1916">[ subject ]</a>
+              <a href="author.html#1916">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

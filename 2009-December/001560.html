@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] pxe diskless boot issues + serial port console?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe%20diskless%20boot%20issues%20%2B%20serial%20port%20console%3F&In-Reply-To=%3C4B2217F6.9000702%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001559.html">
+   <LINK REL="Next"  HREF="001561.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] pxe diskless boot issues + serial port console?</H1>
+    <B>Vladimir V. Kolpakov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe%20diskless%20boot%20issues%20%2B%20serial%20port%20console%3F&In-Reply-To=%3C4B2217F6.9000702%40gmail.com%3E"
+       TITLE="[Kiwi-users] pxe diskless boot issues + serial port console?">vova.kolpakov at gmail.com
+       </A><BR>
+    <I>Fri Dec 11 10:59:18 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001559.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+        <LI>Next message: <A HREF="001561.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1560">[ date ]</a>
+              <a href="thread.html#1560">[ thread ]</a>
+              <a href="subject.html#1560">[ subject ]</a>
+              <a href="author.html#1560">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Roger, --
+
+On 12/11/2009 09:28 AM, Roger Oberholtzer wrote:
+&gt;<i> Without knowing what is failing, I cannot know where to start.  Can kiwi
+</I>&gt;<i> be told to use a serial port as the console? If so, then maybe I can use
+</I>&gt;<i> a terminal emulator with a scroll buffer to capture the complaints.
+</I>
+These configs of serial console
+are working for me with syslinux and grub:
+
+/tftpboot/pxelinux.cfg/default
+----------
+#
+serial 1 9600
+console 0
+prompt  1
+
+timeout 50
+display boot/message-node
+
+DEFAULT linux
+#DEFAULT debug
+
+LABEL linux
+  kernel boot/linux
+  append initrd=boot/initrd console=ttyS1,9600n8 splash=0 textmode=1 showopts
+# IPAPPEND 2
+
+LABEL debug
+  kernel boot/linux
+  append initrd=boot/initrd console=ttyS1,9600n8 splash=0 textmode=1 acpi=off
+kiwidebug=1
+-------
+
+/tftpboot/boot/menu.lst:
+--------
+default 0
+timeout 8
+#gfxmenu (hd0,1)/boot/message
+#gfxmenu (nd)/boot/pxegrub.msg
+
+#-- Serial on COM1
+title Cluster node netboot, console ttyS0, PAE kernel
+    dhcp
+    root (nd)
+    kernel /boot/linux-pae console=ttyS0,9600n8 textmode=1 splash=0 showopts
+    initrd /boot/initrd-pae
+[...]
+--------
+
+/etc/dhcpd.conf:
+---------
+option grub-cfg code 150 = text;
+subnet 10.0.0.0 netmask 255.255.255.0 {
+ group {
+  filename &quot;pxegrub&quot;;
+  option grub-cfg &quot;(nd)/boot/menu.lst&quot; ;
+[...]
+ }
+ group {
+  filename &quot;pxelinux.0&quot;;
+  host node1 {
+   hardware ethernet  00:03:25:d7:9f:c3 ;
+[...]
+---------
+
+Regards,
+--w
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001559.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+	<LI>Next message: <A HREF="001561.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1560">[ date ]</a>
+              <a href="thread.html#1560">[ thread ]</a>
+              <a href="subject.html#1560">[ subject ]</a>
+              <a href="author.html#1560">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

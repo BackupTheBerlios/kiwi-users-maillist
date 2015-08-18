@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTinpB%2BiBRtayj8iaBbv9oYZ8s%3DHQH1gMZ2%2B9QQHZ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002525.html">
+   <LINK REL="Next"  HREF="002527.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTinpB%2BiBRtayj8iaBbv9oYZ8s%3DHQH1gMZ2%2B9QQHZ%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Mon Mar 21 19:08:01 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002525.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002527.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2526">[ date ]</a>
+              <a href="thread.html#2526">[ thread ]</a>
+              <a href="subject.html#2526">[ subject ]</a>
+              <a href="author.html#2526">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Mar 21, 2011 at 2:07 PM, Chris Cunha &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">eportel6607 at gmail.com</A>&gt; wrote:
+&gt;<i> On Fri, Mar 18, 2011 at 3:46 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Marcus
+</I>&gt;&gt;&gt;<i> I edited the verbose line that you suggested out of the file in
+</I>&gt;&gt;&gt;<i> /usr/share/kiwi/image/oemboot/suse-linuxrc. &#160;I also placed your script
+</I>&gt;&gt;&gt;<i> for the auto detect/mouting of the fat partition within
+</I>&gt;&gt;&gt;<i> ~/.config/autostart and adapted the .desktop file to point to the
+</I>&gt;&gt;&gt;<i> correct location for storage.
+</I>&gt;&gt;&gt;<i> The kiwi --prepare stage went fine however kiwi --create stage
+</I>&gt;&gt;&gt;<i> returned a checksum error and a problem with the linuxrc file.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Mar-18 14:49:40 &lt;3&gt; : Integrity check for
+</I>&gt;&gt;&gt;<i> /usr/share/kiwi/image/oemboot/suse-11.3 failed:
+</I>&gt;&gt;&gt;<i> ./root/linuxrc: FAILED
+</I>&gt;&gt;&gt;<i> md5sum: WARNING: 1 of 8 computed checksums did NOT match &#160; &#160; &#160; &#160; &#160; &#160;failed
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Is the changes that might have been made in the suse-linuxrc file
+</I>&gt;&gt;&gt;<i> causing this issue?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ah sorry I forgot to mention that. This is my protection code
+</I>&gt;&gt;<i> to find out if people are changing the boot code :-) simply
+</I>&gt;&gt;<i> remove the file
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160; /usr/share/kiwi/image/oemboot/suse-11.3/.checksum.md5
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> and run kiwi create again
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Sorry forgot to tell you
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Marcus
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> &#160;Public Key available
+</I>&gt;&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Nice trick :)
+</I>&gt;<i> It built nicely now.
+</I>&gt;<i> The script you gave me to auto detect and mounts the fat partition
+</I>&gt;<i> works great. &#160; With a few mods I was able to have it create a better
+</I>&gt;<i> mount point (not media) and using Mtools, hide the &quot;boot&quot; and
+</I>&gt;<i> &quot;ldlinux.sys&quot; files when using this USB drive in WIndows. I'll share
+</I>&gt;<i> this with you guys once I get it all built.
+</I>&gt;<i> I added a couple of packages to the config.xml file. Broadcom drivers
+</I>&gt;<i> for wireless and a package &quot;ntp&quot; for clock sync to local time.
+</I>&gt;<i> When I run kiwi --prepare I can an error that reads:
+</I>&gt;<i>
+</I>&gt;<i> &quot;Mar-21 14:03:01 &lt;3&gt; : Schema validation failed &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;failed
+</I>&gt;<i> Mar-21 14:03:01 &lt;1&gt; : Automatically upgraded
+</I>&gt;<i> /home/linux/SOSbuild/SOS-min-live-Gnome/config.xml to
+</I>&gt;<i> Mar-21 14:03:01 &lt;1&gt; :
+</I>&gt;<i> /home/linux/SOSbuild/SOS-min-live-Gnome/config.converted.xml
+</I>&gt;<i> Mar-21 14:03:01 &lt;1&gt; : Reported line numbers may not match the
+</I>&gt;<i> Mar-21 14:03:01 &lt;1&gt; : file /home/linux/SOSbuild/SOS-min-live-Gnome/config.xml
+</I>&gt;<i> Mar-21 14:03:01 &lt;3&gt; : unknown-93736a0:0: Relax-NG validity error :
+</I>&gt;<i> Element packages has extra content: text
+</I>&gt;<i> Relax-NG validity error : Extra element packages in interleave
+</I>&gt;<i> unknown-93736a0:0: Relax-NG validity error : Element image failed to
+</I>&gt;<i> validate content&quot;
+</I>&gt;<i> This is the only error I get which is displayed in the terminal.
+</I>&gt;<i> There is no log files as kiwi never really got the chance to run. &#160; It
+</I>&gt;<i> mentions &quot;extra content&quot; in the form of &quot;text&quot; but I can't seem to
+</I>&gt;<i> locate the issue. &#160;This is the config.xml as of the error. <A HREF="http://paste.opensuse.org/86342390">http://paste.opensuse.org/86342390</A>
+</I>&gt;<i> Thanks
+</I>&gt;<i> c
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002525.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002527.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2526">[ date ]</a>
+              <a href="thread.html#2526">[ thread ]</a>
+              <a href="subject.html#2526">[ subject ]</a>
+              <a href="author.html#2526">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

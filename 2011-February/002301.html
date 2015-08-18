@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] diskless netboot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20diskless%20netboot&In-Reply-To=%3CPine.LNX.4.64.1102081910110.17459%40general.elte.hu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002322.html">
+   <LINK REL="Next"  HREF="002302.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] diskless netboot</H1>
+    <B>Kalman Szabo</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20diskless%20netboot&In-Reply-To=%3CPine.LNX.4.64.1102081910110.17459%40general.elte.hu%3E"
+       TITLE="[Kiwi-users] diskless netboot">szaboka at general.elte.hu
+       </A><BR>
+    <I>Tue Feb  8 19:51:16 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002322.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+        <LI>Next message: <A HREF="002302.html">[Kiwi-users] diskless netboot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2301">[ date ]</a>
+              <a href="thread.html#2301">[ thread ]</a>
+              <a href="subject.html#2301">[ subject ]</a>
+              <a href="author.html#2301">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Marcus and kiwi-developers,
+
+I would like to have a system, where the OS is in the /dev/ram1 and user 
+data is on the hard disk. I would like to configure the disk myself, since 
+it might not always be present.
+
+With the most recent kiwi I have a problem with the netboot. Previously 
+(v4.69) it was working nicely. I tracked down the problem in the git and I 
+guess the modification of &quot;2011-01-03, 45f9dd07...&quot; has to do with it.
+
+The problem is, that netboot/suse-linuxrc in Step 11) enters &quot;Check for 
+diskful station&quot;, even if I want a diskless system. $DISK is not defined 
+and I get an exception. It cannot be fixed easily: if I dont let linuxrc 
+enter to this step, it later fails with missing /sbin/init.
+
+My /srv/tftpboot/KIWI/config.default file is just one line:
+
+IMAGE=/dev/ram1;test.x86_64;1.0.0;192.168.100.2;4096;compressed
+
+How should  I fix this?
+
+Best regards
+Kalman
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002322.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+	<LI>Next message: <A HREF="002302.html">[Kiwi-users] diskless netboot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2301">[ date ]</a>
+              <a href="thread.html#2301">[ thread ]</a>
+              <a href="subject.html#2301">[ subject ]</a>
+              <a href="author.html#2301">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

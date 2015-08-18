@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [kiwi] Re: Fwd: Call to usermod fails in config.sh
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bkiwi%5D%20Re%3A%20Fwd%3A%20Call%20to%20usermod%20fails%20in%20config.sh&In-Reply-To=%3C20131024152832.GA12014%40d11.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003101.html">
+   <LINK REL="Next"  HREF="003103.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [kiwi] Re: Fwd: Call to usermod fails in config.sh</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bkiwi%5D%20Re%3A%20Fwd%3A%20Call%20to%20usermod%20fails%20in%20config.sh&In-Reply-To=%3C20131024152832.GA12014%40d11.ddts.net%3E"
+       TITLE="[Kiwi-users] [kiwi] Re: Fwd: Call to usermod fails in config.sh">ms at suse.de
+       </A><BR>
+    <I>Thu Oct 24 17:28:33 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003101.html">[Kiwi-users] Fwd: Call to usermod fails in config.sh
+</A></li>
+        <LI>Next message: <A HREF="003103.html">[Kiwi-users] Fwd: Call to usermod fails in config.sh
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3102">[ date ]</a>
+              <a href="thread.html#3102">[ thread ]</a>
+              <a href="subject.html#3102">[ subject ]</a>
+              <a href="author.html#3102">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; this looks a lot like
+</I>&gt;<i> &gt; &lt;URL:<A HREF="https://bugzilla.novell.com/845617">https://bugzilla.novell.com/845617</A>&gt;
+</I>&gt;<i> &gt; &quot;kiwi: calling config.sh within lxc breaks shadow utils&quot;.
+</I>&gt;<i> &gt; Do you have lxc installed (on the host)?
+</I>&gt;<i> &gt; My current workaround is to patch
+</I>&gt;<i> &gt; kiwi so it doesn't use lxc.
+</I>&gt;<i> 
+</I>&gt;<i> I do have lxc. 845617 seems to be my problem, too.
+</I>&gt;<i> 
+</I>&gt;<i> I worked around the problem by editing /etc/group manually. :-/
+</I>&gt;<i> 
+</I>&gt;<i> Regards -- Till
+</I>
+Hmm, there was another user who also had problems with lxc
+I think I should disable this feature.
+
+Till you can do that very easily in the code:
+
+   /usr/share/kiwi/modules/KIWIGlobals.pm
+
+change 
+
+   my $legacy  = 0;
+
+into
+
+   my $legacy  = 1;
+
+and you are done
+
+sorry for any trouble you have with lxc here
+
+The reason why I'd like to run the custom user scripts inside
+lxc is mostly about cgroups to setup a cgroup device controller
+to avoid that a script kills your fs by dd'ing to /dev/sda
+as an example
+
+But if it causes more trouble than we benefit from it I will
+switch it off
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver pgp.mit.edu --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003101.html">[Kiwi-users] Fwd: Call to usermod fails in config.sh
+</A></li>
+	<LI>Next message: <A HREF="003103.html">[Kiwi-users] Fwd: Call to usermod fails in config.sh
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3102">[ date ]</a>
+              <a href="thread.html#3102">[ thread ]</a>
+              <a href="subject.html#3102">[ subject ]</a>
+              <a href="author.html#3102">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] broken kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20broken%20kiwi&In-Reply-To=%3C20110628145838.GB30763%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002795.html">
+   <LINK REL="Next"  HREF="002801.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] broken kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20broken%20kiwi&In-Reply-To=%3C20110628145838.GB30763%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] broken kiwi">ms at suse.de
+       </A><BR>
+    <I>Tue Jun 28 16:58:38 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002795.html">[Kiwi-users] broken kiwi
+</A></li>
+        <LI>Next message: <A HREF="002801.html">[Kiwi-users] broken kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2798">[ date ]</a>
+              <a href="thread.html#2798">[ thread ]</a>
+              <a href="subject.html#2798">[ subject ]</a>
+              <a href="author.html#2798">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I upgrades kiwi and the error stays, so I am doing something wrong.
+</I>
+ok, so you are on the kiwi version from home:ctso, right ?
+
+&gt;<i> I have a working SLEPOS 11 setup working and booting via PXE, using the
+</I>&gt;<i> infrastructure provides by SLEPOS (adminserver/branchserver). I now have to
+</I>&gt;<i> support usb boot and install, ie, replace PXE with USB and then install the
+</I>&gt;<i> same image to the harddisk.
+</I>&gt;<i> 
+</I>&gt;<i> I modified the image type to usb and rebuilt it. That went fine. I then
+</I>&gt;<i> tried to execute kiwi --installstick and got the errors in my last mail.
+</I>&gt;<i> 
+</I>&gt;<i> I think its because my image is not a 'vmx' image, but I dont know how to
+</I>&gt;<i> build one.
+</I>
+The following should work for you:
+
+* edit the config.xml and add:
+
+  &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-SLES11&quot; installstick=&quot;true&quot;&gt;
+
+* after that call kiwi as follows:
+
+  mkdir /tmp/myimage
+  kiwi --build &lt;path-to-config.xml&gt; -d /tmp/myimage --type oem
+
+This will run kiwi prepare and create in one step (build) and
+because you have added installstick=&quot;true&quot; it will also build the
+installstick image file named: /tmp/mytest/....raw.install.raw
+
+Hope that works for you
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002795.html">[Kiwi-users] broken kiwi
+</A></li>
+	<LI>Next message: <A HREF="002801.html">[Kiwi-users] broken kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2798">[ date ]</a>
+              <a href="thread.html#2798">[ thread ]</a>
+              <a href="subject.html#2798">[ subject ]</a>
+              <a href="author.html#2798">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

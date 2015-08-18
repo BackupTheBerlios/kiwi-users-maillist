@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting [ Solved ]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Preload%20OEM%20image%20not%20Shutdown%20or%20halt%20problem%20at%0A%20end%20off%20booting%20%5B%20Solved%20%5D&In-Reply-To=%3CBANLkTinz2V5Db8X2hEabe_6VxEfpcioRTA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002747.html">
+   <LINK REL="Next"  HREF="002750.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting [ Solved ]</H1>
+    <B>Hanumant Borwandkar</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Preload%20OEM%20image%20not%20Shutdown%20or%20halt%20problem%20at%0A%20end%20off%20booting%20%5B%20Solved%20%5D&In-Reply-To=%3CBANLkTinz2V5Db8X2hEabe_6VxEfpcioRTA%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting [ Solved ]">hanumant100 at gmail.com
+       </A><BR>
+    <I>Mon May 23 09:06:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002747.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting
+</A></li>
+        <LI>Next message: <A HREF="002750.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting [ Solved ]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2749">[ date ]</a>
+              <a href="thread.html#2749">[ thread ]</a>
+              <a href="subject.html#2749">[ subject ]</a>
+              <a href="author.html#2749">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Problem is Solved.
+
+I  modified */etc/init.d/halt *and removed such things those not required
+really on thin-clients.
+
+Thanks for your valuable reply in last post regarding boot process that
+helped very much.
+
+Regards,
+Hanumant Borwandkar
+
+On Sun, May 22, 2011 at 1:44 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; I have created a OEM image of OpenSuSE 11.4 with Split type.  Every thing
+</I>&gt;<i> is
+</I>&gt;<i> &gt; working fine except shutdown or halt.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I am not able to able to turnoff system / thinclient .
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; when I press shutdown button or halt command at then end off boot process
+</I>&gt;<i> i
+</I>&gt;<i> &gt; get error *&quot;No more process left in this runlevel&quot;* but at this stage
+</I>&gt;<i> &gt; thinclient should power off.
+</I>&gt;<i>
+</I>&gt;<i> This might be related to the splitted root tree. If the root tree
+</I>&gt;<i> can't be umounted because it's still busy for some reason the shutdown
+</I>&gt;<i> process hangs here. You can write your own runlevel script which
+</I>&gt;<i> kicks in before that happens and call &quot;reboot -f&quot; if it's safe
+</I>&gt;<i>
+</I>&gt;<i> of course that's only a workaround. It would be good to know why
+</I>&gt;<i> it hangs
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer
+</I>&gt;<i>  HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110523/9f3797c1/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110523/9f3797c1/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002747.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting
+</A></li>
+	<LI>Next message: <A HREF="002750.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end off booting [ Solved ]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2749">[ date ]</a>
+              <a href="thread.html#2749">[ thread ]</a>
+              <a href="subject.html#2749">[ subject ]</a>
+              <a href="author.html#2749">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

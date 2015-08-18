@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-05-09 - 2010-05-14...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-05-09%20-%202010-05-14...&In-Reply-To=%3C20100514134836.GA21966%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001797.html">
+   <LINK REL="Next"  HREF="001799.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-05-09 - 2010-05-14...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-05-09%20-%202010-05-14...&In-Reply-To=%3C20100514134836.GA21966%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-05-09 - 2010-05-14...">ms at novell.com
+       </A><BR>
+    <I>Fri May 14 15:48:36 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001797.html">[Kiwi-users] Luks and/or lvm for 4.34-110
+</A></li>
+        <LI>Next message: <A HREF="001799.html">[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1798">[ date ]</a>
+              <a href="thread.html#1798">[ thread ]</a>
+              <a href="subject.html#1798">[ subject ]</a>
+              <a href="author.html#1798">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report v4.36 2010-05-09 - 2010-05-14
+--------------------------------------------------
+most important changes for this weeks kiwi release...
+
+==============================
+System to image migration
+------------------------------
+GIT: fixed in place search field text
+GIT: fixed some typo in migration js
+GIT: activate javascript in migration report
+GIT: added search field for unpackaged file list on the
+     generated migration report page
+GIT: disabled autoyastClone() temporarly, we need to find a way to
+     call that only on &gt;= 11.3 systems
+GIT: migration changes:
+     * automatically copy the packaged but modified files
+       into the overlay section and don't put them into the report
+     * create a HTML file list for the unpackaged files
+       to browse through and update the text.
+
+Basically all these changes makes the migration to work
+smarter. All files packaged but changed will be automatically
+setup up as overlay files because it has turned out that these
+files are required in 90% of all cases and those bits which
+wouldn't be really required are only a small amount of space
+inside the overlay root tree. The more complex part are the
+files which are not packaged. Those files needs to be presented
+in a way that makes it easy for the user to browse through.
+There is still some work to do here but we started to add
+a fast search field which also needs some improvements
+
+==============================
+LUKS support
+------------------------------
+GIT: revert last change to Dialog function and fixed luksOpen
+     function to use the runInteractive() method for dialogs with
+     input fields
+
+GIT: fixed probeFileSystem function for luks detection.
+     blkid returned crypto_LUKS which was missing in the
+     case section
+
+Hans Witvliet's report leads to some tests I made with luks and LVM.
+While doing this I found two smaller bugs which are fixed with
+this weeks release.
+
+==============================
+Solvable creation
+------------------------------
+GIT: added .info file for cached solvables
+     fixed solvable pattern creation. It's required to lookup susetags
+     even if there is a repodata meta data information to be able to
+     create a full featured solvable including all pattern names
+
+When using kiwi for migration or also for querying information
+about package lists and other repo metadata related tasks it will
+first create a sat solvable to operate on. The solvable also includes
+information about patterns which was missing when for distribution
+repositories like openSUSE 11.2. The suse specific pattern information
+was not downloaded which is fixed now.
+
+==============================
+Imaging building
+------------------------------
+GIT: fixed rpmLibs() function, need ldconfig after cleanup
+
+When building images for older distros for example SLES10 on a new
+build host for example 11.2, kiwi temporarly incorporates some
+libraries from the build system in order to let rpm work correctly.
+These libs were restored after the bootstrap step and it is
+required to create the library links via ldconfig again. This 
+call was missing which leads to an inconsistent system
+
+Have fun :-)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001797.html">[Kiwi-users] Luks and/or lvm for 4.34-110
+</A></li>
+	<LI>Next message: <A HREF="001799.html">[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1798">[ date ]</a>
+              <a href="thread.html#1798">[ thread ]</a>
+              <a href="subject.html#1798">[ subject ]</a>
+              <a href="author.html#1798">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

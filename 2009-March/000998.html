@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Mixing unionfs and split image?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Mixing%20unionfs%20and%20split%20image%3F&In-Reply-To=%3C200903110844.36911.kiwi%40cupracer.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000997.html">
+   <LINK REL="Next"  HREF="000999.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Mixing unionfs and split image?</H1>
+    <B>Thomas Schulte</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Mixing%20unionfs%20and%20split%20image%3F&In-Reply-To=%3C200903110844.36911.kiwi%40cupracer.de%3E"
+       TITLE="[Kiwi-users] Mixing unionfs and split image?">kiwi at cupracer.de
+       </A><BR>
+    <I>Wed Mar 11 08:44:36 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000997.html">[Kiwi-users] [Kiwi-ltsp-users] Article
+</A></li>
+        <LI>Next message: <A HREF="000999.html">[Kiwi-users] Mixing unionfs and split image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#998">[ date ]</a>
+              <a href="thread.html#998">[ thread ]</a>
+              <a href="subject.html#998">[ subject ]</a>
+              <a href="author.html#998">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi!
+
+I am building a PXE-ThinClient image and I'm not sure if the possibilities of 
+KIWI fit my needs. Maybe somebody can provide me a hint.
+
+The TC has a Disk-On-Chip module with 256 MB size. I'm using unionfs to keep 
+the base system compressed via squashfs (~ 130 MB). The rest of the flash 
+disk (also ~ 120 MB) is used as the read-write part via aufs.
+
+After installing the image by TFTP, KIWI installs the initrd, bootloader etc. 
+on the client to allow local boot. So there's no need to do a network boot 
+every time.
+
+What I would like to have is that changes to the system (like personal data, 
+temporary files, etc.) are removed every time I restart the client. I thought 
+of putting the read-write part to /dev/ram1 instead of /dev/sda3. But as far 
+as I can see, the bootloader config is also put onto the harddisk and would 
+be removed, if I specified /dev/ram1.
+
+Would it be possible to have one partition for the read-only squashfs system, 
+one partition for the bootloader files and /dev/ram1 for all other temporary 
+changes? This shouldn't conflict with aufs, because the /boot partition isn't 
+used after booting has finished.
+
+Has anybody an idea of what to do to achive this?
+
+
+Thanks a lot,
+Thomas
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000997.html">[Kiwi-users] [Kiwi-ltsp-users] Article
+</A></li>
+	<LI>Next message: <A HREF="000999.html">[Kiwi-users] Mixing unionfs and split image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#998">[ date ]</a>
+              <a href="thread.html#998">[ thread ]</a>
+              <a href="subject.html#998">[ subject ]</a>
+              <a href="author.html#998">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

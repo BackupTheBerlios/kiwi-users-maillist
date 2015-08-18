@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] layout of  vmx type image regarding SSDs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20layout%20of%20%20vmx%20type%20image%20regarding%20SSDs&In-Reply-To=%3C20110531143138.GA31567%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002758.html">
+   <LINK REL="Next"  HREF="002760.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] layout of  vmx type image regarding SSDs</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20layout%20of%20%20vmx%20type%20image%20regarding%20SSDs&In-Reply-To=%3C20110531143138.GA31567%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] layout of  vmx type image regarding SSDs">ms at suse.de
+       </A><BR>
+    <I>Tue May 31 16:31:38 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002758.html">[Kiwi-users] layout of  vmx type image regarding SSDs
+</A></li>
+        <LI>Next message: <A HREF="002760.html">[Kiwi-users] netboot error in v4.90, v4.74 was ok
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2759">[ date ]</a>
+              <a href="thread.html#2759">[ thread ]</a>
+              <a href="subject.html#2759">[ subject ]</a>
+              <a href="author.html#2759">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;    Device Boot      Start         End      Blocks   Id  System
+</I>&gt;<i> &gt; /dev/sdc1   *      262144     1505279      621568   83  Linux
+</I>&gt;<i> &gt; -------------------^^^^^^
+</I>&gt;<i> &gt; However: 262144/2048 = 128
+</I>&gt;<i> &gt; There is a suspicious Factor of 128 in the game.
+</I>&gt;<i> 
+</I>&gt;<i> hups, will check that
+</I>
+ok, fixed this. I will submit a patch to git which will allow you
+to set the option --start-sector &lt;number&gt;. By default sector
+2048 is used (512B sector size assumed).
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002758.html">[Kiwi-users] layout of  vmx type image regarding SSDs
+</A></li>
+	<LI>Next message: <A HREF="002760.html">[Kiwi-users] netboot error in v4.90, v4.74 was ok
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2759">[ date ]</a>
+              <a href="thread.html#2759">[ thread ]</a>
+              <a href="subject.html#2759">[ subject ]</a>
+              <a href="author.html#2759">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

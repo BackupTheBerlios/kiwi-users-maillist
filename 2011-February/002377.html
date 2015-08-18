@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SquashFS support in OEM image with SLES10
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SquashFS%20support%20in%20OEM%20image%20with%20SLES10&In-Reply-To=%3C20110222093834.GA3541%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002374.html">
+   <LINK REL="Next"  HREF="002390.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SquashFS support in OEM image with SLES10</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SquashFS%20support%20in%20OEM%20image%20with%20SLES10&In-Reply-To=%3C20110222093834.GA3541%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] SquashFS support in OEM image with SLES10">ms at suse.de
+       </A><BR>
+    <I>Tue Feb 22 10:38:34 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002374.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+        <LI>Next message: <A HREF="002390.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2377">[ date ]</a>
+              <a href="thread.html#2377">[ thread ]</a>
+              <a href="subject.html#2377">[ subject ]</a>
+              <a href="author.html#2377">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Well, I switched back to kiwi-4.43-1.6, which is the default in OpenSuSE
+</I>&gt;<i> 11.3, and it makes a gzip compressed image, now I have a different problem.
+</I>
+Don't use the default from 11.3 use the 4.43 version from the home:ctso
+repo I posted. We found and fixed several problems after 11.3 GA
+Here is the link
+
+  <A HREF="http://download.opensuse.org/repositories/home:/ctso/openSUSE_11.3/">http://download.opensuse.org/repositories/home:/ctso/openSUSE_11.3/</A>
+   
+&gt;<i> Any clue here? is there something with the parted inside SLES10 that this
+</I>&gt;<i> version of kiwi doesn't know how to handle?
+</I>
+yes parted from sle10 is too old it doesn't support the &quot;-m&quot; option.
+iirc we added a check in kiwi to switch to fdisk in that case. You also
+might consider to update parted and use a newer version for sles10
+
+grmbl, sles10 imaging is really not an easy task, zypper too old
+parted too old and btw you always have to pass the following option
+to kiwi when building a sles10 image on a 11.3 build system
+
+   --fs-inodesize 128
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002374.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+	<LI>Next message: <A HREF="002390.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2377">[ date ]</a>
+              <a href="thread.html#2377">[ thread ]</a>
+              <a href="subject.html#2377">[ subject ]</a>
+              <a href="author.html#2377">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

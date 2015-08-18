@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse] ATA over Ethernet on openSUSE 11.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse%5D%20ATA%20over%20Ethernet%20on%20openSUSE%2011.1&In-Reply-To=%3C20090213111138.GA8544%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000984.html">
+   <LINK REL="Next"  HREF="000989.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse] ATA over Ethernet on openSUSE 11.1</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse%5D%20ATA%20over%20Ethernet%20on%20openSUSE%2011.1&In-Reply-To=%3C20090213111138.GA8544%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] [opensuse] ATA over Ethernet on openSUSE 11.1">ms at novell.com
+       </A><BR>
+    <I>Fri Feb 13 12:11:38 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000984.html">[Kiwi-users] [opensuse] ATA over Ethernet on openSUSE 11.1
+</A></li>
+        <LI>Next message: <A HREF="000989.html">[Kiwi-users] [opensuse] ATA over Ethernet on openSUSE 11.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#986">[ date ]</a>
+              <a href="thread.html#986">[ thread ]</a>
+              <a href="subject.html#986">[ subject ]</a>
+              <a href="author.html#986">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I will surely use the info on this page. Thanks. But it doesn't REALLY
+</I>&gt;<i> answer the question. When taking a package from Factory, one gets what
+</I>&gt;<i> one gets that day. I thought the purpose of the release directories was
+</I>&gt;<i> to choose a stable one and package that. I am guessing it was an
+</I>&gt;<i> oversight to package a stable one for 11.1. Why isn't AoE in 11.1?
+</I>
+AoE root support was a late feature, too late for 11.1 to be part of
+the GM distro. But I agree to the problem of the rapid development.
+To give people more time to test with a version that doesn't change
+each day we provide packages in the openSUSE:Tools repo. And a daily
+snapshot on the openSUSE:Tools:Devel repo.
+
+&gt;<i> current KIWI a thing I had not seen before: during boot, and just before
+</I>&gt;<i> mounting the nbd volume, there is a delay with a statement about waiting
+</I>&gt;<i> for the nbd server or client to settle down. This is just before the
+</I>&gt;<i> point of failure I had been experiencing. Was this added to address the
+</I>&gt;<i> problem I was describing? Or was this always there and I missed it? I
+</I>&gt;<i> can't think so as I looked at the older messages so many times when
+</I>&gt;<i> originally trying to sort out the issue.
+</I>
+kiwi calls waitForBlockDevice() on the given device (normally /dev/nbd0)
+It did that from the beginning on because after the nbd module is lodaded
+into the kernel it takes some time until udev created the device nodes
+and that's why we wait for them to become ready before we call
+nbd-client on the device
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000984.html">[Kiwi-users] [opensuse] ATA over Ethernet on openSUSE 11.1
+</A></li>
+	<LI>Next message: <A HREF="000989.html">[Kiwi-users] [opensuse] ATA over Ethernet on openSUSE 11.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#986">[ date ]</a>
+              <a href="thread.html#986">[ thread ]</a>
+              <a href="subject.html#986">[ subject ]</a>
+              <a href="author.html#986">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

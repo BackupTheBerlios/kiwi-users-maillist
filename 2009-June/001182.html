@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] opensuse11.1 prelod example failes,
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20opensuse11.1%20prelod%20example%20failes%2C&In-Reply-To=%3C200906121133.37653.scrute%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001186.html">
+   <LINK REL="Next"  HREF="001184.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] opensuse11.1 prelod example failes,</H1>
+    <B>Simon Crute</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20opensuse11.1%20prelod%20example%20failes%2C&In-Reply-To=%3C200906121133.37653.scrute%40novell.com%3E"
+       TITLE="[Kiwi-users] opensuse11.1 prelod example failes,">scrute at novell.com
+       </A><BR>
+    <I>Fri Jun 12 12:33:37 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001186.html">[Kiwi-users] --migrate option on SLED11
+</A></li>
+        <LI>Next message: <A HREF="001184.html">[Kiwi-users] opensuse11.1 prelod example failes,
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1182">[ date ]</a>
+              <a href="thread.html#1182">[ thread ]</a>
+              <a href="subject.html#1182">[ subject ]</a>
+              <a href="author.html#1182">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, 
+
+I'm trying to do an OEM image for sled11, and having some problems, so I 
+thought I'd test the opensuse11.1 example and then move from that. 
+However, when I run 
+
+linux32 kiwi --prepare ./suse-oem-preload --root /data_sas/kiwi/myoem_suse --
+set-repo /mnt/SLED-11-DVD-i586-GM-DVD1 --force-new-root
+
+it fails at
+[*** log excerpt follows, screen ***]                                                                                                       
++ wait 21752                                                                                                                                
++ test 0 = 0                                                                                                                                
++ chroot /data_sas/kiwi/myoem_suse /usr/bin/zypper --non-interactive --no-gpg-
+checks --reposd-dir /var/cache/kiwi/zypper --cache-dir /var/cache/kiwi/zypper 
+--raw-cache-dir /var/cache/kiwi/zypper install --auto-agree-with-licenses 
+bootsplash bootsplash-branding-openSUSE gfxboot-branding-openSUSE ifplugd 
+kernel-default vim                                                                                                  
+Loading repository data...                                                                                                                  
+Reading installed packages...                                                                                                               
+'bootsplash' is already installed.                                                                                                          
+'bootsplash-branding-openSUSE' not found.                                                                                                   
++ ECODE=104                                                                                                                                 
++ echo 104                                                                                                                                  
++ exit 104
+[*** end ***]
+
+
+I'm running this ontop of a sled11-64bit system but I would not expect that to 
+cause a problem here. It looks like a problem with zipper inside the root 
+image. 
+Any clues ?
+
+-- 
+Simon Crute
+Novell IS&amp;T
+UK
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001186.html">[Kiwi-users] --migrate option on SLED11
+</A></li>
+	<LI>Next message: <A HREF="001184.html">[Kiwi-users] opensuse11.1 prelod example failes,
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1182">[ date ]</a>
+              <a href="thread.html#1182">[ thread ]</a>
+              <a href="subject.html#1182">[ subject ]</a>
+              <a href="author.html#1182">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

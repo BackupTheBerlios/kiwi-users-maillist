@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTi%3DfriOxPe_CLfV16N9Y_M2UN7HMSw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002651.html">
+   <LINK REL="Next"  HREF="002650.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTi%3DfriOxPe_CLfV16N9Y_M2UN7HMSw%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Thu Apr 14 17:03:37 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002651.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002650.html">[Kiwi-users] PXE booting an OEM build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2653">[ date ]</a>
+              <a href="thread.html#2653">[ thread ]</a>
+              <a href="subject.html#2653">[ subject ]</a>
+              <a href="author.html#2653">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Apr 14, 2011 at 3:34 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> Marcus,
+</I>&gt;&gt;<i> What ever you did, worked!
+</I>&gt;<i>
+</I>&gt;<i> :-) nice
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; This is because I moved from fat16 to fat32
+</I>&gt;&gt;<i> Do you mean that you added the fat32 support instead of the fat16 the
+</I>&gt;&gt;<i> way we had it before?
+</I>&gt;&gt;<i> If so does that mean that the fat storage partition can now how 32gb?
+</I>&gt;&gt;<i> It doesn't really matter either way, at least not for this project as
+</I>&gt;&gt;<i> 4gb is enought...but if fat32 supports that much more space the means
+</I>&gt;&gt;<i> the the flash drive can be that much larger.
+</I>&gt;<i>
+</I>&gt;<i> yes this is true the fat storage can be much larger now _BUT_
+</I>&gt;<i> I have no experience how syslinux behaves if it grows beyond 4G
+</I>&gt;<i> I mean I don't know if you still can boot from it
+</I>&gt;<i>
+</I>&gt;&gt;<i> A few question on some things that have changed.
+</I>&gt;&gt;<i> Until now, after the first boot the only files/folders on the flash
+</I>&gt;&gt;<i> drive was &quot;boot&quot; and &quot;ldlinux.sys&quot; and my script would change the
+</I>&gt;&gt;<i> attubutes so these file/folders whould be hidden when viewed in
+</I>&gt;&gt;<i> Windows. &#160;When I look at the flash drive now there is much more on the
+</I>&gt;&gt;<i> drive.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 1) syslinux
+</I>&gt;&gt;<i> 2) boot.readme
+</I>&gt;&gt;<i> 3) config-2.6.34-12-default
+</I>&gt;&gt;<i> 4) message
+</I>&gt;&gt;<i> 5) symvers-2.6.34-12-default.gz
+</I>&gt;&gt;<i> 6) System.map-2.6.34-12-default
+</I>&gt;&gt;<i> 7) vmlinux-2.6.34-12-default.gz
+</I>&gt;&gt;<i> 8) boot
+</I>&gt;&gt;<i> 9) ldlinux.sys
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Is this normal that all these files remain on the drive after the
+</I>&gt;&gt;<i> first boot now that the changes have been made to kiwi?
+</I>&gt;&gt;<i> If so, I'll update my script to hide these files and folders as well.
+</I>&gt;<i>
+</I>&gt;<i> This is the normal set of files yes. They are there to stay
+</I>&gt;<i> compatible with a standard suse linux box.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+&gt;<i>
+</I>&gt;<i> yes this is true the fat storage can be much larger now _BUT_
+</I>&gt;<i> I have no experience how syslinux behaves if it grows beyond 4G
+</I>&gt;<i> I mean I don't know if you still can boot from it
+</I>&gt;<i>
+</I>I see.  Cool.  I understand that we may or may not have a problem with
+partitions larger than 4gb...not because of the partition format
+itself but because of syslinux.  I don't have a USB drive large enough
+to test a partition larger than 4gb but I will soon and let you know
+what the results are.  What prompted you change from fat16 to 32?
+
+Great job on this fix. I think this issue is resolved!
+Thanks Marcus
+c
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002651.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002650.html">[Kiwi-users] PXE booting an OEM build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2653">[ date ]</a>
+              <a href="thread.html#2653">[ thread ]</a>
+              <a href="subject.html#2653">[ subject ]</a>
+              <a href="author.html#2653">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

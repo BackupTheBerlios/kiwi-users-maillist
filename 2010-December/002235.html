@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] unknown filesystem type 'unknown'
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20unknown%20filesystem%20type%20%27unknown%27&In-Reply-To=%3CAANLkTikupLuGZDJ7%3Dv96uG2F_q5cRDvJW_VaGSgpk%3Dir%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002234.html">
+   <LINK REL="Next"  HREF="002238.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] unknown filesystem type 'unknown'</H1>
+    <B>Mike Turchenkov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20unknown%20filesystem%20type%20%27unknown%27&In-Reply-To=%3CAANLkTikupLuGZDJ7%3Dv96uG2F_q5cRDvJW_VaGSgpk%3Dir%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] unknown filesystem type 'unknown'">mclaudt at gmail.com
+       </A><BR>
+    <I>Sat Dec 25 22:50:44 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002234.html">[Kiwi-users] unknown filesystem type 'unknown'
+</A></li>
+        <LI>Next message: <A HREF="002238.html">[Kiwi-users] unknown filesystem type 'unknown'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2235">[ date ]</a>
+              <a href="thread.html#2235">[ thread ]</a>
+              <a href="subject.html#2235">[ subject ]</a>
+              <a href="author.html#2235">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Solved.
+
+1. Disk must be prepartitioned and formatted to known filesystem, so there
+is enough space for each partition in config.&lt;MAC&gt;
+
+2. No &quot;x&quot; in size field of config.&lt;MAC&gt;: only precise numbers that are
+slightly more than enough to contain the image.
+
+3. Mount point should exist (just mkdir /tmp/mypxe/mountpoint after
+&quot;prepare&quot; kiwi step but befote &quot;create&quot; kiwi step)
+
+I'm not quite sure if all this points mandatory and/or understandable, this
+is some kind of &quot;it just works&quot; magic.
+
+Mike
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101226/fe4300fb/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101226/fe4300fb/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002234.html">[Kiwi-users] unknown filesystem type 'unknown'
+</A></li>
+	<LI>Next message: <A HREF="002238.html">[Kiwi-users] unknown filesystem type 'unknown'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2235">[ date ]</a>
+              <a href="thread.html#2235">[ thread ]</a>
+              <a href="subject.html#2235">[ subject ]</a>
+              <a href="author.html#2235">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

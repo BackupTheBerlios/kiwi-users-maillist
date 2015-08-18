@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Adding drivers to the system image initrd
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20drivers%20to%20the%20system%20image%20initrd&In-Reply-To=%3C4CE30135.3030503%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002125.html">
+   <LINK REL="Next"  HREF="002129.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Adding drivers to the system image initrd</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20drivers%20to%20the%20system%20image%20initrd&In-Reply-To=%3C4CE30135.3030503%40novell.com%3E"
+       TITLE="[Kiwi-users] Adding drivers to the system image initrd">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Nov 16 23:09:57 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002125.html">[Kiwi-users] Adding drivers to the system image initrd
+</A></li>
+        <LI>Next message: <A HREF="002129.html">[Kiwi-users] Adding drivers to the system image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2126">[ date ]</a>
+              <a href="thread.html#2126">[ thread ]</a>
+              <a href="subject.html#2126">[ subject ]</a>
+              <a href="author.html#2126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 11/16/2010 05:01 PM, J Mixer wrote:
+&gt;<i> 
+</I>&gt;<i> I'm having problems adding required drivers to the system image initrd.
+</I>&gt;<i>  These are additional drivers that are over and above the &quot;stock&quot;
+</I>&gt;<i> openSuse 11.1 image that I am using as a base.  I am using oemboot image
+</I>&gt;<i> to create a CD image to load.
+</I>&gt;<i> 
+</I>&gt;<i> I have been successful in altering the oemboot/suse-11.1/config.xml to
+</I>&gt;<i> include a new kernel and RPMs for the new drivers that were built for
+</I>&gt;<i> this new kernel.  I am also able to have the new kernel correctly
+</I>&gt;<i> installed in the system image.  The new driver RPM (it is actually
+</I>&gt;<i> megaraid_sas and needed to boot from the hard drive on some new
+</I>&gt;<i> hardware) is correctly installed into the system image, just not the
+</I>&gt;<i> boot/initrd.
+</I>&gt;<i> 
+</I>&gt;<i> I can't figure out how to force the &quot;mkinitrd&quot; that is executed while
+</I>&gt;<i> chroot'd into the system image build area to include my new driver RPMs.
+</I>
+What you want to do is have the package listed in your config.xml file
+and then add the bootinclude attribute. You do not really want to fidle
+with the oemboot/suse-11.1/config.xml file. Everything you need to do
+can be done in your config.xml file.
+
+So for the megaraid diver this is specified as follows:
+
+&lt;package name=&quot;lsi-megaraid_sas-kmp-default&quot; bootinclude=&quot;true&quot;/&gt;
+
+This will get the driver into the initrd.
+
+HTH,
+Robert
+
+&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> 
+</I>&gt;<i> J.
+</I>&gt;<i> 
+</I>&gt;<i> *J. Mixer*
+</I>&gt;<i> Control Unit Development
+</I>&gt;<i> Phone: 720.663.3532
+</I>&gt;<i> Email: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">j.mixer at infoprint.com</A>
+</I>&gt;<i> infoprint.com &lt;<A HREF="http://www.infoprint.com/">http://www.infoprint.com/</A>&gt;
+</I>&gt;<i> Sarchasm : The gulf between the author of sarcastic wit and the person
+</I>&gt;<i> who doesn't get it.
+</I>&gt;<i> 
+</I>&gt;<i> _____________________________________________________________________________
+</I>&gt;<i> &quot;This message and any attachments are solely for the intended recipient
+</I>&gt;<i> and may contain confidential or privileged information. If you are not
+</I>&gt;<i> the intended recipient, any disclosure, copying, use, or distribution of
+</I>&gt;<i> the information included in this message and any attachments is
+</I>&gt;<i> prohibited. If you have received this communication in error, please
+</I>&gt;<i> notify us by reply e-mail and immediately and permanently delete this
+</I>&gt;<i> message and any attachments. Thank you.&quot;
+</I>&gt;<i> _____________________________________________________________________________
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002125.html">[Kiwi-users] Adding drivers to the system image initrd
+</A></li>
+	<LI>Next message: <A HREF="002129.html">[Kiwi-users] Adding drivers to the system image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2126">[ date ]</a>
+              <a href="thread.html#2126">[ thread ]</a>
+              <a href="subject.html#2126">[ subject ]</a>
+              <a href="author.html#2126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

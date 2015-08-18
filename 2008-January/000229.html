@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Creating iso live cd image from provided examples.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Creating%20iso%20live%20cd%20image%20from%20provided%20examples.&In-Reply-To=%3C4794DF92.1090005%40qualitau.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000227.html">
+   <LINK REL="Next"  HREF="000230.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Creating iso live cd image from provided examples.</H1>
+    <B>Frederiko Costa</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Creating%20iso%20live%20cd%20image%20from%20provided%20examples.&In-Reply-To=%3C4794DF92.1090005%40qualitau.com%3E"
+       TITLE="[Kiwi-users] Creating iso live cd image from provided examples.">fredc at qualitau.com
+       </A><BR>
+    <I>Mon Jan 21 19:08:18 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000227.html">[Kiwi-users] Creating iso live cd image from provided examples.
+</A></li>
+        <LI>Next message: <A HREF="000230.html">[Kiwi-users] Creating iso live cd image from provided examples.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#229">[ date ]</a>
+              <a href="thread.html#229">[ thread ]</a>
+              <a href="subject.html#229">[ subject ]</a>
+              <a href="author.html#229">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+Thanks for the quick reply.
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi Frederiko,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Right now, I'm trying to create the live-cd from the example packaged in
+</I>&gt;&gt;<i> the rpm (test1). I'm getting the same kind of errors as beforehand. The
+</I>&gt;&gt;<i> only thing I modified this time was change &lt;repository&gt; element &lt;source
+</I>&gt;&gt;<i> path=&quot;<A HREF="http://xxx">http://xxx</A>&quot;&gt; pointing to my local repository, otherwise it would
+</I>&gt;&gt;<i> be a pain to test it.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> ok,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> What I've noticed from the output is that there's a md5sum check on all
+</I>&gt;&gt;<i> files. Although I think it's not the reason why I'm getting a fatal
+</I>&gt;&gt;<i> error, I decided to calculate the md5sum of my modified
+</I>&gt;&gt;<i> isoboot/suse-10.3/config.xml and edit the .checksum.md5 with the new
+</I>&gt;&gt;<i> checksum.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I think here is the problem, why do you need to modify the isoboot
+</I>&gt;<i> config.xml ? If you think you need to do this because of the repo's
+</I>&gt;<i> it's not true kiwi automatically adapts the repo according to your
+</I>&gt;<i> system (test) image description. Please don't change anything in the
+</I>&gt;<i> kiwi boot images.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>The reason I modified the isoboot config.xml was just to point to my
+local repository. From what I understood now, you just need to change
+the config.xml of your custom config.xml description and the repository
+you use overrides automatically the isoboot config.xml. Correct?
+
+I have said in the previous email that md5sum weren't likely the cause
+for the fatal error. This is not true. For testing purposes, I had
+changed the isoboot config.xml, recalculated the md5sum and edited the
+.checksum.md5 with the checksum of the modified file. It worked ok.
+Anyway, I will reinstall it and not touch in the isoboot config.xml file.
+&gt;<i> I think you should get a working iso if you do the following:
+</I>&gt;<i>
+</I>&gt;<i> 1) re-install all kiwi packages
+</I>&gt;<i> 2) change the test1 config.xml according to your local repo
+</I>&gt;<i> 3) run kiwi prepare, create
+</I>&gt;<i>
+</I>&gt;<i> ==&gt; any errors now ?
+</I>&gt;<i>   
+</I>Everything seems to be working great now.
+
+I have two more questions:
+1. Is the kiwi.pdf file the latest documentation available? I've been
+googling and I can only find different sites showing repeated information.
+2. My plan is to generate an image file using opensuse patterns. So far
+I've only found pattern list for 10.2 at Opensuse's wiki. Where can I
+find the patterns for 10.3?
+
+Regards,
+Frederiko
+&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000227.html">[Kiwi-users] Creating iso live cd image from provided examples.
+</A></li>
+	<LI>Next message: <A HREF="000230.html">[Kiwi-users] Creating iso live cd image from provided examples.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#229">[ date ]</a>
+              <a href="thread.html#229">[ thread ]</a>
+              <a href="subject.html#229">[ subject ]</a>
+              <a href="author.html#229">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

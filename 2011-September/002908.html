@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] question on flags = compressed vs unified
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20question%20on%20flags%20%3D%20compressed%20vs%20unified&In-Reply-To=%3CC249BB28-F6BB-44AD-92C7-2D29B3209EE0%40danl.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002907.html">
+   <LINK REL="Next"  HREF="002913.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] question on flags = compressed vs unified</H1>
+    <B>Daniel Little</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20question%20on%20flags%20%3D%20compressed%20vs%20unified&In-Reply-To=%3CC249BB28-F6BB-44AD-92C7-2D29B3209EE0%40danl.org%3E"
+       TITLE="[Kiwi-users] question on flags = compressed vs unified">me at danl.org
+       </A><BR>
+    <I>Fri Sep  2 09:27:57 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002907.html">[Kiwi-users] question on flags = compressed vs unified
+</A></li>
+        <LI>Next message: <A HREF="002913.html">[Kiwi-users] question on flags = compressed vs unified
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2908">[ date ]</a>
+              <a href="thread.html#2908">[ thread ]</a>
+              <a href="subject.html#2908">[ subject ]</a>
+              <a href="author.html#2908">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcin,
+
+The resource I found to be the best was this one on Marcus' site: <A HREF="http://isny.homelinux.com/data/kiwi.html">http://isny.homelinux.com/data/kiwi.html</A> - not sure if it's the same cookbook you referenced, tho. My ISO builds just use the following for the type:
+
+    &lt;type image=&quot;oem&quot; filesystem=&quot;ext4&quot; boot=&quot;oemboot/suse-11.4&quot; installiso=&quot;true&quot;/&gt;
+
+Sorry I can't answer on the compressed / unified question, tho. Good luck! 
+
+Daniel.
+
+On 2011-09-02, at 2:04 AM, marcin kowalski wrote:
+
+&gt;<i> Hi list, i'm a bit confused about the iso generation flags in config.xml.
+</I>&gt;<i> 
+</I>&gt;<i> the only reasonable snippet on it i found said :
+</I>&gt;<i> 
+</I>&gt;<i> &quot;compressed - Compressed filesystem with squashfs mounted with an aufs
+</I>&gt;<i> based overlay mount to allow read-write access.
+</I>&gt;<i> unified - Compressed filesystem with squashfs mounted with an aufs
+</I>&gt;<i> based overlay mount to allow read-write access.&quot;
+</I>&gt;<i> 
+</I>&gt;<i> However, when i created an image with such settings
+</I>&gt;<i> 
+</I>&gt;<i> &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-11.4&quot; bootprofile=&quot;default&quot;
+</I>&gt;<i> bootkernel=&quot;std&quot; flags=&quot;compressed&quot; hybrid=&quot;true&quot;
+</I>&gt;<i> hybridpersistent=&quot;false&quot; image=&quot;iso&gt;
+</I>&gt;<i> 
+</I>&gt;<i> the /root contents are read-only. I actually get the message &quot;read
+</I>&gt;<i> only filesystem&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> Does that mean i should go with &quot;unified&quot;?
+</I>&gt;<i> 
+</I>&gt;<i> p.s. where is the most comprehensive documentation ? I'm having
+</I>&gt;<i> trouble finding explanation for many options and have to experiment by
+</I>&gt;<i> basing off examples provided with ki.  I already looked through kiwi
+</I>&gt;<i> cookbook PDF, which unfortunately lacks a lot of options, and most
+</I>&gt;<i> sites with kiwi help seem to be outdated.
+</I>&gt;<i> 
+</I>&gt;<i> I am using opensuse 11.4 with Virtualization_Appliances repository.
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002907.html">[Kiwi-users] question on flags = compressed vs unified
+</A></li>
+	<LI>Next message: <A HREF="002913.html">[Kiwi-users] question on flags = compressed vs unified
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2908">[ date ]</a>
+              <a href="thread.html#2908">[ thread ]</a>
+              <a href="subject.html#2908">[ subject ]</a>
+              <a href="author.html#2908">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi Errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Errors&In-Reply-To=%3C20081013142212.GA21564%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000843.html">
+   <LINK REL="Next"  HREF="000844.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi Errors</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Errors&In-Reply-To=%3C20081013142212.GA21564%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Kiwi Errors">ms at novell.com
+       </A><BR>
+    <I>Mon Oct 13 16:22:13 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000843.html">[Kiwi-users] Kiwi Errors
+</A></li>
+        <LI>Next message: <A HREF="000844.html">[Kiwi-users] Article about &quot;How to Build your own openSUSE Based	Distro&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#841">[ date ]</a>
+              <a href="thread.html#841">[ thread ]</a>
+              <a href="subject.html#841">[ subject ]</a>
+              <a href="author.html#841">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I want to build a live cd on openSUSE 11 x86_64, but Kiwi stops with
+</I>&gt;<i> errors. :-( I have remove already the directory /var/cache/kiwi/,
+</I>&gt;<i> but the errors come again.
+</I>
+I have just copied your xml and tested it without modifications on
+my system. It seems smart has problems when using two distro repos.
+I got the following:
+
+	error: file /etc/ld.so.cache conflicts between attempted installs of glibc-2.8-14.1.i686 and glibc-2.8-14.1.x86_64
+
+I have no clue why smart creates such a mixture of 64bit and ix86
+packages. Christoph could you check that please. The following
+config.xml could be used to reproduce that if building on a 64bit
+machine:
+ 
+-------------snip-----------
+
+&lt;image schemeversion=&quot;2.4&quot; name=&quot;suse-11.0-live-iso&quot;&gt;
+      &lt;description type=&quot;system&quot;&gt;
+               &lt;author&gt;Sebastian Siebert&lt;/author&gt;
+               &lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">freespacer at gmx.de</A>&lt;/contact&gt;
+               &lt;specification&gt;openSUSE 11.0 Minimal Live system&lt;/specification&gt;
+       &lt;/description&gt;
+       &lt;preferences&gt;
+               &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-11.0&quot; flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+               &lt;version&gt;0.0.1&lt;/version&gt;
+               &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+               &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+               &lt;rpm-force&gt;True&lt;/rpm-force&gt;
+               &lt;locale&gt;de_DE.UTF-8&lt;/locale&gt;
+               &lt;keytable&gt;de.map.gz&lt;/keytable&gt;
+        &lt;/preferences&gt;
+        &lt;repository type=&quot;yast2&quot;&gt;
+                &lt;source path=&quot;<A HREF="ftp://ftp5.gwdg.de/pub/opensuse/distribution/11.0/repo/oss">ftp://ftp5.gwdg.de/pub/opensuse/distribution/11.0/repo/oss</A>&quot; /&gt;
+        &lt;/repository&gt;
+        &lt;repository type=&quot;yast2&quot;&gt;
+                &lt;source path=&quot;<A HREF="ftp://ftp5.gwdg.de/pub/opensuse/distribution/11.0/repo/non-oss">ftp://ftp5.gwdg.de/pub/opensuse/distribution/11.0/repo/non-oss</A>&quot; /&gt;
+        &lt;/repository&gt;
+        &lt;repository type=&quot;rpm-md&quot;&gt;
+                &lt;source path=&quot;<A HREF="ftp://ftp5.gwdg.de/pub/opensuse/update/11.0">ftp://ftp5.gwdg.de/pub/opensuse/update/11.0</A>&quot; /&gt;
+        &lt;/repository&gt;
+        &lt;packages type=&quot;image&quot;&gt;
+                &lt;package name=&quot;kernel-default&quot;/&gt;
+                &lt;package name=&quot;bootsplash&quot;/&gt;
+                &lt;package name=&quot;bootsplash-branding-openSUSE&quot;/&gt;
+                &lt;package name=&quot;vim&quot;/&gt;
+                &lt;package name=&quot;mc&quot;/&gt;
+                &lt;opensusePattern name=&quot;base&quot;/&gt;
+        &lt;/packages&gt;
+        &lt;packages type=&quot;bootstrap&quot;&gt;
+                &lt;package name=&quot;filesystem&quot;/&gt;
+                &lt;package name=&quot;glibc-locale&quot;/&gt;
+        &lt;/packages&gt;
+&lt;/image&gt;
+
+--------snap------------
+
+&gt;<i> Sorry about german messages, but you can see installed packages are
+</I>&gt;<i> some i586 and x86_64 merging architecture.
+</I>&gt;<i> Can anybody find out the problem of Kiwi?
+</I>
+* I could fix the problem when I remove the non-oss and update
+  repositories
+
+* It has worked when I swtich from smart to zypper... maybe the
+  best solution for you
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000843.html">[Kiwi-users] Kiwi Errors
+</A></li>
+	<LI>Next message: <A HREF="000844.html">[Kiwi-users] Article about &quot;How to Build your own openSUSE Based	Distro&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#841">[ date ]</a>
+              <a href="thread.html#841">[ thread ]</a>
+              <a href="subject.html#841">[ subject ]</a>
+              <a href="author.html#841">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

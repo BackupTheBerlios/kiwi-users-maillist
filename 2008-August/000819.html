@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [Solved] dbusdevice.so: undefined	symbol:	_ZN7QString11shared_nullE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BSolved%5D%20dbusdevice.so%3A%20undefined%0A%09symbol%3A%09_ZN7QString11shared_nullE&In-Reply-To=%3C20080828113750.8at1ybl7qcc8ccgg%40webmail.df.eu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000814.html">
+   <LINK REL="Next"  HREF="000808.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [Solved] dbusdevice.so: undefined	symbol:	_ZN7QString11shared_nullE</H1>
+    <B>E.Waelde</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BSolved%5D%20dbusdevice.so%3A%20undefined%0A%09symbol%3A%09_ZN7QString11shared_nullE&In-Reply-To=%3C20080828113750.8at1ybl7qcc8ccgg%40webmail.df.eu%3E"
+       TITLE="[Kiwi-users] [Solved] dbusdevice.so: undefined	symbol:	_ZN7QString11shared_nullE">ew.ng7125 at nassur.net
+       </A><BR>
+    <I>Thu Aug 28 11:37:50 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000814.html">[Kiwi-users] dbusdevice.so: undefined	symbol:	_ZN7QString11shared_nullE
+</A></li>
+        <LI>Next message: <A HREF="000808.html">[Kiwi-users] openSUSE Minimal System LiveCD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#819">[ date ]</a>
+              <a href="thread.html#819">[ thread ]</a>
+              <a href="subject.html#819">[ subject ]</a>
+              <a href="author.html#819">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+
+&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ew.ng7125 at nassur.net</A> wrote:
+</I>&gt;<i> &gt; compiling and installing kiwi worked after adding a few missing packages
+</I>&gt;<i> &gt; (swig, dbus-1-devel, hal-devel, trang).
+</I>&gt;<i>
+</I>&gt;<i> It looks like the dbusdevice perl binding module wasn't compiled/installed
+</I>&gt;<i> correctly. Could you check the following in your svn checkout:
+</I>&gt;<i>
+</I>&gt;<i>   cd tools/dbuslock
+</I>&gt;<i>   make -f Makefile.swig
+</I>&gt;<i>   make
+</I>
+
+$ make -f Makefile.swig
+swig -Wall -c++ -perl5 dbusdevice.i
+perl Makefile.PL
+Package QtCore was not found in the pkg-config search path.
+Perhaps you should add the directory containing `QtCore.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'QtCore' found
+Package QtCore was not found in the pkg-config search path.
+Perhaps you should add the directory containing `QtCore.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'QtCore' found
+Writing Makefile for dbusdevice
+
+The problem turned out to be that my Qt libs are not installed from a  
+rpm Package, but from tar file in a non standard location. The lines
+     $QTLIBS = `pkg-config --libs QtCore`;
+     $QTINC = `pkg-config --cflags QtCore`;
+in tools/dbuslock/Makefile.PL failed to find the required information.  
+HOWEVER, the script did not fail at this point but happily write a  
+Makefile ... so the error went unnoticed.
+
+I have created a &quot;fake&quot; package description and put it into  
+/usr/lib/pkgconfig. Now it builds and installs, kiwi starts, but fails  
+later with something else ...
+
+Cheers,
+Erich`
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000814.html">[Kiwi-users] dbusdevice.so: undefined	symbol:	_ZN7QString11shared_nullE
+</A></li>
+	<LI>Next message: <A HREF="000808.html">[Kiwi-users] openSUSE Minimal System LiveCD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#819">[ date ]</a>
+              <a href="thread.html#819">[ thread ]</a>
+              <a href="subject.html#819">[ subject ]</a>
+              <a href="author.html#819">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

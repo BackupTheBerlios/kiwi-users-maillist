@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] update device from new version ISO created by kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20update%20device%20from%20new%20version%20ISO%20created%20by%20kiwi&In-Reply-To=%3C20121030195632.GA5995%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003050.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] update device from new version ISO created by kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20update%20device%20from%20new%20version%20ISO%20created%20by%20kiwi&In-Reply-To=%3C20121030195632.GA5995%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] update device from new version ISO created by kiwi">ms at suse.de
+       </A><BR>
+    <I>Tue Oct 30 20:56:32 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003050.html">[Kiwi-users] update device from new version ISO created by kiwi
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3051">[ date ]</a>
+              <a href="thread.html#3051">[ thread ]</a>
+              <a href="subject.html#3051">[ subject ]</a>
+              <a href="author.html#3051">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i>    I have created a personalized version of Opensuse JeOS using the kiwi,
+</I>&gt;<i>    that I use inside of some devices (like DVR).
+</I>&gt;<i> 
+</I>&gt;<i>    Frequently I need to create new images with updated drivers and
+</I>&gt;<i>    software.
+</I>&gt;<i> 
+</I>&gt;<i>    I would like to know if exist some process that allow update these
+</I>&gt;<i>    devices remotely from CLI using the new version of the ISO.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i>    I would like to apply a procedure like the used in the devices like DSL
+</I>&gt;<i>    Modem, to upgrade the firmware&#8230;
+</I>&gt;<i> 
+</I>&gt;<i>    a.       Accessing the device through web
+</I>&gt;<i> 
+</I>&gt;<i>    b.      Uploading the new IOS (like firmware)
+</I>&gt;<i> 
+</I>&gt;<i>    c.       Executing the upgrade procedure&#8230;
+</I>&gt;<i> 
+</I>&gt;<i>    I need help only with item &#8220;c&#8221;
+</I>
+I guess with 'new version of the ISO' you mean an install ISO which
+installs the image on the device at boot time. I also guess the
+device has some local storage e.g a disk or an SSD or something
+which the install ISO has installed the image to
+
+If this applies it would be possible to upgrade the local storage
+on the fly with the following process:
+ 
+  - download the new ISO
+  - loop mount the ISO
+  - loop mount the .squashfs file in the ISO
+  - dd the .raw file to the local storage
+  - reboot
+
+BUT ! this will not preserve any custom data written to
+the local storage since the last time the machine was
+installed
+
+PS:
+you are still on the old berlios list which will go away
+if you don't mind join us on the kiwi-images google list
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003050.html">[Kiwi-users] update device from new version ISO created by kiwi
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3051">[ date ]</a>
+              <a href="thread.html#3051">[ thread ]</a>
+              <a href="subject.html#3051">[ subject ]</a>
+              <a href="author.html#3051">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

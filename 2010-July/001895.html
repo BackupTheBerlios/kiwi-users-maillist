@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-07-04 - 2010-07-09...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-07-04%20-%202010-07-09...&In-Reply-To=%3C20100709135211.GA11910%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001881.html">
+   <LINK REL="Next"  HREF="001896.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-07-04 - 2010-07-09...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-07-04%20-%202010-07-09...&In-Reply-To=%3C20100709135211.GA11910%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-07-04 - 2010-07-09...">ms at novell.com
+       </A><BR>
+    <I>Fri Jul  9 15:52:11 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001881.html">[Kiwi-users] kiwi: Weekly report 2010-06-27 - 2010-07-02...
+</A></li>
+        <LI>Next message: <A HREF="001896.html">[Kiwi-users] pxeboot client image failing on downloading md5 sum
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1895">[ date ]</a>
+              <a href="thread.html#1895">[ thread ]</a>
+              <a href="subject.html#1895">[ subject ]</a>
+              <a href="author.html#1895">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.45 2010-07-04 - 2010-07-09
+--------------------------------------------------
+most important changes for this weeks release...
+
+GIT:  fixed convert38to39.xsl stylesheet
+
+ if you use XML descriptions at version 3.8 or earlier the
+ automatic conversion via xslt will fail for the bool oem
+ parameters with value yes|no
+ 
+
+GIT:  moved in-place recovery file creation into suse-dump
+      directly after the install verification (bnc #620777)
+
+ oem-inplace-recovery is a method which allows the creation
+ of the recovery data on first deployment and thus saves space
+ inside the image where it is stored in default mode. The
+ system now will create the archive inside the install code
+ and if that is not possible (or not called) on first boot
+ directly after the repartitioning step
+
+
+GIT:  fixed build for s390
+
+ This is the last commit in a series of changes to support
+ s390 imaging. The s390 support in kiwi requires the KVM
+ virtualization layer. given that this is installed on the s390
+ machine one can create vmx and oem images with kiwi for s390.
+ It's a major milestone for the kiwi project to support this
+ architecture. Building images with kiwi on s390 is fun because
+ the I/O performance on this systems is fantastic. This version
+ of kiwi also provides JeOS templates as example image descriptions
+ so that it is easy to create images on s390. The target customer
+ for s390 are always enterprise customers, therefore the target
+ distribution for imaging is SLES. Big thanks to Alexander Graf
+ who helped me a lot to understand more about the mainframe
+ world and also how kvm works on s390 along with the virtio
+ block layer
+
+Have a great weekend :-)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001881.html">[Kiwi-users] kiwi: Weekly report 2010-06-27 - 2010-07-02...
+</A></li>
+	<LI>Next message: <A HREF="001896.html">[Kiwi-users] pxeboot client image failing on downloading md5 sum
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1895">[ date ]</a>
+              <a href="thread.html#1895">[ thread ]</a>
+              <a href="subject.html#1895">[ subject ]</a>
+              <a href="author.html#1895">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

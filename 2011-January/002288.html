@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Bug in Kiwi and U3 ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bug%20in%20Kiwi%20and%20U3%20%3F&In-Reply-To=%3C201101311802.54099.leszek.lesner%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002287.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Bug in Kiwi and U3 ?</H1>
+    <B>Leszek Lesner</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bug%20in%20Kiwi%20and%20U3%20%3F&In-Reply-To=%3C201101311802.54099.leszek.lesner%40web.de%3E"
+       TITLE="[Kiwi-users] Bug in Kiwi and U3 ?">leszek.lesner at web.de
+       </A><BR>
+    <I>Mon Jan 31 18:02:54 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002287.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2288">[ date ]</a>
+              <a href="thread.html#2288">[ thread ]</a>
+              <a href="subject.html#2288">[ subject ]</a>
+              <a href="author.html#2288">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Kiwi Devs &amp; Users,
+
+As I don't have an Novell account and figured out a strange bug and got the 
+advice to report it here I took some time to write this mail. 
+
+First of all I tried kiwi many times here on my pc with different openSUSE 
+versions (from 11.1 to 11.4) and never had a success really in booting it 
+successfully with my U3 USB stick. As I found some time now to investigate the 
+problem a little further I grabbed a openSUSE 11.4 M6 Hybrid LiveISO (KDE4 
+variant) and tried it once again. As expected it didn't boot and gave me the 
+&quot;Couldn't find Live image configuration file&quot; error. 
+Btw. I build the live usb stick just like suggested with dd'ing the iso onto 
+the usb stick and as it didn't boot I even uses dd_rescue which does the same 
+thing like dd I guess. It resulted in the same error. 
+So I activated the 'kiwidebug=1' bootoption to take a look in the init/linuxrc 
+and include file (btw. a simple texteditor like vi might be handy for adding in 
+the initrd for debugging purposes). I found the CDMount function in init which 
+pointed me to take a look into the include file which then pointed me to the 
+CDDevice function in the same file. 
+First of all I tried echo'ing out the devices which where found with CDDevice 
+(line 2924 where the 'search for CD/DVD devices' part starts) because I 
+guessed the script detected only the CD part of the U3 stick and not the usb 
+drive itself somehow. (and no I don't have a cd/dvd drive, because its a 
+netbook) And well it was exactly what I expected to see it mounted 12 times 
+/dev/sr0 which is the cd part of the U3 stick and searched for the isoclient 
+live configuration file which is obviously not on the U3s cd part. 
+So I took a look at the CDDevice function in the include file and to my 
+surprise I found that 'hwinfo --cdrom' is used to get the device name (i.e. 
+/dev/sr0). So I changed that to '$h --block ...' and rebuild initrd replaced 
+the one on the stick with my patched one and what can I say it boots just fine 
+now without any error. (I attached a patch file which highlights the changes 
+for the devs) 
+The interesting and useful side effect of adding this patch was the possibility 
+to create  openSUSE LiveUSB Sticks with third party apps like unetbootin. The 
+only thing I needed to replace was the initrd. 
+I think it is a very useful feature, because I don't understand why only cd 
+devices are searched for the isoclient config file. 
+It might be also better as the current usb boot option (which I only saw in 
+the code and didn't test out though) which somehow just like I understand it 
+will check if there is space on the usb stick and will automatically create a 
+cow (copy on write / overlay / persistent) image and uses it. Using this slows 
+down the experience of the live usb user as writing to some common usb sticks 
+is slow and especially its a somehow pain in the ass for every netbook user 
+who just only wants to test out if openSUSE runs on his netbook and when it 
+does install it. 
+
+So I appreciate comments &amp; feedback on this topic and hopefully I am not 
+bothering the community with some already solved problem :) 
+
+---
+Leszek
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: include_block_device.patch
+Type: text/x-patch
+Size: 1128 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110131/fdde74c1/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110131/fdde74c1/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002287.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2288">[ date ]</a>
+              <a href="thread.html#2288">[ thread ]</a>
+              <a href="subject.html#2288">[ subject ]</a>
+              <a href="author.html#2288">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

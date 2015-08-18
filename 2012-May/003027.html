@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.xml%20schema%20reference%3F%20Want%20to%20build%20an%0A%20image%20with%20multiple%20partitions&In-Reply-To=%3C4FB25D0B.2020706%40sgi.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003021.html">
+   <LINK REL="Next"  HREF="003028.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions</H1>
+    <B>Eric Richards</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.xml%20schema%20reference%3F%20Want%20to%20build%20an%0A%20image%20with%20multiple%20partitions&In-Reply-To=%3C4FB25D0B.2020706%40sgi.com%3E"
+       TITLE="[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions">erichards at sgi.com
+       </A><BR>
+    <I>Tue May 15 15:41:31 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003021.html">[Kiwi-users] Yet another newbie question
+</A></li>
+        <LI>Next message: <A HREF="003028.html">[Kiwi-users] How to avoid creating /boot as a separate partition ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3027">[ date ]</a>
+              <a href="thread.html#3027">[ thread ]</a>
+              <a href="subject.html#3027">[ subject ]</a>
+              <a href="author.html#3027">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, Marcus (and list),
+
+Thanks back for all your work.  My management is happy, at least for 
+today! :-)
+
+Regards,
+
+Eric
+
+On 05/15/2012 01:31 AM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi Eric,
+</I>&gt;<i>
+</I>&gt;&gt;<i> I have some more info for you.
+</I>&gt;<i> Thanks for all the details. I was able to see the bug you described.
+</I>&gt;<i> So the image is ok but on first boot when the disk is repartitioned
+</I>&gt;<i> the start sector of the LVM partition was changed which then causes
+</I>&gt;<i> the entire LVM to be invalid.
+</I>&gt;<i>
+</I>&gt;<i> I have built your appliance with the latest kiwi version and also
+</I>&gt;<i> with the version I'm currently sent out as maintenance update
+</I>&gt;<i> for openSUSE 12.1. Both builds works fine. Here are the details
+</I>&gt;<i> for the maintenance submission:
+</I>&gt;<i>
+</I>&gt;<i> created request id Request: #121022
+</I>&gt;<i> maintenance_incident: home:sax2:branches:openSUSE:12.1:Update/kiwi
+</I>&gt;<i>     -&gt;  openSUSE:Maintenance (release in openSUSE:12.1:Update)
+</I>&gt;<i>
+</I>&gt;<i> As soon as the update is processed you should be able to use
+</I>&gt;<i> the version from the openSUSE:12.1 update repo. Until then you can
+</I>&gt;<i> use the submitted build from here:
+</I>&gt;<i>
+</I>&gt;<i>     <A HREF="http://download.opensuse.org/repositories/home:/sax2:/branches:/openSUSE:/12.1:/Update/">http://download.opensuse.org/repositories/home:/sax2:/branches:/openSUSE:/12.1:/Update/</A>
+</I>&gt;<i>
+</I>&gt;<i> it will appear there as soon as it has build
+</I>&gt;<i>
+</I>&gt;&gt;<i> My management is getting cold feet about using even a Factory release
+</I>&gt;&gt;<i> of kiwi.  Do you have any idea what the plan is for a formal update to
+</I>&gt;&gt;<i> it?
+</I>&gt;<i> for 12.1 an official update is in the loop. Does that help ?
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+
+Eric Richards
+Kernel Software Engineer
+SGI logo
+1900 Pike Road
+Longmont, CO 80501
+Phone: 303-532-0233
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A>&gt;
+Website: www.sgi.com &lt;<A HREF="http://www.sgi.com">http://www.sgi.com</A>&gt;
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120515/8ae3a1dc/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120515/8ae3a1dc/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: SGI_small_logo.png
+Type: image/png
+Size: 2653 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120515/8ae3a1dc/attachment.png">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120515/8ae3a1dc/attachment.png</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003021.html">[Kiwi-users] Yet another newbie question
+</A></li>
+	<LI>Next message: <A HREF="003028.html">[Kiwi-users] How to avoid creating /boot as a separate partition ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3027">[ date ]</a>
+              <a href="thread.html#3027">[ thread ]</a>
+              <a href="subject.html#3027">[ subject ]</a>
+              <a href="author.html#3027">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

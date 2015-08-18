@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] build from template suse-11.4-JeOS with templates installed failed.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20build%20from%20template%20suse-11.4-JeOS%20with%20templates%0A%20installed%20failed.&In-Reply-To=%3C20110517091359.GA14121%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002736.html">
+   <LINK REL="Next"  HREF="002740.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] build from template suse-11.4-JeOS with templates installed failed.</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20build%20from%20template%20suse-11.4-JeOS%20with%20templates%0A%20installed%20failed.&In-Reply-To=%3C20110517091359.GA14121%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] build from template suse-11.4-JeOS with templates installed failed.">ms at suse.de
+       </A><BR>
+    <I>Tue May 17 11:14:00 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002736.html">[Kiwi-users] build from template suse-11.4-JeOS with templates installed failed.
+</A></li>
+        <LI>Next message: <A HREF="002740.html">[Kiwi-users] Build service w/ opensuse 11.4
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2739">[ date ]</a>
+              <a href="thread.html#2739">[ thread ]</a>
+              <a href="subject.html#2739">[ subject ]</a>
+              <a href="author.html#2739">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;Hello, I was following the instructions from the KiWi Cookbook Get Juiced and ran into a error that I cannot seem to fix.  Here is the error from my terminal:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;linux-deqj:/home/mike/kiwi # mkdir /tmp/myjeos
+</I>&gt;<i> &gt;linux-deqj:/home/mike/kiwi # kiwi --build suse-11.4-JeOS --destdir /tmp/myjeos --type iso
+</I>&gt;<i> &gt;May-16 19:22:42&lt;1&gt;  : Reading image description [Prepare]...
+</I>&gt;<i> &gt;May-16 19:22:42&lt;2&gt;  : Description provides no MD5 hash, check                                           skipped
+</I>&gt;<i> &gt;May-16 19:22:42&lt;3&gt;  : Couldn't locate configuration directory suse-11.4-JeOS
+</I>&gt;<i> 
+</I>&gt;<i> This message is telling you that the directory suse-11.4-JeOS was not found.
+</I>&gt;<i> 
+</I>&gt;<i> Your kiwi command needs to point to the location of the
+</I>&gt;<i> configuration directory. If you did not make a copy of the template
+</I>&gt;<i> an modify it this should look as follows:
+</I>&gt;<i> 
+</I>&gt;<i> # kiwi --build /usr/share/kiwi/image/suse-11.4-JeOS -d /tmp/myjeos
+</I>&gt;<i> --type iso
+</I>
+This is not required. If you specify suse-11.4-JeOS only it will
+automatically look if it can find in your current directory or in
+/usr/share/kiwi/image.
+
+I think you did not have installed the kiwi-templates package which
+provides the templates. Can you check this ?
+
+  rpm -ql kiwi-templates
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002736.html">[Kiwi-users] build from template suse-11.4-JeOS with templates installed failed.
+</A></li>
+	<LI>Next message: <A HREF="002740.html">[Kiwi-users] Build service w/ opensuse 11.4
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2739">[ date ]</a>
+              <a href="thread.html#2739">[ thread ]</a>
+              <a href="subject.html#2739">[ subject ]</a>
+              <a href="author.html#2739">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] split image type and read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C20080307092348.GA19385%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000457.html">
+   <LINK REL="Next"  HREF="000422.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] split image type and read-only</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C20080307092348.GA19385%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] split image type and read-only">ms at suse.de
+       </A><BR>
+    <I>Fri Mar  7 10:23:48 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000457.html">[Kiwi-users] split image type and read-only
+</A></li>
+        <LI>Next message: <A HREF="000422.html">[Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#458">[ date ]</a>
+              <a href="thread.html#458">[ thread ]</a>
+              <a href="subject.html#458">[ subject ]</a>
+              <a href="author.html#458">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi David,
+
+thanks for testing the patch
+
+&gt;<i> And it looks like the patch works!
+</I>&gt;<i> 
+</I>&gt;<i> I really appreciate the effort to come up with something that will
+</I>&gt;<i> workfor my needs, but I'm really starting to doubt the split-image approach
+</I>&gt;<i> will work for me.
+</I>
+Well even if you have realized that split maybe not working for you
+it has at least brought in a good enhancement in describing the read-write
+read-only sections. So it definitely was worth the effort
+
+&gt;<i> Another problem is the initrd.  I want my devices to boot from the drive (CF card in my case) without PXE, so I use the KIWI_INITRD parameter in the config.MAC file.  This downloads a workable initrd into the image when the device is imaged.  However, it would be extremely convoluted to get the initrd into the read-only image part.  So now I have to have /boot exist in the read-write partition.  The same headaches apply for grub configuration files, and in general to making any persistent changes to the read-only partition without re-imaging the device or going through contortions to make the read-only tree consistent across reboots.
+</I>
+right. I'm sorry but the kiwi initrd is the only one which works with
+the split type. That's because it's something only kiwi provides and
+therefore we can't replace/recreate the initrd by a simple mkinitrd call.
+At any time when the kernel changes one needs to re-create the kiwi initrd
+with kiwi and also needs to take care how to activate the new initrd.
+I saw people who provided kiwi and the boot image description (initrd)
+as part of the image and use it for re-creating the initrd. I guess this
+is also not an option for you
+
+&gt;<i> I don't even really need a read-write partition - maybe it was a mistake to make you think I did.  I think it is useful for me, but not at all necessary - I was planning on keeping /var/log/ in the persistent partition and that's it - since I can remote syslog.
+</I>
+ok :-)
+
+&gt;<i> Do you have a kiwi image recommendation for an autonomous (no PXE-boot) diskful read-only image that can be mounted read-write when desired to make persistent OS updates without having to re-image the device?  I do really like the PXE-boot approach to loading the image onto the device, but the PXE-boot is just for initial device provisioning/configuration.
+</I>
+I think if you build a simple image based on a standard fileystem for example
+ext3 you will get an image which is read-write at any time. To make it read-only
+while the image is active you need to provide the /etc/fstab with the &quot;ro&quot; 
+mount option in it. The kiwi initrd creates that file but not with this option.
+So you can create a clone from the appropriate boot image description and
+change that accordingly.
+
+I would suggest to use the oemboot image type for that:
+
+	&lt;type filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-davids-clone&quot;&gt;oem&lt;/type&gt;
+
+The result is a virtual disk image which you can dd onto your device. You
+also can create an installable image from that image which allows you to
+&quot;install&quot; (deploy) it from for example a CD or DVD
+
+How does an update work. The virtual disk partitions can be accessed the
+following way:
+
+    losetup /dev/loop0 &lt;the-image-file&gt; 
+    kpartx -a /dev/loop0
+
+==&gt; now you can see the partitions as /dev/mapper/loop0p1 and you can
+    mount them read write:
+
+    mount /dev/mapper/loop0p1 /mnt
+
+==&gt; After the changes you need to redeploy. I'm not sure if this is acceptable
+    for you. As you have said the system is read-only there is no data which
+    could get lost during runtime (except RAM data) so I assume this would
+    work for you. Not sure about it 
+
+Just my thinkings
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000457.html">[Kiwi-users] split image type and read-only
+</A></li>
+	<LI>Next message: <A HREF="000422.html">[Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#458">[ date ]</a>
+              <a href="thread.html#458">[ thread ]</a>
+              <a href="subject.html#458">[ subject ]</a>
+              <a href="author.html#458">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

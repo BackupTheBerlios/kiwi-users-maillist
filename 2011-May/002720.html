@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Missing swap on SLES11 SP1 based oem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Missing%20swap%20on%20SLES11%20SP1%20based%20oem&In-Reply-To=%3C4DCD3975.40603%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002723.html">
+   <LINK REL="Next"  HREF="002721.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Missing swap on SLES11 SP1 based oem</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Missing%20swap%20on%20SLES11%20SP1%20based%20oem&In-Reply-To=%3C4DCD3975.40603%40novell.com%3E"
+       TITLE="[Kiwi-users] Missing swap on SLES11 SP1 based oem">rschweikert at novell.com
+       </A><BR>
+    <I>Fri May 13 16:00:21 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002723.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+        <LI>Next message: <A HREF="002721.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2720">[ date ]</a>
+              <a href="thread.html#2720">[ thread ]</a>
+              <a href="subject.html#2720">[ subject ]</a>
+              <a href="author.html#2720">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 05/13/2011 06:23 AM, Marcus Arendt wrote:
+&gt;<i> Hi Marcus,
+</I>&gt;<i>
+</I>&gt;<i> 13 maj 2011 kl. 10.37 skrev Marcus Sch&#228;fer:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi Marcus,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> first post here so please be gentle.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> :-)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> We have been building a SLES11 based oem-iso using kiwi 4.60
+</I>&gt;&gt;&gt;<i> (on openSuSE 11.3) without any problems. For the last week I have
+</I>&gt;&gt;&gt;<i> been trying to do the same with SLES11 SP1 without success.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> your build machine is still 11.3 and hasn't changed right ?
+</I>&gt;<i>
+</I>&gt;<i> That is correct. I'm using VMWare Fusion and have SLES11SP1-vm for building the rpms.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Build process completes without any errors. Turned out that the
+</I>&gt;&gt;&gt;<i> swap-partition is missing on the disk after installing the iso.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> my first guess is that the target disk wasn't big enough according
+</I>&gt;&gt;<i> to the oem- and/or default settings. To understand more about the
+</I>&gt;&gt;<i> problem the file: /var/log/boot.kiwi after first deployment is
+</I>&gt;&gt;<i> required. Just login after kiwi has installed the machine and post
+</I>&gt;&gt;<i> the file.
+</I>&gt;<i>
+</I>&gt;<i> Do I need to change something in the configuration to get it? No such file in /var/log.
+</I>&gt;<i>
+</I>&gt;<i> I also deploy using VMWare Fusion with 20GB disk for the vm.
+</I>&gt;<i>
+</I>&gt;&gt;<i> Additionally your image config XML file would be helpful too
+</I>&gt;<i>
+</I>&gt;<i> ---8&lt;---
+</I>&gt;<i> &lt;image schemaversion=&quot;4.7&quot; name=&quot;******&quot; displayname=&quot;********&gt;
+</I>
+You can update your description automatically to the appropriate version 
+using
+
+-&gt; xsltproc -o new.xml /usr/share/kiwi/xsl/master.xsl config.xml
+-&gt; mv new.xml config.xml
+
+This does not have an effect on how kiwi operates as this update happens 
+automatically when Kiwi runs. However, it helps those reading the XML as 
+we ofter just work with the latest definition.
+
+&gt;<i> 	&lt;description type=&quot;system&quot;&gt;
+</I>&gt;<i> 		&lt;author&gt;*****&lt;/author&gt;
+</I>&gt;<i> 		&lt;contact&gt;******&lt;/contact&gt;
+</I>&gt;<i> 		&lt;specification&gt;*********&lt;/specification&gt;
+</I>&gt;<i> 	&lt;/description&gt;
+</I>&gt;<i> 	&lt;preferences&gt;
+</I>&gt;<i> 	&lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/s*n*ps*-SLES11&quot; installiso=&quot;true&quot; installstick=&quot;true&quot;&gt;
+</I>&gt;<i> 	&lt;oemconfig&gt;
+</I>&gt;<i> 	&lt;oem-boot-title&gt;Synapse Unimind&lt;/oem-boot-title&gt;
+</I>&gt;<i> 	&lt;oem-reboot&gt;true&lt;/oem-reboot&gt;
+</I>&gt;<i> 	&lt;oem-recovery&gt;false&lt;/oem-recovery&gt;
+</I>&gt;<i> 	&lt;oem-systemsize&gt;2048&lt;/oem-systemsize&gt;
+</I>&gt;<i> 	&lt;oem-swapsize&gt;1024&lt;/oem-swapsize&gt;
+</I>&gt;<i> 	&lt;oem-home&gt;false&lt;/oem-home&gt;
+</I>&gt;<i> 	&lt;/oemconfig&gt;
+</I>
+You are not setting &lt;oem-swap&gt;true&lt;/oem-swap&gt;. I haven't looked at the 
+code, but I think just setting the swap size is insufficient to get a 
+swap partition created.
+
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002723.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+	<LI>Next message: <A HREF="002721.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2720">[ date ]</a>
+              <a href="thread.html#2720">[ thread ]</a>
+              <a href="subject.html#2720">[ subject ]</a>
+              <a href="author.html#2720">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

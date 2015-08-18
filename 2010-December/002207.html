@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20when%20using%20-add-profile%2C%0A%20boot-include%20doesn%27t%20seem%20to%20work...&In-Reply-To=%3C20101212152931.GA7258%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002206.html">
+   <LINK REL="Next"  HREF="002216.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20when%20using%20-add-profile%2C%0A%20boot-include%20doesn%27t%20seem%20to%20work...&In-Reply-To=%3C20101212152931.GA7258%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...">ms at suse.de
+       </A><BR>
+    <I>Sun Dec 12 16:29:31 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002206.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+        <LI>Next message: <A HREF="002216.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2207">[ date ]</a>
+              <a href="thread.html#2207">[ thread ]</a>
+              <a href="subject.html#2207">[ subject ]</a>
+              <a href="author.html#2207">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have been using multiple profiles and have been using --add-profile
+</I>&gt;<i> to do so.  (or just using import=&quot;true&quot; on several profiles)
+</I>&gt;<i> 
+</I>&gt;<i> I notice that when using --add-profile the bootinclude option for a
+</I>&gt;<i> package/archive in the packages section doesn't seem to work. 
+</I>&gt;<i> Is this by design?
+</I>
+no that's not by design. You should see messages like
+
+    using profile(s) ...
+
+in the kiwi log file. This tells you which profiles kiwi is using
+Maybe one pitfall to mention is the profiles in the import=&quot;true&quot;
+are only imported if you don't have --add-profile set on the
+commandline. In other words if you want them to be still imported
+you need to add them with a --add-import too
+ 
+if you see all your profiles to be used and according to this
+a bootinclude should be handled but isn't this is a bug then
+which needs a fix
+
+&gt;<i> Currently I've backed off to using the 4.65 release as I can do most of what I want with this version, but I notice that in 4.68 only one profile can have import=&quot;true&quot; so the way I'm getting things to work won't work in the future.
+</I>
+yes we found several problematic profile setups when we allow multiple
+import=&quot;true&quot; attributes which was the reason why Robert added a check
+to prevent this. I also stumbled over that problem and solved it
+the following way. Given you have the following setup:
+
+   &lt;profiles&gt;
+      profile name=&quot;a&quot; description=&quot;a-info&quot; import=&quot;true&quot;/&gt;
+      profile name=&quot;b&quot; description=&quot;b-info&quot; import=&quot;true&quot;/&gt;
+   &lt;/profiles&gt;
+
+   &lt;packages profiles=&quot;a&quot;/&gt;
+      &lt;package name=&quot;x&quot;/&gt;
+   &lt;/packages&gt;
+
+   &lt;packages profiles=&quot;b&quot;/&gt;
+      &lt;package name=&quot;z&quot;/&gt;
+   &lt;/packages&gt;
+
+you can change it to
+
+   &lt;profiles&gt;
+      profile name=&quot;ab&quot; description=&quot;a-info_b-info&quot; import=&quot;true&quot;/&gt;
+   &lt;/profiles&gt;
+
+   &lt;packages profiles=&quot;ab&quot;/&gt;
+      &lt;package name=&quot;x&quot;/&gt;
+      &lt;package name=&quot;z&quot;/&gt;
+   &lt;/packages&gt;
+
+&gt;<i> Is there a way we should be using multiple profiles so that this
+</I>&gt;<i> won't occur?  Or should we be using multiple profiles at all?
+</I>
+I think multiple profiles makes sense if they are not added in
+a way which requires them to be auto-included (import=&quot;true&quot;)
+we use this for example to distinguish between a xen and non-xen
+guest image. In that case it only makes sense to have one of
+these profiles included
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002206.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+	<LI>Next message: <A HREF="002216.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2207">[ date ]</a>
+              <a href="thread.html#2207">[ thread ]</a>
+              <a href="subject.html#2207">[ subject ]</a>
+              <a href="author.html#2207">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

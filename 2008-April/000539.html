@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] multicast problem with netboot and atftpd
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20multicast%20problem%20with%20netboot%20and%20atftpd&In-Reply-To=%3C20080402155538.GB18042%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000536.html">
+   <LINK REL="Next"  HREF="000537.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] multicast problem with netboot and atftpd</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20multicast%20problem%20with%20netboot%20and%20atftpd&In-Reply-To=%3C20080402155538.GB18042%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] multicast problem with netboot and atftpd">ms at suse.de
+       </A><BR>
+    <I>Wed Apr  2 17:55:39 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000536.html">[Kiwi-users] multicast problem with netboot and atftpd
+</A></li>
+        <LI>Next message: <A HREF="000537.html">[Kiwi-users] Error while creating OEMboot image: &quot;Profile default:	not	found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#539">[ date ]</a>
+              <a href="thread.html#539">[ thread ]</a>
+              <a href="subject.html#539">[ subject ]</a>
+              <a href="author.html#539">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I noticed that when I use the version 2.28-28 of kiwi to generate my netboot
+</I>&gt;<i> initrd, I get a problem during the pxe boot of my client.
+</I>&gt;<i> Problem is when kiwi ask tftp server for config.&lt;MAC&gt; there is no response
+</I>&gt;<i> and atfpd says &quot;timeout&quot;.
+</I>&gt;<i> I fix this by adding --no-multicast in /etc/sysconfig/atfpd :
+</I>&gt;<i> 
+</I>&gt;<i> ATFTPD_OPTIONS=&quot;--daemon --no-multicast&quot;
+</I>&gt;<i> 
+</I>&gt;<i> Is multicast enable by default for netboot or is just a bug ?
+</I>
+when kiwi uses atftp to download the system image data it enables
+multicast as an option on the client side. But the multicast transfer
+is controled by the atftp server (atftpd) which allows you to
+activate/deactivate multicast as you already know. 
+
+The problems you had with multicast has been investigated by me too.
+Unfortunately I'm not sure what caused the problem. Somehow atftpd
+stops to send ACK to the client. Normally the problem only appears
+if you really boot two machines using the same image because there
+multicast makes sense. As soon as one master finished and another
+client becomes the master the problem appeared but not always only
+sometimes and that's the strange thing.
+
+I'm pretty sure the problem is on the atftp server side because
+deactivating multicast always solves the problem at least for me.
+I'm not an expert in multicast and barely know about how the
+protocol works but maybe there are people on the list who can
+help ?
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000536.html">[Kiwi-users] multicast problem with netboot and atftpd
+</A></li>
+	<LI>Next message: <A HREF="000537.html">[Kiwi-users] Error while creating OEMboot image: &quot;Profile default:	not	found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#539">[ date ]</a>
+              <a href="thread.html#539">[ thread ]</a>
+              <a href="subject.html#539">[ subject ]</a>
+              <a href="author.html#539">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

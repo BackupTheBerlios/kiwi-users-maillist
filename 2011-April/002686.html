@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Stick-Image wouldn't boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C4DB1B96F.2060109%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002684.html">
+   <LINK REL="Next"  HREF="002700.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Stick-Image wouldn't boot</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C4DB1B96F.2060109%40novell.com%3E"
+       TITLE="[Kiwi-users] Stick-Image wouldn't boot">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Apr 22 19:22:55 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002684.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+        <LI>Next message: <A HREF="002700.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2686">[ date ]</a>
+              <a href="thread.html#2686">[ thread ]</a>
+              <a href="subject.html#2686">[ subject ]</a>
+              <a href="author.html#2686">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 04/22/2011 11:18 AM, Hermann J. Beckers wrote:
+&gt;<i> ...
+</I>&gt;&gt;&gt;<i> The stick works only on the netbook, where it was initialized. Booting my
+</I>&gt;&gt;&gt;<i> notebook with this stick it still shows &quot;waiting for .... to appear&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> That's a bug and should not happen. Once on the stick and expanded it
+</I>&gt;&gt;<i> should boot pretty much everywhere. You can export the Kiwi
+</I>&gt;&gt;<i> configuration from Studio and post config.xml to the list. I'll take a
+</I>&gt;&gt;<i> look.
+</I>&gt;<i>
+</I>&gt;<i> Attached. Hope it is the right one, because I can only export the latest
+</I>&gt;<i> config?
+</I>
+That looks reasonable and it should work. I did notice that the config 
+file contains
+
+&lt;oem-swap&gt;yes&lt;/oem-swap&gt;
+&lt;oem-swapsize&gt;0&lt;/oem-swapsize&gt;
+
+this may just be a quirk in how Studio writes the config.xml file. But 
+we should really set &lt;oem-swap&gt; to false in this case.
+
+Bug 689350 Submitted
+
+&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> ...
+</I>&gt;&gt;<i> Not sure what you mean with &quot;user accounting&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Sorry, better wording would be &quot;user accounts&quot;.
+</I>
+You can have user accounts on an ISO image that has been written to a 
+USB stick, the users just cannot write any data. However, on a 512 MB 
+stick that might not be of interest anyway.
+
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002684.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+	<LI>Next message: <A HREF="002700.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2686">[ date ]</a>
+              <a href="thread.html#2686">[ thread ]</a>
+              <a href="subject.html#2686">[ subject ]</a>
+              <a href="author.html#2686">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

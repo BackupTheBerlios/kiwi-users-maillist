@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C5110D7FF.1080404%40public-files.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003068.html">
+   <LINK REL="Next"  HREF="003070.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>Yarny</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C5110D7FF.1080404%40public-files.de%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">Yarny at public-files.de
+       </A><BR>
+    <I>Tue Feb  5 10:59:27 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003068.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+        <LI>Next message: <A HREF="003070.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3069">[ date ]</a>
+              <a href="thread.html#3069">[ thread ]</a>
+              <a href="subject.html#3069">[ subject ]</a>
+              <a href="author.html#3069">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Robert and list,
+
+&gt;<i> I probably missed something in this thread, thus please
+</I>&gt;<i> excuse me if the following was already stated or is obvious.
+</I>No problem, this thread is quite long now.
+Let me quote from my initial posting from
+&lt;URL:<A HREF="https://lists.berlios.de/pipermail/kiwi-users/2012-December/003052.html">https://lists.berlios.de/pipermail/kiwi-users/2012-December/003052.html</A>&gt;
+&gt;<i> Background: When deploying openSUSE to a new machine, I'm using
+</I>&gt;<i> a handmade script which makes and mounts some filesystems
+</I>&gt;<i> on the fresh hard disk and then essentially runs
+</I>&gt;<i>  $ zypper --root /mnt/new_root in pattern:enhanced_base ...
+</I>&gt;<i> to install a minimal system.  Judging from the logfiles kiwi
+</I>&gt;<i> apparently does something very similar, but the script which
+</I>&gt;<i> calls zypper seems to be much more well-thought-out (using
+</I>&gt;<i> chroot/lxc) than my simple zypper command line above.  I tried
+</I>&gt;<i> to replace my zypper line with a kiwi call, with appropriate
+</I>&gt;<i> config.xml, but kiwi refuses to fill the mounted soon-to-be
+</I>&gt;<i> root file system, it insists on creating a new directory itself.
+</I>&gt;<i>
+</I>&gt;<i> Also, I'm wondering if the kiwi-approach to deploy SUSE
+</I>&gt;<i> installations outlined above brings any pitfalls which I might
+</I>&gt;<i> overlook.   Any thoughts are welcome.
+</I>
+To answer your questions:
+&gt;<i> If /usr and /boot are mounted to a different file
+</I>&gt;<i> system and you let kiwi prepare the image into
+</I>&gt;<i> this root tree, what is the expected outcome?
+</I>Essentially I expect a bootable and working system.
+Apparently that's what I get: The system which I'm currently
+working on has been installed with kiwi's prepare-step
+after I manually patched kiwi to
+ * add the --download-as-needed option to zypper, and
+ * permit preparation into non-empty root directories.
+
+&gt;<i> A system you can chroot into?
+</I>Currently I chroot into the system after kiwi is done.
+There I run things like grub2-mkconfig and mkinitrd and
+rewrite /etc/{fstab,crypttab}.  But I am considering to move
+these things into kiwi's config.sh somewhere in the future.
+
+&gt;<i> And the /usr and /boot is shared across many systems?
+</I>No, they are on a standalone machine.
+They need to be on separate filesystems because they
+are backed by a fairly complex combination of lvm
+(with mirroring/striping) and luks.
+
+Thanks and best wishes
+Yarny
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003068.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+	<LI>Next message: <A HREF="003070.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3069">[ date ]</a>
+              <a href="thread.html#3069">[ thread ]</a>
+              <a href="subject.html#3069">[ subject ]</a>
+              <a href="author.html#3069">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

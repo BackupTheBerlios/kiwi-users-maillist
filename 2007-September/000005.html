@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] v1.60 released
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20v1.60%20released&In-Reply-To=%3C20070905080840.GB18673%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000003.html">
+   <LINK REL="Next"  HREF="000006.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] v1.60 released</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20v1.60%20released&In-Reply-To=%3C20070905080840.GB18673%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] v1.60 released">ms at suse.de
+       </A><BR>
+    <I>Wed Sep  5 10:08:40 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000003.html">[Kiwi-users] v1.60 released
+</A></li>
+        <LI>Next message: <A HREF="000006.html">[Kiwi-users] v1.60 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5">[ date ]</a>
+              <a href="thread.html#5">[ thread ]</a>
+              <a href="subject.html#5">[ subject ]</a>
+              <a href="author.html#5">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mitch,
+
+&gt;<i> 1.  I was considering using isoinstboot as a re-spin installer method
+</I>&gt;<i> from a bootCD to an empty box.  What would be the preferred method now
+</I>&gt;<i> that isoinstboot is removed?  Oemboot?
+</I>
+yes, my suggestion would be to create a virtual disk image using
+the following type specification:
+
+	&lt;type filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-...&quot;&gt;vmx&lt;/type&gt;
+
+Once the image has been created the installation is a simple
+dd if=/the/image of=/dev/diskdevice. After that the disk has a bootloader
+and an initial oemboot initrd which adapts the installation to the
+real disk geometry on first boot.
+
+But there are problems:
+-----------------------
+1) right now the oemboot boot image description exists only for
+   suse-SLED10-SP1 and suse-SLED10-SP1-smp. If you need it for another
+   suse distribution I need to create a description first. I will do
+   that if you tell me for what distro you need it. I assume you
+   need it for 10.3 ;)
+
+2) The installation process formerly done by isoinstboot doesn't
+   exist anymore because the design of isoinstboot was outdated and
+   non functional anymore. So we need to implement the task of
+   installation (the dd in principal) in either a new bootimage
+   description for kiwi or we implement it as enhancement of
+   oemboot.
+
+Feel free to open an enhancement bug report for this one
+I will implement as fast as I can.
+
+&gt;<i> 2.  I'm currently using an opensuse 10.3 beta 1 box as my kiwi build
+</I>&gt;<i> machine, having tried a 10.2 with not much luck.  Is Kiwi intended as a
+</I>&gt;<i> 10.3+ tool?
+</I>
+It should work on 10.1 + (SLE) and 10.2 as well
+
+&gt;<i> 3.  Is openSUSE itself moving to Kiwi as a build tool?  I guess what i
+</I>&gt;<i> mean is, is kiwi going to be a long term stable project?
+</I>
+definitely yes. Novell/SuSE doesn't have an image builder and kiwi
+should be the image builder used for the future. I already checked in
+kiwi to be part of openSUSE 10.3. This includes the responsibility
+of maintenance and I want to have it on SLE11 as well. The SLEPOS
+product (SUSE Linux Enterprise Point Of Sale) will use kiwi as image
+builder for the next version.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000003.html">[Kiwi-users] v1.60 released
+</A></li>
+	<LI>Next message: <A HREF="000006.html">[Kiwi-users] v1.60 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5">[ date ]</a>
+              <a href="thread.html#5">[ thread ]</a>
+              <a href="subject.html#5">[ subject ]</a>
+              <a href="author.html#5">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

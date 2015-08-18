@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Repository Problem + Encryption Question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Repository%20Problem%20%2B%20Encryption%20Question&In-Reply-To=%3C006401c8a191%24061f65f0%24125e31d0%24%40com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000580.html">
+   <LINK REL="Next"  HREF="000582.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Repository Problem + Encryption Question</H1>
+    <B>Alan Arthur</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Repository%20Problem%20%2B%20Encryption%20Question&In-Reply-To=%3C006401c8a191%24061f65f0%24125e31d0%24%40com%3E"
+       TITLE="[Kiwi-users] Repository Problem + Encryption Question">aarthur at speedscript.com
+       </A><BR>
+    <I>Fri Apr 18 22:16:01 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000580.html">[Kiwi-users] Package download error with kiwi
+</A></li>
+        <LI>Next message: <A HREF="000582.html">[Kiwi-users] Repository Problem + Encryption Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#581">[ date ]</a>
+              <a href="thread.html#581">[ thread ]</a>
+              <a href="subject.html#581">[ subject ]</a>
+              <a href="author.html#581">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm currently trying to build a new revision of my live system repair dvd,
+however; everytime the compile fails on different files. The latest error
+was as follows:
+
+ 
+
+error: Failed to download packages:
+
+error:
+<A HREF="http://download.opensuse.org/repositories/openSUSE:10.3/standard/suse/i586/l">http://download.opensuse.org/repositories/openSUSE:10.3/standard/suse/i586/l</A>
+ibbz2-1-1.0.4-42.i586.rpm: timed out
+
+error:
+<A HREF="http://download.opensuse.org/repositories/openSUSE:10.3/standard/suse/i586/g">http://download.opensuse.org/repositories/openSUSE:10.3/standard/suse/i586/g</A>
+rep-2.5.2-28.i586.rpm: timed out
+
+Saving cache...
+
+ 
+
++ echo 1
+
++ rm -f '/tmp/rescuedisk2/compile_0.5.4//etc/smart/channels/*'
+
++ rm -f /var/lock/kiwi-init.lock
+
+Apr-18 14:01:32 &lt;1&gt; : Removing smart channel(s): kiwi2-881 kiwi1-881
+done
+
+Apr-18 14:01:32 &lt;1&gt; : Removing smart channel(s): kiwi2-881 kiwi1-881
+done
+
+Apr-18 14:01:32 &lt;3&gt; : Base initialization failed
+failed
+
+Apr-18 14:01:33 &lt;1&gt; : Logfile available at:
+/tmp/rescuedisk2/compile_0.5.4/.log                    done
+
+Apr-18 14:01:33 &lt;3&gt; : KIWI exited with error(s)
+done
+
+ 
+
+I'm trying to get the system to instead of downloading packages from the
+internet, which risk timing out and failing the process, to try and get it
+to load the files needed off the openSUSE 10.3 DVD.
+
+ 
+
+The following is how my repository is setup in config.xml file.
+
+ 
+
+        &lt;repository type=&quot;rpm-dir&quot;&gt;
+
+                &lt;source path=&quot;/media/SU1030.001/suse/i586/&quot;/&gt;
+
+        &lt;/repository&gt;
+
+        &lt;repository type=&quot;yast2&quot;&gt;
+
+                &lt;source path=&quot;<A HREF="opensuse://openSUSE:10.3/standard/">opensuse://openSUSE:10.3/standard/</A>&quot;/&gt;
+
+        &lt;/repository&gt;
+
+ 
+
+Now for some reason the KIWI system still is downloading the files from the
+second repository listed above and not from the DVD.
+
+Are my repository statements in the proper order and syntax? (I tried to
+find an example document for different repository types and could not find
+one.)
+
+ 
+
+Or by any chance does anyone know of a better repository to pull the files
+from that isn't consistently having problems returning the necessary files.
+
+ 
+
+Also what type of encryption is used to make the passwords necessary for
+setting up the users password in config.xml? So what type of encryption is
+this $2a$10$fq4yOF75pQY0lKjZkG2DBOdOlptomWELi0Gxd71pziLMGk4ZGIRH2
+
+ 
+
+Thanks for all the help in advance.
+
+ 
+
+Alan Arthur
+
+Network Administrator,
+
+Speed Script Pharmacy Systems
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aarthur at speedscript.com</A>
+
+www.speedscript.com
+
+ 
+
+Speed Script is a registered trademark of Digital Simplistics, Inc.
+
+ 
+
+This electronic message, including any attachments, may contain confidential
+or privileged information and is intended for the individual or entity named
+above.  If you are not the intended recipient, any disclosure, copying,
+distribution or use of the contents of this information is prohibited.  If
+you have received this electronic transmission in error, please notify the
+sender immediately and destroy all electronic and hard copies of the
+communication, including attachments.
+
+ 
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080418/cd03bb71/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080418/cd03bb71/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000580.html">[Kiwi-users] Package download error with kiwi
+</A></li>
+	<LI>Next message: <A HREF="000582.html">[Kiwi-users] Repository Problem + Encryption Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#581">[ date ]</a>
+              <a href="thread.html#581">[ thread ]</a>
+              <a href="subject.html#581">[ subject ]</a>
+              <a href="author.html#581">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

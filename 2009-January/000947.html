@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi 3.09-80.1 - chown: /dev/fd: No such file	or	directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%203.09-80.1%20-%20chown%3A%20/dev/fd%3A%20No%20such%20file%0A%09or%09directory&In-Reply-To=%3C20090127154716.GA2304%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000946.html">
+   <LINK REL="Next"  HREF="000948.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi 3.09-80.1 - chown: /dev/fd: No such file	or	directory</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%203.09-80.1%20-%20chown%3A%20/dev/fd%3A%20No%20such%20file%0A%09or%09directory&In-Reply-To=%3C20090127154716.GA2304%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi 3.09-80.1 - chown: /dev/fd: No such file	or	directory">ms at novell.com
+       </A><BR>
+    <I>Tue Jan 27 16:47:17 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000946.html">[Kiwi-users] kiwi 3.09-80.1 - chown: /dev/fd: No such file or	directory
+</A></li>
+        <LI>Next message: <A HREF="000948.html">[Kiwi-users] migrate fixes...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#947">[ date ]</a>
+              <a href="thread.html#947">[ thread ]</a>
+              <a href="subject.html#947">[ subject ]</a>
+              <a href="author.html#947">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Jan-27 13:02:02 &lt;1&gt; : Setting owner/group permissions root [root]
+</I>&gt;<i> Jan-27 13:02:02 &lt;1&gt; : EXEC [chroot /tmp/kiwi.909cQY chown -R root:root /]
+</I>&gt;<i> chown: /dev/fd: No such file or directory
+</I>&gt;<i> chown: /dev/stderr: No such file or directory
+</I>&gt;<i> chown: /dev/stdin: No such file or directory
+</I>&gt;<i> chown: /dev/stdout: No such file or directory
+</I>&gt;<i>    failed
+</I>&gt;<i> Jan-27 13:02:02 &lt;1&gt; :    failed
+</I>&gt;<i> Jan-27 13:02:02 &lt;3&gt; : Couldn't setup image system   failed
+</I>&gt;<i> Jan-27 13:02:02 &lt;3&gt; : KIWI exited with error(s)   done
+</I>&gt;<i> 
+</I>&gt;<i> Is what i get when running kiwi here in a chroot (inside obs).
+</I>
+yes that's because your chroot has no proc mounted when you called
+kiwi inside it. When calling kiwi inside a chroot it's better to have
+proc and all relevant devices for a clean terminal so that screen
+can run inside (/dev/pts...)
+
+&gt;<i> IMHO as /dev/fd is a link to /proc/self/fd 
+</I>&gt;<i> [...]
+</I>&gt;<i> Jan-27 13:01:19 &lt;1&gt; : EXEC [ln -s /proc/self/fd /tmp/kiwi.909cQY/dev/fd]
+</I>&gt;<i> Jan-27 13:01:19 &lt;1&gt; : EXEC [ln -s fd/2 /tmp/kiwi.909cQY/dev/stderr]
+</I>&gt;<i> Jan-27 13:01:19 &lt;1&gt; : EXEC [ln -s fd/0 /tmp/kiwi.909cQY/dev/stdin]
+</I>&gt;<i> Jan-27 13:01:19 &lt;1&gt; : EXEC [ln -s fd/1 /tmp/kiwi.909cQY/dev/stdout]
+</I>&gt;<i> [...]
+</I>&gt;<i> and are files from _outside_ the kiwi-chroot,
+</I>&gt;<i> they shouldn't be touched at all!
+</I>
+These links are all terminal related and accessed by tools like
+chown, chmod, chgrp. Running inside a chroot still leaves only one
+controlling terminal. I don't see a problem with them because all
+the file access is blocked due to the chroot... well we all know
+that breaking out of a chroot is no big deal :) 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000946.html">[Kiwi-users] kiwi 3.09-80.1 - chown: /dev/fd: No such file or	directory
+</A></li>
+	<LI>Next message: <A HREF="000948.html">[Kiwi-users] migrate fixes...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#947">[ date ]</a>
+              <a href="thread.html#947">[ thread ]</a>
+              <a href="subject.html#947">[ subject ]</a>
+              <a href="author.html#947">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

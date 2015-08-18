@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi and cross platform
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20cross%20platform&In-Reply-To=%3C01551d68a102d6a0df832be526612fad.squirrel%40www.boonen.name%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002948.html">
+   <LINK REL="Next"  HREF="002950.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi and cross platform</H1>
+    <B>Joop Boonen</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20cross%20platform&In-Reply-To=%3C01551d68a102d6a0df832be526612fad.squirrel%40www.boonen.name%3E"
+       TITLE="[Kiwi-users] Kiwi and cross platform">joop_boonen at web.de
+       </A><BR>
+    <I>Fri Sep 30 13:48:13 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002948.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+        <LI>Next message: <A HREF="002950.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2949">[ date ]</a>
+              <a href="thread.html#2949">[ thread ]</a>
+              <a href="subject.html#2949">[ subject ]</a>
+              <a href="author.html#2949">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, September 30, 2011 10:32 am, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> Is this feeling correct. That the current kiwi version can &quot;only&quot; build
+</I>&gt;&gt;<i> images for the same architecture as it's running on?
+</I>&gt;<i>
+</I>&gt;<i> yes this feeling is correct. I can't tell about other package formats
+</I>&gt;<i> but at least for rpm it would mean we have to pass the --ignorearch
+</I>&gt;<i> option which I think can't be added to zypper
+</I>&gt;<i>
+</I>&gt;<i> In theory I think it would be possible to install everything but kiwi
+</I>&gt;<i> also does some other tasks which conflicts here. For example scripts
+</I>&gt;<i> are executed inside the new root tree via chroot. It would cause e.g.
+</I>&gt;<i> the bash for arch 'x' to be called which surely will not work due to
+</I>&gt;<i> the incompatible binary format. There might be other problems here
+</I>&gt;<i> which I did not think about
+</I>&gt;<i>
+</I>&gt;<i> and that's basically the most important problem I see here.
+</I>&gt;<i> If I don't have a real machine at hand I will use a VM layer around
+</I>&gt;<i> and build the image inside that VM contained system. The
+</I>&gt;<i> downsides:
+</I>&gt;<i>
+</I>&gt;<i>  1) it's slow
+</I>&gt;<i>  2) it requires a base distro for that architecture available
+</I>&gt;<i>
+</I>&gt;<i> Another way to do cross image builds would be to massacre the
+</I>&gt;<i> environment like a root kit does :) so overloading of libraries
+</I>&gt;<i> and other hacks might work but frankly said I don't like this
+</I>&gt;<i> and in the end I'm not sure if that's faster than a VM
+</I>&gt;<i>
+</I>&gt;<i> Talking about arm:
+</I>&gt;<i>
+</I>&gt;<i> In reference to your other mail talking about arm the second
+</I>&gt;<i> item mentioned above is a problem at least for SUSE here. The suse
+</I>&gt;<i> arm port is just beginning and so I was looking around and found
+</I>&gt;<i> that probably Debian seems to be the best arm supported system
+</I>&gt;<i> at the moment. In order to let kiwi create Debian images we
+</I>&gt;<i> have to add support for the dpkg package manager and also for
+</I>&gt;<i> the boot code (initrd). That surely can be done in a clean way
+</I>&gt;<i> because the kiwi code base is open for all distros. But I also
+</I>&gt;<i> would love to see a suse arm core distro available ;)
+</I>&gt;<i>
+</I>&gt;<i> The other imho more important part is the arm hardware itself.
+</I>&gt;<i> low end machines like mobile phones and that kind of gadgets are
+</I>&gt;<i> surely not capable of building operating system images. They are
+</I>&gt;<i> more the target for the appliances. So it would be nice to have
+</I>&gt;<i> arm based server hardware which is rare. But it's interesting to
+</I>&gt;<i> watch the industry here something is going on with arm and server
+</I>&gt;<i> boards. The cpu emulation in kvm for arm is for a processor
+</I>&gt;<i> which is not available as a real toy, until then I think a good
+</I>&gt;<i> start would be to make kiwi work here:
+</I>&gt;<i>
+</I>&gt;<i>   <A HREF="http://www.aurel32.net/info/debian_arm_qemu.php">http://www.aurel32.net/info/debian_arm_qemu.php</A>
+</I>&gt;<i>
+</I>&gt;<i> makes sense ?
+</I>&gt;<i>
+</I>
+Thank you for the answer.
+
+It indeed makes sense. But I still want to bring up a one point.
+
+As you mention that mobile phones etc won't be capable to build a kiwi
+image. I think these devices are the ones that really would need images
+even more the PC's, as an OS on a PC is much easier to install.
+In a lot of cases someone who focusses on ARM tablet etc. development
+won't have an ARM server around. So I wonder won't it be an option to
+build the image via qemu-user mode? Comparable with how OBS handles it?
+I think that same count for PowerPC embedded devices, most people don't
+have a PowerPC any more.
+
+I wouldn't mind waiting longer, to have the image build.
+
+Are you interested in this. Can I help in any way?
+
+&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer
+</I>&gt;<i>  HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>
+Regards,
+
+Joop.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002948.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+	<LI>Next message: <A HREF="002950.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2949">[ date ]</a>
+              <a href="thread.html#2949">[ thread ]</a>
+              <a href="subject.html#2949">[ subject ]</a>
+              <a href="author.html#2949">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Can't set permissions for user to write to fat	partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20set%20permissions%20for%20user%20to%20write%20to%20fat%0A%09partition&In-Reply-To=%3C4DB18C05.4020805%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002678.html">
+   <LINK REL="Next"  HREF="002662.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Can't set permissions for user to write to fat	partition</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20set%20permissions%20for%20user%20to%20write%20to%20fat%0A%09partition&In-Reply-To=%3C4DB18C05.4020805%40novell.com%3E"
+       TITLE="[Kiwi-users] Can't set permissions for user to write to fat	partition">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Apr 22 16:09:09 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002678.html">[Kiwi-users] Can't set permissions for user to write to fat	partition
+</A></li>
+        <LI>Next message: <A HREF="002662.html">[Kiwi-users] kiwi: Weekly report 2011-04-10 - 2011-04-15...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2683">[ date ]</a>
+              <a href="thread.html#2683">[ thread ]</a>
+              <a href="subject.html#2683">[ subject ]</a>
+              <a href="author.html#2683">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+&lt;snip&gt;
+&gt;&gt;<i>
+</I>&gt;&gt;<i> I suspect the stick is auto-mounted and the permissions for the mount is set
+</I>&gt;&gt;<i> such that the user is allowed to write to the stick. You're FAT partition on
+</I>&gt;&gt;<i> your image stick is mounted via script that is probably executed as root and
+</I>&gt;&gt;<i> thus only root can write to the mounted filesystem.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But you cannot issue 'mount' as a user unless you have an entry in
+</I>&gt;&gt;<i> /etc/fstab that allows the user to mount the filesystem. Thus in your script
+</I>&gt;&gt;<i> that finds the FAT partition you could just modify /etc/fstab instead of
+</I>&gt;&gt;<i> mounting the partition and then when the user gets logged in automatically
+</I>&gt;&gt;<i> you run a script that mounts the FAT filesystem.
+</I>&gt;&gt;<i>
+</I>&lt;snip&gt;
+&gt;<i>
+</I>&gt;<i> Thanks Robert.
+</I>&gt;<i> I understand what's going on now thanks to your explanation.
+</I>&gt;<i> So adding a line to my /etc/fstab like this &quot;/dev/sdb1     /SOS
+</I>&gt;<i> vfat     rw,auto,user&quot;
+</I>&gt;<i> what that do it?
+</I>
+Yes, this should do the trick. However, be aware that by the time you 
+can add the line to fstab via script &quot;mount -a&quot; will already have been 
+run, thus you will still need to mount the file system manually, at 
+least the first time.
+
+Note also that the &quot;user&quot; entry in /etc/fstab gives the user permission 
+to mount this file system, it does not set the permissions of who is 
+allowed to write to the file system. This should then depend on the 
+permissions and ownership of the mount point, I think.
+
+If you make the entry permanent you probably want to use 'noauto'
+
+&gt;<i>
+</I>&gt;<i> I would have to modify the script that I have now that finds and
+</I>&gt;<i> mounts the this fat partition so that it doesn't auto mount the fat
+</I>&gt;<i> partition.  Could I just change the fstab file to have this entry and
+</I>&gt;<i> have the fat partition auto mounted using a script in maybe the
+</I>&gt;<i> ~/.config/autostart or globally in the
+</I>&gt;<i> /etc/init.rd/boot.local...
+</I>
+If you put the mount into boot.local the mount will be executed as the 
+'root' user and depending on permission settings you might still end up 
+a filesystem you cannot access as the root user.
+
+&gt;<i> actually I think this mount script would
+</I>&gt;<i> have to trigger the mounting of the fat partition after login right?
+</I>
+Yes, just let the &quot;automagic&quot; mount the filesystem. This is the best way 
+for you to control that the user owns the mount.
+
+HTH,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002678.html">[Kiwi-users] Can't set permissions for user to write to fat	partition
+</A></li>
+	<LI>Next message: <A HREF="002662.html">[Kiwi-users] kiwi: Weekly report 2011-04-10 - 2011-04-15...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2683">[ date ]</a>
+              <a href="thread.html#2683">[ thread ]</a>
+              <a href="subject.html#2683">[ subject ]</a>
+              <a href="author.html#2683">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

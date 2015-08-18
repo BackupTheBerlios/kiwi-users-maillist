@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C20130204090326.GA30432%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003060.html">
+   <LINK REL="Next"  HREF="003065.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C20130204090326.GA30432%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">ms at suse.de
+       </A><BR>
+    <I>Mon Feb  4 10:03:26 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003060.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+        <LI>Next message: <A HREF="003065.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3062">[ date ]</a>
+              <a href="thread.html#3062">[ thread ]</a>
+              <a href="subject.html#3062">[ subject ]</a>
+              <a href="author.html#3062">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> However, I'm using kiwi mainly to avoid manual
+</I>&gt;<i> bootstrapping.  I guess there is no combination
+</I>&gt;<i> of command-line switches which makes kiwi do the
+</I>&gt;<i> bootstrapping inside an existing root directory.
+</I>
+you are right there is no such mode
+
+&gt;<i> Would you accept a patch which introduces
+</I>&gt;<i> such a command-line option?  Something like
+</I>&gt;<i>   --force-bootstrap
+</I>&gt;<i> or
+</I>&gt;<i>   --dont-recreate-new-root  ?
+</I>
+no, sorry I don't see a reason for such a mode.
+Either one starts from scratch with an empty root
+which requires bootstrapping or one uses an existing
+but not yet complete tree which is then extended.
+
+But bootstrapping on something non empty sounds
+weird to me and by the way creates a system with
+broken integrity
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003060.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+	<LI>Next message: <A HREF="003065.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3062">[ date ]</a>
+              <a href="thread.html#3062">[ thread ]</a>
+              <a href="subject.html#3062">[ subject ]</a>
+              <a href="author.html#3062">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

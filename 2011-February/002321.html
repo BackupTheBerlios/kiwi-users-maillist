@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] nis users?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20nis%20users%3F&In-Reply-To=%3C20110211131805.GA27038%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002320.html">
+   <LINK REL="Next"  HREF="002323.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] nis users?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20nis%20users%3F&In-Reply-To=%3C20110211131805.GA27038%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] nis users?">ms at suse.de
+       </A><BR>
+    <I>Fri Feb 11 14:18:05 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002320.html">[Kiwi-users] nis users?
+</A></li>
+        <LI>Next message: <A HREF="002323.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2321">[ date ]</a>
+              <a href="thread.html#2321">[ thread ]</a>
+              <a href="subject.html#2321">[ subject ]</a>
+              <a href="author.html#2321">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> how can I configure the image, so that it can get the users from the
+</I>&gt;<i> NIS/YP? I see, that you have &lt;users/&gt; element, but it does not seems
+</I>&gt;<i> to me to be able to handle that.
+</I>&gt;<i> 
+</I>&gt;<i> Should I simply add +:::: lines to the config files (/etc/passwd and
+</I>&gt;<i> so on) with post-prcoessing scripts? Which one should I use for
+</I>&gt;<i> that: images.sh or config.sh?
+</I>
+yep just add the nis escape sequences in the passwd and group
+files by some script code in config.sh. Additionally you need
+to setup /etc/sysconfig/ypbind and make sure you have inserted
+the ypbind service on boot.
+
+If you have yast installed in your appliance you also can
+use the nis commandline interface in your config.sh script:
+
+   yast2 nis interactive &lt; input
+
+where input is a file with instructions like this
+
+   configure server=... domain=&quot;...&quot; automounter=[yes|no]
+
+yast write all required configurations out to the system.
+You still need to make sure that the ypbind service is active
+
+
+Totally untested:
+
+   echo &quot;configure server=192.168.1.1 domain=&quot;foo&quot; automounter=no&quot; &gt; input
+   yast2 nis interactive &lt; input
+   suseInsertService ypbind
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002320.html">[Kiwi-users] nis users?
+</A></li>
+	<LI>Next message: <A HREF="002323.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2321">[ date ]</a>
+              <a href="thread.html#2321">[ thread ]</a>
+              <a href="subject.html#2321">[ subject ]</a>
+              <a href="author.html#2321">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

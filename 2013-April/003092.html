@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] suse-12.3-JeOS build failing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-12.3-JeOS%20build%20failing&In-Reply-To=%3CCAOO7TiCQsc4pEtm0Du31mxxLLFv0Q_5kAPZRvx6hfVu_wQ4Bww%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003091.html">
+   <LINK REL="Next"  HREF="003093.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] suse-12.3-JeOS build failing</H1>
+    <B>Richard Miller-Smith</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-12.3-JeOS%20build%20failing&In-Reply-To=%3CCAOO7TiCQsc4pEtm0Du31mxxLLFv0Q_5kAPZRvx6hfVu_wQ4Bww%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] suse-12.3-JeOS build failing">richard at darwin-innovation.com
+       </A><BR>
+    <I>Tue Apr  9 19:22:25 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003091.html">[Kiwi-users] suse-12.3-JeOS build failing
+</A></li>
+        <LI>Next message: <A HREF="003093.html">[Kiwi-users] suse-12.3-JeOS build failing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3092">[ date ]</a>
+              <a href="thread.html#3092">[ thread ]</a>
+              <a href="subject.html#3092">[ subject ]</a>
+              <a href="author.html#3092">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks Marcin, Marcus,
+
+Updating to use that kiwi version did indeed fix the issue.
+
+Regards,
+Richard
+
+
+On 9 April 2013 08:49, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt;    I've been using it Kiwi for a couple of months now, building an image
+</I>&gt;<i> &gt;    are developed based on the suse-12.2-JeOS example and running the
+</I>&gt;<i> &gt;    default openSuse 12.2 version of Kiwi. I'm now looking to upgrade this
+</I>&gt;<i> &gt;    to 12.3, but quickly run into some problems.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;    I have set up a new VM running 12.3 and have installed Kiwi with
+</I>&gt;<i> &gt;    zypper, but neither my image (which I have updated to match new
+</I>&gt;<i> schema)
+</I>&gt;<i> &gt;    nor the suse-12.3-JeOS example are building. I've copied the log file
+</I>&gt;<i> &gt;    to this gist:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;    [1]<A HREF="https://gist.github.com/richardms/5338439">https://gist.github.com/richardms/5338439</A>
+</I>&gt;<i>
+</I>&gt;<i> I'm pretty sure you are running into the kpartx sync problem which
+</I>&gt;<i> we had on 12.3 build hosts.
+</I>&gt;<i>
+</I>&gt;<i> &gt;    The problem seems to be occurring when mkinitrd is installed. Any
+</I>&gt;<i> ideas
+</I>&gt;<i> &gt;    how can fix this?
+</I>&gt;<i>
+</I>&gt;<i> Use this kiwi version on your image build machine:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_12.3/">http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_12.3/</A>
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver pgp.mit.edu --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer
+</I>&gt;<i>  HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>
+
+
+-- 
+*Richard Miller-Smith, Director *
+*Email: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">richard at darwin-innovation.com</A> (Google Talk enabled)
+**Mobile: 07920 768404
+**Skype: richardmiller-smith*
+
+*Darwin Innovation Ltd*
+Registered Office: 2 Haig Road, Biggin Hill, Kent, TN16 3LJ
+Registered in England and Wales. Company number: 6523883. VAT Number: 931
+6815 20
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20130409/c16dee8a/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20130409/c16dee8a/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003091.html">[Kiwi-users] suse-12.3-JeOS build failing
+</A></li>
+	<LI>Next message: <A HREF="003093.html">[Kiwi-users] suse-12.3-JeOS build failing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3092">[ date ]</a>
+              <a href="thread.html#3092">[ thread ]</a>
+              <a href="subject.html#3092">[ subject ]</a>
+              <a href="author.html#3092">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] copying image files from oem install CD during oem CD	install
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20copying%20image%20files%20from%20oem%20install%20CD%20during%20oem%20CD%0A%09install&In-Reply-To=%3C291A23B717F9104985651112DB6C365F271AF8EA35%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001993.html">
+   <LINK REL="Next"  HREF="001990.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] copying image files from oem install CD during oem CD	install</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20copying%20image%20files%20from%20oem%20install%20CD%20during%20oem%20CD%0A%09install&In-Reply-To=%3C291A23B717F9104985651112DB6C365F271AF8EA35%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] copying image files from oem install CD during oem CD	install">john.lund at emc.com
+       </A><BR>
+    <I>Wed Aug 25 21:51:54 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001993.html">[Kiwi-users] Ability to run scripts in final image?
+</A></li>
+        <LI>Next message: <A HREF="001990.html">[Kiwi-users] copying image files from oem install CD during oem CD	install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1989">[ date ]</a>
+              <a href="thread.html#1989">[ thread ]</a>
+              <a href="subject.html#1989">[ subject ]</a>
+              <a href="author.html#1989">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>We are trying to modify the boot scripts (dump, include) of a SLES 11 SP1 kiwi oem CD install so that it will copy the .gz image file from the install CD onto the newly created system.  We got it to work by using the CDMount command and the using wildcards (*.gz) to copy the files to the installed system after kiwi &quot;dump&quot;.
+But we don't want trouble if anyone adds other matching files to the root of the CD.
+We would like to use the $imageName and $imageMD5 variables that are set in the boot scripts, but we get a file not found error.  We checked for the file using [ -e /cdrom/$imageName] after the CDMount call and it fails.  However if we do an &quot;ls /cdrom&quot; after that check we can clearly see the image file is there.  But if we try to copy the files using the $imageName, we get an error:
+/cdrom/myImage.x86_64.gz not found.
+We have moved back to using the wildcard, but would like to use the imageName variable.
+Do you know of any reason this shouldn't work?
+
+Thank you,
+John Lund
+EMC Centera Development
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001993.html">[Kiwi-users] Ability to run scripts in final image?
+</A></li>
+	<LI>Next message: <A HREF="001990.html">[Kiwi-users] copying image files from oem install CD during oem CD	install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1989">[ date ]</a>
+              <a href="thread.html#1989">[ thread ]</a>
+              <a href="subject.html#1989">[ subject ]</a>
+              <a href="author.html#1989">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

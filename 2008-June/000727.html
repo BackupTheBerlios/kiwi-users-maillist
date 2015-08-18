@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie questions/clarification
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3COF3D549AFB.97D70046-ON8625746C.004B8D0F-8625746C.004E1CC4%40academy.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000725.html">
+   <LINK REL="Next"  HREF="000728.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie questions/clarification</H1>
+    <B>justin.kinney at academy.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3COF3D549AFB.97D70046-ON8625746C.004B8D0F-8625746C.004E1CC4%40academy.com%3E"
+       TITLE="[Kiwi-users] Newbie questions/clarification">justin.kinney at academy.com
+       </A><BR>
+    <I>Wed Jun 18 16:12:32 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000725.html">[Kiwi-users] KIWI-LTSP+SLED10.1
+</A></li>
+        <LI>Next message: <A HREF="000728.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#727">[ date ]</a>
+              <a href="thread.html#727">[ thread ]</a>
+              <a href="subject.html#727">[ subject ]</a>
+              <a href="author.html#727">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> As my images change so seldom, I always do a kiwi -c. I know there are
+</I>&gt;<i> alternatives, but  not using them has not been an issue. The main reason
+</I>&gt;<i> I would rebuild would be trying some idea for getting the pxe boot image
+</I>&gt;<i> to be much smaller. My current initrd is 18 MB.
+</I>
+My initrd, based on the ltsp boot image configuration is only 6.5MB.  If 
+you're still looking for optimizations, you may find some there.
+
+&gt;<i> I also use nbd. Have you experienced any problems with it? I also run a
+</I>&gt;<i> diskless computer starting via pxe and getting / with nbd. However, if I
+</I>&gt;<i> run on a fast private network with fast computers, nbd can very often
+</I>&gt;<i> fail startup on the client. Changing the switch from a 1 GB to a 100 MB
+</I>&gt;<i> solves the problem. Different brands of switches have been tried. This
+</I>&gt;<i> is my outstanding issue with KIWI/NBD. Other than that it has worked
+</I>&gt;<i> great.
+</I>
+I have read that in other places as well - I'm already using a 10/100 
+switch, so I haven't seen too many issues. 
+
+In my testing with two laptops - an IBM Thinkpad T60, and an old Compaq 
+Evo N600 - my experience has been that NBD seems somewhat flakey.  It is 
+interesting because with the newer machine (the thinkpad), I can use NBD 
+with no issues.  But with the older laptop, I cannot get it to work. 
+Testing with older desktops and NBD works fine. 
+
+Because of this, I've switched to using NFS, which has been working with 
+no problems whatsoever.  Since my plan may include a production 
+deployment, I probably won't pursue NBD too much further.  Besides that, 
+NFS performance is perfectly acceptable for my use.
+
+Thanks,
+Justin
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080618/aad10638/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080618/aad10638/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000725.html">[Kiwi-users] KIWI-LTSP+SLED10.1
+</A></li>
+	<LI>Next message: <A HREF="000728.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#727">[ date ]</a>
+              <a href="thread.html#727">[ thread ]</a>
+              <a href="subject.html#727">[ subject ]</a>
+              <a href="author.html#727">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

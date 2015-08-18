@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] errors with oem-squash and usb-squash - resize2fs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20with%20oem-squash%20and%20usb-squash%20-%20resize2fs&In-Reply-To=%3C48879F02.7010505%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000792.html">
+   <LINK REL="Next"  HREF="000796.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] errors with oem-squash and usb-squash - resize2fs</H1>
+    <B>Jad Naous</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20with%20oem-squash%20and%20usb-squash%20-%20resize2fs&In-Reply-To=%3C48879F02.7010505%40gmail.com%3E"
+       TITLE="[Kiwi-users] errors with oem-squash and usb-squash - resize2fs">jnaous at gmail.com
+       </A><BR>
+    <I>Wed Jul 23 23:13:38 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000792.html">[Kiwi-users] kiwi goes Amazon :-)
+</A></li>
+        <LI>Next message: <A HREF="000796.html">[Kiwi-users] gnomesu path lost ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#794">[ date ]</a>
+              <a href="thread.html#794">[ thread ]</a>
+              <a href="subject.html#794">[ subject ]</a>
+              <a href="author.html#794">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've tried to build an oem squash image and a usb-squash image. Here's 
+the log:
+
+ &gt;# kiwi --bootstick 
+../suse-live-iso-usb-squash/initrd-usbboot-suse-10.3.i686-2.1.1.splash.gz 
+--bootstick-system ../suse-live-iso-usb-squash/suse-10.3-live-iso.i686-1.0.0
+Jul-23 14:01:05 &lt;1&gt; : Creating boot USB stick from: 
+../suse-live-iso-usb-squash/initrd-usbboot-suse-10.3.i686-2.1.1.splash.gz...
+Jul-23 14:01:05 &lt;1&gt; : Creating initial boot structure                done
+Jul-23 14:01:05 &lt;1&gt; : Importing grub stages and graphics boot messagedone
+Jul-23 14:01:06 &lt;1&gt; : Found following removable USB devices:
+Jul-23 14:01:06 &lt;1&gt; : ---&gt; 0860FB60F33148FB at /dev/sdb
+Jul-23 14:01:06 &lt;1&gt; : Your choice (enter device name): /dev/sdb
+Jul-23 14:01:41 &lt;1&gt; : Creating grub menu list file...                done
+Jul-23 14:01:42 &lt;1&gt; : Establish HAL lock for: /dev/sdb               done
+Jul-23 14:01:43 &lt;1&gt; : Creating partition table on: /dev/sdb          done
+Jul-23 14:01:50 &lt;1&gt; : Dumping system image to stick                  done
+Jul-23 14:07:39 &lt;1&gt; : Creating ext3 read/write filesystem            done
+Jul-23 14:07:45 &lt;1&gt; : Resizing system ext3 filesystem                failed
+Jul-23 14:07:45 &lt;3&gt; : Couldn't resize ext3 filesystem: resize2fs 1.40.8 
+(13-Mar-2008)
+/sbin/resize2fs: Bad magic number in super-block while trying to open 
+/dev/sdb1
+Couldn't find valid filesystem superblock.
+                                                                     failed
+Jul-23 14:07:45 &lt;3&gt; : KIWI exited with error(s)                      done
+
+I get a similar error with oem-squash in the create step. Here is the 
+relevant part in the config.xml:
+
+    &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-10.3&quot; flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+    &lt;type filesystem=&quot;ext3&quot; boot=&quot;usbboot/suse-10.3&quot;&gt;usb&lt;/type&gt;
+    &lt;type filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-10.3&quot;&gt;oem&lt;/type&gt;
+    &lt;type filesystem=&quot;squashfs&quot; boot=&quot;usbboot/suse-10.3&quot;&gt;usb-squash&lt;/type&gt;
+    &lt;type filesystem=&quot;squashfs&quot; boot=&quot;oemboot/suse-10.3&quot;&gt;oem-squash&lt;/type&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;size unit=&quot;M&quot;&gt;2700&lt;/size&gt;
+
+Anyone know why resize2fs fails?
+
+Thanks,
+Jad.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000792.html">[Kiwi-users] kiwi goes Amazon :-)
+</A></li>
+	<LI>Next message: <A HREF="000796.html">[Kiwi-users] gnomesu path lost ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#794">[ date ]</a>
+              <a href="thread.html#794">[ thread ]</a>
+              <a href="subject.html#794">[ subject ]</a>
+              <a href="author.html#794">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Setting up splash screen
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20up%20splash%20screen&In-Reply-To=%3C49C0FDCF.4090500%40jcosby.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001033.html">
+   <LINK REL="Next"  HREF="001007.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Setting up splash screen</H1>
+    <B>Jon Cosby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20up%20splash%20screen&In-Reply-To=%3C49C0FDCF.4090500%40jcosby.com%3E"
+       TITLE="[Kiwi-users] Setting up splash screen">jon at jcosby.com
+       </A><BR>
+    <I>Wed Mar 18 14:57:35 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001033.html">[Kiwi-users] Setting up splash screen
+</A></li>
+        <LI>Next message: <A HREF="001007.html">[Kiwi-users] Fwd:  building 32bit images on 64bit machine
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1044">[ date ]</a>
+              <a href="thread.html#1044">[ thread ]</a>
+              <a href="subject.html#1044">[ subject ]</a>
+              <a href="author.html#1044">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus Sch&#228;fer wrote:
+
+&gt;&gt;&gt;<i> That means you didn't change anything below the above mentioned
+</I>&gt;&gt;&gt;<i> directory only your own system image description, right ?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> The description and the checksum, but nothing below it.
+</I>&gt;<i> 
+</I>&gt;<i> ah ok that's a mistake you should not have the need to
+</I>&gt;<i> change anything in there
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I first prepare the image by
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> kiwi --prepare /usr/share/kiwi/image/usbboot/suse-11.1 --root
+</I>&gt;&gt;<i> /home/jon/live/usb/tmp --logfile terminal
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Nothing seems wrong at this point. In creating the image,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> kiwi --type usb --create /home/jon/live/usb/tmp -d
+</I>&gt;&gt;<i> /home/jon/live/usb/image --logfile terminal
+</I>&gt;<i> 
+</I>&gt;<i> ok, so first I'd like to ask you to revert the changes you
+</I>&gt;<i> made in the usbboot/suse-11.1 directory. Best way is to
+</I>&gt;<i> re-install the kiwi-desc-* packages
+</I>&gt;<i> 
+</I>&gt;<i> after that try the following to create an image from a
+</I>&gt;<i> template:
+</I>&gt;<i> 
+</I>&gt;<i>    kiwi --build suse-11.1-JeOS -d /home/jon/live/usb/image --type oem
+</I>&gt;<i>         [ --set-repo &lt;local-repo-path-if-you-have-one ]
+</I>&gt;<i> 
+</I>
+There is no build option in Kiwi 3.14.
+
+&gt;<i> The result will be available in /home/jon/live/usb/image. You can
+</I>&gt;<i> dump the .raw file on your USB stick with dd if you like. If you plan
+</I>&gt;<i> to use the image on the USB stick only it might make sense to
+</I>&gt;<i> add the usb type to the image description too.
+</I>&gt;<i> 
+</I>&gt;<i>    vi /home/jon/live/usb/image/image-root/image/config.xml
+</I>&gt;<i>    
+</I>&gt;<i>    ==&gt; add the following to the preferences section
+</I>&gt;<i> 
+</I>&gt;<i>    &lt;type 
+</I>&gt;<i>       filesystem=&quot;ext3&quot;
+</I>&gt;<i>       boot=&quot;usbboot/suse-11.1&quot;
+</I>&gt;<i>    &gt;usb&lt;/type&gt;
+</I>&gt;<i> 
+</I>&gt;<i>    ==&gt; re-create the image
+</I>&gt;<i> 
+</I>&gt;<i>    kiwi --create /home/jon/live/usb/image/image-root \
+</I>&gt;<i>         -d /home/jon/live/usb/image --type usb \
+</I>&gt;<i>         [ --set-repo &lt;local-repo-path-if-you-have-one ]
+</I>&gt;<i> 
+</I>
+What are the contents of the &quot;image-root&quot; directory? It's not created in
+preparing the image.
+
+&gt;<i>    ==&gt; plug in the stick and call
+</I>&gt;<i> 
+</I>&gt;<i>    kiwi --bootstick /home/jon/live/usb/image/initrd-usbboot-suse-11.1.i686-2.1.1.splash.gz \
+</I>&gt;<i>         --bootstick-system /home/jon/live/usb/image/LimeJeOS-openSUSE-11.1.i686-1.11.1
+</I>&gt;<i> 
+</I>
+Jon
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001033.html">[Kiwi-users] Setting up splash screen
+</A></li>
+	<LI>Next message: <A HREF="001007.html">[Kiwi-users] Fwd:  building 32bit images on 64bit machine
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1044">[ date ]</a>
+              <a href="thread.html#1044">[ thread ]</a>
+              <a href="subject.html#1044">[ subject ]</a>
+              <a href="author.html#1044">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to combine kiwi and cryptsetup to create	image	containing encrypted partition?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20combine%20kiwi%20and%20cryptsetup%20to%20create%09image%0A%09containing%20encrypted%20partition%3F&In-Reply-To=%3C20090427074013.GA10453%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001078.html">
+   <LINK REL="Next"  HREF="001081.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to combine kiwi and cryptsetup to create	image	containing encrypted partition?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20combine%20kiwi%20and%20cryptsetup%20to%20create%09image%0A%09containing%20encrypted%20partition%3F&In-Reply-To=%3C20090427074013.GA10453%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] How to combine kiwi and cryptsetup to create	image	containing encrypted partition?">ms at novell.com
+       </A><BR>
+    <I>Mon Apr 27 09:40:14 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001078.html">[Kiwi-users] How to combine kiwi and cryptsetup to create image	containing encrypted partition?
+</A></li>
+        <LI>Next message: <A HREF="001081.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1079">[ date ]</a>
+              <a href="thread.html#1079">[ thread ]</a>
+              <a href="subject.html#1079">[ subject ]</a>
+              <a href="author.html#1079">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Does anyone know how to build a live usb image, with the /home
+</I>&gt;<i> partition encrypted? It is for users' data safety.
+</I>&gt;<i> I kind of believe that this should be implemented via kiwi + losetup +
+</I>&gt;<i> cryptsetup.
+</I>&gt;<i> 
+</I>&gt;<i> I know how to encrypt a disk or partition using the cryptsetup
+</I>&gt;<i> command. What I want to know is if I can integrate
+</I>&gt;<i> cryptsetup commands into kiwi code, so that I can build an image
+</I>&gt;<i> containing encrypted home partition.
+</I>&gt;<i> 
+</I>&gt;<i> Could anyone give me some advices ( like where to put the cryptsetup
+</I>&gt;<i> commands )? Thank you all.
+</I>
+This should be done in KIWIImage.pm. I would do it the following:
+
+1) add a new function which implements the loop mount and 
+   the cryptsetup calls based on the created image data volume.
+   The function buildLogicalExtend() does the data volume
+   creation and the variable $name contains the file name
+
+2) call that new function as part of the preImage() function
+   and change the $name to the new /dev/mapper/... location
+   created by cryptsetup
+
+If we are talking about an oem image you should know that the
+creation of the /home partition takes place at first boot of the
+image. In that case the cryptsetup should go into the boot code
+too. For oem this is system/boot/ix86/oemboot/suse-repart
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001078.html">[Kiwi-users] How to combine kiwi and cryptsetup to create image	containing encrypted partition?
+</A></li>
+	<LI>Next message: <A HREF="001081.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1079">[ date ]</a>
+              <a href="thread.html#1079">[ thread ]</a>
+              <a href="subject.html#1079">[ subject ]</a>
+              <a href="author.html#1079">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Yet another newbie question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Yet%20another%20newbie%20question&In-Reply-To=%3C4FACBBB3.5090804%40sgi.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003026.html">
+   <LINK REL="Next"  HREF="003019.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Yet another newbie question</H1>
+    <B>Eric Richards</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Yet%20another%20newbie%20question&In-Reply-To=%3C4FACBBB3.5090804%40sgi.com%3E"
+       TITLE="[Kiwi-users] Yet another newbie question">erichards at sgi.com
+       </A><BR>
+    <I>Fri May 11 09:11:47 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003026.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+        <LI>Next message: <A HREF="003019.html">[Kiwi-users] Yet another newbie question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3018">[ date ]</a>
+              <a href="thread.html#3018">[ thread ]</a>
+              <a href="subject.html#3018">[ subject ]</a>
+              <a href="author.html#3018">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm sorry to lean on you guys like this, but I've been sweating this one 
+for 18 hours without luck.
+
+I have put together a &quot;hello world&quot; rpm.  To keep it from conflicting 
+with GNU hello, I named it hello2.
+
+In my config.xml file I have these sections:
+
+&lt;packages type=&quot;image&quot;&gt;
+&lt;package name=&quot;hello&quot;/&gt;
+&lt;package name=&quot;hellotwo&quot;/&gt;
+&lt;/packages&gt;
+[...]
+
+&lt;repository type=&quot;yast2&quot;&gt;
+&lt;source path=&quot;/root/rpmbuild/RPMS/x86_64&quot;/&gt;
+&lt;/repository&gt;
+
+And in that directory, I have:
+
+.:
+hello-2.8-1.x86_64.rpm  hello2-1.0-1.x86_64.rpm  repodata
+
+./repodata:
+filelists.xml.gz  other.xml.gz  primary.xml.gz  repomd.xml
+
+
+Naturally the RPMs install fine from my machine, installing them like 
+&quot;rpm --install hello2-1.0-1.x86_64.rpm&quot;, but kiwi can't find hello2.  It 
+finds hello just fine, but not hello2.  I even changed the name of 
+everything to hellotwo (in the specfile and makefile too), without luck.
+
+I clearly have been looking at this way too long.  Care to have sympathy 
+on the dummy, again?
+
+Thanks,
+-- 
+
+Eric Richards
+Kernel Software Engineer
+SGI logo
+1900 Pike Road
+Longmont, CO 80501
+Phone: 303-532-0233
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A>&gt;
+Website: www.sgi.com &lt;<A HREF="http://www.sgi.com">http://www.sgi.com</A>&gt;
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/383ff7de/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/383ff7de/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: SGI_small_logo.png
+Type: image/png
+Size: 2653 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/383ff7de/attachment.png">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/383ff7de/attachment.png</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003026.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+	<LI>Next message: <A HREF="003019.html">[Kiwi-users] Yet another newbie question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3018">[ date ]</a>
+              <a href="thread.html#3018">[ thread ]</a>
+              <a href="subject.html#3018">[ subject ]</a>
+              <a href="author.html#3018">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

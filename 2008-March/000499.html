@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] how to add own packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20how%20to%20add%20own%20packages&In-Reply-To=%3C20080314110213.GC21839%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000495.html">
+   <LINK REL="Next"  HREF="000500.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] how to add own packages</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20how%20to%20add%20own%20packages&In-Reply-To=%3C20080314110213.GC21839%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] how to add own packages">ms at suse.de
+       </A><BR>
+    <I>Fri Mar 14 12:02:14 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000495.html">[Kiwi-users] how to add own packages
+</A></li>
+        <LI>Next message: <A HREF="000500.html">[Kiwi-users] how to add own packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#499">[ date ]</a>
+              <a href="thread.html#499">[ thread ]</a>
+              <a href="subject.html#499">[ subject ]</a>
+              <a href="author.html#499">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Roger Oberholtzer schrieb:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; If they are in your regular repository where the openSUSE install came
+</I>&gt;<i> &gt; from, add this to your config.xml:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 	&lt;package name=&quot;myPackage&quot;/&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If you have a directory with RPMS (I would think any format that smart
+</I>&gt;<i> &gt; likes - but I have used RPMS), add this to config.xml
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;         &lt;repository type=&quot;rpm-dir&quot;&gt;
+</I>&gt;<i> &gt;                 &lt;source
+</I>&gt;<i> &gt; path=&quot;/tmp/RSofT-Mini-openSUSE-10.3/repository&quot;/&gt;
+</I>&gt;<i> &gt;         &lt;/repository&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I added this after the entry for the openSUSE repository.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; In /tmp/RSofT-Mini-openSUSE-10.3/repository (or whatever path you like)
+</I>&gt;<i> &gt; you put your RPMS. Then select them via the usual &lt;package
+</I>&gt;<i> &gt; name=&quot;myPackage&quot;/&gt; syntax. 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>&gt;<i> ok,
+</I>&gt;<i> 
+</I>&gt;<i> but an update of kiwi will replace thhe config.xml too?
+</I>
+no the contents of your own _system_ image description stays untouched.
+
+the kiwi-desc-* packages provides the boot image descriptions for creating
+the initrd which you shouldn't have touched at all. If you had for some
+reasons the need for your own boot image description you should have
+created a copy of the description directory of your choice and rename it.
+In that case an update of the boot image descriptions will not touch
+your own stuff
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000495.html">[Kiwi-users] how to add own packages
+</A></li>
+	<LI>Next message: <A HREF="000500.html">[Kiwi-users] how to add own packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#499">[ date ]</a>
+              <a href="thread.html#499">[ thread ]</a>
+              <a href="subject.html#499">[ subject ]</a>
+              <a href="author.html#499">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

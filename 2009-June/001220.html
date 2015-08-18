@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] packages for SLES10SP2
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20packages%20for%20SLES10SP2&In-Reply-To=%3C20090624081613.9czmqg47ok4c4c44%40imap.linux.ibm.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001218.html">
+   <LINK REL="Next"  HREF="001224.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] packages for SLES10SP2</H1>
+    <B>Jin Bing Guo</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20packages%20for%20SLES10SP2&In-Reply-To=%3C20090624081613.9czmqg47ok4c4c44%40imap.linux.ibm.com%3E"
+       TITLE="[Kiwi-users] packages for SLES10SP2">guojb at linux.vnet.ibm.com
+       </A><BR>
+    <I>Wed Jun 24 14:16:13 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001218.html">[Kiwi-users] packages for SLES10SP2
+</A></li>
+        <LI>Next message: <A HREF="001224.html">[Kiwi-users] Li-f-e rocks at LinuxTag
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1220">[ date ]</a>
+              <a href="thread.html#1220">[ thread ]</a>
+              <a href="subject.html#1220">[ subject ]</a>
+              <a href="author.html#1220">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+
+
+Quoting Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt;:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> I just want to build a Live CD image with kiwi. I used the config.xml
+</I>&gt;&gt;<i> from
+</I>&gt;&gt;<i> /usr/share/doc/packages/kiwi/examples/suse-11.0/suse-live-iso/config.xml
+</I>&gt;&gt;<i> file.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> However, the SLES does not support &quot;opensusePattern&quot;. If I delete all
+</I>&gt;&gt;<i> the &quot;opensusePattern&quot;, the Live CD seems lack of some package and not
+</I>&gt;&gt;<i> work well.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> How can I select the packages from SLES10SP2 to Live CD? thank.
+</I>&gt;<i>
+</I>&gt;<i> I guess the system you run kiwi on is also a SLES10 system.
+</I>&gt;<i> The easiest way to do this is the following:
+</I>&gt;<i>
+</I>&gt;<i> 1) install the smart package manager from here:
+</I>&gt;<i>    <A HREF="http://download.opensuse.org/repositories/smart/SLE_10/">http://download.opensuse.org/repositories/smart/SLE_10/</A>
+</I>&gt;<i>
+</I>&gt;<i> 2) install the kiwi packages from here:
+</I>&gt;<i>      
+</I>&gt;<i> <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/SLE_10/">http://download.opensuse.org/repositories/Virtualization:/Appliances/SLE_10/</A>
+</I>&gt;<i>
+</I>&gt;<i> 3) make sure you have installed the kiwi-templates packages too
+</I>&gt;<i>
+</I>&gt;<i> 4) run kiwi:
+</I>&gt;<i>
+</I>&gt;<i>    kiwi -b suse-SLE10-JeOS -d /tmp/myimage --type iso \
+</I>&gt;<i>         --set-repo /path/to/sles10/repo
+</I>&gt;<i>
+</I>&gt;<i> 5) find the result in /tmp/myimage
+</I>&gt;<i>
+</I>&gt;<i> Notes:
+</I>&gt;<i> ------
+</I>&gt;<i> * the default zypper version from sles10 is too old to work properly
+</I>&gt;<i>   with kiwi, that's the reason why I suggest to use the smart
+</I>&gt;<i>   packagemanager
+</I>&gt;<i>
+</I>&gt;<i> * if kiwi uses smart kiwi resolves patterns itself by using the
+</I>&gt;<i>   satsolver library. The suse-SLE10-JeOS template makes use of
+</I>&gt;<i>   the &quot;base&quot; pattern
+</I>&gt;<i>
+</I>&gt;<i> If you still can't build the iso it would be great if I can
+</I>&gt;<i> login to your machine and have a closer look
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>
+Yeah, template is a good tool to build the ISO. I can build the  
+SLES10SP2 LiveCD now. Thanks.
+
+Best regards!
+
+Jin Bing Guo
+Email: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">guojb at linux.vnet.ibm.com</A>
+-------------------------------------
+&quot;Do today what others won't so tomorrow you do what other's can't&quot;
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001218.html">[Kiwi-users] packages for SLES10SP2
+</A></li>
+	<LI>Next message: <A HREF="001224.html">[Kiwi-users] Li-f-e rocks at LinuxTag
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1220">[ date ]</a>
+              <a href="thread.html#1220">[ thread ]</a>
+              <a href="subject.html#1220">[ subject ]</a>
+              <a href="author.html#1220">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

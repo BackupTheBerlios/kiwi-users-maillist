@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C5146F3EC.5080500%40public-files.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003085.html">
+   <LINK REL="Next"  HREF="003075.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>Yarny</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C5146F3EC.5080500%40public-files.de%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">Yarny at public-files.de
+       </A><BR>
+    <I>Mon Mar 18 12:01:00 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003085.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+        <LI>Next message: <A HREF="003075.html">[Kiwi-users] Can't add i386 package to x86_64 distribution.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3086">[ date ]</a>
+              <a href="thread.html#3086">[ thread ]</a>
+              <a href="subject.html#3086">[ subject ]</a>
+              <a href="author.html#3086">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks Marcus!
+This really is great news to me!
+-- Best wishes, Yarny
+
+
+
+Am 18.03.2013 10:19, schrieb Marcus Sch&#228;fer:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> As said in my initial posting, I actually didn't use kiwi for
+</I>&gt;&gt;&gt;<i> system deployment until ~one month ago, I just called zypper
+</I>&gt;&gt;&gt;<i> with --root.  kiwi does the same thing, but better, e.g., I
+</I>&gt;&gt;&gt;<i> forgot about initializing /etc/{group,passwd} in the new system
+</I>&gt;&gt;&gt;<i> before calling zypper, which broke some file ownerships in my
+</I>&gt;&gt;&gt;<i> systems.  I could simply mimic the way kiwi performs its image
+</I>&gt;&gt;&gt;<i> perparation, but I feel this is unnecessary work and I might
+</I>&gt;&gt;&gt;<i> just call kiwi for this.
+</I>&gt;&gt;<i> Although I met some resistance, I'd like to offer
+</I>&gt;&gt;<i> this patch, which adds an option &quot;--force-bootstrap&quot;
+</I>&gt;&gt;<i> and enables bootstrapping in &quot;--recycle-root&quot; mode.
+</I>&gt;&gt;<i> This is what I'm currently using on my machines as
+</I>&gt;&gt;<i> I can't avoid preexisting subdirectories in my root.
+</I>&gt;&gt;<i> If you can bring yourself to accept it, I
+</I>&gt;&gt;<i> will add some lines of documentation.
+</I>&gt;<i> 
+</I>&gt;<i> Sorry for the late response. The patch looks good to me. I added
+</I>&gt;<i> at least a few lines of usage message and will push the result
+</I>&gt;<i> after the testsuite completed. here is the commit:
+</I>&gt;<i> 
+</I>&gt;<i> commit 3384a30ffd6366da231fca2a68f5aca8eb376d07
+</I>&gt;<i> Author: Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt;
+</I>&gt;<i> Date:   Mon Mar 18 10:11:41 2013 +0100
+</I>&gt;<i> 
+</I>&gt;<i>     - added option --force-bootstrap in combination with --recycle-root
+</I>&gt;<i>       in the kiwi modes --prepare and/or --create. When using a base
+</I>&gt;<i>       tree with --recycle-root kiwi normally skips the bootstrapping
+</I>&gt;<i>       part because that data should all be part of the base tree. If
+</I>&gt;<i>       the tree is not complete in this regard, e.g missing zypper one
+</I>&gt;<i>       can now enforce the bootstrapping phase to be called.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for your patience
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I></PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003085.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+	<LI>Next message: <A HREF="003075.html">[Kiwi-users] Can't add i386 package to x86_64 distribution.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3086">[ date ]</a>
+              <a href="thread.html#3086">[ thread ]</a>
+              <a href="subject.html#3086">[ subject ]</a>
+              <a href="author.html#3086">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

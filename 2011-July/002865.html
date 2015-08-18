@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Best way to cache packages for kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Best%20way%20to%20cache%20packages%20for%20kiwi&In-Reply-To=%3C20110726073309.GA31119%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002864.html">
+   <LINK REL="Next"  HREF="002870.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Best way to cache packages for kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Best%20way%20to%20cache%20packages%20for%20kiwi&In-Reply-To=%3C20110726073309.GA31119%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Best way to cache packages for kiwi">ms at suse.de
+       </A><BR>
+    <I>Tue Jul 26 09:33:09 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002864.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+        <LI>Next message: <A HREF="002870.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2865">[ date ]</a>
+              <a href="thread.html#2865">[ thread ]</a>
+              <a href="subject.html#2865">[ subject ]</a>
+              <a href="author.html#2865">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>James,
+
+&gt;<i> It looks like kiwi dumps the zypper directory each time before the build
+</I>&gt;<i> process with the following statement:
+</I>&gt;<i>  EXEC [rm -rf /var/cache/kiwi/zypper/*
+</I>&gt;<i> 
+</I>&gt;<i> I wonder if by calling force-new-root it tells kiwi to destroy the cache?
+</I>
+that looks like a bug. I can't imagine why that was a good idea. This
+will slow down the prepare process because first it deletes all the
+stuff and after that it downloads it again *weird*. Attached
+is a patch which should fix this. Could you apply it on your
+local kiwi installation for a test ? Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.patch
+Type: text/x-patch
+Size: 690 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110726/8a2c1901/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110726/8a2c1901/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002864.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+	<LI>Next message: <A HREF="002870.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2865">[ date ]</a>
+              <a href="thread.html#2865">[ thread ]</a>
+              <a href="subject.html#2865">[ subject ]</a>
+              <a href="author.html#2865">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

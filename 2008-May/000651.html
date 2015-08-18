@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Loading image into RAM
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Loading%20image%20into%20RAM&In-Reply-To=%3C20080519075504.GC13069%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000647.html">
+   <LINK REL="Next"  HREF="000648.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Loading image into RAM</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Loading%20image%20into%20RAM&In-Reply-To=%3C20080519075504.GC13069%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Loading image into RAM">ms at suse.de
+       </A><BR>
+    <I>Mon May 19 09:55:05 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000647.html">[Kiwi-users] Loading image into RAM
+</A></li>
+        <LI>Next message: <A HREF="000648.html">[Kiwi-users] Announcement: KIWI-LTSP 0.3.15 for openSUSE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#651">[ date ]</a>
+              <a href="thread.html#651">[ thread ]</a>
+              <a href="subject.html#651">[ subject ]</a>
+              <a href="author.html#651">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am currently building a LiveCD based on oS 11.0 and ran into a problem during boot of the created ISO image:
+</I>&gt;<i> 
+</I>&gt;<i> Have size proc/meminfo -&gt; 5 MB
+</I>&gt;<i> Need size: /read-only/rootfs.tar -&gt; 500 MB [ uncompressed ]
+</I>&gt;<i> 
+</I>&gt;<i> I am trying to boot the ISO in VirtualBox.
+</I>
+not enough RAM assigned for a ramdisk in your guest system
+
+&gt;<i> What happens in this stage? Is the complete rootfs mounted into ram? Normally the squashfs image should just be mounted and then re-mounted rw using unionfs (aufs?).
+</I>
+I guess you have set flags=&quot;compresed&quot; in your config.xml. In this mode
+kiwi creates a splitted image and uses the information of the split section
+to create a tarball for the data you have specified there.
+
+If you want aufs to be used just change the flags attribute to
+
+	flags=&quot;unified&quot; 
+
+and rebuild.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000647.html">[Kiwi-users] Loading image into RAM
+</A></li>
+	<LI>Next message: <A HREF="000648.html">[Kiwi-users] Announcement: KIWI-LTSP 0.3.15 for openSUSE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#651">[ date ]</a>
+              <a href="thread.html#651">[ thread ]</a>
+              <a href="subject.html#651">[ subject ]</a>
+              <a href="author.html#651">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

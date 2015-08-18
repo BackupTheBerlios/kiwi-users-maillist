@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Need help with KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Need%20help%20with%20KIWI&In-Reply-To=%3C1277716702.4251.20.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001858.html">
+   <LINK REL="Next"  HREF="001860.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Need help with KIWI</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Need%20help%20with%20KIWI&In-Reply-To=%3C1277716702.4251.20.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] Need help with KIWI">roger at opq.se
+       </A><BR>
+    <I>Mon Jun 28 11:18:22 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001858.html">[Kiwi-users] Need help with KIWI
+</A></li>
+        <LI>Next message: <A HREF="001860.html">[Kiwi-users] Need help with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1859">[ date ]</a>
+              <a href="thread.html#1859">[ thread ]</a>
+              <a href="subject.html#1859">[ subject ]</a>
+              <a href="author.html#1859">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-06-28 at 10:54 +0200, Marcus Sch&#228;fer wrote: 
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; Hi! I have the same problem with KIWI.
+</I>&gt;<i> &gt; &gt; <A HREF="https://lists.berlios.de/pipermail/kiwi-users/2009-May/001139.html">https://lists.berlios.de/pipermail/kiwi-users/2009-May/001139.html</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Misery loves company. Sad to say, it was never solved. I just make a new
+</I>&gt;<i> &gt; image until this does not happen. I'm not comfortable with it. But as
+</I>&gt;<i> &gt; only I seemed to experience the problem... Anyway, I have posted this to
+</I>&gt;<i> &gt; the kiwi group. Maybe with two people having the problem we can find the
+</I>&gt;<i> &gt; cause.
+</I>&gt;<i> 
+</I>&gt;<i> If you see the message  &quot;Checking Server name: tftp&quot;
+</I>&gt;<i> This means there is no kiwiserver=... set in the pxe configuration
+</I>&gt;<i> and there is no DOMAIN set in the config.&lt;MAC&gt;. This is normally not
+</I>&gt;<i> a big problem if the dhcp info file contains additional information.
+</I>
+In your description, it is most likely option #2 that is happening for
+me. The whole point of the original problem is that action #2 works
+every single time with images made with kiwi at the time of openSUSE
+10.3. (In fact, I later use the DHCPSIADDR variable to locate some
+resources. That is why I recognize it.) By contrast, the exact same
+hardware often fails with kiwi images made with kiwi releases for
+openSUSE 11.2. The DHCP server is the same. The only difference is that
+it is serving an 11.2 kiwi image. I cannot understand why one image
+(those made in 10.3) always works, and another (those made in 11.2) have
+a high failure rate at this point in booting.
+
+&gt;<i> kiwi now checks the value of DHCPSIADDR and DHCPSID before it
+</I>&gt;<i> runs into the &quot;Can't assign SERVER IP/name .. fatal!&quot; exception.
+</I>&gt;<i> Normally one of the following actions should fix the problem:
+</I>&gt;<i> 
+</I>&gt;<i> 1) add at least kiwiserver=&quot;ip or name&quot; in your
+</I>&gt;<i>    /srv/tftpboot/pxelinux.cfg/default file or the file which is
+</I>&gt;<i>    assigned to this client. The ip or name must successfully
+</I>&gt;<i>    complete the following call:
+</I>&gt;<i> 
+</I>&gt;<i>       ping -c 1 &quot;ip or name&quot; 
+</I>&gt;<i> 
+</I>&gt;<i>    if that call fails kiwi will use the data provided by the
+</I>&gt;<i>    dhcp server. Maybe this could be a problem if &quot;-c 1&quot; is too
+</I>&gt;<i>    short. Thinking of increasing that value...
+</I>&gt;<i> 
+</I>&gt;<i> 2) check your dhcp server configuration. if dhcp has setup the
+</I>&gt;<i>    interface there is an info file stored here:
+</I>&gt;<i> 
+</I>&gt;<i>       /var/lib/dhcpcd/dhcpcd-X.info   (X = interface name eg eth0)
+</I>&gt;<i> 
+</I>&gt;<i>    kiwi simply sources that file and it should contain
+</I>&gt;<i>    the DHCPSIADDR or DHCPSID information. If you can't find that
+</I>&gt;<i>    data you should check the dhcpd.conf why it doesn't provide it
+</I>
+Is it really the dhcp server that provides this? I would have thought
+this was set by the dhcpd client in the kiwi image. I do not think
+anything in my kiwi config touches that. It must be whatever kiwi sets
+up. Perhaps that is where the issue is?
+
+Having said all this, I must admit that the details are a bit rusty. It
+was over a year ago that I encountered this. I really should build
+images with the latest kiwi releases and see what happens. Lots has
+changed in kiwi in the last year.
+
+&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001858.html">[Kiwi-users] Need help with KIWI
+</A></li>
+	<LI>Next message: <A HREF="001860.html">[Kiwi-users] Need help with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1859">[ date ]</a>
+              <a href="thread.html#1859">[ thread ]</a>
+              <a href="subject.html#1859">[ subject ]</a>
+              <a href="author.html#1859">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

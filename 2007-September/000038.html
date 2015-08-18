@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi setup questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20setup%20questions&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90225CD60%40zuk35exm60.ds.mot.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000035.html">
+   <LINK REL="Next"  HREF="000039.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi setup questions</H1>
+    <B>Mair Wolfgang-awm013</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20setup%20questions&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90225CD60%40zuk35exm60.ds.mot.com%3E"
+       TITLE="[Kiwi-users] kiwi setup questions">wolfgang.mair at motorola.com
+       </A><BR>
+    <I>Mon Sep 24 17:34:23 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000035.html">[Kiwi-users] kiwi setup questions
+</A></li>
+        <LI>Next message: <A HREF="000039.html">[Kiwi-users] kiwi setup questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#38">[ date ]</a>
+              <a href="thread.html#38">[ thread ]</a>
+              <a href="subject.html#38">[ subject ]</a>
+              <a href="author.html#38">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> 
+
+-----Original Message-----
+From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>] 
+Sent: Friday, September 21, 2007 16:13
+To: Mair Wolfgang-awm013
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] kiwi setup questions
+
+Hi Wolfgang,
+
+&gt;<i> It looks to me that everything is related to OpenSuse 10.3. Is kiwi 
+</I>&gt;<i> already released?
+</I>
+Hmm, don't understand that question. openSUSE 10.3 will be the first openSUSE version with kiwi onboard, but it has been built for other suse versions as well and is available on the openSUSE buildservice
+
+&gt;<i> Does the Hardware of the client matter or can I use any hardware as 
+</I>&gt;<i> client? And if yes, where does the hardware dependent part begin?
+</I>
+The kiwi boot images (initrd) in your case the netboot boot image contains by default all required drivers of the kernel according to the distribution and architecture you use. So if the standard kernel of this distribution supports your hardware it is supported by kiwi as well. Right now we support only x86 and x86_64 architectures with kiwi but that is supposed to be enhanced in the future (this requires more people to work on it)
+
+&gt;<i> To use an autoyast.xml file. What has to go in there? I've got a 
+</I>&gt;<i> working autoyast file, which works fine with an network installation. 
+</I>&gt;<i> I've copied this into the config directory. The kiwi client starts 
+</I>&gt;<i> yast after booting up but the contest of this file doesn't seem to be 
+</I>&gt;<i> read or executed. Do I have to drop some sections out of this file I 
+</I>&gt;<i> am thinking especially about the section software and partitioning.
+</I>
+If you put the autoyast xml file as &quot;config-yast.xml&quot; into your image description yast will start automatically, of course only if yast is part of your image. I think you got so far already. The problem with the software depends on the fact that kiwi did not use the yast packagemanager if you don't specify it in config.xml
+(&lt;packagemanager&gt;zypper&lt;/packagemanager&gt;) As consequence there is no service for yast defined. In order to do that you need to add a yast(zypper) service in your image description config.sh script
+
+For example something like this could work:
+
+	rm -rf /var/cache/zypp/raw/*
+	zypper addrepo <A HREF="http://download.opensuse.org/distribution/10.3/repo/oss/">http://download.opensuse.org/distribution/10.3/repo/oss/</A> 10.3
+	zypper addrepo <A HREF="http://download.opensuse.org/update/10.3/">http://download.opensuse.org/update/10.3/</A> 10.3-update
+ 
+This will allow yast to install and update packages if network is available after booting the image
+
+
+
+Ok, I've put the following into my config.xml file:
+
+&#8722;
+	&lt;preferences&gt;
+&lt;type primary=&quot;true&quot; boot=&quot;netboot/suse-10.2&quot; filesystem=&quot;aufs&quot;&gt;pxe&lt;/type&gt;
+&lt;version&gt;1.0.0&lt;/version&gt;
+&lt;size unit=&quot;M&quot;&gt;3000&lt;/size&gt;
+&lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+&lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+&lt;rpm-force&gt;False&lt;/rpm-force&gt;
+&lt;locale&gt;en_US.UTF-8&lt;/locale&gt;
+&lt;defaultdestination&gt;/live/image&lt;/defaultdestination&gt;
+&lt;defaultroot&gt;/live/root&lt;/defaultroot&gt;
+&lt;/preferences&gt;
+
+
+
+And this is in the config.sh file:
+
+echo &quot;Configure image: [$name]...&quot;
+
+:<i> &gt; /var/log/zypper.log
+</I>rm -rf /var/cache/zypp/raw/*
+
+zypper addrepo <A HREF="nfs://192.168.230.2/export/suse10-2">nfs://192.168.230.2/export/suse10-2</A>
+zypper addrepo <A HREF="nfs://192.168.230.2/export/suse10-2/custom_software">nfs://192.168.230.2/export/suse10-2/custom_software</A>
+
+#======================================
+# SuSEconfig
+#--------------------------------------
+suseConfig
+
+exit 0
+
+
+
+But when I start the kiwi --prepaire I get the following error:
+
+Sep-24 15:56 &lt;1&gt; : Setting up package manager: zypper   done
+Sep-24 15:56 &lt;1&gt; : Adding local zypper service: kiwi1-26468   failed
+Sep-24 15:56 &lt;3&gt; : Unknown option --non-interactive
+Unknown option --no-gpg-checks
+Unknown option --root
+Unknown command '_unknown'.
+
+  Commands:
+	help			Help
+	shell, sh		Accept multiple commands at once
+	install, in		Install packages or resolvables
+	remove, rm		Remove packages or resolvables
+	search, se		Search for packages matching a pattern
+	service-list, sl	List services aka installation sources
+	service-add, sa		Add a new service
+	service-delete, sd	Delete a service
+	service-rename, sr	Rename a service
+	refresh, ref		Refresh all installation sources
+	patch-check, pchk	Check for patches
+	patches, pch		List patches
+	list-updates, lu	List updates
+	update, up		Update packages
+	info, if		Show full info for packages
+	patch-info		Show full info for patches
+Sep-24 15:56 &lt;3&gt; : Base initialization failed   failed
+Sep-24 15:56 &lt;1&gt; : Logfile available at: /live/root1.log   done
+Sep-24 15:56 &lt;3&gt; : KIWI exited with error(s)   done
+
+
+
+&gt;<i> I've put a list of packages followed by a list of patterns into the 
+</I>&gt;<i> config.xml file. Which I have taken over from the autoyast file. The 
+</I>&gt;<i> kiwi --prepare complains about a missing pattern (sw_management). I've 
+</I>&gt;<i> already checked it on my repository and it is there. All other 
+</I>&gt;<i> patterns are read. Is there a debug option for the kiwi --prepare or --create.
+</I>&gt;<i> The output is not very detailed and knowing what kiwi is actually 
+</I>&gt;<i> doing would probably help a lot with this.
+</I>
+The patterns itself sometimes has bugs and this is one of them. The pattern sw_management has been renamed to sw_management-10.3 but the reference may still be outdated so I assume this do disappear soon.
+
+You are right with the output, it should talk a bit more in case of an error here.
+
+Regards,
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000035.html">[Kiwi-users] kiwi setup questions
+</A></li>
+	<LI>Next message: <A HREF="000039.html">[Kiwi-users] kiwi setup questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#38">[ date ]</a>
+              <a href="thread.html#38">[ thread ]</a>
+              <a href="subject.html#38">[ subject ]</a>
+              <a href="author.html#38">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

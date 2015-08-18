@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] openSUSE Minimal System LiveCD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20openSUSE%20Minimal%20System%20LiveCD&In-Reply-To=%3Cb317ae5c0808222341m69e36522xe660952325875631%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000808.html">
+   <LINK REL="Next"  HREF="000809.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] openSUSE Minimal System LiveCD</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20openSUSE%20Minimal%20System%20LiveCD&In-Reply-To=%3Cb317ae5c0808222341m69e36522xe660952325875631%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] openSUSE Minimal System LiveCD">cyberorg at opensuse.org
+       </A><BR>
+    <I>Sat Aug 23 08:41:06 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000808.html">[Kiwi-users] openSUSE Minimal System LiveCD
+</A></li>
+        <LI>Next message: <A HREF="000809.html">[Kiwi-users] KDE 3.5 Base System LiveCD / LiveUSB
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#810">[ date ]</a>
+              <a href="thread.html#810">[ thread ]</a>
+              <a href="subject.html#810">[ subject ]</a>
+              <a href="author.html#810">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Aug 23, 2008 at 9:17 AM, Masim Vavai Sugianto &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">vavai at vavai.com</A>&gt; wrote:
+&gt;<i> Hi There,
+</I>&gt;<i>
+</I>&gt;<i> I'm trying Minimal LiveCD by using ctso-minimal-suse-11.0
+</I>&gt;<i> configuration and produced about 178 MB of iso image. Is this correct
+</I>&gt;<i> (belong to size of iso image) ?
+</I>&gt;<i>
+</I>&gt;<i> Another problem, what is the default user  ? I'm trying linux or root
+</I>&gt;<i> with no password with no luck. I also trying to add :
+</I>&gt;<i>
+</I>
+You need this in config.sh:
+
+#======================================
+# /etc/sudoers hack to fix #297695
+# (Installation Live CD: no need to ask for password of root)
+#--------------------------------------
+sed -i -e &quot;s/ALL ALL=(ALL) ALL/ALL ALL=(ALL) NOPASSWD: ALL/&quot; /etc/sudoers
+chmod 0440 /etc/sudoers
+
+/usr/sbin/useradd -m -u 999 linux -c &quot;Live-CD User&quot; -p &quot;&quot;
+
+# delete passwords
+passwd -d root
+passwd -d linux
+# empty password is ok
+pam-config -a --nullok
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000808.html">[Kiwi-users] openSUSE Minimal System LiveCD
+</A></li>
+	<LI>Next message: <A HREF="000809.html">[Kiwi-users] KDE 3.5 Base System LiveCD / LiveUSB
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#810">[ date ]</a>
+              <a href="thread.html#810">[ thread ]</a>
+              <a href="subject.html#810">[ subject ]</a>
+              <a href="author.html#810">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

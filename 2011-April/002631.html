@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTikPHcf5nbBFgRhkK6YhaKnUT6P6JA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002630.html">
+   <LINK REL="Next"  HREF="002633.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTikPHcf5nbBFgRhkK6YhaKnUT6P6JA%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Thu Apr  7 23:53:13 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002630.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002633.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2631">[ date ]</a>
+              <a href="thread.html#2631">[ thread ]</a>
+              <a href="subject.html#2631">[ subject ]</a>
+              <a href="author.html#2631">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Apr 7, 2011 at 11:50 AM, Chris Cunha &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">eportel6607 at gmail.com</A>&gt; wrote:
+&gt;<i> On Thu, Apr 7, 2011 at 8:49 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &gt; * I mean how about the amount of ram space ?
+</I>&gt;&gt;&gt;<i> &gt; * does the system swap ?
+</I>&gt;&gt;&gt;<i> &gt; * is the behavior different compared to the 1.3 clicfs
+</I>&gt;&gt;&gt;<i> &gt; &#160;I mean is the system just not performant anymore or does
+</I>&gt;&gt;&gt;<i> &gt; &#160;it crash ?
+</I>&gt;&gt;&gt;<i> I will check the amout of RAM being used in both the first boot and
+</I>&gt;&gt;&gt;<i> any other boot. &#160;The system appears to swap fine...although what do
+</I>&gt;&gt;&gt;<i> you think I should use to confirms that it actually is swapping?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ksysguard is a good too to show that
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The system actually seems to preform pretty well and it doesn't
+</I>&gt;&gt;&gt;<i> crash...it just doesn't stream the video.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In that case it might be something completely different not
+</I>&gt;&gt;<i> related to the OS and clicfs. If it does not stream at all
+</I>&gt;&gt;<i> can you see any error messages in /var/log/messages
+</I>&gt;&gt;<i> or from the browser directly ?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Marcus
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> &#160;Public Key available
+</I>&gt;&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Marcus does the auto location/mount of the fat partition script that
+</I>&gt;<i> you gave me run on the very first boot? &#160;I'm just trying to think of
+</I>&gt;<i> any scripts that we/I added that may have the potintial to cause this
+</I>&gt;<i> issue. &#160;It has nothing to do with Firefox's user profile....I've saved
+</I>&gt;<i> the entire /var/logs folder and will compare it to the second boot
+</I>&gt;<i> versions.
+</I>&gt;<i>
+</I>&gt;<i> Looking at Firefox more closely I noticed that on the second boot it
+</I>&gt;<i> starts to cache/buffer the video as it plays. &#160;The buffered video
+</I>&gt;<i> preloads ahead of the playing video like normal. &#160;However after about 3
+</I>&gt;<i> seconds of preloaded video is buffered the indicator of this
+</I>&gt;<i> buffered video actually goes backwards until it meets the same point
+</I>&gt;<i> at the playing video indicator. &#160;It's at this point that the video
+</I>&gt;<i> stops and will not play again. &#160; If this is a swap file or lack of
+</I>&gt;<i> space problem why would it only happen on the second boot and not the
+</I>&gt;<i> first?
+</I>
+&gt;<i>
+</I>
+
+It's an 8gb USB drive
+I have a swap file of 1000mb (I originally had this set to 2gb)
+The Fat partition is 2500mb (originally had this set to 4gb)
+The total raw image size is 4070mb with the above settings.
+
+
+On first boot about 3/4 of the way through it switches to verbose mode
+and displays &quot;repartition the disk according to real geometry [parted]
+Flag to Invert?&quot;  It's waiting for a response.  This didn't show up
+when I had the swap file set to 1500 or 2000mb or when the fat
+partition was set to 4gb.  I'm not sure what to do here but I ended up
+typing &quot;boot&quot; and and it prompted me with &quot;New State? [on]/off&quot; I
+choose &quot;off&quot;.  Last time I choose &quot;on&quot; and when I rebooted it
+indicated that it could find the operating system.
+
+Testing the Firefox profile I tried this:
+1) Booted from a fresh OEM image from the flash drive
+2) went to YouTube and tested the streaming of a video.  As always on
+the first, the video played fine.  It preloaded the entire video
+within a minute and never paused or hiccuped at all.
+3) I copied the ~/.mozilla user profile to the 4GB fat partition on
+the flash drive
+4) I rebooted the OS off the flash drive for the second time.
+5) I opened Firefox and navigated back to YouTube (same video as
+before) it played for about 30-40 seconds and then stopped.   As
+before I could see that the preloading/buffering of the video would
+start but would only get about a quarter of the way and then it would
+actually stop and go backwards towards the play indicator.  That's
+when the video would stop.
+6) I close Firefox and navigate to the fat partition on the flash
+drive where I saved the .mozilla profile folder from my first boot.
+7) I then copy that folder and attempt to overwrite the existing .mozilla in ~/.
+8) I get a bunch of errors with some of the files within that folder
+that read &quot;Error splicing file: No space left on device&quot;
+
+Here is the partition table for the USB drive only.
+
+dev/sdb                           7.47GB          Silicon-power (the
+brand name of the drive)
+dev/sdb1                         2.55GB          Linux native        FAT
+dev/sdb2                         5.02GB          Linux native
+dev/KiwiVG                     5.02GB          LVM2 KiwiVG
+dev/KiwiVG/LVComp      560.00mb        LV
+dev/KiwiVG/LVRoot          3.49GB         LV
+dev/KiwiVG/LVSwap         1000.00mb    LV                      SWAP
+
+Which of these paritions is taking up actual space on the drive?
+
+FYI:  I'm having the kiwi.xml file create a users profile however all
+of this testing is being done as the Root user in the image.  It
+shouldn't matter anyway I would think because the user's profile is
+not on a separate partition.
+
+On the second boot I checked this partition table again and nothing
+changed (although I could have sworn last time I looked at the
+partition table on the second boot the SWAP partition was missing)
+I tried streaming video on FF. It fails after a few seconds.  I then
+closed FF and went to ~/.   I then copied the .mozilla folder and
+pasted the contents in the ~, overwriting the existing one.  I get an
+error same as before.  &quot;Error splicing file: No space left on device&quot;
+
+
+I rebuilt the image again but this time did:
+2000mb as the swap
+4000mb as the Fat partition
+total image size is 6020mb
+Total drive space is still 7646mb
+
+The first boot went without any issues like before. I did NOT see the
+&quot;repartition the disk according to real geometry [parted]
+Flag to Invert?&quot;
+It just autologin as it was suppose to.
+
+I checked the parition table shows
+dev/sdb                            7.47GB  (the flash drive itself)
+dev/sdb1                          3.91GB   linux native      FAT
+dev/sdb2                          1.97GB   linux native
+dev/kiwiVG                       1.97GB   LVM2 KiwiVG
+dev/kiwiVG/LVComp        `560.00MB       LV
+dev/kiwiVG/LVRoot           1.42GB          LV
+
+What happen to the Swap partition?
+
+Despite that lack of a Swap partition the result are the same on the
+first boot vs any boot after the first boot.
+
+On the second boot the partition table looks the same.
+
+Can this issue must be a lack of space for the / file tree partition?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002630.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002633.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2631">[ date ]</a>
+              <a href="thread.html#2631">[ thread ]</a>
+              <a href="subject.html#2631">[ subject ]</a>
+              <a href="author.html#2631">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

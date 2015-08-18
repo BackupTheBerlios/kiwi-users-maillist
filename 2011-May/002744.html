@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2011-05-15 - 2011-05-20...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202011-05-15%20-%202011-05-20...&In-Reply-To=%3C20110520142404.GA32141%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002743.html">
+   <LINK REL="Next"  HREF="002745.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2011-05-15 - 2011-05-20...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202011-05-15%20-%202011-05-20...&In-Reply-To=%3C20110520142404.GA32141%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2011-05-15 - 2011-05-20...">ms at suse.de
+       </A><BR>
+    <I>Fri May 20 16:24:04 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002743.html">[Kiwi-users] Customizing Live CD isolinux.cfg and re-imaging iso
+</A></li>
+        <LI>Next message: <A HREF="002745.html">[Kiwi-users] 4.89 failing when archive packages are set to	bootinclude=&quot;true&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2744">[ date ]</a>
+              <a href="thread.html#2744">[ thread ]</a>
+              <a href="subject.html#2744">[ subject ]</a>
+              <a href="author.html#2744">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.89 2011-05-15 - 2011-05-20
+--------------------------------------------------
+most important changes over the last two weeks
+
+-----------------------------
+Features
+-----------------------------
+commit *
+
+    - a lot of code restructuring and cleanup had happend. As a
+      summary of all the following has been changed:
+
+      1) get rid of recursive kiwi calls, we have now functions to do this
+      2) cleanup and eliminate the use of global variables.
+      3) provide a common object for global data
+      4) provide a common object for commandline data
+
+commit bc02aca7daa9af4bd1e42a7a8f377cf2ba5abf2d
+
+    - make the user password optional; It is valid to have a user on
+      a system that cannot login via password authentication. Therefore
+      kiwi should not force a password assignment in the &lt;user&gt; element
+
+commit 33008a579717a32dc368e21e4340587b6f40af1b
+
+    - integrate end-to-end testsuite written by Bernhard Wiedemann
+      into kiwi. There is a kiwi --test-image ... mode now, and I
+      added an example test to the 11.4 JeOS description. It's
+      required to have the os-autoinst package installed in order
+      to run a test (bnc #677789)
+
+
+-----------------------------
+P1 bugs
+-----------------------------
+commit ab8150929aba921419c78a9f5a2825e0be753b53
+
+    - fixed stylesheet bugs: Thanks to Tom for looking at it
+      * A xsl:call-template cannot contain a mode attribute. Only
+        xsl:apply-templates can have it. The affected files are
+        convert39to41.xsl and convert41to42.xsl
+    
+      * A &lt;xsl:copy select=&quot;@&quot;/&gt; is incorrect in two ways: First
+        a xsl:copy needs to have something to copy in its _content_,
+        second the select attribute is syntactically wrong; @ means
+        attribute, but which one? I guess, it should mean
+        &lt;xsl:copy-of select=&quot;@*&quot;/&gt;. However, in this case it's
+        totally useless as it copies *all* attributes, regardless
+        of the for-each loop. So the for-each loop can never act
+        as it was supposed to be.
+
+commit dcb871a75a895abbe7ca36774c125564ba9930c7
+
+    - don't strip vgrename command from initrd
+
+commit 79521cbf2e9c6cd9524d2fc1e8431f10eb784c0e
+
+    - remove outdated undocumented prechrootcall option
+
+commit 15f625e3f2103c2a9eed9324587c726483776644
+
+    - fixed <A HREF="this://">this://</A> path evaluation if used in --info mode (bnc #692813)
+
+commit 28cdcff50b8440b3194afb5ca391af751fe870ee
+
+    - enhanced the ddn() function to work correctly if a
+      udev /dev/disk/&lt;name&gt; device name is specified as disk
+      parameter (bnc #692629)
+
+
+have a great weekend :)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002743.html">[Kiwi-users] Customizing Live CD isolinux.cfg and re-imaging iso
+</A></li>
+	<LI>Next message: <A HREF="002745.html">[Kiwi-users] 4.89 failing when archive packages are set to	bootinclude=&quot;true&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2744">[ date ]</a>
+              <a href="thread.html#2744">[ thread ]</a>
+              <a href="subject.html#2744">[ subject ]</a>
+              <a href="author.html#2744">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

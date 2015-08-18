@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] runlevel setting on kiwi network client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20runlevel%20setting%20on%20kiwi%20network%20client&In-Reply-To=%3C20071012085732.GA24868%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000087.html">
+   <LINK REL="Next"  HREF="000100.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] runlevel setting on kiwi network client</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20runlevel%20setting%20on%20kiwi%20network%20client&In-Reply-To=%3C20071012085732.GA24868%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] runlevel setting on kiwi network client">ms at suse.de
+       </A><BR>
+    <I>Fri Oct 12 10:57:32 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000087.html">[Kiwi-users] runlevel setting on kiwi network client
+</A></li>
+        <LI>Next message: <A HREF="000100.html">[Kiwi-users] runlevel setting on kiwi network client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#88">[ date ]</a>
+              <a href="thread.html#88">[ thread ]</a>
+              <a href="subject.html#88">[ subject ]</a>
+              <a href="author.html#88">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Wolfgang,
+
+&gt;<i> how is it with the runlevel setting on a network client? Can I just copy
+</I>&gt;<i> the runlevel setting from an normal installed system or are there some
+</I>&gt;<i> services which better should not be started on a kiwi client. 
+</I>
+I think the /etc/inittab where the default runlevel is set can
+be simply copied into the system
+
+&gt;<i> I'm thinking about the boot stuff (boot.localnet
+</I>&gt;<i> boot.loadmodules....etc) but also all other services. Is there anything
+</I>&gt;<i> I have to watch out?
+</I>
+for suse kiwi provides a function called suseActivateDefaultServices()
+this will run the post scripts of your installed packages and activate
+the default services. If you need other services too just activate them
+with the function suseInsertService()
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000087.html">[Kiwi-users] runlevel setting on kiwi network client
+</A></li>
+	<LI>Next message: <A HREF="000100.html">[Kiwi-users] runlevel setting on kiwi network client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#88">[ date ]</a>
+              <a href="thread.html#88">[ thread ]</a>
+              <a href="subject.html#88">[ subject ]</a>
+              <a href="author.html#88">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

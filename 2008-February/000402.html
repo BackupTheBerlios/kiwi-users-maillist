@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Localization
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization&In-Reply-To=%3C47C66FC2.6010503%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000395.html">
+   <LINK REL="Next"  HREF="000403.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Localization</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization&In-Reply-To=%3C47C66FC2.6010503%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] Localization">bernd at ixsoft.de
+       </A><BR>
+    <I>Thu Feb 28 09:24:34 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000395.html">[Kiwi-users] Localization
+</A></li>
+        <LI>Next message: <A HREF="000403.html">[Kiwi-users] Localization
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#402">[ date ]</a>
+              <a href="thread.html#402">[ thread ]</a>
+              <a href="subject.html#402">[ subject ]</a>
+              <a href="author.html#402">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+&gt;&gt;&gt;<i> Hmm this is strange. Could you try the following:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> 	sysp -s keyboard
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> the output from the development system and the live system is the same:
+</I>&gt;&gt;<i> Keyboard0 =&gt;  XkbModel   : microsoftpro
+</I>&gt;&gt;<i> Keyboard0 =&gt;  XkbLayout  : de
+</I>&gt;&gt;<i> Keyboard0 =&gt;  XkbVariant : nodeadkeys
+</I>&gt;&gt;<i> Keyboard0 =&gt;  Name       : AT Translated Set 2 keyboard
+</I>&gt;&gt;<i> Keyboard0 =&gt;  VendorID   : 0x0211
+</I>&gt;&gt;<i> Keyboard0 =&gt;  DeviceID   : 0x0001
+</I>&gt;&gt;<i> Keyboard0 =&gt;  Profile    : &lt;undefined&gt;
+</I>&gt;&gt;<i> Keyboard0 =&gt;  RealDevice : /dev/input/event0
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This looks really good, doesn't it?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> yeah it does I'm pretty sure your initial xorg.conf is german
+</I>&gt;<i> maybe this is really a desktop configuration problem. Maybe the
+</I>&gt;<i> desktop uses additionally information which we did not set
+</I>&gt;<i>
+</I>&gt;<i> maybe the setup of /etc/sysconfig/language is important too.
+</I>&gt;<i> Could you check the contents of the RC_LANG variable in this
+</I>&gt;<i> file ?
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>RC_LANG looks good as before:
+RC_LANG=&quot;de_DE.UTF-8&quot;
+
+I created a GNOME based image, and it all works well, German keyboard, 
+everything fine.
+
+So my guess is that the KDE package selection causes the problem. I 
+checked this and found a mixture between KDE3 and KDE4 packages in the 
+openSuse 10.3 kiwi-template. Various updates are on different servers, 
+the mixture may cause a variety of side-effects of course.
+Is there a clean list of KDE3 or KDE4 packages for an openSuse Desktop 
+anywhere that I could use as a sample?
+I don't mind if the desktop is KDE4 based if it runs with German keyboard.
+
+Thanks+ Kind Regards
+Bernd
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 300 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080228/daae3ef4/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080228/daae3ef4/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000395.html">[Kiwi-users] Localization
+</A></li>
+	<LI>Next message: <A HREF="000403.html">[Kiwi-users] Localization
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#402">[ date ]</a>
+              <a href="thread.html#402">[ thread ]</a>
+              <a href="subject.html#402">[ subject ]</a>
+              <a href="author.html#402">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

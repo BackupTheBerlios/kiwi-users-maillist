@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] baseUpdateSysConfig and non-existing keys
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20baseUpdateSysConfig%20and%20non-existing%20keys&In-Reply-To=%3C4D6283DD.5070603%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002365.html">
+   <LINK REL="Next"  HREF="002366.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] baseUpdateSysConfig and non-existing keys</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20baseUpdateSysConfig%20and%20non-existing%20keys&In-Reply-To=%3C4D6283DD.5070603%40novell.com%3E"
+       TITLE="[Kiwi-users] baseUpdateSysConfig and non-existing keys">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Feb 21 16:25:17 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002365.html">[Kiwi-users] baseUpdateSysConfig and non-existing keys
+</A></li>
+        <LI>Next message: <A HREF="002366.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2367">[ date ]</a>
+              <a href="thread.html#2367">[ thread ]</a>
+              <a href="subject.html#2367">[ subject ]</a>
+              <a href="author.html#2367">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 02/21/2011 08:38 AM, Roger Oberholtzer wrote:
+&gt;<i> In a config.sh file, I can set some things in /etc/sysconfig files. For
+</I>&gt;<i> example:
+</I>&gt;<i> 
+</I>&gt;<i>    baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER_ROOT_LOGIN_LOCAL yes
+</I>&gt;<i> 
+</I>&gt;<i> Is it the case that the key must already exist in the file for this to
+</I>&gt;<i> happen? That is, can I add a tag that does not exist? In my example, the
+</I>&gt;<i> value is not in the /etc/sysconfig/displaymanager when the system is
+</I>&gt;<i> installed. I would like to add it and have the value set to yes. But the
+</I>&gt;<i> tag does not appear in the file in the image.
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_GNOME_System">http://en.opensuse.org/SDB:KIWI_Cookbook_GNOME_System</A> does not say if
+</I>&gt;<i> the tag must already exist. It just says that the variable will be set.
+</I>
+Thanks for pointing this out. I added a sentence to the example to
+clarify the mode of operation.
+
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002365.html">[Kiwi-users] baseUpdateSysConfig and non-existing keys
+</A></li>
+	<LI>Next message: <A HREF="002366.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2367">[ date ]</a>
+              <a href="thread.html#2367">[ thread ]</a>
+              <a href="subject.html#2367">[ subject ]</a>
+              <a href="author.html#2367">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi or package issue?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3CAANLkTinFKE1JXQ3kZULJdriCiixpbgDZkXaLXb5v%3Dk02%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002540.html">
+   <LINK REL="Next"  HREF="002543.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi or package issue?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3CAANLkTinFKE1JXQ3kZULJdriCiixpbgDZkXaLXb5v%3Dk02%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Kiwi or package issue?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Thu Mar 24 15:45:13 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002540.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+        <LI>Next message: <A HREF="002543.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2541">[ date ]</a>
+              <a href="thread.html#2541">[ thread ]</a>
+              <a href="subject.html#2541">[ subject ]</a>
+              <a href="author.html#2541">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Mar 24, 2011 at 9:12 AM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> Hey Robert,
+</I>&gt;&gt;<i> You are correct on the log. It did exec the config.sh file. &#160;I did
+</I>&gt;&gt;<i> think of using the version of the config.xml file that I posted on the
+</I>&gt;&gt;<i> 21 of March. &#160;The results were the same.
+</I>&gt;&gt;<i> The packages that I made to replace the SUSE branding ones worked fine
+</I>&gt;&gt;<i> until 2days ago.
+</I>&gt;&gt;<i> I just confirmed that the lxde-common-branding-openSUSE package was
+</I>&gt;&gt;<i> changed. &#160;I was just looking at the image files for this package that
+</I>&gt;&gt;<i> are in /usr/share/lxde/images. &#160;The image are nothing like they used
+</I>&gt;&gt;<i> to be. &#160;So this package was updated for sure. &#160;Is there a way in kiwi
+</I>&gt;&gt;<i> to specify it to use a specific version of this
+</I>&gt;&gt;<i> lxde-common-branding-openSUSE package rather than the latest version?
+</I>&gt;<i>
+</I>&gt;<i> You can specify the package name including the version number, i.e.
+</I>&gt;<i>
+</I>&gt;<i> &lt;package name=&quot;blah-1.2.3&quot;/&gt;
+</I>&gt;<i>
+</I>&gt;<i> However, be aware that if the upstream package changed the older version may
+</I>&gt;<i> have disappeared from the repo.
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+Geesss can there be any more variables?!
+So what is the cure for this issue?  I mean if an image is designed
+around certain packages and my packages are based off the original
+SUSE versions of them how do I avoid having issue when somebody
+updates the SUSE packages that mine are based from?
+All I want to do is have a consistent base to build from.  Should I be
+making my branding package in such as way that they don't depend on
+anything else?  It just seems for every step forward that I make I
+take 4 steps backwards due to unforeseen changes or issues.  Don't get
+me wrong I'm learning alot and have a long way to go in that area but
+time wise this is killing me.  Am I doing something wrong?
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002540.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+	<LI>Next message: <A HREF="002543.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2541">[ date ]</a>
+              <a href="thread.html#2541">[ thread ]</a>
+              <a href="subject.html#2541">[ subject ]</a>
+              <a href="author.html#2541">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

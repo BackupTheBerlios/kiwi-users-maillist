@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Additional packages needed in OEM (DVD) boot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Additional%20packages%20needed%20in%20OEM%20%28DVD%29%20boot%20image&In-Reply-To=%3C20110127153514.GA7055%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002285.html">
+   <LINK REL="Next"  HREF="002287.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Additional packages needed in OEM (DVD) boot image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Additional%20packages%20needed%20in%20OEM%20%28DVD%29%20boot%20image&In-Reply-To=%3C20110127153514.GA7055%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Additional packages needed in OEM (DVD) boot image">ms at suse.de
+       </A><BR>
+    <I>Thu Jan 27 16:35:14 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002285.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+        <LI>Next message: <A HREF="002287.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2286">[ date ]</a>
+              <a href="thread.html#2286">[ thread ]</a>
+              <a href="subject.html#2286">[ subject ]</a>
+              <a href="author.html#2286">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> 1.  I am using the kiwi built installation to install an openSuse 11.1 on 
+</I>&gt;<i> a full &quot;rack&quot; of machines in manufacturing.  The machines are straight out 
+</I>&gt;<i> of the PC factory and have no configuration.  The installation needs to be 
+</I>&gt;<i> completely automated.  The initially loaded machine (lets call it the 
+</I>&gt;<i> &quot;Head Node&quot;) is installed first and then is the master for loading all the 
+</I>&gt;<i> rest of the machines in the system.  The Head Node contains a megaraid-sas 
+</I>&gt;<i> driven hard disk card that must be configured (automatically) before the 
+</I>&gt;<i> machine can boot from the hard disk.  The tool to do this requires some 
+</I>&gt;<i> special libraries be available.
+</I>
+Given that you have setup the raid in the megaraid bios you need
+the megaraid storage manager operating and functional inside the
+initrd in order to access the device. I agree a couple of tools
+and libraries as well as some code in the initrd to setup the
+devices is required. But I wouldn't vote for an extra system packed
+into a squashfs to handle this. I would enlarge the initrd to
+support it. I think with todays RAM capabilities you shouldn't 
+have problems with this extra requirement. Booting from a megaraid
+device might have another problem though, because I don't know
+if the system mkinitrd tool is able reboot that system. This means
+it might happen that your custom initrd has to serve for the
+initial and any subsequent boot of the system if mkinitrd
+doesn't support it.
+
+If you plan to implement that I suggest to create some functions
+for handling the megaraid storage manager and hook into the
+probeDevices() function to make the devices available. ALl that
+in KIWILinuxRC.sh. I think if the storage devices are present
+the rest of the deployment code doesn't need a change
+
+&gt;<i> 2.  The Linux on the Head Node sets up a TFTP, DHCP, and NFS server to 
+</I>&gt;<i> allow all the rest of the machines in the rack (call these the &quot;Remote 
+</I>&gt;<i> Nodes&quot;) to PXE (network) boot from the head node.
+</I>
+got that
+
+&gt;<i>  The difficulty here is 
+</I>&gt;<i> that the Head Node sets up each of the Remote Nodes to initially boot from 
+</I>&gt;<i> the network,
+</I>
+How can the head node influence the boot behavior of the other nodes
+imho the bios of each node determines the boot order
+
+&gt;<i> but each of the remote nodes must have the capability to 
+</I>&gt;<i> change there own boot order back to the hard disk before booting from the 
+</I>&gt;<i> hard disk. 
+</I>
+wouldn't this require that the OS have access to the bios and modify
+the boot order from there. I'm not aware of a tool which can do
+that. But I remember IBM wrote a posbios tool for their own bios so
+you can control some parts of the bios from within the os. But I
+think it's not a common task
+
+&gt;<i> This causes another reason to have a large initial initrd OR a 
+</I>&gt;<i> &quot;bigger&quot; filesystem that is loaded into memory to do the &quot;heavy lifting&quot;.
+</I>
+I don't understand the connection between the initrd and the
+ability to modify the bios boot order.
+
+Just a side note:
+
+I recently added the ability to temporary mount and run the 
+&quot;about to become installed&quot; system image in kiwi. It works using
+a device mapper snapshot map which allows all the write actions
+to go into a tempoary cow file. That way you can put all the big
+apps like X a windowmanager and everything else as part of your
+system image without increasing the initrd. I use that in kiwi
+to allow the graphical setup of the partition table with gparted
+while in the partition based installation mode. If you are
+interested in that take a look at the function
+
+   createSnapshotMap()  
+
+in KIWILinuxRC.sh and the code actually using it in
+
+   oemboot/suse-dump
+
+I think that goes into the direction you are thinking about.
+But again for the megaraid-sas support I would add everything
+into the initrd directly. I don't think it's that big
+...could be wrong of course
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002285.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+	<LI>Next message: <A HREF="002287.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2286">[ date ]</a>
+              <a href="thread.html#2286">[ thread ]</a>
+              <a href="subject.html#2286">[ subject ]</a>
+              <a href="author.html#2286">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

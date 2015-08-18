@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi (3.79) ISO on openSUSE 11.1 does not boot anymore
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%283.79%29%20ISO%20on%20openSUSE%2011.1%20does%20not%20boot%0A%20anymore&In-Reply-To=%3C1052206362.478.1259172595220.JavaMail.open-xchange%40ox6-unstable-2.open-xchange.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001534.html">
+   <LINK REL="Next"  HREF="001536.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi (3.79) ISO on openSUSE 11.1 does not boot anymore</H1>
+    <B>Hoeger, Carsten</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%283.79%29%20ISO%20on%20openSUSE%2011.1%20does%20not%20boot%0A%20anymore&In-Reply-To=%3C1052206362.478.1259172595220.JavaMail.open-xchange%40ox6-unstable-2.open-xchange.com%3E"
+       TITLE="[Kiwi-users] kiwi (3.79) ISO on openSUSE 11.1 does not boot anymore">choeger at open-xchange.com
+       </A><BR>
+    <I>Wed Nov 25 19:09:55 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001534.html">[Kiwi-users] kiwi (3.79) ISO on openSUSE 11.1 does not	boot	anymore
+</A></li>
+        <LI>Next message: <A HREF="001536.html">[Kiwi-users] kiwi (3.79) ISO on openSUSE 11.1 does not	boot	anymore
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1535">[ date ]</a>
+              <a href="thread.html#1535">[ thread ]</a>
+              <a href="subject.html#1535">[ subject ]</a>
+              <a href="author.html#1535">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On November 25, 2009 at 6:24 PM Carsten Hoeger &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">choeger at open-xchange.com</A>&gt;
+wrote:
+
+&gt;<i> On Wed, Nov 25, Hoeger, Carsten wrote:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I got it.
+</I>&gt;<i> The symlink is relative.
+</I>&gt;<i> It points to a relative directory, e.g.:
+</I>&gt;<i>
+</I>&gt;<i> /tmp/kiwi-cdboot.Y6VzeY/kiwi-cdboot-8288/CD/: total 16
+</I>&gt;<i> drwxr-xr-x&#160; 3 root root 4096 Nov 25 18:20 .
+</I>&gt;<i> drwxr-xr-x 16 root root 4096 Nov 25 18:20 ..
+</I>&gt;<i> drwxr-xr-x&#160; 2 root root 4096 Nov 25 18:20 boot
+</I>&gt;<i> lrwxrwxrwx&#160; 1 root root&#160; &#160;68 Nov 25 18:20
+</I>&gt;<i> ox-live-iso-desktop-read-only.i686-0.0.2 -&gt;
+</I>&gt;<i> oxlive-result/ox-live-iso-desktop-read-only.i686-0.0.2
+</I>&gt;<i>
+</I>&gt;<i> where is should:
+</I>&gt;<i>
+</I>&gt;<i> lrwxrwxrwx&#160; 1 root root&#160; &#160;68 Nov 25 18:20
+</I>&gt;<i> ox-live-iso-desktop-read-only.i686-0.0.2 -&gt;
+</I>&gt;<i> /SPACE/oxlive/oxlive-result/ox-live-iso-desktop-read-only.i686-0.0.2
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The following patch fixes that in my case:
+</I>
+&#160;
+Hm, well, after reading that mail I just noticed, that I could solve the
+problem in just using absolute path...
+&#160;
+I&#180;m just so used to use relative path here, that I did not notice...
+&#160;
+That&#180;s a real disadvantage when using symlinks here.
+Maybe a check should be added and issue an error message at this place?
+&#160;
+&#160;
+
+--
+mit freundlichen Gruessen/with best regards,
+
+Carsten Hoeger
+Open-Xchange GmbH
+
+-------------------------------------------------------------------------------
+Open-Xchange AG,&#160; Maxfeldstr. 9, 90409 N&#252;rnberg, Amtsgericht N&#252;rnberg HRB 24738
+Vorstand: Rafael Laguna de la Vera, Aufsichtsratsvorsitzender: Richard Seibt
+
+European Office: Open-Xchange GmbH, Martinstr. 41, D-57462 Olpe, Germany
+Amtsgericht Siegen, HRB 8718, Gesch&#228;ftsf&#252;hrer: Frank Hoberg, Martin Kauss
+-------------------------------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001534.html">[Kiwi-users] kiwi (3.79) ISO on openSUSE 11.1 does not	boot	anymore
+</A></li>
+	<LI>Next message: <A HREF="001536.html">[Kiwi-users] kiwi (3.79) ISO on openSUSE 11.1 does not	boot	anymore
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1535">[ date ]</a>
+              <a href="thread.html#1535">[ thread ]</a>
+              <a href="subject.html#1535">[ subject ]</a>
+              <a href="author.html#1535">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

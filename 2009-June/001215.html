@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Package name weirdness/question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Package%20name%20weirdness/question&In-Reply-To=%3C4A3BC415.7010209%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001214.html">
+   <LINK REL="Next"  HREF="001216.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Package name weirdness/question</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Package%20name%20weirdness/question&In-Reply-To=%3C4A3BC415.7010209%40novell.com%3E"
+       TITLE="[Kiwi-users] Package name weirdness/question">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Jun 19 19:00:05 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001214.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+        <LI>Next message: <A HREF="001216.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1215">[ date ]</a>
+              <a href="thread.html#1215">[ thread ]</a>
+              <a href="subject.html#1215">[ subject ]</a>
+              <a href="author.html#1215">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi Robert,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> How can one consistently determine whet package names are expected?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> For example, trying to create an image that contains ImageMagic requires
+</I>&gt;&gt;<i> the following:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;package name=&quot;ImageMagick-6.4.3.6-5.3&quot;/&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> just using
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;package name=&quot;ImageMagick&quot;/&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> triggers a &quot;package not found&quot; error. Yet, with GIMP one can get away with:
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I can hardly believe that. 
+</I>Well after spending some more frustrating time on this I finally found
+the problem, the problem existed between the keyboard and the chair, in
+that I fat fingered ImageMagick when I did not use the version number.
+
+Thanks.
+&gt;<i> If you call
+</I>&gt;<i>
+</I>&gt;<i>    rpm -q ImageMagick --qf %{NAME}
+</I>&gt;<i>
+</I>&gt;<i> you will get the name which can be resolved by the packagemanager.
+</I>&gt;<i> In case of ImageMagick the result is ImageMagick. So I think some
+</I>&gt;<i> other error causes the &quot;not found&quot; problem. Are you really sure
+</I>&gt;<i> the ImageMagick package exists in the desired arch on the repo(s)
+</I>&gt;<i> you specified for building ?
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i>   
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001214.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+	<LI>Next message: <A HREF="001216.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1215">[ date ]</a>
+              <a href="thread.html#1215">[ thread ]</a>
+              <a href="subject.html#1215">[ subject ]</a>
+              <a href="author.html#1215">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

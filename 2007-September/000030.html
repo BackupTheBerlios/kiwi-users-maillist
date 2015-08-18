@@ -1,0 +1,1847 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-ltsp-setup problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-ltsp-setup%20problem&In-Reply-To=%3C200709201105.54156.markd%40hotdesk.biz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000029.html">
+   <LINK REL="Next"  HREF="000031.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-ltsp-setup problem</H1>
+    <B>Mark Dickie</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-ltsp-setup%20problem&In-Reply-To=%3C200709201105.54156.markd%40hotdesk.biz%3E"
+       TITLE="[Kiwi-users] kiwi-ltsp-setup problem">markd at hotdesk.biz
+       </A><BR>
+    <I>Thu Sep 20 12:05:53 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000029.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+        <LI>Next message: <A HREF="000031.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 18 September 2007 11:21:12 you wrote:
+&gt;<i> On 9/18/07, Mark Dickie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">markd at hotdesk.biz</A>&gt; wrote:
+</I>&gt;<i> &gt; Thanks for the help CyberOrg and sorry to seem daft but which config do I
+</I>&gt;<i> &gt; set the DEBUG in?  I just looked at /etc/sysconfig/kiwi-ltsp but it only
+</I>&gt;<i> &gt; has an on or off switch for DEBUG not a DEBUG level.
+</I>&gt;<i>
+</I>&gt;<i> Just set it to &quot;1&quot;
+</I>&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i>
+</I>&gt;<i> -J
+</I>
+Okay here is the full DEBUG output.
+
+KIWI-LTSP: 2007-09-17 11:29:42: ====== Starting ======
+KIWI-LTSP: 2007-09-17 11:29:42: Setting up the destination path
+KIWI-LTSP: 2007-09-17 11:29:42: /srv/kiwi-ltsp exists. Moving 
+to &quot;/srv/kiwi-ltsp.0709171129&quot;
+KIWI-LTSP: 2007-09-17 11:29:42: Setting up the hosts file and lts.conf
+KIWI-LTSP: 2007-09-17 11:29:42: Running the KIWI LTSP creation.
+KIWI-LTSP: 2007-09-17 11:29:42: /srv/kiwi-ltsp-nfs exists. Moving 
+to &quot;/srv/kiwi-ltsp-nfs.0709171129&quot;
+Sep-17 11:29 &lt;1&gt; : Setting log file to: terminal
+Sep-17 11:29 &lt;1&gt; : Reading image description...   done
+Sep-17 11:29 &lt;1&gt; : Setting up package manager: smart   done
+Sep-17 11:29 &lt;1&gt; : Setting RPM signature check to: False   done
+Sep-17 11:29 &lt;1&gt; : Adding local smart channel: kiwi1-9920   done
+Sep-17 11:29 &lt;1&gt; : Adding local smart channel: kiwi2-9920   done
+Sep-17 11:29 &lt;1&gt; : Initializing image system on: /srv/kiwi-ltsp-nfs...Loading 
+cache...
+Updating cache...               ######################################## 
+[100%]
+
+                                                                               
+Fetching information for 'kiwi2-9920'...
+
+Updating cache...               ######################################## 
+[100%]
+
+Channels have no new packages.
+Saving cache...
+
+Loading cache...
+Updating cache...               ######################################## 
+[100%]
+
+Computing transaction...
+
+Installing packages (73):
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mktemp-1.5-763 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">net-tools-1.60-606 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openSUSE-release-10.2-35 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_skel-2006.5.19-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mingetty-0.9.6s-107 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">filesystem-10.2-22 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_skel-2006.5.19-20 at i586</A>
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">audit-libs-1.2.6-20 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cracklib-2.8.9-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">module-init-tools-3.2.2-62 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mdadm-2.5.3-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kernel-default-2.6.18.2-34 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">blocxx-1.0.0-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">e2fsprogs-1.39-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">irqbalance-0.09-80 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pciutils-2.2.4-13 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libzio-0.2-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gawk-3.1.5-41 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-Bootloader-0.4.5-3 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libcom_err-1.39-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">devs-10.2-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">blocxx-1.0.0-36 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pcre-6.7-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libacl-2.2.34-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libattr-2.4.28-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mdadm-2.5.3-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">devs-10.2-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kernel-default-2.6.18.2-34 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cracklib-2.8.9-20 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">devs-10.2-19 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">e2fsprogs-1.39-21 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libvolume_id-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libcom_err-1.39-21 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-Bootloader-0.4.5-3 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">reiserfs-3.6.19-37 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">file-4.17-23 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">filesystem-10.2-22 at i586</A>
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mdadm-2.5.3-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gawk-3.1.5-41 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gdbm-1.8.3-261 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">filesystem-10.2-22 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cracklib-2.8.9-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">reiserfs-3.6.19-37 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">net-tools-1.60-606 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pcre-6.7-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-xml-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">module-init-tools-3.2.2-62 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libacl-2.2.34-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">blocxx-1.0.0-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mingetty-0.9.6s-107 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mdadm-2.5.3-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gdbm-1.8.3-261 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">audit-libs-1.2.6-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libcom_err-1.39-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">e2fsprogs-1.39-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pciutils-2.2.4-13 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libattr-2.4.28-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libvolume_id-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gawk-3.1.5-41 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">irqbalance-0.09-80 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-gettext-1.05-31 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-perl-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libzio-0.2-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mktemp-1.5-763 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">file-4.17-23 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-locale-2.5-25 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libxcrypt-2.4-30 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-locale-2.5-25 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libzio-0.2-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">e2fsprogs-1.39-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gawk-3.1.5-41 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">irqbalance-0.09-80 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mdadm-2.5.3-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">irqbalance-0.09-80 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kernel-default-2.6.18.2-34 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kernel-default-2.6.18.2-34 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">irqbalance-0.09-80 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-Bootloader-0.4.5-3 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libacl-2.2.34-33 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libattr-2.4.28-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libattr-2.4.28-38 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libacl-2.2.34-33 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libcom_err-1.39-21 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">e2fsprogs-1.39-21 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-perl-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pcre-6.7-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">blocxx-1.0.0-36 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-perl-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pcre-6.7-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">blocxx-1.0.0-36 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libvolume_id-103-12 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">e2fsprogs-1.39-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libxcrypt-2.4-30 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libzio-0.2-20 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-1.2.9-5 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">blocxx-1.0.0-36 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-perl-1.2.9-5 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">blocxx-1.0.0-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-perl-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-Bootloader-0.4.5-3 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-Bootloader-0.4.5-3 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-perl-1.2.9-5 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-perl-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-perl-1.2.9-5 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mdadm-2.5.3-17 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-Bootloader-0.4.5-3 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mingetty-0.9.6s-107 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">e2fsprogs-1.39-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">module-init-tools-3.2.2-62 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">reiserfs-3.6.19-37 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pciutils-2.2.4-13 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gawk-3.1.5-41 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">file-4.17-23 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kernel-default-2.6.18.2-34 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mktemp-1.5-763 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">module-init-tools-3.2.2-62 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">net-tools-1.60-606 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openSUSE-release-10.2-35 at i586</A>
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cracklib-2.8.9-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">audit-libs-1.2.6-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libxcrypt-2.4-30 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pciutils-2.2.4-13 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pciutils-ids-2006.11.18-2 at noarch</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pciutils-ids-2006.11.18-2 at noarch</A>
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pciutils-2.2.4-13 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pcre-6.7-21 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">blocxx-1.0.0-36 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gdbm-1.8.3-261 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-perl-1.2.9-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-gettext-1.05-31 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-Bootloader-0.4.5-3 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-Bootloader-0.4.5-3 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-gettext-1.05-31 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">e2fsprogs-1.39-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mdadm-2.5.3-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kernel-default-2.6.18.2-34 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">limal-bootloader-1.2.4-6 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-gettext-1.05-31 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-Bootloader-0.4.5-3 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gdbm-1.8.3-261 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-xml-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-xml-2.5-19 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">reiserfs-3.6.19-37 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">e2fsprogs-1.39-21 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kernel-default-2.6.18.2-34 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">irqbalance-0.09-80 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mdadm-2.5.3-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-xml-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mktemp-1.5-763 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A> (instal                                                                               
+Committing transaction...
+Preparing...                    ######################################## [  
+0%]
+   1:Installing pciutils-ids    ######################################## [  
+1%]
+   2:Installing filesystem      ######################################## [  
+2%]
+   3:Installing aaa_skel        ######################################## [  
+4%]
+   4:Installing openSUSE-rele.. ######################################## [  
+5%]
+   5:Installing glibc           ######################################## [  
+6%]
+   6:Installing glibc-locale    ######################################## [  
+8%]
+   7:Installing ncurses         ######################################## [  
+9%]
+   8:Installing libxcrypt       ######################################## [ 
+10%]
+   9:Installing zlib            ######################################## [ 
+12%]
+  10:Installing libattr         ######################################## [ 
+13%]
+  11:Installing libvolume_id    ######################################## [ 
+15%]
+  12:Installing mktemp          ######################################## [ 
+16%]
+  13:Installing mingetty        ######################################## [ 
+17%]
+  14:Installing libgcc41        ######################################## [ 
+19%]
+  15:Installing fillup          ######################################## [ 
+20%]
+  16:Installing net-tools       ######################################## [ 
+21%]
+  17:Installing audit-libs      ######################################## [ 
+23%]
+  18:Installing popt            ######################################## [ 
+24%]
+  19:Installing gdbm            ######################################## [ 
+26%]
+  20:Installing readline        ######################################## [ 
+27%]
+  21:Installing file            ######################################## [ 
+28%]
+  22:Installing libacl          ######################################## [ 
+30%]
+  23:Installing libstdc++41     ######################################## [ 
+31%]
+  24:Installing bash            ######################################## [ 
+32%]
+  25:Installing db              ######################################## [ 
+34%]
+  26:Installing pcre            ######################################## [ 
+35%]
+  27:Installing pciutils        ######################################## [ 
+36%]
+  28:Installing bzip2           ######################################## [ 
+38%]
+  29:Installing libcom_err      ######################################## [ 
+39%]
+  30:Installing module-init-t.. ######################################## [ 
+41%]
+  31:Installing cracklib        ######################################## [ 
+42%]
+  32:Installing libzio          ######################################## [ 
+43%]
+  33:Installing insserv         ######################################## [ 
+45%]
+  34:Installing blocxx          ######################################## [ 
+46%]
+  35:Installing pam             ######################################## [ 
+47%]
+  36:Installing info            ######################################## [ 
+49%]
+  37:Installing limal           ######################################## [ 
+50%]
+  38:Installing cpio            ######################################## [ 
+52%]
+  39:Installing diffutils       ######################################## [ 
+53%]
+  40:Installing gawk            ######################################## [ 
+54%]
+  41:Installing findutils       ######################################## [ 
+56%]
+  42:Installing e2fsprogs       ######################################## [ 
+57%]
+  43:Installing coreutils       ######################################## [ 
+58%]
+  44:Installing grep            ######################################## [ 
+60%]
+  45:Installing gzip            ######################################## [ 
+61%]
+  46:Installing sed             ######################################## [ 
+63%]
+  47:Installing reiserfs        ######################################## [ 
+64%]
+  48:Installing devs            ######################################## [ 
+65%]
+  49:Installing logrotate       ######################################## [ 
+67%]
+  50:Installing sysvinit        ######################################## [ 
+68%]
+  51:Installing perl            ######################################## [ 
+69%]
+  52:Installing mdadm           ######################################## [ 
+71%]
+  53:Installing irqbalance      ######################################## [ 
+72%]
+  54:Installing cyrus-sasl      ######################################## [ 
+73%]
+  55:Installing udev            ######################################## [ 
+75%]
+  56:Installing openssl         ######################################## [ 
+76%]
+  57:Installing perl-gettext    ######################################## [ 
+78%]
+  58:Installing limal-perl      ######################################## [ 
+79%]
+  59:Installing aaa_base        ######################################## [ 
+80%]
+  60:Installing openldap2-cli.. ######################################## [ 
+82%]
+  61:Installing python          ######################################## [ 
+83%]
+  62:Installing limal-bootloa.. ######################################## [ 
+84%]
+  63:Installing permissions     ######################################## [ 
+86%]
+  64:Installing gpg             ######################################## [ 
+87%]
+  65:Installing python-xml      ######################################## [ 
+89%]
+  66:Installing perl-Bootloader ######################################## [ 
+90%]
+  67:Installing util-linux      ######################################## [ 
+91%]
+  68:Installing suse-build-key  ######################################## [ 
+93%]
+  69:Installing mkinitrd        ######################################## [ 
+94%]
+  70:Installing rpm             ######################################## [ 
+95%]
+  71:Installing kernel-default  ######################################## [ 
+97%]
+  72:Installing rpm-python      ######################################## [ 
+98%]
+  73:Installing smart           ######################################## 
+[100%]
+led)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libvolume_id-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libvolume_id-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkinitrd-1.2-149 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">util-linux-2.12r-61 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">file-4.17-23 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pciutils-2.2.4-13 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+
+77.3MB of package files are needed. 261.2MB will be used.
+
+
+
+   done
+Sep-17 11:31 &lt;1&gt; : Removing smart channel(s): kiwi1-9920 kiwi2-9920   done
+Sep-17 11:31 &lt;1&gt; : Reset RPM signature check to: True   done
+Sep-17 11:31 &lt;1&gt; : Mounting required file systems   done
+Sep-17 11:31 &lt;1&gt; : Mounting local channel: kiwi1-9920   skipped
+Sep-17 11:31 &lt;2&gt; : Couldn't mount read-only, using bind mount   done
+Sep-17 11:31 &lt;1&gt; : Mounting local channel: kiwi2-9920   skipped
+Sep-17 11:31 &lt;2&gt; : Couldn't mount read-only, using bind mount   done
+Sep-17 11:31 &lt;1&gt; : Setting RPM signature check to: False   done
+Sep-17 11:31 &lt;1&gt; : Adding image smart channel: kiwi1-9920   done
+Sep-17 11:31 &lt;1&gt; : Adding image smart channel: kiwi2-9920   done
+Sep-17 11:31 &lt;1&gt; : Installing image packages...Loading cache...
+Updating cache...               ######################################## 
+[100%]
+
+                                                                               
+Fetching information for 'kiwi2-9920'...
+
+Updating cache...               ######################################## 
+[100%]
+
+Channels have no new packages.
+Loading cache...
+Updating cache...               ######################################## 
+[100%]
+error: 'alsa-oss' matches no packages. Suggestions:
+error:     <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">alsa-tools-1.0.13-19 at i586</A>
+
+
+   done
+Sep-17 11:31 &lt;1&gt; : Copying user defined files to image tree   done
+Sep-17 11:31 &lt;1&gt; : Create .profile for package scripts   done
+Sep-17 11:31 &lt;1&gt; : Calling image script: config.sh   done
+Sep-17 11:31 &lt;1&gt; : Adding user: linux [users]   failed
+Sep-17 11:31 &lt;1&gt; : chroot: cannot run command `/usr/sbin/useradd': No such 
+file or directory
+   failed
+Sep-17 11:31 &lt;3&gt; : Couldn't setup image system   failed
+Sep-17 11:31 &lt;1&gt; : Umounting path: /srv/kiwi-ltsp-nfs//base-system/mnt/10.3
+Sep-17 11:31 &lt;1&gt; : Umounting 
+path: /srv/kiwi-ltsp-nfs//base-system/usr/share/kiwi/image/ltsp/suse-10.3/extra-packages
+Sep-17 11:31 &lt;1&gt; : Umounting path: /srv/kiwi-ltsp-nfs/dev/pts
+Sep-17 11:31 &lt;1&gt; : Umounting path: /srv/kiwi-ltsp-nfs/sys
+Sep-17 11:31 &lt;1&gt; : Umounting path: /srv/kiwi-ltsp-nfs/proc
+Sep-17 11:31 &lt;3&gt; : KIWI exited with error(s)   done
+KIWI-LTSP: 2007-09-17 11:31:24: Setting up the SSH keys
+Setting up ssh_known_hosts in: 
+  /srv/kiwi-ltsp.0709171129
+WARNING: /srv/kiwi-ltsp.0709171129/etc/ssh not found. skipping...
+  /srv/kiwi-ltsp-nfs
+WARNING: /srv/kiwi-ltsp-nfs/etc/ssh not found. skipping...
+  /srv/tftpboot
+WARNING: /srv/tftpboot/etc/ssh not found. skipping...
+  /srv/kiwi-ltsp-nfs.0709171107
+WARNING: /srv/kiwi-ltsp-nfs.0709171107/etc/ssh not found. skipping...
+  /srv/www
+WARNING: /srv/www/etc/ssh not found. skipping...
+  /srv/ftp
+WARNING: /srv/ftp/etc/ssh not found. skipping...
+  /srv/kiwi-ltsp-nfs.0709171129
+WARNING: /srv/kiwi-ltsp-nfs.0709171129/etc/ssh not found. skipping...
+  /srv/kiwi-ltsp.0709171107
+WARNING: /srv/kiwi-ltsp.0709171107/etc/ssh not found. skipping...
+Sep-17 11:31 &lt;1&gt; : Setting log file to: terminal
+Sep-17 11:31 &lt;1&gt; : Reading image description...   done
+Sep-17 11:31 &lt;1&gt; : Calculating kernel module dependencies...   done
+Sep-17 11:31 &lt;1&gt; : Image requires 301 MB, got 2700M MB   done
+Sep-17 11:31 &lt;1&gt; : Suggested Image size: 332 MB   done
+Sep-17 11:33 &lt;1&gt; : Creating image MD5 sum...   done
+Sep-17 11:33 &lt;1&gt; : Creating boot configuration...   skipped
+Sep-17 11:33 &lt;1&gt; : KIWI exited successfully   done
+KIWI-LTSP: 2007-09-17 11:33:22: Modifying /etc/exports
+KIWI-LTSP: 2007-09-17 11:33:22: Setting up a sample DHCP configuration file
+KIWI-LTSP: 2007-09-17 11:33:22: Setting up KIWI PXE support.
+KIWI-LTSP: 2007-09-17 11:33:22: Running the KIWI netboot preparation.
+KIWI-LTSP: 2007-09-17 11:33:22: /tmp/kiwi-netboot exists. Moving 
+to &quot;/tmp/kiwi-netboot.0709171133&quot;
+Sep-17 11:33 &lt;1&gt; : Setting log file to: terminal
+Sep-17 11:33 &lt;1&gt; : Reading image description...   done
+Sep-17 11:33 &lt;1&gt; : Using profile(s): default   done
+Sep-17 11:33 &lt;1&gt; : Setting up package manager: smart   done
+Sep-17 11:33 &lt;1&gt; : Setting RPM signature check to: False   done
+Sep-17 11:33 &lt;1&gt; : Adding local smart channel: kiwi1-10781   done
+Sep-17 11:33 &lt;1&gt; : Adding local smart channel: kiwi2-10781   done
+Sep-17 11:33 &lt;1&gt; : Initializing image system on: /tmp/kiwi-netboot...Loading 
+cache...
+Updating cache...               ######################################## 
+[100%]
+
+                                                                               
+Fetching information for 'kiwi2-10781'...
+
+Updating cache...               ######################################## 
+[100%]
+
+Channels have no new packages.
+Saving cache...
+
+Loading cache...
+Updating cache...               ######################################## 
+[100%]
+
+Computing transaction...
+
+Installing packages (53):
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_skel-2006.5.19-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">filesystem-10.2-22 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mingetty-0.9.6s-107 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openSUSE-release-10.2-35 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mktemp-1.5-763 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">net-tools-1.60-606 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_skel-2006.5.19-20 at i586</A>
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">audit-libs-1.2.6-20 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cracklib-2.8.9-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">devs-10.2-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libzio-0.2-20 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libacl-2.2.34-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libattr-2.4.28-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">devs-10.2-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cracklib-2.8.9-20 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">devs-10.2-19 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">filesystem-10.2-22 at i586</A>
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gdbm-1.8.3-261 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">filesystem-10.2-22 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cracklib-2.8.9-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libacl-2.2.34-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libvolume_id-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">audit-libs-1.2.6-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-locale-2.5-25 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-xml-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mktemp-1.5-763 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mingetty-0.9.6s-107 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gdbm-1.8.3-261 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">net-tools-1.60-606 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libxcrypt-2.4-30 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libattr-2.4.28-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libzio-0.2-20 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-locale-2.5-25 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libzio-0.2-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cpio-2.6-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">findutils-4.2.28-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">grep-2.5.1a-40 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">diffutils-2.8.7-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libacl-2.2.34-33 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libattr-2.4.28-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libattr-2.4.28-38 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libacl-2.2.34-33 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libstdc++41-4.1.2_20061115-5 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libgcc41-4.1.2_20061115-5 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libvolume_id-103-12 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libxcrypt-2.4-30 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libzio-0.2-20 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mingetty-0.9.6s-107 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mktemp-1.5-763 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">net-tools-1.60-606 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openSUSE-release-10.2-35 at i586</A>
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openldap2-client-2.3.27-25 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">pam-0.99.6.3-24 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">audit-libs-1.2.6-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cracklib-2.8.9-20 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libxcrypt-2.4-30 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gzip-1.3.5-178 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gdbm-1.8.3-261 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">logrotate-3.7.4-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">db-4.4.20-16 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gdbm-1.8.3-261 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-xml-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-xml-2.5-19 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">readline-5.1-55 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ncurses-5.5-42 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">permissions-2006.11.13-5 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">perl-5.8.8-32 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">popt-1.7-304 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bzip2-1.0.3-36 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cyrus-sasl-2.1.22-28 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">smart-0.51-45.1 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-xml-2.5-19 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">suse-build-key-1.0-707 at noarch</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mktemp-1.5-763 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">udev-103-12 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fillup-1.42-138 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">insserv-1.04.0-42 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sysvinit-2.86-47 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">libvolume_id-103-12 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sed-4.1.5-21 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coreutils-6.4-10 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bash-3.1-55 at i586</A> (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aaa_base-10.2-38 at i586</A> (installed)
+  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">zlib-1.2.3-33 at i586</A>
+    Requires:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">glibc-2.5-25 at i686</A>                                                                               
+Committing transaction...
+Preparing...                    ######################################## [  
+0%]
+   1:Installing aaa_skel        ######################################## [  
+1%]
+   2:Installing filesystem      ######################################## [  
+3%]
+   3:Installing openSUSE-rele.. ######################################## [  
+5%]
+   4:Installing glibc           ######################################## [  
+7%]
+   5:Installing gdbm            ######################################## [  
+9%]
+   6:Installing mingetty        ######################################## [ 
+11%]
+   7:Installing libvolume_id    ######################################## [ 
+13%]
+   8:Installing zlib            ######################################## [ 
+15%]
+   9:Installing libgcc41        ######################################## [ 
+16%]
+  10:Installing fillup          ######################################## [ 
+18%]
+  11:Installing mktemp          ######################################## [ 
+20%]
+  12:Installing glibc-locale    ######################################## [ 
+22%]
+  13:Installing net-tools       ######################################## [ 
+24%]
+  14:Installing audit-libs      ######################################## [ 
+26%]
+  15:Installing libattr         ######################################## [ 
+28%]
+  16:Installing popt            ######################################## [ 
+30%]
+  17:Installing ncurses         ######################################## [ 
+32%]
+  18:Installing libxcrypt       ######################################## [ 
+33%]
+  19:Installing libstdc++41     ######################################## [ 
+35%]
+  20:Installing libacl          ######################################## [ 
+37%]
+  21:Installing readline        ######################################## [ 
+39%]
+  22:Installing db              ######################################## [ 
+41%]
+  23:Installing bash            ######################################## [ 
+43%]
+  24:Installing bzip2           ######################################## [ 
+45%]
+  25:Installing libzio          ######################################## [ 
+47%]
+  26:Installing cracklib        ######################################## [ 
+49%]
+  27:Installing insserv         ######################################## [ 
+50%]
+  28:Installing info            ######################################## [ 
+52%]
+  29:Installing pam             ######################################## [ 
+54%]
+  30:Installing grep            ######################################## [ 
+56%]
+  31:Installing cpio            ######################################## [ 
+58%]
+  32:Installing diffutils       ######################################## [ 
+60%]
+  33:Installing sed             ######################################## [ 
+62%]
+  34:Installing findutils       ######################################## [ 
+64%]
+  35:Installing gzip            ######################################## [ 
+66%]
+  36:Installing coreutils       ######################################## [ 
+67%]
+  37:Installing perl            ######################################## [ 
+69%]
+  38:Installing logrotate       ######################################## [ 
+71%]
+  39:Installing cyrus-sasl      ######################################## [ 
+73%]
+  40:Installing sysvinit        ######################################## [ 
+75%]
+  41:Installing devs            ######################################## [ 
+77%]
+  42:Installing openssl         ######################################## [ 
+79%]
+  43:Installing udev            ######################################## [ 
+81%]
+  44:Installing openldap2-cli.. ######################################## [ 
+83%]
+  45:Installing python          ######################################## [ 
+84%]
+  46:Installing aaa_base        ######################################## [ 
+86%]
+  47:Installing gpg             ######################################## [ 
+88%]
+  48:Installing python-xml      ######################################## [ 
+90%]
+  49:Installing permissions     ######################################## [ 
+92%]
+  50:Installing suse-build-key  ######################################## [ 
+94%]
+  51:Installing rpm             ######################################## [ 
+96%]
+  52:Installing rpm-python      ######################################## [ 
+98%]
+  53:Installing smart           ######################################## 
+[100%]
+ (installed)
+    Required By:
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">openssl-0.9.8d-17 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rpm-python-4.4.2-76 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">gpg-1.4.5-24 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">python-2.5-19 at i586</A> (installed)
+      <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">info-4.8-43 at i586</A> (installed)
+
+53.4MB of package files are needed. 186.1MB will be used.
+
+
+
+   done
+Sep-17 11:34 &lt;1&gt; : Removing smart channel(s): kiwi1-10781 kiwi2-10781   done
+Sep-17 11:34 &lt;1&gt; : Reset RPM signature check to: True   done
+Sep-17 11:34 &lt;1&gt; : Mounting required file systems   done
+Sep-17 11:34 &lt;1&gt; : Mounting local channel: kiwi1-10781   skipped
+Sep-17 11:34 &lt;2&gt; : Couldn't mount read-only, using bind mount   done
+Sep-17 11:34 &lt;1&gt; : Mounting local channel: kiwi2-10781   skipped
+Sep-17 11:34 &lt;2&gt; : Couldn't mount read-only, using bind mount   done
+Sep-17 11:34 &lt;1&gt; : Setting RPM signature check to: False   done
+Sep-17 11:34 &lt;1&gt; : Adding image smart channel: kiwi1-10781   done
+Sep-17 11:34 &lt;1&gt; : Adding image smart channel: kiwi2-10781   done
+Sep-17 11:34 &lt;1&gt; : Installing image packages...Loading cache...
+Updating cache...               ######################################## 
+[100%]
+
+                                                                               
+Fetching information for 'kiwi2-10781'...
+
+Updating cache...               ######################################## 
+[100%]
+
+Channels have no new packages.
+Loading cache...
+Updating cache...               ######################################## 
+[100%]
+error: 'nfs-client' matches no packages. Suggestions:
+error:     <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cups-client-1.2.7-3 at i586</A>
+error:     <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ltsp-client-0.3.7-4.1 at i586</A>
+
+
+   done
+Sep-17 11:34 &lt;1&gt; : Copying user defined files to image tree   done
+Sep-17 11:34 &lt;1&gt; : Create .profile for package scripts   done
+Sep-17 11:34 &lt;1&gt; : Setting up linuxrc...   done
+Sep-17 11:34 &lt;1&gt; : Preparing package setup scripts   done
+Sep-17 11:34 &lt;1&gt; : Checking for package: kernel-default   failed
+Sep-17 11:34 &lt;3&gt; : Package kernel-default is not installed   skipped
+Sep-17 11:34 &lt;1&gt; : Checking for package: kernel-xen   failed
+Sep-17 11:34 &lt;3&gt; : Package kernel-xen is not installed   skipped
+Sep-17 11:34 &lt;1&gt; : Umounting path: /tmp/kiwi-netboot//base-system/mnt/10.3
+Sep-17 11:34 &lt;1&gt; : Umounting 
+path: /tmp/kiwi-netboot//base-system/usr/share/kiwi/image/ltsp/suse-10.3/extra-packages
+Sep-17 11:34 &lt;1&gt; : Umounting path: /tmp/kiwi-netboot/dev/pts
+Sep-17 11:34 &lt;1&gt; : Umounting path: /tmp/kiwi-netboot/sys
+Sep-17 11:34 &lt;1&gt; : Umounting path: /tmp/kiwi-netboot/proc
+Sep-17 11:34 &lt;1&gt; : KIWI exited successfully   done
+KIWI-LTSP: 2007-09-17 11:34:41: Running the KIWI netboot creation.
+KIWI-LTSP: 2007-09-17 11:34:41: /srv/tftpboot/boot exists. Moving 
+to &quot;/srv/tftpboot/boot.0709171134&quot;
+Sep-17 11:34 &lt;1&gt; : Setting log file to: terminal
+Sep-17 11:34 &lt;1&gt; : Reading image description...   done
+Sep-17 11:34 &lt;1&gt; : Calling image script: images.sh   done
+Sep-17 11:34 &lt;1&gt; : Image requires 11 MB, got 60M MB   done
+Sep-17 11:34 &lt;1&gt; : Suggested Image size: 19 MB   done
+Sep-17 11:34 &lt;1&gt; : Creating image MD5 sum...   done
+Sep-17 11:34 &lt;1&gt; : KIWI exited successfully   done
+KIWI-LTSP: 2007-09-17 11:34:58: Fixing up the netboot initrd and kernel 
+filenames
+rm: cannot remove `/srv/tftpboot/boot/initrd-netboot-suse-10.3.*.kernel': No 
+such file or directory
+mv: cannot stat `/srv/tftpboot/boot/initrd-netboot-suse-10.3*.kernel.*': No 
+such file or directory
+The following tasks need to be done manually:
+ ===&gt; Review /etc/dhcpd.conf.ltsp and modify /etc/dhcpd.conf to suit.
+KIWI-LTSP: 2007-09-17 11:34:58: Making changes to misc configuration files.
+KIWI-LTSP: 2007-09-17 11:34:58: Setting dhcpd to start automatically.
+Shutting down DHCP server ..done
+Starting DHCP server [chroot]..done
+KIWI-LTSP: 2007-09-17 11:35:02: Setting xinetd to start automatically.
+Shutting down xinetd:..done
+Starting INET services. (xinetd)..done
+KIWI-LTSP: 2007-09-17 11:35:04: Setting nbd-server to start automatically.
+Shutting down nbd-server ..done
+Starting nbd-server ..done
+KIWI-LTSP: 2007-09-17 11:35:04: ====== Setup completed ======
+
+
+--
+Thanks for the help so far,
+
+-- 
+Mark Robert Dickie
+Virtual Desk Limited
+E <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">markd at hotdesk.biz</A>
+T 08450043348
+M 07917710719
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000029.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+	<LI>Next message: <A HREF="000031.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] v1.60 released
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20v1.60%20released&In-Reply-To=%3C1188929397.5942.31.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000004.html">
+   <LINK REL="Next"  HREF="000005.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] v1.60 released</H1>
+    <B>Rybczynski, Mitch</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20v1.60%20released&In-Reply-To=%3C1188929397.5942.31.camel%40localhost.localdomain%3E"
+       TITLE="[Kiwi-users] v1.60 released">Mitch.Rybczynski at christiedigital.com
+       </A><BR>
+    <I>Tue Sep  4 20:09:57 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000004.html">[Kiwi-users] [Kiwi-devel] v1.60 released
+</A></li>
+        <LI>Next message: <A HREF="000005.html">[Kiwi-users] v1.60 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+A couple of questions:
+
+1.  I was considering using isoinstboot as a re-spin installer method
+from a bootCD to an empty box.  What would be the preferred method now
+that isoinstboot is removed?  Oemboot?
+
+2.  I'm currently using an opensuse 10.3 beta 1 box as my kiwi build
+machine, having tried a 10.2 with not much luck.  Is Kiwi intended as a
+10.3+ tool?
+
+3.  Is openSUSE itself moving to Kiwi as a build tool?  I guess what i
+mean is, is kiwi going to be a long term stable project?
+
+Regards,
+Mitch Rybczynski
+
+On Tue, 2007-09-04 at 15:47 +0200, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi All,
+</I>&gt;<i> 
+</I>&gt;<i> v1.60 is building. A very nice change is the new web-page logo
+</I>&gt;<i> on <A HREF="http://kiwi.berlios.de.">http://kiwi.berlios.de.</A> This one was sponsored by 
+</I>&gt;<i> biswajyotim mahanta &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">biswajyotim at gmail.com</A>&gt;. I like it :-) 
+</I>&gt;<i> The following is a list of bugfixes and enhancements:
+</I>&gt;<i> 
+</I>&gt;<i> Enhancements:
+</I>&gt;<i> =============
+</I>&gt;<i>     - added support for &lt;packages type=&quot;delete&quot;&gt; section (#304765)
+</I>&gt;<i>       you can add an additional section named:
+</I>&gt;<i> 
+</I>&gt;<i>       &lt;packages type=&quot;delete&quot;&gt;
+</I>&gt;<i>           &lt;package name=&quot;...&quot;&gt;
+</I>&gt;<i>           ...
+</I>&gt;<i>       &lt;/packages&gt;
+</I>&gt;<i>      
+</I>&gt;<i>       in any kiwi script you have the baseGetPackagesForDeletion()
+</I>&gt;<i>       function available which can be used to remove packages. For
+</I>&gt;<i>       example
+</I>&gt;<i> 
+</I>&gt;<i>       for package_name in `baseGetPackagesForDeletion`;do
+</I>&gt;<i>          ....
+</I>&gt;<i>       done
+</I>&gt;<i> 
+</I>&gt;<i>       I have adapted all *boot description to make use of
+</I>&gt;<i>       this feature
+</I>&gt;<i> 
+</I>&gt;<i>     - Allow remote root/ to be exported via network block device.
+</I>&gt;<i>       If a server has a valid nbd-server setup the kiwi config.MAC
+</I>&gt;<i>       file can use this root tree by setting up the following line:
+</I>&gt;<i> 
+</I>&gt;<i>           NBDROOT=ip.of.server.machine;Port;/dev/nbd0
+</I>&gt;<i> 
+</I>&gt;<i>       The last information is the device name exported by the
+</I>&gt;<i>       server. This is an option and by default set to /dev/nbd0
+</I>&gt;<i>       We still have some problems with this feature, so any test
+</I>&gt;<i>       results are highly appreciated
+</I>&gt;<i> 
+</I>&gt;<i> Other Bugfixes:
+</I>&gt;<i> ===============
+</I>&gt;<i>     - fixed network block device default name: is now nbd0
+</I>&gt;<i>     - allow block device name to be specified in NBDROOT
+</I>&gt;<i>     - added patch by Jan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jcbornschlegel at novell.com</A>&gt; which fixes
+</I>&gt;<i>       directory changes not happen in subshells
+</I>&gt;<i>     - removed isoinstboot description from repo, not valid anymore
+</I>&gt;<i>     - got a nice cover page by Frank Sundermeyer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">fs at novell.com</A>&gt; for
+</I>&gt;<i>       the documentation, thanks Frank
+</I>&gt;<i>    
+</I>&gt;<i> Have Fun :-)
+</I>&gt;<i>  
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20070904/c8eaf801/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20070904/c8eaf801/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000004.html">[Kiwi-users] [Kiwi-devel] v1.60 released
+</A></li>
+	<LI>Next message: <A HREF="000005.html">[Kiwi-users] v1.60 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

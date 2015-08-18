@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to install a .tar?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20install%20a%20.tar%3F&In-Reply-To=%3C506DE40C.80906%40suse.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003046.html">
+   <LINK REL="Next"  HREF="003047.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to install a .tar?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20install%20a%20.tar%3F&In-Reply-To=%3C506DE40C.80906%40suse.com%3E"
+       TITLE="[Kiwi-users] How to install a .tar?">rjschwei at suse.com
+       </A><BR>
+    <I>Thu Oct  4 21:31:24 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003046.html">[Kiwi-users] How to install a .tar?
+</A></li>
+        <LI>Next message: <A HREF="003047.html">[Kiwi-users] How to install a .tar?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3048">[ date ]</a>
+              <a href="thread.html#3048">[ thread ]</a>
+              <a href="subject.html#3048">[ subject ]</a>
+              <a href="author.html#3048">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Please note that the main list has moved to <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-images at googlegroups.com</A> 
+as berlios.de was expected to have vanished at the end of 2011.
+
+See <A HREF="http://opensuse.github.com/kiwi/">http://opensuse.github.com/kiwi/</A> for information about how to 
+subscribe to the Google group.
+
+On 10/04/2012 03:01 PM, Badjatya, Nikunj wrote:
+&gt;<i> Howdy All,
+</I>&gt;<i>
+</I>&gt;<i> I need to create a SLES 11 SP2 64bit VMware (ovf) image. I have few
+</I>&gt;<i> custom software as .rpm as well as .tar.
+</I>&gt;<i>
+</I>&gt;<i> Rpm can be added under &lt;packages&gt; in config.xml file. But for installing
+</I>&gt;<i> .tar, our traditional way to install .tar is untar it first, run the
+</I>&gt;<i> scripts which came after untarring.
+</I>&gt;<i> Can this .tar install be automated using Kiwi?
+</I>
+Use the &lt;archive&gt; element, see 
+<A HREF="http://doc.opensuse.org/projects/kiwi/schema-doc/">http://doc.opensuse.org/projects/kiwi/schema-doc/</A> for details.
+
+The tar archive must be located at the same level as the config.xml 
+file. You can then execute any scripts that may be part of the tar 
+archive from the config.sh file. Note any scripts executed must be fully 
+automated, i.e. it is not possible to have any interaction. I suppose 
+you can use expect if you neet to interact with any of the install scripts.
+
+HTH,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweik at ca.ibm.com</A>
+781-464-8147
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003046.html">[Kiwi-users] How to install a .tar?
+</A></li>
+	<LI>Next message: <A HREF="003047.html">[Kiwi-users] How to install a .tar?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3048">[ date ]</a>
+              <a href="thread.html#3048">[ thread ]</a>
+              <a href="subject.html#3048">[ subject ]</a>
+              <a href="author.html#3048">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

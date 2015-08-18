@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] New KIWI layout, new issues.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C1300712037.22136.173.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002521.html">
+   <LINK REL="Next"  HREF="002523.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] New KIWI layout, new issues.</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C1300712037.22136.173.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] New KIWI layout, new issues.">roger at opq.se
+       </A><BR>
+    <I>Mon Mar 21 13:53:57 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002521.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+        <LI>Next message: <A HREF="002523.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2522">[ date ]</a>
+              <a href="thread.html#2522">[ thread ]</a>
+              <a href="subject.html#2522">[ subject ]</a>
+              <a href="author.html#2522">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2011-03-21 at 08:28 -0400, Robert Schweikert wrote:
+&gt;<i> Hi Roger,
+</I>&gt;<i> 
+</I>&gt;<i> On 03/21/2011 04:37 AM, Marcus Sch&#228;fer wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; Mar-21 08:44:46&lt;1&gt;  : Using profile(s): default,std                done
+</I>&gt;<i> &gt;&gt; Use of uninitialized value $profiles in split at /usr/share/kiwi/modules/KIWIRuntimeChecker.pm line 277.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; something for Robert to fix in his check, but surely not critical
+</I>&gt;<i> 
+</I>&gt;<i> What version of Kiwi are you using? The current dev branch has a comment 
+</I>&gt;<i> on line 277.
+</I>
+I am using this:
+
+kiwi-desc-netboot-4.81-216.1.i586                                                                                                                       
+kiwi-instsource-4.81-216.1.i586                                                                                                                         
+kiwi-pxeboot-4.81-216.1.i586                                                                                                                            
+kiwi-instsource-plugins-openSUSE-11-1-2.0-17.1.noarch                                                                                                   
+kiwi-desc-isoboot-4.81-216.1.i586                                                                                                                       
+kiwi-instsource-plugins-openSUSE-11-3-0.9-5.1.noarch                                                                                                    
+kiwi-desc-vmxboot-4.81-216.1.i586                                                                                                                       
+kiwi-tools-imagewriter-3.74-80.1.i586                                                                                                                   
+kiwi-doc-4.81-216.1.i586                                                                                                                                
+kiwi-desc-ltsp-0.8.1-3.1.noarch                                                                                                                         
+kiwi-pxeboot-prebuild-3.74-80.1.i586                                                                                                                    
+kiwi-config-openSUSE-11.2-16.17.2.i586                                                                                                                  
+kiwi-templates-4.81-216.1.i586                                                                                                                          
+kiwi-desc-oemboot-4.81-216.1.i586                                                                                                                       
+kiwi-instsource-plugins-openSUSE-11-2-0.9-8.1.noarch                                                                                                    
+kiwi-4.81-216.1.i586                                                                                                                                    
+kiwi-tools-4.81-216.1.i586                                                                                                                              
+kiwi-ltsp-bootimages-0.8.1-2.1.noarch                                                                                                                   
+kiwi-ltsp-prebuilt-0.8.1-2.1.noarch
+
+&gt;<i> Could you just paste the method that includes line 277?
+</I>&gt;<i> 
+</I>&gt;<i> I'll figure it out from there.
+</I>
+I noted the line number at the start of line 277. It is not in the file
+I use...
+
+sub __checkPatternTypeAttrrValueConsistent {
+        # ...
+        # Check that the use of the patternType attribute for the &lt;packages&gt;
+        # element is consistent. The static component of this is checked during
+        # XML validation. If no profiles are specified on the command line
+        # or if the configuration contains a &lt;packages&gt; element without a
+        # profile attribute there is nothing to do.
+        # ---
+        my $this = shift;
+        my $buildProfiles = $this -&gt; {cmdArgs} -&gt; getBuildProfiles();
+        # If no profiles are specified on the command line the static check is
+        # sufficient
+        if ( (ref $buildProfiles) ne 'ARRAY') {
+                return 1;
+        }
+        my @buildProfiles = @{$buildProfiles};
+        # If there is a &quot;default&quot; &lt;packages&gt; element, i.e. an element without the
+        # profiles attribute the static check is sufficient
+        if ($this -&gt; {xml} -&gt; hasDefaultPackages() ) {
+                return 1;
+        }
+        # If there is only one profile to be built there is nothing to check
+        my $numProfiles = @buildProfiles;
+        if ($numProfiles == 1) {
+                return 1;
+        }
+        my @pkgsNodes = @{$this -&gt; {xml} -&gt; getPackageNodeList()};
+        my $reqPatternTypeVal;
+        for my $pkgs (@pkgsNodes) {
+                my $profiles = $pkgs -&gt; getAttribute( 'profiles' );
+277:            my @profNames = split /,/, $profiles;
+                my $patternType = $pkgs -&gt; getAttribute( 'patternType' );
+                if (! $patternType) {
+                        $patternType = 'onlyRequired';
+                }
+                for my $profName (@profNames) {
+                        if (grep /^$profName/, @buildProfiles) {
+                                if (! $reqPatternTypeVal) {
+                                        $reqPatternTypeVal = $patternType;
+                                } elsif ($reqPatternTypeVal ne $patternType) {
+                                        my $kiwi = $this -&gt; {kiwi};
+                                        my $msg = 'Conflicting patternType attribute values for '
+                                        . 'specified profiles &quot;'
+                                        . &quot;@buildProfiles&quot;
+                                        . '&quot; found';
+                                        $kiwi -&gt; error ( $msg );
+                                        $kiwi -&gt; failed ();
+                                        return undef;
+                                }
+                        }
+                }
+        }
+        return 1;
+}
+
+
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002521.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+	<LI>Next message: <A HREF="002523.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2522">[ date ]</a>
+              <a href="thread.html#2522">[ thread ]</a>
+              <a href="subject.html#2522">[ subject ]</a>
+              <a href="author.html#2522">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Strange error while deploying	OEM	imageusingUSBboot disk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Strange%20error%20while%20deploying%0A%09OEM%09imageusingUSBboot%20disk&In-Reply-To=%3C20090803081736.GA26707%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001328.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Strange error while deploying	OEM	imageusingUSBboot disk</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Strange%20error%20while%20deploying%0A%09OEM%09imageusingUSBboot%20disk&In-Reply-To=%3C20090803081736.GA26707%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Strange error while deploying	OEM	imageusingUSBboot disk">ms at novell.com
+       </A><BR>
+    <I>Mon Aug  3 10:17:37 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001328.html">[Kiwi-users] Issues building the oem example
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1327">[ date ]</a>
+              <a href="thread.html#1327">[ thread ]</a>
+              <a href="subject.html#1327">[ subject ]</a>
+              <a href="author.html#1327">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have tested using the updated KIWI packages. The situation has
+</I>&gt;<i> improved but the disk size is still not entirely correct. 
+</I>&gt;<i> 
+</I>&gt;<i> The disk size should have been 488.7 MB whereas it shows 478 MB
+</I>&gt;<i> (although its improved from the earlier 60 MB). My image still fails to
+</I>&gt;<i> deploy because it is 488 MB in size. 
+</I>&gt;<i> 
+</I>&gt;<i> However, when I manually run the command &quot;blockdev --getsize64
+</I>&gt;<i> /dev/sda&quot; , it reports the correct size in Bytes i.e. 512483328 which
+</I>&gt;<i> translates to 488.7421875 MB 
+</I>&gt;<i> 
+</I>&gt;<i> I have been using this Thin Client hardware for more than a year
+</I>&gt;<i> sometime and it has always given me 488.7 MB of usable space.
+</I>&gt;<i> Consequently I have been building a .raw image of size 488 MB. 
+</I>&gt;<i> 
+</I>&gt;<i> I see that in the KIWILinuxRC.sh, you have used the following code 
+</I>&gt;<i> 
+</I>&gt;<i> haveBytes=`blockdev --getsize64 $rwDevice` 
+</I>&gt;<i> 
+</I>&gt;<i> I think we should be using $imageDevice instead of $rwDevice. Or maybe
+</I>&gt;<i> use the logic used in older version (2.34). 
+</I>&gt;<i> 
+</I>&gt;<i> Should I reopen the BUG ? 
+</I>
+yes pleae reopen the bug and attach the /var/log/boot.kiwi so that
+I can see where the calculation rounds wrong
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001328.html">[Kiwi-users] Issues building the oem example
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1327">[ date ]</a>
+              <a href="thread.html#1327">[ thread ]</a>
+              <a href="subject.html#1327">[ subject ]</a>
+              <a href="author.html#1327">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

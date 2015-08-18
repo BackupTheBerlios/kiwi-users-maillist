@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Starting Remount Root FS failed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Starting%20Remount%20Root%20FS%20failed&In-Reply-To=%3C20111120192637.GA9173%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002999.html">
+   <LINK REL="Next"  HREF="003003.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Starting Remount Root FS failed</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Starting%20Remount%20Root%20FS%20failed&In-Reply-To=%3C20111120192637.GA9173%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] Starting Remount Root FS failed">ms at suse.de
+       </A><BR>
+    <I>Sun Nov 20 20:26:38 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002999.html">[Kiwi-users] Starting Remount Root FS failed
+</A></li>
+        <LI>Next message: <A HREF="003003.html">[Kiwi-users] broken kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3001">[ date ]</a>
+              <a href="thread.html#3001">[ thread ]</a>
+              <a href="subject.html#3001">[ subject ]</a>
+              <a href="author.html#3001">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> 11.4/suse-pxe-client from examples gives that message during boot.
+</I>&gt;<i> System works fine even after that, giving normal login prompt, but
+</I>&gt;<i> what is the point of remounting root and what do I miss when this
+</I>&gt;<i> remount failed?
+</I>&gt;<i> As far as I understand, after loading boot image (initrd), system
+</I>&gt;<i> tries to use root from kiwi system image, but fails and that means
+</I>&gt;<i> that root is sill in memory ram disk?
+</I>&gt;<i> Any comment would be helpful, thanks.
+</I>
+I can't help much without a log file (/var/log/boot.kiwi) and/or
+more information about the error. the suse boot scripts makes
+sure the root filesystem is remounted read-write therefore it
+calls 'mount -o remount,rw /' which under normal conditions
+does not fail.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002999.html">[Kiwi-users] Starting Remount Root FS failed
+</A></li>
+	<LI>Next message: <A HREF="003003.html">[Kiwi-users] broken kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3001">[ date ]</a>
+              <a href="thread.html#3001">[ thread ]</a>
+              <a href="subject.html#3001">[ subject ]</a>
+              <a href="author.html#3001">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

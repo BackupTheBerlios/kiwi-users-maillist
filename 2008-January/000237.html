@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] PXE Boot wrong kernel Version
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20wrong%20kernel%20Version&In-Reply-To=%3C64460BFCC03A1142A9EEDC99F1D7742201319BE5%40nuntius.comline.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000234.html">
+   <LINK REL="Next"  HREF="000243.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] PXE Boot wrong kernel Version</H1>
+    <B>ralf.prengel at comline.de</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20wrong%20kernel%20Version&In-Reply-To=%3C64460BFCC03A1142A9EEDC99F1D7742201319BE5%40nuntius.comline.de%3E"
+       TITLE="[Kiwi-users] PXE Boot wrong kernel Version">ralf.prengel at comline.de
+       </A><BR>
+    <I>Tue Jan 22 20:00:00 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000234.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+        <LI>Next message: <A HREF="000243.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+
+
+-----Urspr&#252;ngliche Nachricht-----
+Von: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>]
+Gesendet: Di 22.01.2008 19:53
+An: Prengel, Ralf
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Betreff: Re: [Kiwi-users] PXE Boot wrong kernel Version
+ 
+Hi Ralf,
+
+&gt;<i> I try to use Kiwi for building a pxe-bootsystem
+</I>&gt;<i> The problem:
+</I>&gt;<i> The system ist starting but after loading kiwi bootsystem I get the message
+</I>&gt;<i> 
+</I>&gt;<i> Kernel versions do not match reboot in 5 second
+</I>&gt;<i> 
+</I>&gt;<i> I m using Suse 10.3 and I ve no idea what is going wrong.
+</I>&gt;<i> Any hints?
+</I>
+The boot image (initrd) and the system image includes different
+kernel versions. It looks like your PXE environment provides outdated
+boot or system images. Please note if you create the pxe image type
+kiwi automatically creates the system and the boot image which always
+fits together but you need to make sure this data is present on
+the PXE boot server
+
+Regards,
+Marcus
+
+
+xxxxxxxxxxxx
+
+I moved all files build by kiwi into the boot directory and made links ln -s for initrd and linux. 
+
+
+
+
+
+
+
+
+
+
+
+
+i.A. Ralf Prengel
+Customer Care Manager
+Comline AG
+Hauert 8
+D-44227 Dortmund/Germany
+
+Fon +49231 97575- 904
+Fax +49231 97575- 905
+EMail <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ralf.prengel at comline.de</A>
+
+www.comline.de
+Vorstand Stephan Schilling, Erwin Leonhardi
+Aufsichtsrat Dr. Franz Schoser (Vorsitzender)
+HR Dortmund B 14570
+USt.-ID-Nr. DE 124727422
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080122/d46c47b5/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080122/d46c47b5/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000234.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+	<LI>Next message: <A HREF="000243.html">[Kiwi-users] PXE Boot wrong kernel Version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

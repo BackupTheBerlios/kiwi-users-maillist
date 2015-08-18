@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config-cdroot.tgz contents don't appear to be included	into the iso
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config-cdroot.tgz%20contents%20don%27t%20appear%20to%20be%20included%0A%09into%20the%20iso&In-Reply-To=%3CCABKsJ%3DSQQ6fgMU8TcWVVgs0VK_XyjZg5NJa4FKxU2qtSpn6znA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002897.html">
+   <LINK REL="Next"  HREF="002899.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config-cdroot.tgz contents don't appear to be included	into the iso</H1>
+    <B>marcin kowalski</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config-cdroot.tgz%20contents%20don%27t%20appear%20to%20be%20included%0A%09into%20the%20iso&In-Reply-To=%3CCABKsJ%3DSQQ6fgMU8TcWVVgs0VK_XyjZg5NJa4FKxU2qtSpn6znA%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] config-cdroot.tgz contents don't appear to be included	into the iso">yoshi314 at gmail.com
+       </A><BR>
+    <I>Fri Aug 19 11:58:53 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002897.html">[Kiwi-users] kiwi: Weekly report 2011-08-07 - 2011-08-12...
+</A></li>
+        <LI>Next message: <A HREF="002899.html">[Kiwi-users] config-cdroot.tgz contents don't appear to be included into the iso
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2898">[ date ]</a>
+              <a href="thread.html#2898">[ thread ]</a>
+              <a href="subject.html#2898">[ subject ]</a>
+              <a href="author.html#2898">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list, i'm having a small problem building an iso with kiwi.
+
+Here is my config.xml i adapted from suse-11.4 isoboot config (i think).
+===============================================================================================
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!-- For kiwi 4.85-10.1 and above --&gt;
+&lt;image schemaversion=&quot;5.2&quot; displayname=&quot;testimage&quot; name=&quot;testimage&quot;&gt;
+        &lt;description type=&quot;system&quot;&gt;
+                &lt;author&gt;Me&lt;/author&gt;
+                &lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mail at example.com</A>&lt;/contact&gt;
+                &lt;specification&gt;Basic boot image&lt;/specification&gt;
+        &lt;/description&gt;
+        &lt;preferences&gt;
+        &lt;type image=&quot;iso&quot; fsnocheck=&quot;true&quot; filesystem=&quot;ext3&quot;
+checkprebuilt=&quot;true&quot; boot=&quot;isoboot/suse-11.4&quot; flags=&quot;compressed&quot; /&gt;
+                &lt;version&gt;0.0.2&lt;/version&gt;
+                &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+                &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+                &lt;rpm-force&gt;false&lt;/rpm-force&gt;
+                &lt;locale&gt;pl_PL&lt;/locale&gt;
+        &lt;/preferences&gt;
+        &lt;users group=&quot;root&quot;&gt;
+                &lt;user home=&quot;/root&quot; name=&quot;root&quot; shell=&quot;/bin/bash&quot;
+pwd=&quot;password&quot; pwdformat=&quot;plain&quot; /&gt;
+        &lt;/users&gt;
+        &lt;users group=&quot;users&quot;&gt;
+                &lt;user home=&quot;/home/abs&quot; name=&quot;user&quot; shell=&quot;/bin/bash&quot;
+pwd=&quot;user&quot; pwdformat=&quot;plain&quot; /&gt;
+        &lt;/users&gt;
+
+        &lt;packages type=&quot;image&quot; patternType=&quot;onlyRequired&quot;&gt;
+                &lt;opensusePattern name=&quot;base&quot;/&gt;
+                &lt;package name=&quot;iputils&quot;/&gt;
+                &lt;package name=&quot;mdadm&quot;/&gt;
+                &lt;package name=&quot;yast2-ncurses&quot;/&gt;
+                &lt;package name=&quot;yast2&quot;/&gt;
+                &lt;package name=&quot;less&quot;/&gt;
+                &lt;package name=&quot;vim&quot;/&gt;
+                &lt;package name=&quot;zypper&quot;/&gt;
+                &lt;package name=&quot;kernel-default&quot;/&gt;
+                &lt;package name=&quot;syslog-ng&quot;/&gt;
+                &lt;package name=&quot;bootsplash-branding-openSUSE&quot;/&gt;
+                &lt;package name=&quot;glib2-branding-openSUSE&quot;/&gt;
+                &lt;package name=&quot;SuSEfirewall2&quot;/&gt;
+        &lt;/packages&gt;
+        &lt;packages type=&quot;bootstrap&quot;&gt;
+                &lt;package name=&quot;filesystem&quot;/&gt;
+                &lt;package name=&quot;glibc-locale&quot;/&gt;
+        &lt;/packages&gt;
+    &lt;repository type=&quot;rpm-md&quot; status=&quot;fixed&quot;&gt;
+        &lt;source path=&quot;<A HREF="http://download.opensuse.org/update/11.4/">http://download.opensuse.org/update/11.4/</A>&quot; /&gt;
+    &lt;/repository&gt;
+    &lt;repository type=&quot;yast2&quot; status=&quot;fixed&quot;&gt;
+        &lt;source
+path=&quot;<A HREF="http://download.opensuse.org/distribution/11.4/repo/oss/">http://download.opensuse.org/distribution/11.4/repo/oss/</A>&quot; /&gt;
+    &lt;/repository&gt;
+&lt;/image&gt;
+===============================================================================================
+
+I also included root/testfile and config-cdroot.tgz into the directory
+containing the config.xml.
+
+So it's
+config.xml
+root/testfile
+config-cdroot.tgz
+
+config-cdroot.tgz contains a file named &quot;roottestfile&quot;
+
+I build the iso with
+kiwi --prepare configdir --root rootimage
+kiwi --create rootimage --type iso -d isodir
+
+During iso creation i see that the tgz file is copied over to iso
+directory white squashfs image is being created, although not
+unpacked. And it doesn't seem to end up in the final iso image, nor
+its contents.
+
+Also by analysing the build logs i see that file is being copied over
+and moved around, but nothing eventually comes of it.
+
+Why would that be? Should i switch to oemboot to have it included? Is
+that a known issue? Perhaps the optional accompanying shell script
+(config-cdroot.sh) is mandatory?
+
+The image itself works properly, and the file from root/ is included
+in the rootfs.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002897.html">[Kiwi-users] kiwi: Weekly report 2011-08-07 - 2011-08-12...
+</A></li>
+	<LI>Next message: <A HREF="002899.html">[Kiwi-users] config-cdroot.tgz contents don't appear to be included into the iso
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2898">[ date ]</a>
+              <a href="thread.html#2898">[ thread ]</a>
+              <a href="subject.html#2898">[ subject ]</a>
+              <a href="author.html#2898">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

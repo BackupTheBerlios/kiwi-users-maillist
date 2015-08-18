@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTimD1hP7DNAO14F2otm6Rycy31TLGA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002596.html">
+   <LINK REL="Next"  HREF="002598.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTimD1hP7DNAO14F2otm6Rycy31TLGA%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Sun Apr  3 02:35:53 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002596.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002598.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2597">[ date ]</a>
+              <a href="thread.html#2597">[ thread ]</a>
+              <a href="subject.html#2597">[ subject ]</a>
+              <a href="author.html#2597">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Apr 1, 2011 at 6:03 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Hi guys,
+</I>&gt;&gt;&gt;&gt;<i> Ok I could make the writeable OS work. &#160;I removed the &quot;ramonly&quot;
+</I>&gt;&gt;&gt;&gt;<i> element but I'm still having issues with streaming video. &#160;The video
+</I>&gt;&gt;&gt;&gt;<i> would run and then freeze and lock the system up. &#160;I've also tried
+</I>&gt;&gt;&gt;&gt;<i> &quot;ramonly=false&quot; but the results where the same.
+</I>&gt;&gt;&gt;&gt;<i> chris
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The strange thing is that it starts streaming then stops with the
+</I>&gt;&gt;&gt;<i> video player looking like it trying to buffer more video but it never
+</I>&gt;&gt;&gt;<i> recovers. &#160;Actually nothing will function at all. &#160;I'm forced to dump
+</I>&gt;&gt;&gt;<i> the power or ctrl+alt+backspace. &#160;With ctrl+alt+backspace instead of
+</I>&gt;&gt;&gt;<i> it bringing me back to LXDM login window it's a black screen with a
+</I>&gt;&gt;&gt;<i> blinking cursor. &#160; For 5 years I've been working with live images (not
+</I>&gt;&gt;&gt;<i> on USB flash drives) and never ran into this issue.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> quotes
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Well, you have to make a tradeoff somewhere, live is full of compromises
+</I>&gt;&gt;&gt;&gt;<i> ;)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> - use your OEM image and let the system be read/write
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> or
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> - use a hybrid ISO image and give up your FAT storage partition
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> You have to decide what is more important, the ability to share files
+</I>&gt;&gt;&gt;&gt;<i> with Windoze or having the system be read only.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have decided that I can make the read/write image work as I can make
+</I>&gt;&gt;<i> it behave similar to a live image when it comes to the users profile
+</I>&gt;&gt;<i> but after disabling &quot;ramonly&quot; element I have almost the same issue.
+</I>&gt;&gt;<i> Is there anything else that should be done to make this image run
+</I>&gt;&gt;<i> correctly in terms of the video issues? &#160;If the image is now caching
+</I>&gt;&gt;<i> to the USB drive what would cause this problem?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Sorry I don't quite understand your confusion. Let me try a different
+</I>&gt;<i> approach to explaining this.
+</I>&gt;<i>
+</I>&gt;<i> When you use a &quot;ramonly&quot; OEM image the image itself will load a lot of it's
+</I>&gt;<i> data into RAM and thus eat up chunks of RAM that cannot be used by
+</I>&gt;<i> applications running from the stick. Therefore applications are likely to
+</I>&gt;<i> start swapping quickly. Swapping has a negative effect on performance,
+</I>&gt;<i> especially on a USB stick as the transfer rate over USB is not the fastest.
+</I>&gt;<i>
+</I>&gt;<i> When you use an OEM image that allows read and write less of the system data
+</I>&gt;<i> is loaded into RAM, therefore applications will not start swapping as early
+</I>&gt;<i> as compared to the &quot;ramonly&quot; system. However, there is no guarantee that a
+</I>&gt;<i> given application will not swap. Swapping has a negative effect.........
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+I'm not confused. :)  I'm just stating that the &quot;ramonly&quot; element was
+removed from the config.xml file and I have almost exactly the same
+issues with streaming video.
+When using a live image on CD it still uses the host system's ram so
+what makes this so different than the same image on a CD?  The USB
+transfer rates are higher than an optical drives..I'm pretty sure.  I
+can live with the read/write image but this issues still exists.
+I would imaging that the size of the USB drive would matter somewhat
+because that is where the system swaps to once ram is full...no?
+C
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002596.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002598.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2597">[ date ]</a>
+              <a href="thread.html#2597">[ thread ]</a>
+              <a href="subject.html#2597">[ subject ]</a>
+              <a href="author.html#2597">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] errors when building oem type with lvm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20when%20building%20oem%20type%20with%20lvm&In-Reply-To=%3C291A23B717F9104985651112DB6C365F284168E275%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002776.html">
+   <LINK REL="Next"  HREF="002788.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] errors when building oem type with lvm</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20when%20building%20oem%20type%20with%20lvm&In-Reply-To=%3C291A23B717F9104985651112DB6C365F284168E275%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] errors when building oem type with lvm">john.lund at emc.com
+       </A><BR>
+    <I>Tue Jun 14 01:31:05 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002776.html">[Kiwi-users] A means to update critical packages on a RAM only image
+</A></li>
+        <LI>Next message: <A HREF="002788.html">[Kiwi-users] errors when building oem type with lvm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2777">[ date ]</a>
+              <a href="thread.html#2777">[ thread ]</a>
+              <a href="subject.html#2777">[ subject ]</a>
+              <a href="author.html#2777">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I'm seeing the following errors when building an eom kiwi image with --lvm on SLES 11 SP1.  parted and kiwi versions follow:
+
+i | parted                 | package    | 1.8.8-102.21.8 | x86_64 | SLES11SP1DVD1
+
+kiwi version v4.91.2
+GIT Commit: f906db3e38127c5a22bdfb8b25f55b7c4f441a81
+
+
+The following is trying to build our kiwi setup:
+Jun-13 16:32:13 &lt;1&gt; : EXEC [/usr/sbin/parted  -s /dev/loop3 unit cyl mkpart primary 0 6 2&gt;&amp;1]
+Jun-13 16:32:23 &lt;1&gt; : Error: Error informing the kernel about modifications to partition /dev/loop3_part1 -- Invalid argument.  This means Linux won't know about an
+y changes you made to /dev/loop3_part1 until you reboot -- so you shouldn't mount it or use it in any way before rebooting.
+Error: Failed to add partition 1 (Invalid argument)
+Warning: The kernel was unable to re-read the partition table on /dev/loop3 (Invalid argument).  This means Linux won't know anything about the modifications you ma
+de until you reboot.  You should reboot your computer before doing anything with /dev/loop3.
+Jun-13 16:32:24 &lt;1&gt; : EXEC [/usr/sbin/parted  -s /dev/loop3 unit cyl mkpart primary 6 92 2&gt;&amp;1]
+Jun-13 16:32:25 &lt;1&gt; : Error: Error informing the kernel about modifications to partition /dev/loop3_part1 -- Invalid argument.  This means Linux won't know about an
+y changes you made to /dev/loop3_part1 until you reboot -- so you shouldn't mount it or use it in any way before rebooting.
+Error: Failed to add partition 1 (Invalid argument)
+Warning: The kernel was unable to re-read the partition table on /dev/loop3 (Invalid argument).  This means Linux won't know anything about the modifications you ma
+de until you reboot.  You should reboot your computer before doing anything with /dev/loop3.
+Jun-13 16:32:26 &lt;1&gt; : EXEC [/usr/sbin/parted  -s /dev/loop3 unit cyl set 1 boot on 2&gt;&amp;1]
+Jun-13 16:32:26 &lt;1&gt; : Error: Error informing the kernel about modifications to partition /dev/loop3_part1 -- Invalid argument.  This means Linux won't know about an
+y changes you made to /dev/loop3_part1 until you reboot -- so you shouldn't mount it or use it in any way before rebooting.
+Error: Failed to add partition 1 (Invalid argument)
+Warning: The kernel was unable to re-read the partition table on /dev/loop3 (Invalid argument).  This means Linux won't know anything about the modifications you ma
+de until you reboot.  You should reboot your computer before doing anything with /dev/loop3.
+   done
+Jun-13 16:32:28 &lt;1&gt; : Setup device mapper for partition access
+Jun-13 16:32:28 &lt;1&gt; : EXEC [/sbin/kpartx -a /dev/loop3 2&gt;&amp;1]
+...
+This is trying to build the suse-SLE11-Jeos sample changed to have LVM and use our repos:
+Jun-13 09:43:16 &lt;1&gt; : EXEC [/usr/sbin/parted  -s /dev/loop1 unit cyl mkpart primary 0 6 2&gt;&amp;1]
+Jun-13 09:43:22 &lt;1&gt; : Error: Error informing the kernel about modifications to partition /dev/loop1_part1 -- Invalid argument.  This means Linux won't know about an
+y changes you made to /dev/loop1_part1 until you reboot -- so you shouldn't mount it or use it in any way before rebooting.
+Error: Failed to add partition 1 (Invalid argument)
+Warning: The kernel was unable to re-read the partition table on /dev/loop1 (Invalid argument).  This means Linux won't know anything about the modifications you ma
+de until you reboot.  You should reboot your computer before doing anything with /dev/loop1.
+Jun-13 09:43:23 &lt;1&gt; : EXEC [/usr/sbin/parted  -s /dev/loop1 unit cyl mkpart primary 6 33 2&gt;&amp;1]
+Jun-13 09:43:27 &lt;1&gt; : Error: Error informing the kernel about modifications to partition /dev/loop1_part1 -- Invalid argument.  This means Linux won't know about an
+y changes you made to /dev/loop1_part1 until you reboot -- so you shouldn't mount it or use it in any way before rebooting.
+Error: Failed to add partition 1 (Invalid argument)
+Warning: The kernel was unable to re-read the partition table on /dev/loop1 (Invalid argument).  This means Linux won't know anything about the modifications you ma
+de until you reboot.  You should reboot your computer before doing anything with /dev/loop1.
+Jun-13 09:43:28 &lt;1&gt; : EXEC [/usr/sbin/parted  -s /dev/loop1 unit cyl set 1 boot on 2&gt;&amp;1]
+Jun-13 09:43:29 &lt;1&gt; : Error: Error informing the kernel about modifications to partition /dev/loop1_part1 -- Invalid argument.  This means Linux won't know about an
+y changes you made to /dev/loop1_part1 until you reboot -- so you shouldn't mount it or use it in any way before rebooting.
+Error: Failed to add partition 1 (Invalid argument)
+Warning: The kernel was unable to re-read the partition table on /dev/loop1 (Invalid argument).  This means Linux won't know anything about the modifications you ma
+de until you reboot.  You should reboot your computer before doing anything with /dev/loop1.
+   done
+Jun-13 09:43:30 &lt;1&gt; : Setup device mapper for partition access
+Jun-13 09:43:30 &lt;1&gt; : EXEC [/sbin/kpartx -a /dev/loop1 2&gt;&amp;1]
+   done
+Jun-13 09:43:30 &lt;1&gt; : Creating ext3 filesystem on /dev/mapper/loop1p1 partition
+...
+
+Has anyone seen this type of issue before?   Any ideas on how to troublshoot/resolve/get around the problem.
+
+Thank you,
+John Lund
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002776.html">[Kiwi-users] A means to update critical packages on a RAM only image
+</A></li>
+	<LI>Next message: <A HREF="002788.html">[Kiwi-users] errors when building oem type with lvm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2777">[ date ]</a>
+              <a href="thread.html#2777">[ thread ]</a>
+              <a href="subject.html#2777">[ subject ]</a>
+              <a href="author.html#2777">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTinGd92d18VQWhEJ8b5UKaZunWk23RQk7fwPSAu6%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002417.html">
+   <LINK REL="Next"  HREF="002405.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTinGd92d18VQWhEJ8b5UKaZunWk23RQk7fwPSAu6%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Tue Mar  1 17:04:50 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002417.html">[Kiwi-users] Network auto detection
+</A></li>
+        <LI>Next message: <A HREF="002405.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2400">[ date ]</a>
+              <a href="thread.html#2400">[ thread ]</a>
+              <a href="subject.html#2400">[ subject ]</a>
+              <a href="author.html#2400">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Feb 22, 2011 at 3:02 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Robert
+</I>&gt;&gt;<i> I think it finally clicked.
+</I>&gt;&gt;<i> Ok let me confirm.
+</I>&gt;&gt;<i> We are placing the RPM file within the overlay tree to simply get the
+</I>&gt;&gt;<i> RPM in the OS.
+</I>&gt;<i>
+</I>&gt;<i> Actually the package itself (as a package not installed) becomes part of
+</I>&gt;<i> the image (unpacked image tree initially).
+</I>&gt;<i>
+</I>&gt;&gt;<i> We place it (in this case in /opt/SOS).
+</I>&gt;<i>
+</I>&gt;<i> root/opt/SOS
+</I>&gt;<i>
+</I>&gt;<i> in your configuration directory.
+</I>&gt;<i>
+</I>&gt;&gt;<i> Then have the
+</I>&gt;&gt;<i> config.sh file uninstall the SUSE version, leaving the deps behind and
+</I>&gt;&gt;<i> installing the SOS.
+</I>&gt;<i>
+</I>&gt;<i> Yes, but your package will satisfy the &quot;dangling&quot; requirement, thus
+</I>&gt;<i> after your package is installed the rpm DB is once again consistent and
+</I>&gt;<i> there are no dangling dependencies.
+</I>&gt;<i>
+</I>&gt;&gt;<i> The config.xml file has NOTHING to do with this because it's
+</I>&gt;&gt;<i> Kiwi...not a package manager.
+</I>&gt;<i>
+</I>&gt;<i> Not quite, the config.xml file is not involved because you decided to
+</I>&gt;<i> take over the responsibility from Kiwi to handle these specific
+</I>&gt;<i> packages. Kiwi just executes the config.sh file, it has no notion of the
+</I>&gt;<i> content of the file.
+</I>&gt;<i>
+</I>&gt;&gt;<i> Since the SUSE version of this package
+</I>&gt;&gt;<i> is no longer installed it will not attempt an update IF an update was
+</I>&gt;&gt;<i> every triggered using the package manager and since the removal of
+</I>&gt;&gt;<i> this package was done with the &quot;RPM&quot; command the package manager knows
+</I>&gt;&gt;<i> that it's not there in the system anymore.
+</I>&gt;<i>
+</I>&gt;<i> Correct, but this only holds true because your package provides the
+</I>&gt;<i> necessary dependency of lxde-common-branding (see my previous mail on
+</I>&gt;<i> this as well).
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have no idea why it took so long for me to grasp this but for the
+</I>&gt;&gt;<i> RPM method I think I understand it now.
+</I>&gt;&gt;<i> So in the config.xml file can I do something like this:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch
+</I>&gt;&gt;<i> cd /opt/SOS
+</I>&gt;&gt;<i> rpm -i lxde-common-branding-SOS-11.3-30.1.noarch
+</I>&gt;<i>
+</I>&gt;<i> You will need the fully qualified path in config.sh, i.e.
+</I>&gt;<i>
+</I>&gt;<i> rpm -i /opt/SOS/lxde-common-branding-SOS-11.3-30.1.noarch.rpm
+</I>&gt;<i>
+</I>&gt;<i> Also after install you can remove your packages, also in config.sh add
+</I>&gt;<i>
+</I>&gt;<i> rm -rf /opt/SOS
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+Thanks Robert,
+This method worked like a charm.  It looks like there are some other
+packages that may need to be installed this way.
+I installed the package &quot;desktop-data-distroname&quot; to replace the Suse version.
+It appears that taking the default SUSE packages and modifying them
+with my branding and changes doesn't seem to work quite as smoothy as
+I was hoping.  There are strings in the spec file that I'm not clear
+what to do with.
+It seems like the new package &quot;desktop-data-distroname&quot; package does
+build and install however it leaves the default Suse version behind.
+So using the same method (config.sh) to uninstall the SUSE default and
+install my version it seems to work without a hitch.  Is there any
+wrong way to do this?
+
+I wanted to produce a package for &quot;distroname-release&quot;.  Long story
+short I could make this package.  OBS was looking for the actual text
+file for the release package but I had no clue were to place that
+within the package because I can't use the SUSE release package as a
+reference.  For some reason there is nothing more than a spec file and
+changes text file in the default Suse package for release.  What I did
+was in my overlay I created my release file then sym linked this to
+the &quot;Suse-release&quot; and &quot;openSUSE-release&quot; files.  This works but it
+feels like a hack job.
+Any thoughts on the correct way to do this...or is this good enough?
+I also have to  look into the packages that contain &quot;SuSEbrand&quot; and
+&quot;suseRegistration&quot;.
+Thanks
+chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002417.html">[Kiwi-users] Network auto detection
+</A></li>
+	<LI>Next message: <A HREF="002405.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2400">[ date ]</a>
+              <a href="thread.html#2400">[ thread ]</a>
+              <a href="subject.html#2400">[ subject ]</a>
+              <a href="author.html#2400">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

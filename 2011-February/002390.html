@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SquashFS support in OEM image with SLES10
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SquashFS%20support%20in%20OEM%20image%20with%20SLES10&In-Reply-To=%3CAANLkTin-nPT_LYg_MBE5HOrdyxq-L8sJr%3DqzEm2kRV%3DB%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002377.html">
+   <LINK REL="Next"  HREF="002391.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SquashFS support in OEM image with SLES10</H1>
+    <B>C&#233;sar Y&#225;&#241;ez Fern&#225;ndez</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SquashFS%20support%20in%20OEM%20image%20with%20SLES10&In-Reply-To=%3CAANLkTin-nPT_LYg_MBE5HOrdyxq-L8sJr%3DqzEm2kRV%3DB%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] SquashFS support in OEM image with SLES10">xeygchkwdm at gmail.com
+       </A><BR>
+    <I>Wed Feb 23 16:46:15 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002377.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+        <LI>Next message: <A HREF="002391.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2390">[ date ]</a>
+              <a href="thread.html#2390">[ thread ]</a>
+              <a href="subject.html#2390">[ subject ]</a>
+              <a href="author.html#2390">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>In case anybody else can see this useful, I built the image with kiwi 3.01
+and worked all fine and good successfully, without errors and compressed.
+
+Thanks.
+
+El 22 de febrero de 2011 03:38, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; escribi&#243;:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; Well, I switched back to kiwi-4.43-1.6, which is the default in OpenSuSE
+</I>&gt;<i> &gt; 11.3, and it makes a gzip compressed image, now I have a different
+</I>&gt;<i> problem.
+</I>&gt;<i>
+</I>&gt;<i> Don't use the default from 11.3 use the 4.43 version from the home:ctso
+</I>&gt;<i> repo I posted. We found and fixed several problems after 11.3 GA
+</I>&gt;<i> Here is the link
+</I>&gt;<i>
+</I>&gt;<i>  <A HREF="http://download.opensuse.org/repositories/home:/ctso/openSUSE_11.3/">http://download.opensuse.org/repositories/home:/ctso/openSUSE_11.3/</A>
+</I>&gt;<i>
+</I>&gt;<i> &gt; Any clue here? is there something with the parted inside SLES10 that this
+</I>&gt;<i> &gt; version of kiwi doesn't know how to handle?
+</I>&gt;<i>
+</I>&gt;<i> yes parted from sle10 is too old it doesn't support the &quot;-m&quot; option.
+</I>&gt;<i> iirc we added a check in kiwi to switch to fdisk in that case. You also
+</I>&gt;<i> might consider to update parted and use a newer version for sles10
+</I>&gt;<i>
+</I>&gt;<i> grmbl, sles10 imaging is really not an easy task, zypper too old
+</I>&gt;<i> parted too old and btw you always have to pass the following option
+</I>&gt;<i> to kiwi when building a sles10 image on a 11.3 build system
+</I>&gt;<i>
+</I>&gt;<i>   --fs-inodesize 128
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110223/0ce620f3/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110223/0ce620f3/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002377.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+	<LI>Next message: <A HREF="002391.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2390">[ date ]</a>
+              <a href="thread.html#2390">[ thread ]</a>
+              <a href="subject.html#2390">[ subject ]</a>
+              <a href="author.html#2390">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

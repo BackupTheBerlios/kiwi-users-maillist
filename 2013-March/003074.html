@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C513CA482.4020609%40public-files.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003085.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>Yarny</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C513CA482.4020609%40public-files.de%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">Yarny at public-files.de
+       </A><BR>
+    <I>Sun Mar 10 16:19:30 CET 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003085.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3074">[ date ]</a>
+              <a href="thread.html#3074">[ thread ]</a>
+              <a href="subject.html#3074">[ subject ]</a>
+              <a href="author.html#3074">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Robert, Marcus, and list,
+
+&gt;<i> As said in my initial posting, I actually didn't use kiwi for
+</I>&gt;<i> system deployment until ~one month ago, I just called zypper
+</I>&gt;<i> with --root.  kiwi does the same thing, but better, e.g., I
+</I>&gt;<i> forgot about initializing /etc/{group,passwd} in the new system
+</I>&gt;<i> before calling zypper, which broke some file ownerships in my
+</I>&gt;<i> systems.  I could simply mimic the way kiwi performs its image
+</I>&gt;<i> perparation, but I feel this is unnecessary work and I might
+</I>&gt;<i> just call kiwi for this.
+</I>Although I met some resistance, I'd like to offer
+this patch, which adds an option &quot;--force-bootstrap&quot;
+and enables bootstrapping in &quot;--recycle-root&quot; mode.
+This is what I'm currently using on my machines as
+I can't avoid preexisting subdirectories in my root.
+If you can bring yourself to accept it, I
+will add some lines of documentation.
+
+Thanks!
+Yarny
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-New-force-bootstrap-option-performs-bootstrap-even-i.patch
+Type: text/x-patch
+Size: 3413 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20130310/eff963d8/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20130310/eff963d8/attachment.bin</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003085.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3074">[ date ]</a>
+              <a href="thread.html#3074">[ thread ]</a>
+              <a href="subject.html#3074">[ subject ]</a>
+              <a href="author.html#3074">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

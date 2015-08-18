@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi Suse 10.3 Live Image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Suse%2010.3%20Live%20Image&In-Reply-To=%3C006501c84bc6%24ed9f3160%24c8dd9420%24%40com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000193.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi Suse 10.3 Live Image</H1>
+    <B>Alan Arthur</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Suse%2010.3%20Live%20Image&In-Reply-To=%3C006501c84bc6%24ed9f3160%24c8dd9420%24%40com%3E"
+       TITLE="[Kiwi-users] Kiwi Suse 10.3 Live Image">aarthur at speedscript.com
+       </A><BR>
+    <I>Mon Dec 31 17:05:13 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000193.html">[Kiwi-users] unbootable USB device
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#195">[ date ]</a>
+              <a href="thread.html#195">[ thread ]</a>
+              <a href="subject.html#195">[ subject ]</a>
+              <a href="author.html#195">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Richard and Marcus,
+
+ 
+
+I did a clean install of the OS to get rid of the bloating of the box as it
+had a lot of different things installed on it from other software for
+imaging. After doing a clean installation of the OS, I then installed kiwi
+and product creator which has the GUI for kiwi. The kiwi versions are at the
+bottom of this message. Upon running the GUI and setting up my parameters
+and users I get the following error when trying to create the ISO file.
+
+ 
+
+Dec-31 09:58 &lt;1&gt; : Setting log file to: terminal
+
+Dec-31 09:58 &lt;1&gt; : Reading image description...   done
+
+Dec-31 09:58 &lt;1&gt; : Setting up package manager: smart   done
+
+Dec-31 09:58 &lt;1&gt; : Setting RPM signature check to: False   done
+
+Dec-31 09:58 &lt;1&gt; : Adding local smart channel: kiwi1-7075   failed
+
+Dec-31 09:58 &lt;3&gt; : Traceback (most recent call last):
+
+  File &quot;/usr/bin/smart&quot;, line 194, in &lt;module&gt;
+
+    main(sys.argv[1:])
+
+  File &quot;/usr/bin/smart&quot;, line 167, in main
+
+    exitcode = iface.run(opts.command, opts.argv)
+
+  File &quot;/usr/lib/python2.5/site-packages/smart/interface.py&quot;, line 53, in
+run
+
+    result = _command.main(self._ctrl, opts)
+
+  File &quot;/usr/lib/python2.5/site-packages/smart/commands/channel.py&quot;, line
+192, in main
+
+    key, value = arg.split(&quot;=&quot;)
+
+ValueError: too many values to unpack
+
+Dec-31 09:58 &lt;3&gt; : Base initialization failed   failed
+
+Dec-31 09:58 &lt;3&gt; : KIWI exited with error(s)   done
+
+ 
+
+This is using the latest version which YAST2 detects.
+
+ 
+
+-------------------------------------
+
+Yast2 Packages Installed
+
+-------------------------------------
+
+kiwi 2.15.8-2
+
+kiwi-desc-isoboot 1.64-22
+
+kiwi-desc-usbboot 1.64-22
+
+kiwi-desc-vmxboot 1.64-22
+
+kiwi-desc-xenboot 1.64-22
+
+ 
+
+ 
+
+Any ideas as to what could be the problem?
+
+Sorry if I maybe should have kept working off the old problem but I wanted
+to make sure no other software would be conflicting..
+
+ 
+
+Regards,
+
+Alan Arthur
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20071231/352a5907/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20071231/352a5907/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000193.html">[Kiwi-users] unbootable USB device
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#195">[ date ]</a>
+              <a href="thread.html#195">[ thread ]</a>
+              <a href="subject.html#195">[ subject ]</a>
+              <a href="author.html#195">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-08-01 - 2010-08-06...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-08-01%20-%202010-08-06...&In-Reply-To=%3C20100809092944.GA26747%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001953.html">
+   <LINK REL="Next"  HREF="001955.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-08-01 - 2010-08-06...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-08-01%20-%202010-08-06...&In-Reply-To=%3C20100809092944.GA26747%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-08-01 - 2010-08-06...">ms at novell.com
+       </A><BR>
+    <I>Mon Aug  9 11:29:44 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001953.html">[Kiwi-users] CONF in netboot image
+</A></li>
+        <LI>Next message: <A HREF="001955.html">[Kiwi-users] CONF in netboot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1954">[ date ]</a>
+              <a href="thread.html#1954">[ thread ]</a>
+              <a href="subject.html#1954">[ subject ]</a>
+              <a href="author.html#1954">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.55 2010-08-01 - 2010-08-06
+--------------------------------------------------
+most important changes for last weeks release...
+
+GIT:  update documentation, patch by Thomas Schraitle
+ 
+  Thanks Thomas
+
+GIT:  EC2: changed the way how ec2 images are created. We now bundle
+      the ami from a raw disk Xen image using the ec2 kernel. Along
+      with this change the xenboot boot image became obsolete and was
+      removed in a previous commit. Support for Xen is now only availabe
+      via disk image and Xen must support PVgrub in order to boot it
+
+  For those of you who used xen guests in the form
+
+  &lt;type image=&quot;xen&quot; 
+        filesystem=&quot;...&quot; boot=&quot;xenboot/suse-...&quot;&gt;
+
+  change that to:
+
+  &lt;type image=&quot;vmx&quot;
+        filesystem=&quot;...&quot; boot=&quot;vmxboot/suse-...&quot;
+        bootprofile=&quot;xen&quot; bootkernel=&quot;xenk&quot;&gt;
+
+  I also changed the suse-xen-guest example and docs from the kiwi-doc
+  packages appropriately. You can run the EC2 commands directly on
+  the .raw file created by kiwi, or let kiwi do it if you have set
+  &lt;type .... format=&quot;ec2&quot;&gt;
+
+GIT:  fixed respect write protection for Live medium (SD-card)
+      bnc#623038
+
+  On SD cards we didn't care for the write protection. With this
+  patch no data is written if the write protection is set to on
+
+GIT:  don't check the return value of the e2fsck call. If the
+      filesystem check was forced for example by a wrong system
+      clock the check runs successfully but the return value is
+      not zero.
+
+  If you are deploying an image on a system which has a wrong
+  hardware clock setup or your image creation time is older than
+  the filesystem check count the filesystem check is forced. But
+  even though the check ends successfully the return code is
+  not &quot;0&quot; in that case. That's the reason why it's ignored in
+  this situation
+
+GIT   fixed license display problem when no localized license files
+      exist but a license.txt file does
+
+  Thanks to Robert for fixing this
+
+GIT   if a fixed xml size was set for a filesystem image we use if
+      even if kiwi's calculation says it's too small. This allows users
+      to create the image with less or no free space but also could
+      cause the image to fail because of no space left on device.
+      We don't use the fixed xml size if it's too small for a virtual
+      disk based image though because this could cause the image to
+      be created successfully but then failed on boot which is a bad
+      user experience (bnc #627031)
+
+  When creating a filesystem image like this
+
+    &lt;type image=&quot;ext3&quot;&gt;
+       &lt;size unit=&quot;M&quot;&gt;1000&lt;/size&gt;
+    &lt;/type&gt;
+
+  the &lt;size&gt; setup won't be changed by kiwi's thinking of the
+  minimum size. This was requested by the Novell POS people
+
+GIT   added entire usb stack to initrd for SLE11 oemboot (bnc #627439)
+
+  When booting an OEM install media from USB connected drive it
+  fails because the drivers were missing
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001953.html">[Kiwi-users] CONF in netboot image
+</A></li>
+	<LI>Next message: <A HREF="001955.html">[Kiwi-users] CONF in netboot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1954">[ date ]</a>
+              <a href="thread.html#1954">[ thread ]</a>
+              <a href="subject.html#1954">[ subject ]</a>
+              <a href="author.html#1954">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

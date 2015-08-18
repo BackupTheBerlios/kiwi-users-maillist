@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3CFB7CBAC8C916CD40A03367E1DA5EBA9A044A6ED1%40srvcom02.master.dns%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001664.html">
+   <LINK REL="Next"  HREF="001667.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?</H1>
+    <B>Mies, Christian</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3CFB7CBAC8C916CD40A03367E1DA5EBA9A044A6ED1%40srvcom02.master.dns%3E"
+       TITLE="[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?">Christian.Mies at it-novum.com
+       </A><BR>
+    <I>Mon Feb  8 14:32:14 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001664.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+        <LI>Next message: <A HREF="001667.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1666">[ date ]</a>
+              <a href="thread.html#1666">[ thread ]</a>
+              <a href="subject.html#1666">[ subject ]</a>
+              <a href="author.html#1666">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+I found the issue, but don't understand the context.
+In the &lt;package&gt; section I find the following:
+
+&lt;packages type=&quot;image&quot;&gt;
+                &lt;opensusePattern name=&quot;laptop&quot;/&gt;
+                &lt;opensusePattern name=&quot;base&quot;/&gt;
+                &lt;opensusePattern name=&quot;sdk_kernel&quot;/&gt;
+                &lt;opensusePattern name=&quot;lamp_server&quot;/&gt;
+                &lt;opensusePattern name=&quot;WBEM&quot;/&gt;
+                &lt;opensusePattern name=&quot;print_server&quot;/&gt;
+                &lt;opensusePattern name=&quot;x11&quot;/&gt;
+                &lt;opensusePattern name=&quot;sdk_web&quot;/&gt;
+                &lt;opensusePattern name=&quot;sdk_libs&quot;/&gt;
+                &lt;opensusePattern name=&quot;documentation&quot;/&gt;
+                &lt;opensusePattern name=&quot;Minimal&quot;/&gt;
+                &lt;package name=&quot;createrepo&quot;/&gt;
+                &lt;package name=&quot;findutils-locate&quot;/&gt;
+                &lt;package name=&quot;gnuplot&quot;/&gt;
+                &lt;package name=&quot;kernel-pae&quot;/&gt;
+                &lt;package name=&quot;kernel-pae-base&quot;/&gt;
+...
+&lt;/package&gt;
+
+Any opensusePattern are not available in the chroot envrionment.
+I need the 'lamp_server' Image for my Application, and in 'chroot /tmp/mysys bash' is no mysql available.
+
+Ideas? 
+
+Christian
+
+
+i.A. Christian Mies
+Senior Consultant
+
+Tel: +49 (661) 103-874      	(-333)  
+Fax: +49 (661) 103-17874            (-334)
+mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Christian.Mies at it-novum.com</A>
+
+ 
+
+it-novum GmbH .  Edelzeller Strasse 44 . 36043 Fulda  . <A HREF="http://www.it-novum.com">http://www.it-novum.com</A>
+Handelsregister Amtsgericht Fulda, HRB 1934 . Gesch&#228;ftsf&#252;hrer: Michael Kienle . Sitz der Gesellschaft: Fulda
+
+
+Der Inhalt dieser E-Mail ist vertraulich. Wenn Sie nicht der eigentliche Empfaenger sein sollten, informieren Sie bitte sofort den Absender oder vernichten umgehend diese Mail. Jegliche unerlaubte Vervielfaeltigung oder Weiterleitung dieser Mail ist strengstens verboten.
+This e-mail may contain confidential and/or priviledged information. If you are not the intended recepient (or have received this e-mail in error) please notify the sender immediately and destroy this e-mail. Any unauthorised copying, disclosure or distribution of material in this e-mail is strictly forbidden.
+
+
+-----Urspr&#252;ngliche Nachricht-----
+Von: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>] 
+Gesendet: Montag, 8. Februar 2010 13:26
+An: Mies, Christian
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Betreff: Re: [Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+
+Hi,
+
+&gt;<i> thank you for reply. The Preparation is starting now, but I get the following error on running config.sh:
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> ...
+</I>&gt;<i> Feb  8 13:05:00 itc-sles11 kernel: __ratelimit: 42 callbacks suppressed
+</I>&gt;<i> Feb  8 13:05:00 itc-sles11 kernel: config.sh[3819]: segfault at bf2aef9c ip b7f24e4c sp bf2aefa0 error 6 in bash[b7f08000+a8000]
+</I>&gt;<i> Feb  8 13:05:00 itc-sles11 kernel: config.sh[3821]: segfault at bf2aeef4 ip b7f27fe3 sp bf2aeed0 error 6 in bash[b7f08000+a800
+</I>&gt;<i> ...
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Any Idea?
+</I>
+does this happen inside the running system ? I guess so. bash crashed with
+a segfault while running config.sh. Is this kiwi's config.sh script ? if
+so this is very strange. Can you chroot into the prepared tree
+
+   chroot /your/new/root/tree bash
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+
+Eingehende eMail ist virenfrei.
+Von AVG &#252;berpr&#252;ft - www.avg.de 
+Version: 9.0.733 / Virendatenbank: 271.1.1/2674 - Ausgabedatum: 02/07/10 20:35:00 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001664.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+	<LI>Next message: <A HREF="001667.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1666">[ date ]</a>
+              <a href="thread.html#1666">[ thread ]</a>
+              <a href="subject.html#1666">[ subject ]</a>
+              <a href="author.html#1666">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

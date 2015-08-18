@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] &lt;deploy /&gt; in config.xml
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%3Cdeploy%20/%3E%20in%20config.xml&In-Reply-To=%3C20100129111816.GA18776%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001610.html">
+   <LINK REL="Next"  HREF="001612.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] &lt;deploy /&gt; in config.xml</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%3Cdeploy%20/%3E%20in%20config.xml&In-Reply-To=%3C20100129111816.GA18776%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] &lt;deploy /&gt; in config.xml">ms at novell.com
+       </A><BR>
+    <I>Fri Jan 29 12:18:16 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001610.html">[Kiwi-users] &lt;deploy /&gt; in config.xml
+</A></li>
+        <LI>Next message: <A HREF="001612.html">[Kiwi-users] &lt;deploy /&gt; in config.xml
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1611">[ date ]</a>
+              <a href="thread.html#1611">[ thread ]</a>
+              <a href="subject.html#1611">[ subject ]</a>
+              <a href="author.html#1611">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have a &lt;deploy /&gt; section in my config.xml. It has always been there.
+</I>&gt;<i> I am wondering if I really need it.
+</I>
+it makes sense to have a pxedeploy section for pxe images only
+That's correct
+
+&gt;<i> I make kiwi images that boot via PXE on a diskless system. The diskless
+</I>&gt;<i> system seems only to use:
+</I>&gt;<i> 
+</I>&gt;<i> 	linux (the kernel image)
+</I>&gt;<i> 	initrd (the initial ram disk image)
+</I>&gt;<i> 	config.default (tells that the root is available via AoE)
+</I>&gt;<i> 	root (the root image mounted with AoE)
+</I>
+and on boot the kiwi initrd reads the config.&lt;MAC&gt; which is the
+file created according to the information of the pxedeploy section
+in your config.xml
+
+&gt;<i> Some parts are wrong. Like the server. The rest seem suspect. If it is
+</I>&gt;<i> used, I need to make sure it is correct. If it is not used, can I remove
+</I>&gt;<i> it from my config.xml?
+</I>
+The pxedeploy section is more or less a helper section which creates
+a file including information important on deploy of the image.
+If you remove it from your config.xml you still can create the
+image as before. If it comes to the point that the client boots
+up the kernel will load the initrd and run the code inside. The netboot
+code of kiwi now tries to load the client configuration which is
+that file created by the deploy section. You are free to create
+that client configuration file yourself and maintain it somehow
+but in order to boot up some configuration must exist no matter
+how it was created
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001610.html">[Kiwi-users] &lt;deploy /&gt; in config.xml
+</A></li>
+	<LI>Next message: <A HREF="001612.html">[Kiwi-users] &lt;deploy /&gt; in config.xml
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1611">[ date ]</a>
+              <a href="thread.html#1611">[ thread ]</a>
+              <a href="subject.html#1611">[ subject ]</a>
+              <a href="author.html#1611">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

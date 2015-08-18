@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with aufs being pulled in by kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20aufs%20being%20pulled%20in%20by%20kiwi&In-Reply-To=%3C20091002142302.GA24075%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001467.html">
+   <LINK REL="Next"  HREF="001470.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with aufs being pulled in by kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20aufs%20being%20pulled%20in%20by%20kiwi&In-Reply-To=%3C20091002142302.GA24075%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Issues with aufs being pulled in by kiwi">ms at novell.com
+       </A><BR>
+    <I>Fri Oct  2 16:23:02 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001467.html">[Kiwi-users] Issues with aufs being pulled in by kiwi
+</A></li>
+        <LI>Next message: <A HREF="001470.html">[Kiwi-users] Issues with aufs being pulled in by kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1469">[ date ]</a>
+              <a href="thread.html#1469">[ thread ]</a>
+              <a href="subject.html#1469">[ subject ]</a>
+              <a href="author.html#1469">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Is there any way to prevent kiwi from using aufs?  At the moment we
+</I>&gt;<i> are using a kernel that has no aufs module available for it, and as
+</I>&gt;<i> such we can't build any images using kiwi.
+</I>&gt;<i> 
+</I>&gt;<i> From our build log it looks like aufs is used to mount the
+</I>&gt;<i> repositories, but i have tried to make sure we use clicfs.  Our aim is
+</I>&gt;<i> to provide a hybrid ISO similar to that of Factory/11.2 but the
+</I>&gt;<i> requirement for aufs is a blocker.
+</I>
+aufs is not used in 11.2 anymore and kiwi already has no reference
+to aufs in 11.2 anymore. I'm wondering where you saw any aufs mount
+with the specs I see below:
+
+&gt;<i> Our kiwi file has the following:
+</I>&gt;<i> 
+</I>&gt;<i>  &lt;preferences&gt;
+</I>&gt;<i>     &lt;!-- format can be iso for burning to DVD --&gt;
+</I>&gt;<i>     &lt;type
+</I>&gt;<i>       primary=&quot;true&quot;
+</I>&gt;<i>       boot=&quot;isoboot/suse-11.2&quot;
+</I>&gt;<i>       bootprofile=&quot;default&quot;
+</I>&gt;<i>       bootkernel=&quot;std&quot;
+</I>&gt;<i>       flags=&quot;clic&quot;
+</I>&gt;<i>       hybrid=&quot;true&quot;
+</I>&gt;<i>       checkprebuilt='true'
+</I>
+maybe you use an old prebuilt boot image. I suggest to remove
+the line checkprebuilt=&quot;true&quot; and recreate the image
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001467.html">[Kiwi-users] Issues with aufs being pulled in by kiwi
+</A></li>
+	<LI>Next message: <A HREF="001470.html">[Kiwi-users] Issues with aufs being pulled in by kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1469">[ date ]</a>
+              <a href="thread.html#1469">[ thread ]</a>
+              <a href="subject.html#1469">[ subject ]</a>
+              <a href="author.html#1469">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

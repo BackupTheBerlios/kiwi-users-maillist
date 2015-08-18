@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to insert a kernel module in KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20insert%20a%20kernel%20module%20in%20KIWI&In-Reply-To=%3C47617AA1.F132.00B1.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000169.html">
+   <LINK REL="Next"  HREF="000170.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to insert a kernel module in KIWI</H1>
+    <B>Kazuhiro Takagi</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20insert%20a%20kernel%20module%20in%20KIWI&In-Reply-To=%3C47617AA1.F132.00B1.0%40novell.com%3E"
+       TITLE="[Kiwi-users] How to insert a kernel module in KIWI">KTakagi at novell.com
+       </A><BR>
+    <I>Thu Dec 13 10:31:59 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000169.html">[Kiwi-users] How to insert a kernel module in KIWI
+</A></li>
+        <LI>Next message: <A HREF="000170.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#172">[ date ]</a>
+              <a href="thread.html#172">[ thread ]</a>
+              <a href="subject.html#172">[ subject ]</a>
+              <a href="author.html#172">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Thank yo for the reply.
+
+I succeeded to build a SLED10 LiveCD image with no compression.
+However I should try to build a SLED10 compressed LiveCD image. 
+Because there are several problems, size, booting speed and etc...
+
+I wish if there is easier way to add an additional module.
+e.g.  add to root/lib/modules/.../kernel/fs/XXXX.ko
+
+Thanks,
+Kazuhiro Takagi
+&gt;&gt;&gt;<i>  6:17 &#21320;&#24460; &#12398; 2007/12/12 &#12398;&#12513;&#12483;&#12475;&#12540;&#12472; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">20071212091733.GA11116 at suse.de</A>&gt;:
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I used my own module. It is compiled for SLED10-SP1.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i>  SLED10-SP1 with patch:
+</I>&gt;&gt;<i>  /lib/modules/2.6.16.53-0.16-default/kernel/fs/squashfs.ko
+</I>&gt;<i> 
+</I>&gt;<i> Ah, ok
+</I>&gt;<i> 
+</I>&gt;&gt;<i> How to insert it to initrd ?
+</I>&gt;&gt;<i> It is installed in RO(squashfs) fs in livecd. But there is not it in initrd. 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> To insert into the initrd you need to add &lt;file name=&quot;fs/squashfs.ko&quot;/&gt;
+</I>&gt;<i> into the drivers section and the package name which contains the kernel
+</I>&gt;<i> module into the package section of the boot image description according
+</I>&gt;<i> to the image type you want to create. I guess you want to build a live
+</I>&gt;<i> system (ISO) so this is the file
+</I>&gt;<i> 
+</I>&gt;<i>    /usr/share/kiwi/image/isoboot/suse-SLED10-SP1/config.xml
+</I>&gt;<i> 
+</I>&gt;<i> I still don't know exactly what you want to achieve but if I again guess
+</I>&gt;<i> you want to build a live system with squashfs compression you also need
+</I>&gt;<i> aufs in order to be able to mount the compressed image together with
+</I>&gt;<i> an read write part. aufs also doesn't exist on SLE
+</I>&gt;<i> 
+</I>&gt;<i> * All this would be a lot easier if you use 10.3, don't know if this is
+</I>&gt;<i>   an option for you.
+</I>&gt;<i> 
+</I>&gt;<i> * By the way you are not forced to use a compressed image you can
+</I>&gt;<i>   simply create the live system without compression. Of course your
+</I>&gt;<i>   image gets bigger than but you don't have to deal with inclusion of
+</I>&gt;<i>   squashfs / aufs into the initrd. To do this you simply remove the
+</I>&gt;<i>   flag=&quot;unified&quot; from your system image config.xml file
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000169.html">[Kiwi-users] How to insert a kernel module in KIWI
+</A></li>
+	<LI>Next message: <A HREF="000170.html">[Kiwi-users] Failed to mount root filesystem (kiwi 2.02)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#172">[ date ]</a>
+              <a href="thread.html#172">[ thread ]</a>
+              <a href="subject.html#172">[ subject ]</a>
+              <a href="author.html#172">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

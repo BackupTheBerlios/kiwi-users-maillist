@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C4873DA89.70503%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000756.html">
+   <LINK REL="Next"  HREF="000758.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD</H1>
+    <B>Sebastian Siebert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C4873DA89.70503%40gmx.de%3E"
+       TITLE="[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD">freespacer at gmx.de
+       </A><BR>
+    <I>Tue Jul  8 23:22:17 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000756.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+        <LI>Next message: <A HREF="000758.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#757">[ date ]</a>
+              <a href="thread.html#757">[ thread ]</a>
+              <a href="subject.html#757">[ subject ]</a>
+              <a href="author.html#757">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Marcus ;-)
+
+Marcus Sch&#228;fer schrieb:
+&gt;<i> You have multiple possibilities here:
+</I>&gt;<i>
+</I>&gt;<i> 1) you can upgrade your previosly created image root tree (kiwi prepare)
+</I>&gt;<i>    with kiwi again. Let's say you have prepared your tree below /tmp/kiwi-test
+</I>&gt;<i>    the following will upgrade the tree using the update repo for 10.3
+</I>&gt;<i>
+</I>&gt;<i>       kiwi --upgrade /tmp/kiwi-test \
+</I>&gt;<i>            --add-repo <A HREF="http://download.opensuse.org/update/10.3">http://download.opensuse.org/update/10.3</A> \
+</I>&gt;<i>            --add-repotype rpm-md
+</I>&gt;<i>
+</I>&gt;<i>    now you need to re-create the image from the updated tree as you
+</I>&gt;<i>    did before
+</I>&gt;<i>
+</I>&gt;<i>       kiwi --create /tmp/kiwi-test ...
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+It is a great feature, I ever hear. I think, I love Kiwi. ;-)
+
+&gt;<i> 2) you can use zypper or smart inside the image after the first
+</I>&gt;<i>    deployment. So if your system runs and you have installed for example
+</I>&gt;<i>    smart you can add the update repository with 
+</I>&gt;<i>
+</I>&gt;<i>       smart channel add ...
+</I>&gt;<i>       smart upgrade 
+</I>&gt;<i>
+</I>&gt;<i>    depending on the image type the changes might be in RAM only
+</I>&gt;<i>    ( for example on live ISO's) so this might not be a good idea
+</I>
+This suggestion isn't a good idea, but it can implemented in an emergency.
+If someone need software from repository, so it can add easier to 
+running system.
+But at next reboot, all added or updated software are gone. :-/
+
+My next step are compiling a software and adding this to live cd.
+I think, the step to compile for live cd as follows:
+1. ./configure --prefix=/usr
+2. make
+3. copy source directory to the same subfolder in live-cd-directory like 
+the host-system
+4. chrooting into the new system and install with command &quot;make install&quot;
+
+But some execute file need library, so I find out the shared library 
+with &quot;readelf -d program&quot;
+and adding the missing library to the package of config.xml. Right?
+
+Is that the best way to add any compiled software to live cd?
+
+Regards,
+Sebastian
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000756.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+	<LI>Next message: <A HREF="000758.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#757">[ date ]</a>
+              <a href="thread.html#757">[ thread ]</a>
+              <a href="subject.html#757">[ subject ]</a>
+              <a href="author.html#757">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20use%20KIWIQX%20without%20qw%28qxx%29%20in%205.03.37-484%20and%20earlier&In-Reply-To=%3C20120726133227.GA28067%40pre-sense.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003038.html">
+   <LINK REL="Next"  HREF="003040.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier</H1>
+    <B>Friedrich Delgado</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20use%20KIWIQX%20without%20qw%28qxx%29%20in%205.03.37-484%20and%20earlier&In-Reply-To=%3C20120726133227.GA28067%40pre-sense.de%3E"
+       TITLE="[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier">delgado at pre-sense.de
+       </A><BR>
+    <I>Thu Jul 26 15:32:27 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003038.html">[Kiwi-users] Disabling SELinux on kiwi images
+</A></li>
+        <LI>Next message: <A HREF="003040.html">[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3039">[ date ]</a>
+              <a href="thread.html#3039">[ thread ]</a>
+              <a href="subject.html#3039">[ subject ]</a>
+              <a href="author.html#3039">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi!
+
+In
+<A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_12.1/x86_64/kiwi-5.03.37-484.1.x86_64.rpm">http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_12.1/x86_64/kiwi-5.03.37-484.1.x86_64.rpm</A>
+/usr/sbin/kiwi uses KIWIQX without specifiying that it intends to use
+qxx.
+
+This leads to
+
+Undefined subroutine &amp;main::qxx called at /usr/sbin/kiwi line 102.
+
+in a separate prepare call such as
+
+kiwi -p /tmp/build-job/kiwi-system --root /tmp/build --debug --logfile /tmp/kiwi-prepare.log
+
+
+There are some use cases where it doesn't fail, since all of the
+modules in /usr/share/kiwi/modules do a qualified import of KIWIQX.
+
+Kind regards
+--
+Dipl.-Inform. Friedrich Delgado &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">delgado at pre-sense.de</A>&gt;
+PRESENSE Technologies GmbH, USt-IdNr.: DE263765024, AG Hamburg, HRB 107844
+Sachsenstr. 5, 20097 Hamburg,           Gesch&#228;ftsf&#252;hrer/Managing Directors:
+Till D&#246;rges                  J&#252;rgen Sander                  Axel Theilmann
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120726/8f09743a/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120726/8f09743a/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003038.html">[Kiwi-users] Disabling SELinux on kiwi images
+</A></li>
+	<LI>Next message: <A HREF="003040.html">[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3039">[ date ]</a>
+              <a href="thread.html#3039">[ thread ]</a>
+              <a href="subject.html#3039">[ subject ]</a>
+              <a href="author.html#3039">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

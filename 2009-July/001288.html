@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20Booting%20LiveCD%20using%2011.2%20M3%20as%20base%20repos&In-Reply-To=%3Cc06b3e390907220841x49cceba5q4ec2cd34c46479f2%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001286.html">
+   <LINK REL="Next"  HREF="001289.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos</H1>
+    <B>Masim &quot;Vavai&quot; Sugianto</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20Booting%20LiveCD%20using%2011.2%20M3%20as%20base%20repos&In-Reply-To=%3Cc06b3e390907220841x49cceba5q4ec2cd34c46479f2%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos">vavai at vavai.com
+       </A><BR>
+    <I>Wed Jul 22 17:41:29 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001286.html">[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos
+</A></li>
+        <LI>Next message: <A HREF="001289.html">[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1288">[ date ]</a>
+              <a href="thread.html#1288">[ thread ]</a>
+              <a href="subject.html#1288">[ subject ]</a>
+              <a href="author.html#1288">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Wed, Jul 22, 2009 at 6:26 AM, Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+&gt;<i> ah the pcre issue. hwinfo is linked against libpcre which means
+</I>&gt;<i> this lib is required in the initrd. but kiwi removes the package
+</I>&gt;<i> pcre from the initrd. Stephan Kulow wants to split the pcre package
+</I>&gt;<i> so that we don't have to keep the entire big pcre package inside the
+</I>&gt;<i> initrd.
+</I>&gt;<i>
+</I>&gt;<i> As a hot fix just remove the line:
+</I>&gt;<i>
+</I>&gt;<i> &#160; &lt;package name=&quot;pcre&quot;/&gt;
+</I>&gt;<i>
+</I>&gt;<i> from /usr/share/kiwi/image/isoboot/suse-11.2/config.xml
+</I>&gt;<i> and rebuild the iso.
+</I>
+Thank you Marcus, it solved my problem regarding pcre (and waiting
+what Coolo prepared with 11.2 M4) but I have another problem. The live
+iso could not mount the live image. It seems that the iso need both CD
+and USB to be appeared on the system. The system also trying to mount
+live image from usb disk.
+
+I could resolve the problem by attach my USB disk and run the livecd
+iso as CDROM (I'm using VirtualBox 3.0.2 as system test).
+
+Below is my configuration. Which part should be change so I would only
+need CD ROM (or in another case, only USB disk if I'm running as
+LiveUSB)
+
+Part of configuration :
+
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;image schemaversion=&quot;3.5&quot; name=&quot;openSUSE-11.2-livecd-kde&quot;&gt;
+  &lt;description type=&quot;system&quot;&gt;
+    &lt;author&gt;Stephan Kulow&lt;/author&gt;
+    &lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coolo at novell.com</A>&lt;/contact&gt;
+    &lt;specification&gt;openSUSE 11.2 Live system&lt;/specification&gt;
+  &lt;/description&gt;
+  &lt;preferences&gt;
+    &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-11.2&quot; flags=&quot;clic&quot;&gt;iso&lt;/type&gt;
+    &lt;!-- type:livecd --&gt;
+    &lt;version&gt;2.8.0&lt;/version&gt;
+    &lt;size unit=&quot;M&quot;&gt;3000&lt;/size&gt;
+    &lt;boot-theme&gt;openSUSE&lt;/boot-theme&gt;
+    &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+    &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+    &lt;rpm-force&gt;False&lt;/rpm-force&gt;
+    &lt;locale&gt;en_US.UTF-8&lt;/locale&gt;
+    &lt;oem-swap&gt;no&lt;/oem-swap&gt;
+    &lt;oem-boot-title&gt;USB&lt;/oem-boot-title&gt;
+  &lt;/preferences&gt;
+  &lt;users group=&quot;users&quot;&gt;
+    &lt;user name=&quot;root&quot; pwd=&quot;&quot; home=&quot;/root&quot;/&gt;
+  &lt;/users&gt;
+  &lt;repository type=&quot;yast2&quot;&gt;
+    &lt;source path=&quot;<A HREF="http://192.168.1.111/11.2/">http://192.168.1.111/11.2/</A>&quot;/&gt;
+  &lt;/repository&gt;
+  &lt;packages type=&quot;image&quot; patternPackageType=&quot;onlyRequired&quot;&gt;
+    &lt;package name=&quot;bootsplash-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt;
+    &lt;package name=&quot;gfxboot-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt;
+    &lt;opensusePattern name=&quot;kde4_basis&quot;/&gt;
+    &lt;package name=&quot;yast2-live-installer&quot;/&gt;
+    &lt;package name=&quot;pam&quot;/&gt;
+    &lt;package name=&quot;pam-config&quot;/&gt;
+    &lt;package name=&quot;pam-modules&quot;/&gt;
+    &lt;package name=&quot;udev&quot;/&gt;
+    &lt;package name=&quot;aaa_base&quot;/&gt;
+    &lt;package name=&quot;tar&quot;/&gt;
+    &lt;package name=&quot;patch&quot;/&gt;
+    &lt;package name=&quot;zypper&quot;/&gt;
+    &lt;!-- PACKAGES BEGIN --&gt;
+   ...
+
+I didn't change another part of configuration except the repos
+location and add the line :
+
+&lt;opensusePattern name=&quot;kde4_basis&quot;/&gt;
+
+Thank you for any suggestion.
+
+-- 
+Best Regards,
+
+Masim &quot;Vavai&quot; Sugianto
+/************************************************************/
+Blog (ID)         : <A HREF="http://www.vavai.com/blog">http://www.vavai.com/blog</A>
+Blog (EN)        : <A HREF="http://www.vavai.net">http://www.vavai.net</A>
+Community      : <A HREF="http://www.opensuse.or.id">http://www.opensuse.or.id</A>
+/************************************************************/
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001286.html">[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos
+</A></li>
+	<LI>Next message: <A HREF="001289.html">[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1288">[ date ]</a>
+              <a href="thread.html#1288">[ thread ]</a>
+              <a href="subject.html#1288">[ subject ]</a>
+              <a href="author.html#1288">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

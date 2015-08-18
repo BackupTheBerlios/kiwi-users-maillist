@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Boot from hard drive feature
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20from%20hard%20drive%20feature&In-Reply-To=%3C20100325151922.GA16675%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001758.html">
+   <LINK REL="Next"  HREF="001750.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Boot from hard drive feature</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20from%20hard%20drive%20feature&In-Reply-To=%3C20100325151922.GA16675%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Boot from hard drive feature">ms at novell.com
+       </A><BR>
+    <I>Thu Mar 25 16:19:22 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001758.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+        <LI>Next message: <A HREF="001750.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1759">[ date ]</a>
+              <a href="thread.html#1759">[ thread ]</a>
+              <a href="subject.html#1759">[ subject ]</a>
+              <a href="author.html#1759">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;&gt;&gt;<i> I cannot reproduce it.
+</I>&gt;<i>
+</I>&gt;<i> Ok, short story: kiwi patch attached.
+</I>
+:<i>-)
+</I>
+&gt;<i> Long story: grubs chainloader command does not work as expected (at least as
+</I>&gt;<i> I would). I've looked at the source and am still not sure if that's
+</I>&gt;<i> intentional or a bug and quite frankly I don't care.
+</I>&gt;<i>
+</I>&gt;<i> What happened is that 'chainloader (hd0)' reads a block from hd0 but still
+</I>&gt;<i> passes the cdrom drive id to the boot code when booting. As the oem image
+</I>&gt;<i> has grub installed into mbr, grub fails to load its remaining code.
+</I>&gt;<i>
+</I>&gt;<i> And why did it work for me? Because I had a test image which has a generic
+</I>&gt;<i> mbr and grub was installed into a partition. The generic mbr threw away the
+</I>&gt;<i> cdrom drive id as obviously wrong and continued booting from the first disk
+</I>&gt;<i> as fallback.
+</I>&gt;<i>
+</I>&gt;<i> I've changed kiwi to use 'bootnext' for cdrom too.
+</I>
+Thanks, I committed the patch. Will do that for SLE11 SP1 too
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001758.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+	<LI>Next message: <A HREF="001750.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1759">[ date ]</a>
+              <a href="thread.html#1759">[ thread ]</a>
+              <a href="subject.html#1759">[ subject ]</a>
+              <a href="author.html#1759">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

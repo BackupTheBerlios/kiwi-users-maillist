@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Vedr.: Re: Fw: Vedr.: Re: Problem with network	module during boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Vedr.%3A%20Re%3A%20Fw%3A%20Vedr.%3A%20Re%3A%20Problem%20with%20network%0A%09module%20during%20boot&In-Reply-To=%3Cb317ae5c0909100619t3cd0ce99k53b132eb3a879b80%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001437.html">
+   <LINK REL="Next"  HREF="001436.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Vedr.: Re: Fw: Vedr.: Re: Problem with network	module during boot</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Vedr.%3A%20Re%3A%20Fw%3A%20Vedr.%3A%20Re%3A%20Problem%20with%20network%0A%09module%20during%20boot&In-Reply-To=%3Cb317ae5c0909100619t3cd0ce99k53b132eb3a879b80%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Vedr.: Re: Fw: Vedr.: Re: Problem with network	module during boot">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Thu Sep 10 15:19:51 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001437.html">[Kiwi-users] Vedr.: Re: Fw: Vedr.: Re: Problem with network module during boot
+</A></li>
+        <LI>Next message: <A HREF="001436.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1438">[ date ]</a>
+              <a href="thread.html#1438">[ thread ]</a>
+              <a href="subject.html#1438">[ subject ]</a>
+              <a href="author.html#1438">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Sep 10, 2009 at 5:48 PM, Maciej Szeliga &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">msz at kommunekredit.dk</A>&gt; wrote:
+&gt;<i> Hi
+</I>&gt;<i>
+</I>&gt;<i> I'm completly new to kiwi-ltsp and don't really know where to check those
+</I>&gt;<i> version numbers.
+</I>
+Hmm, you got a lot of reading to do :)
+
+check out /usr/share/doc/packages/kiwi.pdf from kiwi-docs package.
+
+Check the repositories list in
+/usr/share/kiwi/images/yourimagename/suse-11.1/config.xml, it should
+have update repository as seen in
+/usr/share/kiwi/images/ltsp/suse-11.1/config.xml preference section.
+
+        &lt;repository type=&quot;rpm-md&quot;&gt;
+            &lt;source path=&quot;<A HREF="http://download.opensuse.org/update/11.1/">http://download.opensuse.org/update/11.1/</A>&quot;/&gt;
+        &lt;/repository&gt;
+
+Run &quot;kiwi-ltsp-setup -fat&quot; and &quot;kiwi-ltsp-setup -n&quot; to create netboot
+and system images.
+
+You need a good internet connection when building the image.
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001437.html">[Kiwi-users] Vedr.: Re: Fw: Vedr.: Re: Problem with network module during boot
+</A></li>
+	<LI>Next message: <A HREF="001436.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1438">[ date ]</a>
+              <a href="thread.html#1438">[ thread ]</a>
+              <a href="subject.html#1438">[ subject ]</a>
+              <a href="author.html#1438">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to change the read/write attrinute of	directories
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20change%20the%20read/write%20attrinute%20of%0A%09directories&In-Reply-To=%3C20090629071928.GA7763%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001227.html">
+   <LINK REL="Next"  HREF="001229.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to change the read/write attrinute of	directories</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20change%20the%20read/write%20attrinute%20of%0A%09directories&In-Reply-To=%3C20090629071928.GA7763%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] How to change the read/write attrinute of	directories">ms at novell.com
+       </A><BR>
+    <I>Mon Jun 29 09:19:28 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001227.html">[Kiwi-users] How to change the read/write attrinute of	directories
+</A></li>
+        <LI>Next message: <A HREF="001229.html">[Kiwi-users] How to change the read/write attrinute	of	directories
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1228">[ date ]</a>
+              <a href="thread.html#1228">[ thread ]</a>
+              <a href="subject.html#1228">[ subject ]</a>
+              <a href="author.html#1228">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;&gt;&gt;<i> You know, there're two style live iso can created by kiwi. In the old style
+</I>&gt;&gt;&gt;<i> live iso, the CD-Boot structure of KIWI places the /bin, /boot, /lib, /opt,
+</I>&gt;&gt;&gt;<i> /sbin, and /usr directories on the CD, while the remainder of the
+</I>&gt;&gt;&gt;<i> directories are placed in the main memory of the system.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Can I change the seeting on which I can place the /opt in memory  for 
+</I>&gt;&gt;&gt;<i> writing?
+</I>&gt;&gt;&gt;<i> Or the new style live CD can resolve this problem?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It's possible yes but before I explain what you can do may I ask
+</I>&gt;&gt;<i> what distro version you want to use for your live setup ?
+</I>&gt;&gt;<i> 11.0, 11.1, SLE10, SLE11 ?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Marcus
+</I>&gt;<i>
+</I>&gt;<i> The host OS on which kiwi installed is SLES10SP2 and I also want to create 
+</I>&gt;<i> a SLES10SP2 Live CD.
+</I>
+ok, according to this information you can do the following
+
+1) make sure you have installed the latest kiwi version from here:
+   <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/SLE_10/">http://download.opensuse.org/repositories/Virtualization:/Appliances/SLE_10/</A>
+
+2) download the squashfs for SLE10 into the directory
+   /usr/share/kiwi/repo/suse-repo/suse-sle10-repo/. You can get squashfs
+   for SLE10 from here:
+   <A HREF="http://download.opensuse.org/repositories/filesystems/SLE_10/">http://download.opensuse.org/repositories/filesystems/SLE_10/</A>
+
+3) change the isoboot image description as follows:
+
+   cd /usr/share/kiwi/image/isoboot/suse-SLES10/
+
+   rm -f .checksum.md5
+
+   vi config.xml
+
+   ===&gt; add the line &lt;file name=&quot;fs/squashfs/*&quot;/&gt; to the drivers section
+
+   &lt;drivers type=&quot;drivers&quot;&gt;
+      ...
+      &lt;file name=&quot;fs/squashfs/*&quot;/&gt;
+      ...
+   &lt;/drivers&gt;
+
+   All this makes sure we have the squashfs module inside the
+   initrd. kiwi allows split systems only if the read-only part can
+   be used compressed. Otherwise it wouldn't make much sense to split it
+
+4) edit your system image config.xml and change the following:
+   
+   a) the type line
+
+      &lt;type boot=&quot;isoboot/suse-SLES10&quot; flags=&quot;compressed&quot;&gt;iso&lt;/type&gt;
+
+   b) now we add a split section describing the read/write
+
+      &lt;split&gt;
+        &lt;temporary&gt;
+           &lt;file name=&quot;/var&quot;/&gt;
+           &lt;file name=&quot;/var/*&quot;/&gt;
+           &lt;file name=&quot;/opt&quot;/&gt;
+           &lt;file name=&quot;/opt/*&quot;/&gt;
+        &lt;/temporary&gt;
+      &lt;/split&gt;
+
+   All this makes sure we use the compressed split system instead
+   of the old-style iso and you can control with the split section
+   what should be read-write and what should stay read-only
+
+
+That's it. I'm sorry if it sounds a bit complicated but SLE10
+was before the appliance program starts and therefore we miss
+some software components used in newer distributions
+
+if it does not build just send me the complete kiwi log
+file to the list or on bugzilla if you're sure it's a bug :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001227.html">[Kiwi-users] How to change the read/write attrinute of	directories
+</A></li>
+	<LI>Next message: <A HREF="001229.html">[Kiwi-users] How to change the read/write attrinute	of	directories
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1228">[ date ]</a>
+              <a href="thread.html#1228">[ thread ]</a>
+              <a href="subject.html#1228">[ subject ]</a>
+              <a href="author.html#1228">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

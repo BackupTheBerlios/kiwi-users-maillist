@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Installing a Kiwi image on a different partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installing%20a%20Kiwi%20image%20on%20a%20different%20partition&In-Reply-To=%3CCCB02390D0D08042904E3D9A50B86660F22ABE%40sushdc7896.TD.teradata.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002043.html">
+   <LINK REL="Next"  HREF="002045.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Installing a Kiwi image on a different partition</H1>
+    <B>Hills, Steve</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installing%20a%20Kiwi%20image%20on%20a%20different%20partition&In-Reply-To=%3CCCB02390D0D08042904E3D9A50B86660F22ABE%40sushdc7896.TD.teradata.com%3E"
+       TITLE="[Kiwi-users] Installing a Kiwi image on a different partition">Steve.Hills at Teradata.com
+       </A><BR>
+    <I>Mon Sep 27 22:53:46 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002043.html">[Kiwi-users] Installing a Kiwi image on a different partition
+</A></li>
+        <LI>Next message: <A HREF="002045.html">[Kiwi-users] VMDK for ESX
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2044">[ date ]</a>
+              <a href="thread.html#2044">[ thread ]</a>
+              <a href="subject.html#2044">[ subject ]</a>
+              <a href="author.html#2044">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>We do something similar except we flip-flop the boot partition addresses
+so that /dev/sda is always the boot partition. I haven't looked at the
+wiki article but basically we create a oem image, then after kiwi is
+done we create a disk image and partition it the way we need, dump the
+raw image into a partition, fix up fstab, install grub, etc, then rip
+the partition image out. We then &quot;flash&quot; the partition image onto the
+hard drive (into the unused partition) and install grub into it (so the
+disk offsets are correct).
+
+Steve Hills
+Teradata Corporation 
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A>
+[mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A>] On Behalf Of Robert
+Schweikert
+Sent: Monday, September 27, 2010 12:55 PM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] Installing a Kiwi image on a different
+partition
+
+Hi Luis,
+
+On 09/27/2010 03:15 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">luis.arruda at emc.com</A> wrote:
+&gt;<i> Hi everyone,
+</I>&gt;<i> 
+</I>&gt;<i> I'm working on a project to implement a &quot;flip-flop&quot; upgrade for an
+</I>appliance based on a Kiwi OEM-image installation. A &quot;flip-flop&quot; upgrade
+works thusly:
+&gt;<i> 
+</I>&gt;<i> 1) There are two partitions on the boot drive (not including swap or
+</I>other common areas). One (to be referred to as the &quot;old&quot;) contains the
+currently booted OS. The other (to be referred to as the &quot;target&quot;) is
+either empty or contains an obsolete operating system installation due
+to a prior upgrade.
+
+The data separation example
+(<A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_Data_Separation">http://en.opensuse.org/SDB:KIWI_Cookbook_Data_Separation</A>) shows how to
+create a separate partition that could be used for this concpety.
+&gt;<i> 
+</I>&gt;<i> 2) The new operating system is installed to the &quot;target&quot; partition.
+</I>&gt;<i> 
+</I>&gt;<i> 3) The boot loader configuration is modified so that the &quot;target&quot;
+</I>partition is now the default boot partition and the &quot;old&quot; partition is
+still available via the boot menu should the user want to revert.
+&gt;<i> 
+</I>&gt;<i> This is to be accomplished using a common Kiwi image that can also be
+</I>used to install to virgin, completely blank hard drives. 
+
+For the bare metal install you definitely want to use an OEM image, ISO
+or USB.
+
+&gt;<i> I've tried just manually extracting the raw image data that's created 
+</I>&gt;<i> by our Kiwi scripts/configuration but it doesn't contain a proper 
+</I>&gt;<i> initrd to boot off of,
+</I>
+The raw image is a complete disk image, you can test it with
+
+# qemu-kvm file-name.raw
+
+You can dump this image to any disk and boot it and it will work.
+
+&gt;<i> which leads me to believe that this part is handled by the Kiwi code 
+</I>&gt;<i> that installs
+</I>
+The kiwi install code for an OEM image basically just does a &quot;dd&quot;
+operation.
+
+HTH,
+Robert
+
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+_______________________________________________
+Kiwi-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002043.html">[Kiwi-users] Installing a Kiwi image on a different partition
+</A></li>
+	<LI>Next message: <A HREF="002045.html">[Kiwi-users] VMDK for ESX
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2044">[ date ]</a>
+              <a href="thread.html#2044">[ thread ]</a>
+              <a href="subject.html#2044">[ subject ]</a>
+              <a href="author.html#2044">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

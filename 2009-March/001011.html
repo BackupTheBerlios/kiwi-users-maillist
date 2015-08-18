@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] default vs pae kernel in diskless builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C49BE4C87.503%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001010.html">
+   <LINK REL="Next"  HREF="001014.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] default vs pae kernel in diskless builds</H1>
+    <B>Vladimir V. Kolpakov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C49BE4C87.503%40gmail.com%3E"
+       TITLE="[Kiwi-users] default vs pae kernel in diskless builds">vova.kolpakov at gmail.com
+       </A><BR>
+    <I>Mon Mar 16 13:56:39 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001010.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+        <LI>Next message: <A HREF="001014.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1011">[ date ]</a>
+              <a href="thread.html#1011">[ thread ]</a>
+              <a href="subject.html#1011">[ subject ]</a>
+              <a href="author.html#1011">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Roger Oberholtzer wrote:
+&gt;<i> Perhaps I have been unclear. I don't want two kernels. It is just that
+</I>&gt;<i> this is what I get. What I want is to be able to specify a different
+</I>&gt;<i> kernel than the -default one. Like the -pae kernel.
+</I>
+Anyway,
+question was useful.
+
+&gt;<i> So you do get one with the -pae kernel? Which change to my config made
+</I>&gt;<i> that work?
+</I>
+This should be sufficient:
+ ... bootprofile=&quot;smp&quot; ...
+and
+ &lt;package name=&quot;kernel-pae&quot;/&gt;
+ &lt;package name=&quot;aufs-kmp-pae&quot;/&gt;
+
+
+&gt;&gt;<i> Regards to config.xml,
+</I>&gt;&gt;<i> bootprofile=&quot;smp,default&quot; is more appropriate there
+</I>&gt;&gt;<i> then &quot;smp,diskless&quot;, as long as /dev/sda* are involved.
+</I>&gt;<i> 
+</I>&gt;<i> I cannot see any reasonable reason choice of kernel has any relationship
+</I>&gt;<i> to the diskless flag. Am I missing something?
+</I>
+As I see the difference between &quot;default&quot; and &quot;diskless&quot;,
+e2fs utils won't be included into diskless netboot image,
+some other stuff perhaps too.
+As soon as you run into sda re-format, boot will fail.
+
+--w
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001010.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+	<LI>Next message: <A HREF="001014.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1011">[ date ]</a>
+              <a href="thread.html#1011">[ thread ]</a>
+              <a href="subject.html#1011">[ subject ]</a>
+              <a href="author.html#1011">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

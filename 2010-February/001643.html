@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] NBDROOT overlay tests...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20NBDROOT%20overlay%20tests...&In-Reply-To=%3C201002030140.26919.hpj%40urpla.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001636.html">
+   <LINK REL="Next"  HREF="001646.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] NBDROOT overlay tests...</H1>
+    <B>Hans-Peter Jansen</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20NBDROOT%20overlay%20tests...&In-Reply-To=%3C201002030140.26919.hpj%40urpla.net%3E"
+       TITLE="[Kiwi-users] NBDROOT overlay tests...">hpj at urpla.net
+       </A><BR>
+    <I>Wed Feb  3 01:40:26 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001636.html">[Kiwi-users] NBDROOT overlay tests...
+</A></li>
+        <LI>Next message: <A HREF="001646.html">[Kiwi-users] NBDROOT overlay tests...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1643">[ date ]</a>
+              <a href="thread.html#1643">[ thread ]</a>
+              <a href="subject.html#1643">[ subject ]</a>
+              <a href="author.html#1643">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 02 February 2010, 17:06:19 Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; I have tested NBD together with aufs for a base 11.1
+</I>&gt;<i> &gt; root system which was:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   a) uncompressed (ext3)
+</I>&gt;<i> &gt;   b) uncompressed (ext3) / write NBD device was ext2
+</I>&gt;<i> &gt;   c) compressed squashfs / write NBD device was ext2
+</I>&gt;<i> &gt;   d) compressed clicfs / write NBD device was a raw file
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; all cases worked for me. I also activated NBD swap without
+</I>&gt;<i> &gt; any problems. The config.&lt;MAC&gt; contents was
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   a) NBDROOT=192.168.100.2;2000;/dev/nbd0;9120;/dev/nbd2
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   b) NBDROOT=192.168.100.2;2000;/dev/nbd0;9120;/dev/nbd2;2001;/dev/nbd1
+</I>&gt;<i> &gt;      UNIONFS_CONFIG=/dev/nbd1,/dev/nbd0,aufs
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   c)+d)
+</I>&gt;<i> &gt; NBDROOT=192.168.100.2;2000;/dev/nbd0;9120;/dev/nbd2;2001;/dev/nbd1
+</I>&gt;<i> &gt; (union config is built automatically if the root is a read-only fs)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; So NFS sucks for my tests but NBD worked fine, AoE also sucks
+</I>&gt;<i> &gt; the kernel crashed in the same way compared to NFS
+</I>
+Hmm, AoE looks solid here.
+
+I've tried to create a simple step by step guide for Jeff Mahoney for 
+reproducing this problem - based on suse-pxe-client, and guess what, that 
+setup worked! Do you have a {serial,net} console setup running, that allows 
+you to capture the oopses easily? Then it would be kind to post them here.
+
+BTW, I'm hammering BS ATM with a aufs2 prepared kernel build. I'm still not 
+sure, where it lands, but I've tried to forward port the essential SUSE 
+adjustments only, and keep the rest original. We will see...
+
+&gt;<i> some small patches to the initrd code where required. So all this
+</I>&gt;<i> will be available in 4.12 which I'm going to submit at the end
+</I>&gt;<i> of this week... but git is your friend for the latest code :)
+</I>
+Okay, I would like to get my kiwi mods out of the door for this release, but 
+the aufs issue fences me ATM. Hopefully I get to it tomorrow (&#228;hem, later 
+today). 
+
+I'm very delighted from your great support, I'm receiving here.
+
+Many thanks, Marcus.
+
+Pete
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001636.html">[Kiwi-users] NBDROOT overlay tests...
+</A></li>
+	<LI>Next message: <A HREF="001646.html">[Kiwi-users] NBDROOT overlay tests...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1643">[ date ]</a>
+              <a href="thread.html#1643">[ thread ]</a>
+              <a href="subject.html#1643">[ subject ]</a>
+              <a href="author.html#1643">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

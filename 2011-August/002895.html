@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] minor oemboot/suse-SLES11/root/linuxrc error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20minor%20oemboot/suse-SLES11/root/linuxrc%20error&In-Reply-To=%3C4B99756AC4788D48ACDE69294733D0AB9D6C7928%40MX22A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002894.html">
+   <LINK REL="Next"  HREF="002896.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] minor oemboot/suse-SLES11/root/linuxrc error</H1>
+    <B>natcho.natchev at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20minor%20oemboot/suse-SLES11/root/linuxrc%20error&In-Reply-To=%3C4B99756AC4788D48ACDE69294733D0AB9D6C7928%40MX22A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] minor oemboot/suse-SLES11/root/linuxrc error">natcho.natchev at emc.com
+       </A><BR>
+    <I>Thu Aug 11 01:27:29 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002894.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+        <LI>Next message: <A HREF="002896.html">[Kiwi-users] minor oemboot/suse-SLES11/root/linuxrc error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2895">[ date ]</a>
+              <a href="thread.html#2895">[ thread ]</a>
+              <a href="subject.html#2895">[ subject ]</a>
+              <a href="author.html#2895">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi kiwi maintainers,
+
+While looking over the boot.kiwi log on one of my systems, I noticed the following errors:
+
++ '[' = syslinux ']'
+/include: line 7526: [: =: unary operator expected
++ '[' = extlinux ']'
+/include: line 7526: [: =: unary operator expected
+
+The system was built with kiwi-4.94.1-278.1 and uses oemboot/suse-SLES11.
+
+The code that errors is in the setupKernelLinks function, where the $loader variable is undefined. Looking through the code, it seems that the intent is for $loader to be be completely initialized by the setupBootLoader function, however in linuxrc setupKernelLinks is executed before setupBootLoader.
+
+This can probably be fixed by setting $loader at the beginning of suse-SLES11/root/include, I am currently building a test image with the following patch:
+
+diff -Naur /usr/share/kiwi/image/oemboot/suse-SLES11/root/include.orig /usr/share/kiwi/image/oemboot/suse-SLES11/root/include
+--- /usr/share/kiwi/image/oemboot/suse-SLES11/root/include.orig  2011-08-10 23:13:19.000000000 +0000
++++ /usr/share/kiwi/image/oemboot/suse-SLES11/root/include      2011-08-10 23:17:57.000000000 +0000
+@@ -34,7 +34,7 @@
+ #--------------------------------------
+ arch=`uname -m`
+ if [ &quot;$arch&quot; = &quot;ppc64&quot; ];then
+-       loader=lilo
++       loader=&quot;lilo&quot;
+        test -z  &quot;$ELOG_BOOTSHELL&quot; &amp;&amp; export ELOG_BOOTSHELL=/dev/hvc0
+        test -z  &quot;$ELOG_CONSOLE&quot;   &amp;&amp; export ELOG_CONSOLE=/dev/hvc0
+ else
+@@ -43,6 +43,13 @@
+ fi
+
+ #======================================
++# Bootloader default
++#--------------------------------------
++if [ -z &quot;$loader&quot; ];then
++        loader=&quot;grub&quot;
++fi
++
++#======================================
+ # Exports (General)
+ #--------------------------------------
+ test -z &quot;$haveDASD&quot;           &amp;&amp; export haveDASD=0
+@@ -714,9 +721,6 @@
+        # ----
+        resetBootBind
+        local arch=`uname -m`
+-       if [ -z &quot;$loader&quot; ];then
+-               loader=&quot;grub&quot;
+-       fi
+        case $arch-$loader in
+                i*86-grub)       installBootLoaderGrub ;;
+                x86_64-grub)     installBootLoaderGrub ;;
+@@ -750,9 +754,6 @@
+        # happens according to the architecture of the system
+        # ----
+        local arch=`uname -m`
+-       if [ -z &quot;$loader&quot; ];then
+-               loader=&quot;grub&quot;
+-       fi
+        case $arch-$loader in
+                i*86-grub)       installBootLoaderGrubRecovery ;;
+                x86_64-grub)     installBootLoaderGrubRecovery ;;
+@@ -1001,9 +1002,6 @@
+        if [ ! -z &quot;$kiwi_bootloader&quot; ];then
+                loader=$kiwi_bootloader
+        fi
+-       if [ -z &quot;$loader&quot; ];then
+-               loader=&quot;grub&quot;
+-       fi
+        case $arch-$loader in
+                i*86-grub)       eval setupBootLoaderGrub $para ;;
+                x86_64-grub)     eval setupBootLoaderGrub $para ;;
+@@ -1073,9 +1071,6 @@
+                para=&quot;$para \&quot;$1\&quot;&quot;
+                shift
+        done
+-       if [ -z &quot;$loader&quot; ];then
+-               loader=&quot;grub&quot;
+-       fi
+        case $arch-$loader in
+                i*86-grub)       eval setupBootLoaderGrubRecovery $para ;;
+                x86_64-grub)     eval setupBootLoaderGrubRecovery $para ;;
+@@ -5733,9 +5728,6 @@
+        # underscores. current bootloaders show the
+        # underscore sign as as space in the boot menu
+        # ---
+-       if [ -z &quot;$loader&quot; ];then
+-               loader=&quot;grub&quot;
+-       fi
+        if [ ! $loader = &quot;syslinux&quot; ] &amp;&amp; [ ! $loader = &quot;extlinux&quot; ];then
+                echo $1 | tr &quot; &quot; &quot;_&quot;
+        else
+
+Regards,
+Natcho
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110810/29eb6d61/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110810/29eb6d61/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002894.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+	<LI>Next message: <A HREF="002896.html">[Kiwi-users] minor oemboot/suse-SLES11/root/linuxrc error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2895">[ date ]</a>
+              <a href="thread.html#2895">[ thread ]</a>
+              <a href="subject.html#2895">[ subject ]</a>
+              <a href="author.html#2895">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

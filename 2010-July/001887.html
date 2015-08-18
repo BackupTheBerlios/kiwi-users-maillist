@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] suse-oem-preload not working
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C20100705103529.GA24128%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001886.html">
+   <LINK REL="Next"  HREF="001888.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] suse-oem-preload not working</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C20100705103529.GA24128%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] suse-oem-preload not working">ms at novell.com
+       </A><BR>
+    <I>Mon Jul  5 12:35:30 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001886.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+        <LI>Next message: <A HREF="001888.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1887">[ date ]</a>
+              <a href="thread.html#1887">[ thread ]</a>
+              <a href="subject.html#1887">[ subject ]</a>
+              <a href="author.html#1887">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Ok. I'll happily test your patch.
+</I>
+thanks :-)
+
+&gt;<i> 1) I have a config-yast-firstboot.xml on my kiwi directory (and yast2-
+</I>&gt;<i> firstboot is installed), nevertheless kiwi doesn't enable the firstboot 
+</I>&gt;<i> service.
+</I>
+kiwi at least processes your request:
+
+Jul-02 23:30:06 &lt;1&gt; : Setting up YaST firstboot service...
+Jul-02 23:30:06 &lt;1&gt; : EXEC [cp /home/javier/openpc-newkiwi/suse-oem-preload/config-yast-firstboot.xml /home/javier/openpc-newkiwi/suse-oem-preload-tmp/etc/YaST2/firstboot.xml 2&gt;&amp;1]
+Jul-02 23:30:06 &lt;1&gt; : EXEC [touch /home/javier/openpc-newkiwi/suse-oem-preload-tmp/var/lib/YaST2/reconfig_system 2&gt;&amp;1]
+   done
+
+Please contact Uwe Gansert (CC'ed) about this problem. It's either
+a setup problem by kiwi or the firstboot xml is wrong. Alternative you
+can use config-yast-autoyast. But Uwe can tell you more
+
+Uwe please help here. Thanks
+
+&gt;<i> 2) I am still getting the language question when booting up for the first 
+</I>&gt;<i> time.
+</I>&gt;<i>
+</I>&gt;<i> 3) GRUB's default language is English. Deutsch is on the list though. It's 
+</I>&gt;<i> ignoring my gfxboot custom branding rpm package's gfxboot --add-
+</I>&gt;<i> languages de_DE --default-language de_DE (%post section).
+</I>
+yep something seems to be wrong. We are working on this one
+I'd like Steffen to take a look here as he knows best about
+gfxboot
+
+&gt;<i> Some questions:
+</I>&gt;<i> 
+</I>&gt;<i> Is it possible to use kernel-desktop on a standard oem image? I have tried 
+</I>&gt;<i> but I got messages like modules.dep wasn't found and things like made 
+</I>&gt;<i> networkmanager to be non functional on first boot. Perhaps I'm doing 
+</I>&gt;<i> something wrong.
+</I>
+That should be no problem. All you need to do is calling kiwi prepare
+and kiwi create with the desktop profile
+
+  kiwi --prepare .... --add-profile desktop
+  kiwi --create  .... --add-profile desktop
+
+&gt;<i> Last question: is it possible to hide first boot's message by default?
+</I>&gt;<i> I would make pressing  esc showing those messages.
+</I>
+This means you don't want to have a bootsplash ? If so it's easy
+just remove the line
+
+  &lt;package name=&quot;bootsplash-branding-openSUSE&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+
+from your config.xml
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001886.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+	<LI>Next message: <A HREF="001888.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1887">[ date ]</a>
+              <a href="thread.html#1887">[ thread ]</a>
+              <a href="subject.html#1887">[ subject ]</a>
+              <a href="author.html#1887">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

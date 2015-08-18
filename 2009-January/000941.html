@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Solved - Question about usb stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Solved%20-%20Question%20about%20usb%20stick&In-Reply-To=%3C497BB194.2000403%40marconi.ttc.cz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000943.html">
+   <LINK REL="Next"  HREF="000944.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Solved - Question about usb stick</H1>
+    <B>Lukas Pecha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Solved%20-%20Question%20about%20usb%20stick&In-Reply-To=%3C497BB194.2000403%40marconi.ttc.cz%3E"
+       TITLE="[Kiwi-users] Solved - Question about usb stick">pecha at marconi.ttc.cz
+       </A><BR>
+    <I>Sun Jan 25 01:25:56 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000943.html">[Kiwi-users] kiwi migrate doesn't include all packages
+</A></li>
+        <LI>Next message: <A HREF="000944.html">[Kiwi-users] Solved - Question about usb stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#941">[ date ]</a>
+              <a href="thread.html#941">[ thread ]</a>
+              <a href="subject.html#941">[ subject ]</a>
+              <a href="author.html#941">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Just for information - I have solved the problem with partition layout,
+I have now bootable usb stick with split filesystem and FAT partition,
+which is accesible from Windows machines.
+
+The solution is quite simple, instead of rewriting Kiwi, I just have let
+Kiwi do the default partition layout (first partition squashfs, second
+ext3) and then I shrinked second partition and move both of them to the
+end of the stick. (I used cfdisk, resize2fs and dd to achieve it). I
+created FAT partition on the first part of stick.
+
+Then I reinstalled grub with a new menu.lst config and unpacked initrd
+created by Kiwi, had a nice time reading it and changed three variables
+reffering to root partition of the stick, read only partition and
+read-write partition. Repacked initrd, copied it over and it worked.
+
+Good night, maybe I will write something more detailed later.
+
+Lukas Pecha
+
+
+Original message:
+Hello,
+I am a newbie to Kiwi build system and it is pretty interesting piece of
+software. I tried to build several usb stick live systems and they work
+great.
+
+But now I am trying to do much more different setup than just adding
+some packages to config.xml. I have read the documentation to kiwi and
+haven't found a clue, how to do it, so here is my question:
+Is there a simple (or hard :o)) way to build an usb stick (doesn't
+matter if it would incorporate ext3, squashfs or split system - but
+split system would be prefferable to me), which would have this
+partitioning layout?
+/dev/sda1 ---&gt; vfat
+/dev/sdaX ---&gt; bootable system built by kiwi (two partitions in case of
+split system, I think)
+
+It is important to have the fat partition first, because I need to use
+the usb stick on Windows machines.
+
+I am currently experimenting with building an oem image and manually
+editing the partition layout, /etc/fstab and grub settings, but still
+with no luck.
+
+Thanks for an advise,
+Lukas Pecha
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: pecha.vcf
+Type: text/x-vcard
+Size: 252 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090125/90f35bfc/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090125/90f35bfc/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000943.html">[Kiwi-users] kiwi migrate doesn't include all packages
+</A></li>
+	<LI>Next message: <A HREF="000944.html">[Kiwi-users] Solved - Question about usb stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#941">[ date ]</a>
+              <a href="thread.html#941">[ thread ]</a>
+              <a href="subject.html#941">[ subject ]</a>
+              <a href="author.html#941">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

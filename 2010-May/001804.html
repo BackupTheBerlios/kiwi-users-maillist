@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BFwd%3A%20Re%3A%20%5Bopensuse%5D%20kiwi%20%2B%20encryption%5D&In-Reply-To=%3C20100521142956.GA11872%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001801.html">
+   <LINK REL="Next"  HREF="001807.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BFwd%3A%20Re%3A%20%5Bopensuse%5D%20kiwi%20%2B%20encryption%5D&In-Reply-To=%3C20100521142956.GA11872%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]">ms at novell.com
+       </A><BR>
+    <I>Fri May 21 16:29:56 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001801.html">[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+</A></li>
+        <LI>Next message: <A HREF="001807.html">[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1804">[ date ]</a>
+              <a href="thread.html#1804">[ thread ]</a>
+              <a href="subject.html#1804">[ subject ]</a>
+              <a href="author.html#1804">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Hans,
+
+&gt;<i> &gt; However, Marcus is still examining the luks-stuf, which still fails
+</I>&gt;<i> &gt; (i mean with kiwi, it works nicely when installing 11.2 manually)
+</I>&gt;<i> 
+</I>&gt;<i> I'm working on the luks front and will come up with an explanation
+</I>&gt;<i> how it works in kiwi after I fixed some bugs concerning this feature
+</I>
+I have released v4.37 some minutes ago which should work with
+luks + lvm too. I have tested the following setup:
+
+   &lt;type
+       image=&quot;oem&quot; 
+       filesystem=&quot;ext3&quot;
+       boot=&quot;oemboot/suse-11.2&quot;
+       format=&quot;iso&quot;
+       lvm=&quot;true&quot;
+       luks=&quot;linux&quot;&gt;
+       &lt;oemconfig&gt;
+         &lt;oem-home&gt;false&lt;/oem-home&gt;
+         &lt;oem-systemsize&gt;2048&lt;/oem-systemsize&gt;
+       &lt;/oemconfig&gt;
+   &lt;/type&gt;
+
+This will put the entire system into a luks map. The additional
+boot partition will be of type ext2. You shouldn't place any
+mission critical data there
+
+Using the luks extension together with lvm has a few
+cutbacks though:
+
+1) you can't use &lt;lvmvolumes&gt; together with luks at the moment
+   The reason is more or less a design issue in kiwi itself.
+   when using luks kiwi creates an image file representing
+   the root tree as luks encoded file. This image file is then
+   dumped to the lvm mapped logical volume. According to this
+   one logical volume builds the luks encoded tree. When using
+   &lt;lvmvolumes&gt; kiwi creates the logical volumes below a root
+   volume but without an underliing luks layer and copies the
+   root tree into the master root volume. The seperation into
+   the volumes happens then automatically. I did not patch kiwi
+   to setup a luks encoded layer for each volume created by
+   &lt;lvmvolumes&gt; so far. Doing this would also affect the initrd
+   code to work correctly again. Let's discuss first if this
+   is required for your use case
+
+2) the oem-home element normally causes the creation of a single
+   home partition on first boot of the system. if luks is active
+   this partition won't be created because it wouldn't be luks
+   encoded. If this is required the initrd code needs to change
+   and put that into a luks layer if luks is active. This
+   changed wouldn't be too intrusive but we should also first
+   check if it's required or not
+
+In a first version I'd like to ask you to test the luks setup
+as it is right now and then discuss what needs to be done to
+make it better if required
+
+Thanks and have a great weekend
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001801.html">[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+</A></li>
+	<LI>Next message: <A HREF="001807.html">[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1804">[ date ]</a>
+              <a href="thread.html#1804">[ thread ]</a>
+              <a href="subject.html#1804">[ subject ]</a>
+              <a href="author.html#1804">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

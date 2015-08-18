@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB size allocation problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20size%20allocation%20problem&In-Reply-To=%3C94dc34e40711171847u55720ed8hab49d44704d56638%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000139.html">
+   <LINK REL="Next"  HREF="000141.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB size allocation problem</H1>
+    <B>Francis Giannaros</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20size%20allocation%20problem&In-Reply-To=%3C94dc34e40711171847u55720ed8hab49d44704d56638%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB size allocation problem">francis at giannaros.org
+       </A><BR>
+    <I>Sun Nov 18 03:47:03 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000139.html">[Kiwi-users] v1.90 released
+</A></li>
+        <LI>Next message: <A HREF="000141.html">[Kiwi-users] USB size allocation problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#140">[ date ]</a>
+              <a href="thread.html#140">[ thread ]</a>
+              <a href="subject.html#140">[ subject ]</a>
+              <a href="author.html#140">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've run into a problem while trying to create a USB image:
+
+Prepare and Create both go without error. But, when trying to get kiwi
+to put it onto the USB I get an error:
+
+---------------
+opensuse:/media # kiwi --bootstick
+/tmp/kiwi-output/initrd-usbboot-suse-10.3.i686-2.1.1.gz
+--bootstick-system /tm
+Nov-18 02:34 &lt;1&gt; : Creating boot USB stick from:
+/tmp/kiwi-output/initrd-usbboot-suse-10.3.i686-2.1.1.gz...
+Nov-18 02:34 &lt;1&gt; : Setting up splash screen...
+Nov-18 02:34 &lt;1&gt; : Creating initial boot structure
+Nov-18 02:34 &lt;1&gt; : Importing grub stages for stick boot
+Nov-18 02:34 &lt;1&gt; : Found following removable USB devices:
+Nov-18 02:34 &lt;1&gt; : ---&gt; 076B11800247 at /dev/sdb
+Nov-18 02:34 &lt;1&gt; : Your choice (enter device name): /dev/sdb
+Nov-18 02:35 &lt;1&gt; : Creating grub menu list file...
+Nov-18 02:35 &lt;1&gt; : Creating stick image
+Nov-18 02:35 &lt;1&gt; : Creating partition table on: /dev/sdb
+Nov-18 02:35 &lt;1&gt; : Dumping initrd image to stick
+Nov-18 02:35 &lt;3&gt; : Couldn't dump image to stick: dd: writing
+`/dev/sdb1': No space left on device
+620+0 records in
+619+0 records out
+20315648 bytes (20 MB) copied, 4.32705 s, 4.7 MB/s
+
+Nov-18 02:35 &lt;3&gt; : KIWI exited with error(s)
+-------------
+
+It runs out of space; it allocated the space on the USB as:
+
+------------------
+Disk /dev/sdb: 2063 MB, 2063073280 bytes
+64 heads, 62 sectors/track, 1015 cylinders
+Units = cylinders of 3968 * 512 = 2031616 bytes
+Disk identifier: 0x00000000
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1   *           1          10       19839+  83  Linux
+/dev/sdb2              11         391      755904   83  Linux
+/dev/sdb3             392        1015     1238016   83  Linux
+------------------
+As to the size of the image itself:
+
+opensuse:/home/francis # du -h /tmp/kiwi-output
+787M    /tmp/kiwi-output
+
+Basically just using a slightly altered kwLiveCD config file (well,
+whole folder/config) from SVN now. Running the latest (1.90) KIWI.
+
+Attaching config file. Is this a kiwi bug?
+
+Kind thoughts,
+-- 
+Francis Giannaros   <A HREF="http://francis.giannaros.org">http://francis.giannaros.org</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: config.xml
+Type: text/xml
+Size: 53975 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20071118/64583e40/attachment.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20071118/64583e40/attachment.xml</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000139.html">[Kiwi-users] v1.90 released
+</A></li>
+	<LI>Next message: <A HREF="000141.html">[Kiwi-users] USB size allocation problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#140">[ date ]</a>
+              <a href="thread.html#140">[ thread ]</a>
+              <a href="subject.html#140">[ subject ]</a>
+              <a href="author.html#140">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

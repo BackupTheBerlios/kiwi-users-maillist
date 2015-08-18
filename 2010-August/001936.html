@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] FW: oemboot/SLES - license agreement
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20FW%3A%20oemboot/SLES%20-%20license%20agreement&In-Reply-To=%3C291A23B717F9104985651112DB6C365F26E7264A22%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001934.html">
+   <LINK REL="Next"  HREF="001937.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] FW: oemboot/SLES - license agreement</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20FW%3A%20oemboot/SLES%20-%20license%20agreement&In-Reply-To=%3C291A23B717F9104985651112DB6C365F26E7264A22%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] FW: oemboot/SLES - license agreement">john.lund at emc.com
+       </A><BR>
+    <I>Mon Aug  2 16:26:52 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001934.html">[Kiwi-users] FW: oemboot/SLES - license agreement
+</A></li>
+        <LI>Next message: <A HREF="001937.html">[Kiwi-users] FW: oemboot/SLES - license agreement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1936">[ date ]</a>
+              <a href="thread.html#1936">[ thread ]</a>
+              <a href="subject.html#1936">[ subject ]</a>
+              <a href="author.html#1936">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus,
+
+Thank you.  I'm trying this now.  One quick question.  Will the license check still be done by the installed system too once it boots?  And if so, do I need to set another Boolean to keep that from happening?
+
+Thank you again,
+John Lund
+EMC Centera Development
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+-----Original Message-----
+From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>] 
+Sent: Monday, August 02, 2010 4:58 AM
+To: Lund, John
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] FW: oemboot/SLES - license agreement
+
+Hi,
+
+&gt;<i> I am trying to have a license agreement displayed by an oemboot iso image before it  does the copy to the new system.  I see that there seems to be a license function of the boot image scripts (oemboot/SUSE11/root/dump and include), and it looks like it gets called before the &quot;dump&quot; is written to the new system.  Is this meant to display licenses, and ask for acceptance of the license before allowing the image to be written to the new system?  And if so, how do I add licenses to the boot image so it gets accepted before the user installs the system.
+</I>
+create a tarball which includes the license file(s) in the form
+
+  license.txt
+  
+or language specific
+
+  license.$code.txt
+
+code should be a two letter locale name like &quot;en&quot;, &quot;it&quot;, etc...
+
+* Once you have that tarball put it into the overlay directory 
+  of your image description directory. This is the directory named
+  &quot;root/&quot;.
+
+* After that add the following line in your config.xml file
+
+  &lt;packages type=&quot;image&quot;&gt;
+     ....add the following line in here
+     &lt;archive name=&quot;your-tarball-filename&quot; bootinclude=&quot;true&quot;/&gt;
+
+
+the bootinclude attribute is important. If you miss it the
+tarball won't be installed in the boot image (oemboot) where
+it is required to display the license
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001934.html">[Kiwi-users] FW: oemboot/SLES - license agreement
+</A></li>
+	<LI>Next message: <A HREF="001937.html">[Kiwi-users] FW: oemboot/SLES - license agreement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1936">[ date ]</a>
+              <a href="thread.html#1936">[ thread ]</a>
+              <a href="subject.html#1936">[ subject ]</a>
+              <a href="author.html#1936">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

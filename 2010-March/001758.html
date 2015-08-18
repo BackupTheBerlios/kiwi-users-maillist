@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Boot from hard drive feature
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20from%20hard%20drive%20feature&In-Reply-To=%3Calpine.LNX.2.00.1003251519560.17567%40metcalf.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001755.html">
+   <LINK REL="Next"  HREF="001759.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Boot from hard drive feature</H1>
+    <B>Steffen Winterfeldt</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20from%20hard%20drive%20feature&In-Reply-To=%3Calpine.LNX.2.00.1003251519560.17567%40metcalf.suse.de%3E"
+       TITLE="[Kiwi-users] Boot from hard drive feature">snwint at suse.de
+       </A><BR>
+    <I>Thu Mar 25 15:39:02 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001755.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+        <LI>Next message: <A HREF="001759.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1758">[ date ]</a>
+              <a href="thread.html#1758">[ thread ]</a>
+              <a href="subject.html#1758">[ subject ]</a>
+              <a href="author.html#1758">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 24 Mar 2010, Robert Schweikert wrote:
+
+&gt;<i> Steffen Winterfeldt wrote:
+</I>&gt;&gt;<i> On Wed, 24 Mar 2010, Marcus Sch&#228;fer wrote:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;&gt;&gt;<i> So you built an iso image. And then? How exactly did you use it?
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> I can reproduce that issue too. If you build an install iso
+</I>&gt;&gt;&gt;<i> with kiwi and select 'boot from harddisk' the screen is filled
+</I>&gt;&gt;&gt;<i> with &quot;GRUB GRUB....&quot;
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I cannot reproduce it.
+</I>
+Ok, short story: kiwi patch attached.
+
+Long story: grubs chainloader command does not work as expected (at least as
+I would). I've looked at the source and am still not sure if that's
+intentional or a bug and quite frankly I don't care.
+
+What happened is that 'chainloader (hd0)' reads a block from hd0 but still
+passes the cdrom drive id to the boot code when booting. As the oem image
+has grub installed into mbr, grub fails to load its remaining code.
+
+And why did it work for me? Because I had a test image which has a generic
+mbr and grub was installed into a partition. The generic mbr threw away the
+cdrom drive id as obviously wrong and continued booting from the first disk
+as fallback.
+
+I've changed kiwi to use 'bootnext' for cdrom too.
+
+
+Steffen
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-use-bootnext-also-for-cdrom-image.patch
+Type: text/x-patch
+Size: 1459 bytes
+Desc: 
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100325/1a21a0a6/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100325/1a21a0a6/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001755.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+	<LI>Next message: <A HREF="001759.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1758">[ date ]</a>
+              <a href="thread.html#1758">[ thread ]</a>
+              <a href="subject.html#1758">[ subject ]</a>
+              <a href="author.html#1758">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

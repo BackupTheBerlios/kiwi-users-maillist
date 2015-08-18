@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issue with partition creation on USB stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C49219927020000AF00032372%40sinclair.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000892.html">
+   <LINK REL="Next"  HREF="000895.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issue with partition creation on USB stick</H1>
+    <B>Vagner Farias</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issue%20with%20partition%20creation%20on%20USB%20stick&In-Reply-To=%3C49219927020000AF00032372%40sinclair.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Issue with partition creation on USB stick">vfarias at novell.com
+       </A><BR>
+    <I>Mon Nov 17 19:17:43 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000892.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+        <LI>Next message: <A HREF="000895.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#894">[ date ]</a>
+              <a href="thread.html#894">[ thread ]</a>
+              <a href="subject.html#894">[ subject ]</a>
+              <a href="author.html#894">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;&gt;<i> On 11/17/2008 at  1:25 PM, in message &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">20081117152526.GA2279 at D7.ddts.net</A>&gt;,
+</I>Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote: 
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I'm trying to deploy a image to two different usb sticks, but on both it 
+</I>&gt;<i> stays forever in &quot;Creating partition table on: &lt;device&gt;&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, how big is the cb-live-stick.i686-0.2.1 file compared to the size
+</I>&gt;<i> of the stick ? Do you use a squashfs compressed stick ? did you check
+</I>&gt;<i> if the stick wasn't mounted by any other program before calling
+</I>&gt;<i> kiwi --bootstick ?
+</I>
+I have 2 split images which were based on the same xml definition. One of them use ext3 for both read-only and read-write parts and the other one uses squashfs for the read-only part. I want to compare performance on both situations.
+
+Size for the ext3-only image:
+
+. cb-live-stick.i686-0.2.0 - 3.6GB
+. cb-live-stick-read-write.i686-0.2.1 - 92MB
+
+Size for the squashfs + ext3 image:
+
+. cb-live-stick.i686-0.2.1 - 1.2GB
+. cb-live-stick-read-write.i686-0.2.1 - 92 MB
+
+The primary stick I'm using is 8GB. I tried a 4 GB one only for testing, as I thought the 8GB one could be damaged.
+
+I'm sure the stick wasn't mounted before calling 'kiwi --bootstick'. I know that because I tried it several times, with the stick mounted and with it not mounted.
+
+&gt;<i> What kiwi does is it calls fdisk and after that it checks the size of
+</I>&gt;<i> the created partitions. If the size is ok for the image it puts it on
+</I>&gt;<i> the stick if not it increases the partition size and restarts fdisk
+</I>&gt;<i> again. kiwi does that because of the alignment done by fdisk. I have
+</I>&gt;<i> also implemented support for parted but didn't test it hard enough.
+</I>
+Now I got it. I took a look at KIWIBoot.pm and I couldn't figure out why that loop was needed. 
+
+Btw, it's also clear that the issue isn't related to kiwi upgrade, but to some change I made to the image definition. As I also upgraded kiwi, I thought it was related.
+
+&gt;<i> If you like you can give it a try with the option:
+</I>&gt;<i> 
+</I>&gt;<i>    --partitioner parted
+</I>
+I'll try it, as it shouldn't hurt (I hope).
+
+cheers,
+
+
+Vagner Farias
+Linux Technology Specialist
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">vfarias at novell.com</A>
+(11) 3345-3946
+(11) 9228-5916
+
+Novell do Brasil
+Making IT Work As One*
+www.novell.com
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000892.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+	<LI>Next message: <A HREF="000895.html">[Kiwi-users] Issue with partition creation on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#894">[ date ]</a>
+              <a href="thread.html#894">[ thread ]</a>
+              <a href="subject.html#894">[ subject ]</a>
+              <a href="author.html#894">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

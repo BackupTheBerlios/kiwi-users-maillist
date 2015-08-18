@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem using SLES ISOs as repository
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20using%20SLES%20ISOs%20as%20repository&In-Reply-To=%3C291A23B717F9104985651112DB6C365F271F0FAB10%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002009.html">
+   <LINK REL="Next"  HREF="002011.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem using SLES ISOs as repository</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20using%20SLES%20ISOs%20as%20repository&In-Reply-To=%3C291A23B717F9104985651112DB6C365F271F0FAB10%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] Problem using SLES ISOs as repository">john.lund at emc.com
+       </A><BR>
+    <I>Thu Sep  9 15:22:11 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002009.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+        <LI>Next message: <A HREF="002011.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2010">[ date ]</a>
+              <a href="thread.html#2010">[ thread ]</a>
+              <a href="subject.html#2010">[ subject ]</a>
+              <a href="author.html#2010">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Ok, so maybe the DVD2 is not a yast repository. Frankly said I don't
+</I>&gt;<i> know about the structure of DVD2 because I never needed it. Could you
+</I>&gt;<i> loop mount it and check the contents ?
+</I>&gt;<i> 
+</I>&gt;<i>  mount -o loop platform/kiwi-repos/SLES/SLES-11-SP1-DVD-x86_64-GM-
+</I>&gt;<i> DVD2.iso /mnt
+</I>&gt;<i>  ls -l /mnt
+</I>&gt;<i> 
+</I>&gt;<i> * is there a repodata directory ? if yes I would try to change
+</I>&gt;<i>   from type=&quot;yast2&quot; to type=&quot;rpm-md&quot;
+</I>
+[Lund, John] I'm pretty sure it is a yast2 repository.  And it does not have the file /media.1/media, but it does have a media.2/media file (and so on for the DVD3).
+
+kiwi1:/cdrom # ls -l
+total 6
+-r--r--r-- 1 root root  521 2010-05-20 10:11 content
+-r--r--r-- 1 root root  307 2010-05-20 10:11 content.asc
+-r--r--r-- 1 root root   35 2010-05-20 10:11 directory.yast
+dr-xr-xr-x 2 root root 2048 2010-05-20 10:09 media.2
+dr-xr-xr-x 5 root root 2048 2010-05-20 10:05 suse
+kiwi1:/cdrom # ls -l media.2/
+total 2
+-r--r--r-- 1 root root 33 2010-05-20 10:09 build
+-r--r--r-- 1 root root 60 2010-05-20 10:09 media
+-r--r--r-- 1 root root 51 2010-05-20 10:09 products
+
+Is there a quick way to modify the code that does the automount of ISOs and checks for the repository information to look for media.*/media?
+
+Thank you,
+John Lund
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002009.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+	<LI>Next message: <A HREF="002011.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2010">[ date ]</a>
+              <a href="thread.html#2010">[ thread ]</a>
+              <a href="subject.html#2010">[ subject ]</a>
+              <a href="author.html#2010">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20when%20using%20-add-profile%2C%0A%20boot-include%20doesn%27t%20seem%20to%20work...&In-Reply-To=%3C4D0351ED.80002%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002205.html">
+   <LINK REL="Next"  HREF="002207.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20when%20using%20-add-profile%2C%0A%20boot-include%20doesn%27t%20seem%20to%20work...&In-Reply-To=%3C4D0351ED.80002%40novell.com%3E"
+       TITLE="[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...">rschweikert at novell.com
+       </A><BR>
+    <I>Sat Dec 11 11:26:53 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002205.html">[Kiwi-users] when using -add-profile,	boot-include doesn't seem to work...
+</A></li>
+        <LI>Next message: <A HREF="002207.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2206">[ date ]</a>
+              <a href="thread.html#2206">[ thread ]</a>
+              <a href="subject.html#2206">[ subject ]</a>
+              <a href="author.html#2206">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 12/10/2010 10:03 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">john.lund at emc.com</A> wrote:
+&gt;<i> I have been using multiple profiles and have been using --add-profile to do so.  (or just using import=&quot;true&quot; on several profiles)
+</I>&gt;<i> 
+</I>&gt;<i> I notice that when using --add-profile the bootinclude option for a package/archive in the packages section doesn't seem to work.  Is this by design?
+</I>
+No, this should work. Problem to be investigated...
+
+&gt;<i> Currently I've backed off to using the 4.65 release as I can do most of what I want with this version, but I notice that in 4.68 only one profile can have import=&quot;true&quot; so the way I'm getting things to work won't work in the future.
+</I>
+Sorry about that, but having only 1 import=&quot;true&quot; is a necessity based
+on kiwi needing to determine the image type to be built. Allowing
+multiple import=&quot;true&quot; settings leads to an undetermined state.
+
+HTH,
+Robert
+
+&gt;<i> 
+</I>&gt;<i> Is there a way we should be using multiple profiles so that this won't occur?  Or should we be using multiple profiles at all?
+</I>
+
+&gt;<i> 
+</I>&gt;<i> Thank you,
+</I>&gt;<i> John
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002205.html">[Kiwi-users] when using -add-profile,	boot-include doesn't seem to work...
+</A></li>
+	<LI>Next message: <A HREF="002207.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2206">[ date ]</a>
+              <a href="thread.html#2206">[ thread ]</a>
+              <a href="subject.html#2206">[ subject ]</a>
+              <a href="author.html#2206">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

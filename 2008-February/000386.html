@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] OEM boot image looks for &quot;aufs&quot; even	when	using&quot;split&quot; type image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20boot%20image%20looks%20for%20%22aufs%22%20even%0A%09when%09using%22split%22%20type%20image&In-Reply-To=%3C47C422E7.EE07.00F0.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000382.html">
+   <LINK REL="Next"  HREF="000387.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even	when	using&quot;split&quot; type image</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20boot%20image%20looks%20for%20%22aufs%22%20even%0A%09when%09using%22split%22%20type%20image&In-Reply-To=%3C47C422E7.EE07.00F0.0%40novell.com%3E"
+       TITLE="[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even	when	using&quot;split&quot; type image">ragupta at novell.com
+       </A><BR>
+    <I>Tue Feb 26 10:02:07 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000382.html">[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even when	using	&quot;split&quot; type image
+</A></li>
+        <LI>Next message: <A HREF="000387.html">[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even	when	using&quot;split&quot; type image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#386">[ date ]</a>
+              <a href="thread.html#386">[ thread ]</a>
+              <a href="subject.html#386">[ subject ]</a>
+              <a href="author.html#386">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks for your response.
+
+I looked around and came to a conclusion that this was probably due to the missing COMBINED_IMAGE value.
+
+I just added the following to the Exports (Configuration)  section in oemboot/suse-linuxrc file and that did the trick.
+
+ export COMBINED_IMAGE=&quot;yes&quot;
+
+
+Regards,
+Rahul
+
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; 02/26/08 2:12 PM &gt;&gt;&gt; 
+</I>Hi,
+
+&gt;<i> I have created an oemboot image using the &quot;split&quot; type with &quot;squashfs&quot;
+</I>&gt;<i> as the read-only filesystem and &quot;reiserfs&quot; as the read-write filesystem.
+</I>
+ok
+ 
+&gt;<i> However, when deploying the image the installer is looking for
+</I>&gt;<i> &quot;aufs&quot; which is not present in SLE 10. Naturally the deployment fails.
+</I>&gt;<i> Is this expected or does this point to a BUG.
+</I>
+This looks like a bug to me. It happens in installation mode.
+Attached is a patch which should fix it but I didn't test it
+
+Would you mind to give it a test ?
+
+	cd /usr/share/kiwi/image
+	patch -p0 &lt; kiwi.diff
+
+	---&gt; rebuild the image, kiwi --create ...
+	
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000382.html">[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even when	using	&quot;split&quot; type image
+</A></li>
+	<LI>Next message: <A HREF="000387.html">[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even	when	using&quot;split&quot; type image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#386">[ date ]</a>
+              <a href="thread.html#386">[ thread ]</a>
+              <a href="subject.html#386">[ subject ]</a>
+              <a href="author.html#386">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] errors of uninstalled packages when building	an	image with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%0A%09an%09image%20with%20kiwi&In-Reply-To=%3C20071230215053.GA4546%40idefix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000187.html">
+   <LINK REL="Next"  HREF="000194.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] errors of uninstalled packages when building	an	image with kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%0A%09an%09image%20with%20kiwi&In-Reply-To=%3C20071230215053.GA4546%40idefix%3E"
+       TITLE="[Kiwi-users] errors of uninstalled packages when building	an	image with kiwi">ms at suse.de
+       </A><BR>
+    <I>Sun Dec 30 22:50:53 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000187.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+        <LI>Next message: <A HREF="000194.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#191">[ date ]</a>
+              <a href="thread.html#191">[ thread ]</a>
+              <a href="subject.html#191">[ subject ]</a>
+              <a href="author.html#191">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Richard,
+
+&gt;<i> &gt; Thanks for your mail I read it and I think one kiwi action might not be
+</I>&gt;<i> &gt; clear here. When kiwi builds the system image (that's the big 700MB or so
+</I>&gt;<i> &gt; thing) it also requires to access a method to boot it. In case of an ISO
+</I>&gt;<i> &gt; image this means kiwi needs to build a boot image too (initrd). The boot
+</I>&gt;<i> &gt; image descriptions
+</I>&gt;<i> &gt; comes with the kiwi-desc-*boot packages which installs data in
+</I>&gt;<i> &gt; /usr/share/kiwi/image/*boot. In your case kiwi picks the boot image to
+</I>&gt;<i> &gt; boot an ISO live system from /usr/share/kiwi/image/isoboot and
+</I>&gt;<i> &gt; _automatically_ builds it together with your system image. So what you
+</I>&gt;<i> &gt; see in the log is a build of a system plus a boot image. The errors
+</I>&gt;<i> &gt; you found are related to the boot image build.
+</I>&gt;<i> 
+</I>&gt;<i> Ah, that's clearer now indeed.
+</I>
+I added some sanity checks to avoid the error messages. Uninstalling
+of packages in the boot image descriptions also happens now without
+calling the package scripts. imho this is not required in that special
+case
+
+&gt;<i> &gt; fatal is if you can't boot with the result. Mandatory tools like cut
+</I>&gt;<i> &gt; must be present in the boot image. I'm wondering how I should reproduce
+</I>&gt;<i> &gt; this because I wasn't able to stumble over that problem.
+</I>&gt;<i> 
+</I>&gt;<i> Would you mind if I would sent you my config directory?
+</I>
+I would be glad to have a look at it :)
+
+&gt;<i> &gt; - With the latest version there are two examples in /usr/share/doc/kiwi/
+</I>&gt;<i> &gt; &#160; Could you reproduce your problem with this example image descriptions ?
+</I>&gt;<i> 
+</I>&gt;<i> I tried example/test2 some days ago (just before posting my email to the ML).  
+</I>&gt;<i> I was able to boot the resulting image succesfully.  I'll execute a test run 
+</I>&gt;<i> on test1 in the coming hours (day).
+</I>
+Thanks, good news so far
+ 
+&gt;<i> &gt; - A side note. Many people change the boot image descriptions which
+</I>&gt;<i> &gt; &#160; may lead to unexpected results. Just to make sure you did not change
+</I>&gt;<i> &gt; &#160; anything in /usr/share/kiwi/image/*boot, did you ? 
+</I>&gt;<i> 
+</I>&gt;<i> I have not changed anything there.
+</I>&gt;<i> 
+</I>&gt;<i> # rpm -qa &quot;kiwi*&quot; | sort
+</I>&gt;<i> kiwi-2.07-28.1
+</I>&gt;<i> kiwi-desc-isoboot-2.07-28.1
+</I>&gt;<i> kiwi-desc-livesystem-1.55-29.1
+</I>&gt;<i> 
+</I>&gt;<i> # rpm -V kiwi-desc-livesystem kiwi-desc-isoboot
+</I>&gt;<i> &lt;nothing returned&gt;
+</I>&gt;<i> So all seems fine, indeed.
+</I>
+yes, perfect. ok I'll take a look into your image description
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000187.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+	<LI>Next message: <A HREF="000194.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#191">[ date ]</a>
+              <a href="thread.html#191">[ thread ]</a>
+              <a href="subject.html#191">[ subject ]</a>
+              <a href="author.html#191">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

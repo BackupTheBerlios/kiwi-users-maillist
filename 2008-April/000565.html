@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Improving the documentation...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Improving%20the%20documentation...&In-Reply-To=%3C20080410140723.GA11130%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000564.html">
+   <LINK REL="Next"  HREF="000567.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Improving the documentation...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Improving%20the%20documentation...&In-Reply-To=%3C20080410140723.GA11130%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Improving the documentation...">ms at suse.de
+       </A><BR>
+    <I>Thu Apr 10 16:07:23 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000564.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+        <LI>Next message: <A HREF="000567.html">[Kiwi-users] Improving the documentation...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#565">[ date ]</a>
+              <a href="thread.html#565">[ thread ]</a>
+              <a href="subject.html#565">[ subject ]</a>
+              <a href="author.html#565">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Luis,
+
+&gt;<i> OK, now we have a worthy skeleton :-)
+</I>
+:<i>-) yep
+</I>
+&gt;<i> I think this could be the basis of a better user manual. For instance,
+</I>&gt;<i> it would useful to know when kiwi is acting chrooted, what options
+</I>&gt;<i> affect each phase, further elaboration on point b) of the CREATE phase
+</I>&gt;<i> for every type of image, which kiwi built-in functions are available
+</I>&gt;<i> for the user scripts...
+</I>
+I agree we can improve a lot in that area and some of the information
+provided today are outdated or obsolete. I really appreciate your help.
+But we should first agree on a place where to put the stuff into.
+The information we discuss here should imho go to the design document
+because of two reasons:
+
+1) it explains how it works in a more or less rough overview which
+   serves as a good starting point for more details. I like this
+   approach
+
+2) not all users are really interested in how it works they just want
+   to use the result. So I think it would be too much information for
+   the quickstart because there we are directly referencing working
+   examples
+
+* So first question do we agree to have this information as part
+  of the design/system documentation ? ( this is the kiwi.pdf file)
+
+* If we agree I would say let's make a draft as simple text and
+  let me pass the result to my colleagues from the docu team. All
+  the documentation which exists for kiwi is already in a format
+  which allows the docu team to work on it with respect to their
+  development rules. So this is primarly a question for Thomas:
+  Thomas would that be ok for you ?
+
+&gt;<i> Let's flesh it out a bit:
+</I>
+right, ok...
+
+&gt;<i> 1. PREPARE
+</I>&gt;<i> 
+</I>&gt;<i> 1.1 Building of a new root tree or, in kiwi-speak, a new physical extend.
+</I>&gt;<i> 
+</I>&gt;<i> The building of a new root tree consists of the creation of the
+</I>&gt;<i> directory specified to hold it and the installation of the selected
+</I>&gt;<i> packages on it.
+</I>
+fine
+
+&gt;<i> 1.1.1 Directory creation.
+</I>&gt;<i> 
+</I>&gt;<i> To prevent accidental deletion of an existing root tree, kiwi will
+</I>&gt;<i> stop with an error message if this folder already exists, unless the
+</I>&gt;<i> option --force-new-root is used in which case the existing root will
+</I>&gt;<i> be deleted.
+</I>
+fine
+
+&gt;<i> 1.1.2 Package installation.
+</I>&gt;<i> 
+</I>&gt;<i> First the selected package manager (smart by default) is instructed to
+</I>&gt;<i> use the repositories specified in the image definition file.
+</I>&gt;<i> 
+</I>&gt;<i> Then the packages specified in the 'bootstrap' section are installed.
+</I>&gt;<i> These packages are installed externally to the target root system
+</I>&gt;<i> (i.e. not chroot'ed) and establish the initial environment so the rest
+</I>&gt;<i> of  the process may run chroot'ed. Essential packages in this section
+</I>&gt;<i> are xxx, yyy and zzz. In practice you only need to specify xxx here,
+</I>&gt;<i> since the rest of the packages will be pulled because of the
+</I>&gt;<i> dependency system. To save space in your image you could schedule the
+</I>&gt;<i> packages yyy and zzz for deletion after the phase ppp is over by
+</I>&gt;<i> listing them in the 'delete' section.
+</I>
+great 
+
+&gt;<i> (other &lt;packages&gt; sections explained)
+</I>
+maybe yes but the mandatory ones are already mentioned
+
+
+I would like the following to be a seperate chapter.
+What do you think ? I think people start to optimize after
+they had the feeling of success and that's something they
+will have after the create step 
+
+=======snip========
+
+&gt;<i> 1.1.2 Optimizations I: using a baseroot tree.
+</I>&gt;<i> 
+</I>&gt;<i> In case you want to make an image based on a previously existing one
+</I>&gt;<i> (i.e., the old image's package selection is a subset of the new one's
+</I>&gt;<i> and the changes made by the customization scripts are compatible) you
+</I>&gt;<i> can save a lot of time in the creation of a new root tree by using the
+</I>&gt;<i> old one as a base for the new one.
+</I>&gt;<i> 
+</I>&gt;<i> There are three ways of specifying a what we term 'baseroot' tree:
+</I>&gt;<i> 
+</I>&gt;<i> - Using the 'baseroot=&quot;&quot;' attribute of the &lt;type&gt; element.
+</I>&gt;<i> - Using the optional &lt;defaultbaseroot&gt; element.
+</I>&gt;<i> - Using the command-line option --base-root.
+</I>&gt;<i> 
+</I>&gt;<i> Provided you have an existing root tree which is based on the same
+</I>&gt;<i> there are three ways of incorporating the old tree as a basis for the
+</I>&gt;<i> new one, selectable with the --base-root-mode option:
+</I>&gt;<i> 
+</I>&gt;<i> - --base-root-mode copy. This mode will make a full copy of the old
+</I>&gt;<i> tree. Copying a tree is faster than reinstalling the old packages.
+</I>&gt;<i> After that the new packages that weren't selected in the old image
+</I>&gt;<i> will be installed.
+</I>&gt;<i> - --base-root-mode recycle. This mode will make the modifications
+</I>&gt;<i> directly into the old tree (question: are the --root option or the
+</I>&gt;<i> &lt;defaultroot&gt; element then disregarded if they are specified?) This
+</I>&gt;<i> means that you cannot use the old root tree for your old image anymore
+</I>&gt;<i> (unless you backup it, but what its the advantage then?), but it is
+</I>&gt;<i> faster since it doesn't have even to duplicate it.
+</I>&gt;<i> - --base-root-mode union. This mode takes advantage of overlay
+</I>&gt;<i> filesystems (elaborate) so in fact what you create is an incremental
+</I>&gt;<i> filesystem which holds only the changes to the base one. You must make
+</I>&gt;<i> sure the old root tree is still available and unmodified when you
+</I>&gt;<i> perform the 'create' phase for the new one.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 1.1.3 Optimization II: using a package cache.
+</I>&gt;<i> 
+</I>&gt;<i> ....
+</I> 
+========snap==========
+
+
+&gt;<i> 1.2 Copy user files.
+</I>&gt;<i> ...
+</I>
+fine
+
+
+I think the tips and tricks should also be a seperate chapter
+but we should mention that config.sh is called
+=========snip==========
+&gt;<i> 1.3 ...
+</I>&gt;<i> 1.x Tips and tricks
+</I>&gt;<i> 
+</I>&gt;<i> You could use config.sh to save space in your image by:
+</I>&gt;<i> - deleting packages' documentation (/usr/share/doc)
+</I>&gt;<i> - deleting locales you won't plan on using.
+</I>&gt;<i> ...
+</I>&gt;<i> 
+</I>&gt;<i> You could have a set of basic images and build on them using the
+</I>&gt;<i> methods mentioned at 1.1.2. For instance you could have a barebones
+</I>&gt;<i> image with the minimal packages to boot and allow an user to login.
+</I>&gt;<i> Based on that, you could create a minimal X window system. Those two
+</I>&gt;<i> could be the base for more specific applications.
+</I>&gt;<i> 
+</I>&gt;<i> ...
+</I>=========snap============
+
+
+I'm not sure if I like the following. As a standard user I would
+think what does &quot;root tree tweaking&quot; mean :) maybe we change that
+to something like &quot;Managing the prepared image tree&quot; and list what
+one can do with the tree before calling --create. The new --testsuite
+option can also explained here. I also think this could be a seperate
+chapter
+===========snip============= 
+&gt;<i> 2. ROOT TREE TWEAKING.
+</I>&gt;<i> 
+</I>&gt;<i> At this point you can make changes on your physical extend so it fits
+</I>&gt;<i> your purpose better. Bear in mind that changes at this point will be
+</I>&gt;<i> discarded and not repeated automatically if you rerun the 'prepare'
+</I>&gt;<i> phase unless you include them in your original config.xml and
+</I>&gt;<i> config.sh script.
+</I>&gt;<i> 
+</I>&gt;<i> 2.1 Adding new packages.
+</I>&gt;<i> 
+</I>&gt;<i> 2.2 Upgrading packages.
+</I>&gt;<i> 
+</I>&gt;<i> ...
+</I>==========snap===============
+
+
+&gt;<i> 3. CREATE
+</I>&gt;<i> 
+</I>&gt;<i> 3.1 User script image.sh
+</I>&gt;<i> ...
+</I>
+fine
+
+&gt;<i> 3.2 Image type specific operations.
+</I>&gt;<i> 
+</I>&gt;<i> 3.2.1 ISOboot
+</I>&gt;<i> 
+</I>&gt;<i> 3.2.2 USBboot
+</I>&gt;<i> 
+</I>&gt;<i> 3.2.3 ...
+</I>
+I think here we should explain in short which types are used
+for what purpose and maybe point to a more detailed description
+each type could be a single chapter
+
+&gt;<i> What's this sound like?
+</I>
+It sounds great. I would like to have that structure in the
+kiwi.pdf directly after the introduction and the basic concept 
+Thomas what do you think ?
+
+Can we make a draft of that and safe it somewhere ? I can offer
+the kiwi svn as temporary place. If you Luis, Jan and Thomas
+have a good mind to help me with this we also could define
+who starts to document what. I think we could identify the
+following parts:
+
+a) general workflow
+b) the tips and tricks chapter
+c) the optimization chapter
+d) the type explanations and chapters
+e) the managing prepared tree chapter
+
+I could do d) and e) :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000564.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+	<LI>Next message: <A HREF="000567.html">[Kiwi-users] Improving the documentation...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#565">[ date ]</a>
+              <a href="thread.html#565">[ thread ]</a>
+              <a href="subject.html#565">[ subject ]</a>
+              <a href="author.html#565">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

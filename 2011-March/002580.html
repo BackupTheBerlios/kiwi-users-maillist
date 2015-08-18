@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CAANLkTinkj_PPTd32ExPSajvMHQ8vetPuroeRrrA-2f-h%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002578.html">
+   <LINK REL="Next"  HREF="002583.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CAANLkTinkj_PPTd32ExPSajvMHQ8vetPuroeRrrA-2f-h%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Wed Mar 30 14:02:17 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002578.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002583.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2580">[ date ]</a>
+              <a href="thread.html#2580">[ thread ]</a>
+              <a href="subject.html#2580">[ subject ]</a>
+              <a href="author.html#2580">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Mar 30, 2011 at 7:55 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> Marcus and Robert
+</I>&gt;&gt;<i> as you guys know I am working on a project that stores a live image on
+</I>&gt;&gt;<i> a usb flash drive. &#160;I'm having issues when streaming flash &#160;video that
+</I>&gt;&gt;<i> it doesn't cache fast enough. &#160;At least that's what it seems. &#160;At
+</I>&gt;&gt;<i> first the videos seem to play okay but the longer it runs the worst it
+</I>&gt;&gt;<i> gets until it not only won't play but the browser (firefox) is
+</I>&gt;&gt;<i> unresponsive. &#160;Just bookmarking a site takes forever. &#160;The browser is
+</I>&gt;&gt;<i> completely overwhelmed by the video trying to play. &#160;I understand that
+</I>&gt;&gt;<i> USB drives in general do have different bandwidth capabilities and the
+</I>&gt;&gt;<i> one I'm using isn't the fastest one around but it's not the slowest
+</I>&gt;&gt;<i> either.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I changed the swap element in the config.xml file from 800 to 2000 it
+</I>&gt;&gt;<i> did seem to make a bit of a difference but didn't resolve the issue.
+</I>&gt;&gt;<i> Is there anything else that many help with this issue? &#160;Maybe the
+</I>&gt;&gt;<i> &quot;ramonly&quot; element?
+</I>&gt;<i>
+</I>&gt;<i> my guess is that you are running out of ram space. You should have
+</I>&gt;<i> in mind that you requested a live OS on stick which is compressed
+</I>&gt;<i> and also doesn't allow any persistent data. This means that OS
+</I>&gt;<i> has to do some decompression which costs CPU and bandwidth power
+</I>&gt;<i> and all write actions go to RAM which means you have less RAM
+</I>&gt;<i> than you might expect. If the video stream starts to slow down
+</I>&gt;<i> at a certain point in time I guess that the system now starts
+</I>&gt;<i> swapping which makes that kind of live OS probably pretty
+</I>&gt;<i> unresponsive
+</I>&gt;<i>
+</I>&gt;<i> I don't have a good solution here. You should make sure the OS
+</I>&gt;<i> runs on a machine with lots of RAM and the stick hardware
+</I>&gt;<i> is fast. kiwi uses 7/10 of the ram space according to
+</I>&gt;<i>
+</I>&gt;<i> &#160;/proc/meminfo | grep MemFree
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>Thanks Marcus,
+Ok I fully understand what your saying.  If the &quot;ramonly&quot; setting is
+changed to 'false' isn't the image still a &quot;live&quot; image?   I mean that
+live images are read only anyway right?  So would that change the fact
+that currently the os is sort of &quot;resets&quot; back to the original image
+when the system is rebooted?   If the &quot;ramonly&quot; element was changed
+would the OS then be able to save the changes made by a user?
+
+Since the fat partition can only be done with and OEM image and not
+with an ISO that limits me to using the OEM image...which I really
+like and think it's the way to go. Especially with the modes to Kiwi
+to allow a Windows friendly fat storage partition.  The CD rom version
+of the live image doesn't seem to be effected by this issue.  That
+must be also storing it's cache in RAM as well, no?
+
+Why do the CD ROM live image not seem to have this issue?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002578.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002583.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2580">[ date ]</a>
+              <a href="thread.html#2580">[ thread ]</a>
+              <a href="subject.html#2580">[ subject ]</a>
+              <a href="author.html#2580">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

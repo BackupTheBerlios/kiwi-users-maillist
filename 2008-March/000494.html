@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] how to add own packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20how%20to%20add%20own%20packages&In-Reply-To=%3C1205488787.15725.19.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000491.html">
+   <LINK REL="Next"  HREF="000495.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] how to add own packages</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20how%20to%20add%20own%20packages&In-Reply-To=%3C1205488787.15725.19.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] how to add own packages">roger at opq.se
+       </A><BR>
+    <I>Fri Mar 14 10:59:45 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000491.html">[Kiwi-users] how to add own packages
+</A></li>
+        <LI>Next message: <A HREF="000495.html">[Kiwi-users] how to add own packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#494">[ date ]</a>
+              <a href="thread.html#494">[ thread ]</a>
+              <a href="subject.html#494">[ subject ]</a>
+              <a href="author.html#494">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2008-03-14 at 08:55 +0100, Ralf Prengel wrote:
+&gt;<i> Ok,
+</I>&gt;<i> 
+</I>&gt;<i> I need sme hints.
+</I>&gt;<i> 
+</I>&gt;<i> What is the right way to insert an own software-configuration.
+</I>&gt;<i> I m using the test 2 example to build an really small pxe-system that is
+</I>&gt;<i> working fine.
+</I>&gt;<i> 
+</I>&gt;<i> a)
+</I>&gt;<i> I want to insert mailx.
+</I>&gt;<i> It s an standard suse package.
+</I>&gt;<i> Where can I configure this package so that I is installed too after kiwi
+</I>&gt;<i> is updated.
+</I>&gt;<i> b)
+</I>&gt;<i> I want to insert other non-Standard-RPMs. For example packaged from
+</I>&gt;<i> packman. The packages are sored local because internet is not avaliable
+</I>&gt;<i> while using kiwi. This is not a &quot;kiwi-problem&quot;. The whole network has no
+</I>&gt;<i> internet-access.
+</I>
+If they are in your regular repository where the openSUSE install came
+from, add this to your config.xml:
+
+	&lt;package name=&quot;myPackage&quot;/&gt;
+
+If you have a directory with RPMS (I would think any format that smart
+likes - but I have used RPMS), add this to config.xml
+
+        &lt;repository type=&quot;rpm-dir&quot;&gt;
+                &lt;source
+path=&quot;/tmp/RSofT-Mini-openSUSE-10.3/repository&quot;/&gt;
+        &lt;/repository&gt;
+
+I added this after the entry for the openSUSE repository.
+
+In /tmp/RSofT-Mini-openSUSE-10.3/repository (or whatever path you like)
+you put your RPMS. Then select them via the usual &lt;package
+name=&quot;myPackage&quot;/&gt; syntax. 
+
+
+
+&gt;<i> 
+</I>&gt;<i> Thanks for hints
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Kapellgr&#228;nd 7
+P.O. Box 4205
+SE-102 65 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000491.html">[Kiwi-users] how to add own packages
+</A></li>
+	<LI>Next message: <A HREF="000495.html">[Kiwi-users] how to add own packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#494">[ date ]</a>
+              <a href="thread.html#494">[ thread ]</a>
+              <a href="subject.html#494">[ subject ]</a>
+              <a href="author.html#494">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

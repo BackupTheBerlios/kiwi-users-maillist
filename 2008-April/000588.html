@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Finding ISO
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Finding%20ISO&In-Reply-To=%3C480F3AD4.3060006%40jcosby.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000585.html">
+   <LINK REL="Next"  HREF="000586.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Finding ISO</H1>
+    <B>Jon Cosby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Finding%20ISO&In-Reply-To=%3C480F3AD4.3060006%40jcosby.com%3E"
+       TITLE="[Kiwi-users] Finding ISO">jon at jcosby.com
+       </A><BR>
+    <I>Wed Apr 23 15:34:12 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000585.html">[Kiwi-users] Finding ISO
+</A></li>
+        <LI>Next message: <A HREF="000586.html">[Kiwi-users] Finding ISO
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#588">[ date ]</a>
+              <a href="thread.html#588">[ thread ]</a>
+              <a href="subject.html#588">[ subject ]</a>
+              <a href="author.html#588">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jan-Christoph Bornschlegel wrote:
+&gt;<i> Hi Jon,
+</I>&gt;<i> 
+</I>&gt;<i> Am Dienstag, 22. April 2008 schrieb Jon Cosby:
+</I>&gt;&gt;<i> How do you point Kiwi to the mounted ISO? The only reference I can find
+</I>&gt;&gt;<i> in the documentation or the config file is in the repos. If I direct
+</I>&gt;&gt;<i> Kiwi to the repo directory (/mnt/iso/suse) it fails to find the media
+</I>&gt;&gt;<i> file. If I direct it one level up (/mnt/iso) it fails to find the packages.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Jon Cosby
+</I>&gt;<i> 
+</I>&gt;<i> Normally the /mnt/iso should be the correct directory.
+</I>&gt;<i> Which iso did you use? What does ls -l /mnt/iso and ls -l /mnt/iso/suse/&lt;arch&gt; 
+</I>&gt;<i> tell?
+</I>&gt;<i> 
+</I>
+The iso is mounted on /mnt/iso.
+
+ls -l /mnt/iso
+total 16116
+-r--r--r-- 2 root root 8187233 2007-09-27 08:35 ARCHIVES.gz
+-r--r--r-- 1 root root      76 2007-09-27 08:21 autorun.inf
+dr-xr-xr-x 3 root root    2048 2007-09-27 08:41 boot
+-r--r--r-- 1 root root 7416993 2007-09-27 08:24 ChangeLog
+-r--r--r-- 1 root root   10540 2007-09-27 08:35 content
+-r--r--r-- 1 root root     189 2007-09-27 08:35 content.asc
+-r--r--r-- 1 root root    2178 2007-09-26 10:41 content.key
+-r--r--r-- 1 root root   28489 2007-09-24 10:30 control.xml
+-r--r--r-- 1 root root     439 2007-09-27 08:39 directory.yast
+dr-xr-xr-x 4 root root    2048 2007-09-27 08:21 docu
+dr-xr-xr-x 6 root root    2048 2007-09-27 08:20 dosutils
+-r--r--r-- 1 root root   83075 2007-09-27 08:27 EULA.txt
+-r--r--r-- 1 root root     882 2007-09-26 10:41 
+gpg-pubkey-0dfb3188-41ed929b.asc
+-r--r--r-- 1 root root     618 2007-09-26 10:41 
+gpg-pubkey-307e3d54-44201d5d.asc
+-r--r--r-- 1 root root    1699 2007-09-26 10:41 
+gpg-pubkey-3d25d3d9-36e12d04.asc
+-r--r--r-- 1 root root    1041 2007-09-26 10:41 
+gpg-pubkey-7e2e3b05-44748aba.asc
+-r--r--r-- 1 root root    2178 2007-09-26 10:41 
+gpg-pubkey-9c800aca-40d8063e.asc
+-r--r--r-- 1 root root    1808 2007-09-26 10:41 
+gpg-pubkey-a1912208-446a0899.asc
+-r--r--r-- 1 root root   17992 2007-09-26 10:41 GPLv2.txt
+-r--r--r-- 1 root root   35147 2007-09-26 10:41 GPLv3.txt
+-r--r--r-- 2 root root   40639 2007-09-27 08:35 INDEX.gz
+-r--r--r-- 1 root root   78131 2007-09-26 10:41 license.tar.gz
+-r--r--r-- 2 root root   64820 2007-09-27 08:35 ls-lR.gz
+dr-xr-xr-x 2 root root    2048 2007-09-27 08:39 media.1
+-r--r--r-- 1 root root  499375 2007-09-21 15:06 openSUSE10_3_LOCAL.exe
+-r--r--r-- 1 root root    5604 2007-09-26 10:41 pubring.gpg
+-r--r--r-- 2 root root    1726 2007-09-26 10:41 README
+-r--r--r-- 1 root root    1771 2007-09-26 10:41 README.DOS
+dr-xr-xr-x 6 root root    2048 2007-09-27 08:21 suse
+-r--r--r-- 1 root root    2238 2007-09-26 10:41 SuSEgo.ico
+
+ls -l /mnt/iso/suse
+total 546
+dr-xr-xr-x 2 root root 456704 2007-09-27 08:38 i586
+dr-xr-xr-x 2 root root   2048 2007-09-27 08:38 i686
+dr-xr-xr-x 2 root root  98304 2007-09-27 08:39 noarch
+dr-xr-xr-x 4 root root   2048 2007-09-27 08:38 setup
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000585.html">[Kiwi-users] Finding ISO
+</A></li>
+	<LI>Next message: <A HREF="000586.html">[Kiwi-users] Finding ISO
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#588">[ date ]</a>
+              <a href="thread.html#588">[ thread ]</a>
+              <a href="subject.html#588">[ subject ]</a>
+              <a href="author.html#588">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

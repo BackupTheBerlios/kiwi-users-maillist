@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SquashFS support in OEM image with SLES10
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SquashFS%20support%20in%20OEM%20image%20with%20SLES10&In-Reply-To=%3CAANLkTimK8MmrU%3DaLRWguy3K0w2fVWAwcete5K5yjxNBT%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002368.html">
+   <LINK REL="Next"  HREF="002377.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SquashFS support in OEM image with SLES10</H1>
+    <B>C&#233;sar Y&#225;&#241;ez Fern&#225;ndez</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SquashFS%20support%20in%20OEM%20image%20with%20SLES10&In-Reply-To=%3CAANLkTimK8MmrU%3DaLRWguy3K0w2fVWAwcete5K5yjxNBT%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] SquashFS support in OEM image with SLES10">xeygchkwdm at gmail.com
+       </A><BR>
+    <I>Mon Feb 21 20:40:33 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002368.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+        <LI>Next message: <A HREF="002377.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2374">[ date ]</a>
+              <a href="thread.html#2374">[ thread ]</a>
+              <a href="subject.html#2374">[ subject ]</a>
+              <a href="author.html#2374">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Well, I switched back to kiwi-4.43-1.6, which is the default in OpenSuSE
+11.3, and it makes a gzip compressed image, now I have a different problem.
+
+This is the config.xml:
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;image schemaversion=&quot;4.43&quot; name=&quot;sles10-oem-preload&quot;
+displayname=&quot;SLES10_OEM-ISO&quot;&gt;
+...
+&lt;preferences&gt;
+          &lt;version&gt;0.0.2&lt;/version&gt;
+    &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+    &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+    &lt;rpm-force&gt;true&lt;/rpm-force&gt;
+    &lt;rpm-excludedocs&gt;true&lt;/rpm-excludedocs&gt;
+    &lt;keytable&gt;es.map.gz&lt;/keytable&gt;
+    &lt;locale&gt;es_MX.UTF-8&lt;/locale&gt;
+    &lt;timezone&gt;America/Mexico_City&lt;/timezone&gt;
+                &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot;
+boot=&quot;oemboot/suse-SLES10&quot; format=&quot;iso&quot;&gt;
+                  &lt;oemconfig&gt;
+                    &lt;oem-boot-title&gt;SLES 10 OEM Boot&lt;/oem-boot-title&gt;
+                    &lt;oem-home&gt;true&lt;/oem-home&gt;
+                    &lt;oem-kiwi-initrd&gt;false&lt;/oem-kiwi-initrd&gt;
+                    &lt;oem-reboot&gt;true&lt;/oem-reboot&gt;
+                    &lt;oem-recovery&gt;false&lt;/oem-recovery&gt;
+                    &lt;oem-swap&gt;true&lt;/oem-swap&gt;
+                    &lt;oem-swapsize&gt;300&lt;/oem-swapsize&gt;
+                    &lt;oem-systemsize&gt;9216&lt;/oem-systemsize&gt;
+                  &lt;/oemconfig&gt;
+                &lt;/type&gt;
+        &lt;/preferences&gt;
+...
+
+The system boots, asks for confirmation to destroy all data in /dev/sda,
+after that, I have this:
+
+The image builds without issues, but when I boot it, I have this
+(kiwidebug=1 as parameter)
+===&gt; Have size: /dev/sda -&gt; 20480 MB
+===&gt; Need size: /cdrom/sles10-oem-preload.i686.gz -&gt; 1680 MB
+===&gt; Loading /cdrom/sles10-oem-preload.i686.gz [/dev/sda]
+===&gt; Install complete, checking data...
+===&gt; Image checksum test: fine :-)
+===&gt; System installation has finished
+===&gt; Repartition the disk according to real geometry [ parted ]
+Information: Don't forget to update /etc/fstab, if necessary.
+
+===&gt; Filesystem of OEM system is: ext3 -&gt; /dev/sda1
+===&gt; Waiting for device /dev/sda1 to settle...
+===&gt; Waiting for device /dev/sda1 to settle...
+===&gt; Waiting for device /dev/sda1 to settle...
+===&gt; Waiting for device /dev/sda1 to settle...
+===&gt; /sbin/init no such file or not executable
+===&gt; shellException: providing shell...
+(none):/ # _
+
+So, I typed 'fdisk -l' and I get this:
+
+Disk /dev/sda: 21.4 GB, 21474836480 bytes
+255 heads, 63 sectors/track, 2610 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+
+    Device Boot    Start    End    Blocks    Id    System
+(none):/ # _
+
+This is the 'dmesg | grep sd' output:
+
+SCSI device sda: 41943040 512-byte hdwr sectors (21475 MB)
+sda: Write Protect is off
+sda: Mode Sense: 5d 00 00 00
+sda: cache data unavailable
+sda: assuming drive cache: write through
+SCSI device sda: 41943040 512-byte hdwr sectors (21475 MB)
+sda: Write Protect is off
+sda: Mode Sense: 5d 00 00 00
+sda: cache data unavailable
+sda: assuming drive cache: write through
+ sda:
+sd 0:0:0:0 Attached scsi disk sda
+sd 0:0:0:0 Attached scsi generic sg0 type 0
+SCSI device sda: 41943040 512-byte hdwr sectors (21475 MB)
+sda: Write Protect is off
+sda: Mode Sense: 5d 00 00 00
+sda: cache data unavailable
+sda: assuming drive cache: write through
+ sda: sda1
+
+Any clue here? is there something with the parted inside SLES10 that this
+version of kiwi doesn't know how to handle?
+
+Thank you for your support.
+
+2011/2/21 Robert Schweikert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt;
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> On 02/21/2011 10:21 AM, wiqepo jksutx wrote:
+</I>&gt;<i> &gt; Greetings everybody, I need your help and orientation about this
+</I>&gt;<i> escenario:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I have an OpenSuSE 11.3 with kiwi-4.74-203.1 installed with all its
+</I>&gt;<i> &gt; utils and templates (kiwi-desc-oemboot-4.74-203.1 included) and I need
+</I>&gt;<i> &gt; to build an ISO with a custom SLES10 installable image so once the ISO
+</I>&gt;<i> &gt; is booted, it installs the image in a hard drive, I have this in the
+</I>&gt;<i> &gt; config.xml file:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+</I>&gt;<i> &gt; &lt;image schemaversion=&quot;4.43&quot; name=&quot;sles10-oem-preload&quot;
+</I>&gt;<i> &gt; displayname=&quot;SLES10_OEM-ISO&quot;&gt;
+</I>&gt;<i> &gt; ...
+</I>&gt;<i> &gt; &lt;preferences&gt;
+</I>&gt;<i> &gt;       &lt;version&gt;0.0.2&lt;/version&gt;
+</I>&gt;<i> &gt;     &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+</I>&gt;<i> &gt;     &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+</I>&gt;<i> &gt;     &lt;rpm-force&gt;true&lt;/rpm-force&gt;
+</I>&gt;<i> &gt;     &lt;rpm-excludedocs&gt;true&lt;/rpm-excludedocs&gt;
+</I>&gt;<i> &gt;     &lt;keytable&gt;es.map.gz&lt;/keytable&gt;
+</I>&gt;<i> &gt;     &lt;timezone&gt;America/Mexico_City&lt;/timezone&gt;
+</I>&gt;<i> &gt;         &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-SLES10&quot;
+</I>&gt;<i> &gt; installiso=&quot;true&quot;&gt;
+</I>&gt;<i> &gt;           &lt;oemconfig&gt;
+</I>&gt;<i> &gt;             &lt;!-- &lt;oem-align-partition&gt;true&lt;/oem-align-partition&gt; --&gt;
+</I>&gt;<i> &gt;             &lt;oem-boot-title&gt;SLES 10 OEM-ISO&lt;/oem-boot-title&gt;
+</I>&gt;<i> &gt;             &lt;oem-bootwait&gt;false&lt;/oem-bootwait&gt;
+</I>&gt;<i> &gt;             &lt;oem-inplace-recovery&gt;false&lt;/oem-inplace-recovery&gt;
+</I>&gt;<i> &gt;             &lt;oem-kiwi-initrd&gt;false&lt;/oem-kiwi-initrd&gt;
+</I>&gt;<i> &gt;             &lt;oem-partition-install&gt;false&lt;/oem-partition-install&gt;
+</I>&gt;<i> &gt;             &lt;oem-reboot&gt;false&lt;/oem-reboot&gt;
+</I>&gt;<i> &gt;             &lt;oem-reboot-interactive&gt;false&lt;/oem-reboot-interactive&gt;
+</I>&gt;<i> &gt;             &lt;oem-recovery&gt;false&lt;/oem-recovery&gt;
+</I>&gt;<i> &gt;             &lt;oem-shutdown&gt;false&lt;/oem-shutdown&gt;
+</I>&gt;<i> &gt;             &lt;oem-shutdown-interactive&gt;false&lt;/oem-shutdown-interactive&gt;
+</I>&gt;<i> &gt;             &lt;oem-swap&gt;true&lt;/oem-swap&gt;
+</I>&gt;<i> &gt;             &lt;oem-swapsize&gt;300&lt;/oem-swapsize&gt;
+</I>&gt;<i> &gt;             &lt;oem-unattended&gt;true&lt;/oem-unattended&gt;
+</I>&gt;<i> &gt;           &lt;/oemconfig&gt;
+</I>&gt;<i> &gt;         &lt;/type&gt;
+</I>&gt;<i> &gt;     &lt;/preferences&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The thing is that it makes a SquashFS compressed image, that SLES10
+</I>&gt;<i> &gt; doesn't support, and for special requirements, I don't want to install
+</I>&gt;<i> &gt; it in the kernel and/or image.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; How can I make this OEM Image inside an ISO but without using SquashFS?
+</I>&gt;<i>
+</I>&gt;<i> You will need to use an older version of Kiwi. As of v4.71 Kiwi the
+</I>&gt;<i> image to be installed is packed as squashfs. Therefore, you will need to
+</I>&gt;<i> use Kiwi 4.70 to create your image and avoid the use of squashfs.
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center                LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110221/03dcd0ce/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110221/03dcd0ce/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002368.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+	<LI>Next message: <A HREF="002377.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2374">[ date ]</a>
+              <a href="thread.html#2374">[ thread ]</a>
+              <a href="subject.html#2374">[ subject ]</a>
+              <a href="author.html#2374">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

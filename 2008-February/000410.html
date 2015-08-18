@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Netboot and diskless - config.default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Netboot%20and%20diskless%20-%20config.default&In-Reply-To=%3C1204198769.5174.32.camel%40pc-00184.batley.id.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000364.html">
+   <LINK REL="Next"  HREF="000411.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Netboot and diskless - config.default</H1>
+    <B>TrevorB</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Netboot%20and%20diskless%20-%20config.default&In-Reply-To=%3C1204198769.5174.32.camel%40pc-00184.batley.id.au%3E"
+       TITLE="[Kiwi-users] Netboot and diskless - config.default">trevorbatley at users.sourceforge.net
+       </A><BR>
+    <I>Thu Feb 28 12:39:29 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000364.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+        <LI>Next message: <A HREF="000411.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#410">[ date ]</a>
+              <a href="thread.html#410">[ thread ]</a>
+              <a href="subject.html#410">[ subject ]</a>
+              <a href="author.html#410">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2008-02-25 at 11:36 +0100, Marcus Sch&#228;fer wrote:
+&lt;&lt;stuff gone&gt;&gt;
+
+&gt;<i> 1) make sure your initrd contains all stuff you need. In case
+</I>&gt;<i>    of doubth don't use the diskless profile but the default profile
+</I>&gt;<i>    simply don't specify --add-profile
+</I>&gt;<i> 
+</I>I now understand what it's doing (I was jumping to a conclusion that I
+needed to build a netboot image directly myself).
+
+&gt;<i> 2) make sure you build a real system image too. See the example
+</I>&gt;<i>    in from here:
+</I>&gt;<i> 
+</I>&gt;<i> 	<A HREF="https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/wyseXMini-suse-10.3">https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/wyseXMini-suse-10.3</A>
+</I>&gt;<i> 
+</I>&gt;<i>    Well it's a system image description for a wyse terminal but it should
+</I>&gt;<i>    serve as a first good start. 
+</I>
+cd /usr/share/kiwi/image
+kiwi -p wyseXMini-suse-10.3 - r /kiwi/wyse
+kiwi -c /kiwi/wyse -t /kiwi
+
+Hmmm, I can't seem to get this to do the create.
+
+It appears to be size related (well I'm guessing based on some of the
+error messages)
+
+&lt;1&gt; : Image requires 126 MB, got 164 MB
+&lt;1&gt; : Suggested Image size: 164 MB
+
+32.8MB of package files are needed. 126.6MB will be used.
+
+Committing transaction...
+Preparing...                    ########################################
+[  0%]
+error: installing package glibc-locale-2.6.1-18 needs 331MB on the /
+filesystem 
+and a few more similar messages 
+
+Am really not sure why it has decided to jump from 126.6MB to 331MB.
+
+Tried to find anything similar in bugzilla, but didn't recognise
+anything. I'm sure it's something stupid I am doing.
+
+I did add a yast2 repos for
+<A HREF="http://download.opensuse.org/distribution/10.3/repo/oss">http://download.opensuse.org/distribution/10.3/repo/oss</A> 
+<A HREF="http://download.opensuse.org/distribution/10.3/repo/non-oss">http://download.opensuse.org/distribution/10.3/repo/non-oss</A> 
+
+Any help appreciated.
+
+Trevor B
+PS. Also occured with ctso-minimal-suse-10.3
+
+kiwi -p ctso-minimal-suse-10.3 -r /kiwi/ctso --add-repo
+<A HREF="http://download.opensuse.org/distribution/10.3/repo/oss">http://download.opensuse.org/distribution/10.3/repo/oss</A> --add-repotype
+yast2
+
+&gt;<i> If you have built
+</I>&gt;<i>    an example system image copy this one to the /srv/tftpboot/image
+</I>&gt;<i>    directory and remove your initrd image from this directory it
+</I>&gt;<i>    doesn't make sense.
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000364.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+	<LI>Next message: <A HREF="000411.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#410">[ date ]</a>
+              <a href="thread.html#410">[ thread ]</a>
+              <a href="subject.html#410">[ subject ]</a>
+              <a href="author.html#410">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

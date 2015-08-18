@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie asks how to install OS from USB-Stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20asks%20how%20to%20install%20OS%20from%20USB-Stick&In-Reply-To=%3C200803032044.38643.Thomas.Hluchnik%40netcologne.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000427.html">
+   <LINK REL="Next"  HREF="000434.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie asks how to install OS from USB-Stick</H1>
+    <B>Thomas Hluchnik</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20asks%20how%20to%20install%20OS%20from%20USB-Stick&In-Reply-To=%3C200803032044.38643.Thomas.Hluchnik%40netcologne.de%3E"
+       TITLE="[Kiwi-users] Newbie asks how to install OS from USB-Stick">Thomas.Hluchnik at netcologne.de
+       </A><BR>
+    <I>Mon Mar  3 20:44:29 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000427.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+        <LI>Next message: <A HREF="000434.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#430">[ date ]</a>
+              <a href="thread.html#430">[ thread ]</a>
+              <a href="subject.html#430">[ subject ]</a>
+              <a href="author.html#430">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thats what I did:
+
+The SuSE-10.3-32bit DVD-Image is mounted below /tmp/iso:
+/mscratch/openSUSE-10.2-GM-DVD-x86_64-iso/openSUSE-10.3-GM-DVD-i386-iso/openSUSE-10.3-GM-DVD-i386.iso on /tmp/iso type iso9660 (rw,loop=/dev/loop2)
+
+lina:/tmp/mytest # cp /tmp/iso/boot/i386/loader/initrd initrd-xxxboot-suse-10.3.i686-1.1.1.splash.gz
+lina:/tmp/mytest # cp /tmp/iso/boot/i386/loader/linux  initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.1.2.34.5-67
+lina:/tmp/mytest # file initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.1.2.34.5-67
+initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.1.2.34.5-67: Linux/x86 Kernel, Setup Version 0x206, bzImage, Version 2.6.22.5, Version 2.6.22.5-31, RO-rootFS, root_dev 0x304, swap_dev 0x1, Normal VGA
+
+lina:/tmp/mytest # mv initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.1.2.34.5-67 \
+		      initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.2.6.22.5-31
+
+lina:/tmp/mytest # ln -s initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.2.6.22.5-31 \
+			 initrd-xxxboot-suse-10.3.i686-2.1.1.kernel
+
+lina:/tmp/mytest # ls -l
+total 16292
+-r--r--r-- 1 root root  1593816 Mar  3 18:45 initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.2.6.22.5-31
+-r--r--r-- 1 root root 15038626 Mar  3 18:44 initrd-xxxboot-suse-10.3.i686-1.1.1.splash.gz
+lrwxrwxrwx 1 root root       54 Mar  3 18:46 initrd-xxxboot-suse-10.3.i686-2.1.1.kernel -&gt; initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.2.6.22.5-31
+
+OK, ist this right until now?
+
+&gt;<i> 3) if you have copied the files you can create a raw disk image for the
+</I>&gt;<i>    USB stick as follows:
+</I>&gt;<i> 
+</I>&gt;<i>      kiwi --bootusb mytest/initrd-xxxboot-suse-10.3.i686-1.1.1.splash.gz
+</I>&gt;<i> 
+</I>&gt;<i>    I hope that works but I never have tried that.
+</I>
+Unfortunately, it did not:
+
+lina:/tmp/mytest # kiwi --bootusb ./initrd-xxxboot-suse-10.3.i686-1.1.1.splash.gz
+Unknown option: bootusb
+Linux KIWI setup  (image builder) (2008-03-03)
+Copyright (c) 2007 - SUSE LINUX Products GmbH
+
+Usage:
+  kiwi -l | --list
+  kiwi -i | --list-profiles &lt;image-path&gt;
+  kiwi -x | --listxmlinfo &lt;image-path&gt; [--type &lt;image-type&gt;]
+[long long long usage output]
+
+The error message is: &quot;&quot;Unknown option: bootusb&quot;&quot;
+
+&gt;<i> NOTE: you need the latest svn head code of kiwi to do that
+</I>
+Is my kiwi uptodate?
+lina:/tmp/mytest # rpm -qa | grep kiwi
+kiwi-desc-misc-1.60-25.1
+kiwi-desc-isoboot-2.33-28.1
+kiwi-2.33-28.1
+kiwi-desc-usbboot-2.33-28.1
+kiwi-desc-netboot-2.33-28.1
+kiwi-pxeboot-prebuild-2.33-28.1
+kiwi-desc-vmxboot-2.33-28.1
+kiwi-tools-2.33-28.1
+kiwi-desc-livesystem-1.60-25.1
+kiwi-desc-oemboot-2.33-28.1
+kiwi-doc-2.33-28.1
+
+
+What goes wrong here?
+
+Thanks for any help in advance
+
+Thomas
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080303/e3a8a7f5/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080303/e3a8a7f5/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000427.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+	<LI>Next message: <A HREF="000434.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#430">[ date ]</a>
+              <a href="thread.html#430">[ thread ]</a>
+              <a href="subject.html#430">[ subject ]</a>
+              <a href="author.html#430">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

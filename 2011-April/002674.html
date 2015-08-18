@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Stick-Image wouldn't boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C4DB04C8D.3050606%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002673.html">
+   <LINK REL="Next"  HREF="002679.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Stick-Image wouldn't boot</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C4DB04C8D.3050606%40novell.com%3E"
+       TITLE="[Kiwi-users] Stick-Image wouldn't boot">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Apr 21 17:26:05 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002673.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+        <LI>Next message: <A HREF="002679.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2674">[ date ]</a>
+              <a href="thread.html#2674">[ thread ]</a>
+              <a href="subject.html#2674">[ subject ]</a>
+              <a href="author.html#2674">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 04/21/2011 10:44 AM, Hermann J. Beckers wrote:
+&gt;<i> Am Donnerstag, 21. April 2011 schrieb Hermann J. Beckers:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I build am small/minimal OS-11.3 usb-image on susestudio. This images boots
+</I>&gt;&gt;<i> when I use it in qemu (&quot;qemu -boot c -hda image.raw -m 384 -monitor
+</I>&gt;&gt;<i> stdio&quot;). It also works after copying/writing the image to an stick, still
+</I>&gt;&gt;<i> using qemu (&quot;qemu -boot c -hda /dev/sdc &quot;).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But booting from this stick on a USB-bootable net/notebook stops depending
+</I>&gt;&gt;<i> on the boot menu entry used. The following is /boot/grub/menu.lst:
+</I>&gt;&gt;<i>
+</I>&gt;<i> ...
+</I>&gt;&gt;<i> Using the first entry it stops &quot;waiting for /dev/disk/by ... to appear&quot;.
+</I>&gt;&gt;<i> Using the second entry (modified to point to /dev/sda1) it drops me into
+</I>&gt;&gt;<i> the busybox shell?
+</I>&gt;&gt;<i>
+</I>&gt;<i> Reply to myself:
+</I>&gt;<i>
+</I>&gt;<i> I made a new *raw file and copied this file to my stick and made the first
+</I>&gt;<i> boot in my netbook. The firstboot script started and initialized and expanded
+</I>&gt;<i> the partition and the first and subsequent boots were successfull. So I dd'd
+</I>&gt;<i> the stick back to my harddisk as an raw file. Now qemu can't boot this image
+</I>&gt;<i> and gives the above mentioned &quot;waiting for .. to appear&quot; message. Trying to
+</I>&gt;<i> use qemu with the stick as boot images gives the same result.
+</I>&gt;<i>
+</I>&gt;<i> Using qemu with the freshly downloaded, unused raw file goes the same way as
+</I>&gt;<i> the first stick boot (firstboot script, initialization, expanding partition).
+</I>&gt;<i>
+</I>&gt;<i> So it seems a image generated as &quot;usb stick/hard disk image&quot; can't be used
+</I>&gt;<i> both ways?
+</I>
+Correct
+
+&gt;<i> Or what am I doing wrong?
+</I>
+No, you are not doing anything wrong. When the image boots for the first 
+time a &quot;generic/special&quot; initrd runs. This initrd is responsible for 
+expanding the file system (as you observed on the stick) and it also 
+creates a new initrd that is specific to the device the image is booted 
+from. The image gets permanently altered when this happens.
+
+Thus, after you boot from the stick you have an initrd on the stick that 
+works for the stick, if you first boot in qemu, you'll end up with an 
+initrd for qemu.
+
+HTH,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002673.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+	<LI>Next message: <A HREF="002679.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2674">[ date ]</a>
+              <a href="thread.html#2674">[ thread ]</a>
+              <a href="subject.html#2674">[ subject ]</a>
+              <a href="author.html#2674">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

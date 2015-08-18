@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Can't set permissions for user to write to fat	partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20set%20permissions%20for%20user%20to%20write%20to%20fat%0A%09partition&In-Reply-To=%3CBANLkTin5Qb-NjHHTG_DatAYHD57Ci0zvng%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002665.html">
+   <LINK REL="Next"  HREF="002668.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Can't set permissions for user to write to fat	partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20set%20permissions%20for%20user%20to%20write%20to%20fat%0A%09partition&In-Reply-To=%3CBANLkTin5Qb-NjHHTG_DatAYHD57Ci0zvng%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Can't set permissions for user to write to fat	partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Mon Apr 18 22:30:16 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002665.html">[Kiwi-users] Can't set permissions for user to write to	fat	partition
+</A></li>
+        <LI>Next message: <A HREF="002668.html">[Kiwi-users] Can't set permissions for user to write to fat	partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2667">[ date ]</a>
+              <a href="thread.html#2667">[ thread ]</a>
+              <a href="subject.html#2667">[ subject ]</a>
+              <a href="author.html#2667">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Apr 18, 2011 at 2:03 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i> Hi Chris,
+</I>&gt;<i>
+</I>&gt;<i> On 04/18/2011 12:44 PM, Chris Cunha wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Mon, Apr 18, 2011 at 4:27 AM, Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; &#160;wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> I've been doing the majority of my devel work on my live usb image as
+</I>&gt;&gt;&gt;&gt;<i> root. &#160;I'm am now ready to set all the permissions for a user. &#160;I have
+</I>&gt;&gt;&gt;&gt;<i> been unsuccessful to change the permissions on the mounted directory
+</I>&gt;&gt;&gt;&gt;<i> to allow a user to write/read from it. &#160;Even manually setting the
+</I>&gt;&gt;&gt;&gt;<i> permission does not work. &#160;Although there is no error when the command
+</I>&gt;&gt;&gt;&gt;<i> is executed the permissions.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Marcus helped me with a script that looks for the fat partition an
+</I>&gt;&gt;&gt;&gt;<i> mounts this partition. &#160;This partition mounts to a folder in / file
+</I>&gt;&gt;&gt;&gt;<i> tree. &#160;Inside this folder is a bunch of system files and folder such
+</I>&gt;&gt;&gt;&gt;<i> as &quot;boot&quot; and other config files. &#160;Also in this folder is a storage
+</I>&gt;&gt;&gt;&gt;<i> folder. It is this folder that I would like to change the permissions
+</I>&gt;&gt;&gt;&gt;<i> for and everything inside this folder. &#160;Robert gave me a few tips to
+</I>&gt;&gt;&gt;&gt;<i> look at regarding mounting rules but nothing seem to worked.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Are you talking about the permissions on the fat filesystem ?
+</I>&gt;<i>
+</I>&gt;<i> No,
+</I>&gt;<i>
+</I>&gt;<i> Marcus, Chris has issues with the way the file system is mounted, i.e. user
+</I>&gt;<i> X cannot write to the mounted file system, irregardless of file ownership.
+</I>&gt;<i> Based on the description, I take it that the FAT partition gets mounted as
+</I>&gt;<i> read only for user and read/write for root. Therefore, I suggested that
+</I>&gt;<i> Chris take a look at the auto-mounting setup. Auto-mounting, to the best of
+</I>&gt;<i> my knowledge has two components. One component is formed by udev and the
+</I>&gt;<i> udev-rules. The other component is buried in the given desktop environment.
+</I>&gt;<i> I know that for both KDE and GNOME one can disable auto-mounting of devices
+</I>&gt;<i> or set rules how devices are mounted. I suspect something similar exists for
+</I>&gt;<i> LXDE, but I am not familiar with LXDE.
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i> if so fat doesn't have the user bits other filesystems have.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi Marcus.
+</I>&gt;&gt;<i> I didn't know that. &#160;So this OS will have to be run as root in live
+</I>&gt;&gt;<i> mode because the user will never be able to write to the storage
+</I>&gt;&gt;<i> folders on the fat partition, correct?
+</I>&gt;<i>
+</I>&gt;<i> No, think of the FAT partition as a stick in and of itself. If you go out
+</I>&gt;<i> and buy a new stick it is usually formatted with a FAT partition since every
+</I>&gt;<i> computer can read/write to this format. If you plug this new stick into your
+</I>&gt;<i> Linux box it will get mounted and the user for which the stick got
+</I>&gt;<i> auto-mounted will be able to rad/write to the stick. However, if you list
+</I>&gt;<i> the file that got copied to the stick you will see that the permission bits
+</I>&gt;<i> of the file itself are not what you would expect from a Linux file system.
+</I>&gt;<i> This is because a FAT filesystem has no notion of owner/group/other
+</I>&gt;<i> permission settings.
+</I>&gt;<i>
+</I>&gt;<i> See <A HREF="http://www.dartmouth.edu/~rc/help/faq/permissions.html">http://www.dartmouth.edu/~rc/help/faq/permissions.html</A> for a refresher
+</I>&gt;<i> on Unix filesystem permissions, and
+</I>&gt;<i> <A HREF="http://technet.microsoft.com/en-us/library/cc783530%28WS.10%29.aspx">http://technet.microsoft.com/en-us/library/cc783530%28WS.10%29.aspx</A> for
+</I>&gt;<i> permissions info on a FAT based filesystem.
+</I>&gt;<i>
+</I>&gt;<i> You are talking about the read/write permissions of the mounted file system
+</I>&gt;<i> while Marcus is pointing out that permissions on individual files on a FAT
+</I>&gt;<i> partition are different from the permissions on a Linux file system such as
+</I>&gt;<i> ext3, XFS, etc.
+</I>&gt;<i>
+</I>&gt;<i> The two concepts, whether a user is allowed to read/write a mounted file
+</I>&gt;<i> system or not, and whether file system content reflects proper permissions
+</I>&gt;<i> are only loosely related. For purposes of discussion these concepts need to
+</I>&gt;<i> be clearly delineated to avoid confusion.
+</I>&gt;<i>
+</I>&gt;<i> Anyway, in your case you have issues with the permissions of the mounted
+</I>&gt;<i> filesystem, not with the permissions of any given file on the filesystem.
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+Yes that correct Robert...thanks for explaining the difference between the two.
+The weird thing is that if I plug another USB drive in the machine
+(while it's running the live USB drive) I can write to that no problem
+as a user.  Why is this?
+c
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002665.html">[Kiwi-users] Can't set permissions for user to write to	fat	partition
+</A></li>
+	<LI>Next message: <A HREF="002668.html">[Kiwi-users] Can't set permissions for user to write to fat	partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2667">[ date ]</a>
+              <a href="thread.html#2667">[ thread ]</a>
+              <a href="subject.html#2667">[ subject ]</a>
+              <a href="author.html#2667">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

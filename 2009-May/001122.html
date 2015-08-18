@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /etc/init.d/.depend.* scripts attacked during	firstboot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/etc/init.d/.depend.%2A%20scripts%20attacked%20during%0A%09firstboot&In-Reply-To=%3Ce915a2a90905130230s21b9c884h3f1f374677f58042%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001121.html">
+   <LINK REL="Next"  HREF="001123.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /etc/init.d/.depend.* scripts attacked during	firstboot</H1>
+    <B>Qian Feng</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/etc/init.d/.depend.%2A%20scripts%20attacked%20during%0A%09firstboot&In-Reply-To=%3Ce915a2a90905130230s21b9c884h3f1f374677f58042%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] /etc/init.d/.depend.* scripts attacked during	firstboot">fengqian83 at gmail.com
+       </A><BR>
+    <I>Wed May 13 11:30:16 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001121.html">[Kiwi-users] /etc/init.d/.depend.* scripts attacked	during	firstboot
+</A></li>
+        <LI>Next message: <A HREF="001123.html">[Kiwi-users] Perhaps a bit OT: Adding something to files generated	with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1122">[ date ]</a>
+              <a href="thread.html#1122">[ thread ]</a>
+              <a href="subject.html#1122">[ subject ]</a>
+              <a href="author.html#1122">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Peter,
+The root cause I was modifying .depend.boot and .depend.start was that
+it didn't run boot.crypto during bootup.
+This seems very ugly and wrong now...
+I'm returning back to config.sh and add suseActivateDefaultServices
+and suseInsertService boot.crypto
+hope that works...
+
+Thanks to all you guys
+
+On Wed, May 13, 2009 at 4:24 PM, Peter Schinagl &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">peters at novell.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> On Wed, May 13, 2009 at 02:57:14PM +0800, Qian Feng wrote:
+</I>&gt;&gt;<i> Dear all,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I wonder when and how yast2-firstboot would touch the scripts in /etc/init.d/.
+</I>&gt;<i>
+</I>&gt;<i> It's not yast2-firstboot, it's the &quot;insserv&quot; mechanism with help of
+</I>&gt;<i> startpar. It's automatical changed (recalculated and written) if you
+</I>&gt;<i> install a additional service (like network with firstboot).
+</I>&gt;<i>
+</I>&gt;<i> Please read the /etc/init.d/README , the man pages of insserv (man
+</I>&gt;<i> insserv) and the man page of startpar (man startpar)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In KIWIImage.pm I had some code inserting some stuff into
+</I>&gt;&gt;<i> &quot;init.d/.depend.boot&quot; and .&quot;init.d/depend.start&quot;. &#160;But after the
+</I>&gt;&gt;<i> firstboot, my changes were overridden.
+</I>&gt;<i>
+</I>&gt;<i> Why do you need to change them by hand?
+</I>&gt;<i>
+</I>&gt;<i> A normal init script should work well if you use the defined mechanism.
+</I>&gt;<i> For a skeleton of such a start/stop script please have a look into
+</I>&gt;<i> /etc/init.d/skeleton
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I think some certain firstboot steps will modify (or indirectly
+</I>&gt;&gt;<i> influnce) these scripts, because if I comment
+</I>&gt;&gt;<i> the network and hardware modules in config-yast-firstboot.xml
+</I>&gt;&gt;<i> (therefore skip these 2 steps in firstboot),
+</I>&gt;&gt;<i> then .depend.boot and .depend.start won't be touched, and my
+</I>&gt;&gt;<i> modifications reserved
+</I>&gt;<i>
+</I>&gt;<i> If you want only to start a special script(s) with the Firstboot mechanism
+</I>&gt;<i> you can put your script(s) into the directory /usr/share/firstboot/scripts.
+</I>&gt;<i> So they will be executed once with firstboot.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks in advance for any explanation or advice.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Feng Qian
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Peter Schinagl - Technical ISV Relationship Manager
+</I>&gt;<i> SUSE LINUX Products GmbH,Maxfeldstrasse 5, 90409 N&#252;rnberg,Germany
+</I>&gt;<i> Tel &#160;: +49-911-74053-684 &#160; &#160; &#160; &#160; &#160; Mobil: +49-179-1308082
+</I>&gt;<i> Email: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">peter.schinagl at suse.de</A>
+</I>&gt;<i> -----------------------------------------------------------------
+</I>&gt;<i> SUSE LINUX Products GmbH, GF: Markus Rex, HRB 16746 (AG N&#252;rnberg)
+</I>&gt;<i> -----------------------------------------------------------------
+</I>&gt;<i>
+</I>
+
+
+-- 
+====================================
+FENG Qian
+Dept. of Automation, Tsinghua Univ.
+100084, Beijing, P.R.China
+====================================
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001121.html">[Kiwi-users] /etc/init.d/.depend.* scripts attacked	during	firstboot
+</A></li>
+	<LI>Next message: <A HREF="001123.html">[Kiwi-users] Perhaps a bit OT: Adding something to files generated	with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1122">[ date ]</a>
+              <a href="thread.html#1122">[ thread ]</a>
+              <a href="subject.html#1122">[ subject ]</a>
+              <a href="author.html#1122">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

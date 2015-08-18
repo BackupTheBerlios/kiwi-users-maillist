@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-07-11 - 2010-07-16...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-07-11%20-%202010-07-16...&In-Reply-To=%3C20100716140801.GA31048%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001918.html">
+   <LINK REL="Next"  HREF="001908.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-07-11 - 2010-07-16...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-07-11%20-%202010-07-16...&In-Reply-To=%3C20100716140801.GA31048%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-07-11 - 2010-07-16...">ms at novell.com
+       </A><BR>
+    <I>Fri Jul 16 16:08:01 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001918.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+        <LI>Next message: <A HREF="001908.html">[Kiwi-users] repo broken
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1904">[ date ]</a>
+              <a href="thread.html#1904">[ thread ]</a>
+              <a href="subject.html#1904">[ subject ]</a>
+              <a href="author.html#1904">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.48 2010-07-11 - 2010-07-16
+--------------------------------------------------
+most important changes for this weeks release...
+
+GIT:  - fixed recovery cleanup code
+      - fixed umountSystem call to check proc/mounts and umount
+        a list of possible system mount paths in the right order
+      - netboot: fixed creation of read-write partition
+      - netboot: fixed boot partition setup, IFS restore required
+      - netboot: imageDiskDevice was not set but used
+
+ fixed pxe images when clicfs as filesystem is used
+
+GIT:  - fixed race condition resulting at times in message of not
+        finding the MBR and other times not finding the CD drive.
+
+ finally Robert and Alex found this problem. Problem was the
+ missing wait period for udev to create the device nodes
+
+many small bugfixes in this weeks release which I didn't
+mention here. For details about them watch the git commit log
+
+* I'm now working to add btrfs support for 11.3 images
+* We are working to have 11.3 support in Studio soon
+
+Have Fun :-)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001918.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+	<LI>Next message: <A HREF="001908.html">[Kiwi-users] repo broken
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1904">[ date ]</a>
+              <a href="thread.html#1904">[ thread ]</a>
+              <a href="subject.html#1904">[ subject ]</a>
+              <a href="author.html#1904">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

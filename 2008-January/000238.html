@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] is it possible to use an iso image as an nfs	server?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20is%20it%20possible%20to%20use%20an%20iso%20image%20as%20an%20nfs%0A%09server%3F&In-Reply-To=%3C200801222016.46405.ml%40radoeka.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000235.html">
+   <LINK REL="Next"  HREF="000239.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] is it possible to use an iso image as an nfs	server?</H1>
+    <B>Richard Bos</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20is%20it%20possible%20to%20use%20an%20iso%20image%20as%20an%20nfs%0A%09server%3F&In-Reply-To=%3C200801222016.46405.ml%40radoeka.nl%3E"
+       TITLE="[Kiwi-users] is it possible to use an iso image as an nfs	server?">ml at radoeka.nl
+       </A><BR>
+    <I>Tue Jan 22 20:16:46 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000235.html">[Kiwi-users] is it possible to use an iso image as an nfs	server?
+</A></li>
+        <LI>Next message: <A HREF="000239.html">[Kiwi-users] kwliveCD-suse-10.3 vmx can't start gdm?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Op Tuesday 22 January 2008 19:56:06 schreef Marcus Sch&#228;fer:
+&gt;<i> &gt; is it possible to use an iso image )livecd) as an nfs server? &#160;I tried
+</I>&gt;<i> &gt; this today, by installing the nfsserver rpm and by configuring the
+</I>&gt;<i> &gt; nfsserver using the the yast nfsserver module. &#160;But mounting the exported
+</I>&gt;<i> &gt; directory (I used /opt) from another system did not work. &#160;Does it not
+</I>&gt;<i> &gt; work, because it is just not possible to mount a ramdisk? &#160;The settings
+</I>&gt;<i> &gt; have been verified by someone and they seem okay.... &#160;So, what is
+</I>&gt;<i> &gt; blocking a succesful nfs mount?
+</I>&gt;<i>
+</I>&gt;<i> This maybe a problem because of the aufs / mount. I guess you use a 10.3
+</I>&gt;<i> based live system which mounts the / path as combined aufs mount of a
+</I>&gt;<i> read-only and a read-write (ram space) part. I think the filesystem layer
+</I>&gt;<i> will have problems if you export this combined filesystem via NFS.
+</I>
+Thanks for your swift replies, I assume that is indeed the reason.
+
+-- 
+Richard Bos
+Without a home the journey is endless
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000235.html">[Kiwi-users] is it possible to use an iso image as an nfs	server?
+</A></li>
+	<LI>Next message: <A HREF="000239.html">[Kiwi-users] kwliveCD-suse-10.3 vmx can't start gdm?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

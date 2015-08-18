@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Upgrading%20to%20kiwi-4.84-237.1.i586&In-Reply-To=%3C4D9B52CE.1040602%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002621.html">
+   <LINK REL="Next"  HREF="002622.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Upgrading%20to%20kiwi-4.84-237.1.i586&In-Reply-To=%3C4D9B52CE.1040602%40novell.com%3E"
+       TITLE="[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Apr  5 19:35:10 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002621.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+        <LI>Next message: <A HREF="002622.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2620">[ date ]</a>
+              <a href="thread.html#2620">[ thread ]</a>
+              <a href="subject.html#2620">[ subject ]</a>
+              <a href="author.html#2620">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 04/05/2011 12:10 PM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> What was the rational for changing that?
+</I>&gt;<i> check if the binary exists mainly I guess. But Robert can answer
+</I>&gt;<i> this question better
+</I>&gt;<i>
+</I>&gt;&gt;<i> Please note the following principle design issue with the above change to use KIWILocator::getExecPath().
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When propagating the full path to zypper or any other tool from the kiwi host to the kiwi target there is an implicit dependency between the host and the target. Such implicit dependencies and propagation of configuration information ($PATH in this case) should be avoided if possible.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Imagine: In the future the zypper binary might move to a new location in the filesystem hierarchy. In this case it would be impossible to create the new OS via kiwi as zypper or other tools would be called with the wrong explicit path.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Why not make the path to zypper and other tools implicit instead of explicit?
+</I>&gt;<i> Hmm, I think you are right even though according to FHS /usr/bin/zypper
+</I>&gt;<i> is the correct place and it should not change.
+</I>&gt;<i>
+</I>&gt;<i> @Robert, what do you think. Can we change getExecPath in a way that
+</I>&gt;<i> we check if 'which' returns something good we return only the name
+</I>&gt;<i> not the entire path because we know that path is found later too
+</I>
+This would be an option. However, I think a more general solution for us 
+would be to have a script in the chroot environment that sets the paths 
+of the executables we need. Maybe we could drop a text file into chroot 
+that lists the executables we need and inside the chroot we run some 
+script to find them, and set things up properly.
+
+This requires a bit more thought.
+
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002621.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+	<LI>Next message: <A HREF="002622.html">[Kiwi-users] Upgrading to kiwi-4.84-237.1.i586
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2620">[ date ]</a>
+              <a href="thread.html#2620">[ thread ]</a>
+              <a href="subject.html#2620">[ subject ]</a>
+              <a href="author.html#2620">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

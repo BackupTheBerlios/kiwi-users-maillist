@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Finding ISO
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Finding%20ISO&In-Reply-To=%3C480F38CC.4070002%40jcosby.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000586.html">
+   <LINK REL="Next"  HREF="000589.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Finding ISO</H1>
+    <B>Jon Cosby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Finding%20ISO&In-Reply-To=%3C480F38CC.4070002%40jcosby.com%3E"
+       TITLE="[Kiwi-users] Finding ISO">jon at jcosby.com
+       </A><BR>
+    <I>Wed Apr 23 15:25:32 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000586.html">[Kiwi-users] Finding ISO
+</A></li>
+        <LI>Next message: <A HREF="000589.html">[Kiwi-users] Finding ISO
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#587">[ date ]</a>
+              <a href="thread.html#587">[ thread ]</a>
+              <a href="subject.html#587">[ subject ]</a>
+              <a href="author.html#587">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> How do you point Kiwi to the mounted ISO? The only reference I can find 
+</I>&gt;&gt;<i> in the documentation or the config file is in the repos. If I direct 
+</I>&gt;&gt;<i> Kiwi to the repo directory (/mnt/iso/suse) it fails to find the media 
+</I>&gt;&gt;<i> file. If I direct it one level up (/mnt/iso) it fails to find the packages.
+</I>&gt;<i> 
+</I>&gt;<i> could you send the complete repository definition ? the repo information
+</I>&gt;<i> is used to feed the packagemanager so along with the path the repo type
+</I>&gt;<i> must also fit. If you use a suse CD as repo you need to use the repo
+</I>&gt;<i> type &quot;yast2&quot; and point the path to the directory which contains the
+</I>&gt;<i> &quot;suse&quot; subdirectory
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+The iso for the openSUSE CD is mounted on /mnt/iso. The repos are
+
+   &lt;repository type=&quot;yast2&quot;&gt;
+     &lt;source path=&quot;/mnt/iso/suse&quot;/&gt;
+   &lt;/repository&gt;
+   &lt;repository type=&quot;rpm-md&quot;&gt;
+     &lt;source path=&quot;<A HREF="http://download.opensuse.org/update/10.3/">http://download.opensuse.org/update/10.3/</A>&quot;/&gt;
+   &lt;/repository&gt;
+   &lt;repository type=&quot;rpm-dir&quot;&gt;
+     &lt;source path=&quot;/usr/share/kiwi/image/kwliveCD-suse-10.3/repo&quot; /&gt;
+   &lt;/repository&gt;
+
+In this scheme, Kiwi looks for the media file in /mnt/iso/suse/media.1 
+and fails in the initialization.
+
+
+Jon
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000586.html">[Kiwi-users] Finding ISO
+</A></li>
+	<LI>Next message: <A HREF="000589.html">[Kiwi-users] Finding ISO
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#587">[ date ]</a>
+              <a href="thread.html#587">[ thread ]</a>
+              <a href="subject.html#587">[ subject ]</a>
+              <a href="author.html#587">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

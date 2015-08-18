@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] errors of uninstalled packages when building an image	with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%20an%20image%0A%09with%20kiwi&In-Reply-To=%3C200712231212.56117.ml%40radoeka.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000181.html">
+   <LINK REL="Next"  HREF="000185.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] errors of uninstalled packages when building an image	with kiwi</H1>
+    <B>Richard Bos</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%20an%20image%0A%09with%20kiwi&In-Reply-To=%3C200712231212.56117.ml%40radoeka.nl%3E"
+       TITLE="[Kiwi-users] errors of uninstalled packages when building an image	with kiwi">ml at radoeka.nl
+       </A><BR>
+    <I>Sun Dec 23 12:12:55 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000181.html">[Kiwi-users] v2.06 released
+</A></li>
+        <LI>Next message: <A HREF="000185.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#182">[ date ]</a>
+              <a href="thread.html#182">[ thread ]</a>
+              <a href="subject.html#182">[ subject ]</a>
+              <a href="author.html#182">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I get errors of uninstalled packages when building an image with kiwi.  At the 
+moment I don't know in what direction to search for the error as I have just 
+updated from kiwi-2.01 to 2.07 and have in the meantime also updated my kiwi 
+image configuration.  So the problem could be caused by either one.
+
+[Hmmm, sorry for this lenghty email.  I hope that it does not scare people 
+away to read it and answer it!]
+
+Let me switch to the error; when booting from a CD the boot process complains 
+that it needs to wait for the diskdrive and that for example 'cut' can't be 
+found among other failures .
+The kiwi log file contains the following information:
+=====================
+............
+Including &quot;penguin.inc&quot;
+make: Leaving directory `/usr/share/gfxboot/themes/SuSE'
+make: Entering directory `/usr/share/gfxboot/themes/SuSE'
+[ ! -f po/Makefile ] || make -C po clean
+make[1]: Entering directory `/usr/share/gfxboot/themes/SuSE/po'
+rm -f text.inc *.tr *~
+make[1]: Leaving directory `/usr/share/gfxboot/themes/SuSE/po'
+rm -f `find -type l`
+rmdir po 2&gt;/dev/null || true
+rm -f bootdir installdir *~
+rm -rf boot install
+make: Leaving directory `/usr/share/gfxboot/themes/SuSE'
+/image/loader/xxx /usr/share/gfxboot
+/usr/share/gfxboot
+/image/loader/xxx /usr/share/gfxboot
+/usr/share/gfxboot
+/image/loader/xxx /usr/share/gfxboot
+/usr/share/gfxboot
+error: package PolicyKit audit-libs blocxx bootsplash-theme-SuSE cpio 
+cyrus-sasl db expat fillup gawk gdbm gfxboot glib2 glibc-locale 
+gnome-filesystem gpg info insserv iproute2 irqbalance libxcrypt libxml2 
+libzio limal limal-bootloader limal-perl logrotate make mdadm memtest86+ 
+mingetty openSUSE-release openldap2-client openslp pam pam-modules pcre perl 
+perl-Bootloader perl-gettext permissions pm-utils pmtools python python-xml 
+resmgr rpm-python smart suse-build-key syslinux is not installed
+error: package bzip2 is not installed
+/.kconfig: line 290: /usr/bin/basename: No such file or directory
+/.kconfig: line 292: [: =: unary operator expected
+/.kconfig: line 292: [: =: unary operator expected
+/.kconfig: line 292: [: =: unary operator expected
+                 (repeated 2890 times!)
+/.kconfig: line 285: find: command not found
+umount: /proc: not mounted
+   done
+Dec-23 11:11:42 &lt;1&gt; : Extracting kernel...   done
+Dec-23 11:11:51 &lt;1&gt; : Image requires 594 MB, got 60M MB   done
+Dec-23 11:11:51 &lt;1&gt; : Suggested Image size: 772 MB   done
+Dec-23 11:15:59 &lt;1&gt; : Creating image MD5 sum...   done
+Dec-23 11:16:06 &lt;1&gt; : Creating CD filesystem   done
+Dec-23 11:16:06 &lt;1&gt; : Moving CD image data into boot structure   done
+Dec-23 11:16:06 &lt;1&gt; : Copying boot image and kernel [i386]   done
+Dec-23 11:16:15 &lt;1&gt; : Setting up isolinux boot CD [i386]   done
+Dec-23 11:16:17 &lt;1&gt; : Calling mkisofs...
+Dec-23 11:16:17 &lt;1&gt; : 
+Calling: /usr/share/kiwi/image/isoboot/suse-10.3/cdboot/isolinux.sh /tmp/kiwi-cdboot.c23659/kiwi-cdboot-22970/CD /tmp/kolab-horde.i686-1.1.4.iso   
+done
+Dec-23 11:17:39 &lt;1&gt; : KIWI exited successfully   done
+Dec-23 11:17:40 &lt;1&gt; : Release package manager lock
+Dec-23 11:17:40 &lt;1&gt; : Removing cache directory: /var/cache/kiwi/smart-22970
+=====================
+
+Now when I chroot to the image and check for the missing packages or commands 
+the result is the following:
+
+med103:~ # chroot /tmp/kiwi-kh/
+med103:/# which cut
+/usr/bin/cut
+med103:/# which basename
+/usr/bin/basename
+med103:/# which find
+/usr/bin/find
+
+And only the following packages are not installed:
+package db is not installed
+package gfxboot is not installed
+package gnome-filesystem is not installed
+package gpg is not installed
+package limal-bootloader is not installed
+package make is not installed
+package memtest86+ is not installed
+(the other 43 packages that kiwi complained are missing, are just installed 
+according to 'rpm -q' in the chrooted environment.
+
+\Me wondering what is wrong???
+
+Unfortenately, I don't have kiwi-2.01 around (as that worked for me and would 
+have been a good comparison).
+
+Another observation from the above log file, why does kiwi report; it finished 
+succesfully while there is a big problem with .kconfig?
+
+Also: why does kiwi tell me:
+Dec-23 11:11:51 &lt;1&gt; : Image requires 594 MB, got 60M MB   done
+Dec-23 11:11:51 &lt;1&gt; : Suggested Image size: 772 MB   done
+Although I used &lt;size used=&quot;M&quot;&gt;700&lt;/size&gt;, and which is also stored 
+in /.profile.
+===================
+
+When SuSEconfig is run, I see the following output:
+med103:/# suseConfig
+Starting SuSEconfig, the SuSE Configuration Tool...
+Running in full featured mode.
+Reading /etc/sysconfig and updating the system...
+
+
+We do not have enough disk space in /etc or /dev/zero
+does not exist. Exit.
+====================
+
+
+Last but not least, to determine the problem area I decided to build example2 
+from the kiwi rpm.  This worked with kiwi-2.01.  I did not build an iso yet 
+from the output, but from examining the log I don't get a warm feeling as 
+there are quite some errors for missing packages:
+/image/loader/xxx /usr/share/gfxboot
+/usr/share/gfxboot
+error: package blocxx is not installed
+error: package db is not installed
+error: package expat is not installed
+error: package gnome-filesystem is not installed
+error: package gpg is not installed
+warning: /usr/share/info/dir saved as /usr/share/info/dir.rpmsave
+grep: /proc/cpuinfo: No such file or directory
+/var/tmp/rpm-tmp.50941: line 12: sbin/insserv: No such file or directory
+error: %postun(irqbalance-0.55-40.i586) scriptlet failed, exit status 127
+error: package libxml2 is not installed
+error: package limal is not installed
+error: package limal-bootloader is not installed
+error: package limal-perl is not installed
+error: package mdadm is not installed
+ReadPartitions(): Failed to open dir /sys/block 
+at /usr/lib/perl5/vendor_perl/5.8.8/Bootloader/Tools.pm line 258.
+warning: /etc/pam.d/common-session saved as /etc/pam.d/common-session.rpmsave
+warning: /etc/pam.d/common-password saved 
+as /etc/pam.d/common-password.rpmsave
+warning: /etc/pam.d/common-auth saved as /etc/pam.d/common-auth.rpmsave
+warning: /etc/pam.d/common-account saved as /etc/pam.d/common-account.rpmsave
+error: package pcre is not installed
+error: package resmgr is not installed
+error: package suse-build-key is not installed
+error: package bzip2 is not installed
+   done
+Dec-23 09:51:09 &lt;1&gt; : Extracting kernel...   done
+Dec-23 09:51:09 &lt;1&gt; : Image requires 48 MB, got 60M MB   done
+Dec-23 09:51:23 &lt;1&gt; : Creating image MD5 sum...   done
+Dec-23 09:51:24 &lt;1&gt; : Creating CD filesystem   done
+Dec-23 09:51:24 &lt;1&gt; : Moving CD image data into boot structure   done
+Dec-23 09:51:24 &lt;1&gt; : Copying boot image and kernel [i386]   done
+Dec-23 09:51:24 &lt;1&gt; : Setting up isolinux boot CD [i386]   done
+Dec-23 09:51:24 &lt;1&gt; : Calling mkisofs...
+Dec-23 09:51:24 &lt;1&gt; : 
+Calling: /usr/share/kiwi/image/isoboot/suse-10.3/cdboot/isolinux.sh /tmp/kiwi-cdboot.Mz9816/kiwi-cdboot-9751/CD /tmp/test2.i686-1.1.1.iso   
+done
+Dec-23 09:51:35 &lt;1&gt; : KIWI exited successfully   done
+Dec-23 09:51:35 &lt;1&gt; : Release package manager lock
+Dec-23 09:51:35 &lt;1&gt; : Removing cache directory: /var/cache/kiwi/smart-9751
+======================
+
+E.g. sbin/insserv is reported missing, while it is just present in chroot:
+med103:/tmp # chroot kiwi-test/
+med103:/# ls -l sbin/insserv
+-rwx------ 1 root root 43028 Sep 21 22:01 sbin/insserv
+
+Also here kiwi reports to finish succesfully, but the logfile contains errors.  
+Is this correct?
+
+As stated in the beginning of this email, I'm sorry for this very long (first) 
+post, but after being able to build quite some good kiwi images I'm now at a 
+point where I don't know what to do to continue building kiwi images 
+succesfully. :(
+
+Hopefully one of you can help me out!
+
+-- 
+Richard Bos
+Without a home the journey is endless
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000181.html">[Kiwi-users] v2.06 released
+</A></li>
+	<LI>Next message: <A HREF="000185.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#182">[ date ]</a>
+              <a href="thread.html#182">[ thread ]</a>
+              <a href="subject.html#182">[ subject ]</a>
+              <a href="author.html#182">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

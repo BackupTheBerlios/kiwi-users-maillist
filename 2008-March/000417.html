@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live usb stick error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20usb%20stick%20error&In-Reply-To=%3C200803021530.06795.bourke.aubrey%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000425.html">
+   <LINK REL="Next"  HREF="000420.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live usb stick error</H1>
+    <B>Aubrey Bourke</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20usb%20stick%20error&In-Reply-To=%3C200803021530.06795.bourke.aubrey%40gmail.com%3E"
+       TITLE="[Kiwi-users] live usb stick error">bourke.aubrey at gmail.com
+       </A><BR>
+    <I>Sun Mar  2 16:30:06 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000425.html">[Kiwi-users] size detection error
+</A></li>
+        <LI>Next message: <A HREF="000420.html">[Kiwi-users] live usb stick error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#417">[ date ]</a>
+              <a href="thread.html#417">[ thread ]</a>
+              <a href="subject.html#417">[ subject ]</a>
+              <a href="author.html#417">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I have openSuSE 10.3. I followed the instructions on the wiki to install a 
+live usb stick.:
+
+<A HREF="http://en.opensuse.org/Live_USB_stick">http://en.opensuse.org/Live_USB_stick</A>
+
+However, when I use kiwi I get the following error: &quot;Setting RPM signature 
+check to: Falsechroot: cannot run command `bash': No such file or directory 
+failed&quot;
+
+Heres a printout of what happens:
+
+dhcppc4:/home/abourke # 
+kiwi --prepare /usr/share/kiwi/image/kwliveCD-suse-10.3
+--root /tmp/kiwi-tmp --add-profile KDE --logfile terminal
+Feb-29 12:43:25 &lt;1&gt; : Setting log file to: terminal
+Feb-29 12:43:25 &lt;1&gt; : Reading image description... &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; done
+Feb-29 12:43:25 &lt;1&gt; : Using profile(s): KDE &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;done
+Feb-29 12:43:25 &lt;2&gt; : Description provides no MD5 hash, check &#160; &#160; &#160; &#160;skipped
+Feb-29 12:43:25 &lt;1&gt; : Checking for default baseroot in XML data... &#160; notset
+Feb-29 12:43:25 &lt;1&gt; : Setting up package manager: smart &#160; &#160; &#160; &#160; &#160; &#160; &#160;done
+Feb-29 12:43:25 &lt;1&gt; : Setting RPM signature check to: False &#160; &#160; &#160; &#160; &#160;done
+Feb-29 12:43:25 &lt;1&gt; : Creating default template files for new root sydone
+Feb-29 12:43:26 &lt;1&gt; : Adding local smart channel: kiwi3-7054 &#160; &#160; &#160; &#160; done
+Feb-29 12:43:26 &lt;1&gt; : Adding local smart channel: kiwi4-7054 &#160; &#160; &#160; &#160; done
+Feb-29 12:43:27 &lt;1&gt; : Adding local smart channel: kiwi2-7054 &#160; &#160; &#160; &#160; done
+Feb-29 12:43:27 &lt;1&gt; : Adding local smart channel: kiwi1-7054 &#160; &#160; &#160; &#160; done
+Feb-29 12:43:27 &lt;1&gt; : Initializing image system on: /tmp/kiwi-tmp...+ trap 
+clean
+&#160;INT TERM
++ touch /var/lock/kiwi-init.lock
++ smart --data-dir=/tmp/kiwi-tmp/var/lib/smart channel --show
++ SPID=7196
++ wait 7196
+[kiwi3-7054]
+type = yast2
+name = kiwi3-7054
+baseurl = 
+<A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/distribution/10">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/distribution/10</A>
+.3/repo/non-oss/
+
+[kiwi4-7054]
+type = rpm-md
+name = kiwi4-7054
+baseurl = <A HREF="http://download.opensuse.org/update/10.3/">http://download.opensuse.org/update/10.3/</A>
+
+[kiwi1-7054]
+type = yast2
+name = kiwi1-7054
+baseurl = 
+<A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/distribution/10">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/distribution/10</A>
+.3/repo/oss/
+
+[kiwi2-7054]
+type = rpm-md
+name = kiwi2-7054
+baseurl = 
+<A HREF="http://download.opensuse.org/repositories/openSUSE:/10.3:/Testing/open">http://download.opensuse.org/repositories/openSUSE:/10.3:/Testing/open</A>
+SUSE_10.3/
+
+[rpm-sys]
+type = rpm-sys
+name = RPM System
+
+
++ test 0 = 0
++ smart --data-dir=/tmp/kiwi-tmp/var/lib/smart update kiwi3-7054 kiwi4-7054 
+kiwi
+2-7054 kiwi1-7054
++ SPID=7197
++ wait 7197
+Updating cache... &#160; &#160; &#160; &#160; &#160; &#160; &#160; ######################################## 
+[100%]
+
+Fetching information for 'kiwi3-7054'...
+-&gt; <A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../media">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../media</A>
+media &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; ######################################## [ &#160;
+7%]
+-&gt; <A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../content">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../content</A>
+content &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; ######################################## [ 
+14%]
+-&gt; <A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../packages.gz">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../packages.gz</A>
+packages.gz &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; ######################################## [ 
+21%]
+-&gt; <A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../packages.en.gz">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../packages.en.gz</A>
+packages.en.gz &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;######################################## [ 
+28%]
+
+Fetching information for 'kiwi4-7054'...
+-&gt; <A HREF="http://download.opensuse.org/update/10.3/repodata/repomd.xml">http://download.opensuse.org/update/10.3/repodata/repomd.xml</A>
+repomd.xml &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; [ 
+28%]
+error: Failed acquiring release file for 'kiwi4-7054':
+error: <A HREF="http://download.opensuse.org/update/10.3/repodata/repomd.xml:">http://download.opensuse.org/update/10.3/repodata/repomd.xml:</A> timed out
+
+Fetching information for 'kiwi2-7054'...
+-&gt; <A HREF="http://download.opensuse.org/repositories/openSUSE:/10.3:/.../repomd.xml">http://download.opensuse.org/repositories/openSUSE:/10.3:/.../repomd.xml</A>
+repomd.xml &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; [ 
+42%]
+error: Failed acquiring release file for 'kiwi2-7054':
+error: 
+<A HREF="http://download.opensuse.org/repositories/openSUSE%3A/10.3%3A/Testing/ope">http://download.opensuse.org/repositories/openSUSE%3A/10.3%3A/Testing/ope</A>
+nSUSE_10.3/repodata/repomd.xml: timed out
+
+Fetching information for 'kiwi1-7054'...
+-&gt; <A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../media">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../media</A>
+media &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; ######################################## [ 
+64%]
+-&gt; <A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../content">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../content</A>
+content &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; ######################################## [ 
+71%]
+-&gt; <A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../packages.gz">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../packages.gz</A>
+packages.gz &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; ######################################## [ 
+78%]
+-&gt; <A HREF="http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../packages.en.gz">http://ftp.heanet.ie/mirrors/ftp.opensuse.org/opensuse/.../packages.en.gz</A>
+packages.en.gz &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;######################################## [ 
+85%]
+
+Updating cache... &#160; &#160; &#160; &#160; &#160; &#160; &#160; ######################################## 
+[100%]
+
+Channels have 5529 new packages.
+Saving cache...
+
++ false
++ test 1 = 0
++ SPID=7276
++ wait 7276
++ echo 1
++ rm -f '/tmp/kiwi-tmp/etc/smart/channels/*'
++ rm -f /var/lock/kiwi-init.lock
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;done
+Feb-29 12:45:12 &lt;1&gt; : Removing smart channel(s): kiwi3-7054 kiwi4-7054 
+kiwi2-705 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 4 
+kiwi1-7054 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; done
+Feb-29 12:45:13 &lt;1&gt; : Reset RPM signature check to: True &#160; &#160; &#160; &#160; &#160; &#160; done
+Feb-29 12:45:13 &lt;1&gt; : Mounting required file systemsmount: mount 
+point /tmp/kiwi-tmp/dev 
+does not exist
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;done
+Feb-29 12:45:13 &lt;1&gt; : Setting RPM signature check to: Falsechroot: cannot run 
+co &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; mmand `bash': No 
+such file or directory
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;failed
+Feb-29 12:45:13 &lt;3&gt; :
+Feb-29 12:45:13 &lt;3&gt; : Image installation failed &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;failed
+Feb-29 12:45:13 &lt;1&gt; : Umounting path: /tmp/kiwi-tmp/dev/pts
+Feb-29 12:45:13 &lt;1&gt; : Umounting path: /tmp/kiwi-tmp/sys
+Feb-29 12:45:13 &lt;1&gt; : Umounting path: /tmp/kiwi-tmp/dev
+Feb-29 12:45:13 &lt;1&gt; : Umounting path: /tmp/kiwi-tmp/proc
+Feb-29 12:45:13 &lt;3&gt; : KIWI exited with error(s) &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;done
+
+
+
+Anyone have any ideas as to where Im going wrong?
+
+Regards
+abourke.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000425.html">[Kiwi-users] size detection error
+</A></li>
+	<LI>Next message: <A HREF="000420.html">[Kiwi-users] live usb stick error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#417">[ date ]</a>
+              <a href="thread.html#417">[ thread ]</a>
+              <a href="subject.html#417">[ subject ]</a>
+              <a href="author.html#417">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

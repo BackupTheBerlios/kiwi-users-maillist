@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [Kiwi-ltsp-users] Server not found: 10.17.32.12
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BKiwi-ltsp-users%5D%20Server%20not%20found%3A%2010.17.32.12&In-Reply-To=%3C4B9DE447020000BC0001D001%40webmail.wusd.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001729.html">
+   <LINK REL="Next"  HREF="001731.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [Kiwi-ltsp-users] Server not found: 10.17.32.12</H1>
+    <B>Cody Grosskopf</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BKiwi-ltsp-users%5D%20Server%20not%20found%3A%2010.17.32.12&In-Reply-To=%3C4B9DE447020000BC0001D001%40webmail.wusd.org%3E"
+       TITLE="[Kiwi-users] [Kiwi-ltsp-users] Server not found: 10.17.32.12">cgrossko at wusd.org
+       </A><BR>
+    <I>Mon Mar 15 15:39:51 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001729.html">[Kiwi-users] [Kiwi-ltsp-users] Server not found: 10.17.32.12
+</A></li>
+        <LI>Next message: <A HREF="001731.html">[Kiwi-users] xen livecd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1730">[ date ]</a>
+              <a href="thread.html#1730">[ thread ]</a>
+              <a href="subject.html#1730">[ subject ]</a>
+              <a href="author.html#1730">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Yes, it is definitely pingable. 
+
+&gt;&gt;&gt;<i> CyberOrg  03/12/10 9:11 PM &gt;&gt;&gt;
+</I>On Sat, Mar 13, 2010 at 1:55 AM, Cody Grosskopf  wrote:
+&gt;<i> Hi Everyone,
+</I>&gt;<i>
+</I>&gt;<i> On a brand new on click install I get the following errors:
+</I>&gt;<i>
+</I>&gt;<i> checking server name: 10.17.32.12
+</I>&gt;<i> server: 10.17.32.12 not found
+</I>&gt;<i> Can't assign server name/ip fatal
+</I>&gt;<i>
+</I>&gt;<i> Which means the clients will not boot, any ideas? Here are my config files:
+</I>
+Your configuration looks alright, looks like some network problem.
+This is what the kiwi is looking for:
+
+Echo &quot;Checking Server name: $SERVER&quot;
+        if ! ping -c 1 $SERVER &gt;/dev/null 2&gt;&amp;1;then
+                Echo &quot;Server: $SERVER not found&quot;
+
+The client is unable to ping the server, check if the server is
+pingable from your network.
+
+Ciao
+
+-J
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100315/1f9f0c25/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100315/1f9f0c25/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001729.html">[Kiwi-users] [Kiwi-ltsp-users] Server not found: 10.17.32.12
+</A></li>
+	<LI>Next message: <A HREF="001731.html">[Kiwi-users] xen livecd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1730">[ date ]</a>
+              <a href="thread.html#1730">[ thread ]</a>
+              <a href="subject.html#1730">[ subject ]</a>
+              <a href="author.html#1730">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

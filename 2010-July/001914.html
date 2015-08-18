@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%0A%09/dev/sda&In-Reply-To=%3C4C45FB16.8010800%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001913.html">
+   <LINK REL="Next"  HREF="001915.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%0A%09/dev/sda&In-Reply-To=%3C4C45FB16.8010800%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Tue Jul 20 21:37:58 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001913.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+        <LI>Next message: <A HREF="001915.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1914">[ date ]</a>
+              <a href="thread.html#1914">[ thread ]</a>
+              <a href="subject.html#1914">[ subject ]</a>
+              <a href="author.html#1914">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Roger,
+
+Perfect thanks...
+
+Now if I can find a reason for the 50/50 odds of a image booting
+properly with the details I posted before. The reason I mention 50/50 is
+that the process we get it work is as follows:
+
+- build image, boot... works.
+- make changes + version increase, build image, boot... fails.
+- make no changes except version increase, rebuild image, boot.. works..
+- make changes + version increase, rebuild image... boot.. fails..
+- make no changes except version increase, rebuild image...works...
+
+
+On 07/20/2010 04:10 PM, Roger Oberholtzer wrote:
+&gt;<i> On Tue, 2010-07-20 at 15:14 -0300, Chris Bowlby wrote:
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Also, where can I enable the kiwidebug=1 variable so that we can gain
+</I>&gt;&gt;<i> shell access, things are occurring too quickly after the PXE image
+</I>&gt;&gt;<i> booting phase to be able to catch a spot to enter it? I suspect it
+</I>&gt;&gt;<i> would be in the pxelinux.cfg/default file, but just want to confirm
+</I>&gt;&gt;<i> first.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> It goes on the command line to the kernel. So it is
+</I>&gt;<i> in /tftpboot/.../pxelinux.cfg/default. Mine is:
+</I>&gt;<i>         
+</I>&gt;<i>  LABEL KIWI-Boot
+</I>&gt;<i>    kernel rsoft/linux-w
+</I>&gt;<i>    append initrd=rsoft/initrd-w vga=791 ramdisk_size=512000 ramdisk_blocksize=4096 kiwidebug=1
+</I>&gt;<i>    IPAPPEND 2
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001913.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+	<LI>Next message: <A HREF="001915.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1914">[ date ]</a>
+              <a href="thread.html#1914">[ thread ]</a>
+              <a href="subject.html#1914">[ subject ]</a>
+              <a href="author.html#1914">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

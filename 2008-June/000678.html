@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with Network boot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20Network%20boot%20image&In-Reply-To=%3C484D9302.EE07.00F0.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000675.html">
+   <LINK REL="Next"  HREF="000680.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with Network boot image</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20Network%20boot%20image&In-Reply-To=%3C484D9302.EE07.00F0.0%40novell.com%3E"
+       TITLE="[Kiwi-users] Issues with Network boot image">ragupta at novell.com
+       </A><BR>
+    <I>Mon Jun  9 17:00:58 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000675.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+        <LI>Next message: <A HREF="000680.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#678">[ date ]</a>
+              <a href="thread.html#678">[ thread ]</a>
+              <a href="subject.html#678">[ subject ]</a>
+              <a href="author.html#678">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I tried this patch and it seems to work. Now &quot;mkinitrd&quot; is not called during image deployment.
+
+I also tried using the KIWI_INITRD=/boot/initrd  option in the config.&lt;MAC&gt; file . However, what I get is a binary file of size 188928 Bytes. This does not look like a proper initrd. When I try to boot locally from the disk, it results in a kernel panic with the following errors.
+
+VFS: Cannot open root device &quot;hda3&quot; or unknown-block(0,0)
+Please append a correct &quot;root=&quot; boot option 
+
+(Screenshot attached.)
+
+
+I believe this is due to the improper initrd. I wonder why an improper initrd was created. As per my knowledge, the initrd from the TFTP server should have been copied to the Thin Client.
+
+I tried to manually copy the initrd from the TFTP server onto the thin client but here I ran into another issue. 
+
+My image created a read-write partition of just 23 MB even though I have an additional 100+ MB of free disk space. Out of this 23 MB only 5 MB is available for use. So while copying the initrd file (which is 13 MB), I ran out of disk space..
+
+Is there a way that I can force the read-write partition to use up all the free space that is available. My config.&lt;MAC&gt; reads like this
+
+DISK=/dev/hda
+PART=5;S;x,340;L;/,x;L;x,
+IMAGE=/dev/hda2;cbec-sled10.i686;3.2.6;;65464,/dev/hda3;cbec-sled10-read-write.i686;3.2.6;;65464
+COMBINED_IMAGE=yes
+KIWI_BOOT_TIMEOUT=8
+KIWI_INITRD=/boot/initrd
+
+
+Thanks for all your co-operation in helping me trying to resolve this issue.
+
+Regards,
+Rahul
+
+
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; 06/09/08 7:14 PM &gt;&gt;&gt; 
+</I>Hi,
+
+&gt;<i> &gt; Even if I run &quot;mkinitrd&quot; manually after booting into the system, it does not show any errors. It gives the following output and exits. But still no initrd file is created.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Root device:    /dev/hda2 (mounted on / as squashfs)
+</I>&gt;<i> &gt; Module list:    reiserfs piix mptspi (xennet xenblk)
+</I>&gt;<i> 
+</I>&gt;<i> ah stop this can't work. The standard mkinitrd does not support
+</I>&gt;<i> split booting so the kiwi initrd needs to stay in the system and
+</I>&gt;<i> mkinitrd shouldn't be called at all. You can add
+</I>&gt;<i> 
+</I>&gt;<i> 	KIWI_INITRD=/boot/name-of-initrd-file
+</I>&gt;<i> 
+</I>&gt;<i> in your config.&lt;MAC&gt; which will cause a download of the kiwi
+</I>&gt;<i> initrd file on your system image during first deployment.
+</I>&gt;<i> 
+</I>&gt;<i> The question is why is mkinitrd called, it shouldn't be called
+</I>&gt;<i> if UNIONFS_CONFIG or COMBINED_IMAGE is set which is surely the
+</I>&gt;<i> case in your setup, isn't it ?
+</I>
+Along with KIWI_INITRD the following patch should prevent mkinitrd
+from being called if COMBINED or UNIONFS based images are used
+
+Index: system/boot/netboot/suse-preinit
+===================================================================
+--- system/boot/netboot/suse-preinit    (revision 1314)
++++ system/boot/netboot/suse-preinit    (working copy)
+@@ -45,11 +45,17 @@
+ #======================================
+ # 5) create initrd on diskful
+ #--------------------------------------
+-if test -z $KIWI_INITRD;then
+-       if test ! -z $DISK;then
+-               if test $systemIntegrity = &quot;clean&quot;;then
+-                       setupSUSEInitrd
+-               fi
++if [ ! -z $DISK ] &amp;&amp; [ $systemIntegrity = &quot;clean&quot; ]; then
++       if [ -z &quot;$UNIONFS_CONFIG&quot; ] &amp;&amp; [ -z &quot;$COMBINED_IMAGE&quot; ]; then
++               #======================================
++               # use distro initrd via mkinitrd
++               #--------------------------------------
++               setupSUSEInitrd
++       else
++               #======================================
++               # use kiwi initrd downloaded before
++               #--------------------------------------
++               bootLoaderOK=1
+        fi
+ fi
+
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi-net-local-boot.png
+Type: image/png
+Size: 66845 bytes
+Desc: Portable Network Graphics Format
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080609/86857b14/attachment.png">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080609/86857b14/attachment.png</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000675.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+	<LI>Next message: <A HREF="000680.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#678">[ date ]</a>
+              <a href="thread.html#678">[ thread ]</a>
+              <a href="subject.html#678">[ subject ]</a>
+              <a href="author.html#678">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

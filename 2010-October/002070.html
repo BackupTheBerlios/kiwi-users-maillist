@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-09-26 - 2010-10-01...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-09-26%20-%202010-10-01...&In-Reply-To=%3C20101004094426.GA13806%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002073.html">
+   <LINK REL="Next"  HREF="002074.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-09-26 - 2010-10-01...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-09-26%20-%202010-10-01...&In-Reply-To=%3C20101004094426.GA13806%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-09-26 - 2010-10-01...">ms at novell.com
+       </A><BR>
+    <I>Mon Oct  4 11:44:27 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002073.html">[Kiwi-users] Creating a partition for /var?
+</A></li>
+        <LI>Next message: <A HREF="002074.html">[Kiwi-users] Help needed: RPM doc exclusion is not working for me ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2070">[ date ]</a>
+              <a href="thread.html#2070">[ thread ]</a>
+              <a href="subject.html#2070">[ subject ]</a>
+              <a href="author.html#2070">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.61 2010-09-26 - 2010-10-01
+--------------------------------------------------
+most important changes for last weeks release...
+
+commit 88495c145a7f84419e5b0b7b58054ce77d2785cd
+
+    - fixed the creation of the install CD if the syslinux
+      bootloader is used.
+
+commit 8ba200c17cc18d016e5decfb77880dec790ba80c
+commit bdd4aa02ad9801e4063931dca643188fb32185ab
+
+    - fixed OEMRepartStandard() to use the suggested last cylinder for
+      the last partition to become created instead of a fixed value.
+      Also use the suggested last cylinder for the resize of the root
+      partition if there is no other partition to become created and
+      no oem-systemsize was specified. Thus leave it up to the partition
+      tool to find the end of the disk
+
+Regards,
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002073.html">[Kiwi-users] Creating a partition for /var?
+</A></li>
+	<LI>Next message: <A HREF="002074.html">[Kiwi-users] Help needed: RPM doc exclusion is not working for me ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2070">[ date ]</a>
+              <a href="thread.html#2070">[ thread ]</a>
+              <a href="subject.html#2070">[ subject ]</a>
+              <a href="author.html#2070">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

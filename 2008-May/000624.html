@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%202.38-59.1%20%20initrd%20kernel%20panic&In-Reply-To=%3C48244846.6000105%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000623.html">
+   <LINK REL="Next"  HREF="000625.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%202.38-59.1%20%20initrd%20kernel%20panic&In-Reply-To=%3C48244846.6000105%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic">bernd at ixsoft.de
+       </A><BR>
+    <I>Fri May  9 14:49:10 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000623.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+        <LI>Next message: <A HREF="000625.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#624">[ date ]</a>
+              <a href="thread.html#624">[ thread ]</a>
+              <a href="subject.html#624">[ subject ]</a>
+              <a href="author.html#624">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus Sch&#228;fer schrieb:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> when creating a new 10.3 image with --bootstick, the following output 
+</I>&gt;&gt;<i> occurs:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -------------
+</I>&gt;&gt;<i> May-08 20:03:50 &lt;1&gt; : Dumping system image to stick                  done
+</I>&gt;&gt;<i> May-08 20:04:25 &lt;1&gt; : Installing grub on USB stick                   failed
+</I>&gt;&gt;<i> May-08 20:04:26 &lt;3&gt; : Couldn't install grub on USB stick:
+</I>&gt;&gt;<i>    GNU GRUB  version 0.97  (640K lower / 3072K upper memory)
+</I>&gt;&gt;<i> [ Minimal BASH-like line editing is supported.  For the first word, TAB
+</I>&gt;&gt;<i>   lists possible command completions.  Anywhere else TAB lists the possible
+</I>&gt;&gt;<i>   completions of a device/filename. ]
+</I>&gt;&gt;<i> grub&gt; device (hd0) /dev/sdb
+</I>&gt;&gt;<i> grub&gt; root (hd0,0)
+</I>&gt;&gt;<i> Filesystem type is ext2fs, partition type 0x83
+</I>&gt;&gt;<i> grub&gt; setup (hd0)
+</I>&gt;&gt;<i> Checking if &quot;/boot/grub/stage1&quot; exists... yes
+</I>&gt;&gt;<i> Checking if &quot;/boot/grub/stage2&quot; exists... yes
+</I>&gt;&gt;<i> Checking if &quot;/boot/grub/e2fs_stage1_5&quot; exists... yes
+</I>&gt;&gt;<i> Running &quot;embed /boot/grub/e2fs_stage1_5 (hd0)&quot;... failed (this is not 
+</I>&gt;&gt;<i> fatal)
+</I>&gt;&gt;<i> Running &quot;embed /boot/grub/e2fs_stage1_5 (hd0,0)&quot;... failed (this is not 
+</I>&gt;&gt;<i> fatal)
+</I>&gt;&gt;<i> Running &quot;install /boot/grub/stage1 (hd0) /boot/grub/stage2 p 
+</I>&gt;&gt;<i> /boot/grub/menu.lst &quot;... succeeded
+</I>&gt;&gt;<i> Done.
+</I>&gt;&gt;<i> grub&gt; quit
+</I>&gt;&gt;<i>                                                                    failed
+</I>&gt;&gt;<i> May-08 20:04:26 &lt;3&gt; : KIWI exited with error(s)                      done
+</I>&gt;&gt;<i> -------------
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The resulting stick is booting, but initrd fails with kernel panic and some 
+</I>&gt;&gt;<i> VFS error later (do you need details?).
+</I>&gt;&gt;<i> The system image seems to work ok, at least I can boot it with the previous 
+</I>&gt;&gt;<i> grub or syslinux bootloader.
+</I>&gt;&gt;<i> The last version known to work ok was 2.38-42... should I switch to 11.0?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I can reproduce this one. It's a bug in kiwi. I will fix it today
+</I>&gt;<i> and submit new packages
+</I>&gt;<i>   
+</I>Great, thanks.
+What was the problem?
+I am curious since I am just hacking this module a bit for syslinux.
+
+It seems there's another minor issue when calculating the size of the 
+system partition.
+Sometimes the partition size is 1 block smaller than the actual size of 
+the logical image, sometimes it's just correct.
+In case the partition size is too small, kiwi will quit --bootstick with 
+an error message since it cannot dump the last block of the image into 
+the partition.
+I have fixed this temporarily by increasing the system image size by 1, 
+but probably something is not 100% correct with the partition size 
+calculation.
+
+Bernd
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 300 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080509/bf31f084/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080509/bf31f084/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000623.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+	<LI>Next message: <A HREF="000625.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#624">[ date ]</a>
+              <a href="thread.html#624">[ thread ]</a>
+              <a href="subject.html#624">[ subject ]</a>
+              <a href="author.html#624">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

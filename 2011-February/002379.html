@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /home in an oem preload image.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/home%20in%20an%20oem%20preload%20image.&In-Reply-To=%3C1298380336.635.53.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002378.html">
+   <LINK REL="Next"  HREF="002393.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /home in an oem preload image.</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/home%20in%20an%20oem%20preload%20image.&In-Reply-To=%3C1298380336.635.53.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] /home in an oem preload image.">roger at opq.se
+       </A><BR>
+    <I>Tue Feb 22 14:12:13 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002378.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+        <LI>Next message: <A HREF="002393.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2379">[ date ]</a>
+              <a href="thread.html#2379">[ thread ]</a>
+              <a href="subject.html#2379">[ subject ]</a>
+              <a href="author.html#2379">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2011-02-22 at 07:43 -0500, Robert Schweikert wrote:
+&gt;<i> 
+</I>&gt;<i> On 02/22/2011 04:19 AM, Roger Oberholtzer wrote:
+</I>&gt;<i> &gt; On Mon, 2011-02-21 at 12:16 -0500, Robert Schweikert wrote:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt; Just to add to the info Marcus already provided. You can also follow the
+</I>&gt;<i> &gt;&gt; data separation example:
+</I>&gt;<i> &gt;&gt; <A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_Data_Separation">http://en.opensuse.org/SDB:KIWI_Cookbook_Data_Separation</A> to create the
+</I>&gt;<i> &gt;&gt; extra partition. Then in a script you can reset /etc/fstab
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This seems to be the method I will use.  I have only this question:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Shouldn't the call to partx to update the partition info in the kernel
+</I>&gt;<i> &gt; be after the partition is added and BEFORE mkfs? Otherwise, mkfs
+</I>&gt;<i> &gt; complains that the new partition does not exist. If I move the partx
+</I>&gt;<i> &gt; call, this does not happen.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for the feedback. I fixed the example.
+</I>
+Also curious why you chose the partx -a option, which wants to add
+partitions, and requires options not provided, whereas -l just lists the
+partitions. Maybe the -l option does not result in the kernel info being
+updated? The man page for partx is unclear on that point...
+
+
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002378.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+	<LI>Next message: <A HREF="002393.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2379">[ date ]</a>
+              <a href="thread.html#2379">[ thread ]</a>
+              <a href="subject.html#2379">[ subject ]</a>
+              <a href="author.html#2379">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Older hardware for a Kiwi image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Older%20hardware%20for%20a%20Kiwi%20image&In-Reply-To=%3CCAEPz6RaKzr5X6kS0ckXWWSs1oQjT%3D7M_%3DPCLXU9dO-gxyCx1PQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003097.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Older hardware for a Kiwi image</H1>
+    <B>Eduardo Kaftanski</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Older%20hardware%20for%20a%20Kiwi%20image&In-Reply-To=%3CCAEPz6RaKzr5X6kS0ckXWWSs1oQjT%3D7M_%3DPCLXU9dO-gxyCx1PQ%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Older hardware for a Kiwi image">ekaftan at gmail.com
+       </A><BR>
+    <I>Fri Jun 14 22:46:54 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003097.html">[Kiwi-users] Older hardware for a Kiwi image
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3098">[ date ]</a>
+              <a href="thread.html#3098">[ thread ]</a>
+              <a href="subject.html#3098">[ subject ]</a>
+              <a href="author.html#3098">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks! I will try that option and report.
+
+
+
+
+On Fri, Jun 14, 2013 at 6:14 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt;     I need to make a SLEPOS 11 SP2 image for a 4694-245 IBM POS. This is
+</I>&gt;<i> a
+</I>&gt;<i> &gt;    very, very old box, sporting an AMD K6-2 processor and 256M of ram.
+</I>&gt;<i> &gt;     So far I tried to boot the normal Image I use in 4800-722 boxes and
+</I>&gt;<i> it
+</I>&gt;<i> &gt;    fails with a kernel panic...
+</I>&gt;<i> &gt;     Is there a known way to builf a kiwi image for smaller/older
+</I>&gt;<i> hardware?
+</I>&gt;<i> &gt;    Thanks.
+</I>&gt;<i> &gt;    PS. its this exact
+</I>&gt;<i> &gt;    crash: [1]<A HREF="http://www.novell.com/support/kb/doc.php?id=7007221">http://www.novell.com/support/kb/doc.php?id=7007221</A>
+</I>&gt;<i>
+</I>&gt;<i> Hmm, I think kiwi can't help much here. So iirc you are facing a problem
+</I>&gt;<i> due to the i686 vs i585 optimized compile of glibc which has a bad impact
+</I>&gt;<i> on older cpu's. If you have an SP2 repo without i686 builds it should
+</I>&gt;<i> solve your problem. Other than that you can try the target-arch option
+</I>&gt;<i> in kiwi which tells zypper to use only packages of the specified
+</I>&gt;<i> architecture:
+</I>&gt;<i>
+</I>&gt;<i>      --target-arch i586
+</I>&gt;<i>
+</I>&gt;<i> this should also force the use of the i586 compiled glibc and solved
+</I>&gt;<i> some trouble for me on older 32bit network clients
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer
+</I>&gt;<i>  HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>
+
+
+-- 
+Eduardo Kaftanski
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">eduardo at kdi.cl</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ekaftan at gmail.com</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20130614/dd18709f/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20130614/dd18709f/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003097.html">[Kiwi-users] Older hardware for a Kiwi image
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3098">[ date ]</a>
+              <a href="thread.html#3098">[ thread ]</a>
+              <a href="subject.html#3098">[ subject ]</a>
+              <a href="author.html#3098">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

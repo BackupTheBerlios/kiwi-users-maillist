@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Xen boot image opensuse 10.3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Xen%20boot%20image%20opensuse%2010.3&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90240B8B5%40zuk35exm60.ds.mot.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000113.html">
+   <LINK REL="Next"  HREF="000115.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Xen boot image opensuse 10.3</H1>
+    <B>Mair Wolfgang-awm013</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Xen%20boot%20image%20opensuse%2010.3&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90240B8B5%40zuk35exm60.ds.mot.com%3E"
+       TITLE="[Kiwi-users] Xen boot image opensuse 10.3">wolfgang.mair at motorola.com
+       </A><BR>
+    <I>Mon Oct 29 18:44:55 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000113.html">[Kiwi-users] FW: error preparing xen image
+</A></li>
+        <LI>Next message: <A HREF="000115.html">[Kiwi-users] Xen boot image opensuse 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#114">[ date ]</a>
+              <a href="thread.html#114">[ thread ]</a>
+              <a href="subject.html#114">[ subject ]</a>
+              <a href="author.html#114">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I got the image created now. Unfortunatelly I am stuck again. What are
+all these failures during the boot?
+
+I get the following boot messages now: 
+
+.
+.
+.
+Setting up the hardware clock
+failed
+.
+.
+.
+Loading keymap Couldnt open /dev/tty1
+Loading /usr/share/kbd/keymaps/i386/qwerty/us.map.gz
+failed
+Loading compose table latin1.add
+failed
+Stop Unicode mode
+Couldnt open /dev/tty1
+Couldnt open /dev/tty2
+Couldnt open /dev/tty3
+Couldnt open /dev/tty4
+Couldnt open /dev/tty5
+Couldnt open /dev/tty6
+failed
+Loading console font lat1-16.psfu  -m none G0:iso8859-1 Couldnt open
+/dev/tty1 Couldnt open /dev/tty2 Couldnt open /dev/tty3 Couldnt open
+/dev/tty4 Couldnt open /dev/tty5
+Couldnt open /dev/tty6
+failed
+Couldnt get a file descriptor referring to the console
+Starting service kdm
+done
+Setting up network interfaces:
+    lo
+    lo        IP address: 127.0.0.1/8
+Checking for network time protocol daemon (NTPD):
+doneed
+Waiting for mandatory devices:  eth0 __NSC__
+19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+    eth0                                No interface found
+failed
+Setting up service network  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+failed
+.
+.
+.
+Checking/updating CPU microcode
+failed
+.
+.
+.
+Starting smartd startproc:  exit status of parent of /usr/sbin/smartd:
+17
+ 
+failed
+xend
+unused
+xendomains
+unused
+Starting SSH daemon
+done
+Starting rsync daemon
+done
+ 
+done 
+Starting Firewall Initialization (phase 2 of 2) SuSEfirewall2: Warning:
+no interface active
+ 
+done
+Master Resource Control: runlevel 5 has been
+reached
+Failed services in runlevel 5:
+kbd network microcode.ctl smartd
+Skipped services in runlevel 5: acpid irq_balancer splash xend
+xendomains
+
+
+Welcome to openSUSE 10.3 (i586) - Kernel 2.6.22.5-31-xen (tty1).
+
+
+linux-snqy login: root
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000113.html">[Kiwi-users] FW: error preparing xen image
+</A></li>
+	<LI>Next message: <A HREF="000115.html">[Kiwi-users] Xen boot image opensuse 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#114">[ date ]</a>
+              <a href="thread.html#114">[ thread ]</a>
+              <a href="subject.html#114">[ subject ]</a>
+              <a href="author.html#114">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

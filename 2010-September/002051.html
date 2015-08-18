@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Installing a Kiwi image on a different partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installing%20a%20Kiwi%20image%20on%20a%20different%20partition&In-Reply-To=%3C4CA2A2DF.6040107%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002050.html">
+   <LINK REL="Next"  HREF="002052.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Installing a Kiwi image on a different partition</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installing%20a%20Kiwi%20image%20on%20a%20different%20partition&In-Reply-To=%3C4CA2A2DF.6040107%40novell.com%3E"
+       TITLE="[Kiwi-users] Installing a Kiwi image on a different partition">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Sep 29 04:22:23 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002050.html">[Kiwi-users] Installing a Kiwi image on a different partition
+</A></li>
+        <LI>Next message: <A HREF="002052.html">[Kiwi-users] Cool story... Low cost computers deployment in school http://www.geesink.org/
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2051">[ date ]</a>
+              <a href="thread.html#2051">[ thread ]</a>
+              <a href="subject.html#2051">[ subject ]</a>
+              <a href="author.html#2051">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 09/28/2010 05:03 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">luis.arruda at emc.com</A> wrote:
+&gt;&gt;<i> -----Original Message-----
+</I>&gt;&gt;<i> From: Robert Schweikert [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>]
+</I>&gt;&gt;<i> Sent: Tuesday, September 28, 2010 10:56 AM
+</I>&gt;<i> 
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Your procedure should be something like this.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> - Build the kiwi image
+</I>&gt;&gt;<i>   - include grub and parted in the initrd by using the bootinclude
+</I>&gt;&gt;<i>     attribute
+</I>&gt;&gt;<i>   - set it up with oem-partitioninstall
+</I>&gt;&gt;<i> - Use the preHWdetect hook script
+</I>&gt;&gt;<i>   - first check if the drive is already partitioned, if yes exit
+</I>&gt;&gt;<i>   - else create 2 partitions
+</I>&gt;&gt;<i>   - install grub into the MBR using grub-install
+</I>&gt;&gt;<i> - Now the regular kiwi install process will show you a choice of
+</I>&gt;&gt;<i>   partitions to install you image into
+</I>&gt;&gt;<i> - After the dump use the postImageDump hook to
+</I>&gt;&gt;<i>   modify the menu.lst file such that it points to the menu.lst file
+</I>&gt;&gt;<i>   of the partition where you just dumped the image.
+</I>&gt;<i> 
+</I>&gt;<i> Got it. I will work down this path. However, is there a way to install the upgrade image to the second partition without having to boot off the CD/ISO image? Our product features a web-based upgrade interface and we're required to have upgrades handled via that interface without having the customer/support technician/etc. reboot until after the upgrade has completed.
+</I>
+Well if your upgrading through the web interface I am not sure why the
+original image would need to be able to handle both, initial install and
+upgrade.
+
+Anyway, upgrading through your web interface is just a matter of scripting.
+
+Robert
+
+&gt;<i> 
+</I>&gt;<i> Thanks again.
+</I>&gt;<i> 
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002050.html">[Kiwi-users] Installing a Kiwi image on a different partition
+</A></li>
+	<LI>Next message: <A HREF="002052.html">[Kiwi-users] Cool story... Low cost computers deployment in school http://www.geesink.org/
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2051">[ date ]</a>
+              <a href="thread.html#2051">[ thread ]</a>
+              <a href="subject.html#2051">[ subject ]</a>
+              <a href="author.html#2051">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

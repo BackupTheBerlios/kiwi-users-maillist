@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] password encryption problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C4B20DC32.6050307%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001552.html">
+   <LINK REL="Next"  HREF="001556.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] password encryption problem</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C4B20DC32.6050307%40novell.com%3E"
+       TITLE="[Kiwi-users] password encryption problem">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Dec 10 12:32:02 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001552.html">[Kiwi-users] password encryption problem
+</A></li>
+        <LI>Next message: <A HREF="001556.html">[Kiwi-users] password encryption problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1554">[ date ]</a>
+              <a href="thread.html#1554">[ thread ]</a>
+              <a href="subject.html#1554">[ subject ]</a>
+              <a href="author.html#1554">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I think I have found a password creation/encryption problem. When I use
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -&gt; kiwi --createpassword
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> and use linux as the plain text password I get the following encrypted 
+</I>&gt;&gt;<i> string back:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $2a$05$vgmS7MrbVWrghZGWn84CpeDjVSEzc5NSrYb8wtkwkm4EjJ2mRN4cO
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When comparing this to the encrypted password in the example config.xml 
+</I>&gt;&gt;<i> files ($1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0) the difference is obvious. 
+</I>&gt;&gt;<i> But the example config.xml files also use linux as the password.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I would have expected to get the same encrypted value back from 
+</I>&gt;&gt;<i> createpassword as is encoded in config.xml.
+</I>&gt;<i> 
+</I>&gt;<i> This is not correct. When creating the password a &quot;salt&quot; value is
+</I>&gt;<i> used for the encryption. The salt is always the value of getpwuid()
+</I>&gt;<i> according to this the root user with password linux has a different
+</I>&gt;<i> encrypted representation than the tux user for example.
+</I>&gt;<i> 
+</I>&gt;<i> Switching to blowfish is possible but not really required. The
+</I>&gt;<i> --createpassword option is more or less a service to the user.
+</I>
+So there's another question then. Shouldn't a user, not root, be allowed 
+to run kiwi --createpassword?
+
+Here is my problem. If I am user X on my build system and I want to have 
+a user Y in my image how can I generate a password for this user? The 
+kiwi --createpassword can only be run as root, therefore, based on the 
+previous discussion the returned string from the call cannot be used for 
+user Y in the image.
+
+Also it appears to me that based on this any user that I want in my 
+image will have to exist on the build machine if I want to generate the 
+password.
+
+BTW, I am working on supporting plain text passwords in config.xml, 
+which is the reason I ended up opening this can of worms in the first place.
+
+  You
+&gt;<i> can create password encryption with any other tool and use that
+</I>&gt;<i> value in your config.xml.
+</I>
+This is the part I don't understand and my original point. If I generate 
+an encrypted password with the DES algorithm, as is currently the case, 
+then use this in config.xml, which means it ends up in etc/shadow, and 
+than the created image uses blowfish, because that's the distribution 
+default, how can a match ever occur? Wouldn't different algorithms come 
+up with a different encryption? For a successful login something has to 
+match somewhere along the way.
+
+Obviously I have very little understanding on how this stuff works thus 
+I apologize if these are really stupid questions.
+
+Thanks,
+Robert
+&gt;<i> 
+</I>&gt;<i> For the moment I think switching to blowfish has low priority
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001552.html">[Kiwi-users] password encryption problem
+</A></li>
+	<LI>Next message: <A HREF="001556.html">[Kiwi-users] password encryption problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1554">[ date ]</a>
+              <a href="thread.html#1554">[ thread ]</a>
+              <a href="subject.html#1554">[ subject ]</a>
+              <a href="author.html#1554">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie questions/clarification
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3C20080617081355.GA31968%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000708.html">
+   <LINK REL="Next"  HREF="000713.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie questions/clarification</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3C20080617081355.GA31968%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Newbie questions/clarification">ms at novell.com
+       </A><BR>
+    <I>Tue Jun 17 10:13:55 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000708.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+        <LI>Next message: <A HREF="000713.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#711">[ date ]</a>
+              <a href="thread.html#711">[ thread ]</a>
+              <a href="subject.html#711">[ subject ]</a>
+              <a href="author.html#711">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; right, this is an integrity check. So you should ask yourself how
+</I>&gt;<i> &gt; this could happen :) the system image is loaded from the
+</I>&gt;<i> &gt; /srv/tftpboot/image directory in your case &quot;ltsp-suse-10.3.i686&quot;
+</I>&gt;<i> &gt; and the boot image (initrd) is loaded from the /srv/tftpboot/boot
+</I>&gt;<i> &gt; directory and depends on your pxelinux.cfg/default (or client specific)
+</I>&gt;<i> &gt; configuration file.
+</I>&gt;<i> 
+</I>&gt;<i> I thought that the repositories that the netboot/config.xml specified may 
+</I>&gt;<i> be different than the one I specified in my config.xml for the system. 
+</I>&gt;<i> There were two additional repos listed in the netboot/config.xml.  I've 
+</I>&gt;<i> matched the repos up between the two - they both have the repos below:
+</I>
+You don't need to do that. KIWI automatically uses the repositories
+from the system image to build the boot image. You should not change
+the boot image description because it is &quot;protected&quot; with a md5sum.
+If you change it and don't re-created the md5 kiwi will fail to build
+the image
+
+&gt;<i> I re-copied the boot image and system image to their respective 
+</I>&gt;<i> directories, and the client was booting appropriately.
+</I>&gt;<i> 
+</I>&gt;<i> Update: I've since rebuilt the image and I'm back to the mismatch problem 
+</I>&gt;<i> - I'm doing another complete rebuild now to see if changing the repos 
+</I>&gt;<i> helped.
+</I>
+Hmm, this sounds weird to me. At the moment I can't imagine what happened
+
+&gt;<i> &gt; I doubt your image will fit into RAM completely :)
+</I>&gt;<i> 
+</I>&gt;<i> I've now got the following config.default, which appears to work as I 
+</I>&gt;<i> expect:
+</I>&gt;<i> NBDROOT=192.168.1.1;2000;/dev/nbd0;9572;/dev/nbd1
+</I>
+yep :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000708.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+	<LI>Next message: <A HREF="000713.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#711">[ date ]</a>
+              <a href="thread.html#711">[ thread ]</a>
+              <a href="subject.html#711">[ subject ]</a>
+              <a href="author.html#711">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

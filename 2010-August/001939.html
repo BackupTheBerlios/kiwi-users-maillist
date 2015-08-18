@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] beginner trying to get suse-11.2/suse-pxe-client to	work
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20beginner%20trying%20to%20get%20suse-11.2/suse-pxe-client%20to%0A%09work&In-Reply-To=%3C381174.88983.qm%40web52605.mail.re2.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001935.html">
+   <LINK REL="Next"  HREF="001940.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] beginner trying to get suse-11.2/suse-pxe-client to	work</H1>
+    <B>Kirk Kimmel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20beginner%20trying%20to%20get%20suse-11.2/suse-pxe-client%20to%0A%09work&In-Reply-To=%3C381174.88983.qm%40web52605.mail.re2.yahoo.com%3E"
+       TITLE="[Kiwi-users] beginner trying to get suse-11.2/suse-pxe-client to	work">kkimmelosu at yahoo.com
+       </A><BR>
+    <I>Mon Aug  2 19:02:32 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001935.html">[Kiwi-users] kiwi: Weekly report 2010-07-25 - 2010-07-30...
+</A></li>
+        <LI>Next message: <A HREF="001940.html">[Kiwi-users] beginner trying to get suse-11.2/suse-pxe-client	to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1939">[ date ]</a>
+              <a href="thread.html#1939">[ thread ]</a>
+              <a href="subject.html#1939">[ subject ]</a>
+              <a href="author.html#1939">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>So here is the setup of the build computer:
+
+* opensuse 11.2 x86_64 
+* kiwi 4.53-142.1 (and other packages) from <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_11.2/">http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_11.2/</A>
+* clicfs
+
+
+Here are the steps used to build the image:
+
+su
+cd /usr/share/doc/packages/kiwi/examples/suse-11.2/
+kiwi --prepare ./suse-pxe-client --root /tmp/jeos_pxe
+kiwi --create /tmp/jeos_pxe --type pxe -d /tmp/jeos_pxe-result
+cd /tmp/jeos_pxe-result/
+mv initrd-netboot-suse-11.2.x86_64-2.1.1.gz /srv/tftp/tftpboot/jeos_test/initrd.gz
+mv initrd-netboot-suse-11.2.x86_64-2.1.1.kernel.2.6.31.5-0.1-default /srv/tftp/tftpboot/jeos_test/linux
+mv suse-11.2-pxe-client.x86_64-1.2.8 /srv/tftp/tftpboot/image/
+mv suse-11.2-pxe-client.x86_64-1.2.8.md5 /srv/tftp/tftpboot/image/
+mv suse-11.2-pxe-client.x86_64-1.2.8.config /srv/tftp/tftpboot/KIWI/config.default
+
+
+/srv/tftp/tftpboot/KIWI/config.default reads as follows:
+
+DISK=/dev/sda
+PART=5;S;x,308;L;/,x;L;x,
+IMAGE=/dev/sda2;suse-11.2-pxe-client.x86_64;1.2.8;192.168.100.2;4096
+UNIONFS_CONFIG=/dev/sda3,/dev/sda2,clicfs
+
+
+The pxelinux.cfg/default reads:
+
+LABEL 7
+  KERNEL jeos_test/linux
+  APPEND initrd=jeos_test/initrd.gz vga=0x314 kiwidebug=1
+
+
+To test this setup I used a virtualbox with 512mb RAM setup to network boot. Here is the output received:
+
+Failed to mount read/write filesystem
+On-disk Image mount attempt failed,
+Image Update for image [ suse-11.2-pxe-client.x86_64 ] needed
+Creating parition table...
+Repartition the disk according to real geometry [ parted ]
+Failed to create partition table
+shellException: providing shell...
+(none):/ #
+
+I followed the steps outlined in Chapter 11 Section 2 of the &quot;openSUSE - KIWI Image System Cookbook&quot; and it errors out.
+
+Did I mis-configure something or miss a step in this process?
+
+My goal is to PXE boot opensuse 11.2 jeos into RAM only for testing computers without hard drives.
+
+Thanks for any help solving this problem.
+
+Kirk
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001935.html">[Kiwi-users] kiwi: Weekly report 2010-07-25 - 2010-07-30...
+</A></li>
+	<LI>Next message: <A HREF="001940.html">[Kiwi-users] beginner trying to get suse-11.2/suse-pxe-client	to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1939">[ date ]</a>
+              <a href="thread.html#1939">[ thread ]</a>
+              <a href="subject.html#1939">[ subject ]</a>
+              <a href="author.html#1939">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

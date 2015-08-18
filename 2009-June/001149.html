@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image - Live-Stick System error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3Cacbb082e0906020427n73e4d2d0t7535a66eec23a43f%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001147.html">
+   <LINK REL="Next"  HREF="001150.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image - Live-Stick System error</H1>
+    <B>Julien VIELLE</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3Cacbb082e0906020427n73e4d2d0t7535a66eec23a43f%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image - Live-Stick System error">jvielle at gmail.com
+       </A><BR>
+    <I>Tue Jun  2 13:27:06 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001147.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+        <LI>Next message: <A HREF="001150.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1149">[ date ]</a>
+              <a href="thread.html#1149">[ thread ]</a>
+              <a href="subject.html#1149">[ subject ]</a>
+              <a href="author.html#1149">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I can't run sfdisk -l essilor-suse-sled11.i686-0.1.0.ext3 I get this error
+
+====================================================================
+linux-r2uf:/home/essilor/oemcreateUSB-sled11 # sfdisk -l
+essilor-suse-sled11.i686-0.1.0.ext3
+essilor-suse-sled11.i686-0.1.0.ext3: No such file or directory
+
+sfdisk: cannot open essilor-suse-sled11.i686-0.1.0.ext3 for reading
+====================================================================
+
+It's strange the link seems to point on something that doesn't exist (I have
+re-run the create process to be sure
+
+====================================================================
+linux-r2uf:/home/essilor/oemcreateUSB-sled11 # ll
+total 1385700
+lrwxrwxrwx 1 root root         30 2009-06-02 12:53
+essilor-suse-sled11.i686-0.1.0.ext3 -&gt; essilor-suse-sled11.i686-0.1.0
+-rw-r--r-- 1 root root 1361631220 2009-06-02 12:58
+essilor-suse-sled11.i686-0.1.0.gz
+-rw-r--r-- 1 root root         60 2009-06-02 13:17
+essilor-suse-sled11.i686-0.1.0.md5
+-rw-r--r-- 1 root root   38300160 2009-06-02 13:20
+initrd-usbboot-suse-SLED11.i686-2.1.1
+lrwxrwxrwx 1 root root         66 2009-06-02 13:20
+initrd-usbboot-suse-SLED11.i686-2.1.1.kernel -&gt;
+initrd-usbboot-suse-SLED11.i686-2.1.1.kernel.2.6.27.21-0.1-default
+-rw-r--r-- 1 root root    2456624 2009-06-02 13:20
+initrd-usbboot-suse-SLED11.i686-2.1.1.kernel.2.6.27.21-0.1-default
+-rw-r--r-- 1 root root         45 2009-06-02 13:20
+initrd-usbboot-suse-SLED11.i686-2.1.1.md5
+-rw-r--r-- 1 root root   15143769 2009-06-02 13:21
+initrd-usbboot-suse-SLED11.i686-2.1.1.splash.gz
+====================================================================
+
+You will find in attachment the log file and the config.xml
+
+Regards,
+
+Julien Vielle
+
+
+
+On Tue, Jun 2, 2009 at 12:46 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; You are completely right I have inherited my usb image from
+</I>&gt;<i> &gt; an oem image description. but I have also updated the config .xml to add
+</I>&gt;<i> the
+</I>&gt;<i> &gt; appropriated type. Here you will find the header of my config.xml
+</I>&gt;<i> &gt; ==================================================================
+</I>&gt;<i> &gt; &lt;?xml version=&quot;1.0&quot;?&gt;
+</I>&gt;<i> &gt; &lt;image schemeversion=&quot;2.4&quot; name=&quot;essilor-suse-sled11&quot; displayname=&quot;Master
+</I>&gt;<i> &gt; Essilor&quot;&gt;
+</I>&gt;<i> &gt;     &lt;description type=&quot;system&quot;&gt;
+</I>&gt;<i> &gt;           &lt;specification&gt;suse-SLED11 oem Preload Essilor&lt;/specification&gt;
+</I>&gt;<i> &gt;     &lt;/description&gt;
+</I>&gt;<i> &gt;     &lt;!-- ************************************ --&gt;
+</I>&gt;<i> &gt;     &lt;!-- IMAGE TYPES DEFINITIONS  --&gt;
+</I>&gt;<i> &gt;     &lt;preferences&gt;
+</I>&gt;<i> &gt;         &lt;type primary=&quot;true&quot; filesystem=&quot;ext3&quot;
+</I>&gt;<i> &gt; boot=&quot;/usr/share/kiwi/image/oemboot/suse-SLED11-essilor&quot;
+</I>&gt;<i> &gt; format=&quot;iso&quot;&gt;oem&lt;/type&gt;
+</I>&gt;<i> &gt;         &lt;type filesystem=&quot;ext3&quot;
+</I>&gt;<i> &gt; boot=&quot;/usr/share/kiwi/image/netboot/suse-SLED11-essilor&quot;&gt;pxe&lt;/type&gt;
+</I>&gt;<i> &gt;         &lt;type filesystem=&quot;ext3&quot;
+</I>&gt;<i> &gt; boot=&quot;/usr/share/kiwi/image/usbboot/suse-SLED11-essilor&quot;&gt;usb&lt;/type&gt;
+</I>&gt;<i> &gt;           &lt;!--type filesystem=&quot;ext3&quot; boot=&quot;vmxboot/suse-SLED11-essilor&quot;
+</I>&gt;<i> &gt; format=&quot;vmdk&quot;&gt;vmx&lt;/type--&gt;
+</I>&gt;<i> &gt;         &lt;type boot=&quot;/usr/share/kiwi/image/isoboot/suse-SLED11-essilor&quot;
+</I>&gt;<i> &gt; flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+</I>&gt;<i> &gt; ====================================================================
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; And unfortunatly I have the problem described in my first mail.
+</I>&gt;<i>
+</I>&gt;<i> Ok that looks good. Can you tell me the contents of the
+</I>&gt;<i> partition table inside the file essilor-suse-sled11.i686-0.1.0.ext3
+</I>&gt;<i>
+</I>&gt;<i>   sfdisk -l essilor-suse-sled11.i686-0.1.0.ext3
+</I>&gt;<i>
+</I>&gt;<i> Could you also attach the log file written by kiwi when you
+</I>&gt;<i> run into the problem and the complete config.xml you use so that
+</I>&gt;<i> I can try to reproduce this. The log tells me the exact exec calls
+</I>&gt;<i> which might be helpful
+</I>&gt;<i>
+</I>&gt;<i> I'm pretty sure it's a kiwi bug... not your fault
+</I>&gt;<i> let's fix it :)
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/f6b1d30e/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/f6b1d30e/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: oemprepare-sled11.log
+Type: text/x-log
+Size: 266786 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/f6b1d30e/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/f6b1d30e/attachment.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: config.xml
+Type: text/xml
+Size: 45795 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/f6b1d30e/attachment.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/f6b1d30e/attachment.xml</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001147.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+	<LI>Next message: <A HREF="001150.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1149">[ date ]</a>
+              <a href="thread.html#1149">[ thread ]</a>
+              <a href="subject.html#1149">[ subject ]</a>
+              <a href="author.html#1149">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

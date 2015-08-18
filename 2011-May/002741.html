@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Build service w/ opensuse 11.4
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Build%20service%20w/%20opensuse%2011.4&In-Reply-To=%3C4DD4027E.1040003%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002740.html">
+   <LINK REL="Next"  HREF="002742.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Build service w/ opensuse 11.4</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Build%20service%20w/%20opensuse%2011.4&In-Reply-To=%3C4DD4027E.1040003%40novell.com%3E"
+       TITLE="[Kiwi-users] Build service w/ opensuse 11.4">rschweikert at novell.com
+       </A><BR>
+    <I>Wed May 18 19:31:42 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002740.html">[Kiwi-users] Build service w/ opensuse 11.4
+</A></li>
+        <LI>Next message: <A HREF="002742.html">[Kiwi-users] Customizing Live CD isolinux.cfg and re-imaging iso
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2741">[ date ]</a>
+              <a href="thread.html#2741">[ thread ]</a>
+              <a href="subject.html#2741">[ subject ]</a>
+              <a href="author.html#2741">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On 05/18/2011 01:02 PM, Josh Duvall wrote:
+&gt;<i> I recently built an appliance with opensuse 11.4. I encountered a
+</I>&gt;<i> strange problem that may or may not be related to the build process. I
+</I>&gt;<i> have been racking my brain and cannot figure out why this problem
+</I>&gt;<i> persists.  I cannot get the default gateway to save.
+</I>&gt;<i>
+</I>&gt;<i> I have tried adding it into the system configurations using:  sudo yast2
+</I>&gt;<i>
+</I>&gt;<i> I have also tried to manually add it to
+</I>&gt;<i>
+</I>&gt;<i> /etc/sysconfig/network/routes
+</I>&gt;<i> and even tried
+</I>&gt;<i> /etc/sysconfig/network/ifcfg-eth0
+</I>&gt;<i>
+</I>&gt;<i> I dont know why it does not save this data. Every time I reboot the
+</I>&gt;<i> appliance the default gateway does not show up when I use:
+</I>&gt;<i>
+</I>&gt;<i> netstat -rn
+</I>&gt;<i>
+</I>&gt;<i> Any thoughts or solutions?
+</I>
+What kind of image did you build?
+
+Sounds like you have a readonly image and thus changes to the running 
+image will be lost upon reboot.
+
+Later,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002740.html">[Kiwi-users] Build service w/ opensuse 11.4
+</A></li>
+	<LI>Next message: <A HREF="002742.html">[Kiwi-users] Customizing Live CD isolinux.cfg and re-imaging iso
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2741">[ date ]</a>
+              <a href="thread.html#2741">[ thread ]</a>
+              <a href="subject.html#2741">[ subject ]</a>
+              <a href="author.html#2741">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

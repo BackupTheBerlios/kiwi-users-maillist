@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Create LiveCD-based installation CD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20LiveCD-based%20installation%20CD&In-Reply-To=%3C810134.1547711280388513359.JavaMail.root%40hub.opentrends.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001932.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Create LiveCD-based installation CD</H1>
+    <B>Jordi Massaguer Pla</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20LiveCD-based%20installation%20CD&In-Reply-To=%3C810134.1547711280388513359.JavaMail.root%40hub.opentrends.net%3E"
+       TITLE="[Kiwi-users] Create LiveCD-based installation CD">jordi.massaguer at opentrends.net
+       </A><BR>
+    <I>Thu Jul 29 09:28:33 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001932.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1931">[ date ]</a>
+              <a href="thread.html#1931">[ thread ]</a>
+              <a href="subject.html#1931">[ subject ]</a>
+              <a href="author.html#1931">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>If I were you I would create a minimal system with all the common packages of your users and then, on first boot, you open a firefox browser with an html page .
+
+This html page should be local and have links to &quot;one click installs&quot;. &quot;one click installs&quot; let's you add and remove packages, as well as add repositories.
+
+html pages are easier to write than yast modules and, with a good designer, can be really nice.
+
+just an idea that may simplify your problem
+
+j
+
+----- &quot;Lou Arruda&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lou at tealstudios.com</A>&gt; va escriure:
+
+&gt;<i> On Tue, Jul 27, 2010 at 5:10 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt;
+</I>&gt;<i> wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; I'm trying to create a LiveCD based off of SLES 11 SP1 JeOS, but I
+</I>&gt;<i> &gt;&gt; only want the CD to serve as an installation medium -- not as a
+</I>&gt;<i> trial
+</I>&gt;<i> &gt;&gt; version of the OS. As I'm required to have this CD work with
+</I>&gt;<i> arbitrary
+</I>&gt;<i> &gt;&gt; hardware as well as be the source for a VM installation, the VM
+</I>&gt;<i> &gt;&gt; installer and OEM image installer won't work -- it's LiveCD or
+</I>&gt;<i> nothing
+</I>&gt;<i> &gt;&gt; as far as I understand the Kiwi documentation.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The image type you need here is an oem plus install media like this
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &lt;type image=&quot;oem&quot;
+</I>&gt;<i> &gt; &#160; &#160; &#160;filesystem=&quot;ext3&quot;
+</I>&gt;<i> &gt; &#160; &#160; &#160;boot=&quot;oemboot/suse-SLES11&quot;
+</I>&gt;<i> &gt; &#160; &#160; &#160;installiso=&quot;true&quot;
+</I>&gt;<i> &gt; /&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The image and the install iso works on arbitrary as well as a
+</I>&gt;<i> &gt; installation media for VM systems
+</I>&gt;<i> 
+</I>&gt;<i> Thanks. But does this install iso allow us to do any of the following
+</I>&gt;<i> before booting off the installation target:
+</I>&gt;<i> * Hardware detection with the ability to add/remove packages from the
+</I>&gt;<i> installation target?
+</I>&gt;<i>  * Or can we add additional packages to oemboot/suse-SLES11 to modify
+</I>&gt;<i> the installation CD itself so that it does hardware detection and
+</I>&gt;<i> add/remove packages?
+</I>&gt;<i> * Can we modify partitioning for an OEM install during installation?
+</I>&gt;<i> * Is Yast/Autoyast available before booting off the installation
+</I>&gt;<i> target?
+</I>&gt;<i> 
+</I>&gt;<i> [snip]
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; 3) The final installation on the device's hard drive will only
+</I>&gt;<i> contain
+</I>&gt;<i> &gt;&gt; what's necessary to run a text-mode only appliance. Even if X11 was
+</I>&gt;<i> on
+</I>&gt;<i> &gt;&gt; the CD to facilitate a graphical installation, it will not be
+</I>&gt;<i> &gt;&gt; installed on the destination appliance.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; you can influence all that yourself by defining what pattern
+</I>&gt;<i> &gt; and packages should make up the oem system image
+</I>&gt;<i> 
+</I>&gt;<i> Does this mean that we can add packages to the ISO boot image
+</I>&gt;<i> independently of the system image that we install?
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Lou at TealStudios.com</A>&#160; &#160;&#160; |&#160; &#160; &quot;Dragonmaster Lou&quot;&#160; &#160; |&#160; &#160; Tech House
+</I>&gt;<i> Alum
+</I>&gt;<i> &#160; &quot;Searching for a distant star, heading off to&#160; Iscandar, leaving
+</I>&gt;<i> all
+</I>&gt;<i> &#160;&#160; we love behind, who knows what dangers we'll find...&quot;
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+Jordi Massaguer Pla
+
+openTrends Solucions i Sistemes S.L. 
+tf: +34 933208414 
+fx: +34 933003527 
+www.opentrends.net 
+mailto: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jordi.massaguer at opentrends.net</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001932.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1931">[ date ]</a>
+              <a href="thread.html#1931">[ thread ]</a>
+              <a href="subject.html#1931">[ subject ]</a>
+              <a href="author.html#1931">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

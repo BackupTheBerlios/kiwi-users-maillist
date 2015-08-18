@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Resolving opensuse://&lt;project name&gt; broken
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Resolving%20opensuse%3A//%3Cproject%20name%3E%20broken&In-Reply-To=%3C20071107101007.GA24854%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000131.html">
+   <LINK REL="Next"  HREF="000133.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Resolving opensuse://&lt;project name&gt; broken</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Resolving%20opensuse%3A//%3Cproject%20name%3E%20broken&In-Reply-To=%3C20071107101007.GA24854%40suse.de%3E"
+       TITLE="[Kiwi-users] Resolving opensuse://&lt;project name&gt; broken">ms at suse.de
+       </A><BR>
+    <I>Wed Nov  7 11:10:07 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000131.html">[Kiwi-users] Resolving opensuse://&lt;project name&gt; broken
+</A></li>
+        <LI>Next message: <A HREF="000133.html">[Kiwi-users] v1.85 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#132">[ date ]</a>
+              <a href="thread.html#132">[ thread ]</a>
+              <a href="subject.html#132">[ subject ]</a>
+              <a href="author.html#132">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jan,
+
+&gt;<i> I ran into trouble today trying to resolve &quot;<A HREF="opensuse://&lt;project">opensuse://&lt;project</A>&gt; paths.
+</I>&gt;<i> According to Adrian the path must be set differently.
+</I>&gt;<i> 
+</I>&gt;<i> I prepared a patch that fixes this; it's just one variable in kiwi.pl
+</I>&gt;<i> pointing to the wrong server. It is accessed in modules/KIWIURL.pm in
+</I>&gt;<i> the method openSUSEpath.
+</I>
+Let's see how long this URL stays valid :-) Thanks
+
+&gt;<i> Another small thing in the patch is the problem with forking the Perl 
+</I>&gt;<i> debugger, which fails to get a TTY when the KIWILog forks.
+</I>&gt;<i> The small hack in the beginning ($DB::...) fixes that, so for those who use 
+</I>&gt;<i> the debugger (I know, debugging is for losers *g*)
+</I>
+Ah, nice so this one prevents the debugger from running another
+shell process because it needs a tty right ? I like it
+
+&gt;<i> The other patch fixes my KIWIXML::splitPathHTTP method which fails if
+</I>&gt;<i> the base URL doesn't return a dir listing but something different.
+</I>
+Thanks, all patches committed now
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000131.html">[Kiwi-users] Resolving opensuse://&lt;project name&gt; broken
+</A></li>
+	<LI>Next message: <A HREF="000133.html">[Kiwi-users] v1.85 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#132">[ date ]</a>
+              <a href="thread.html#132">[ thread ]</a>
+              <a href="subject.html#132">[ subject ]</a>
+              <a href="author.html#132">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

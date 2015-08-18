@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Single partition image creation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Single%20partition%20image%20creation&In-Reply-To=%3CB9F1D1C70B4B1544A634EA162A50E53A029F4B2F%40susday7659.TD.teradata.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001691.html">
+   <LINK REL="Next"  HREF="001679.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Single partition image creation</H1>
+    <B>Hills, Steve</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Single%20partition%20image%20creation&In-Reply-To=%3CB9F1D1C70B4B1544A634EA162A50E53A029F4B2F%40susday7659.TD.teradata.com%3E"
+       TITLE="[Kiwi-users] Single partition image creation">Steve.Hills at Teradata.com
+       </A><BR>
+    <I>Thu Feb 25 02:51:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001691.html">[Kiwi-users] Single partition image creation
+</A></li>
+        <LI>Next message: <A HREF="001679.html">[Kiwi-users] OBS + KIWI = &quot;Help me please...&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1701">[ date ]</a>
+              <a href="thread.html#1701">[ thread ]</a>
+              <a href="subject.html#1701">[ subject ]</a>
+              <a href="author.html#1701">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Our custom code tweaks the MBR probably the same as what you were doing with fdisk, I didn't write that code but I'm sure it's just swapping the partition addresses between the partition records. We don't mess with the extended partition tables, just the primaries.  I didn't know about parted/etc not liking that, will have to keep that in mind.  We are in the process of porting an existing product to Linux so I don't know if everything is going to work :)
+
+Thanks,
+Steve Hills
+Teradata Corporation
+
+-----Original Message-----
+From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>] 
+Sent: Wednesday, February 24, 2010 1:36 AM
+To: Hills, Steve
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] Single partition image creation
+
+Hi,
+
+&gt;<i> Our typical disk layout: hidden diagnostics, boot, boot, ext with swap 
+</I>&gt;<i> and data. We use a single hard disk instead of multiple disks or other 
+</I>&gt;<i> flash media.  We use 2 bootable partitions which we use for &quot;live&quot; 
+</I>&gt;<i> updates where we flash into the unused partition then boot into it.  
+</I>&gt;<i> The separate boot partition is also used for flash failure fallback.  
+</I>&gt;<i> We can't clobber any of the partitions other than the unused boot 
+</I>&gt;<i> partition.
+</I>
+Ah now I understand, quite cool concept :) It's clear to me now why you only need a filesystem image and not more.
+
+&gt;<i> We use our own 1'st stage bootloader which tweaks the partition table 
+</I>&gt;<i> such that the OS always sees itself as partition 1 (/dev/sda1).
+</I>
+That sounds interesting how do you do that ? In former times I used fdisk which allows to have the partition id's not in the same order than the address range of the single partitions. Given this I could have /dev/sda1 pointing to somewhere in an extended area. But I found out that some bootloaders and nearly all other disk partition tools don't like that. As I have to support parted with kiwi too I had to change the code. 
+
+I'm eager to hear how you do that :) ?
+
+Thanks
+
+Regards,
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001691.html">[Kiwi-users] Single partition image creation
+</A></li>
+	<LI>Next message: <A HREF="001679.html">[Kiwi-users] OBS + KIWI = &quot;Help me please...&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1701">[ date ]</a>
+              <a href="thread.html#1701">[ thread ]</a>
+              <a href="subject.html#1701">[ subject ]</a>
+              <a href="author.html#1701">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

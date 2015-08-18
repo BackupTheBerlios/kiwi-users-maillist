@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] question on command line --add-repo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20question%20on%20command%20line%20--add-repo&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2732CBA025%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002257.html">
+   <LINK REL="Next"  HREF="002260.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] question on command line --add-repo</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20question%20on%20command%20line%20--add-repo&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2732CBA025%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] question on command line --add-repo">john.lund at emc.com
+       </A><BR>
+    <I>Mon Jan 17 23:26:10 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002257.html">[Kiwi-users] using config.xml with multiple profiles...
+</A></li>
+        <LI>Next message: <A HREF="002260.html">[Kiwi-users] question on command line --add-repo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2259">[ date ]</a>
+              <a href="thread.html#2259">[ thread ]</a>
+              <a href="subject.html#2259">[ subject ]</a>
+              <a href="author.html#2259">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have a question about what happens to the attributes specified in &quot;-add-repo &lt;my repo location&gt; --add-repotype repo-md  -- add-repoalias &lt;my alias&gt; --add-repoprio 1&quot; section of a command line when using kiwi -p &lt;config&gt; -r &lt;image-root&gt;.
+
+When I try to run kiwi -c &lt;image-root&gt; d&lt;destination&gt; later it seems that the image-root version of the config.xml file (image-root/image/config.xml) ends up with a line for the command line specified repo that is not properly written:
+Jan-17 15:33:30 &lt;1&gt; : Reading image description [Create]...
+Jan-17 15:33:30 &lt;3&gt; : Schema validation failed                                                                                                                                                                                   failed
+Jan-17 15:33:30 &lt;1&gt; : Automatically upgraded image-root/image/config.xml to
+Jan-17 15:33:30 &lt;1&gt; : image-root/image/config.converted.xml
+Jan-17 15:33:30 &lt;1&gt; : Reported line numbers may not match the
+Jan-17 15:33:30 &lt;1&gt; : file image-root/image/config.xml
+/home/autobuild/mauisrc/kiwi/AtmosISO/image-root/image/config.converted.xml:724:95: error: attribute &quot;alias&quot; not allowed at this point; ignored
+/home/autobuild/mauisrc/kiwi/AtmosISO/image-root/image/config.converted.xml:724:95: error: attribute &quot;priority&quot; not allowed at this point; ignored
+Jan-17 15:33:31 &lt;3&gt; : KIWI exited with error(s)
+
+And when I check the file, I find that the alias and priority attributes are in the source line of the added repository element, instead of appended to the repository line.  Is this a known issue?
+
+&lt;repository type=&quot;rpm-md&quot; status=&quot;fixed&quot;&gt;&lt;source path=&quot;/home/autobuild/mauisrc/Output~/RPMS/RPMS_server&quot; alias=&quot;local&quot; priority=&quot;1&quot;  /&gt;&lt;/repository&gt;
+
+This is occurring using kiwi 4.70.
+
+Thank you,
+John Lund
+EMC Atmos - Access &amp; Platform Team
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002257.html">[Kiwi-users] using config.xml with multiple profiles...
+</A></li>
+	<LI>Next message: <A HREF="002260.html">[Kiwi-users] question on command line --add-repo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2259">[ date ]</a>
+              <a href="thread.html#2259">[ thread ]</a>
+              <a href="subject.html#2259">[ subject ]</a>
+              <a href="author.html#2259">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

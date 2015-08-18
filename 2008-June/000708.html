@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie questions/clarification
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3COF2AFD4194.B1520E07-ON8625746A.0054672D-8625746A.00601777%40academy.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000705.html">
+   <LINK REL="Next"  HREF="000711.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie questions/clarification</H1>
+    <B>justin.kinney at academy.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3COF2AFD4194.B1520E07-ON8625746A.0054672D-8625746A.00601777%40academy.com%3E"
+       TITLE="[Kiwi-users] Newbie questions/clarification">justin.kinney at academy.com
+       </A><BR>
+    <I>Mon Jun 16 19:28:57 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000705.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+        <LI>Next message: <A HREF="000711.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#708">[ date ]</a>
+              <a href="thread.html#708">[ thread ]</a>
+              <a href="subject.html#708">[ subject ]</a>
+              <a href="author.html#708">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> right, this is an integrity check. So you should ask yourself how
+</I>&gt;<i> this could happen :) the system image is loaded from the
+</I>&gt;<i> /srv/tftpboot/image directory in your case &quot;ltsp-suse-10.3.i686&quot;
+</I>&gt;<i> and the boot image (initrd) is loaded from the /srv/tftpboot/boot
+</I>&gt;<i> directory and depends on your pxelinux.cfg/default (or client specific)
+</I>&gt;<i> configuration file.
+</I>
+I thought that the repositories that the netboot/config.xml specified may 
+be different than the one I specified in my config.xml for the system. 
+There were two additional repos listed in the netboot/config.xml.  I've 
+matched the repos up between the two - they both have the repos below:
+
+        &lt;repository type=&quot;yast2&quot;&gt;
+                &lt;source path=&quot;/opt/opensuse-10.3&quot;/&gt;
+        &lt;/repository&gt;
+        &lt;repository type=&quot;rpm-md&quot;&gt;
+                &lt;source path=&quot;
+<A HREF="http://download.opensuse.org/repositories/server:ltsp/openSUSE_10.3">http://download.opensuse.org/repositories/server:ltsp/openSUSE_10.3</A>&quot;/&gt;
+        &lt;/repository&gt;
+        &lt;repository type=&quot;rpm-md&quot;&gt;
+                &lt;source path=&quot;
+<A HREF="http://download.opensuse.org/repositories/openSUSE:/Tools/openSUSE_10.3">http://download.opensuse.org/repositories/openSUSE:/Tools/openSUSE_10.3</A>&quot;/&gt;
+        &lt;/repository&gt;
+
+&gt;<i> &gt; 3. I've attached my system image configuration below, as well as my
+</I>&gt;<i> &gt; config.default from /srv/tftpboot/KIWI
+</I>
+&gt;<i> This looks good to me. Both the system image and the boot image
+</I>&gt;<i> will be build from the /opt/opensuse-10.3 repository. To be sure
+</I>&gt;<i> you copied the correct files to your boot server's /srv/tftpboot
+</I>&gt;<i> directories cleanup the destination directory were you normaly
+</I>&gt;<i> store the result of the kiwi --create call and call --create again.
+</I>&gt;<i> Somehow the initrd and the system image on your boot server have
+</I>&gt;<i> different kernel versions. In almost all cases it's because of the
+</I>&gt;<i> PXE boot configuration which has the choice for multiple initrd's
+</I>&gt;<i> and the wrong one is used for the later system image... just a guess
+</I>
+I re-copied the boot image and system image to their respective 
+directories, and the client was booting appropriately.
+
+Update: I've since rebuilt the image and I'm back to the mismatch problem 
+- I'm doing another complete rebuild now to see if changing the repos 
+helped.
+
+&gt;<i> &gt; config.default:
+</I>&gt;<i> &gt; #NBDROOT=192.168.1.1;2000;/dev/nbd0;9572;/dev/nbd1
+</I>&gt;<i> &gt; IMAGE=/dev/ram1;ltsp-suse-10.3.i686;0.0.1;192.168.1.1;4096
+</I>
+&gt;<i> I doubt your image will fit into RAM completely :)
+</I>
+I've now got the following config.default, which appears to work as I 
+expect:
+NBDROOT=192.168.1.1;2000;/dev/nbd0;9572;/dev/nbd1
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080616/376daa9f/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080616/376daa9f/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000705.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+	<LI>Next message: <A HREF="000711.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#708">[ date ]</a>
+              <a href="thread.html#708">[ thread ]</a>
+              <a href="subject.html#708">[ subject ]</a>
+              <a href="author.html#708">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

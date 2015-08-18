@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Integrity check	for	/usr/share/kiwi/image/isoboot/suse-11.2 failed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Integrity%20check%0A%09for%09/usr/share/kiwi/image/isoboot/suse-11.2%20failed&In-Reply-To=%3C20100309114637.GA22273%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001719.html">
+   <LINK REL="Next"  HREF="001722.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Integrity check	for	/usr/share/kiwi/image/isoboot/suse-11.2 failed</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Integrity%20check%0A%09for%09/usr/share/kiwi/image/isoboot/suse-11.2%20failed&In-Reply-To=%3C20100309114637.GA22273%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Integrity check	for	/usr/share/kiwi/image/isoboot/suse-11.2 failed">ms at novell.com
+       </A><BR>
+    <I>Tue Mar  9 12:46:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001719.html">[Kiwi-users] Integrity check for	/usr/share/kiwi/image/isoboot/suse-11.2 failed
+</A></li>
+        <LI>Next message: <A HREF="001722.html">[Kiwi-users] Setting the grub boot timeout?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1720">[ date ]</a>
+              <a href="thread.html#1720">[ thread ]</a>
+              <a href="subject.html#1720">[ subject ]</a>
+              <a href="author.html#1720">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm again emailing you about kiwi creating image.
+</I>&gt;<i> now I successful completed kiwi preparing image :), but when I create an
+</I>&gt;<i> image via
+</I>&gt;<i> 
+</I>&gt;<i> *kiwi --create /tmp/kiwi_prepare -type iso -d /tmp/kiwi_create --logfile
+</I>&gt;<i> /tmp/kiwi_create.log *
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> it showed an error as the following :
+</I>&gt;<i> ---------------------------------------------------
+</I>&gt;<i> Oct-27 04:10:32 &lt;3&gt; : Integrity check for
+</I>&gt;<i> /usr/share/kiwi/image/isoboot/suse-11.2 failed:
+</I>&gt;<i> ./config.xml: FAILED
+</I>&gt;<i> ./images.sh: OK
+</I>&gt;<i> ./config.sh: OK
+</I>&gt;<i> ./root/linuxrc: OK
+</I>&gt;<i> ./root/etc/modprobe.conf.local: OK
+</I>&gt;<i> ./root/preinit: OK
+</I>&gt;<i> md5sum: WARNING: 1 of 6 computed checksums did NOT match   failed
+</I>&gt;<i> ---------------------------------------------------
+</I>
+This means you have changed the config.xml of a boot image (initrd)
+
+   /usr/share/kiwi/image/isoboot/suse-11.2/config.xml
+
+Why did you do that ? Because the initrd (boot image descriptions) are
+very important for booting the system I added a checksum to detect
+if anybody changes what has been delivered via the packages. 
+
+&gt;<i> What should I do to should this problem?
+</I>
+re-install the package kiwi-desc-isoboot
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001719.html">[Kiwi-users] Integrity check for	/usr/share/kiwi/image/isoboot/suse-11.2 failed
+</A></li>
+	<LI>Next message: <A HREF="001722.html">[Kiwi-users] Setting the grub boot timeout?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1720">[ date ]</a>
+              <a href="thread.html#1720">[ thread ]</a>
+              <a href="subject.html#1720">[ subject ]</a>
+              <a href="author.html#1720">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

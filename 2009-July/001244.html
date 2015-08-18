@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi and SLES 10 SP1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20SLES%2010%20SP1&In-Reply-To=%3C4A4DF7BB.7090405%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001243.html">
+   <LINK REL="Next"  HREF="001252.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi and SLES 10 SP1</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20SLES%2010%20SP1&In-Reply-To=%3C4A4DF7BB.7090405%40novell.com%3E"
+       TITLE="[Kiwi-users] Kiwi and SLES 10 SP1">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Jul  3 14:21:15 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001243.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+        <LI>Next message: <A HREF="001252.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1244">[ date ]</a>
+              <a href="thread.html#1244">[ thread ]</a>
+              <a href="subject.html#1244">[ subject ]</a>
+              <a href="author.html#1244">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcin,
+
+squashfs and aufs are only available for kernels in 10.2 and the 
+upcoming 10.3 release. You can still create ISO images, you just cannot 
+compress the file system.
+
+Do not use the &quot;flags&quot; attribute in the &quot;type&quot; element and Kiwi will 
+create a non compressed file system. See section 8.3 in 
+/usr/share/doc/packages/kiwi/kiwi.pdf
+
+Robert
+
+Marcin M. Jessa wrote:
+&gt;<i> Hi guys.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I work on a project where we (have to) use SLES 10.1 and we would like 
+</I>&gt;<i> to create a custom boot CD based on it.
+</I>&gt;<i> Unfortunately all the howtos, documents and config examples are for SLES 
+</I>&gt;<i> 10.2 and newer.
+</I>&gt;<i> They all mention usage of squashfs [1] and aufs [2] but there are no 
+</I>&gt;<i> versions available for SLES 10.1
+</I>&gt;<i> Do you guys have config files for SLES10.1?
+</I>&gt;<i> Was SLES 10.1 even created with Kiwi?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> [1]: <A HREF="http://download.opensuse.org/repositories/home:/mopp:/squashfs/">http://download.opensuse.org/repositories/home:/mopp:/squashfs/</A>
+</I>&gt;<i> [2]: <A HREF="http://download.opensuse.org/repositories/home:/mopp:/aufs/">http://download.opensuse.org/repositories/home:/mopp:/aufs/</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i> Marcin
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>   
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001243.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+	<LI>Next message: <A HREF="001252.html">[Kiwi-users] Kiwi and SLES 10 SP1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1244">[ date ]</a>
+              <a href="thread.html#1244">[ thread ]</a>
+              <a href="subject.html#1244">[ subject ]</a>
+              <a href="author.html#1244">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

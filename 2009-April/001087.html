@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] 32 bit vs. 64 bit
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%2032%20bit%20vs.%2064%20bit&In-Reply-To=%3C20090429085003.GA14051%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001085.html">
+   <LINK REL="Next"  HREF="001094.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] 32 bit vs. 64 bit</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%2032%20bit%20vs.%2064%20bit&In-Reply-To=%3C20090429085003.GA14051%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] 32 bit vs. 64 bit">ms at novell.com
+       </A><BR>
+    <I>Wed Apr 29 10:50:04 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001085.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+        <LI>Next message: <A HREF="001094.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1087">[ date ]</a>
+              <a href="thread.html#1087">[ thread ]</a>
+              <a href="subject.html#1087">[ subject ]</a>
+              <a href="author.html#1087">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> The original seed of the root tree was based on the JeOS template
+</I>&gt;<i> installed on the 32 bit machine.
+</I>&gt;<i> 
+</I>&gt;<i> I wonder if there were any harm to add the lib64 path to the xorg.conf
+</I>&gt;<i> file by default for all examples/templates. This would avoid this error
+</I>&gt;<i> for users.
+</I>
+fixed...
+
+&gt;<i> This however makes we wonder about architectures in a more general
+</I>&gt;<i> sense. What if I were to run kiwi on Itanium with the same config file
+</I>&gt;<i> and directory layout. I guess my question is how does one create a
+</I>&gt;<i> platform independent configuration and root tree layout?
+</I>
+- in terms of packages the package manager will pick up the right
+  packages if the repositories provides it automatically
+
+- in terms of configuration files this is an individual task. On
+  a 64bit system there is lib64 and if the application needs to
+  distinguish this it could be intelligent like Xorg on SLE11 which
+  doesn't need a modulepath setup or it could be dumb and requires
+  a static path list which it searches for the right contents in
+  like Xorg on SLE10 does. In other words it's up to to the one who
+  creates the image description how well it is prepared for multiarch
+  configurations
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001085.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+	<LI>Next message: <A HREF="001094.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1087">[ date ]</a>
+              <a href="thread.html#1087">[ thread ]</a>
+              <a href="subject.html#1087">[ subject ]</a>
+              <a href="author.html#1087">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

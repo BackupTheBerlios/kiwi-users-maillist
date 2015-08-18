@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Yet another newbie question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Yet%20another%20newbie%20question&In-Reply-To=%3C4FACC239.8070002%40sgi.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003019.html">
+   <LINK REL="Next"  HREF="003021.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Yet another newbie question</H1>
+    <B>Eric Richards</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Yet%20another%20newbie%20question&In-Reply-To=%3C4FACC239.8070002%40sgi.com%3E"
+       TITLE="[Kiwi-users] Yet another newbie question">erichards at sgi.com
+       </A><BR>
+    <I>Fri May 11 09:39:37 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003019.html">[Kiwi-users] Yet another newbie question
+</A></li>
+        <LI>Next message: <A HREF="003021.html">[Kiwi-users] Yet another newbie question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3020">[ date ]</a>
+              <a href="thread.html#3020">[ thread ]</a>
+              <a href="subject.html#3020">[ subject ]</a>
+              <a href="author.html#3020">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Same error -- I thought I had tried that before:
+
+'hello2' not found in package names. Trying capabilities.
+  No provider of 'hello2' found.
+  + ECODE=104
+
+(and below, I copied the snippet before I reverted to &quot;hello2&quot; from 
+&quot;hellotwo.&quot;
+
+Regards,
+
+Eric
+
+
+On 05/11/2012 01:18 AM, Denis J. Cirulis wrote:
+&gt;<i> Just make it of type rpm-dir, not yast2, with &lt;source 
+</I>&gt;<i> path=&quot;<A HREF="dir:///your/location">dir:///your/location</A>&quot;/&gt;, <A HREF="dir://">dir://</A> can be omitted according to 
+</I>&gt;<i> documentation.
+</I>&gt;<i>
+</I>&gt;<i> On Fri, May 11, 2012 at 10:11 AM, Eric Richards &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">erichards at sgi.com</A> 
+</I>&gt;<i> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">erichards at sgi.com</A>&gt;&gt; wrote:
+</I>&gt;<i>
+</I>&gt;<i>     I'm sorry to lean on you guys like this, but I've been sweating
+</I>&gt;<i>     this one for 18 hours without luck.
+</I>&gt;<i>
+</I>&gt;<i>     I have put together a &quot;hello world&quot; rpm.  To keep it from
+</I>&gt;<i>     conflicting with GNU hello, I named it hello2.
+</I>&gt;<i>
+</I>&gt;<i>     In my config.xml file I have these sections:
+</I>&gt;<i>
+</I>&gt;<i>     &lt;packages type=&quot;image&quot;&gt;
+</I>&gt;<i>     &lt;package name=&quot;hello&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;hellotwo&quot;/&gt;
+</I>&gt;<i>     &lt;/packages&gt;
+</I>&gt;<i>     [...]
+</I>&gt;<i>
+</I>&gt;<i>     &lt;repository type=&quot;yast2&quot;&gt;
+</I>&gt;<i>     &lt;source path=&quot;/root/rpmbuild/RPMS/x86_64&quot;/&gt;
+</I>&gt;<i>     &lt;/repository&gt;
+</I>&gt;<i>
+</I>&gt;<i>     And in that directory, I have:
+</I>&gt;<i>
+</I>&gt;<i>     .:
+</I>&gt;<i>     hello-2.8-1.x86_64.rpm  hello2-1.0-1.x86_64.rpm  repodata
+</I>&gt;<i>
+</I>&gt;<i>     ./repodata:
+</I>&gt;<i>     filelists.xml.gz  other.xml.gz  primary.xml.gz  repomd.xml
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     Naturally the RPMs install fine from my machine, installing them
+</I>&gt;<i>     like &quot;rpm --install hello2-1.0-1.x86_64.rpm&quot;, but kiwi can't find
+</I>&gt;<i>     hello2.  It finds hello just fine, but not hello2.  I even changed
+</I>&gt;<i>     the name of everything to hellotwo (in the specfile and makefile
+</I>&gt;<i>     too), without luck.
+</I>&gt;<i>
+</I>&gt;<i>     I clearly have been looking at this way too long.  Care to have
+</I>&gt;<i>     sympathy on the dummy, again?
+</I>&gt;<i>
+</I>&gt;<i>     Thanks,
+</I>&gt;<i>     -- 
+</I>&gt;<i>
+</I>&gt;<i>     Eric Richards
+</I>&gt;<i>     Kernel Software Engineer
+</I>&gt;<i>     SGI logo
+</I>&gt;<i>     1900 Pike Road
+</I>&gt;<i>     Longmont, CO 80501
+</I>&gt;<i>     Phone: 303-532-0233 &lt;tel:303-532-0233&gt;
+</I>&gt;<i>     E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A>&gt;
+</I>&gt;<i>     Website: www.sgi.com &lt;<A HREF="http://www.sgi.com">http://www.sgi.com</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     _______________________________________________
+</I>&gt;<i>     Kiwi-users mailing list
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>&gt;
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+-- 
+
+Eric Richards
+Kernel Software Engineer
+SGI logo
+1900 Pike Road
+Longmont, CO 80501
+Phone: 303-532-0233
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A>&gt;
+Website: www.sgi.com &lt;<A HREF="http://www.sgi.com">http://www.sgi.com</A>&gt;
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/bc905b07/attachment-0001.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/bc905b07/attachment-0001.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: image/png
+Size: 2653 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/bc905b07/attachment-0002.png">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/bc905b07/attachment-0002.png</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: SGI_small_logo.png
+Type: image/png
+Size: 2653 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/bc905b07/attachment-0003.png">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120511/bc905b07/attachment-0003.png</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003019.html">[Kiwi-users] Yet another newbie question
+</A></li>
+	<LI>Next message: <A HREF="003021.html">[Kiwi-users] Yet another newbie question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3020">[ date ]</a>
+              <a href="thread.html#3020">[ thread ]</a>
+              <a href="subject.html#3020">[ subject ]</a>
+              <a href="author.html#3020">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

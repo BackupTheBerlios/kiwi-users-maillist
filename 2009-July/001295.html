@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Setting the size of a VMware disk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20size%20of%20a%20VMware%20disk&In-Reply-To=%3C4A686D84.4020909%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001294.html">
+   <LINK REL="Next"  HREF="001296.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Setting the size of a VMware disk</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20size%20of%20a%20VMware%20disk&In-Reply-To=%3C4A686D84.4020909%40novell.com%3E"
+       TITLE="[Kiwi-users] Setting the size of a VMware disk">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Jul 23 16:02:44 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001294.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+        <LI>Next message: <A HREF="001296.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1295">[ date ]</a>
+              <a href="thread.html#1295">[ thread ]</a>
+              <a href="subject.html#1295">[ subject ]</a>
+              <a href="author.html#1295">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;&gt;<i> It applies to all image types. In case of a virtual disk creation the
+</I>&gt;&gt;&gt;<i> size references the disk size and in any other case the size references
+</I>&gt;&gt;&gt;<i> the size of the root filesystem
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> If I understand this correctly this will create a big problem for me. I 
+</I>&gt;&gt;<i> have a description that is used to create an OEM image and a VMware image. 
+</I>&gt;&gt;<i> Thus if I set size to 50G to get a 50 GB VM disk I also only get a 50 GB 
+</I>&gt;&gt;<i> root partition in the OEM image. However, in the OEM image I want the root 
+</I>&gt;&gt;<i> partition to use the available space on the hard drive (minus the 128 GB 
+</I>&gt;&gt;<i> swap) I've set up.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I don't think so. If you set &lt;size unit=&quot;G&quot;&gt;50&lt;/size&gt; the result is
+</I>&gt;<i> a 50GB virtual disk for oem and vmx that's correct. But this size
+</I>&gt;<i> setup has no impact on the repartitioning done by the oem initrd on
+</I>&gt;<i> first boot. It still will use the available space on the hard drive
+</I>&gt;<i> as you configured it with the oem- options. Which oem- Options have
+</I>&gt;<i> you set ?
+</I>&gt;<i>   
+</I>Here are the OEM options used.  I think I am more confused than before 
+what &lt;size/&gt; means.
+
+&lt;oem-boot-title&gt;A string&lt;/oem-boot-title&gt;
+&lt;oem-reboot&gt;yes&lt;/oem-reboot&gt;
+&lt;oem-swap&gt;yes&lt;/oem-swap&gt;
+&lt;!-- 128 GB swap partition --&gt;
+&lt;oem-swapsize&gt;131072&lt;/oem-swapsize&gt;
+
+What do mean with a &quot;virtual disk for oem&quot;?  Is that the image inside 
+the OEM image that actually ends up on the hard drive of the target machine?
+
+Thanks,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001294.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+	<LI>Next message: <A HREF="001296.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1295">[ date ]</a>
+              <a href="thread.html#1295">[ thread ]</a>
+              <a href="subject.html#1295">[ subject ]</a>
+              <a href="author.html#1295">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

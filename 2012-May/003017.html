@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.xml%20schema%20reference%3F%20Want%20to%20build%20an%0A%20image%20with%20multiple%20partitions&In-Reply-To=%3C20120509105427.GA28755%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003016.html">
+   <LINK REL="Next"  HREF="003022.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.xml%20schema%20reference%3F%20Want%20to%20build%20an%0A%20image%20with%20multiple%20partitions&In-Reply-To=%3C20120509105427.GA28755%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions">ms at suse.de
+       </A><BR>
+    <I>Wed May  9 12:54:28 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003016.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+        <LI>Next message: <A HREF="003022.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3017">[ date ]</a>
+              <a href="thread.html#3017">[ thread ]</a>
+              <a href="subject.html#3017">[ subject ]</a>
+              <a href="author.html#3017">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;I'm hoping to be able to create a multi-partition system, something like:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;/, size 50 G
+</I>&gt;<i> &gt;/var, size 200G
+</I>&gt;<i> &gt;/tmp, size 100G
+</I>&gt;<i> &gt;/log, rest of disk
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Is that something I should attempt in .../source/root/build_custom, or
+</I>&gt;<i> &gt;in .../source/root/etc/init.d/suse_studio_firstboot ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;(Obviously I started with a SUSEstudio app and have been hacking on it
+</I>&gt;<i> &gt;ever since.)
+</I>&gt;<i> 
+</I>&gt;<i> For multiple partitions you will need to use LVM. KIWI and Studio do
+</I>&gt;<i> not support the partitioning of the root partition, but you can
+</I>&gt;<i> create volumes to your liking. Take a look at the &lt;systemdisk&gt;
+</I>&gt;<i> element in the schema doc.
+</I>
+yep in XML speak:
+
+   &lt;type ...
+      &lt;systemdisk&gt;
+        &lt;volume name=&quot;var&quot; size=&quot;200G&quot;/&gt;
+		&lt;volume name=&quot;tmp&quot; size=&quot;100G&quot;/&gt;
+        &lt;volume name=&quot;log&quot; freespace=&quot;all&quot;/&gt;
+      &lt;/systemdisk&gt;
+   &lt;/type&gt;
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003016.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+	<LI>Next message: <A HREF="003022.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3017">[ date ]</a>
+              <a href="thread.html#3017">[ thread ]</a>
+              <a href="subject.html#3017">[ subject ]</a>
+              <a href="author.html#3017">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

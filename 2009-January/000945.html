@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] LiveDVD/CD with persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LiveDVD/CD%20with%20persistence&In-Reply-To=%3C20090126172829.GB29301%40idefix.dms.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000933.html">
+   <LINK REL="Next"  HREF="000934.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] LiveDVD/CD with persistence</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LiveDVD/CD%20with%20persistence&In-Reply-To=%3C20090126172829.GB29301%40idefix.dms.net%3E"
+       TITLE="[Kiwi-users] LiveDVD/CD with persistence">ms at novell.com
+       </A><BR>
+    <I>Mon Jan 26 18:28:29 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000933.html">[Kiwi-users] LiveDVD/CD with persistence
+</A></li>
+        <LI>Next message: <A HREF="000934.html">[Kiwi-users] oem-rebbot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#945">[ date ]</a>
+              <a href="thread.html#945">[ thread ]</a>
+              <a href="subject.html#945">[ subject ]</a>
+              <a href="author.html#945">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> 	I'm in the process of trying to learn how to use kiwi to build myself 
+</I>&gt;<i> an OpenSUSE 11.1 minimal/server install image, and am trying to figure 
+</I>&gt;<i> out how to manipulate the LiveDVD config.xml into creating an image that 
+</I>&gt;<i> uses a partition on the local hard drive (or a USB stick) for 
+</I>&gt;<i> persistence through reboots, power failures, etc, but stores the bulk of 
+</I>&gt;<i> the OS on the LiveDVD.  (This is basically for a 
+</I>&gt;<i> hardened/easy-to-recover server environment.)   I'm suspecting rather 
+</I>&gt;<i> than using &lt;type ... &gt;iso&lt;/type&gt; I want to use &lt;type ... 
+</I>&gt;<i> format=&quot;iso&quot;&gt;split&lt;/type&gt;, but am having a hard time determining where I 
+</I>&gt;<i> would tell it _what_ partition I want to mount as my persistent 
+</I>&gt;<i> partition (instead of making a ramdisk).
+</I>
+The problem is that with a splitted system based on the iso type the
+split write portion by default will be a tmpfs. You are not the first
+one requestion another place than tmpfs for the written data so if
+you like just open an enhancement bug report on bugzilla.novell.com
+Component: System_Imaging
+
+If you want to take a look into the code yourself you should check the
+following files
+
+   KIWILinuxRC -&gt; function mountSystemCombined()
+
+* in case of a splitted iso type the rwDevice is set as /dev/loop
+  and therefore not really used. the rwDevice should point to something
+  you can write to
+
+   KIWIImage.pm -&gt; sub createImageLiveCD
+
+* the call of the functions createImageSplit() should not use the
+  third parameter which prevents persistent files from being used
+  as persistent files. for the iso split type all persistent files
+  setup in config.xml will be handled as temporary files
+
+To implement that in a clean way it should be possible to specify
+where the writes should go to but for a hacky solution you also
+could just use a fixed location
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000933.html">[Kiwi-users] LiveDVD/CD with persistence
+</A></li>
+	<LI>Next message: <A HREF="000934.html">[Kiwi-users] oem-rebbot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#945">[ date ]</a>
+              <a href="thread.html#945">[ thread ]</a>
+              <a href="subject.html#945">[ subject ]</a>
+              <a href="author.html#945">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

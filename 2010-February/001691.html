@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Single partition image creation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Single%20partition%20image%20creation&In-Reply-To=%3C20100224093557.GA30114%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001690.html">
+   <LINK REL="Next"  HREF="001701.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Single partition image creation</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Single%20partition%20image%20creation&In-Reply-To=%3C20100224093557.GA30114%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Single partition image creation">ms at novell.com
+       </A><BR>
+    <I>Wed Feb 24 10:35:57 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001690.html">[Kiwi-users] Single partition image creation
+</A></li>
+        <LI>Next message: <A HREF="001701.html">[Kiwi-users] Single partition image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1691">[ date ]</a>
+              <a href="thread.html#1691">[ thread ]</a>
+              <a href="subject.html#1691">[ subject ]</a>
+              <a href="author.html#1691">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Our typical disk layout: hidden diagnostics, boot, boot, ext with swap
+</I>&gt;<i> and data. We use a single hard disk instead of multiple disks or
+</I>&gt;<i> other flash media.  We use 2 bootable partitions which we use
+</I>&gt;<i> for &quot;live&quot; updates where we flash into the unused partition then boot
+</I>&gt;<i> into it.  The separate boot partition is also used for flash failure
+</I>&gt;<i> fallback.  We can't clobber any of the partitions other than the unused
+</I>&gt;<i> boot partition.
+</I>
+Ah now I understand, quite cool concept :) It's clear to me now
+why you only need a filesystem image and not more.
+
+&gt;<i> We use our own 1'st stage bootloader which tweaks the partition table
+</I>&gt;<i> such that the OS always sees itself as partition 1 (/dev/sda1).
+</I>
+That sounds interesting how do you do that ? In former times I used
+fdisk which allows to have the partition id's not in the same order
+than the address range of the single partitions. Given this I could
+have /dev/sda1 pointing to somewhere in an extended area. But I found
+out that some bootloaders and nearly all other disk partition tools
+don't like that. As I have to support parted with kiwi too I had to
+change the code. 
+
+I'm eager to hear how you do that :) ?
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001690.html">[Kiwi-users] Single partition image creation
+</A></li>
+	<LI>Next message: <A HREF="001701.html">[Kiwi-users] Single partition image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1691">[ date ]</a>
+              <a href="thread.html#1691">[ thread ]</a>
+              <a href="subject.html#1691">[ subject ]</a>
+              <a href="author.html#1691">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

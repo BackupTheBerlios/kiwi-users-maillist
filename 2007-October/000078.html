@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20create%20partition%20table%20on%3A%20/dev/sda%0A%09after%20kiwi%20update%20to%201.68-29.1&In-Reply-To=%3C20071010093659.GA20384%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000077.html">
+   <LINK REL="Next"  HREF="000079.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20create%20partition%20table%20on%3A%20/dev/sda%0A%09after%20kiwi%20update%20to%201.68-29.1&In-Reply-To=%3C20071010093659.GA20384%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1">ms at suse.de
+       </A><BR>
+    <I>Wed Oct 10 11:37:00 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000077.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+        <LI>Next message: <A HREF="000079.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#78">[ date ]</a>
+              <a href="thread.html#78">[ thread ]</a>
+              <a href="subject.html#78">[ subject ]</a>
+              <a href="author.html#78">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I can see these lines:
+</I>&gt;<i> Probing module: piix ata_piix generic mptspi
+</I>&gt;<i> FATAL: Module piix ata_piix generic mptspi mptspi not found.
+</I>&gt;<i> 
+</I>&gt;<i> But still the same, if I execute 'modprobe mptspi' I can see the drive with 'fdisk -l'
+</I>&gt;<i> 
+</I>&gt;<i> 'hwinfo --storage' says:
+</I>&gt;<i> Driver status: mptspi is not active 
+</I>&gt;<i> 
+</I>&gt;<i> After I execute the 'modprobe mptspi' is says:
+</I>&gt;<i> Driver status: mptspi is active
+</I>
+Whops it should be multiple lines
+
+	Probing piix
+	Probing ata_piix
+	...
+
+I assume a IFS problem. Could you set:
+
+	function probeDevices {
+		IFS=$IFS_ORIG
+		...
+	}
+
+and test again ?
+
+Thanks a lot for helping here
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000077.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+	<LI>Next message: <A HREF="000079.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#78">[ date ]</a>
+              <a href="thread.html#78">[ thread ]</a>
+              <a href="subject.html#78">[ subject ]</a>
+              <a href="author.html#78">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problem: using custom kernel with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%3A%20using%20custom%20kernel%20with%20kiwi&In-Reply-To=%3C0000013383%40firehome.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001472.html">
+   <LINK REL="Next"  HREF="001474.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problem: using custom kernel with kiwi</H1>
+    <B>David Feurle</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%3A%20using%20custom%20kernel%20with%20kiwi&In-Reply-To=%3C0000013383%40firehome.de%3E"
+       TITLE="[Kiwi-users] problem: using custom kernel with kiwi">david at firehome.de
+       </A><BR>
+    <I>Tue Oct 13 14:31:49 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001472.html">[Kiwi-users] SLES10 SP2 x86_64 image creation on openSUSE	11.0	(i586)
+</A></li>
+        <LI>Next message: <A HREF="001474.html">[Kiwi-users] problem: using custom kernel with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1473">[ date ]</a>
+              <a href="thread.html#1473">[ thread ]</a>
+              <a href="subject.html#1473">[ subject ]</a>
+              <a href="author.html#1473">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&#160;Hi,
+
+ 
+
+I try to use a custom kernel with kiwi without success so far. 
+
+The custom kernel seems to work. Once the system is installed with kiwi and a
+standard kernel  I can install my custom kernel rpm and successfull boot with
+it.
+
+The steps i have taken so far are: 
+
+Compile a kernel the SuSE way
+
+[Kiwi-users] Installing a custom kernel
+
+ 
+
+When creating the image with kiwi I get the following error:&#160; 
+
+Couldn't find kernel file: [out
+directory]/initrd-oemboot-suse-11.1.i686-2.7.1.kernel 
+
+ 
+
+My config XML: 
+
+&#160;&#160;&#160; &lt;packages type=&quot;image&quot;&gt;&lt;!-- ALWAYS --&gt;
+&#160;&#160;&#160; &#160;&#160;&#160; &lt;package name=&quot;kernel-2.6.27.7advancedline-2.i386.rpm&quot;/&gt;
+&#160;&#160;&#160; &#160;&#160;&#160;&#160; &lt;!-- &lt;package name=&quot;kernel-default&quot;/&gt; --&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ....
+
+And the config XML from oemboot/suse-11.1
+
+&#160;&#160;&#160; &lt;packages type=&quot;image&quot; profiles=&quot;std&quot;&gt;
+&#160;&#160;&#160; &#160;&#160;&#160; &lt;package name=&quot;kernel-2.6.27.7advancedline-2.i386.rpm&quot;/&gt;
+&#160;&#160;&#160; &#160;&#160;&#160; &lt;!-- &lt;package name=&quot;kernel-default&quot;/&gt;
+&#160;&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;package name=&quot;kernel-default-base&quot;/&gt;
+&#160;&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;package name=&quot;kernel-default-extra&quot;/&gt;
+&#160;&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;package name=&quot;aufs-kmp-default&quot;/&gt; --&gt;
+&#160;&#160;&#160; &lt;/packages&gt;
+&#160;
+
+ 
+
+Is there anything I am missing?
+
+&#160;Best regards,
+
+ 
+
+David
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20091013/9ca35abb/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20091013/9ca35abb/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001472.html">[Kiwi-users] SLES10 SP2 x86_64 image creation on openSUSE	11.0	(i586)
+</A></li>
+	<LI>Next message: <A HREF="001474.html">[Kiwi-users] problem: using custom kernel with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1473">[ date ]</a>
+              <a href="thread.html#1473">[ thread ]</a>
+              <a href="subject.html#1473">[ subject ]</a>
+              <a href="author.html#1473">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

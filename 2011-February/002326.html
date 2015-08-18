@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /etc/hosts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/etc/hosts&In-Reply-To=%3C20110215165353.GA24393%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002325.html">
+   <LINK REL="Next"  HREF="002327.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /etc/hosts</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/etc/hosts&In-Reply-To=%3C20110215165353.GA24393%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] /etc/hosts">ms at suse.de
+       </A><BR>
+    <I>Tue Feb 15 17:53:54 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002325.html">[Kiwi-users] /etc/hosts
+</A></li>
+        <LI>Next message: <A HREF="002327.html">[Kiwi-users] /etc/hosts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2326">[ date ]</a>
+              <a href="thread.html#2326">[ thread ]</a>
+              <a href="subject.html#2326">[ subject ]</a>
+              <a href="author.html#2326">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> is there any reason why the root/etc/hosts is not copied to the
+</I>&gt;<i> image in the kiwi --prepare step? It is overwritten in
+</I>&gt;<i> 
+</I>&gt;<i> /usr/share/kiwi/modules/KIWIRoot.pm
+</I>&gt;<i> 
+</I>&gt;<i> at
+</I>&gt;<i> 
+</I>&gt;<i> &quot;cleanup temporary copy of hosts&quot;
+</I>&gt;<i> 
+</I>&gt;<i> for some strange reason. How can I put my own hosts settings to the image?
+</I>
+The reason is we assume that the /etc/hosts file of your building
+host is 'correct' and that's why we make that configuration (among others)
+available as long as the prepare step runs in order to have it when
+kiwi chroot into it
+
+Hmm, you are right it prevents you from having your own version as
+long as kiwi prepare runs. You can create you own hosts file in
+
+  images.sh
+
+though. This script is called in kiwi create step.
+
+Do you need your own hosts file while prepare runs ? if so why ? ;)
+same applies to name resolution resolv.conf btw
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002325.html">[Kiwi-users] /etc/hosts
+</A></li>
+	<LI>Next message: <A HREF="002327.html">[Kiwi-users] /etc/hosts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2326">[ date ]</a>
+              <a href="thread.html#2326">[ thread ]</a>
+              <a href="subject.html#2326">[ subject ]</a>
+              <a href="author.html#2326">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

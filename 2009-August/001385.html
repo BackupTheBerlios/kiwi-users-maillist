@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Creating a DOS partition on USB Stick (OEM)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Creating%20a%20DOS%20partition%20on%20USB%20Stick%20%28OEM%29&In-Reply-To=%3C20090817111045.GA377%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001384.html">
+   <LINK REL="Next"  HREF="001386.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Creating a DOS partition on USB Stick (OEM)</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Creating%20a%20DOS%20partition%20on%20USB%20Stick%20%28OEM%29&In-Reply-To=%3C20090817111045.GA377%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Creating a DOS partition on USB Stick (OEM)">ms at novell.com
+       </A><BR>
+    <I>Mon Aug 17 13:10:45 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001384.html">[Kiwi-users] Creating a DOS partition on USB Stick (OEM)
+</A></li>
+        <LI>Next message: <A HREF="001386.html">[Kiwi-users] Title for OEM boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1385">[ date ]</a>
+              <a href="thread.html#1385">[ thread ]</a>
+              <a href="subject.html#1385">[ subject ]</a>
+              <a href="author.html#1385">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'd like to create a DOS partion on an USB Stick containing some autostart
+</I>&gt;<i> stuff for Windows.
+</I>&gt;<i> 
+</I>&gt;<i> I found this thread:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/pipermail/kiwi-users/2009-January/000940.html">https://lists.berlios.de/pipermail/kiwi-users/2009-January/000940.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> [...]
+</I>&gt;<i> 
+</I>&gt;<i> Possible is to create a dos partition on first boot and add the
+</I>&gt;<i> tools. It also would be possible to setup the oem disk with an empty
+</I>&gt;<i> dos partition which allows you to store data before the first boot
+</I>&gt;<i> of the image happens
+</I>&gt;<i> 
+</I>&gt;<i> [...]
+</I>&gt;<i> 
+</I>&gt;<i> in the latest kiwi.pdf I found the chapter
+</I>&gt;<i> 
+</I>&gt;<i> 12.3.1 Influencing the oem partitioning
+</I>&gt;<i> 
+</I>&gt;<i> but I am unable to find out, how to define an empty DOS partition.
+</I>&gt;<i> 
+</I>&gt;<i> Is there any pointer?
+</I>
+There are two possible ways:
+
+1) make use of the new isohybrid technology (requires syslinux &gt;= 3.82)
+   <A HREF="http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/">http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/</A>
+
+2) if you use an oem image make sure you have the following in
+   your config.xml
+
+   &lt;oem-swap&gt;no&lt;/oem-swap&gt;
+   &lt;oem-systemsize&gt;MB&lt;oem-systemsize&gt;
+   &lt;oem-home&gt;no&lt;/oem-home&gt;
+
+   this will lead to a partition table which only uses the
+   oem-systemsize bytes and leaves the rest free. After first boot
+   of the image you should be able to create the DOS partition
+   you also can write a small init script which does that for you
+   on first boot automatically
+   
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001384.html">[Kiwi-users] Creating a DOS partition on USB Stick (OEM)
+</A></li>
+	<LI>Next message: <A HREF="001386.html">[Kiwi-users] Title for OEM boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1385">[ date ]</a>
+              <a href="thread.html#1385">[ thread ]</a>
+              <a href="subject.html#1385">[ subject ]</a>
+              <a href="author.html#1385">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

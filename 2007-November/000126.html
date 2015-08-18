@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Start autoyast on pxe client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Start%20autoyast%20on%20pxe%20client&In-Reply-To=%3C20071102135826.GA20940%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000125.html">
+   <LINK REL="Next"  HREF="000127.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Start autoyast on pxe client</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Start%20autoyast%20on%20pxe%20client&In-Reply-To=%3C20071102135826.GA20940%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Start autoyast on pxe client">ms at suse.de
+       </A><BR>
+    <I>Fri Nov  2 14:58:26 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000125.html">[Kiwi-users] Start autoyast on pxe client
+</A></li>
+        <LI>Next message: <A HREF="000127.html">[Kiwi-users] VIA IDE device nodes not appearing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Marcus Sch&#228;fer wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt; Back to the pxe boot client, I have following issue:
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; I've configured autoyast to be started on the pxe client.
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; When autoyast starts up, it fails to read the repository (nfs source)
+</I>&gt;<i> &gt;&gt; because at that time the network interface is not (yet) set up.
+</I>&gt;<i> &gt;&gt; Means, I can see it with 'ip a' but it is not 'up' and has no IP
+</I>&gt;<i> &gt;&gt; address. From what I've found out so far, autoyast is called by the
+</I>&gt;<i> &gt;&gt; /etc/init.d/boot. But I can't find anything in the boot scripts which
+</I>&gt;<i> &gt;&gt; is enabling the interface at this stage of the boot.
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; If I skip the package installation part in autoyast and let it
+</I>&gt;<i> &gt;&gt; configure the rest and then set autoyast to be started again at the
+</I>&gt;<i> &gt;&gt; next boot, the interface is set up and autoyast runs fine.
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; I also tried to put a /etc/sysconfig/network/ifcfg-eth0 already into
+</I>&gt;<i> &gt;&gt; the image but still the system comes up with an unconfigured eth0.
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; So, what makes the interface being configured at this time of the
+</I>&gt;<i> &gt;&gt; boot to be available for autoyast? And how can I enable this
+</I>&gt;<i> &gt;&gt; interface, so that the autoyast can reach the nfs repository?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; insserv /etc/init.d/network
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; ---&gt; means is the network service enabled ?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Regards,
+</I>&gt;<i> &gt; Marcus
+</I>&gt;<i> 
+</I>&gt;<i> Yes it looks like:
+</I>&gt;<i> 
+</I>&gt;<i> chkconfig -l network
+</I>&gt;<i> network                   0:off  1:off  2:on   3:on   4:off  5:on   6:off
+</I>
+
+Hmm, ok... well to run yast I touch the file /var/lib/YaST2/runme_at_boot
+and everything else is yast magic. I thought the script would setup the
+network if needed but maybe it doesn't. There is another mechanism called
+yast firstboot. I don't know how it works but the yast people said it's
+the preferred.
+
+I suggest to contact Duncan Mac-Vicar Prett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">dmacvicar at novell.com</A>&gt;
+and ask for help on this. IIRC we already make use this system in another
+project
+
+of course you can fake network startup in some early boot script but
+I would say that's a hack :)
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000125.html">[Kiwi-users] Start autoyast on pxe client
+</A></li>
+	<LI>Next message: <A HREF="000127.html">[Kiwi-users] VIA IDE device nodes not appearing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config.sh rpm won't install
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20rpm%20won%27t%20install&In-Reply-To=%3C20110326203438.GA7166%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002558.html">
+   <LINK REL="Next"  HREF="002560.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config.sh rpm won't install</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20rpm%20won%27t%20install&In-Reply-To=%3C20110326203438.GA7166%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] config.sh rpm won't install">ms at suse.de
+       </A><BR>
+    <I>Sat Mar 26 21:34:38 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002558.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+        <LI>Next message: <A HREF="002560.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2559">[ date ]</a>
+              <a href="thread.html#2559">[ thread ]</a>
+              <a href="subject.html#2559">[ subject ]</a>
+              <a href="author.html#2559">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+and by the way the following bash statement:
+
+&gt;<i>   if [ $? ];then
+</I>&gt;<i>     exit 1
+</I>&gt;<i>   fi
+</I>
+is invalid. the test parameters expects an expression
+but this expression is true if $? has a value not matter
+what value it is :) as $? is the return code of the last
+command it always has a value.
+
+so in short your script always exits with 1 and causes
+kiwi to stop here. The correct syntax is
+
+
+   if [ $? -ne 0 ];then
+		exit 1
+   fi 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002558.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+	<LI>Next message: <A HREF="002560.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2559">[ date ]</a>
+              <a href="thread.html#2559">[ thread ]</a>
+              <a href="subject.html#2559">[ subject ]</a>
+              <a href="author.html#2559">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

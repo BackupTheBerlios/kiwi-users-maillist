@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] customizing linuxrc: moving to the new root fails ...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20customizing%20linuxrc%3A%20moving%20to%20the%20new%20root%20fails%0A%20...&In-Reply-To=%3C20110719160403.Horde.YhGcatjz9kROJY7Ti7IwZpA%40webmail.df.eu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002839.html">
+   <LINK REL="Next"  HREF="002841.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] customizing linuxrc: moving to the new root fails ...</H1>
+    <B>E.Waelde</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20customizing%20linuxrc%3A%20moving%20to%20the%20new%20root%20fails%0A%20...&In-Reply-To=%3C20110719160403.Horde.YhGcatjz9kROJY7Ti7IwZpA%40webmail.df.eu%3E"
+       TITLE="[Kiwi-users] customizing linuxrc: moving to the new root fails ...">ew.ng7125 at nassur.net
+       </A><BR>
+    <I>Tue Jul 19 16:04:03 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002839.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+        <LI>Next message: <A HREF="002841.html">[Kiwi-users] Unbiassed suggestion
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2840">[ date ]</a>
+              <a href="thread.html#2840">[ thread ]</a>
+              <a href="subject.html#2840">[ subject ]</a>
+              <a href="author.html#2840">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Marcus,
+
+Quoting Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt;:
+
+&gt;<i> Hi Erich,
+</I>&gt;<i>
+</I>&gt;&gt;<i> up to this point everything works as expected, I can start &quot;debug
+</I>&gt;&gt;<i> shells&quot; and check the results. So all, that needs to be done is to
+</I>&gt;&gt;<i> move the root fs and start init:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This is what I try (full script below):
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> # --- snip ---
+</I>&gt;&gt;<i>     umountSystemFilesystems
+</I>&gt;&gt;<i>     createInitialDevices /mnt/dev
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     cat &lt;&lt;&quot;EOF&quot; &gt;&gt; /mnt/etc/fstab
+</I>&gt;&gt;<i>     #
+</I>&gt;&gt;<i>     sysfs        /sys      sysfs  noauto    0 0
+</I>&gt;&gt;<i>     /dev/sdb1    /usbstick vfat   defaults  0 0
+</I>&gt;&gt;<i>     /dev/loop0p1 /         ext4   defaults  0 0
+</I>&gt;&gt;<i>     EOF
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     cd /mnt
+</I>&gt;&gt;<i>     mkdir /mnt/usbstick
+</I>&gt;&gt;<i>     mount --move /usbstick /mnt/usbstick
+</I>&gt;&gt;<i>     mount --move /dev /mnt/dev
+</I>&gt;&gt;<i>     mount --move . /
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     exec chroot . /sbin/init
+</I>&gt;&gt;<i> # --- snip ---
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> anything obviously wrong with that
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I would do it that way:
+</I>&gt;<i>
+</I>&gt;<i>    mount --move /usbstick /mnt/usbstick
+</I>&gt;<i>    mount --move /dev /mnt/dev
+</I>&gt;<i>    cd /mnt &amp;&amp; exec chroot . /sbin/init $runlevel
+</I>&gt;<i>
+</I>
+trying the last line interactively results in:
+
+init: /dev/initctl: no such file or directory
+... kernel panic ...
+
+which leads to a well known secret:
+init does behave as telinit, unless it runs as PID==1.
+
+So, the lines above do the trick, indeed!
+
+Thanks Marcus,
+have a nice day!
+
+Erich
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002839.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+	<LI>Next message: <A HREF="002841.html">[Kiwi-users] Unbiassed suggestion
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2840">[ date ]</a>
+              <a href="thread.html#2840">[ thread ]</a>
+              <a href="subject.html#2840">[ subject ]</a>
+              <a href="author.html#2840">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

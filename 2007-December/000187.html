@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%20an%0A%09image%20with%20kiwi&In-Reply-To=%3C200712282351.07122.ml%40radoeka.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000185.html">
+   <LINK REL="Next"  HREF="000191.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] errors of uninstalled packages when building an	image with kiwi</H1>
+    <B>Richard Bos</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%20an%0A%09image%20with%20kiwi&In-Reply-To=%3C200712282351.07122.ml%40radoeka.nl%3E"
+       TITLE="[Kiwi-users] errors of uninstalled packages when building an	image with kiwi">ml at radoeka.nl
+       </A><BR>
+    <I>Fri Dec 28 23:51:06 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000185.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+        <LI>Next message: <A HREF="000191.html">[Kiwi-users] errors of uninstalled packages when building	an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#187">[ date ]</a>
+              <a href="thread.html#187">[ thread ]</a>
+              <a href="subject.html#187">[ subject ]</a>
+              <a href="author.html#187">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+thanks for the support.
+
+Op Friday 28 December 2007 23:25:21 schreef Marcus Sch&#228;fer:
+&gt;<i> &gt; I get errors of uninstalled packages when building an image with kiwi.
+</I>&gt;<i> &gt; At the
+</I>&gt;<i> &gt; moment I don't know in what direction to search for the error as I have
+</I>&gt;<i> &gt; just updated from kiwi-2.01 to 2.07 and have in the meantime also updated
+</I>&gt;<i> &gt; my kiwi image configuration. &#160;So the problem could be caused by either
+</I>&gt;<i> &gt; one.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; [Hmmm, sorry for this lenghty email. &#160;I hope that it does not scare
+</I>&gt;<i> &gt; people away to read it and answer it!]
+</I>&gt;<i>
+</I>&gt;<i> Thanks for your mail I read it and I think one kiwi action might not be
+</I>&gt;<i> clear here. When kiwi builds the system image (that's the big 700MB or so
+</I>&gt;<i> thing) it also requires to access a method to boot it. In case of an ISO
+</I>&gt;<i> image this means kiwi needs to build a boot image too (initrd). The boot
+</I>&gt;<i> image descriptions
+</I>&gt;<i> comes with the kiwi-desc-*boot packages which installs data in
+</I>&gt;<i> /usr/share/kiwi/image/*boot. In your case kiwi picks the boot image to
+</I>&gt;<i> boot an ISO live system from /usr/share/kiwi/image/isoboot and
+</I>&gt;<i> _automatically_ builds it together with your system image. So what you
+</I>&gt;<i> see in the log is a build of a system plus a boot image. The errors
+</I>&gt;<i> you found are related to the boot image build.
+</I>
+Ah, that's clearer now indeed.
+
+&gt;<i> Some words on the errors. The boot image should be as small as possible
+</I>&gt;<i> therefore we remove a lot of stuff from this image. The removal of this
+</I>&gt;<i> data makes the boot image &quot;inconsistent&quot; in the way the packagemanager and
+</I>&gt;<i> some package post scripts thinks about it. The result though is able
+</I>&gt;<i> to do the job it should do. The job is &quot;boot the live system&quot; nothing more.
+</I>&gt;<i> According to this the errors you found in the log are not fatal because
+</I>&gt;<i> we are &quot;breaking&quot; some stuff we don't need intentionally.
+</I>
+Okay.  The thing is that after upgrading to kiwi-2.07 (from 2.01) it feels 
+that the system takes much longer to load the image, which is logical as the 
+image is bigger....  (but perhaps the upgrade has nothing to do with it, 
+however I still want to mention it ;) )
+
+&gt;<i> fatal is if you can't boot with the result. Mandatory tools like cut
+</I>&gt;<i> must be present in the boot image. I'm wondering how I should reproduce
+</I>&gt;<i> this because I wasn't able to stumble over that problem.
+</I>
+Would you mind if I would sent you my config directory?
+
+&gt;<i> - With the latest version there are two examples in /usr/share/doc/kiwi/
+</I>&gt;<i> &#160; Could you reproduce your problem with this example image descriptions ?
+</I>
+I tried example/test2 some days ago (just before posting my email to the ML).  
+I was able to boot the resulting image succesfully.  I'll execute a test run 
+on test1 in the coming hours (day).
+
+&gt;<i> - A side note. Many people change the boot image descriptions which
+</I>&gt;<i> &#160; may lead to unexpected results. Just to make sure you did not change
+</I>&gt;<i> &#160; anything in /usr/share/kiwi/image/*boot, did you ? 
+</I>
+I have not changed anything there.
+
+# rpm -qa &quot;kiwi*&quot; | sort
+kiwi-2.07-28.1
+kiwi-desc-isoboot-2.07-28.1
+kiwi-desc-livesystem-1.55-29.1
+
+# rpm -V kiwi-desc-livesystem kiwi-desc-isoboot
+&lt;nothing returned&gt;
+So all seems fine, indeed.
+
+-- 
+Richard Bos
+Without a home the journey is endless
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000185.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+	<LI>Next message: <A HREF="000191.html">[Kiwi-users] errors of uninstalled packages when building	an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#187">[ date ]</a>
+              <a href="thread.html#187">[ thread ]</a>
+              <a href="subject.html#187">[ subject ]</a>
+              <a href="author.html#187">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] DHCP - hostname in /etc/hosts issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20DHCP%20-%20hostname%20in%20/etc/hosts%20issue&In-Reply-To=%3C4AA903E2.40600%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001447.html">
+   <LINK REL="Next"  HREF="001440.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] DHCP - hostname in /etc/hosts issue</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20DHCP%20-%20hostname%20in%20/etc/hosts%20issue&In-Reply-To=%3C4AA903E2.40600%40novell.com%3E"
+       TITLE="[Kiwi-users] DHCP - hostname in /etc/hosts issue">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Sep 10 15:49:22 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001447.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+        <LI>Next message: <A HREF="001440.html">[Kiwi-users]  custom SLES 10 install CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1439">[ date ]</a>
+              <a href="thread.html#1439">[ thread ]</a>
+              <a href="subject.html#1439">[ subject ]</a>
+              <a href="author.html#1439">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi ,
+
+I am trying to get an entry into /etc/hosts for the hostname of the 
+appliance. What I am looking for is an entry like this:
+
+127.0.0.2  linux.site linux
+
+I have etc/sysconfig/network/dhcp in &lt;config_dir&gt;/root with the 
+WRITE_HOSTNAME_TO_HOSTS=&quot;yes&quot; option.
+
+However, the entry in /etc/hosts I am expecting is missing. When I run 
+SuSEconfig in the created image I get the message:
+
+hostname: Host name lookup failure
+
+(This message is also produce by SuSEconfig if I comment out the 
+&quot;WRITE_HOSTNAME....&quot; line).
+
+However, &quot;echo $HOSTNAME&quot; returns &quot;linux&quot; as expected. Basically I am 
+trying to reproduce the behavior of a regular install.
+
+If I can avoid using &quot;echo 127.0.0.2 $HOSTNAME $HOSTNAME&quot; &gt;&gt; /etc/hosts 
+in my appliance and can tickle the behavior I am after out of the system 
+I think things would be more robust.
+
+Any help is appreciated.
+
+Thanks,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001447.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+	<LI>Next message: <A HREF="001440.html">[Kiwi-users]  custom SLES 10 install CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1439">[ date ]</a>
+              <a href="thread.html#1439">[ thread ]</a>
+              <a href="subject.html#1439">[ subject ]</a>
+              <a href="author.html#1439">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

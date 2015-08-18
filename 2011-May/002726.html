@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Missing swap on SLES11 SP1 based oem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Missing%20swap%20on%20SLES11%20SP1%20based%20oem&In-Reply-To=%3C20110513212726.GB10971%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002722.html">
+   <LINK REL="Next"  HREF="002737.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Missing swap on SLES11 SP1 based oem</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Missing%20swap%20on%20SLES11%20SP1%20based%20oem&In-Reply-To=%3C20110513212726.GB10971%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] Missing swap on SLES11 SP1 based oem">ms at suse.de
+       </A><BR>
+    <I>Fri May 13 23:27:26 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002722.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+        <LI>Next message: <A HREF="002737.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem [SOLVED]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2726">[ date ]</a>
+              <a href="thread.html#2726">[ thread ]</a>
+              <a href="subject.html#2726">[ subject ]</a>
+              <a href="author.html#2726">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; That file must exist if kiwi deployed the image. So you have your
+</I>&gt;<i> &gt; iso created by kiwi. What did you do to deploy the image ?
+</I>&gt;<i> &gt; You can for example deploy the image on another VM like this:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;   qemu-kvm -cdrom image.iso -boot d -hda mydisk
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; this would call qemu and install and boot onto mydisk. If I
+</I>&gt;<i> &gt; login to that deployed machine I will have a log file in
+</I>&gt;<i> &gt; /var/log/boot.kiwi.
+</I>&gt;<i> 
+</I>&gt;<i> I deployed it by creating a new vm with the iso-image in Fusion. 
+</I>
+So if you login to that machine you should have a log file
+
+&gt;<i> &gt; ok, but still wondering about &quot;oemboot/s*n*ps*-SLES11&quot;
+</I>&gt;<i> 
+</I>&gt;<i> that is oemboot-SLES11 but with a patched linuxrc where we call our own installer script under Section 21.
+</I>&gt;<i> I modified our own installer script to echo what &quot;parted /dev/sda print&quot; returned and there was 
+</I>&gt;<i> only one partition :(
+</I>
+Hmm, so you are using your own boot code. I'm afraid but in order
+to find a possible problem in the original boot code you
+should use the boot code I provide first. We can switch back to your
+code later, but it's pretty hard for me to debug unknown code :)
+btw; the not existing log file might also be related to your
+own version of the boot code.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002722.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+	<LI>Next message: <A HREF="002737.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem [SOLVED]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2726">[ date ]</a>
+              <a href="thread.html#2726">[ thread ]</a>
+              <a href="subject.html#2726">[ subject ]</a>
+              <a href="author.html#2726">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

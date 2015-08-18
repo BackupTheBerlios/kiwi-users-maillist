@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Installing a custom kernel
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installing%20a%20custom%20kernel&In-Reply-To=%3C20090617084345.GB6380%40idefix.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001207.html">
+   <LINK REL="Next"  HREF="001192.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Installing a custom kernel</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installing%20a%20custom%20kernel&In-Reply-To=%3C20090617084345.GB6380%40idefix.suse.de%3E"
+       TITLE="[Kiwi-users] Installing a custom kernel">ms at novell.com
+       </A><BR>
+    <I>Wed Jun 17 10:43:45 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001207.html">[Kiwi-users] Installing a custom kernel
+</A></li>
+        <LI>Next message: <A HREF="001192.html">[Kiwi-users] FYI: ConsoleKit-32bit (building a 32-bit openSUSE 11.1	image on a 64-bit x86 system)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1210">[ date ]</a>
+              <a href="thread.html#1210">[ thread ]</a>
+              <a href="subject.html#1210">[ subject ]</a>
+              <a href="author.html#1210">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Thanks, Roger, that's good to know!  As I mentioned, the 11.2
+</I>&gt;<i> distribution also comes with a 2.6.30 kernel snapshot.   I'm not sure
+</I>&gt;<i> what would be best, but you've given me a few more options to try.
+</I>&gt;<i> kernel-default-2.6.30-6.1.x86_64.rpm
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://download.opensuse.org/factory/repo/oss/suse">http://download.opensuse.org/factory/repo/oss/suse</A> also contains a
+</I>&gt;<i> 2.6.30 kernel as does
+</I>&gt;<i> <A HREF="http://download.opensuse.org/repositories/Base:/Kernel/standard.">http://download.opensuse.org/repositories/Base:/Kernel/standard.</A>
+</I>&gt;<i> 
+</I>&gt;<i> I guess the trick is figuring out how to specify repo priorities with
+</I>&gt;<i> kiwi.   I've tried using smart and --set-repoprio and --add-repoprio,
+</I>&gt;<i> but smart didn't resolve dependencies when I did that.
+</I>
+Hmm, the version of this kernel is newer so all you need to do
+is just add that repo to your system image config.xml or specify
+it with --add-repo / --add-repotype and the packagemanager will
+pickup the latest version.
+
+If not just send the prepare log
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001207.html">[Kiwi-users] Installing a custom kernel
+</A></li>
+	<LI>Next message: <A HREF="001192.html">[Kiwi-users] FYI: ConsoleKit-32bit (building a 32-bit openSUSE 11.1	image on a 64-bit x86 system)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1210">[ date ]</a>
+              <a href="thread.html#1210">[ thread ]</a>
+              <a href="subject.html#1210">[ subject ]</a>
+              <a href="author.html#1210">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

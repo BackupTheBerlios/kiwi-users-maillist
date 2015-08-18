@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Adding languages to be installed in config.xml
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20languages%20to%20be%20installed%20in%20config.xml&In-Reply-To=%3C20090129105126.GA2207%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000949.html">
+   <LINK REL="Next"  HREF="000951.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Adding languages to be installed in config.xml</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20languages%20to%20be%20installed%20in%20config.xml&In-Reply-To=%3C20090129105126.GA2207%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Adding languages to be installed in config.xml">ms at novell.com
+       </A><BR>
+    <I>Thu Jan 29 11:51:26 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000949.html">[Kiwi-users] Adding languages to be installed in config.xml
+</A></li>
+        <LI>Next message: <A HREF="000951.html">[Kiwi-users] Adding languages to be installed in config.xml
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#950">[ date ]</a>
+              <a href="thread.html#950">[ thread ]</a>
+              <a href="subject.html#950">[ subject ]</a>
+              <a href="author.html#950">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Gary,
+
+&gt;<i> I was wondering if one could specify locales for which we want packages
+</I>&gt;<i> installed in config.xml.
+</I>&gt;<i> 
+</I>&gt;<i> Something similar to:
+</I>&gt;<i> 
+</I>&gt;<i> 	&lt;linguas&gt;
+</I>&gt;<i> 		&lt;language&gt;ar_EG&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;cs_CZ&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;da_DK&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;de_DE&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;en_GB&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;en_US&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;es_ES&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;fi_FI&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;fr_FR&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;hu_HU&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;it_IT&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;ja_JP&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;ko_KR&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;nb_NO&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;nl_NL&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;pl_PL&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;pt_BR&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;ru_RU&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;sv_SE&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;zh_CN&lt;/language&gt;
+</I>&gt;<i> 		&lt;language&gt;zh_TW&lt;/language&gt;
+</I>&gt;<i> 	&lt;/linguas&gt;
+</I>&gt;<i> 
+</I>&gt;<i> I heard this is possible, but the scheme validation doesn't like it, nor
+</I>&gt;<i> do I see support for it in the sources.
+</I>
+you are right we don't have that in kiwi. I guess it also would be a very
+distro specific mapping which also will change from each distro version
+to the next. I'm not sure but does yast not have a module or functionality
+to install language sets ? I think it would be a good idea to use that
+functionality instead of implementing and maintainng it twice
+
+* It's easy to integrate yast firstboot and/or autoyast setup into kiwi
+  so if there is a module which we can pass a language to and it installs
+  everything required we are fine I guess
+
+* Another solution is to create a language profile section in your
+  config.xml
+
+     &lt;packages type=&quot;image&quot; profiles=&quot;de_DE&quot;&gt;
+         &lt;package name=&quot;...&quot;/&gt;
+         &lt;package name=&quot;...&quot;/&gt;
+     &lt;/packages&gt;
+
+  You can run kiwi with the option --add-profile de_DE and it will install
+  the mentioned packages of this section. That would work today already
+  You also can have multiple of these profiles packages sections and can
+  select also more than one to become included
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000949.html">[Kiwi-users] Adding languages to be installed in config.xml
+</A></li>
+	<LI>Next message: <A HREF="000951.html">[Kiwi-users] Adding languages to be installed in config.xml
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#950">[ date ]</a>
+              <a href="thread.html#950">[ thread ]</a>
+              <a href="subject.html#950">[ subject ]</a>
+              <a href="author.html#950">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

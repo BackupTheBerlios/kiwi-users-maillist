@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problems when using lvm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20when%20using%20lvm&In-Reply-To=%3C291A23B717F9104985651112DB6C365F27329E8768%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002201.html">
+   <LINK REL="Next"  HREF="002185.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problems when using lvm</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20when%20using%20lvm&In-Reply-To=%3C291A23B717F9104985651112DB6C365F27329E8768%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] problems when using lvm">john.lund at emc.com
+       </A><BR>
+    <I>Wed Dec  8 18:48:53 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002201.html">[Kiwi-users] /dev/ram1 limitation 128MB
+</A></li>
+        <LI>Next message: <A HREF="002185.html">[Kiwi-users] problems when using lvm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2184">[ date ]</a>
+              <a href="thread.html#2184">[ thread ]</a>
+              <a href="subject.html#2184">[ subject ]</a>
+              <a href="author.html#2184">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>When I try to use lvm I'm getting a problem, it seems that grub does not install correctly and I cannot reboot the system (excerpt from /var/log/boot.kiwi follows):
+
++ echo '===&gt; Installing boot loader...'
++ '[' 0 = 0 ']'
++ set +x
++ /usr/sbin/grub --batch --no-floppy
+
+
+    GNU GRUB  version 0.97  (640K lower / 3072K upper memory)
+
+ [ Minimal BASH-like line editing is supported.  For the first word, TAB
+   lists possible command completions.  Anywhere else TAB lists the possible
+   completions of a device/filename. ]
+grub&gt; root (hd0,0)
+ Filesystem type is ext2fs, partition type 0x83
+grub&gt; setup --stage2=/boot/grub/stage2 (hd0)
+ Checking if &quot;/boot/grub/stage1&quot; exists... no
+ Checking if &quot;/grub/stage1&quot; exists... no
+
+Error 15: File not found
+grub&gt; quit
++ '[' '!' 0 = 0 ']'
++ '[' '!' -z '' ']'
++ '[' no = no ']'
++ '[' '!' -z '' ']'
++ '[' no = no ']'
++ '[' -x /bin/rpm ']'
+
+I can build a non-lvm system that can reboot just fine by commenting out the following in my config.xml file, and not using the --lvm on the build line.
+&lt;systemdisk name=&quot;AtmosVG&quot;&gt;
+&lt;volume name=&quot;root2&quot; size=&quot;8G&quot; /&gt;
+&lt;volume name=&quot;var&quot; freespace=&quot;2G&quot; /&gt;
+&lt;/systemdisk&gt;
+
+What more can I do to track down why grub isn't being installed/set up correctly.  Thank you.
+
+John Lund
+EMC Centera Development
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002201.html">[Kiwi-users] /dev/ram1 limitation 128MB
+</A></li>
+	<LI>Next message: <A HREF="002185.html">[Kiwi-users] problems when using lvm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2184">[ date ]</a>
+              <a href="thread.html#2184">[ thread ]</a>
+              <a href="subject.html#2184">[ subject ]</a>
+              <a href="author.html#2184">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

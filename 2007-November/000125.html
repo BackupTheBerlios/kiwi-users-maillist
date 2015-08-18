@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Start autoyast on pxe client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Start%20autoyast%20on%20pxe%20client&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE9024463CC%40zuk35exm60.ds.mot.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000124.html">
+   <LINK REL="Next"  HREF="000126.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Start autoyast on pxe client</H1>
+    <B>Mair Wolfgang-awm013</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Start%20autoyast%20on%20pxe%20client&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE9024463CC%40zuk35exm60.ds.mot.com%3E"
+       TITLE="[Kiwi-users] Start autoyast on pxe client">wolfgang.mair at motorola.com
+       </A><BR>
+    <I>Fri Nov  2 14:51:01 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000124.html">[Kiwi-users] Start autoyast on pxe client
+</A></li>
+        <LI>Next message: <A HREF="000126.html">[Kiwi-users] Start autoyast on pxe client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#125">[ date ]</a>
+              <a href="thread.html#125">[ thread ]</a>
+              <a href="subject.html#125">[ subject ]</a>
+              <a href="author.html#125">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Back to the pxe boot client, I have following issue:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I've configured autoyast to be started on the pxe client.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> When autoyast starts up, it fails to read the repository (nfs source)
+</I>&gt;&gt;<i> because at that time the network interface is not (yet) set up.
+</I>&gt;&gt;<i> Means, I can see it with 'ip a' but it is not 'up' and has no IP
+</I>&gt;&gt;<i> address. From what I've found out so far, autoyast is called by the
+</I>&gt;&gt;<i> /etc/init.d/boot. But I can't find anything in the boot scripts which
+</I>&gt;&gt;<i> is enabling the interface at this stage of the boot.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> If I skip the package installation part in autoyast and let it
+</I>&gt;&gt;<i> configure the rest and then set autoyast to be started again at the
+</I>&gt;&gt;<i> next boot, the interface is set up and autoyast runs fine.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I also tried to put a /etc/sysconfig/network/ifcfg-eth0 already into
+</I>&gt;&gt;<i> the image but still the system comes up with an unconfigured eth0.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> So, what makes the interface being configured at this time of the
+</I>&gt;&gt;<i> boot to be available for autoyast? And how can I enable this
+</I>&gt;&gt;<i> interface, so that the autoyast can reach the nfs repository?
+</I>&gt;<i> 
+</I>&gt;<i> insserv /etc/init.d/network
+</I>&gt;<i> 
+</I>&gt;<i> ---&gt; means is the network service enabled ?
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+Yes it looks like:
+
+chkconfig -l network
+network                   0:off  1:off  2:on   3:on   4:off  5:on   6:off
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000124.html">[Kiwi-users] Start autoyast on pxe client
+</A></li>
+	<LI>Next message: <A HREF="000126.html">[Kiwi-users] Start autoyast on pxe client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#125">[ date ]</a>
+              <a href="thread.html#125">[ thread ]</a>
+              <a href="subject.html#125">[ subject ]</a>
+              <a href="author.html#125">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

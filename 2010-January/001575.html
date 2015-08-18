@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB Image Partition Order
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20Image%20Partition%20Order&In-Reply-To=%3C1263346727.3737.93.camel%40delder.novacoast.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001574.html">
+   <LINK REL="Next"  HREF="001577.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB Image Partition Order</H1>
+    <B>Dan Elder</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20Image%20Partition%20Order&In-Reply-To=%3C1263346727.3737.93.camel%40delder.novacoast.com%3E"
+       TITLE="[Kiwi-users] USB Image Partition Order">delder at novacoast.com
+       </A><BR>
+    <I>Wed Jan 13 02:38:47 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001574.html">[Kiwi-users] USB Image Partition Order
+</A></li>
+        <LI>Next message: <A HREF="001577.html">[Kiwi-users] Create extra (swap) partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1575">[ date ]</a>
+              <a href="thread.html#1575">[ thread ]</a>
+              <a href="subject.html#1575">[ subject ]</a>
+              <a href="author.html#1575">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>	Chainloading the bootloader helped, I can at least get to the grub
+shell now when it fails but unfortunately the Error 18 still persists:
+
+&quot;Error 18: Selected cylinder exceeds maximum supported by BIOS&quot;
+
+	It's definitely a BIOS limitation, the stick boots just fine on most
+machines but on a new HP Proliant DL380 with a three month old BIOS
+we're hitting an 8 GB limit.  I haven't tried with LVM or any of the
+various split configuration yet but will see if those work any better.
+If kiwi could add support for partition ordering (or just putting /boot
+at the beginning of the drive) in the future that would be a very happy
+addition.
+	Cheers,
+	Dan
+
+On Tue, 2010-01-12 at 10:36 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 	Is there any way to specify what order partitions should be created on
+</I>&gt;<i> &gt; for an oemboot image destined for a usb stick?  I have an image that
+</I>&gt;<i> &gt; works very well on most systems but do it's size (&gt; 12 GB) runs into
+</I>&gt;<i> &gt; GRUB errors when booting on certain systems because the /boot partition
+</I>&gt;<i> &gt; is too large or not close enough to the start of the drive.  When I
+</I>&gt;<i> &gt; don't specify /boot as a separate partition GRUB fails (error 17 or 18)
+</I>&gt;<i> &gt; but when I split it off by choosing LVM it's not the first partition:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Disk image/zenboot.x86_64-0.5.1.raw: 0 MB, 0 bytes
+</I>&gt;<i> &gt; 255 heads, 63 sectors/track, 0 cylinders
+</I>&gt;<i> &gt; Units = cylinders of 16065 * 512 = 8225280 bytes
+</I>&gt;<i> &gt; Disk identifier: 0x8f9e2dd5
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;                          Device Boot      Start         End      Blocks   Id  System
+</I>&gt;<i> &gt; image/zenboot.x86_64-0.5.1.raw1               1        2398    19261903+  8e  Linux LVM
+</I>&gt;<i> &gt; image/zenboot.x86_64-0.5.1.raw2   *        2399        2404       48195   83  Linux
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 	
+</I>&gt;<i> &gt; 	Is there any way to specify that /boot should be the first partition in
+</I>&gt;<i> &gt; an LVM or non-LVM build?
+</I>&gt;<i> 
+</I>&gt;<i> Unfortunately this can't be specified at the moment. Maybe it helps
+</I>&gt;<i> if you use chainloading. Call the kiwi create step with the
+</I>&gt;<i> grub-chainload option:
+</I>&gt;<i> 
+</I>&gt;<i>    kiwi --create .... --grub-chainload
+</I>&gt;<i> 
+</I>&gt;<i> This will put a bootloader (from the master-boot-code package) into the
+</I>&gt;<i> MBR of the disk. The BIOS should not have a problem to find this bootloader
+</I>&gt;<i> there. From there the bootloader loads the grub bootloader which has been
+</I>&gt;<i> installed into the first partition. I did not test this in combination
+</I>&gt;<i> with LVM, so please try the &quot;standard&quot; way first
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001574.html">[Kiwi-users] USB Image Partition Order
+</A></li>
+	<LI>Next message: <A HREF="001577.html">[Kiwi-users] Create extra (swap) partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1575">[ date ]</a>
+              <a href="thread.html#1575">[ thread ]</a>
+              <a href="subject.html#1575">[ subject ]</a>
+              <a href="author.html#1575">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

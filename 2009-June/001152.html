@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image - Live-Stick System error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3Cacbb082e0906020838h77e5ae62o5d8a4f4afbc33c2a%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001150.html">
+   <LINK REL="Next"  HREF="001153.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image - Live-Stick System error</H1>
+    <B>Julien VIELLE</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3Cacbb082e0906020838h77e5ae62o5d8a4f4afbc33c2a%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image - Live-Stick System error">jvielle at gmail.com
+       </A><BR>
+    <I>Tue Jun  2 17:38:13 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001150.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+        <LI>Next message: <A HREF="001153.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1152">[ date ]</a>
+              <a href="thread.html#1152">[ thread ]</a>
+              <a href="subject.html#1152">[ subject ]</a>
+              <a href="author.html#1152">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Thanks for your assistance everything now work correctly. just a quick
+question i read in Kiwi man page that i can create an usb disc for
+installing a system like i did with my oem version on dvd using this command
+kiwi --installstick Initrd --installstick-system VMXSystemImage
+that is correct or i misunderstood ??
+
+if it's correct i guess i have to install the vmx package to generate a VMX
+system image
+
+Best regards,
+
+Julien Vielle
+
+On Tue, Jun 2, 2009 at 4:31 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> now I see the problem. You called:
+</I>&gt;<i>
+</I>&gt;<i> kiwi --bootstick
+</I>&gt;<i>  oemcreateUSB-sled11/initrd-usbboot-suse-SLED11.i686-2.1.1.splash.gz
+</I>&gt;<i>  --bootstick-system oemcreateUSB-sled11/essilor-suse-sled11.i686-0.1.0.gz
+</I>&gt;<i>  --bootstick-device /dev/sdb
+</I>&gt;<i>
+</I>&gt;<i> you passed the compressed version of the image to the --bootstick-system
+</I>&gt;<i> parameter and that's the problem. You can only pass the non compressed
+</I>&gt;<i> version of the image in this deployment method
+</I>&gt;<i>
+</I>&gt;<i> Is there any reason why you have set
+</I>&gt;<i>
+</I>&gt;<i>   &lt;compressed&gt;yes&lt;/compressed&gt;
+</I>&gt;<i>
+</I>&gt;<i> in your config.xml. The compressed element just means that the image
+</I>&gt;<i> file will be compressed so that it doesn't need that much space
+</I>&gt;<i> to be stored on your filesystem. For the process of creating an oem
+</I>&gt;<i> it has no effect because a virtual disk image file is created
+</I>&gt;<i>
+</I>&gt;<i> * If you don't specify it the result will be a non compressed ext3
+</I>&gt;<i>  which you can pass to --bootstick-system
+</I>&gt;<i>
+</I>&gt;<i> * But you can also call
+</I>&gt;<i>  gzip -d oemcreateUSB-sled11/essilor-suse-sled11.i686-0.1.0.gz
+</I>&gt;<i>  and pass the non compressed version when deploying with --bootstick
+</I>&gt;<i>
+</I>&gt;<i> I will take a look into that
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/6b428431/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090602/6b428431/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001150.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+	<LI>Next message: <A HREF="001153.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1152">[ date ]</a>
+              <a href="thread.html#1152">[ thread ]</a>
+              <a href="subject.html#1152">[ subject ]</a>
+              <a href="author.html#1152">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

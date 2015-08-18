@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Is there a way to add function to kiwi script
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Is%20there%20a%20way%20to%20add%20function%20to%20kiwi%20script&In-Reply-To=%3C20080130082807.GA30687%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000264.html">
+   <LINK REL="Next"  HREF="000271.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Is there a way to add function to kiwi script</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Is%20there%20a%20way%20to%20add%20function%20to%20kiwi%20script&In-Reply-To=%3C20080130082807.GA30687%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Is there a way to add function to kiwi script">ms at suse.de
+       </A><BR>
+    <I>Wed Jan 30 09:28:08 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000264.html">[Kiwi-users] Is there a way to add function to kiwi script
+</A></li>
+        <LI>Next message: <A HREF="000271.html">[Kiwi-users] Is there a way to add function to kiwi script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#266">[ date ]</a>
+              <a href="thread.html#266">[ thread ]</a>
+              <a href="subject.html#266">[ subject ]</a>
+              <a href="author.html#266">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Kazuhiro Takagi,
+
+&gt;<i> Thank you for the response.
+</I>&gt;<i> 
+</I>&gt;<i> My customer would like to keep several settings on live CD. e.g.
+</I>&gt;<i> own IPaddress and Firefox bookmark
+</I>&gt;<i>  - Saving to partition
+</I>&gt;<i>  - Partition is encrypted  e.g LUKS
+</I>&gt;<i>  - and some related function
+</I>
+ok so these changes are customer focused
+
+&gt;<i> I tried to write this function and add. However kiwi evolves every day.
+</I>&gt;<i> It is better what there is a mechanism of call user function, I think.
+</I>&gt;<i> Also original function is add to KIWILinuxRC.sh. 
+</I>
+I see your point and would like to suggest the following. The
+KIWILinuxRC.sh contains a function named runHook. You can give it
+a paramater which is the name of a program which is called. The
+program is searched in /hooks and called as /hooks/$program.sh
+
+- If you include appropriate runHook calls into the kiwi
+  isoboot/suse-linuxrc file and send that as a patch to the list
+  I will check this patch in
+
+- The additional code you need to satisfy the customer should be
+  implemented as such hook scripts. You are now able to branch off
+  the original isoboot image and still stay with the latest code
+  changes we make on kiwi
+
+Would that be ok for you ?
+
+PS:
+by the way, could you explain to me what is the correct way
+to welcome you ? Hello Kazuhiro or Hello Takagi or something
+completely different. I'm sorry for asking such dumb
+questions :)
+
+Thanks
+ 
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000264.html">[Kiwi-users] Is there a way to add function to kiwi script
+</A></li>
+	<LI>Next message: <A HREF="000271.html">[Kiwi-users] Is there a way to add function to kiwi script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#266">[ date ]</a>
+              <a href="thread.html#266">[ thread ]</a>
+              <a href="subject.html#266">[ subject ]</a>
+              <a href="author.html#266">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

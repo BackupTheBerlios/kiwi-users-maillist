@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Facing Problems with KIWI! Help needed!
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Facing%20Problems%20with%20KIWI%21%20Help%20needed%21&In-Reply-To=%3C20110718085739.GA15563%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002835.html">
+   <LINK REL="Next"  HREF="002838.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Facing Problems with KIWI! Help needed!</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Facing%20Problems%20with%20KIWI%21%20Help%20needed%21&In-Reply-To=%3C20110718085739.GA15563%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Facing Problems with KIWI! Help needed!">ms at suse.de
+       </A><BR>
+    <I>Mon Jul 18 10:57:39 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002835.html">[Kiwi-users] Facing Problems with KIWI! Help needed!
+</A></li>
+        <LI>Next message: <A HREF="002838.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2836">[ date ]</a>
+              <a href="thread.html#2836">[ thread ]</a>
+              <a href="subject.html#2836">[ subject ]</a>
+              <a href="author.html#2836">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> i have installed the &quot;yast2-product-creator&quot; so as to make &#160;a live-cd
+</I>&gt;<i> iso with the KIWI Graphical Tool- Frontends (Image Creator and Product
+</I>&gt;<i> Creator).
+</I>&gt;<i> 
+</I>&gt;<i> Well , everything , goes well , but finally i can't build the image
+</I>&gt;<i> with the repositories and applications that i want.
+</I>
+Hmm, I have no clue what you are doing in your config.sh script
+but it looked pretty intrusive to me :)
+
+----snip-----
+Jul-14 03:48:28 &lt;1&gt; : Configure image: []...
+patching file /etc/init.d/xdm
+Hunk #1 succeeded at 242 (offset 63 lines).
+patching file /usr/lib/YaST2/startup/YaST2.call
+Hunk #1 succeeded at 646 (offset 8 lines).
+error: /rpmkeys/gpg-pubkey-307e3d54-4be01a65.asc: import failed.
+error: /rpmkeys/gpg-pubkey-9c800aca-4be01999.asc: import failed.
++ zypper addrepo -f -n openSUSE-11.4-Update <A HREF="http://download.opensuse.org/update/11.4/">http://download.opensuse.org/update/11.4/</A> repo-update
+
+...more lines
+
+Starting SuSEconfig, the SuSE Configuration Tool...
+Running module permissions only
+Reading /etc/sysconfig and updating the system...
+Executing /sbin/conf.d/SuSEconfig.permissions...
+Finished.
+ls: cannot access /usr/lib*/hal/hald-generate-fdi-cache: No such file or directory
+
+----snap-----
+
+The permissions module of the SuSEConfig tool also checks
+/usr/lib/hal/hald-generate-fdi-cache. But it seems that this
+file does not exist in your image. The cache file belongs to the
+hal package. So you should check why it's not there:
+
+1) is hal installed
+2) did your scripts remove something
+
+kiwi treat the config.sh call as failed if you leave the script with
+an exit code != 0. You can ignore all kinds of errors if you have an
+'exit 0' at the end of your script and kiwi will continue
+
+But be careful it's not always wise to ignore errrors :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002835.html">[Kiwi-users] Facing Problems with KIWI! Help needed!
+</A></li>
+	<LI>Next message: <A HREF="002838.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2836">[ date ]</a>
+              <a href="thread.html#2836">[ thread ]</a>
+              <a href="subject.html#2836">[ subject ]</a>
+              <a href="author.html#2836">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

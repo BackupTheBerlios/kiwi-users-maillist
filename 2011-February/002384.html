@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTi%3DZOMtK31J3Lb1H2LeGLMKLjW%2Bxadwb499iVnYe%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002383.html">
+   <LINK REL="Next"  HREF="002386.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTi%3DZOMtK31J3Lb1H2LeGLMKLjW%2Bxadwb499iVnYe%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Tue Feb 22 20:27:43 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002383.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+        <LI>Next message: <A HREF="002386.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2384">[ date ]</a>
+              <a href="thread.html#2384">[ thread ]</a>
+              <a href="subject.html#2384">[ subject ]</a>
+              <a href="author.html#2384">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Feb 22, 2011 at 1:57 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 02/22/2011 01:24 PM, Chris Cunha wrote:
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi Robert,
+</I>&gt;&gt;<i> Hey thanks again for the help on this. &#160;I realize that I'm a bit thick
+</I>&gt;&gt;<i> headed. It's not intentional. &#160;After writing the developer/package of
+</I>&gt;&gt;<i> LXDE I'm a bit disappointed with the reply. (displayed at the end of
+</I>&gt;&gt;<i> this message)
+</I>&gt;&gt;<i> Due to this I'm going to try placing my LXDE-common-branding-SOS
+</I>&gt;&gt;<i> packaged RPM file in the overlay tree of Kiwi. &#160;I've read the tutorial
+</I>&gt;&gt;<i> on the GFXBoot and Bootsplash package and who it was integrated into
+</I>&gt;&gt;<i> the kiwi image. &#160;This seems very similar but instead of the package
+</I>&gt;&gt;<i> contents being tared the will be be installed as an RPM.
+</I>&gt;&gt;<i> I included in my &quot;config.sh&quot; file the commands
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &quot;rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch&quot;
+</I>&gt;&gt;<i> &quot;rpm -i lxde-common-branding-SOS-11.3-30.1.noarch&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> A couple of questions.
+</I>&gt;&gt;<i> 1) Does the RPM command have to be placed in a specific place within
+</I>&gt;&gt;<i> the config.sh file?
+</I>&gt;<i>
+</I>&gt;<i> Should be done prior to the call to the suseConfig call.
+</I>&gt;<i>
+</I>&gt;&gt;<i> 2) In the config.xml file I know I have to add a line or two. &#160;Am I
+</I>&gt;&gt;<i> adding an &lt;archive&gt; line?
+</I>&gt;<i>
+</I>&gt;<i> No, you are not, you are removing lines from config.xml. The files in
+</I>&gt;<i> the overlay tree (under root) get included in the image automatically.
+</I>&gt;<i>
+</I>&gt;<i> Note here, that there is one problem. If you are customizing the
+</I>&gt;<i> background for the bootsplash and the grub menu you cannot use this
+</I>&gt;<i> approach. There reason being that there is no way for you to get these
+</I>&gt;<i> packages into the initrd which is where they need to be to customize the
+</I>&gt;<i> bootsplash and grub menu.
+</I>&gt;<i>
+</I>&gt;&gt;<i> I assume that this line would be just for
+</I>&gt;&gt;<i> the Tar archive only.
+</I>&gt;&gt;<i> Currently kiwi is pulling this lxde-common-branding-SOS package from
+</I>&gt;&gt;<i> my repo but now it's going to be installing from a local source.
+</I>&gt;<i>
+</I>&gt;<i> In this case you are doing the installation, Kiwi is out of the picture.
+</I>&gt;<i> Kiwi just executed config.sh at the root level of the unpacked image
+</I>&gt;<i> tree at the end of the prepare step.
+</I>&gt;<i>
+</I>&gt;&gt;<i> I
+</I>&gt;&gt;<i> placed this RPM withing the overlay tree in /opt/branding/ &#160;How is
+</I>&gt;&gt;<i> this done?
+</I>&gt;<i>
+</I>&gt;<i> Not sure I understand the question but in your configuration tree you
+</I>&gt;<i> should have
+</I>&gt;<i>
+</I>&gt;<i> root/opt/branding/
+</I>&gt;<i>
+</I>&gt;<i> this turns into /opt/branding/ when referencing it in config.sh
+</I>&gt;<i>
+</I>&gt;&gt;<i> 3) Do I also have to add the bootinclude=&quot;true&quot; string in the package line?
+</I>&gt;<i>
+</I>&gt;<i> You cannot reference the packages in config.xml, see comment above about
+</I>&gt;<i> the initrd problem.
+</I>&gt;<i>
+</I>&gt;&gt;<i> 4) If the Tar archive is to be used I would place the tar file in the
+</I>&gt;&gt;<i> kiwi discription directory with the &quot;root&quot; overlay folder, config.xml
+</I>&gt;&gt;<i> and config.sh files correct?
+</I>&gt;<i>
+</I>&gt;<i> Yes the tarball is at the same level as config.xml etc. as documented.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'm looking for a branding solution that will be consistent regardless
+</I>&gt;&gt;<i> of what somebody else did in a spec file. &#160;If including the said
+</I>&gt;&gt;<i> branding package in RPM form works like this every time I would apt to
+</I>&gt;&gt;<i> go with this method...or if the Tar archive is faster (I assume it
+</I>&gt;&gt;<i> would be if the RPM isn't already made) then I would go in this
+</I>&gt;&gt;<i> direction.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In this particular circumstance I have already made the RPM for this
+</I>&gt;&gt;<i> package but for the sake of using one method (for now) should I just
+</I>&gt;&gt;<i> download the source files from my RPM and tarball the contents. &#160;It
+</I>&gt;&gt;<i> seems like the end results is the same...and the config.sh file
+</I>&gt;&gt;<i> wouldn't need to be tweaked as the RPMs wouldn't be used at all.
+</I>&gt;<i>
+</I>&gt;<i> This sounds like you still have conceptual difficulties, however, I am
+</I>&gt;<i> not sure how to explain things differently than they are documented.
+</I>&gt;<i>
+</I>&gt;<i> - If you use you RPM branding packages, the only way to get them into
+</I>&gt;<i> the image is via overlay tree and then installing the packages yourself
+</I>&gt;<i> via config.sh. There is no way to change the bootsplash and grub menu
+</I>&gt;<i> this way as the packages will NOT end up in the initrd
+</I>&gt;<i>
+</I>&gt;<i> - If you use a tarball use &lt;archive ....bootinclude=&quot;true&quot;/&gt; in
+</I>&gt;<i> config.xml, follow the documented example.
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+Robert
+I think it finally clicked.
+Ok let me confirm.
+We are placing the RPM file within the overlay tree to simply get the
+RPM in the OS.  We place it (in this case in /opt/SOS). Then have the
+config.sh file uninstall the SUSE version, leaving the deps behind and
+installing the SOS.
+The config.xml file has NOTHING to do with this because it's
+Kiwi...not a package manager.  Since the SUSE version of this package
+is no longer installed it will not attempt an update IF an update was
+every triggered using the package manager and since the removal of
+this package was done with the &quot;RPM&quot; command the package manager knows
+that it's not there in the system anymore.
+
+I have no idea why it took so long for me to grasp this but for the
+RPM method I think I understand it now.
+So in the config.xml file can I do something like this:
+
+rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch
+cd /opt/SOS
+rpm -i lxde-common-branding-SOS-11.3-30.1.noarch
+
+Thanks again for your time and patients.
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002383.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+	<LI>Next message: <A HREF="002386.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2384">[ date ]</a>
+              <a href="thread.html#2384">[ thread ]</a>
+              <a href="subject.html#2384">[ subject ]</a>
+              <a href="author.html#2384">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

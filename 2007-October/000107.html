@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Read only file system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Read%20only%20file%20system&In-Reply-To=%3C20071023144627.GA15430%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000099.html">
+   <LINK REL="Next"  HREF="000096.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Read only file system</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Read%20only%20file%20system&In-Reply-To=%3C20071023144627.GA15430%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Read only file system">ms at suse.de
+       </A><BR>
+    <I>Tue Oct 23 16:46:28 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000099.html">[Kiwi-users] Read only file system
+</A></li>
+        <LI>Next message: <A HREF="000096.html">[Kiwi-users] v1.74 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#107">[ date ]</a>
+              <a href="thread.html#107">[ thread ]</a>
+              <a href="subject.html#107">[ subject ]</a>
+              <a href="author.html#107">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm using ext3 and this is the line from the exportfs file:
+</I>&gt;<i> /live/root *(rw,no_root_squash,sync,no_subtree_check)
+</I>
+that looks good. If you mount that path manually, let's say from
+your workstation:
+
+	mount -t nfs IP:/live/root /mnt
+
+does the mount happen rw ? could you store data in /mnt ?
+If yes your export is fine. the kiwi linuxrc simply mounts the
+filesystem like this.
+
+&gt;<i> Can this have something to do with the suseActivateDefaultServices?
+</I>
+no, *imho*
+
+&gt;<i> I think that the reason for this is that the system is not shuting
+</I>&gt;<i> down properly and hence leaving something left in the root tree.
+</I>&gt;<i> Is there any file lock set or something like this?
+</I>
+if you mount the root of a linux system via nfs the root stays busy
+and a &quot;normal&quot; shutdown sequence can't umount the root filesystem.
+That's ok because to be able to call the umount command you need
+access to your root dir and in order to shutdown the network
+service needs to disabled. So both conflict and rebooting a network
+client should happen without the network service to be disabled
+by a shutdown sequence.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000099.html">[Kiwi-users] Read only file system
+</A></li>
+	<LI>Next message: <A HREF="000096.html">[Kiwi-users] v1.74 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#107">[ date ]</a>
+              <a href="thread.html#107">[ thread ]</a>
+              <a href="subject.html#107">[ subject ]</a>
+              <a href="author.html#107">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

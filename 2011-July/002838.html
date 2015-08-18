@@ -1,0 +1,394 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] customizing linuxrc: moving to the new root fails ...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20customizing%20linuxrc%3A%20moving%20to%20the%20new%20root%20fails%20...&In-Reply-To=%3C20110719140952.Horde.vGZpJFNNcXdOJXQQzR9XpKA%40webmail.df.eu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002836.html">
+   <LINK REL="Next"  HREF="002839.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] customizing linuxrc: moving to the new root fails ...</H1>
+    <B>E.Waelde</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20customizing%20linuxrc%3A%20moving%20to%20the%20new%20root%20fails%20...&In-Reply-To=%3C20110719140952.Horde.vGZpJFNNcXdOJXQQzR9XpKA%40webmail.df.eu%3E"
+       TITLE="[Kiwi-users] customizing linuxrc: moving to the new root fails ...">ew.ng7125 at nassur.net
+       </A><BR>
+    <I>Tue Jul 19 14:09:52 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002836.html">[Kiwi-users] Facing Problems with KIWI! Help needed!
+</A></li>
+        <LI>Next message: <A HREF="002839.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2838">[ date ]</a>
+              <a href="thread.html#2838">[ thread ]</a>
+              <a href="subject.html#2838">[ subject ]</a>
+              <a href="author.html#2838">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I'm trying to port a working solution (openSUSE 10.3, kiwi 3.74)
+to a more current setup (openSUSE 11.4, kiwi 4.92.1). This involves
+writing a customized linuxrc script to be run within the initial
+ram disk. The idea is to use a container file on the stick (root.raw)
+as loop mounted root-fs for the booted system.
+
++ I can build a customized initrd, no problem.
++ syslinux is booting the target system fine
++ kernel and initrd are loaded and started
++ the linuxrc script is run
++ it will find the usb stick (/dev/disk/by-id/usb-*-part1)
++ it will mount the usb stick partition (vfat) as /usbstick
++ it will find the file /usbstick/root.raw, which is a vmx image
++ kpartx will loop mount the partition inside this file
++ linuxrc will mount /dev/mapper/loop0p1 read-write at /mnt
++ linuxrc will create a sensible /mnt/etc/fstab
+
+up to this point everything works as expected, I can start &quot;debug
+shells&quot; and check the results. So all, that needs to be done is to
+move the root fs and start init:
+
+This is what I try (full script below):
+
+# --- snip ---
+     umountSystemFilesystems
+     createInitialDevices /mnt/dev
+
+     cat &lt;&lt;&quot;EOF&quot; &gt;&gt; /mnt/etc/fstab
+     #
+     sysfs        /sys      sysfs  noauto    0 0
+     /dev/sdb1    /usbstick vfat   defaults  0 0
+     /dev/loop0p1 /         ext4   defaults  0 0
+     EOF
+
+     cd /mnt
+     mkdir /mnt/usbstick
+     mount --move /usbstick /mnt/usbstick
+     mount --move /dev /mnt/dev
+     mount --move . /
+
+     exec chroot . /sbin/init
+# --- snip ---
+
+anything obviously wrong with that?
+
+I can verify that &quot;mnt --move /dev /mnt/dev&quot; looks like
+its working ok --&gt; more device files show up in /mnt/dev.
+
+However, &quot;cd /mnt; mount --move . /&quot; seems not to work,
+with no indication of what went wrong.
+
+So instead of &quot;mount --move . / ...&quot; I tried to
+   cd /mnt
+   chroot . /bin/bash
+and in the new shell
+   exec /sbin/init
+This gives a usage message for init and a subsequent kernel panic:
+
+Usage: init {-e VAR[=VAL] | [-t SECONDS]  
+{0|1|2|3|4|5|6|S|s|Q|q|A|a|B|b|C|c|U|u}}
+
+Other messages I have seen are:
+  /sbin/init: error while loading shared libraries: libpam.so.0:  
+cannot open shared object file: No such file or directory
+
+or:
+
+init: /dev/initctl: no such file or directory.
+
+I'm aware, of course, that I &quot;removed&quot; the call to /preinit and other
+potentially interesting pieces.
+
+I'm running out of ideas, so any hints are very welcome.
+
+Erich
+
+
+
+
+
+--- 11.4: full linuxrc, comments stripped ----------------------------
+export PATH=&quot;/sbin:/bin:/usr/sbin:/usr/bin&quot;
+export IFS_ORIG=$IFS
+export ARCH=`arch`
+export DEBUG=0
+export DOMURD_MODULES=&quot;xennet xenblk&quot;
+export INITRD_MODULES=&quot;&quot;
+export LOCAL_BOOT=&quot;no&quot;
+export systemIntegrity=&quot;clean&quot;
+export KERNEL_LIST
+export SYSALIAS=&quot;undefined&quot;
+export NAME=0
+export PART_FILE=&quot;/etc/partition.table&quot;
+export PART_MOUNT
+export PART_DEV
+export PART_COUNT=0
+export PART_NUMBER=0
+export PART_NEED_EXTENDED=0
+export PART_NEED_FILL=0
+export NO_FILE_SYSTEM=0
+export SYSTEM_INTEGRITY
+export SYSTEM_MD5STATUS
+. /include
+initialize
+echo &quot;Loading KIWI VMX Boot-System...&quot;
+echo &quot;-------------------------------&quot;
+ldconfig
+mountSystemFilesystems &amp;&gt;/dev/null
+closeKernelConsole
+touch /etc/modules.conf
+touch /lib/modules/*/modules.dep
+udevStart
+includeKernelParameters
+if [ ! -z $UNIONFS_CONFIG ] || [ &quot;$COMBINED_IMAGE&quot; = &quot;local&quot; ];then
+         # /.../
+         # if the unionfs/combined information is already in place at this
+         # stage it comes from the cmdline data which means we are not
+         # booting the first time
+         # ----
+         export LOCAL_BOOT=&quot;yes&quot;
+fi
+if $(cat /proc/cmdline | grep -q &quot;debug=1&quot;)
+then
+   echo &quot;MTA: Debugging due to cmd line parameter&quot;
+   export DEBUG=1
+   set -x
+else
+   export DEBUG=0
+   set +xv
+fi
+probeDevices
+echo &quot;MTA: determine name of  rootfs_file ...&quot;
+mt_rootfs_file=&quot;root.raw&quot;
+for i in $(cat /proc/cmdline)
+do
+     case &quot;$i&quot; in
+         loop_rootfs=*)
+             mt_rootfs_file=$( echo $i | cut -d= -f2 )
+             break
+             ;;
+         *)
+             ;;
+     esac
+done
+echo &quot;MTA: mt_rootfs_file: $mt_rootfs_file&quot;
+sleep 5
+echo &quot;MTA: find usb stick&quot;
+mt_mounted=0
+mt_mountpoint_stick=&quot;/usbstick&quot;
+/bin/mkdir ${mt_mountpoint_stick}
+for D in $(/bin/ls /dev/disk/by-id/usb-*-part1)
+do
+     F=$(readlink -f $D)
+     echo &quot;MTA: try to mount device $F ...&quot;
+     mount $F ${mt_mountpoint_stick}
+     if [ $? -eq 0 ]
+     then
+         if test -f ${mt_mountpoint_stick}/$mt_rootfs_file
+         then
+             mt_mounted=1
+             echo &quot;MTA: found file system container.&quot;
+             break # exit do loop
+         else
+             umount ${mt_mountpoint_stick}
+             echo &quot;MTA: file system container not found. umounting ...&quot;
+         fi
+     fi
+done
+if [ $mt_mounted -eq 0 ]
+then
+     echo &quot;MTA: ERROR: root file system container $mt_rootfs_file not found!&quot;
+     exit 255
+fi
+echo &quot;MTA: opening container $mt_rootfs_file ...&quot;
+/sbin/kpartx -l ${mt_mountpoint_stick}/${mt_rootfs_file}
+mt_loop_dev=$(kpartx -asv ${mt_mountpoint_stick}/${mt_rootfs_file} |  
+grep '^add map' | head -1 | cut -d' ' -f3)
+mt_new_root=&quot;/mnt&quot;
+mount /dev/mapper/${mt_loop_dev} /mnt
+echo &quot;MTA: opening container $mt_rootfs_file ... done.&quot;
+ls /mnt
+if test &quot;$DEBUG&quot; = 1
+then
+   echo &quot;Debugging shell press [Ctrl] + d to continue&quot;
+   bash
+fi
+udevKill
+umountSystemFilesystems
+createInitialDevices /mnt/dev
+cat &lt;&lt;&quot;EOF&quot; &gt;&gt; /mnt/etc/fstab
+sysfs        /sys      sysfs  noauto    0 0
+/dev/sdb1    /usbstick vfat   defaults  0 0
+/dev/loop0p1 /         ext4   defaults  0 0
+EOF
+cat /mnt/etc/fstab
+cd /mnt
+mkdir /mnt/usbstick
+mount --move /usbstick /mnt/usbstick
+ls -l /mnt/usbstick
+udevPending # not sure, whether this is needed.
+mount --move /dev /mnt/dev
+udevKill
+ls /dev
+ls /mnt/dev
+ls -l /mnt/lib/libpam*
+cd /mnt
+mount --move . /
+exec chroot . /sbin/init
+----------------------------------------------------------------------
+
+--- 10.3: full linuxrc, comments stripped ----------------------------
+export PATH=&quot;/sbin:/bin:/usr/sbin:/usr/bin&quot;
+export IFS_ORIG=$IFS
+export ARCH=`arch`
+export DEBUG=0
+export USE_AUFS=1
+export DOMURD_MODULES=&quot;xennet xenblk&quot;
+export INITRD_MODULES=&quot;reiserfs&quot;
+export LOCAL_BOOT=&quot;no&quot;
+export systemIntegrity=&quot;clean&quot;
+export KERNEL_LIST
+export SYSALIAS=&quot;undefined&quot;
+export NAME=0
+export PART_FILE=&quot;/etc/partition.table&quot;
+export PART_MOUNT
+export PART_DEV
+export PART_COUNT=0
+export PART_NUMBER=0
+export PART_NEED_EXTENDED=0
+export PART_NEED_FILL=0
+export NO_FILE_SYSTEM=0
+export SYSTEM_INTEGRITY
+export SYSTEM_MD5STATUS
+echo &quot;Loading Loop-root...&quot;
+echo &quot;-------------------------------&quot;
+mount -t proc /dev/null /proc
+if `cat /proc/cmdline | grep -q &quot;aufs=0&quot;`
+then
+   export USE_AUFS=0
+   echo &quot;Not using aufs&quot;
+else
+   export USE_AUFS=1
+fi
+if `cat /proc/cmdline | grep -q &quot;debug=1&quot;`
+then
+   echo &quot;Debugging due to cmd line parameter&quot;
+   export DEBUG=1
+   set -x
+else
+   export DEBUG=0
+   set +xv
+fi
+umount /proc
+. /include
+ldconfig
+depmod -a
+mountSystemFilesystems &amp;&gt;/dev/null
+closeKernelConsole
+touch /etc/modules.conf
+touch /lib/modules/*/modules.dep
+udevStart
+includeKernelParameters
+if [ ! -z $UNIONFS_CONFIG ] || [ &quot;$COMBINED_IMAGE&quot; = &quot;local&quot; ];then
+         # /.../
+         # if the unionfs/combined information is already in place at this
+         # stage it comes from the cmdline data which means we are not
+         # booting the first time
+         # ----
+         export LOCAL_BOOT=&quot;yes&quot;
+fi
+probeDevices
+if [ $(grep -c sda1 /proc/partitions) -ne 0 ]
+then
+   export usbStickDevice=/dev/sda1
+else
+   export usbStickDevice=/dev/sda
+fi
+if test &quot;$DEBUG&quot; = 1
+then
+   echo &quot;Debugging shell press [Ctrl] + d to continue&quot;
+   bash
+fi
+/bin/mkdir /usbstick
+/bin/mount -t vfat $usbStickDevice /usbstick
+/sbin/losetup -o 32256 /dev/loop0 /usbstick/root.raw
+if test &quot;$DEBUG&quot; = 1
+then
+   echo &quot;Debugging shell press [Ctrl] + d to continue&quot;
+   bash
+fi
+killall udevd
+umountSystemFilesystems
+if [ &quot;$LOCAL_BOOT&quot; = &quot;no&quot; ];then
+         importBranding
+fi
+cp /preinit /mnt
+cp /include /mnt
+if test &quot;$USE_AUFS&quot; = 1
+then
+   mkdir /mnt/ro
+   mkdir /mnt/rw
+   /bin/mount -o ro /dev/loop0 /mnt/ro
+   mount -t tmpfs aufs-tmpfs /mnt/rw
+   mount -t aufs -o dirs=/mnt/rw:/mnt/ro=ro aufs /mnt
+else
+   /bin/mount -o rw /dev/loop0 /mnt
+fi
+cd /mnt
+createInitialDevices /mnt/dev
+if test &quot;$USE_AUFS&quot; = 1
+then
+     grep &quot;.*#AUFS&quot; /mnt/etc/mta_orig.fstab  &gt; /mnt/etc/fstab
+else
+     grep &quot;.*#PERSISTENT&quot; /mnt/etc/mta_orig.fstab  &gt; /mnt/etc/fstab
+fi
+if test &quot;$usbStickDevice&quot; = &quot;/dev/sda&quot;
+then
+     sed -i &quot;s|sda1|sda|&quot; /mnt/etc/fstab
+fi
+if test &quot;$DEBUG&quot; = 1
+then
+   echo &quot;Debugging shell press [Ctrl] + d to continue&quot;
+   bash
+fi
+umount -f /dev
+mount --move . /
+exec chroot . /sbin/init
+----------------------------------------------------------------------
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002836.html">[Kiwi-users] Facing Problems with KIWI! Help needed!
+</A></li>
+	<LI>Next message: <A HREF="002839.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2838">[ date ]</a>
+              <a href="thread.html#2838">[ thread ]</a>
+              <a href="subject.html#2838">[ subject ]</a>
+              <a href="author.html#2838">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

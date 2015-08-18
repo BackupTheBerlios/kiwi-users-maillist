@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Handling languages in KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Handling%20languages%20in%20KIWI&In-Reply-To=%3C201103010046.16845.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002398.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Handling languages in KIWI</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Handling%20languages%20in%20KIWI&In-Reply-To=%3C201103010046.16845.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] Handling languages in KIWI">javier at opensuse.org
+       </A><BR>
+    <I>Tue Mar  1 00:46:14 CET 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002398.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2397">[ date ]</a>
+              <a href="thread.html#2397">[ thread ]</a>
+              <a href="subject.html#2397">[ subject ]</a>
+              <a href="author.html#2397">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello listmates,
+
+I would like to know how KIWI handles languages. YaST has a &quot;languages&quot; 
+feature that allows you to just choose a language which autoselects packages 
+for that language instead of having to choose package by package for that 
+language. It's in YaST &#8594; Software management &#8594; View &#8594; languages
+
+Things like this help removing languages when installing from a Live CD that 
+has multiple languages (instead of having to know all the language 
+packages).ie: a KDE Live CD installation always ends up with English, German 
+and Russian packages, no matter what language you chose.
+
+Unfortunately, zypper dropped the languages feature and I don't know if KIWI 
+has something similar.
+
+My idea is to clean up extra language packages from 
+<A HREF="http://svn.opensuse.org/svn/yast/trunk/live-">http://svn.opensuse.org/svn/yast/trunk/live-</A>
+installer/src/inst_live_cleanup.ycp
+
+It would check if the Live CD has just one language included.
+If yes, what language was chosen during install. If it was a different one 
+from the included in the Live CD, I wouldn't delete it. Otherwise there could 
+be dependency problems.
+
+If the Live CD has multiple languages included, I would check if the chosen 
+language is included. If not, I would remove all languages except one of them 
+(to avoid dependency problems, which one I don't know). If yes, remove all 
+languages except the chosen one.
+
+Does it make sense?
+Handling languages instead of packages in this case would facilitate this a 
+lot.
+
+Greetings,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110301/9bfb083a/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110301/9bfb083a/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002398.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2397">[ date ]</a>
+              <a href="thread.html#2397">[ thread ]</a>
+              <a href="subject.html#2397">[ subject ]</a>
+              <a href="author.html#2397">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

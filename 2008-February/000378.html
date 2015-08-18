@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] OEM boot image looks for &quot;aufs&quot; even when using	&quot;split&quot; type	image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20boot%20image%20looks%20for%20%22aufs%22%20even%20when%20using%0A%09%22split%22%20type%09image&In-Reply-To=%3C47C3F5E4.EE07.00F0.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000385.html">
+   <LINK REL="Next"  HREF="000382.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even when using	&quot;split&quot; type	image</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20boot%20image%20looks%20for%20%22aufs%22%20even%20when%20using%0A%09%22split%22%20type%09image&In-Reply-To=%3C47C3F5E4.EE07.00F0.0%40novell.com%3E"
+       TITLE="[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even when using	&quot;split&quot; type	image">ragupta at novell.com
+       </A><BR>
+    <I>Tue Feb 26 06:50:04 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000385.html">[Kiwi-users] Updates whats about the config-files
+</A></li>
+        <LI>Next message: <A HREF="000382.html">[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even when	using	&quot;split&quot; type image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#378">[ date ]</a>
+              <a href="thread.html#378">[ thread ]</a>
+              <a href="subject.html#378">[ subject ]</a>
+              <a href="author.html#378">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have created an oemboot image using the &quot;split&quot; type with &quot;squashfs&quot; as the read-only filesystem and &quot;reiserfs&quot; as the read-write filesystem.
+
+However, when deploying the image the installer is looking for &quot;aufs&quot; which is not present in SLE 10. Naturally the deployment fails.
+
+Is this expected or does this point to a BUG.
+
+I am attaching the screenshots of Screen1(ALT+F1) as well as Screen 3(ALT+F3) for reference.
+
+
+The relevant sections of config.xml are mentioned below.
+
+        &lt;type primary=&quot;true&quot; filesystem=&quot;reiserfs,squashfs&quot; boot=&quot;oemboot/suse-SLED10-SP1&quot; format=&quot;iso&quot;&gt;split&lt;/type&gt;
+.....
+  &lt;deploy blocksize=&quot;65464&quot;&gt;
+        &lt;timeout&gt;0&lt;/timeout&gt;
+        &lt;partitions device=&quot;/dev/hda&quot;&gt;
+                &lt;partition number=&quot;1&quot; type=&quot;swap&quot; size=&quot;30&quot;/&gt;
+                &lt;partition number=&quot;2&quot; type=&quot;L&quot; size=&quot;image&quot; mountpoint=&quot;/&quot; target=&quot;true&quot;/&gt;
+                &lt;partition number=&quot;3&quot; type=&quot;L&quot; target=&quot;false&quot;/&gt;
+        &lt;/partitions&gt;
+  &lt;/deploy&gt;
+......
+  &lt;split&gt;
+        &lt;persistent&gt;
+                &lt;file name=&quot;/etc&quot;/&gt;
+                &lt;file name=&quot;/boot&quot;/&gt;
+                &lt;file name=&quot;/root&quot;/&gt;
+                &lt;file name=&quot;/home&quot;/&gt;
+                &lt;file name=&quot;/mnt&quot;/&gt;
+                &lt;file name=&quot;/etc/passwd&quot;/&gt;
+                &lt;file name=&quot;/etc/group&quot;/&gt;
+                &lt;file name=&quot;/etc/shadow&quot;/&gt;
+                &lt;file name=&quot;/etc/fstab&quot;/&gt;
+                &lt;file name=&quot;/etc/mtab&quot;/&gt;
+                &lt;file name=&quot;/etc/init.d/.depend*&quot;/&gt;
+                &lt;file name=&quot;/boot/*&quot;/&gt;
+                &lt;!--&lt;file name=&quot;/var/cache/fontconfig&quot;/&gt;--&gt;
+                &lt;file name=&quot;/var&quot;/&gt;
+                &lt;file name=&quot;/var/*&quot;/&gt;
+                &lt;file name=&quot;/usr/X11R6/lib/X11/fonts&quot;/&gt;
+                &lt;file name=&quot;/var/lib/rpm&quot;/&gt;
+                &lt;file name=&quot;/var/lib/addons&quot;/&gt;
+                &lt;file name=&quot;/etc/HOSTNAME&quot;/&gt;
+                &lt;file name=&quot;/etc/hosts&quot;/&gt;
+                &lt;file name=&quot;/etc/sudoers&quot;/&gt;
+                &lt;file name=&quot;/etc/sysconfig/kiosk&quot;/&gt;
+                &lt;file name=&quot;/etc/sysconfig/displaymanager&quot;/&gt;
+                &lt;file name=&quot;/etc/opt/gnome/gdm/gdm.conf&quot;/&gt;
+                &lt;file name=&quot;/etc/sysconfig/gnome-help.js&quot;/&gt;
+        &lt;/persistent&gt;
+  &lt;/split&gt;
+
+
+Let me know in case more information is required.
+
+Thanks.
+
+Regards,
+Rahul
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi-aufs-3.png
+Type: image/png
+Size: 64876 bytes
+Desc: Portable Network Graphics Format
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/2b049d8c/attachment.png">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/2b049d8c/attachment.png</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi-aufs.png
+Type: image/png
+Size: 66450 bytes
+Desc: Portable Network Graphics Format
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/2b049d8c/attachment-0001.png">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/2b049d8c/attachment-0001.png</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000385.html">[Kiwi-users] Updates whats about the config-files
+</A></li>
+	<LI>Next message: <A HREF="000382.html">[Kiwi-users] OEM boot image looks for &quot;aufs&quot; even when	using	&quot;split&quot; type image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#378">[ date ]</a>
+              <a href="thread.html#378">[ thread ]</a>
+              <a href="subject.html#378">[ subject ]</a>
+              <a href="author.html#378">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

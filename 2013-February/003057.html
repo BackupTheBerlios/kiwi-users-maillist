@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C510C59E1.1010406%40public-files.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003059.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>Yarny</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C510C59E1.1010406%40public-files.de%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">Yarny at public-files.de
+       </A><BR>
+    <I>Sat Feb  2 01:12:17 CET 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003059.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3057">[ date ]</a>
+              <a href="thread.html#3057">[ thread ]</a>
+              <a href="subject.html#3057">[ subject ]</a>
+              <a href="author.html#3057">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus and list,
+
+&gt;<i> It's not required to change kiwi here because this is already
+</I>&gt;<i> supported:
+</I>&gt;<i>
+</I>&gt;<i>    kiwi --prepare ... --root /existing/root --recycle-root
+</I>Thanks for that hint.  This looks exactly like what I need,
+but it does not work (with kiwi from openSUSE as of January 22):
+&gt;<i> Feb-01 23:52:51 &lt;1&gt; : Set package manager lock
+</I>&gt;<i> Feb-01 23:52:51 &lt;1&gt; : EXEC [touch /var/lock/kiwi-init.lock]
+</I>&gt;<i> Feb-01 23:52:51 &lt;1&gt; : EXEC [chroot &quot;/tmp/tmpf6qPzM/kiwitemproot&quot; zypper --version 2&gt;&amp;1 | cut -c 8]
+</I>&gt;<i> Feb-01 23:52:51 &lt;1&gt; : image zypper version is too old
+</I>&gt;<i>    skipped
+</I>&gt;<i> Feb-01 23:52:51 &lt;1&gt; : Installing image packages...
+</I>&gt;<i> Feb-01 23:52:51 &lt;1&gt; : EXEC [chmod 755 /tmp/tmpf6qPzM/kiwitemproot/screenrc.smart]
+</I>&gt;<i> + export PBL_SKIP_BOOT_TEST=1
+</I>&gt;<i> + PBL_SKIP_BOOT_TEST=1
+</I>&gt;<i> + trap clean INT TERM
+</I>&gt;<i> + export ZYPP_MODALIAS_SYSFS=/tmp
+</I>&gt;<i> + ZYPP_MODALIAS_SYSFS=/tmp
+</I>&gt;<i> + export YAST_IS_RUNNING=true
+</I>&gt;<i> + YAST_IS_RUNNING=true
+</I>&gt;<i> + export ZYPP_CONF=/var/cache/kiwi/zypper/zypp.conf.1377
+</I>&gt;<i> + ZYPP_CONF=/var/cache/kiwi/zypper/zypp.conf.1377
+</I>&gt;<i> + chroot /tmp/tmpf6qPzM/kiwitemproot zypper --non-interactive --no-gpg-checks --reposd-dir /var/cache/kiwi/zypper/repos --cache-dir /var/cache/kiwi/zypper --config /var/cache/kiwi/zypper/zypper.conf.1377 install --auto-agree-with-licenses --download as-needed -t pattern enhanced_base
+</I>&gt;<i> + SPID=1555
+</I>&gt;<i> + wait 1555
+</I>&gt;<i> chroot: failed to run command 'zypper': No such file or directory
+</I>Apparently kiwi assumes zypper to be already installed
+in the /existing/root, but this is not the case for me.
+Therefore I propose the attached patch.
+
+&gt;<i> I understand but unfortunately I don't like to change
+</I>&gt;<i> the default policy zypper uses for caching packages prior
+</I>&gt;<i> to the installation. I would be fine with a patch which
+</I>&gt;<i> allows that as a commandline option ;)
+</I>...working on it.
+
+&gt;<i> berlios has closed, we are all on the <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-images at googlegroups.com</A>
+</I>&gt;<i> list. The code is on github, just check this out:
+</I>&gt;<i>
+</I>&gt;<i>   <A HREF="http://opensuse.github.com/kiwi/">http://opensuse.github.com/kiwi/</A>
+</I>OK, my patch is based on current KIWI-503-SuSE-12-2-Devel
+branch of <A HREF="git://github.com/openSUSE/kiwi">git://github.com/openSUSE/kiwi</A> repository.
+Unfortunatelly, I don't maintain a googlegroups account.
+
+Thanks and best wishes!
+-- Yarny
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-KIWIRoot.init-Don-t-skip-bootstrap-in-recycle-root-m.patch
+Type: text/x-patch
+Size: 1171 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20130202/6c8a8638/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20130202/6c8a8638/attachment.bin</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003059.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3057">[ date ]</a>
+              <a href="thread.html#3057">[ thread ]</a>
+              <a href="subject.html#3057">[ subject ]</a>
+              <a href="author.html#3057">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

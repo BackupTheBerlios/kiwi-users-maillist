@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] dbusdevice.so: undefined symbol:	_ZN7QString11shared_nullE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20dbusdevice.so%3A%20undefined%20symbol%3A%0A%09_ZN7QString11shared_nullE&In-Reply-To=%3C20080822104220.ywbledrbk9w44k0g%40webmail.df.eu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000806.html">
+   <LINK REL="Next"  HREF="000814.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] dbusdevice.so: undefined symbol:	_ZN7QString11shared_nullE</H1>
+    <B>ew.ng7125 at nassur.net</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20dbusdevice.so%3A%20undefined%20symbol%3A%0A%09_ZN7QString11shared_nullE&In-Reply-To=%3C20080822104220.ywbledrbk9w44k0g%40webmail.df.eu%3E"
+       TITLE="[Kiwi-users] dbusdevice.so: undefined symbol:	_ZN7QString11shared_nullE">ew.ng7125 at nassur.net
+       </A><BR>
+    <I>Fri Aug 22 10:42:20 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000806.html">[Kiwi-users] No repositories defined (x86_64 specific)
+</A></li>
+        <LI>Next message: <A HREF="000814.html">[Kiwi-users] dbusdevice.so: undefined	symbol:	_ZN7QString11shared_nullE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#807">[ date ]</a>
+              <a href="thread.html#807">[ thread ]</a>
+              <a href="subject.html#807">[ subject ]</a>
+              <a href="author.html#807">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I'm trying to create a usb boot stick using
+1. openSUSE-10.3 DVDs as installation source,
+2. a running 10.3 system with no updates
+3. kiwi r1526 straight from the subversion repo
+
+compiling and installing kiwi worked after adding a few missing packages
+(swig, dbus-1-devel, hal-devel, trang).
+
+steps to failure:
+
+# cd somedir-with-lots-of-space
+# mkdir usb
+# cd usb
+# cp -a /usr/share/doc/packages/kiwi/examples/suse-10.3/suse-live-stick .
+# rm -fR suse-live-stick/.svn
+# # edit suse-live-stick/config.xml
+
+# diff -Naur suse-live-stick/config.xml~ suse-live-stick/config.xml
+--- suse-live-stick/config.xml~ 2008-08-21 14:43:30.000000000 +0200
++++ suse-live-stick/config.xml  2008-08-22 10:13:39.000000000 +0200
+@@ -19,8 +19,10 @@
+                 &lt;user pwd=&quot;$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0&quot;  
+home=&quot;/home/tux&quot; name=&quot;tux&quot;/&gt;
+         &lt;/users&gt;
+         &lt;repository type=&quot;yast2&quot;&gt;
+-               &lt;source path=&quot;/image/CDs/full-10.3-i386&quot;/&gt;
+-               &lt;!--&lt;source path=&quot;<A HREF="opensuse://openSUSE:10.3/standard/">opensuse://openSUSE:10.3/standard/</A>&quot;/&gt;--&gt;
++               &lt;source path=&quot;<A HREF="iso:///opt/iso/openSUSE-10.3-dvd1.iso">iso:///opt/iso/openSUSE-10.3-dvd1.iso</A>&quot;/&gt;
++       &lt;/repository&gt;
++       &lt;repository type=&quot;yast2&quot;&gt;
++               &lt;source path=&quot;<A HREF="iso:///opt/iso/openSUSE-10.3-dvd2.iso">iso:///opt/iso/openSUSE-10.3-dvd2.iso</A>&quot;/&gt;
+         &lt;/repository&gt;
+         &lt;packages type=&quot;image&quot; patternType=&quot;plusRecommended&quot;  
+patternPackageType=&quot;plusRecommended&quot;&gt;
+                 &lt;package name=&quot;kernel-default&quot;/&gt;
+
+
+# kiwi --prepare ./suse-live-stick --root ./0_tree --logfile zz.0.prepare.log
+Can't load  
+'/usr/lib/perl5/vendor_perl/5.8.8/i586-linux-thread-multi/auto/dbusdevice/dbusdevice.so' for module dbusdevice: /usr/lib/perl5/vendor_perl/5.8.8/i586-linux-thread-multi/auto/dbusdevice/dbusdevice.so: undefined symbol: _ZN7QString11shared_nullE at /usr/lib/perl5/5.8.8/i586-linux-thread-multi/DynaLoader.pm line  
+230.
+  at  
+/usr/lib/perl5/vendor_perl/5.8.8/i586-linux-thread-multi/dbusdevice.pm  
+line 11
+Compilation failed in require at /usr/share/kiwi/modules/KIWIBoot.pm line 28.
+BEGIN failed--compilation aborted at  
+/usr/share/kiwi/modules/KIWIBoot.pm line 28.
+Compilation failed in require at /usr/share/kiwi/modules/KIWIImage.pm line 24.
+BEGIN failed--compilation aborted at  
+/usr/share/kiwi/modules/KIWIImage.pm line 24.
+Compilation failed in require at /usr/sbin/kiwi line 36.
+BEGIN failed--compilation aborted at /usr/sbin/kiwi line 36.
+
+
+Has someone else seen this error message?
+Did I miss something? Probably some update on some package???
+
+
+Cheers,
+Erich
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000806.html">[Kiwi-users] No repositories defined (x86_64 specific)
+</A></li>
+	<LI>Next message: <A HREF="000814.html">[Kiwi-users] dbusdevice.so: undefined	symbol:	_ZN7QString11shared_nullE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#807">[ date ]</a>
+              <a href="thread.html#807">[ thread ]</a>
+              <a href="subject.html#807">[ subject ]</a>
+              <a href="author.html#807">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

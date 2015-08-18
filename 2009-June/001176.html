@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20find%20/usr/bin/mkclicfs%20tool%20for%3A%20clic&In-Reply-To=%3C8f985b960906110945x56da1eafr1a384b4d04a30d50%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001175.html">
+   <LINK REL="Next"  HREF="001178.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic</H1>
+    <B>Mike Kienenberger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20find%20/usr/bin/mkclicfs%20tool%20for%3A%20clic&In-Reply-To=%3C8f985b960906110945x56da1eafr1a384b4d04a30d50%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic">mkienenb at gmail.com
+       </A><BR>
+    <I>Thu Jun 11 18:45:09 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001175.html">[Kiwi-users] case inconsistency when looking for config.* files
+</A></li>
+        <LI>Next message: <A HREF="001178.html">[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1176">[ date ]</a>
+              <a href="thread.html#1176">[ thread ]</a>
+              <a href="subject.html#1176">[ subject ]</a>
+              <a href="author.html#1176">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Trying to create an OpenSUSE 11.2 32-bit image from my OpenSUSE 11.1
+64 bit system using kiwi v3.56 yields this error.  I haven't let it
+run through to the end, but I think the 11.1 32-bit image creation is
+still working with v3.56.
+
+&gt;<i> linux32 sudo /usr/sbin/kiwi --create /home/mkienenb/temp/kiwi/suse-live-iso-dvd-11.2.0.0.1 --destdir /home/mkienenb/temp/kiwi
+</I>Jun-10 10:59:34 &lt;1&gt; : Reading image description [Create]...
+Jun-10 10:59:34 &lt;1&gt; : Updating type in .profile environment
+                                        done
+Jun-10 10:59:34 &lt;1&gt; : Checking for default baseroot in XML data...
+                                        notset
+Jun-10 10:59:34 &lt;3&gt; : Can't find /usr/bin/mkclicfs tool for: clic
+                                        failed
+Jun-10 10:59:34 &lt;3&gt; : KIWI exited with error(s)
+
+
+Here's the config.xml file (very similar to my 11.1 config file with
+updated repositories and removed packages that weren't available for
+11.2)
+
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;image schemaversion=&quot;3.5&quot; name=&quot;suse-11.2-live-iso&quot;&gt;
+	&lt;description type=&quot;system&quot;&gt;
+		&lt;author&gt;Mike Kienenberger&lt;/author&gt;
+		&lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkienenb at gmail.com</A>&lt;/contact&gt;
+		&lt;specification&gt;openSUSE 11.2 Live system laptop DVD&lt;/specification&gt;
+	&lt;/description&gt;
+	&lt;preferences&gt;
+		&lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-11.2&quot; flags=&quot;clic&quot;&gt;iso&lt;/type&gt;
+		&lt;version&gt;0.0.1&lt;/version&gt;
+		&lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+		&lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+		&lt;rpm-force&gt;True&lt;/rpm-force&gt;
+		&lt;locale&gt;en_US.UTF-8&lt;/locale&gt;
+		&lt;keytable&gt;us.map.gz&lt;/keytable&gt;
+	&lt;/preferences&gt;
+	&lt;users group=&quot;root&quot;&gt;
+		&lt;user pwd=&quot;$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0&quot; home=&quot;/root&quot; name=&quot;root&quot;/&gt;
+	&lt;/users&gt;
+	&lt;repository type=&quot;yast2&quot;&gt;
+		&lt;source path=&quot;/media/SU1110.001&quot;/&gt;
+	&lt;/repository&gt;
+	&lt;repository type=&quot;rpm-md&quot;&gt;
+		&lt;source path=&quot;<A HREF="http://download.opensuse.org/update/11.2/">http://download.opensuse.org/update/11.2/</A>&quot;/&gt;
+	&lt;/repository&gt;
+	&lt;packages type=&quot;image&quot; patternType=&quot;plusRecommended&quot;
+patternPackageType=&quot;plusRecommended&quot;&gt;
+		&lt;package name=&quot;bootsplash-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt;
+		&lt;package name=&quot;gfxboot-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt;
+		&lt;package name=&quot;kernel-default&quot;/&gt;
+		&lt;package name=&quot;bootsplash&quot;/&gt;
+		&lt;package name=&quot;ifplugd&quot;/&gt;
+		&lt;package name=&quot;vim&quot;/&gt;
+		&lt;package name=&quot;powertop&quot;/&gt;
+		&lt;package name=&quot;b43-fwcutter&quot;/&gt;
+		&lt;package name=&quot;wine&quot;/&gt;
+		&lt;package name=&quot;pullin-flash-player&quot;/&gt;
+		&lt;opensusePattern name=&quot;base&quot;/&gt;
+		&lt;opensusePattern name=&quot;console&quot;/&gt;
+		&lt;opensusePattern name=&quot;default&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_C_C++&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_gnome&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_ide&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_java&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_kernel&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_perl&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_python&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_rpm_build&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_tcl&quot;/&gt;
+		&lt;opensusePattern name=&quot;devel_web&quot;/&gt;
+		&lt;opensusePattern name=&quot;dhcp_dns_server&quot;/&gt;
+		&lt;opensusePattern name=&quot;enhanced_base&quot;/&gt;
+		&lt;opensusePattern name=&quot;enhanced_base_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;file_server&quot;/&gt;
+		&lt;opensusePattern name=&quot;fonts&quot;/&gt;
+		&lt;opensusePattern name=&quot;fonts_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;games&quot;/&gt;
+		&lt;opensusePattern name=&quot;games_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_admin&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_basis&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_basis_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_games&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_ide&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_imaging&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_imaging_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_internet&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_laptop&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_multimedia&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_multimedia_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_office&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_office_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_utilities&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_utilities_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_xgl&quot;/&gt;
+		&lt;opensusePattern name=&quot;gnome_yast&quot;/&gt;
+		&lt;opensusePattern name=&quot;imaging&quot;/&gt;
+		&lt;opensusePattern name=&quot;imaging_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;lamp_server&quot;/&gt;
+		&lt;opensusePattern name=&quot;laptop&quot;/&gt;
+		&lt;opensusePattern name=&quot;mail_server&quot;/&gt;
+		&lt;opensusePattern name=&quot;misc_server&quot;/&gt;
+		&lt;opensusePattern name=&quot;multimedia&quot;/&gt;
+		&lt;opensusePattern name=&quot;multimedia_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;network_admin&quot;/&gt;
+		&lt;opensusePattern name=&quot;non_oss&quot;/&gt;
+		&lt;opensusePattern name=&quot;office&quot;/&gt;
+		&lt;opensusePattern name=&quot;office_opt&quot;/&gt;
+		&lt;opensusePattern name=&quot;remote_desktop&quot;/&gt;
+		&lt;opensusePattern name=&quot;sw_management&quot;/&gt;
+		&lt;opensusePattern name=&quot;sw_management_gnome&quot;/&gt;
+		&lt;opensusePattern name=&quot;technical_writing&quot;/&gt;
+		&lt;opensusePattern name=&quot;x11&quot;/&gt;
+		&lt;opensusePattern name=&quot;x11_opt&quot;/&gt;
+		&lt;!--conflict: opensusePattern name=&quot;x11_yast&quot;/--&gt;
+		&lt;opensusePattern name=&quot;xfce&quot;/&gt;
+		&lt;opensusePattern name=&quot;xfce_office&quot;/&gt;
+		&lt;opensusePattern name=&quot;xgl&quot;/&gt;
+		&lt;opensusePattern name=&quot;yast2_basis&quot;/&gt;
+		&lt;opensusePattern name=&quot;yast2_install_wf&quot;/&gt;
+	&lt;/packages&gt;
+	&lt;packages type=&quot;bootstrap&quot;&gt;
+		&lt;package name=&quot;filesystem&quot;/&gt;
+		&lt;package name=&quot;glibc-locale&quot;/&gt;
+	&lt;/packages&gt;
+&lt;/image&gt;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001175.html">[Kiwi-users] case inconsistency when looking for config.* files
+</A></li>
+	<LI>Next message: <A HREF="001178.html">[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1176">[ date ]</a>
+              <a href="thread.html#1176">[ thread ]</a>
+              <a href="subject.html#1176">[ subject ]</a>
+              <a href="author.html#1176">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

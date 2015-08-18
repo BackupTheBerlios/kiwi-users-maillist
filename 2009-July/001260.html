@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Howto add your custom boot menu branding...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C20090708181425.GA30546%40idefix.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001258.html">
+   <LINK REL="Next"  HREF="001264.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Howto add your custom boot menu branding...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C20090708181425.GA30546%40idefix.suse.de%3E"
+       TITLE="[Kiwi-users] Howto add your custom boot menu branding...">ms at novell.com
+       </A><BR>
+    <I>Wed Jul  8 20:14:25 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001258.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+        <LI>Next message: <A HREF="001264.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1260">[ date ]</a>
+              <a href="thread.html#1260">[ thread ]</a>
+              <a href="subject.html#1260">[ subject ]</a>
+              <a href="author.html#1260">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Couldn't find a &quot;boot-theme&quot; element in 
+</I>&gt;<i> /usr/share/doc/packages/kiwi/schema/kiwi.xsd.html?
+</I>
+yes the update of the auto generated xml docu follows soon
+but this element exists
+
+&gt;<i> OK, thanks. Is it correct that this only comes into play for Live ISO 
+</I>&gt;<i> images?
+</I>
+yes
+
+&gt;<i> So the branding via the tarball just takes care of the grub menu 
+</I>&gt;<i> background? For my own brand I presume this should then be 
+</I>&gt;<i> /etc/bootsplash/themes/myBrand/images and I would get the files into the 
+</I>&gt;<i> image via the overlay mechanism or build an rpm, correct?
+</I>
+the tarball can brand (overwrite) everything you want. Just include
+the /etc/bootsplash/themes/ files into the tarball and it should work.
+The tarball is unpacked as it is so you can simply overwrite any file
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001258.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+	<LI>Next message: <A HREF="001264.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1260">[ date ]</a>
+              <a href="thread.html#1260">[ thread ]</a>
+              <a href="subject.html#1260">[ subject ]</a>
+              <a href="author.html#1260">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

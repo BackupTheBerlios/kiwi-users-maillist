@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Optimizing turnaround time
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3C20080409130245.GA32104%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000555.html">
+   <LINK REL="Next"  HREF="000557.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Optimizing turnaround time</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3C20080409130245.GA32104%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Optimizing turnaround time">ms at suse.de
+       </A><BR>
+    <I>Wed Apr  9 15:02:45 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000555.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+        <LI>Next message: <A HREF="000557.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#556">[ date ]</a>
+              <a href="thread.html#556">[ thread ]</a>
+              <a href="subject.html#556">[ subject ]</a>
+              <a href="author.html#556">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> OK, I see that your patch simply adds this option to smart. Perhaps to
+</I>&gt;<i> keep backwards compatibility you could leave the default behavior as
+</I>&gt;<i> it is now and add a --keep-package-cache option or something.
+</I>&gt;<i> Otherwise some cleaning must be done before packing the image, 'smart
+</I>&gt;<i> clean' . Or perhaps there is a way to prevent the contents of that
+</I>&gt;<i> folder to make it to the image?
+</I>
+right, I have added a smart clean at the end of the preparation step
+
+&gt;<i> Anyway, I wanted to test it, so I added a package to the 'image'
+</I>&gt;<i> section of myroot/image/config.xml and run kiwi -u myroot, but the new
+</I>&gt;<i> package was not installed. Was that not the correct method?
+</I>
+I think you have modified the &quot;wrong&quot; config.xml. After you have
+prepared the new root tree all information is in that tree including
+the image description. So you should change the file:
+
+	&lt;image-root&gt;/image/config.xml
+
+&gt;<i> &gt;  is that your packages cache could be from distribution let's say
+</I>&gt;<i> &gt;  10.3 but your next image is for 11.0 so the package cache is
+</I>&gt;<i> &gt;  only a huge data which you can't use for this image. That's why
+</I>&gt;<i> &gt;  I said you need some magic to find out whether the use of the
+</I>&gt;<i> &gt;  cache really improves the action
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, well, that would mean changing repos in the config, so instead of
+</I>&gt;<i> changing it to point to your remote 10.3 repo you use your local 11.0
+</I>&gt;<i> repo. Kiwi cannot guess what version are you targeting, right?
+</I>
+right, such a guess may fail as you also could mix up
+repositories
+
+&gt;<i> Say, is there some kind of document with a list of the operations
+</I>&gt;<i> performed by kiwi and in what order are they executed? That would be
+</I>&gt;<i> very useful to figure out what's happening when. Like:
+</I>&gt;<i> 
+</I>&gt;<i> &quot;config.sh is an optional configuration script used during the
+</I>&gt;<i> creation of the physical extend. This script is executed at the end of
+</I>&gt;<i> the installation after the chroot command is used to switch to the
+</I>&gt;<i> operating system image but before the package scripts paced in the
+</I>&gt;<i> config directory (see the section called &quot; config &quot;) are run. This
+</I>&gt;<i> script can be used, for example, to configure the image system by
+</I>&gt;<i> activating or deactivating services.&quot;
+</I>&gt;<i> 
+</I>&gt;<i> but for the whole kiwi process.
+</I>
+do you mean a paper describing the process ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000555.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+	<LI>Next message: <A HREF="000557.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#556">[ date ]</a>
+              <a href="thread.html#556">[ thread ]</a>
+              <a href="subject.html#556">[ subject ]</a>
+              <a href="author.html#556">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

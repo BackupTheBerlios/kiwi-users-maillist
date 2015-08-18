@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oemboot problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oemboot%20problems&In-Reply-To=%3C20070928080206.GA8019%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000045.html">
+   <LINK REL="Next"  HREF="000050.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oemboot problems</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oemboot%20problems&In-Reply-To=%3C20070928080206.GA8019%40suse.de%3E"
+       TITLE="[Kiwi-users] oemboot problems">ms at suse.de
+       </A><BR>
+    <I>Fri Sep 28 10:02:06 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000045.html">[Kiwi-users] oemboot problems
+</A></li>
+        <LI>Next message: <A HREF="000050.html">[Kiwi-users] oemboot problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#46">[ date ]</a>
+              <a href="thread.html#46">[ thread ]</a>
+              <a href="subject.html#46">[ subject ]</a>
+              <a href="author.html#46">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mitch,
+
+&gt;<i> 1.  what is the difference between using a VMX image type like:
+</I>&gt;<i> 
+</I>&gt;<i> &lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;vmdk&quot;&gt;vmx&lt;/type&gt; 
+</I>&gt;<i> 
+</I>&gt;<i> and running 'kiwi --installcd' on it after creation, and the following
+</I>&gt;<i> 
+</I>&gt;<i> &lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;iso&quot;&gt;vmx&lt;/type&gt;
+</I>&gt;<i> 
+</I>&gt;<i> where the 'kiwi --installcd' step is unnecessary.  The two iso's created
+</I>&gt;<i> are not identical.  And neither work completely for me, which brings me
+</I>&gt;<i> to my next point
+</I>
+You can't use --installcd if your boot image is not the oemboot image.
+That's because the code for installing the system is in the oemboot
+boot image only. The vmxboot is meant for booting a virtual disk
+without the possibility of installing or re-partitioning, so in
+principal if used within a full virtual machine like VMware.
+
+&gt;<i> 2.  The /boot directory of the final image on the installed system's
+</I>&gt;<i> hard drive contains two initrd's.  One is named 'initrd.vmx', the other
+</I>&gt;<i> 'initrd'.
+</I>&gt;<i> 
+</I>&gt;<i>   The 'initrd.vmx' does the mounting and filesystem expanding onto the
+</I>&gt;<i> full size of the drive during 'phase 2' of the install.  Then it
+</I>&gt;<i> overwrites the grub configuration, among i presume many other things.
+</I>&gt;<i> 
+</I>&gt;<i>   The 'initrd' one doesn't work out of the box:  on my dell test box,
+</I>&gt;<i> the drive is seen by the corresponding kernel as /dev/sda, whereas
+</I>&gt;<i> during installation it was seen as /dev/hda.  This means the kernel's
+</I>&gt;<i> root= parameter is set wrong in grub during installation, and has to be
+</I>&gt;<i> changed manually afterwards to fix it.
+</I>
+I assume that's because you are loading the ide-disk kernel module
+manually which means your disk appears as /dev/hdx but later on the
+initrd created by mkinitrd loads the ata drivers which means the
+disk appears as /dev/sdx. That's a major problem of loading modules
+manually. You told me you did that in linuxrc in order to make the
+disk work. I assume you better should load an ata module to make the
+disk work as /dev/sdx in any case
+
+&gt;<i> Where is this initrd/kernel combination defined?  This isn't the &lt;boot&gt;
+</I>&gt;<i> section of the oemboot/suse-10.2/config.xml is it?
+</I>
+no the boot section of config.xml is unrelated to this. The grub
+configuration is created by the preinit file which is called by
+linuxrc. The data for grub is collected by linuxrc itself. 
+
+&gt;<i> 3.  In certain of my tests (on a 6 drive system) I've been caught by
+</I>&gt;<i> grub error 17's (bad root(driveX,partX) specified during grub
+</I>&gt;<i> installation).  Then some grub error 15's, initrd not found.  Is there a
+</I>&gt;<i> way to specify exactly the correct drive layout, assuming one knows the
+</I>&gt;<i> target machine's drive letters?
+</I>
+I don't know exactly if this is a grub issue or the consequence of all
+the traps you were fallen into before
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000045.html">[Kiwi-users] oemboot problems
+</A></li>
+	<LI>Next message: <A HREF="000050.html">[Kiwi-users] oemboot problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#46">[ date ]</a>
+              <a href="thread.html#46">[ thread ]</a>
+              <a href="subject.html#46">[ subject ]</a>
+              <a href="author.html#46">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

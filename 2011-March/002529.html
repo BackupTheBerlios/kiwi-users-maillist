@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] PXE + NFS read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20%2B%20NFS%20read-only&In-Reply-To=%3CC088D3516432C643AC828162A5164A7F08E4CD58%40se3lmwbibaw.COMMUN.AD.SNCF.FR%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002501.html">
+   <LINK REL="Next"  HREF="002530.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] PXE + NFS read-only</H1>
+    <B>BONNETOT Jean-Daniel (EXT THALES)</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20%2B%20NFS%20read-only&In-Reply-To=%3CC088D3516432C643AC828162A5164A7F08E4CD58%40se3lmwbibaw.COMMUN.AD.SNCF.FR%3E"
+       TITLE="[Kiwi-users] PXE + NFS read-only">ext.thales.jean-daniel.bonnetot at sncf.fr
+       </A><BR>
+    <I>Tue Mar 22 16:08:21 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002501.html">[Kiwi-users] PXE + NFS read-only
+</A></li>
+        <LI>Next message: <A HREF="002530.html">[Kiwi-users] PXE + NFS read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2529">[ date ]</a>
+              <a href="thread.html#2529">[ thread ]</a>
+              <a href="subject.html#2529">[ subject ]</a>
+              <a href="author.html#2529">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I try to include bnx2x driver in my PXE image.
+bnx2x.ko file is present but needs crc32c.ko to work.
+
+I add &lt;file name=&quot;crypto/crc32c.ko&quot;/&gt; in my drivers part but in /lib/modules/2.6.32.12-0.7-default/kernel/crypto, there is nothing.
+
+There is something else I have to do to include drivers in my initrd ?
+
+Regards,
+
+---
+Jean-Daniel Bonnetot
+
+
+-----Message d'origine-----
+De : <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A> [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A>] De la part de BONNETOT Jean-Daniel (EXT THALES)
+Envoy&#233; : jeudi 17 mars 2011 10:52
+&#192; : <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Objet : Re: [Kiwi-users] PXE + NFS read-only
+
+Hi,
+
+My environment disallow AOE. I built a full TFTP image running on ram.
+
+config.xml
+&lt;preferences&gt;
+&lt;type image=&quot;pxe&quot; filesystem=&quot;clicfs&quot; boot=&quot;netboot/suse-SLES11-custom&quot;/&gt;
+&lt;/preferences&gt;
+
+config.default
+IMAGE=/dev/ram1;MenuOption160/X86PC/SLES_11_SP1_JeOS.i686;0.0.6;10.148.248.10;4096
+UNIONFS_CONFIG=/dev/ram2,/dev/ram1,clicfs
+
+As you see, my image is in subdirectory MenuOption160/X86PC, my config.default is too in this directory (PXE server is Altiris).
+I had to modify some details in /usr/share/kiwi/image/netboot/suse-SLES11-custom (copy of /usr/share/kiwi/image/netboot/suse-SLES11) to work.
+
+I think it may be useful to you to know what modifictions I have to do to run it in my environment. Here is some details:
+* cp -a /usr/share/kiwi/image/netboot/suse-SLES11/ /usr/share/kiwi/image/netboot/suse-SLES11-custom
+
+* rm /usr/share/kiwi/image/netboot/suse-SLES11-custom/root/linuxrc
+cp /usr/share/kiwi/image/netboot/suse-linuxrc /usr/share/kiwi/image/netboot/suse-SLES11-custom/root/linuxrc
+
+* /usr/share/kiwi/image/netboot/suse-SLES11-custom/root/include: 
+** in searchAlternativeConfig:
+*** fetchFile MenuOption160/X86PC/config.$hexippart $CONFIG
+*** fetchFile MenuOption160/X86PC/config.default $CONFIG
+
+* modify md5sum in /usr/share/kiwi/image/netboot/suse-SLES11-custom/.checksum.md5 for ./root/linuxrc
+
+Regards,
+
+---
+Jean-Daniel Bonnetot
+
+
+-----Message d'origine-----
+De : Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>] Envoy&#233; : lundi 14 mars 2011 15:22 &#192; : BONNETOT Jean-Daniel (EXT THALES) Cc : <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A> Objet : Re: [Kiwi-users] PXE + NFS read-only
+
+Hi,
+
+&gt;<i> =============================
+</I>&gt;<i> AOE exported clic tree
+</I>&gt;<i> -----------------------------
+</I>&gt;<i> 
+</I>&gt;<i> * config.&lt;MAC&gt;
+</I>&gt;<i>    
+</I>&gt;<i>    AOEROOT=/dev/etherd/e0.1
+</I>&gt;<i> 
+</I>&gt;<i> * AOE Export
+</I>&gt;<i> 
+</I>&gt;<i>   1) losetup /dev/loop0 image-file.clicfs
+</I>&gt;<i>   2) vbladed 0 1 eth0 /dev/loop0
+</I>
+short correction here. The losetup is wrong, you don't need that
+
+   vbladed 0 1 eth0 image-file.clicfs
+
+that's it and worked fine on my test system
+
+Regards,
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------
+Ce message et toutes les pi&#232;ces jointes sont &#233;tablis &#224; l'intention exclusive de ses destinataires et sont confidentiels. L'int&#233;grit&#233; de ce message n'&#233;tant pas assur&#233;e sur Internet, la SNCF ne peut &#234;tre tenue responsable des alt&#233;rations qui pourraient se produire sur son contenu. Toute publication, utilisation, reproduction, ou diffusion, m&#234;me partielle, non autoris&#233;e pr&#233;alablement par la SNCF, est strictement interdite. Si vous n'&#234;tes pas le destinataire de ce message, merci d'en avertir imm&#233;diatement l'exp&#233;diteur et de le d&#233;truire.
+-------
+This message and any attachments are intended solely for the addressees and are confidential. SNCF may not be held responsible for their contents whose accuracy and completeness cannot be guaranteed over the Internet. Unauthorized use, disclosure, distribution, copying, or any part thereof is strictly prohibited. If you are not the intended recipient of this message, please notify the sender immediately and delete it. 
+
+_______________________________________________
+Kiwi-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+-------
+Ce message et toutes les pi&#232;ces jointes sont &#233;tablis &#224; l'intention exclusive de ses destinataires et sont confidentiels. L'int&#233;grit&#233; de ce message n'&#233;tant pas assur&#233;e sur Internet, la SNCF ne peut &#234;tre tenue responsable des alt&#233;rations qui pourraient se produire sur son contenu. Toute publication, utilisation, reproduction, ou diffusion, m&#234;me partielle, non autoris&#233;e pr&#233;alablement par la SNCF, est strictement interdite. Si vous n'&#234;tes pas le destinataire de ce message, merci d'en avertir imm&#233;diatement l'exp&#233;diteur et de le d&#233;truire.
+-------
+This message and any attachments are intended solely for the addressees and are confidential. SNCF may not be held responsible for their contents whose accuracy and completeness cannot be guaranteed over the Internet. Unauthorized use, disclosure, distribution, copying, or any part thereof is strictly prohibited. If you are not the intended recipient of this message, please notify the sender immediately and delete it. 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002501.html">[Kiwi-users] PXE + NFS read-only
+</A></li>
+	<LI>Next message: <A HREF="002530.html">[Kiwi-users] PXE + NFS read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2529">[ date ]</a>
+              <a href="thread.html#2529">[ thread ]</a>
+              <a href="subject.html#2529">[ subject ]</a>
+              <a href="author.html#2529">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] OpenSUSE 11.2 image booting issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OpenSUSE%2011.2%20image%20booting%20issue&In-Reply-To=%3C4C1A7A18.5050009%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001841.html">
+   <LINK REL="Next"  HREF="001843.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] OpenSUSE 11.2 image booting issue</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OpenSUSE%2011.2%20image%20booting%20issue&In-Reply-To=%3C4C1A7A18.5050009%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] OpenSUSE 11.2 image booting issue">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Thu Jun 17 21:40:08 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001841.html">[Kiwi-users] MBR issues with qemu-kvm
+</A></li>
+        <LI>Next message: <A HREF="001843.html">[Kiwi-users] OpenSUSE 11.2 image booting issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1842">[ date ]</a>
+              <a href="thread.html#1842">[ thread ]</a>
+              <a href="subject.html#1842">[ subject ]</a>
+              <a href="author.html#1842">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Guys,
+
+I am running into two distinct problems with kiwi-4.41-124.1.i586 under
+OpenSUSE 11.2. The config.xml file I am using at this time is based
+right off of:
+
+<A HREF="http://en.opensuse.org/Build_Service/KIWI/Cookbook_Recipe07">http://en.opensuse.org/Build_Service/KIWI/Cookbook_Recipe07</A>
+
+And in fact, the only changes I have made are to the elements of the
+description block. The image itself builds with out issue, and
+regardless of if I boot from a USB stick via the .raw.install.raw file,
+or qemu via the .raw file I get the same errors. I suspect I've missed
+something, but here's what I am seeing:
+
+The first problem kicks out an error about the
+/mnt/var/adm/fillup-templates/sysconfig.kernel file and that it can't be
+found. This prevents the system from completing the installation process
+and researching as found that in &quot;suseStripInitrd&quot; of the KIWIConfig.sh
+script, the /var/adm path is being removed as part of the build process.
+I suspect this is done to save space and reduce the size of the image.
+As it is also removing the fillup-templates path, it kills the ability
+of the system to finish installing things. Removing &quot;/var/adm&quot; from the
+list, and adding &quot;/var/adm/update-scripts /var/adm/update-messages
+/var/adm/autoinstall /var/adm/backup /var/adm/SuSEconfig
+/var/adm/perl-modules&quot; to the files listing in that function resolves
+the issue.
+
+The next problem that cropped up after I made that fix is as follows:
+
+After the image switches into a &quot;Preparing preinit phase...&quot; I get the
+following error:
+
+-----------------------
+===&gt; Calling pre-init stage in system image
+
+===&gt; Creating framebuffer devices
+===&gt; Can't create initrd
+
+INIT: version 2.86 booting
+INIT: No inittab file found
+
+Enter runlevel:
+-----------------------
+
+The &quot;Can't create initrd&quot; failure seems to be the root of the issue, and
+googling for any answers returns nothing more the code changes to the
+kiwi system. Please let me know what I will need to provide to help
+track down what information you need to provide any assistance, in
+addition the kiwidebug=1 stage fails to provide a console, as I've
+already tried to get a copy of the log file.
+
+Any assistance would be much appreciated.
+
+Thanks in advance.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001841.html">[Kiwi-users] MBR issues with qemu-kvm
+</A></li>
+	<LI>Next message: <A HREF="001843.html">[Kiwi-users] OpenSUSE 11.2 image booting issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1842">[ date ]</a>
+              <a href="thread.html#1842">[ thread ]</a>
+              <a href="subject.html#1842">[ subject ]</a>
+              <a href="author.html#1842">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

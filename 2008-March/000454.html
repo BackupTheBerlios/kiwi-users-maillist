@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB with syslinux
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20with%20syslinux&In-Reply-To=%3C20080305154002.GA28577%40d124.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000452.html">
+   <LINK REL="Next"  HREF="000455.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB with syslinux</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20with%20syslinux&In-Reply-To=%3C20080305154002.GA28577%40d124.suse.de%3E"
+       TITLE="[Kiwi-users] USB with syslinux">ms at suse.de
+       </A><BR>
+    <I>Wed Mar  5 16:40:02 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000452.html">[Kiwi-users] USB with syslinux
+</A></li>
+        <LI>Next message: <A HREF="000455.html">[Kiwi-users] USB with syslinux
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#454">[ date ]</a>
+              <a href="thread.html#454">[ thread ]</a>
+              <a href="subject.html#454">[ subject ]</a>
+              <a href="author.html#454">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;&gt;<i> I know the syslinux maintainer and I'm pretty sure we can include
+</I>&gt;&gt;<i> that in the upcoming version. Will talk to him
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   
+</I>&gt;<i> That would be just great ;-)
+</I>
+just talked to him. We are aware of the gfxboot patches and our
+syslinux maintainer will include them. At the moment we are waiting
+because syslinux provides a new version every day at the moment :-)
+So be sure you can rely on the new syslinux.
+
+&gt;<i> Another question has occured to me today when dealing with the kiwi sticks 
+</I>&gt;<i> on different machines.
+</I>&gt;<i> Sax autoconfiguration is taking place on initial startup of a kiwi USB 
+</I>&gt;<i> stick, and xorg.conf is written to the persistent partition.
+</I>&gt;<i> If the same stick is booted next time on another PC (which is quite it's 
+</I>&gt;<i> purpose), xorg usually fails because the old xorg.conf with the prior 
+</I>&gt;<i> configuration of graphics card, mouse and monitor is used.
+</I>&gt;<i> Shouldn't there be some instance in opensuse that autodetects the hardware 
+</I>&gt;<i> configuration and - in case there are some differences - reconfigures the 
+</I>&gt;<i> system or X11?
+</I>
+you are definitely right here and yast provides a basic system to
+handle that but we have a hard time integrating it and I would prefer
+a solution which works without yast. I think it would be a nice task
+for someone who is interested to implement such a mechanism which checks
+at boot time if the hwinfo provided hardware ID's has changed. This is
+also an area where I didn't found time to work on yet
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000452.html">[Kiwi-users] USB with syslinux
+</A></li>
+	<LI>Next message: <A HREF="000455.html">[Kiwi-users] USB with syslinux
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#454">[ date ]</a>
+              <a href="thread.html#454">[ thread ]</a>
+              <a href="subject.html#454">[ subject ]</a>
+              <a href="author.html#454">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

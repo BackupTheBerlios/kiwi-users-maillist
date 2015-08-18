@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] diskless netboot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20diskless%20netboot&In-Reply-To=%3C20110208220147.GA10547%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002301.html">
+   <LINK REL="Next"  HREF="002305.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] diskless netboot</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20diskless%20netboot&In-Reply-To=%3C20110208220147.GA10547%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] diskless netboot">ms at suse.de
+       </A><BR>
+    <I>Tue Feb  8 23:01:47 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002301.html">[Kiwi-users] diskless netboot
+</A></li>
+        <LI>Next message: <A HREF="002305.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2302">[ date ]</a>
+              <a href="thread.html#2302">[ thread ]</a>
+              <a href="subject.html#2302">[ subject ]</a>
+              <a href="author.html#2302">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I would like to have a system, where the OS is in the /dev/ram1 and
+</I>&gt;<i> user data is on the hard disk. I would like to configure the disk
+</I>&gt;<i> myself, since it might not always be present.
+</I>&gt;<i> 
+</I>&gt;<i> With the most recent kiwi I have a problem with the netboot.
+</I>&gt;<i> Previously (v4.69) it was working nicely. I tracked down the problem
+</I>&gt;<i> in the git and I guess the modification of &quot;2011-01-03, 45f9dd07...&quot;
+</I>&gt;<i> has to do with it.
+</I>&gt;<i> 
+</I>&gt;<i> The problem is, that netboot/suse-linuxrc in Step 11) enters &quot;Check
+</I>&gt;<i> for diskful station&quot;, even if I want a diskless system. $DISK is not
+</I>&gt;<i> defined and I get an exception. It cannot be fixed easily: if I dont
+</I>&gt;<i> let linuxrc enter to this step, it later fails with missing
+</I>&gt;<i> /sbin/init.
+</I>&gt;<i> 
+</I>&gt;<i> My /srv/tftpboot/KIWI/config.default file is just one line:
+</I>&gt;<i> 
+</I>&gt;<i> IMAGE=/dev/ram1;test.x86_64;1.0.0;192.168.100.2;4096;compressed
+</I>&gt;<i> 
+</I>&gt;<i> How should  I fix this?
+</I>
+I'm sorry I think I broke that as you already found out :(
+Attached is a patch which should fix it. I didn't had time to
+test it though.
+
+Would you mind to give the patch a try
+
+  patch -p0 &lt; kiwi.patch
+
+  --&gt; rebuild the image
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.patch
+Type: text/x-patch
+Size: 1702 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110208/0d75c31d/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110208/0d75c31d/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002301.html">[Kiwi-users] diskless netboot
+</A></li>
+	<LI>Next message: <A HREF="002305.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2302">[ date ]</a>
+              <a href="thread.html#2302">[ thread ]</a>
+              <a href="subject.html#2302">[ subject ]</a>
+              <a href="author.html#2302">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

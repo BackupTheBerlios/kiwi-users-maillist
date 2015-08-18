@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Live CD custom grub entries
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Live%20CD%20custom%20grub%20entries&In-Reply-To=%3C487F8234.8000809%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000777.html">
+   <LINK REL="Next"  HREF="000779.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Live CD custom grub entries</H1>
+    <B>Jad Naous</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Live%20CD%20custom%20grub%20entries&In-Reply-To=%3C487F8234.8000809%40gmail.com%3E"
+       TITLE="[Kiwi-users] Live CD custom grub entries">jnaous at gmail.com
+       </A><BR>
+    <I>Thu Jul 17 19:32:36 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000777.html">[Kiwi-users] Live CD custom grub entries
+</A></li>
+        <LI>Next message: <A HREF="000779.html">[Kiwi-users] Live CD custom grub entries
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#778">[ date ]</a>
+              <a href="thread.html#778">[ thread ]</a>
+              <a href="subject.html#778">[ subject ]</a>
+              <a href="author.html#778">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i> I'm trying to build a live CD to test some custom hardware. The PCI card 
+</I>&gt;&gt;<i> requires some extra virtual mem allocation so I want my grub entry to 
+</I>&gt;&gt;<i> look like this when I boot the CD:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> title openSUSE 11.0 - 2.6.25.9-0.2 (pae) NetFPGA
+</I>&gt;&gt;<i>    root (hd0,4)
+</I>&gt;&gt;<i>    uppermem 524288
+</I>&gt;&gt;<i>    kernel /vmlinuz-2.6.25.9-0.2-pae root=/dev/system/root 
+</I>&gt;&gt;<i> resume=/dev/sda7 splash=silent showopts vga=0x31a vmalloc=256M
+</I>&gt;&gt;<i>    initrd /initrd-2.6.25.9-0.2-pae
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> How can I add the uppermem 524288 line and modify the kernel options to 
+</I>&gt;&gt;<i> add vmalloc=256M?
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, we use isolinux for live ISO's do you have the same problem
+</I>&gt;<i> there too ?
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+Yup I do. I've found where this should be added in
+boot/i386/loader/isolinux.cfg but I don't know where the uppermem line
+goes, and how to do this programmatically. Where can I modify the
+creation of the isolinux.cfg file?
+
+Thanks,
+Jad.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000777.html">[Kiwi-users] Live CD custom grub entries
+</A></li>
+	<LI>Next message: <A HREF="000779.html">[Kiwi-users] Live CD custom grub entries
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#778">[ date ]</a>
+              <a href="thread.html#778">[ thread ]</a>
+              <a href="subject.html#778">[ subject ]</a>
+              <a href="author.html#778">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

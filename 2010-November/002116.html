@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20using%20%22kiwi%20-i%20--select%20packages%22&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2730439115%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002114.html">
+   <LINK REL="Next"  HREF="002117.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20using%20%22kiwi%20-i%20--select%20packages%22&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2730439115%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;">john.lund at emc.com
+       </A><BR>
+    <I>Fri Nov 12 17:43:26 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002114.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+        <LI>Next message: <A HREF="002117.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2116">[ date ]</a>
+              <a href="thread.html#2116">[ thread ]</a>
+              <a href="subject.html#2116">[ subject ]</a>
+              <a href="author.html#2116">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>]
+</I>
+&gt;<i> Sent: Friday, November 12, 2010 3:57 AM
+</I>
+&gt;<i> To: Lund, John
+</I>
+&gt;<i> Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+</I>
+&gt;<i> Subject: Re: [Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</I>
+&gt;<i>
+</I>
+&gt;<i> Hi,
+</I>
+&gt;<i>
+</I>
+&gt;<i> &gt; I'm getting a failure when running the following:
+</I>
+&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jlund at kiwi1</A>:~/kiwi/AtmosISO&gt; sudo /usr/sbin/kiwi -i source --select
+</I>
+&gt;<i> packages
+</I>
+&gt;<i> &gt; Nov-11 09:46:51 &lt;1&gt; : Reading image description [ListXMLInfo]...
+</I>
+&gt;<i> &gt; Nov-11 09:46:51 &lt;1&gt; : Using profile(s):
+</I>
+&gt;<i> AtmosBase,AtmosAppliance,AtmosDebug,x86                   done
+</I>
+&gt;<i> &gt; Nov-11 09:46:51 &lt;1&gt; : Setting up SaT solver...
+</I>
+&gt;<i> &gt; Nov-11 09:46:51 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-">http://10.5.114.25/kiwi-</A>
+</I>
+&gt;<i> repos/1.4.0/3p...                       done
+</I>
+&gt;<i> &gt; Nov-11 09:46:53 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-">http://10.5.114.25/kiwi-</A>
+</I>
+&gt;<i> repos/1.4.0/3p_modified...              done
+</I>
+&gt;<i> &gt; Nov-11 09:46:55 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-">http://10.5.114.25/kiwi-</A>
+</I>
+&gt;<i> repos/SLES/SLES11SP1_SDK1...            done
+</I>
+&gt;<i> &gt; Nov-11 09:46:55 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-">http://10.5.114.25/kiwi-</A>
+</I>
+&gt;<i> repos/SLES/HF...                        done
+</I>
+&gt;<i> &gt; Nov-11 09:46:57 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-">http://10.5.114.25/kiwi-</A>
+</I>
+&gt;<i> repos/SLES/SLES11SP1_D1...              failed
+</I>
+&gt;<i> &gt; Nov-11 09:47:06 &lt;3&gt; : --&gt; Can't create SaT solvable file
+</I>
+&gt;<i> failed
+</I>
+&gt;<i> &gt; Nov-11 09:47:06 &lt;2&gt; : SaT solver setup failed
+</I>
+&gt;<i> failed
+</I>
+&gt;<i> &gt;
+</I>
+&gt;<i> &gt; I can build the &quot;source&quot; configuration with kiwi, and it doesn't have
+</I>
+&gt;<i> any problems with loading the repo database info during the build.
+</I>
+&gt;<i> &gt; What can I do to troubleshoot this?  I want to be able to validate
+</I>
+&gt;<i> that certain packages are at certain version levels in the repos before
+</I>
+&gt;<i> I run our full kiwi build.
+</I>
+&gt;<i>
+</I>
+&gt;<i> Hmm, the select call creates a solvable over all your repos and runs
+</I>
+&gt;<i> the task
+</I>
+&gt;<i> on that solvable. Somehow the solvable creation for the
+</I>
+&gt;<i> &quot;<A HREF="http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_D1...">http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_D1...</A>&quot; failed. Can you
+</I>
+&gt;<i> call
+</I>
+&gt;<i> kiwi as follows:
+</I>
+&gt;<i>
+</I>
+&gt;<i>    kiwi -i source --select packages --logfile terminal
+</I>
+&gt;<i>
+</I>
+&gt;<i> any error messages ?
+</I>
+
+
+[Lund, John]
+
+No error messages:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jlund at kiwi1</A>:~/kiwi/AtmosISO&gt; sudo /usr/sbin/kiwi -i source --select packages --logfile terminal
+
+Nov-12 04:10:21 &lt;1&gt; : Reading image description [ListXMLInfo]...
+
+Nov-12 04:10:21 &lt;1&gt; : Using profile(s): AtmosBase,AtmosAppliance,AtmosDebug,x86                                                                                done
+
+Nov-12 04:10:21 &lt;1&gt; : Setting up SaT solver...
+
+Nov-12 04:10:21 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/1.4.0/3p...">http://10.5.114.25/kiwi-repos/1.4.0/3p...</A>                                                                                    done
+
+Nov-12 04:10:22 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/1.4.0/3p_modified...">http://10.5.114.25/kiwi-repos/1.4.0/3p_modified...</A>                                                                           done
+
+Nov-12 04:10:22 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_SDK1...">http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_SDK1...</A>                                                                         done
+
+Nov-12 04:10:22 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/SLES/HF...">http://10.5.114.25/kiwi-repos/SLES/HF...</A>                                                                                     done
+
+Nov-12 04:10:23 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_D1...">http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_D1...</A>                                                                           failed
+
+Nov-12 04:10:32 &lt;3&gt; : --&gt; Can't create SaT solvable file                                                                                                       failed
+
+Nov-12 04:10:33 &lt;2&gt; : SaT solver setup failed
+
+
+
+
+
+&gt;<i>
+</I>
+&gt;<i> Can you provide more information about the repo which failed the
+</I>
+&gt;<i> solvable
+</I>
+&gt;<i> creation ? Do you have satsolver-tools installed on your build machine
+</I>
+&gt;<i> ?
+</I>
+&gt;<i>
+</I>
+[Lund, John]
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jlund at kiwi1</A>:~/kiwi/AtmosISO&gt; zypper info satsolver-tools
+
+Loading repository data...
+
+Reading installed packages...
+
+
+
+Information for package satsolver-tools:
+
+
+
+Repository: @System
+
+Name: satsolver-tools
+
+Version: 0.15.0-1.21
+
+Arch: x86_64
+
+Vendor: openSUSE
+
+Installed: Yes
+
+Status: up-to-date
+
+Installed Size: 1.7 MiB
+
+Summary: A new approach to package dependency solving
+
+Description:
+
+A new approach to package dependency solving.
+
+
+
+And the repository is a SLES 11 SP1 DVD1 install dvd that is loopback mounted on a server so we can access it via http from many build machines.
+
+
+
+This seems to be consistent across kiwi versions - we are using 4.43, 4.61, and 4.64
+
+
+
+Thank you,
+
+John Lund
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101112/6cf32257/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101112/6cf32257/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002114.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+	<LI>Next message: <A HREF="002117.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2116">[ date ]</a>
+              <a href="thread.html#2116">[ thread ]</a>
+              <a href="subject.html#2116">[ subject ]</a>
+              <a href="author.html#2116">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

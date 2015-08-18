@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] KIWI VMX build problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI%20VMX%20build%20problem&In-Reply-To=%3C876D588C-2D68-4BE7-8765-346E5384338C%40danl.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002909.html">
+   <LINK REL="Next"  HREF="002911.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] KIWI VMX build problem</H1>
+    <B>Daniel Little</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI%20VMX%20build%20problem&In-Reply-To=%3C876D588C-2D68-4BE7-8765-346E5384338C%40danl.org%3E"
+       TITLE="[Kiwi-users] KIWI VMX build problem">me at danl.org
+       </A><BR>
+    <I>Fri Sep  2 10:02:56 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002909.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+        <LI>Next message: <A HREF="002911.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2910">[ date ]</a>
+              <a href="thread.html#2910">[ thread ]</a>
+              <a href="subject.html#2910">[ subject ]</a>
+              <a href="author.html#2910">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Yah, that worked just fine. 
+
+deployment:~ # ls -l /mnt/image/
+total 16
+-rw-r--r-- 1 root root 11135 Sep  1 22:08 config.xml
+-rw-r--r-- 1 root root    25 Sep  1 18:56 main::Prepare
+
+I did a comparison of the original config.xml and the resulting config.xml and they're identical other than formatting (whitespace and quote marks) being changed. 
+
+Daniel.
+
+On 2011-09-02, at 2:42 AM, Marcus Sch&#228;fer wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> The following is the end of the build process. Note that the identical KIWI config is building just fine on a production server running V4.94.1 (both machines running openSUSE 11.4):
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Sep-01 21:12:44 &lt;1&gt; : Saving disk label in MBR: 0x1ac3e1ee&#8230;                                     done                                                Sep-01 21:12:44 &lt;1&gt; : --&gt; Starting image format conversion&#8230;					
+</I>&gt;&gt;<i> Sep-01 21:12:44 &lt;1&gt; : Binding disk to loop device                                               done                                                  Sep-01 21:12:45 &lt;1&gt; : Setup device mapper for partition access                                                                                    Sep-01 21:12:45 &lt;3&gt; : Expected a directory at /tmp/kiwiboot.ipTq1Y/image.
+</I>&gt;&gt;<i> Specify a directory as the configuration base.                                                  failed                                              Use of uninitialized value $configPath in -f at /usr/share/kiwi/modules/KIWIXMLValidator.pm line 64.
+</I>&gt;&gt;<i> Use of uninitialized value $configPath in concatenation (.) or string at /usr/share/kiwi/modules/KIWIXMLValidator.pm line 65.
+</I>&gt;&gt;<i> Sep-01 21:12:45 &lt;3&gt; : Could not find specified configuration:                                   failed                                              Sep-01 21:12:46 &lt;3&gt; : Can't load XML configuration, not an image ?                              failed                                                  
+</I>&gt;&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> The problem here is that kiwi wants to read the XML configuration from
+</I>&gt;<i> the .raw file in order to know which format it should create. Therefore
+</I>&gt;<i> it losetup,kpartx,mount the image partition to a tmpdir /tmp/kiwiboot.ipTq1Y
+</I>&gt;<i> in your case. Below that directory there should be an image/ directory
+</I>&gt;<i> which contains the XML description. In your .raw file it looks like this
+</I>&gt;<i> directory doesn't exist. I tried to reproduce this with an example
+</I>&gt;<i> kiwi --create ... call and in my tests everything went fine.
+</I>&gt;<i> 
+</I>&gt;<i> So could you do the following:
+</I>&gt;<i> 
+</I>&gt;<i>   losetup /dev/loop0 file.raw
+</I>&gt;<i>   kpartx -a /dev/loop0
+</I>&gt;<i>   mount /dev/mapper/loop0p1 /mnt
+</I>&gt;<i>   ls -l /mnt/image
+</I>&gt;<i> 
+</I>&gt;<i> Does this look good so far ?
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> -- 
+</I>&gt;<i> Public Key available
+</I>&gt;<i> gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> -------------------------------------------------------
+</I>&gt;<i> Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i> Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i> FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i> GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+</I>&gt;<i> HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i> <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i> -------------------------------------------------------
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002909.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+	<LI>Next message: <A HREF="002911.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2910">[ date ]</a>
+              <a href="thread.html#2910">[ thread ]</a>
+              <a href="subject.html#2910">[ subject ]</a>
+              <a href="author.html#2910">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

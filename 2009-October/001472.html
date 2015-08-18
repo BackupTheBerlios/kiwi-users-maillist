@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SLES10 SP2 x86_64 image creation on openSUSE	11.0	(i586)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES10%20SP2%20x86_64%20image%20creation%20on%20openSUSE%0A%0911.0%09%28i586%29&In-Reply-To=%3C20091008085906.GA19508%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001471.html">
+   <LINK REL="Next"  HREF="001473.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SLES10 SP2 x86_64 image creation on openSUSE	11.0	(i586)</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES10%20SP2%20x86_64%20image%20creation%20on%20openSUSE%0A%0911.0%09%28i586%29&In-Reply-To=%3C20091008085906.GA19508%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] SLES10 SP2 x86_64 image creation on openSUSE	11.0	(i586)">ms at novell.com
+       </A><BR>
+    <I>Thu Oct  8 10:59:06 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001471.html">[Kiwi-users] SLES10 SP2 x86_64 image creation on openSUSE 11.0	(i586)
+</A></li>
+        <LI>Next message: <A HREF="001473.html">[Kiwi-users] problem: using custom kernel with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1472">[ date ]</a>
+              <a href="thread.html#1472">[ thread ]</a>
+              <a href="subject.html#1472">[ subject ]</a>
+              <a href="author.html#1472">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have trouble creating an SLES10 SP2 x86_64 image on
+</I>&gt;<i> a openSUSE 11.0 (i586) platform. How can I
+</I>&gt;<i> specify the target architecture? Using a 32-bit
+</I>&gt;<i> SLES10 repository prep runs without any error, using
+</I>&gt;<i> a x86_64 repository the packages are not found.
+</I>&gt;<i> What am I missing?
+</I>
+you can't create a 64bit image on a 32bit machine. The
+underlaying architecture must match the imaging architecture
+(except for x86_64 which also allows to create 32bit images)
+The binary execution format has to be compatible with the
+machine which is not the case when you try to run 64bit software
+on a 32bit machine. The packagemanager detects that and does
+not allow to install such software
+
+* There are tricks to emulate that and preload some libraries
+  to allow the installation of foreign arch packages. As long
+  as they are not executed it shouldn't be a problem but the
+  big picture introduces all kinds of other problems when doing
+  this (example: chroot into the new root tree is not possible then)
+
+* There are also emulators (Qemu) which allows emulation of a 64
+  bit platform on a 32bit machine. But all that slows down the
+  image build process to an unacceptable situation.
+
+So the best solution is to build 32bit and 64bit x86 based images
+on a x86_64 build machine
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001471.html">[Kiwi-users] SLES10 SP2 x86_64 image creation on openSUSE 11.0	(i586)
+</A></li>
+	<LI>Next message: <A HREF="001473.html">[Kiwi-users] problem: using custom kernel with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1472">[ date ]</a>
+              <a href="thread.html#1472">[ thread ]</a>
+              <a href="subject.html#1472">[ subject ]</a>
+              <a href="author.html#1472">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

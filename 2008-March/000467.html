@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C20080311152038.GA31035%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000466.html">
+   <LINK REL="Next"  HREF="000472.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Troubles with SLED10-SP1 LiveDVD</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C20080311152038.GA31035%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Troubles with SLED10-SP1 LiveDVD">ms at suse.de
+       </A><BR>
+    <I>Tue Mar 11 16:20:39 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000466.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+        <LI>Next message: <A HREF="000472.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#467">[ date ]</a>
+              <a href="thread.html#467">[ thread ]</a>
+              <a href="subject.html#467">[ subject ]</a>
+              <a href="author.html#467">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Ok, updated to 2.36 and done all tests.
+</I>&gt;<i> 
+</I>&gt;<i> Right, the file rootfs.tar.gz contains complete /var /etc and /home
+</I>&gt;<i> ( with files and directories ), the rest ( /lib /usr ... ) are real
+</I>&gt;<i> dirs with simlinks to files to the read-only part. This is OK as
+</I>&gt;<i> you've stated.
+</I>
+ok
+
+&gt;<i> &gt; * The log you sent shows:
+</I>&gt;<i> &gt;   252MB left in tmpfs and 143MB required for the uncompressed archive
+</I>&gt;<i> &gt;   With the latest kiwi version we allow up to 512MB for a tmpfs but
+</I>&gt;<i> &gt;   that's not a problem for you. My problem is that I think my RAM space
+</I>&gt;<i> &gt;   calculation could be wrong because if we extract the tarball into
+</I>&gt;<i> &gt;   a tmpfs the tar and gzip programs also requires RAM space to operate.
+</I>&gt;<i> &gt;   Maybe there are RAM caches when extracting which gets freed afterwards
+</I>&gt;<i> &gt;   but during the process we may need more RAM space. It would be
+</I>&gt;<i> &gt;   interesting if you can try to run that image within qemu and call
+</I>&gt;<i> &gt;   it like the following:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;     qemu -cdrom &lt;the-iso&gt; -m 512
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;   does that work ? if not it should work with -m 1024 as you already
+</I>&gt;<i> &gt;   have tested. I would like to know in case of a successful boot how
+</I>&gt;<i> &gt;   much RAM is still available (cat /proc/meminfo).
+</I>&gt;<i> 
+</I>&gt;<i> I'm using VMWare Workstation 6, hope this is not an inconvenience.
+</I>&gt;<i> If you think it is, I'll switch to qemu.
+</I>
+it doesn't matter which virtualisation platform you use. I use
+qemu just because it's easier to become installed :) 
+
+&gt;<i> No, it still doesn't boot with 512 MB of RAM. Now I need 688 MB, which
+</I>&gt;<i> is far less than 800 MB of my last try, un still far from the desired
+</I>&gt;<i> 512 MBminimum.
+</I>&gt;<i> 
+</I>&gt;<i> The tests where run at intervals of 4 MB of RAM and 688 resulted the
+</I>&gt;<i> first RAM value which booted OK, the memory data you asked for
+</I>&gt;<i> a successful boot is shown above in the email.
+</I>
+Thanks for all your tests I really appreciate it. I have done some
+tests myself too and I think I could imagine what the problem is.
+the rootfs tarball exists as a compressed tarball on a compressed
+filesystem. When kiwi uncompresses this tarball into RAM space
+the system also needs RAM space for the decompression of this file
+from the filesystem and it needs RAM for the tar program in order
+to be able to uncompress the compressed tarball. According to this
+it's about 3 times more RAM compared to the size of the tar file
+assuming a compression rate of 50%
+
+I think it is not a good idea to have the tarball as compressed
+file because it gets compressed by the compressed squashfs
+filesystem anywayJ. Therefore I changed the archive creation
+and don't create a compressed tarball.
+
+But when the system untar's the archive into RAM it still needs
+more RAM than the archive itself because the file is read as
+an entity from the compressed filesystem. Therefore I estimated
+that the system needs twice the size of the archive to be able
+to uncompress the archive into RAM. I don't know if this would
+work reliable but in my tests it was at least better than
+before :)
+
+I will checkin the change into version 2.37 maybe you can give
+it a try again. Your tar file was compressed about 150MB so I guess
+it will be about 300MB uncompressed. The squashfs filesystem will
+compress that again and your image will not change its size. When
+this 300MB tarball needs to be untared into RAM you need temporary
+about 600MB of RAM space. That's more than your 512MB limit. At
+the moment I don't know how we could prevent that. I'm sorry
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000466.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+	<LI>Next message: <A HREF="000472.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#467">[ date ]</a>
+              <a href="thread.html#467">[ thread ]</a>
+              <a href="subject.html#467">[ subject ]</a>
+              <a href="author.html#467">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

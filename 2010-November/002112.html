@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi ISO images and OBS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20ISO%20images%20and%20OBS&In-Reply-To=%3C201011111149.36224.ttelford.groups%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002111.html">
+   <LINK REL="Next"  HREF="002115.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi ISO images and OBS</H1>
+    <B>Troy Telford</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20ISO%20images%20and%20OBS&In-Reply-To=%3C201011111149.36224.ttelford.groups%40gmail.com%3E"
+       TITLE="[Kiwi-users] Kiwi ISO images and OBS">ttelford.groups at gmail.com
+       </A><BR>
+    <I>Thu Nov 11 19:49:35 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002111.html">[Kiwi-users] image name on eom boot iso
+</A></li>
+        <LI>Next message: <A HREF="002115.html">[Kiwi-users] Kiwi ISO images and OBS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2112">[ date ]</a>
+              <a href="thread.html#2112">[ thread ]</a>
+              <a href="subject.html#2112">[ subject ]</a>
+              <a href="author.html#2112">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I intend to use Kiwi and OBS together to generate ISO images - both appliance 
+type images (which are documented fairly well), and &quot;add-on product&quot; ISO 
+images.
+
+For add-on product ISO images, I've been able to generate (I think) Add-on 
+images for openSUSE and SLES.  (I don't recall if I found documentation 
+somewhere, or simply looked at an ISO image on build.opensuse.org...)
+
+I've been able to create a _product 'package' which OBS then generates kiwi 
+config files - and then builds ISO images.
+
+However, my needs extend beyond the SuSE product line - into distros like 
+Fedora, CentOS, Oracle Linux, RHEL, etc.
+
+So, after some work to get Kiwi and either smart or zypper built for those 
+distros, I am able to build SuSE-style 'add-on' ISO images for a product, 
+though the packages themselves are for Fedora, CentOS, RHEL, etc.
+
+The thing I'm now interested in is being able to modify (or customize) the ISO 
+images:
+	* For SuSE ISO images, I'd like to have a dir other than /suse to put RPM 
+packages in.  (Say, a product or company name).
+	* For Red Hat-ish ISO images, I'd like to be able to make an ISO image that 
+is more along the lines of how Red Hat does 'add-on' product ISO images.
+
+I've found the kiwi plugins that allow SuSE-style add-on images to be made:
+	/usr/share/kiwi/modules/plugins/*
+
+I've also looked at the (obs-generated) .kiwi files, and found many options 
+that I'd like to control in the &lt;productoptions&gt; section.  However, I don't 
+know where these are defined, or how to set them.
+
+Currently, I believe that these plugins are the 'key' to what I want to do - 
+ie. customize add-on product ISO images, and/or create plugins for, say Fedora 
+or CentOS.
+
+Can anyone tell me if I'm on the right track?  Where can I find documentation 
+(if any) on Kiwi plugins?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002111.html">[Kiwi-users] image name on eom boot iso
+</A></li>
+	<LI>Next message: <A HREF="002115.html">[Kiwi-users] Kiwi ISO images and OBS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2112">[ date ]</a>
+              <a href="thread.html#2112">[ thread ]</a>
+              <a href="subject.html#2112">[ subject ]</a>
+              <a href="author.html#2112">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

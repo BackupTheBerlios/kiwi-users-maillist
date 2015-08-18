@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Give user a chance to continue installing (ignore the	identical mbrid)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Give%20user%20a%20chance%20to%20continue%20installing%20%28ignore%20the%0A%09identical%20mbrid%29&In-Reply-To=%3Ce915a2a90905051615l4ee1d0c0qe5f43c2f06904696%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001107.html">
+   <LINK REL="Next"  HREF="001109.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Give user a chance to continue installing (ignore the	identical mbrid)</H1>
+    <B>Qian Feng</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Give%20user%20a%20chance%20to%20continue%20installing%20%28ignore%20the%0A%09identical%20mbrid%29&In-Reply-To=%3Ce915a2a90905051615l4ee1d0c0qe5f43c2f06904696%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Give user a chance to continue installing (ignore the	identical mbrid)">fengqian83 at gmail.com
+       </A><BR>
+    <I>Wed May  6 01:15:49 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001107.html">[Kiwi-users] new home for kiwi...
+</A></li>
+        <LI>Next message: <A HREF="001109.html">[Kiwi-users] Give user a chance to continue installing	(ignore	the identical mbrid)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1108">[ date ]</a>
+              <a href="thread.html#1108">[ thread ]</a>
+              <a href="subject.html#1108">[ subject ]</a>
+              <a href="author.html#1108">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi ms and all,
+
+Current suse-dump code forces users to give up when it detects
+identical MBR ids. Some customers seems got confused.
+Why don't give them a chance to re-install the image? Here's a
+possible patch to /oemboot/suse-dump:
+
+
+--- suse-dump.orig      2009-05-06 06:35:46.000000000 +0800
++++ suse-dump   2009-05-06 06:53:51.000000000 +0800
+@@ -178,9 +178,17 @@
+                mbrM=`dd if=$mbrD bs=1 count=4 skip=$((0x1b8))|hexdump
+-n4 -e '&quot;0x%x&quot;'`
+                mbrI=`$mbrI | dd  bs=1 count=4 skip=$((0x1b8))|hexdump
+-n4 -e '&quot;0x%x&quot;'`
+                if [ $mbrM = $mbrI ];then
+-                       systemException \
+-                               &quot;Base system already installed&quot; \
+-                       &quot;reboot&quot;
++                       prompt=&quot;Identical MBRID: system already installed.\n\
++                               If you want to continue, type upper case YES: &quot;
++                       read -p &quot;$prompt&quot; answer
++                       [ -z &quot;$answer&quot; ] &amp;&amp; answer=&quot;no&quot;
++                       case $answer in
++                               YES ) ;;
++                               * )     systemException \
++                                               &quot;Base system already
+installed&quot; \
++                                               &quot;reboot&quot;
++                               ;;
++                       esac
+                fi
+        fi
+        #======================================
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: mbrid.patch
+Type: text/x-patch
+Size: 743 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090506/1a93f1c9/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090506/1a93f1c9/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001107.html">[Kiwi-users] new home for kiwi...
+</A></li>
+	<LI>Next message: <A HREF="001109.html">[Kiwi-users] Give user a chance to continue installing	(ignore	the identical mbrid)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1108">[ date ]</a>
+              <a href="thread.html#1108">[ thread ]</a>
+              <a href="subject.html#1108">[ subject ]</a>
+              <a href="author.html#1108">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

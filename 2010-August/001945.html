@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] FW: oemboot/SLES - license agreement
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20FW%3A%20oemboot/SLES%20-%20license%20agreement&In-Reply-To=%3C291A23B717F9104985651112DB6C365F26E7264C80%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001944.html">
+   <LINK REL="Next"  HREF="001946.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] FW: oemboot/SLES - license agreement</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20FW%3A%20oemboot/SLES%20-%20license%20agreement&In-Reply-To=%3C291A23B717F9104985651112DB6C365F26E7264C80%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] FW: oemboot/SLES - license agreement">john.lund at emc.com
+       </A><BR>
+    <I>Tue Aug  3 20:10:13 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001944.html">[Kiwi-users] FW: oemboot/SLES - license agreement
+</A></li>
+        <LI>Next message: <A HREF="001946.html">[Kiwi-users] FW: oemboot/SLES - license agreement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1945">[ date ]</a>
+              <a href="thread.html#1945">[ thread ]</a>
+              <a href="subject.html#1945">[ subject ]</a>
+              <a href="author.html#1945">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> 
+</I>&gt;<i> &gt; * After that add the following line in your config.xml file
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   &lt;packages type=&quot;image&quot;&gt;
+</I>&gt;<i> &gt;      ....add the following line in here
+</I>&gt;<i> &gt;      &lt;archive name=&quot;your-tarball-filename&quot; bootinclude=&quot;true&quot;/&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; [Lund, John] I've added my license.tar.gz, with a simple license.txt
+</I>&gt;<i> into the same directory with the /root overlay directory.  I am still
+</I>&gt;<i> not seeing the license check before the &quot;dump&quot; is written to disk.  Is
+</I>&gt;<i> there something else that needs to be done?
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> so you have the file license.tar.gz and after that:
+</I>&gt;<i> 
+</I>&gt;<i> - edit the config.xml file existing in the directory where your
+</I>&gt;<i>   license.tar.gz lives and add the line
+</I>&gt;<i> 
+</I>&gt;<i>   &lt;archive name=&quot;license.tar.gz&quot; bootinclude=&quot;true&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i>   in the &lt;packages type=&quot;image&quot;&gt; section
+</I>&gt;<i> 
+</I>&gt;<i> - now call kiwi prepare and create again. The log also tells you
+</I>&gt;<i>   about the unpacking of the archive during the process
+</I>
+[Lund, John] Sorry I meant to include more specifics.  I have included that line in my config.xml file.  In my kiwi build log file I see the following in the boot prepare :
+
+	Aug-03 11:53:43 &lt;1&gt; : Adding foreign package(s):
+	Aug-03 11:53:43 &lt;1&gt; : --&gt; bootsplash-branding-SLES
+	Aug-03 11:53:43 &lt;1&gt; : --&gt; gfxboot-branding-SLES
+	Aug-03 11:53:43 &lt;1&gt; : Adding foreign archive(s):
+	Aug-03 11:53:43 &lt;1&gt; : --&gt; License.tar.gz
+
+I can see that the tar file has the license.txt file:
+	tar -tzvf License.tar.gz 
+	-rw-r--r-- root/root        55 2010-08-02 00:12 license.txt
+
+And I can see later in the log that the file is unpacked for the boot image:
+		+ for i in EMCLicense.tar.gz
+	+ tar -C /tmp/kiwi-VMX.MKucoM/kiwi-VMXboot-26793 -xvf 	/root/JeOS1/./source/EMCLicense.tar.gz
+	icense.txt
+
+I am building with 
+	kiwi -b =&lt;my source dir&gt; -d &lt;new output dir&gt; 
+using boot=&quot;oemboot/suse-SLES11&quot; and format=&quot;iso&quot; in the type settings.
+
+My kiwi version is 4.43.
+
+When I boot the built iso (using qemu, vmware or hardware) it does not ask the user to accept the license before installing the system image.  What else can I do to figure out why this is not working for me?
+
+Thank you,
+John
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001944.html">[Kiwi-users] FW: oemboot/SLES - license agreement
+</A></li>
+	<LI>Next message: <A HREF="001946.html">[Kiwi-users] FW: oemboot/SLES - license agreement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1945">[ date ]</a>
+              <a href="thread.html#1945">[ thread ]</a>
+              <a href="subject.html#1945">[ subject ]</a>
+              <a href="author.html#1945">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

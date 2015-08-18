@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] default vs pae kernel in diskless builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C49BE727E.9040405%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001014.html">
+   <LINK REL="Next"  HREF="001016.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] default vs pae kernel in diskless builds</H1>
+    <B>Vladimir V. Kolpakov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C49BE727E.9040405%40gmail.com%3E"
+       TITLE="[Kiwi-users] default vs pae kernel in diskless builds">vova.kolpakov at gmail.com
+       </A><BR>
+    <I>Mon Mar 16 16:38:38 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001014.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+        <LI>Next message: <A HREF="001016.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1015">[ date ]</a>
+              <a href="thread.html#1015">[ thread ]</a>
+              <a href="subject.html#1015">[ subject ]</a>
+              <a href="author.html#1015">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> I do want diskless.
+</I>
+I see.
+You want diskless boot style,
+but you were not satisfied with bootprofile=&quot;diskless&quot;
+in your config.xml, because it has hardcoded -default kernel
+with it.
+
+If so, why don't go and take literally what you need?
+
+--------
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">w at w</A>:/tmp/kiwi-roger&gt;mkdir -p  netboot/suse-11.1
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">w at w</A>:/tmp/kiwi-roger&gt;cd netboot/suse-11.1
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">w at w</A>:/tmp/kiwi-roger/netboot/suse-11.1&gt;ln -s
+/usr/share/kiwi/image/netboot/suse-11.1/images.sh .
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">w at w</A>:/tmp/kiwi-roger/netboot/suse-11.1&gt;ln -s
+/usr/share/kiwi/image/netboot/suse-11.1/root .
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">w at w</A>:/tmp/kiwi-roger/netboot/suse-11.1&gt;cp
+/usr/share/kiwi/image/netboot/suse-11.1/config.xml .
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">w at w</A>:/tmp/kiwi-roger/netboot/suse-11.1&gt;vi config.xml
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">w at w</A>:/tmp/kiwi-roger/netboot/suse-11.1&gt;diff -b
+/usr/share/kiwi/image/netboot/suse-11.1/config.xml config.xml
+156,159c156,159
+&lt; 		&lt;package name=&quot;kernel-default&quot;/&gt;
+&lt; 		&lt;package name=&quot;kernel-default-base&quot;/&gt;
+&lt; 		&lt;package name=&quot;kernel-default-extra&quot;/&gt;
+&lt; 		&lt;package name=&quot;aufs-kmp-default&quot;/&gt;
+---
+&gt;<i> 		&lt;package name=&quot;kernel-pae&quot;/&gt;
+</I>&gt;<i> 		&lt;package name=&quot;kernel-pae-base&quot;/&gt;
+</I>&gt;<i> 		&lt;package name=&quot;kernel-pae-extra&quot;/&gt;
+</I>&gt;<i> 		&lt;package name=&quot;aufs-kmp-pae&quot;/&gt;
+</I><A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">w at knob</A>:/tmp/kiwi-roger/netboot/suse-11.1&gt;
+----------
+
+This creates initrd and sysimage with /lib/modules/*-pae/.
+
+--w
+
+Roger Oberholtzer wrote:
+&gt;<i> On Mon, 2009-03-16 at 14:56 +0200, Vladimir V. Kolpakov wrote: 
+</I>&gt;&gt;<i> Roger Oberholtzer wrote:
+</I>&gt;&gt;&gt;<i> So you do get one with the -pae kernel? Which change to my config made
+</I>&gt;&gt;&gt;<i> that work?
+</I>&gt;&gt;<i> This should be sufficient:
+</I>&gt;&gt;<i>  ... bootprofile=&quot;smp&quot; ...
+</I>&gt;&gt;<i> and
+</I>&gt;&gt;<i>  &lt;package name=&quot;kernel-pae&quot;/&gt;
+</I>&gt;&gt;<i>  &lt;package name=&quot;aufs-kmp-pae&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> This I have (as you could see in the config.xml file that I posted). But
+</I>&gt;<i> what I get is a -default kernel running, and loadable kernel modules for
+</I>&gt;<i> -pae.
+</I>&gt;<i> 
+</I>&gt;<i> I do want diskless. There are no physical disks. Only RAM and whatever
+</I>&gt;<i> gets mounted over the network. All this works fine with the -default
+</I>&gt;<i> kernel.
+</I>&gt;<i> 
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001014.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+	<LI>Next message: <A HREF="001016.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1015">[ date ]</a>
+              <a href="thread.html#1015">[ thread ]</a>
+              <a href="subject.html#1015">[ subject ]</a>
+              <a href="author.html#1015">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

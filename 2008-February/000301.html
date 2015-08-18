@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie KIWI questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20KIWI%20questions&In-Reply-To=%3C20080211094537.GB9924%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000299.html">
+   <LINK REL="Next"  HREF="000302.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie KIWI questions</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20KIWI%20questions&In-Reply-To=%3C20080211094537.GB9924%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Newbie KIWI questions">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 11 10:45:37 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000299.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+        <LI>Next message: <A HREF="000302.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#301">[ date ]</a>
+              <a href="thread.html#301">[ thread ]</a>
+              <a href="subject.html#301">[ subject ]</a>
+              <a href="author.html#301">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Roger,
+
+&gt;<i> 1) If I do not specify a kernel in my config.xml file, I still get a set
+</I>&gt;<i> of images. However, after the kernel boots and the nbd image is
+</I>&gt;<i> accessed, I get a message that the kernel versions do not match. Of
+</I>&gt;<i> course, I will always specify a kernel, but I was surprised that this
+</I>&gt;<i> happened. What is used if I do not specify a kernel?
+</I>
+The reason for the kernelCheck function is the following. If you boot
+an image via network the client has to receive the kernel and the
+initrd (kiwi boot image) first. The client loads and according to the
+deployment method it downloads the system image or mounts a remote
+tree via NFS or NBD. The later happens in your case. The problem here
+is if the initrd provides another kernel than the system image, in your
+case the NBD root tree, you will have problems to load any kernel module
+which hasn't been loaded within the initrd already. As Linux has the
+concept of modules it is most likely the case that you need additional
+kernel modules which are not required to _boot_ the image but required
+to use the operating system with all it's features later on.
+
+Because of that kiwi checks the kernel version in RAM with the kernel
+provided by the system image. In your case with the kernel provided by
+the exported NBD root tree.
+
+I'm wondering why you don't require a kernel in your image. Is it
+because you really don't need any additional kernel module when your
+system boots ? USB is a good example here. For booting you most often
+don't required any USB module but later on you may want to use your
+USB mouse or another USB hardware which requires you to have the USB
+modules loadable. So you need them to be installed in your system image
+and of course for the right kernel version
+
+&gt;<i> 2) Maybe I missed this one in the docs: I can specify a kernel in either
+</I>&gt;<i> the boot or the image part of my config.xml. Do either places have
+</I>&gt;<i> specific advantages? I am now specifying kernel-default in the boot
+</I>&gt;<i> section. I would have thought this would result in all the kernel
+</I>&gt;<i> modules being in the initrd image. And not in the nbd image. But the
+</I>&gt;<i> modules are in the nbd image. Is there a good description of this part
+</I>&gt;<i> of kiwi?
+</I>
+I think we agree that we urgently need a kernel in the kiwi boot
+images (the initrd's) otherwise we can't boot, right ? ;) the question
+whether we need a kernel in the system image depends on if you need
+kernel modules or kernel information in your later system image too
+because the initrd is gone (RAM only). If you remove the kernel-default
+package name in your config.xml it still can happen that a kernel
+is installed because of package requirements. If you really don't want
+a kernel in the system image you can remove the package manually as
+part of the &lt;packages type=&quot;delete&quot;&gt; section and reference that to be
+removed in images.sh.
+
+&gt;<i> 3) I have removed all references to X in my config.xml file. I do not
+</I>&gt;<i> think any packages I have specified use X. But X keeps getting pulled
+</I>&gt;<i> in. Is there anything in kiwi itself that could cause this behavior?
+</I>
+no kiwi itself doesn't require X at all. It's really hard to make sure
+there is _no_ reference to any X library, program... whatever. I have an 
+example image description provided with kiwi which doesn't install X
+
+	/usr/share/doc/packages/kiwi/examples/test2
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000299.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+	<LI>Next message: <A HREF="000302.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#301">[ date ]</a>
+              <a href="thread.html#301">[ thread ]</a>
+              <a href="subject.html#301">[ subject ]</a>
+              <a href="author.html#301">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

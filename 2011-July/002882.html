@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] get rid of the --prebuiltbootimage code
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20get%20rid%20of%20the%20--prebuiltbootimage%20code&In-Reply-To=%3C20110728101445.GB8299%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002878.html">
+   <LINK REL="Next"  HREF="002879.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] get rid of the --prebuiltbootimage code</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20get%20rid%20of%20the%20--prebuiltbootimage%20code&In-Reply-To=%3C20110728101445.GB8299%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] get rid of the --prebuiltbootimage code">ms at suse.de
+       </A><BR>
+    <I>Thu Jul 28 12:14:46 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002878.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+        <LI>Next message: <A HREF="002879.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2882">[ date ]</a>
+              <a href="thread.html#2882">[ thread ]</a>
+              <a href="subject.html#2882">[ subject ]</a>
+              <a href="author.html#2882">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Yes, it is difficult to track problems with the initrd. However,
+</I>&gt;<i> this difficulty does not go away with the removal of the current
+</I>&gt;<i> option. For the most common case, i.e. let kiwi create the initrd
+</I>&gt;<i> nothing changes either.
+</I>
+What goes away would be the inconsistency between the setup in
+the system image description and the used initrd. But from what
+I have read so far people like that they can inject any kind of
+prebuilt initrd even if it lacks required information.
+
+So for those who know exactly what they do I agree it's still
+nice to have this. With kiwi building the initrd the user get
+rid of maintaining it which is what I thought most users want.
+With prebuilt versions of an initrd the user has to maintain
+both the system image and the initrd and he has to know when
+he has to rebuilt it and what data needs to be included to
+meet the system image requirements.
+
+If that's acceptable as a &quot;power feature&quot; and not seen as wrong
+design I'm fine with keeping it :) 
+
+me personally think it's a wrong design and the intention of
+prebuilt initrd's was to make image building more performant
+not to allow users to inject any kind of initrd. For better
+performance we have image caches in place now and I had planned
+to allow recycle-root for boot images too.
+
+But this is an open project and I'm not going to remove
+a feature if people like it. The funny part is that I think
+we use the feature in a way which it never was intended for :)
+
+Thanks for the feedback
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002878.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+	<LI>Next message: <A HREF="002879.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2882">[ date ]</a>
+              <a href="thread.html#2882">[ thread ]</a>
+              <a href="subject.html#2882">[ subject ]</a>
+              <a href="author.html#2882">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

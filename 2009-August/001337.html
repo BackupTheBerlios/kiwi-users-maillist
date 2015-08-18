@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] &quot;No space left on device error&quot; while copying physical	to	 logical
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%22No%20space%20left%20on%20device%20error%22%20while%20copying%20physical%0A%09to%09%20logical&In-Reply-To=%3C4A7AEC90020000F00008F082%40victor.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001339.html">
+   <LINK REL="Next"  HREF="001340.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] &quot;No space left on device error&quot; while copying physical	to	 logical</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%22No%20space%20left%20on%20device%20error%22%20while%20copying%20physical%0A%09to%09%20logical&In-Reply-To=%3C4A7AEC90020000F00008F082%40victor.provo.novell.com%3E"
+       TITLE="[Kiwi-users] &quot;No space left on device error&quot; while copying physical	to	 logical">ragupta at novell.com
+       </A><BR>
+    <I>Thu Aug  6 11:15:36 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001339.html">[Kiwi-users] Network setup
+</A></li>
+        <LI>Next message: <A HREF="001340.html">[Kiwi-users] &quot;No space left on device error&quot; while	copying	physical to logical
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1337">[ date ]</a>
+              <a href="thread.html#1337">[ thread ]</a>
+              <a href="subject.html#1337">[ subject ]</a>
+              <a href="author.html#1337">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi, 
+
+
+I am trying to create a split OEM pre-load image (ext3/squashfs). I had been successful in my previous attempts. 
+
+
+But after making some changes, the size of my read-write partition has increased slightly (from 23 MB to 25 MB). Since then, all my image building attempts have failed. I am frequently seeing the following errors. 
+
+
+--------------------------------------------------------------- 
+Aug-06 14:33:35 &lt;1&gt; : Computing disk space...                                                                                                                    done 
+Aug-06 14:33:35 &lt;1&gt; : Image RW part requires 25 MB of disk space                                                                                                 done 
+Aug-06 14:33:36 &lt;1&gt; : Image RO part requires 796 MB of disk space                                                                                                done 
+Aug-06 14:34:54 &lt;1&gt; : Copying physical to logical [myroot-read-write]...                                                                                         failed 
+Aug-06 14:34:58 &lt;1&gt; : No space left on device: Bad file descriptor                                                                                               failed 
+[*** log excerpt follows, last 1 Kbyte ***] 
+ 36 &lt;1&gt; : EXEC [/usr/bin/mksquashfs /home/KIWI/myimage/myroot /home/KIWI/myimage/CBEC-SLED11.i686-4.2.4 2&gt;&amp;1] 
+ Aug-06 14:34:53 &lt;1&gt; : EXEC [chmod 644 /home/KIWI/myimage/CBEC-SLED11.i686-4.2.4] 
+ Aug-06 14:34:54 &lt;1&gt; : EXEC [cd /home/KIWI/myimage &amp;&amp; ln -vs CBEC-SLED11.i686-4.2.4 CBEC-SLED11.i686-4.2.4.squashfs 2&gt;&amp;1] 
+ Aug-06 14:34:54 &lt;1&gt; : `CBEC-SLED11.i686-4.2.4.squashfs' -&gt; `CBEC-SLED11.i686-4.2.4' 
+ Aug-06 14:34:54 &lt;1&gt; : EXEC [mount -o loop /home/KIWI/myimage/CBEC-SLED11-read-write.i686-4.2.4 /home/KIWI/myimage/mnt-19129 2&gt;&amp;1] 
+ Aug-06 14:34:54 &lt;1&gt; : Copying physical to logical [myroot-read-write]... 
+ Aug-06 14:34:54 &lt;1&gt; : EXEC [cp -a -x /home/KIWI/myimage/myroot-read-write/* /home/KIWI/myimage/mnt-19129 2&gt;&amp;1] 
+    failed 
+ Aug-06 14:34:58 &lt;1&gt; : No space left on device: Bad file descriptor   failed 
+ Aug-06 14:34:58 &lt;1&gt; : EXEC [umount /home/KIWI/myimage/mnt-19129 2&gt;&amp;1] 
+ Aug-06 14:34:58 &lt;1&gt; : EXEC [rm -rf /home/KIWI/myimage/myroot-read-write] 
+ Aug-06 14:34:58 &lt;1&gt; : EXEC [rm -rf /home/KIWI/myimage/myroot] 
+ [*** end ***] 
+Aug-06 14:35:02 &lt;3&gt; : KIWI exited with error(s)                                                                                                                  done 
+--------------------------------------------------------------- 
+
+
+I have checked and the actual size of the contents in read-write partition is 18 MB. Then why is it that I am facing this issue. Is there any place where I can tweak something to rectify this. 
+
+
+I have tried with ext3 , ext2 as well as reiserfs as the read-write partition. But everytime it has failed with the same error. 
+
+
+I am attaching the KIWI create log file for reference 
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090806/f3deabfd/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090806/f3deabfd/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: myroot.log.gz
+Type: application/octet-stream
+Size: 64114 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090806/f3deabfd/attachment.obj">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090806/f3deabfd/attachment.obj</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001339.html">[Kiwi-users] Network setup
+</A></li>
+	<LI>Next message: <A HREF="001340.html">[Kiwi-users] &quot;No space left on device error&quot; while	copying	physical to logical
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1337">[ date ]</a>
+              <a href="thread.html#1337">[ thread ]</a>
+              <a href="subject.html#1337">[ subject ]</a>
+              <a href="author.html#1337">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

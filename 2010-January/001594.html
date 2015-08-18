@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] delay in diskless kiwi boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20delay%20in%20diskless%20kiwi%20boot&In-Reply-To=%3C20100118143748.GA15669%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001593.html">
+   <LINK REL="Next"  HREF="001595.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] delay in diskless kiwi boot</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20delay%20in%20diskless%20kiwi%20boot&In-Reply-To=%3C20100118143748.GA15669%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] delay in diskless kiwi boot">ms at novell.com
+       </A><BR>
+    <I>Mon Jan 18 15:37:48 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001593.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+        <LI>Next message: <A HREF="001595.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1594">[ date ]</a>
+              <a href="thread.html#1594">[ thread ]</a>
+              <a href="subject.html#1594">[ subject ]</a>
+              <a href="author.html#1594">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Do you mean console 4? There is nothing on 10. On console 4, I see this
+</I>
+yes 4 not 10 sorry
+
+&gt;<i> (similar to boot.msg):
+</I>&gt;<i> 
+</I>&gt;<i> 	Set System Time to the current Hardware Clock
+</I>&gt;<i> 
+</I>&gt;<i> Here it waits for 4 - 5 minutes with the cursor immediately after the
+</I>&gt;<i> 'k' at the end of the line. Then it prints:
+</I>&gt;<i> 
+</I>&gt;<i> 	failed
+</I>&gt;<i> 
+</I>&gt;<i> And then the boot continues.
+</I>
+Hmm if you set 
+
+   HWCLOCK=&quot;-u&quot;
+
+in
+
+   /etc/sysconfig/clock
+
+does this change anything ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001593.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+	<LI>Next message: <A HREF="001595.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1594">[ date ]</a>
+              <a href="thread.html#1594">[ thread ]</a>
+              <a href="subject.html#1594">[ subject ]</a>
+              <a href="author.html#1594">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

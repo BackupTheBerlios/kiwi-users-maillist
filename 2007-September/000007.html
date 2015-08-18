@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] v1.60 released
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20v1.60%20released&In-Reply-To=%3C1189009723.5957.8.camel%40tytus%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000006.html">
+   <LINK REL="Next"  HREF="000008.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] v1.60 released</H1>
+    <B>Rybczynski, Mitch</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20v1.60%20released&In-Reply-To=%3C1189009723.5957.8.camel%40tytus%3E"
+       TITLE="[Kiwi-users] v1.60 released">Mitch.Rybczynski at christiedigital.com
+       </A><BR>
+    <I>Wed Sep  5 18:28:43 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000006.html">[Kiwi-users] v1.60 released
+</A></li>
+        <LI>Next message: <A HREF="000008.html">[Kiwi-users] v1.60 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#7">[ date ]</a>
+              <a href="thread.html#7">[ thread ]</a>
+              <a href="subject.html#7">[ subject ]</a>
+              <a href="author.html#7">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Thanks for the amazingly quick response!  I will test shortly with the
+svn oemboot 10.2 image.
+
+My work net access is very restrictively proxied, so I'll give a
+suggestion here rather than in the novell bugzilla: 
+
+I just recently tested with the usbboot image, and after booting it
+tried formatting /dev/sda1.  This was a bit unexpected so I started
+hammering some CTRL-C etcetera, which may or may not have caused the
+&quot;boot exception, rebooting in 60 seconds&quot; message that followed.
+
+IMO the install-to-harddisk images could use a big fat interactive
+prompt at install time, such as:
+
+**************************************************
+Warning about to overwrite /dev/sda1
+current contents: partition type 0x82 linux native
+continue (yes/no)
+**************************************************
+
+This might prevent some anxious calls to your home phone number
+suggested in a previous email :-)
+
+Cheers,
+Mitch
+
+On Wed, 2007-09-05 at 18:01 +0200, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi Mitch,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; 1.  I was considering using isoinstboot as a re-spin installer method
+</I>&gt;<i> &gt; &gt; from a bootCD to an empty box.  What would be the preferred method now
+</I>&gt;<i> &gt; &gt; that isoinstboot is removed?  Oemboot?
+</I>&gt;<i> 
+</I>&gt;<i> I have re-implemented the install CD/DVD support. KIWI version
+</I>&gt;<i> v1.61 will have it within the oemboot boot image. I have tested
+</I>&gt;<i> this with 10.3 only but I expect it work for the other oemboot
+</I>&gt;<i> descriptions as well.
+</I>&gt;<i> 
+</I>&gt;<i> To make use of it the following is needed:
+</I>&gt;<i> 
+</I>&gt;<i>   * include an additional image type with the config.xml file
+</I>&gt;<i>     of your _system_ image description. For example:
+</I>&gt;<i> 
+</I>&gt;<i>        &lt;type filesystem=&quot;ext3&quot; format=&quot;iso&quot; boot=&quot;oemboot/suse-10.3&quot;&gt;vmx&lt;/type&gt;
+</I>&gt;<i> 
+</I>&gt;<i>     the format=&quot;iso&quot; indicates you want to have a install CD iso to be
+</I>&gt;<i>     created. The vmx type is mandatory in combination with the oemboot
+</I>&gt;<i>     boot image
+</I>&gt;<i> 
+</I>&gt;<i>   * create the vmx image
+</I>&gt;<i> 
+</I>&gt;<i>     kiwi --prepare /path/to/system/image/description --root /tmp/mySystem
+</I>&gt;<i>     kiwi --create /tmp/mySystem -d /tmp
+</I>&gt;<i> 
+</I>&gt;<i>   * If you have multiple &lt;types&gt; in your config.xml make sure you
+</I>&gt;<i>     select the correct one with &quot;--type vmx&quot;
+</I>&gt;<i> 
+</I>&gt;<i> If all works fine kiwi will tell you:
+</I>&gt;<i> 
+</I>&gt;<i> 	Created /tmp/....iso to be burned on CD 
+</I>&gt;<i> 
+</I>&gt;<i> use that file and create the install CD. If you boot from the CD
+</I>&gt;<i> kiwi will install the virtual disk system image from the CD on your
+</I>&gt;<i> disk. Everything on your disk will be removed ! Take care about that.
+</I>&gt;<i> 
+</I>&gt;<i> After the installation is done the system reboots, make sure the CD
+</I>&gt;<i> has been removed from the driver in order to allow the system to boot
+</I>&gt;<i> from the hard disk. At first boot of the hard disk the kiwi oemboot
+</I>&gt;<i> boot image will re-partition your disk to the full disk size and the
+</I>&gt;<i> oemboot initrd will be replaced by the distribution default initrd.
+</I>&gt;<i> 
+</I>&gt;<i> After that the oemboot boot image will boot into your newly installed
+</I>&gt;<i> system.
+</I>&gt;<i> 
+</I>&gt;<i> All this in v1.61 or from svn 
+</I>&gt;<i> 
+</I>&gt;<i> Have Fun :-)
+</I>&gt;<i> 
+</I>&gt;<i> Best Regards,
+</I>&gt;<i> Marcus 
+</I>-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20070905/47c4f80d/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20070905/47c4f80d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000006.html">[Kiwi-users] v1.60 released
+</A></li>
+	<LI>Next message: <A HREF="000008.html">[Kiwi-users] v1.60 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#7">[ date ]</a>
+              <a href="thread.html#7">[ thread ]</a>
+              <a href="subject.html#7">[ subject ]</a>
+              <a href="author.html#7">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

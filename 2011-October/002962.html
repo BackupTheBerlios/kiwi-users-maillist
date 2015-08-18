@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] using systemdisk - sizing LVM partitions for OEM	kiwi images
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20using%20systemdisk%20-%20sizing%20LVM%20partitions%20for%20OEM%0A%09kiwi%20images&In-Reply-To=%3C20111018080310.GA31913%40D13.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002961.html">
+   <LINK REL="Next"  HREF="002963.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] using systemdisk - sizing LVM partitions for OEM	kiwi images</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20using%20systemdisk%20-%20sizing%20LVM%20partitions%20for%20OEM%0A%09kiwi%20images&In-Reply-To=%3C20111018080310.GA31913%40D13.ddts.net%3E"
+       TITLE="[Kiwi-users] using systemdisk - sizing LVM partitions for OEM	kiwi images">ms at suse.de
+       </A><BR>
+    <I>Tue Oct 18 10:03:10 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002961.html">[Kiwi-users] using systemdisk - sizing LVM partitions for OEM	kiwi images
+</A></li>
+        <LI>Next message: <A HREF="002963.html">[Kiwi-users] Order of creating users and installing rpm packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2962">[ date ]</a>
+              <a href="thread.html#2962">[ thread ]</a>
+              <a href="subject.html#2962">[ subject ]</a>
+              <a href="author.html#2962">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I got your point. Unfortunately kiwi does not allow that at the moment
+</I>&gt;<i> The volume which takes the rest space (respectively the space you give
+</I>&gt;<i> it with oem-systemsize) is always the LVRoot volume and you can't
+</I>&gt;<i> configure that.
+</I>&gt;<i> 
+</I>&gt;<i> Changing that is not a big deal but it must be addressed in the kiwi
+</I>&gt;<i> code. I have opened an enhancement bug report for this here:
+</I>&gt;<i> 
+</I>&gt;<i>    <A HREF="https://bugzilla.novell.com/show_bug.cgi?id=724489">https://bugzilla.novell.com/show_bug.cgi?id=724489</A>
+</I>&gt;<i>    kiwi: allow other than the LVRoot volume to take the rest space
+</I>
+I have added support for this. In the next version of kiwi
+(probably 4.98.3) you will have the possibility to setup which
+volume should get the rest space assigned. Example:
+
+  &lt;systemdisk&gt;
+       &lt;volume name=&quot;/var&quot; freespace=&quot;all&quot;/&gt;
+  &lt;/systemdisk&gt;
+
+I plan to submit new packages on Friday this week. If you need a
+new version earlier please tell me.
+
+Let me know if this works for you 
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002961.html">[Kiwi-users] using systemdisk - sizing LVM partitions for OEM	kiwi images
+</A></li>
+	<LI>Next message: <A HREF="002963.html">[Kiwi-users] Order of creating users and installing rpm packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2962">[ date ]</a>
+              <a href="thread.html#2962">[ thread ]</a>
+              <a href="subject.html#2962">[ subject ]</a>
+              <a href="author.html#2962">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011211345.56169.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002141.html">
+   <LINK REL="Next"  HREF="002148.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011211345.56169.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory">javier at opensuse.org
+       </A><BR>
+    <I>Sun Nov 21 13:45:51 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002141.html">[Kiwi-users] kiwi: Weekly report 2010-11-14 - 2010-11-19...
+</A></li>
+        <LI>Next message: <A HREF="002148.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2144">[ date ]</a>
+              <a href="thread.html#2144">[ thread ]</a>
+              <a href="subject.html#2144">[ subject ]</a>
+              <a href="author.html#2144">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello everyone,
+
+I'm testing an LVM setup and I'm having an issue with the home partition:
+
+mount says that /home is not mounted on first boot (yast2 firstboot also 
+complains about it). Nevertheless, I copied some stuff to my /home, rebooted 
+and it's mounted and the stuff I copied is there as well.
+
+boot.kiwi:
+/dev/KiwiVG/LVhome: unlink failed: No such file or directory
+Full boot.kiwi: <A HREF="http://paste.opensuse.org/82955188">http://paste.opensuse.org/82955188</A>
+
+boot.msg: 
+mount: /dev/mapper/KiwiVG-LVhome already mounted or /home busy
+mount: /dev/sda1 already mounted or /lvmboot busy
+/lvmboot/boot on /boot type none (rw,bind)
+failed
+
+using kiwi-4.65-245.1.x86_64
+
+I have the following in my config.xml
+
+[...]
+&lt;oemconfig&gt;
+ &lt;oem-swapsize&gt;1024&lt;/oem-swapsize&gt;
+ &lt;oem-boot-title&gt;Open-PC&lt;/oem-boot-title&gt;
+&lt;/oemconfig&gt;
+&lt;systemdisk name=&quot;KiwiVG&quot;&gt;
+ &lt;volume name=&quot;/&quot; freespace=&quot;100M&quot;/&gt;
+ &lt;volume name=&quot;/home&quot; size=&quot;1024M&quot;/&gt;
+&lt;/systemdisk&gt;
+[...]
+
+I just want to have three partitions; swap, root and home.
+
+BTW, I'm testing it on a VirtualBox machine with a 8GB harddisk, and 5.05 GB 
+end up assigned to LVRoot, 1.00GB to LVSwap, 1.00 GB to LVhome and 904.00 MB 
+remained unassigned. Is this the intended behaviour? Wouldn't it be better to 
+have those 904 MB assigned to LVRoot by default (or whatever partition having 
+&quot;freespace&quot;)? I can easily fix it by having a script with
+lvresize -l +100%FREE /dev/KiwiVG/LVRoot
+resize2fs /dev/KiwiVG/LVRoot
+but I think it would be better if KIWI did it on its own, no?
+
+Thanks in advance :-)
+Greetings,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101121/62236a62/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101121/62236a62/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002141.html">[Kiwi-users] kiwi: Weekly report 2010-11-14 - 2010-11-19...
+</A></li>
+	<LI>Next message: <A HREF="002148.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2144">[ date ]</a>
+              <a href="thread.html#2144">[ thread ]</a>
+              <a href="subject.html#2144">[ subject ]</a>
+              <a href="author.html#2144">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] isohybrid error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20isohybrid%20error&In-Reply-To=%3C20090818095337.GA7543%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001388.html">
+   <LINK REL="Next"  HREF="001390.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] isohybrid error</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20isohybrid%20error&In-Reply-To=%3C20090818095337.GA7543%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] isohybrid error">ms at novell.com
+       </A><BR>
+    <I>Tue Aug 18 11:53:37 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001388.html">[Kiwi-users] isohybrid error
+</A></li>
+        <LI>Next message: <A HREF="001390.html">[Kiwi-users] isohybrid error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1389">[ date ]</a>
+              <a href="thread.html#1389">[ thread ]</a>
+              <a href="subject.html#1389">[ subject ]</a>
+              <a href="author.html#1389">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm trying to build an isohybrid image following
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/">http://lizards.opensuse.org/2009/08/05/hybrid-live-systems/</A>
+</I>&gt;<i> 
+</I>&gt;<i> I have the following packages/versions installed:
+</I>&gt;<i> 
+</I>&gt;<i> kiwi-desc-vmxboot-3.74-25.1
+</I>&gt;<i> kiwi-desc-isoboot-3.74-25.1
+</I>&gt;<i> kiwi-instsource-plugins-openSUSE-11-1-2.1-1.5
+</I>&gt;<i> kiwi-3.74-25.1
+</I>&gt;<i> kiwi-instsource-3.74-25.1
+</I>&gt;<i> kiwi-doc-3.74-25.1
+</I>&gt;<i> kiwi-desc-oemboot-3.74-25.1
+</I>&gt;<i> syslinux-3.82-45.1
+</I>&gt;<i> kiwi-tools-3.74-25.1
+</I>&gt;<i> kiwi-desc-usbboot-3.74-25.1
+</I>&gt;<i> kiwi-templates-3.74-25.1
+</I>&gt;<i> 
+</I>&gt;<i> The image creation fails with
+</I>&gt;<i> 
+</I>&gt;<i> Aug-18 11:37:37 &lt;1&gt; : Setting up hybrid ISO...Aug-18 11:37:39 &lt;3&gt; : Failed to
+</I>&gt;<i> call isohybrid: /usr/bin/isohybrid:
+</I>&gt;<i> oxlive-result/ox-live-iso-desktop.i686-0.0.2.iso: bootloader does not have a
+</I>&gt;<i> isolinux.bin hybrid signature.Note that isolinux-debug.bin does not support
+</I>&gt;<i> hybrid booting.
+</I>
+yeah the problem ist that the repository you install the image from
+also needs to be able to access the syslinux 3.82 package. kiwi always try
+to use the tools as they are provided by the repository to stay compatible
+with the distro version and certification agreements. So what you need
+to do is the following:
+
+- create a directory e.g.: /tmp/mytools
+- copy the syslinux 3.82 package into that directory
+- add this repository to your config.xml
+
+  &lt;repository type=&quot;rpm-dir&quot; status=&quot;fixed&quot;&gt;
+      &lt;source path=&quot;/tmp/mytools&quot;/&gt;
+  &lt;/repository&gt;
+
+- run kiwi again
+
+this will cause your image to contain the latest version of syslinux
+and allows kiwi to use the correct binary when creating the hybrid.
+
+So it's important that you understand that the new version
+of syslinux is required on your building machine as well as in
+your repository. kiwi calls isohybrid from your building machine
+and on boot isolinux.bin must be able to boot that thing so
+both must match the same syslinux version
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001388.html">[Kiwi-users] isohybrid error
+</A></li>
+	<LI>Next message: <A HREF="001390.html">[Kiwi-users] isohybrid error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1389">[ date ]</a>
+              <a href="thread.html#1389">[ thread ]</a>
+              <a href="subject.html#1389">[ subject ]</a>
+              <a href="author.html#1389">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

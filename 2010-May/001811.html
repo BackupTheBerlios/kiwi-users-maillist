@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] OEM image in ISO format fails to appear
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20image%20in%20ISO%20format%20fails%20to%20appear&In-Reply-To=%3C4BFFBE2E.7080302%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001810.html">
+   <LINK REL="Next"  HREF="001812.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] OEM image in ISO format fails to appear</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20OEM%20image%20in%20ISO%20format%20fails%20to%20appear&In-Reply-To=%3C4BFFBE2E.7080302%40novell.com%3E"
+       TITLE="[Kiwi-users] OEM image in ISO format fails to appear">rschweikert at novell.com
+       </A><BR>
+    <I>Fri May 28 14:59:26 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001810.html">[Kiwi-users] kiwi: Weekly report 2010-05-16 - 2010-05-21...
+</A></li>
+        <LI>Next message: <A HREF="001812.html">[Kiwi-users] OEM image in ISO format fails to appear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1811">[ date ]</a>
+              <a href="thread.html#1811">[ thread ]</a>
+              <a href="subject.html#1811">[ subject ]</a>
+              <a href="author.html#1811">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I've created an OEM image in ISO format with Kiwi version
+
+# kiwi --version
+May-28 08:54:14 &lt;1&gt; : kiwi version v4.37
+GIT Commit: ca4d8b8799c528f926f5dd89aade35f827318ba1
+
+When I try to test the install using qemu-kvm the install fails.
+
+qemu-kvm some-virtual-drive.img -cdrom my-kiwi-build-oem-image.iso -m
+1024 -boot d
+
+The VM boots of the ISO image, i.e. I get the grub selection screen
+
+Boot from Harddrive
+Install/Restore my-title
+Failsafe
+
+I select install restore and the install procedure starts. Hanging at
+
+Waiting for CD/DVD devices to appear
+Failed to detect CD/DVD or USB drive
+
+This used to work just fine.
+
+Help is appreciated.
+Robert
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001810.html">[Kiwi-users] kiwi: Weekly report 2010-05-16 - 2010-05-21...
+</A></li>
+	<LI>Next message: <A HREF="001812.html">[Kiwi-users] OEM image in ISO format fails to appear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1811">[ date ]</a>
+              <a href="thread.html#1811">[ thread ]</a>
+              <a href="subject.html#1811">[ subject ]</a>
+              <a href="author.html#1811">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

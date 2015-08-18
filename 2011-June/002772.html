@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] A means to update critical packages on a RAM only image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20A%20means%20to%20update%20critical%20packages%20on%20a%20RAM%20only%20image&In-Reply-To=%3CBANLkTimkWZsShjkKZoJ6t0kMsP_7P05t2w%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002766.html">
+   <LINK REL="Next"  HREF="002773.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] A means to update critical packages on a RAM only image</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20A%20means%20to%20update%20critical%20packages%20on%20a%20RAM%20only%20image&In-Reply-To=%3CBANLkTimkWZsShjkKZoJ6t0kMsP_7P05t2w%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] A means to update critical packages on a RAM only image">eportel6607 at gmail.com
+       </A><BR>
+    <I>Tue Jun  7 16:55:34 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002766.html">[Kiwi-users] Unable to change permissons/owership/group of a	directory
+</A></li>
+        <LI>Next message: <A HREF="002773.html">[Kiwi-users] A means to update critical packages on a RAM only	image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2772">[ date ]</a>
+              <a href="thread.html#2772">[ thread ]</a>
+              <a href="subject.html#2772">[ subject ]</a>
+              <a href="author.html#2772">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Guys as some of you know I'm using a RAM only (live) image.  This
+image &quot;resets&quot; itself on each reboot.  A fat partition is created
+during the build and used for storage that is compatible with Windows.
+ This Fat  partition is mounted to a folder when the user logs in.  So
+the partition storage folder is only available after the user logs in.
+Since this is a ram only live image anything embedded into the image
+is there to stay and anything added to the OS will be lost on the next
+boot.  Because of this I've run into a possible issue in the future
+that may cause an issue.  Since my product is only valid for 1 year I
+only have to be concerned with critical updates within this time
+period.  One of the updates that may be necessary is Adobe Flash
+Player, Java or Adobe Reader.  These products seem to update often and
+may leave a user without the most recent version unable to view or use
+the material on the Web page.
+
+I was hoping to enable a simple update system for this issue. During
+the creation of the storage folders on the fat partition I have a
+script create a &quot;Updates&quot; directory.  This folder, since it's part of
+the fat partition must be mounted before access.  This is done at the
+users login.  I've added a simple command line(s) to an existing
+script that runs as root from the /etc/init.d/boot.local script
+however the fat partition isn't mounted yet (the &quot;Updates&quot; folder
+isn't either) so when this script runs it never finds the &quot;Updates&quot;
+folder.
+The command are:
+&quot;cd /SOS/SOS_Storage/Updates&quot;
+&quot;rpm -i --force *&quot;
+
+The thought was to simply place the updated rpm files (such as
+flash-player) into this folder and anything in this folder would
+simply install at the users login or before it.  This issues of course
+is that this script needs to run as root (or the RPM command needs to
+be able to run as a user) when the user logs in OR the &quot;Updates&quot;
+folder needs to be accessible when the boot.local script runs (before
+the users login).   Is there a kiwi solution for this issue or maybe a
+better approach to this?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002766.html">[Kiwi-users] Unable to change permissons/owership/group of a	directory
+</A></li>
+	<LI>Next message: <A HREF="002773.html">[Kiwi-users] A means to update critical packages on a RAM only	image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2772">[ date ]</a>
+              <a href="thread.html#2772">[ thread ]</a>
+              <a href="subject.html#2772">[ subject ]</a>
+              <a href="author.html#2772">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

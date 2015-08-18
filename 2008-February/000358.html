@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Netboot and diskless - config.default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Netboot%20and%20diskless%20-%20config.default&In-Reply-To=%3C20080225103603.GA7748%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000357.html">
+   <LINK REL="Next"  HREF="000360.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Netboot and diskless - config.default</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Netboot%20and%20diskless%20-%20config.default&In-Reply-To=%3C20080225103603.GA7748%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Netboot and diskless - config.default">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 25 11:36:04 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000357.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+        <LI>Next message: <A HREF="000360.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#358">[ date ]</a>
+              <a href="thread.html#358">[ thread ]</a>
+              <a href="subject.html#358">[ subject ]</a>
+              <a href="author.html#358">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> NEwbie to kiwi alert!! (but not newbie to linux or pxe booting)
+</I>&gt;<i> 
+</I>&gt;<i> I have managed to build the basic netboot initrd &amp; kernel for suse 10.3
+</I>&gt;<i> using the default config.xml in kiwi/image/netboot/suse-10.3 &amp;
+</I>&gt;<i> --add-profile diskless (ended up having to create an openSUSE 10.3 vm to
+</I>&gt;<i> build this on due to issues on my AMD64 box).
+</I>
+The diskless profile intentionally does not include the kernel
+ramdisk module. You should consider to use the default profile
+
+&gt;<i> If I have a line IMAGE=/dev/ram0;initrd;;192.168.1.1;4096 
+</I>&gt;<i> Have size: /dev/ram0 -&gt;  Bytes [  MB ]
+</I>
+Jap, there is no ramdisk module loaded by the kernel so /dev/ram
+doesn't exist
+
+&gt;<i> Need size: 10598932 Bytes [ 10 MB ]
+</I>&gt;<i> Not enough space for this image
+</I>
+your IMAGE= line tells kiwi to use the initrd as system image
+that's not a good start :-)
+
+&gt;<i> I guess I'm misunderstanding the doco in kiwi.pdf.
+</I>&gt;<i> Any advice, pointing at other guides, etc. most welcome.
+</I>
+Hmm, you are almost done:
+
+1) make sure your initrd contains all stuff you need. In case
+   of doubth don't use the diskless profile but the default profile
+   simply don't specify --add-profile
+
+2) make sure you build a real system image too. See the example
+   in from here:
+
+	<A HREF="https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/wyseXMini-suse-10.3">https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/wyseXMini-suse-10.3</A>
+
+   Well it's a system image description for a wyse terminal but it should
+   serve as a first good start. If you have built
+   an example system image copy this one to the /srv/tftpboot/image
+   directory and remove your initrd image from this directory it
+   doesn't make sense.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000357.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+	<LI>Next message: <A HREF="000360.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#358">[ date ]</a>
+              <a href="thread.html#358">[ thread ]</a>
+              <a href="subject.html#358">[ subject ]</a>
+              <a href="author.html#358">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [SOLVED] Re:  Troubles with SLED10-SP1 LiveDVD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BSOLVED%5D%20Re%3A%20%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C20080321145116.GA18182%40idefix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000520.html">
+   <LINK REL="Next"  HREF="000522.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [SOLVED] Re:  Troubles with SLED10-SP1 LiveDVD</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BSOLVED%5D%20Re%3A%20%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C20080321145116.GA18182%40idefix%3E"
+       TITLE="[Kiwi-users] [SOLVED] Re:  Troubles with SLED10-SP1 LiveDVD">ms at suse.de
+       </A><BR>
+    <I>Fri Mar 21 15:51:16 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000520.html">[Kiwi-users] [SOLVED] Re:  Troubles with SLED10-SP1 LiveDVD
+</A></li>
+        <LI>Next message: <A HREF="000522.html">[Kiwi-users] [SOLVED] Re:  Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#521">[ date ]</a>
+              <a href="thread.html#521">[ thread ]</a>
+              <a href="subject.html#521">[ subject ]</a>
+              <a href="author.html#521">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; I've solved that point, now my LiveDVD starts with 512 MB. 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I think this is a KIWI bug and I would like to discuss the
+</I>&gt;<i> &gt; best way to address it.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I've been doing some tests, and I saw the tmpfs mounted
+</I>&gt;<i> &gt; on /mnt, for which you've reserved 512 MB of RAM.
+</I>&gt;<i> &gt; My rootfs.tar was 200 MB and failed to untar with the
+</I>&gt;<i> &gt; message:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; no left space on device.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; But I've noticed there was still enough space to untar it.
+</I>&gt;<i> &gt; We were looking at how many MB of RAM were needed here,
+</I>&gt;<i> &gt; but we missed one point:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; When you mount a tmpfs, kernel reserves some number of inodes
+</I>&gt;<i> &gt; proportional to the RAM size of the tmpfs:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; KIWILinuxRC.sh:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; mount -t tmpfs tmpfs -o size=512M /mnt &gt;/dev/null || return 1
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; After that, we are trying to untar rootfs.tar into /mnt.
+</I>&gt;<i> &gt; Our rootfs.tar is mostly full of symlinks to the read-only
+</I>&gt;<i> &gt; part of the DVD, which doesn't need many free space to untar,
+</I>&gt;<i> &gt; but these symlinks need a lot of inodes inside the /mnt, which
+</I>&gt;<i> &gt; demonstrated not to be enough for us :-)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I suggest to &quot;count&quot; an approximate number of inodes in tmpfs
+</I>&gt;<i> &gt; needed for the rootfs.tar to untar correctly:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; As an example to my concrete problem, I've solved that with:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; # tar xvf rootfs.tar /tmp/test-tar
+</I>&gt;<i> &gt; # cd /tmp/test-tar
+</I>&gt;<i> &gt; # find . -type f | wc -l
+</I>&gt;<i> &gt; 1884
+</I>&gt;<i> &gt; # find . -type d | wc -l
+</I>&gt;<i> &gt; 11985
+</I>&gt;<i> &gt; # find . -type l | wc -l
+</I>&gt;<i> &gt; 139292
+</I>&gt;<i> &gt; # bc -l
+</I>&gt;<i> &gt; 139292+11985+1884
+</I>&gt;<i> &gt; 153161
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Then the /mnt tmpfs needs at least 154k inodes to allow rootfs untar
+</I>&gt;<i> &gt; into it. I've changed the way you mount the /mnt that way:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; KIWILinuxRC.sh:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; mount -t tmpfs tmpfs -o size=512m,nr_inodes=160k /mnt &gt;/dev/null ||
+</I>&gt;<i> &gt; return 1
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; an that solved it all ! :-)
+</I>
+Attached is a patch which should solve the problem according to your
+investigations. Thanks for opening the report on bugzilla
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: KIWILinuxRC.sh.diff
+Type: text/x-patch
+Size: 1566 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080321/b621aa92/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080321/b621aa92/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000520.html">[Kiwi-users] [SOLVED] Re:  Troubles with SLED10-SP1 LiveDVD
+</A></li>
+	<LI>Next message: <A HREF="000522.html">[Kiwi-users] [SOLVED] Re:  Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#521">[ date ]</a>
+              <a href="thread.html#521">[ thread ]</a>
+              <a href="subject.html#521">[ subject ]</a>
+              <a href="author.html#521">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

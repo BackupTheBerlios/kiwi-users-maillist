@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi changes since circa openSUSE 10.3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20changes%20since%20circa%20openSUSE%2010.3&In-Reply-To=%3C20090209155524.GA25153%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000972.html">
+   <LINK REL="Next"  HREF="000975.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi changes since circa openSUSE 10.3</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20changes%20since%20circa%20openSUSE%2010.3&In-Reply-To=%3C20090209155524.GA25153%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi changes since circa openSUSE 10.3">ms at novell.com
+       </A><BR>
+    <I>Mon Feb  9 16:55:25 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000972.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+        <LI>Next message: <A HREF="000975.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#973">[ date ]</a>
+              <a href="thread.html#973">[ thread ]</a>
+              <a href="subject.html#973">[ subject ]</a>
+              <a href="author.html#973">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Roger,
+
+&gt;<i> Last time I made new KIWI-based images was for openSUSE 10.3. I have
+</I>&gt;<i> decided to try my hand at making images for openSUSE 11.1 using the
+</I>&gt;<i> latest kiwi in the repository for that release. Just so I do not get too
+</I>&gt;<i> far behind!
+</I>
+I'm sorry that you got stuck but I'm sure we'll bring you
+back on the green line :)
+
+&gt;<i> I decided to start with
+</I>&gt;<i> the /usr/share/kiwi/image/netboot/suse-11.1/config.xml script,
+</I>
+It's better to install the kiwi-doc package and start with the
+examples provided per distro here:
+
+   /usr/share/doc/packages/kiwi/examples
+
+&gt;<i> and then make changes as I see fit based on my previous 10.3 script.
+</I>&gt;<i> The first change was that I wanted pxe images, so I changed
+</I>&gt;<i> 
+</I>&gt;<i> 	&lt;type bootprofile=&quot;default&quot;&gt;cpio&lt;/type&gt;
+</I>
+Please do not change the boot image descriptions as they are
+provided by kiwi itself. The boot image descriptions are used to
+create the initrd which is loaded by the kernel and containing
+the code to boot your machine according to the desired image type.
+If you change data there the checksum build at build time of the
+kiwi-desc-* package will no longer match and you can't create
+images anymore.
+
+* So first I'd like to ask you to revert your changes made in the
+  /usr/share/kiwi/image/netboot/suse-11.1/ directory. Easiest way is
+  to re-install the kiwi-desc-netboot package
+
+* after that install the kiwi-doc package and take a look to the
+  following example:
+
+     /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-pxe-client
+
+  If you like you can copy that directory or do your changes
+  directly in here
+
+&gt;<i> 	&lt;type filesystem=&quot;squashfs&quot; boot=&quot;netboot/suse-11.1&quot;&gt;pxe&lt;/type&gt;
+</I>&gt;<i> 
+</I>&gt;<i> which seems sort of the right thing to do. What I am unsure about is the
+</I>&gt;<i> bootprofile= and boot= options. I think I want to use the diskless
+</I>&gt;<i> profile defined in the config.xml file. How do I specify that I want to
+</I>&gt;<i> use that profile?
+</I>
+To use the diskless profile your type setup should look like this:
+
+   &lt;type 
+     filesystem=&quot;squashfs&quot;
+     boot=&quot;netboot/suse-11.1&quot;
+     bootprofile=&quot;diskless&quot;
+   &gt;pxe&lt;/type&gt;
+
+&gt;<i> And, if I specify bootprofile= what is the function of
+</I>&gt;<i> the boot= option?
+</I>
+The boot attribute specifies which boot image (initrd) should be
+used to boot your pxe image. The information of &quot;netboot/suse-11.1&quot;
+tells kiwi to automatically build a boot image from the description
+provided in /usr/share/kiwi/image/netboot/suse-11.1. These boot images
+are provided by kiwi itself and mainly contains the instructions
+to boot the system. The bootprofile is a customization of the selected
+boot image description. it tells kiwi to apply the diskless profile
+to the selected netboot/suse-11.1 boot image when kiwi creates it
+
+&gt;<i> But the real show stopper is that kiwi no longer finds my config.sh and
+</I>&gt;<i> image.sh scripts. They are in the current directory when I start kiwi.
+</I>&gt;<i> That did work before. I get a message that it is looking
+</I>&gt;<i> for /tmp/config.sh. I think this is a chroot place. I do not specify
+</I>&gt;<i> this anywhere. Where/how is that now specified?
+</I>
+I guess that's because you added them in the boot image description
+and not in your own system image description. As I said do not change
+the boot image descriptions you are free to do anything with your
+system image description (that's the one in /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-pxe-client or wherever you copied it to) but for the
+moment I recommend to leave /usr/share/kiwi/image/*boot untouched
+
+Some words about the image build process. When you call the kiwi create
+step after you have successfully called the prepare step kiwi _automatically_
+calls itself to create the specified boot image (initrd). That happens
+because every operating system needs to boot somehow. On the very first
+level the kernel is loaded which is in your case done by the pxe implementation
+in the BIOS of your clients. After the kernel has been loaded the initrd
+is loaded. The initrd is what we call the boot image in kiwi. The initrd
+itself can be seen as kind of a very very small linux system... an image
+which is the reason why kiwi doesn't distinguish between a system and a
+boot image description from the level of describing them. After the initrd
+was loaded the kernel calls the program linuxrc or init and the coding
+of this program controlls the boot of the system. The main task of the
+initrd is to activate the _real_ system. The real system is what we
+call the system image in kiwi. So if you understand that there is a boot
+image description which you don't need to touch and a system image
+description which is the one you need to create you will be soon an
+appliance expert :-)
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000972.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+	<LI>Next message: <A HREF="000975.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#973">[ date ]</a>
+              <a href="thread.html#973">[ thread ]</a>
+              <a href="subject.html#973">[ subject ]</a>
+              <a href="author.html#973">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

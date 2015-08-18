@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%0A%09re-partition%09/dev/sda&In-Reply-To=%3C4C406B7B.9070204%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001903.html">
+   <LINK REL="Next"  HREF="001906.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%0A%09re-partition%09/dev/sda&In-Reply-To=%3C4C406B7B.9070204%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Fri Jul 16 16:23:55 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001903.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+        <LI>Next message: <A HREF="001906.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1905">[ date ]</a>
+              <a href="thread.html#1905">[ thread ]</a>
+              <a href="subject.html#1905">[ subject ]</a>
+              <a href="author.html#1905">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Thanks, the RELOAD_IMAGE=yes trick forced the drive to get repartitioned.
+
+Something that has occurred to me, that I can't find any details on in
+the documentation, is that I really don't want to have to manually
+create 400+ config.xx:xx:xx:xx:xx:xx files when I finally start to
+deploy this image, and not all of the systems are doing the same thing,
+so I really need to create 10-15 &quot;groups&quot; where these systems will be
+linked into.
+
+Other then maintaining 400+ symlinks to simulate groups, is there a
+defined/proper way to group like systems into a common config structure?
+
+For instance, I may want 20 machines to boot with one image, but 50 more
+to boot with something else entirely, and 50 more with a 3rd image, etc.
+But as things stand now the only way I can see to do this is via one
+configuration file for each system.
+
+On 07/15/2010 02:25 PM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> If I've understood the documentation, changing the major version number
+</I>&gt;&gt;<i> of a PXE based image &quot;should&quot; tell the client that this is a brand new
+</I>&gt;&gt;<i> image and that the disks should get repartitioned with what ever
+</I>&gt;&gt;<i> partitioning format was defined in the config.xml file, correct?
+</I>&gt;&gt;<i>     
+</I>&gt;<i> yes. If you followed the process like this:
+</I>&gt;<i>
+</I>&gt;<i> 1) change the version number in the XML. The &lt;version&gt; element
+</I>&gt;<i> 2) rebuild the images. You should see that the image file names
+</I>&gt;<i>    now contain another version number in its name
+</I>&gt;<i> 3) transfer the images to the /srv/tftpboot/[image|boot] directories
+</I>&gt;<i>    on your pxe boot server
+</I>&gt;<i> 4) adapt the config.&lt;MAC&gt; in /srv/tftpboot/KIWI accordingly
+</I>&gt;<i> 5) reboot the client. The client should report on boot that
+</I>&gt;<i>    a new version was found and the old one will be wiped
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> If so, I'm running into an issue where a PXE install is simply trying to
+</I>&gt;&gt;<i> use the last 54 Mbytes of storage that never got assigned during my
+</I>&gt;&gt;<i> first couple of runs. However, I did make a small change to the
+</I>&gt;&gt;<i> partitioning system from a standard pxedeploy structure to a split
+</I>&gt;&gt;<i> structure and then back again.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> This is interesting. I never tried this but the current kiwi
+</I>&gt;<i> code removes the entire partition table first before it starts
+</I>&gt;<i> the new setup. In any case the /var/log/boot.kiwi file is helpful
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i>                 &lt;version&gt;2.0.0&lt;/version&gt;
+</I>&gt;&gt;<i>     
+</I>&gt;<i> This is the version you need to change. The version is common
+</I>&gt;<i> over all image types. Alternatively you can force a reload of the
+</I>&gt;<i> image with
+</I>&gt;<i>
+</I>&gt;<i>    RELOAD_IMAGE=yes
+</I>&gt;<i>
+</I>&gt;<i> in the config.&lt;MAC&gt; assigned to the client
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001903.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+	<LI>Next message: <A HREF="001906.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1905">[ date ]</a>
+              <a href="thread.html#1905">[ thread ]</a>
+              <a href="subject.html#1905">[ subject ]</a>
+              <a href="author.html#1905">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

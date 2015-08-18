@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] New KIWI layout, new issues.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C4D87567F.4000502%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002522.html">
+   <LINK REL="Next"  HREF="002442.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] New KIWI layout, new issues.</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C4D87567F.4000502%40novell.com%3E"
+       TITLE="[Kiwi-users] New KIWI layout, new issues.">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Mar 21 14:45:35 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002522.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+        <LI>Next message: <A HREF="002442.html">[Kiwi-users] Execute script in profile
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2523">[ date ]</a>
+              <a href="thread.html#2523">[ thread ]</a>
+              <a href="subject.html#2523">[ subject ]</a>
+              <a href="author.html#2523">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks
+
+On 03/21/2011 08:53 AM, Roger Oberholtzer wrote:
+&gt;<i> On Mon, 2011-03-21 at 08:28 -0400, Robert Schweikert wrote:
+</I>&gt;&gt;<i> Hi Roger,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On 03/21/2011 04:37 AM, Marcus Sch&#228;fer wrote:
+</I>&gt;&gt;&gt;<i> Hi,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Mar-21 08:44:46&lt;1&gt;   : Using profile(s): default,std                done
+</I>&gt;&gt;&gt;&gt;<i> Use of uninitialized value $profiles in split at /usr/share/kiwi/modules/KIWIRuntimeChecker.pm line 277.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> something for Robert to fix in his check, but surely not critical
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> What version of Kiwi are you using? The current dev branch has a comment
+</I>&gt;&gt;<i> on line 277.
+</I>&gt;<i>
+</I>&gt;<i> I am using this:
+</I>&gt;<i>
+</I>&gt;<i> kiwi-desc-netboot-4.81-216.1.i586
+</I>&gt;<i> kiwi-instsource-4.81-216.1.i586
+</I>&gt;<i> kiwi-pxeboot-4.81-216.1.i586
+</I>&gt;<i> kiwi-instsource-plugins-openSUSE-11-1-2.0-17.1.noarch
+</I>&gt;<i> kiwi-desc-isoboot-4.81-216.1.i586
+</I>&gt;<i> kiwi-instsource-plugins-openSUSE-11-3-0.9-5.1.noarch
+</I>&gt;<i> kiwi-desc-vmxboot-4.81-216.1.i586
+</I>&gt;<i> kiwi-tools-imagewriter-3.74-80.1.i586
+</I>&gt;<i> kiwi-doc-4.81-216.1.i586
+</I>&gt;<i> kiwi-desc-ltsp-0.8.1-3.1.noarch
+</I>&gt;<i> kiwi-pxeboot-prebuild-3.74-80.1.i586
+</I>&gt;<i> kiwi-config-openSUSE-11.2-16.17.2.i586
+</I>&gt;<i> kiwi-templates-4.81-216.1.i586
+</I>&gt;<i> kiwi-desc-oemboot-4.81-216.1.i586
+</I>&gt;<i> kiwi-instsource-plugins-openSUSE-11-2-0.9-8.1.noarch
+</I>&gt;<i> kiwi-4.81-216.1.i586
+</I>&gt;<i> kiwi-tools-4.81-216.1.i586
+</I>&gt;<i> kiwi-ltsp-bootimages-0.8.1-2.1.noarch
+</I>&gt;<i> kiwi-ltsp-prebuilt-0.8.1-2.1.noarch
+</I>&gt;<i>
+</I>&gt;&gt;<i> Could you just paste the method that includes line 277?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'll figure it out from there.
+</I>&gt;<i>
+</I>&gt;<i> I noted the line number at the start of line 277. It is not in the file
+</I>&gt;<i> I use...
+</I>&gt;<i>
+</I>&gt;<i> sub __checkPatternTypeAttrrValueConsistent {
+</I>&gt;<i>          # ...
+</I>&gt;<i>          # Check that the use of the patternType attribute for the&lt;packages&gt;
+</I>&gt;<i>          # element is consistent. The static component of this is checked during
+</I>&gt;<i>          # XML validation. If no profiles are specified on the command line
+</I>&gt;<i>          # or if the configuration contains a&lt;packages&gt;  element without a
+</I>&gt;<i>          # profile attribute there is nothing to do.
+</I>&gt;<i>          # ---
+</I>&gt;<i>          my $this = shift;
+</I>&gt;<i>          my $buildProfiles = $this -&gt;  {cmdArgs} -&gt;  getBuildProfiles();
+</I>&gt;<i>          # If no profiles are specified on the command line the static check is
+</I>&gt;<i>          # sufficient
+</I>&gt;<i>          if ( (ref $buildProfiles) ne 'ARRAY') {
+</I>&gt;<i>                  return 1;
+</I>&gt;<i>          }
+</I>&gt;<i>          my @buildProfiles = @{$buildProfiles};
+</I>&gt;<i>          # If there is a &quot;default&quot;&lt;packages&gt;  element, i.e. an element without the
+</I>&gt;<i>          # profiles attribute the static check is sufficient
+</I>&gt;<i>          if ($this -&gt;  {xml} -&gt;  hasDefaultPackages() ) {
+</I>&gt;<i>                  return 1;
+</I>&gt;<i>          }
+</I>&gt;<i>          # If there is only one profile to be built there is nothing to check
+</I>&gt;<i>          my $numProfiles = @buildProfiles;
+</I>&gt;<i>          if ($numProfiles == 1) {
+</I>&gt;<i>                  return 1;
+</I>&gt;<i>          }
+</I>&gt;<i>          my @pkgsNodes = @{$this -&gt;  {xml} -&gt;  getPackageNodeList()};
+</I>&gt;<i>          my $reqPatternTypeVal;
+</I>&gt;<i>          for my $pkgs (@pkgsNodes) {
+</I>&gt;<i>                  my $profiles = $pkgs -&gt;  getAttribute( 'profiles' );
+</I>&gt;<i> 277:            my @profNames = split /,/, $profiles;
+</I>&gt;<i>                  my $patternType = $pkgs -&gt;  getAttribute( 'patternType' );
+</I>&gt;<i>                  if (! $patternType) {
+</I>&gt;<i>                          $patternType = 'onlyRequired';
+</I>&gt;<i>                  }
+</I>&gt;<i>                  for my $profName (@profNames) {
+</I>&gt;<i>                          if (grep /^$profName/, @buildProfiles) {
+</I>&gt;<i>                                  if (! $reqPatternTypeVal) {
+</I>&gt;<i>                                          $reqPatternTypeVal = $patternType;
+</I>&gt;<i>                                  } elsif ($reqPatternTypeVal ne $patternType) {
+</I>&gt;<i>                                          my $kiwi = $this -&gt;  {kiwi};
+</I>&gt;<i>                                          my $msg = 'Conflicting patternType attribute values for '
+</I>&gt;<i>                                          . 'specified profiles &quot;'
+</I>&gt;<i>                                          . &quot;@buildProfiles&quot;
+</I>&gt;<i>                                          . '&quot; found';
+</I>&gt;<i>                                          $kiwi -&gt;  error ( $msg );
+</I>&gt;<i>                                          $kiwi -&gt;  failed ();
+</I>&gt;<i>                                          return undef;
+</I>&gt;<i>                                  }
+</I>&gt;<i>                          }
+</I>&gt;<i>                  }
+</I>&gt;<i>          }
+</I>&gt;<i>          return 1;
+</I>&gt;<i> }
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Yours sincerely,
+</I>&gt;<i>
+</I>&gt;<i> Roger Oberholtzer
+</I>&gt;<i>
+</I>&gt;<i> OPQ Systems / Ramb&#246;ll RST
+</I>&gt;<i>
+</I>&gt;<i> Office: Int +46 10-615 60 20
+</I>&gt;<i> Mobile: Int +46 70-815 1696
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+</I>&gt;<i> ________________________________________
+</I>&gt;<i>
+</I>&gt;<i> Ramb&#246;ll Sverige AB
+</I>&gt;<i> Krukmakargatan 21
+</I>&gt;<i> P.O. Box 17009
+</I>&gt;<i> SE-104 62 Stockholm, Sweden
+</I>&gt;<i> www.rambollrst.se
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002522.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+	<LI>Next message: <A HREF="002442.html">[Kiwi-users] Execute script in profile
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2523">[ date ]</a>
+              <a href="thread.html#2523">[ thread ]</a>
+              <a href="subject.html#2523">[ subject ]</a>
+              <a href="author.html#2523">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

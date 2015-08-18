@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Image for Read-Only root
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Image%20for%20Read-Only%20root&In-Reply-To=%3C20100630103418.GB13366%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001863.html">
+   <LINK REL="Next"  HREF="001864.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Image for Read-Only root</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Image%20for%20Read-Only%20root&In-Reply-To=%3C20100630103418.GB13366%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Image for Read-Only root">ms at novell.com
+       </A><BR>
+    <I>Wed Jun 30 12:34:18 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001863.html">[Kiwi-users] Image for Read-Only root
+</A></li>
+        <LI>Next message: <A HREF="001864.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1866">[ date ]</a>
+              <a href="thread.html#1866">[ thread ]</a>
+              <a href="subject.html#1866">[ subject ]</a>
+              <a href="author.html#1866">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I make image for NetBoot. Server is SLES11SP1 and Point of Service 11SP1.
+</I>&gt;<i> The question is :
+</I>&gt;<i> 
+</I>&gt;<i> I need to make read-only root system, because i deploy this image via PXE to
+</I>&gt;<i> flash(1gb) of HP Think Client. So i need my root filesystem read only root
+</I>&gt;<i> and files like /tmp /log and other I put to the /dev/shm (RAM). I use this
+</I>&gt;<i> guide <A HREF="http://en.opensuse.org/How-To_Make_the_root_filesystem_read-only">http://en.opensuse.org/How-To_Make_the_root_filesystem_read-only</A> . If
+</I>&gt;<i> you read it you'll see that I need to delete some files, move to /dev/shm
+</I>&gt;<i> and etc... Can I make this actions when I build image via Image
+</I>&gt;<i> Creator(KIWI)?? Maybe in the section Script--&gt;Image Configuration Script? Or
+</I>&gt;<i> I need to make this image, then edit it manually?
+</I>
+you need to create split image in order to do that
+I suggest to read the PXE chapter in the kiwi docu from here:
+<A HREF="http://git.berlios.de/cgi-bin/gitweb.cgi?p=kiwi;a=blob;f=doc/kiwi.pdf">http://git.berlios.de/cgi-bin/gitweb.cgi?p=kiwi;a=blob;f=doc/kiwi.pdf</A>
+
+there is a example split setup explained
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001863.html">[Kiwi-users] Image for Read-Only root
+</A></li>
+	<LI>Next message: <A HREF="001864.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1866">[ date ]</a>
+              <a href="thread.html#1866">[ thread ]</a>
+              <a href="subject.html#1866">[ subject ]</a>
+              <a href="author.html#1866">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

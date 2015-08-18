@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] eth0 / eth1 - Issue in isoboot Image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20eth0%20/%20eth1%20-%20Issue%20in%20isoboot%20Image&In-Reply-To=%3C4B741887.6090705%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001675.html">
+   <LINK REL="Next"  HREF="001677.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] eth0 / eth1 - Issue in isoboot Image</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20eth0%20/%20eth1%20-%20Issue%20in%20isoboot%20Image&In-Reply-To=%3C4B741887.6090705%40novell.com%3E"
+       TITLE="[Kiwi-users] eth0 / eth1 - Issue in isoboot Image">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Feb 11 15:47:35 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001675.html">[Kiwi-users] eth0 / eth1 - Issue in isoboot Image
+</A></li>
+        <LI>Next message: <A HREF="001677.html">[Kiwi-users] eth0 / eth1 - Issue in isoboot Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1676">[ date ]</a>
+              <a href="thread.html#1676">[ thread ]</a>
+              <a href="subject.html#1676">[ subject ]</a>
+              <a href="author.html#1676">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Hi List,
+</I>&gt;&gt;<i> I've created a ISO Image with Kiwi based on a migration. It works with
+</I>&gt;&gt;<i> some little Issues where I'm looking for workaround.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I create the Image on SLES11 with one Network Interface (eth0). Now in
+</I>&gt;&gt;<i> the Image I'll get the Status that eth0 can be deleted and eth1(?) is in
+</I>&gt;&gt;<i> 'not configured' Status.
+</I>&gt;&gt;<i> When I configure eth1 with DHCP the Interface is starting over and my
+</I>&gt;&gt;<i> eth0 Interface is away.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Any Idea?
+</I>&gt;<i> 
+</I>&gt;<i> But there is only one physical network card on the machine you are
+</I>&gt;<i> running the ISO ? I think Marius Tomaschewski (CC'ed) can help us better
+</I>&gt;<i> here. Could you attach your network configuration files
+</I>
+Does kiwi -migrate pull the udev information into the image description 
+somehow? If yes, then eth0 is bound to a specific MAC address and that 
+would be the reason eth1 is created in the live image.
+
+Robert
+&gt;<i> 
+</I>&gt;<i>    /etc/sysconfig/network/*-eth*
+</I>&gt;<i> 
+</I>&gt;<i> Thanks
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001675.html">[Kiwi-users] eth0 / eth1 - Issue in isoboot Image
+</A></li>
+	<LI>Next message: <A HREF="001677.html">[Kiwi-users] eth0 / eth1 - Issue in isoboot Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1676">[ date ]</a>
+              <a href="thread.html#1676">[ thread ]</a>
+              <a href="subject.html#1676">[ subject ]</a>
+              <a href="author.html#1676">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

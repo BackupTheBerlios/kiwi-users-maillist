@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] using patternType=&quot;plusRecommended&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20using%20patternType%3D%22plusRecommended%22&In-Reply-To=%3C4DBAA445.40004%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002698.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] using patternType=&quot;plusRecommended&quot;</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20using%20patternType%3D%22plusRecommended%22&In-Reply-To=%3C4DBAA445.40004%40novell.com%3E"
+       TITLE="[Kiwi-users] using patternType=&quot;plusRecommended&quot;">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Apr 29 13:43:01 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002698.html">[Kiwi-users] using patternType=&quot;plusRecommended&quot;
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2699">[ date ]</a>
+              <a href="thread.html#2699">[ thread ]</a>
+              <a href="subject.html#2699">[ subject ]</a>
+              <a href="author.html#2699">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 04/28/2011 10:02 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">john.lund at emc.com</A> wrote:
+&gt;<i> I was using patternType=&quot;plusRecommended&quot; on one of our packages sections where we include 6 opensusePattern entries until recently.  When moving to kiwi r 4.86 we had to stop because we were getting the error:
+</I>&gt;<i> Conflicting patternType attribute values for &quot;MyProfile&quot; profile found.
+</I>&gt;<i>
+</I>&gt;<i> What does this error mean?
+</I>
+You are using &quot;plusRecommended&quot; and &quot;onlyRequired&quot; together in some way 
+shape or form.
+
+Here is the comment from the consistency check that explains the rule:
+
+# ...
+# Check that the values for the patternType attribute do not conflict.
+# If all &lt;packages&gt; sections use profiles attributes the patternType
+# attribute value may be different for all &lt;packages&gt; sections. However,
+# if a default &lt;packages&gt; section exists, i.e. no profiles attribute
+# is used, then all patternType attribute values must be the same as
+# the value set for the default profile.
+# ---
+
+&gt;<i> And how can I resolve it.  I'd like to re-enable the &quot;plusRecommended&quot; as it pulls in the recommended packages and allow us to specify fewer packages in our config.xml.
+</I>&gt;<i>
+</I>&gt;<i> I'm pretty sure that the way we were using this worked up through kiwi r4.71.
+</I>
+It probably did not work the way you expected it too.
+
+HTH,
+Robert
+
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002698.html">[Kiwi-users] using patternType=&quot;plusRecommended&quot;
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2699">[ date ]</a>
+              <a href="thread.html#2699">[ thread ]</a>
+              <a href="subject.html#2699">[ subject ]</a>
+              <a href="author.html#2699">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

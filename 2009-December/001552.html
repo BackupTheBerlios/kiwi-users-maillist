@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] password encryption problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C0000018379%40firehome.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001551.html">
+   <LINK REL="Next"  HREF="001554.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] password encryption problem</H1>
+    <B>David Feurle</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C0000018379%40firehome.de%3E"
+       TITLE="[Kiwi-users] password encryption problem">david at firehome.de
+       </A><BR>
+    <I>Thu Dec 10 10:15:34 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001551.html">[Kiwi-users] password encryption problem
+</A></li>
+        <LI>Next message: <A HREF="001554.html">[Kiwi-users] password encryption problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1552">[ date ]</a>
+              <a href="thread.html#1552">[ thread ]</a>
+              <a href="subject.html#1552">[ subject ]</a>
+              <a href="author.html#1552">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i>
+</I>&gt;<i>this whole discussion makes me think if the passwords are handled secure.
+</I>&gt;<i>
+</I>&gt;<i>On my system (SuSE 11.1) a blowfish key is created by&#160; kiwi
+</I>&gt;<i>--createpassword. I'm wondering if it is just a coincidence or the intended
+</I>&gt;<i>result. 
+</I>&gt;<i>
+</I>&gt;<i>If I'm right this is the only secure option out of the 3 possibilities
+</I>&gt;<i>available. (MD5, DES and Blowfish).
+</I>&gt;<i>
+</I>&gt;<i>To see what algorithm is used on your system: 
+</I>&gt;<i>
+</I>&gt;<i>Eahrk85ODPvlY is DES. Blowfish ones
+</I>&gt;<i>($2a$10$yM1cRna.S8gA2y/tkLuhZuca7mJYPF5kyKzx5KTt.z0WZNvf.ieCG) are much
+</I>&gt;<i>longer. MD5 is somewhere in between that and uses $1$ for identification.
+</I>&gt;<i>
+</I>&gt;<i>DES and MD5 are insecure!
+</I>&gt;<i>
+</I>&gt;<i>If I understood it correctly the salt used to create the password is always
+</I>&gt;<i>the userid? 
+</I>&gt;<i>
+</I>&gt;<i>The salt does need to be random and using the userid makes it a lot more
+</I>&gt;<i>easier to crack (is this a known plain attack?).  
+</I>&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i>
+</I>&gt;<i>Best regards,
+</I>&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i>
+</I>&gt;<i>David Feurle 
+</I>&gt;<i>
+</I>&gt;<i> 
+</I>&gt;&gt;<i>  Thu Dec 10 2009 09:40:57 CET    from  &quot;Marcus Sch&#228;fer&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt;  
+</I>&gt;&gt;<i> Subject: Re: [Kiwi-users] password encryption problem 
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>      Hi,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i>I think I have found a password creation/encryption problem. When I use
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> -&gt; kiwi --createpassword
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> and use linux as the plain text password I get the following encrypted 
+</I>&gt;&gt;&gt;<i> string back:
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> $2a$05$vgmS7MrbVWrghZGWn84CpeDjVSEzc5NSrYb8wtkwkm4EjJ2mRN4cO
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> When comparing this to the encrypted password in the example config.xml 
+</I>&gt;&gt;&gt;<i> files ($1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0) the difference is obvious. 
+</I>&gt;&gt;&gt;<i> But the example config.xml files also use linux as the password.
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> I would have expected to get the same encrypted value back from 
+</I>&gt;&gt;&gt;<i> createpassword as is encoded in config.xml.
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> 
+</I>
+&gt;&gt;<i>This is not correct. When creating the password a &quot;salt&quot; value is
+</I>&gt;&gt;<i> used for the encryption. The salt is always the value of getpwuid()
+</I>&gt;&gt;<i> according to this the root user with password linux has a different
+</I>&gt;&gt;<i> encrypted representation than the tux user for example.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Switching to blowfish is possible but not really required. The
+</I>&gt;&gt;<i> --createpassword option is more or less a service to the user. You
+</I>&gt;&gt;<i> can create password encryption with any other tool and use that
+</I>&gt;&gt;<i> value in your config.xml.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> For the moment I think switching to blowfish has low priority
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Marcus
+</I>&gt;&gt;<i> -- 
+</I>&gt;&gt;<i> Public Key available
+</I>&gt;&gt;<i> gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;&gt;<i> -------------------------------------------------------
+</I>&gt;&gt;<i> Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;&gt;<i> Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;&gt;<i> FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;&gt;<i> GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;&gt;<i> <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;&gt;<i> -------------------------------------------------------
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 
+</I>
+&gt;<i>  
+</I>&gt;<i>                 
+</I>&gt;<i>
+</I>&gt;<i>    
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20091210/c14e6fe2/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20091210/c14e6fe2/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001551.html">[Kiwi-users] password encryption problem
+</A></li>
+	<LI>Next message: <A HREF="001554.html">[Kiwi-users] password encryption problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1552">[ date ]</a>
+              <a href="thread.html#1552">[ thread ]</a>
+              <a href="subject.html#1552">[ subject ]</a>
+              <a href="author.html#1552">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

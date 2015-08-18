@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Missing swap on SLES11 SP1 based oem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Missing%20swap%20on%20SLES11%20SP1%20based%20oem&In-Reply-To=%3C4E65FF57-B7F8-4A68-A56F-5D3B5A0DCA6F%40synap.se%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002717.html">
+   <LINK REL="Next"  HREF="002719.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Missing swap on SLES11 SP1 based oem</H1>
+    <B>Marcus Arendt</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Missing%20swap%20on%20SLES11%20SP1%20based%20oem&In-Reply-To=%3C4E65FF57-B7F8-4A68-A56F-5D3B5A0DCA6F%40synap.se%3E"
+       TITLE="[Kiwi-users] Missing swap on SLES11 SP1 based oem">marcus.arendt at synap.se
+       </A><BR>
+    <I>Fri May 13 12:23:49 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002717.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+        <LI>Next message: <A HREF="002719.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2718">[ date ]</a>
+              <a href="thread.html#2718">[ thread ]</a>
+              <a href="subject.html#2718">[ subject ]</a>
+              <a href="author.html#2718">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+13 maj 2011 kl. 10.37 skrev Marcus Sch&#228;fer:
+
+&gt;<i> Hi Marcus,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> first post here so please be gentle.
+</I>&gt;<i> 
+</I>&gt;<i> :-)
+</I>&gt;<i> 
+</I>&gt;&gt;<i> We have been building a SLES11 based oem-iso using kiwi 4.60 
+</I>&gt;&gt;<i> (on openSuSE 11.3) without any problems. For the last week I have
+</I>&gt;&gt;<i> been trying to do the same with SLES11 SP1 without success.
+</I>&gt;<i> 
+</I>&gt;<i> your build machine is still 11.3 and hasn't changed right ?
+</I>
+That is correct. I'm using VMWare Fusion and have SLES11SP1-vm for building the rpms.
+
+&gt;<i> 
+</I>&gt;&gt;<i> Build process completes without any errors. Turned out that the
+</I>&gt;&gt;<i> swap-partition is missing on the disk after installing the iso.
+</I>&gt;<i> 
+</I>&gt;<i> my first guess is that the target disk wasn't big enough according
+</I>&gt;<i> to the oem- and/or default settings. To understand more about the
+</I>&gt;<i> problem the file: /var/log/boot.kiwi after first deployment is
+</I>&gt;<i> required. Just login after kiwi has installed the machine and post
+</I>&gt;<i> the file.
+</I>
+Do I need to change something in the configuration to get it? No such file in /var/log.
+
+I also deploy using VMWare Fusion with 20GB disk for the vm.
+
+&gt;<i> Additionally your image config XML file would be helpful too
+</I>
+---8&lt;---
+&lt;image schemaversion=&quot;4.7&quot; name=&quot;******&quot; displayname=&quot;********&gt;
+	&lt;description type=&quot;system&quot;&gt;
+		&lt;author&gt;*****&lt;/author&gt;
+		&lt;contact&gt;******&lt;/contact&gt;
+		&lt;specification&gt;*********&lt;/specification&gt;
+	&lt;/description&gt;
+	&lt;preferences&gt;
+	  &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/s*n*ps*-SLES11&quot; installiso=&quot;true&quot; installstick=&quot;true&quot;&gt;
+	    &lt;oemconfig&gt;
+	      &lt;oem-boot-title&gt;Synapse Unimind&lt;/oem-boot-title&gt;
+	      &lt;oem-reboot&gt;true&lt;/oem-reboot&gt;
+	      &lt;oem-recovery&gt;false&lt;/oem-recovery&gt;
+	      &lt;oem-systemsize&gt;2048&lt;/oem-systemsize&gt;
+	      &lt;oem-swapsize&gt;1024&lt;/oem-swapsize&gt;
+	      &lt;oem-home&gt;false&lt;/oem-home&gt; 
+	    &lt;/oemconfig&gt;
+	  &lt;/type&gt;
+	  &lt;version&gt;1.1.2&lt;/version&gt;
+	  &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+	  &lt;boot-theme&gt;SLES&lt;/boot-theme&gt;
+	  &lt;rpm-excludedocs&gt;false&lt;/rpm-excludedocs&gt;
+	  &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+	  &lt;rpm-force&gt;true&lt;/rpm-force&gt;
+	  &lt;locale&gt;en_US&lt;/locale&gt;
+	  &lt;keytable&gt;us.map.gz&lt;/keytable&gt;
+	  &lt;timezone&gt;Europe/*****&lt;/timezone&gt;
+	  &lt;hwclock&gt;utc&lt;/hwclock&gt;
+	&lt;/preferences&gt;
+
+.
+.
+.
+	&lt;!-- Now define our repositories --&gt;
+	&lt;repository type=&quot;yast2&quot;&gt;
+	  &lt;source path=&quot;/image/CDs/SLES-11-SP1-DVD-x86_64-GM&quot;/&gt;
+	&lt;/repository&gt;
+	&lt;repository type=&quot;rpm-dir&quot;&gt;
+	  &lt;source path=&quot;/usr/share/kiwi/repo/suse-repo/suse-sle11-repo&quot;/&gt;
+	&lt;/repository&gt;
+	&lt;repository type=&quot;rpm-dir&quot;&gt;
+	  &lt;source path=&quot;/image/unimind/sles11.1/repo&quot;/&gt;
+	&lt;/repository&gt;
+
+	&lt;!-- And the packages --&gt;
+
+	&lt;packages type=&quot;image&quot;&gt;
+	  &lt;package name=&quot;bootsplash&quot;/&gt;
+	  &lt;package name=&quot;bootsplash-branding-SLES&quot;/&gt;
+	  &lt;package name=&quot;branding-SLES&quot;/&gt;
+.
+.
+.
+	&lt;packages type=&quot;image&quot; patternType=&quot;plusRecommended&quot;&gt;
+	  &lt;package name=&quot;bootsplash-branding-SLES&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+	  &lt;package name=&quot;gfxboot-branding-SLES&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+		&lt;package name=&quot;kernel-default&quot;/&gt;
+		&lt;package name=&quot;ifplugd&quot;/&gt;
+		&lt;package name=&quot;vim&quot;/&gt;
+		&lt;package name=&quot;util-linux&quot;/&gt;
+		&lt;package name=&quot;grub&quot;/&gt;
+	&lt;/packages&gt;
+	&lt;packages type=&quot;bootstrap&quot;&gt;
+		&lt;package name=&quot;filesystem&quot;/&gt;
+		&lt;package name=&quot;glibc-locale&quot;/&gt;
+		&lt;package name=&quot;util-linux&quot;/&gt;
+	&lt;/packages&gt;
+&lt;/image&gt;
+---8&lt;---
+
+Names have been changed to protect the innocent :)
+
+TIA 
+Marcus
+---
+Synapse Mobile Networks Nordic AB
+Stadsg&#229;rden 10
+116 45 Stockholm
+Sweden
+<A HREF="http://www.synap.se">http://www.synap.se</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002717.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+	<LI>Next message: <A HREF="002719.html">[Kiwi-users] Missing swap on SLES11 SP1 based oem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2718">[ date ]</a>
+              <a href="thread.html#2718">[ thread ]</a>
+              <a href="subject.html#2718">[ subject ]</a>
+              <a href="author.html#2718">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

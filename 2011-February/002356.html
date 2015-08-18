@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to put a file on an oem type iso image.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20put%20a%20file%20on%20an%20oem%20type%20iso%20image.&In-Reply-To=%3C291A23B717F9104985651112DB6C365F279C2AB3AF%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002344.html">
+   <LINK REL="Next"  HREF="002357.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to put a file on an oem type iso image.</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20put%20a%20file%20on%20an%20oem%20type%20iso%20image.&In-Reply-To=%3C291A23B717F9104985651112DB6C365F279C2AB3AF%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] How to put a file on an oem type iso image.">john.lund at emc.com
+       </A><BR>
+    <I>Thu Feb 17 21:02:54 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002344.html">[Kiwi-users] How to put a file on an oem type iso image.
+</A></li>
+        <LI>Next message: <A HREF="002357.html">[Kiwi-users] How to put a file on an oem type iso image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2356">[ date ]</a>
+              <a href="thread.html#2356">[ thread ]</a>
+              <a href="subject.html#2356">[ subject ]</a>
+              <a href="author.html#2356">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thank you for the reply.  Will this work with an OEM image type where I am using the attribute &quot;installiso=true&quot;?
+I tried to put a file (License.txt) in the config-cdroot.tgz tarball in my image description directory.  But it does not seem to pick up/use the tarball, and I don't see the License.txt file included in the .
+The doc seems to say this is for ISO images only.  Does this mean it would not get picked up when building an install iso from an OEM image type?  If not, is there a way we can get files onto the install iso that is built when kiwi processes an OEM image type?
+
+Thank you,
+John Lund 
+EMC Atmos - Access &amp; Platform Team
+(508) 249-5473 
+(571) 484-0139 Mobile 
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A> 
+
+&gt;<i> -----Original Message-----
+</I>&gt;<i> From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>]
+</I>&gt;<i> Sent: Thursday, February 17, 2011 3:48 AM
+</I>&gt;<i> To: Lund, John
+</I>&gt;<i> Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> Subject: Re: [Kiwi-users] How to put a file on an oem type iso image.
+</I>&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; We are looking for a way to put files on the iso output of an oem
+</I>&gt;<i> type kiwi output.  We would like to have some license/readme/etc type
+</I>&gt;<i> of file on the ISO.  We need to the file to be readable when someone
+</I>&gt;<i> mounts the iso.  I've quickly looked but I'm not seeing that there is a
+</I>&gt;<i> documented way to do this.  Is this possible?
+</I>&gt;<i> 
+</I>&gt;<i> There is config-cdroot.tgz. From the docs:
+</I>&gt;<i> 
+</I>&gt;<i>         Archive which is used for ISO images only. The data in
+</I>&gt;<i>         the archive is uncompressed and stored in the CD/DVD root
+</I>&gt;<i>         directory. This archive can be used, for example, to integrate
+</I>&gt;<i>         a license file or information directly readable from the CD or
+</I>&gt;<i>         DVD.
+</I>&gt;<i> 
+</I>&gt;<i> if you have a config-cdroot.tgz tarball in your image
+</I>&gt;<i> description it should do what you want
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002344.html">[Kiwi-users] How to put a file on an oem type iso image.
+</A></li>
+	<LI>Next message: <A HREF="002357.html">[Kiwi-users] How to put a file on an oem type iso image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2356">[ date ]</a>
+              <a href="thread.html#2356">[ thread ]</a>
+              <a href="subject.html#2356">[ subject ]</a>
+              <a href="author.html#2356">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

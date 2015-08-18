@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Boot from hard drive feature
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20from%20hard%20drive%20feature&In-Reply-To=%3Calpine.LNX.2.00.1003181148120.17567%40metcalf.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001737.html">
+   <LINK REL="Next"  HREF="001740.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Boot from hard drive feature</H1>
+    <B>Steffen Winterfeldt</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20from%20hard%20drive%20feature&In-Reply-To=%3Calpine.LNX.2.00.1003181148120.17567%40metcalf.suse.de%3E"
+       TITLE="[Kiwi-users] Boot from hard drive feature">snwint at suse.de
+       </A><BR>
+    <I>Thu Mar 18 12:01:07 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001737.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+        <LI>Next message: <A HREF="001740.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1739">[ date ]</a>
+              <a href="thread.html#1739">[ thread ]</a>
+              <a href="subject.html#1739">[ subject ]</a>
+              <a href="author.html#1739">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 18 Mar 2010, Marcus Sch&#228;fer wrote:
+
+&gt;&gt;<i> # kiwi --version
+</I>&gt;&gt;<i> Mar-17 17:20:33 &lt;1&gt; : kiwi version v4.22
+</I>&gt;&gt;<i> GIT Commit: f455e0c5f31666898f2e2c4030970097ad074ddd
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> and for the first time got a chance to test the &quot;Boot from hard drive&quot;
+</I>&gt;&gt;<i> feature for the OEM image (thanks for the quick implementation of this
+</I>&gt;&gt;<i> request). Unfortunately I was not successful. When I let the grub menu time
+</I>&gt;&gt;<i> out such that the default case kicked in and the system attempted to boot
+</I>&gt;&gt;<i> from the drive all I saw was &quot;GRUB&quot; being painted across the &quot;screen&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I was testing with qemu-kvm boot from the OEM image ISO. The OEM image OS
+</I>&gt;&gt;<i> is SLES 11 GM (x86-64) build on an openSUSE 11.1 (x86-64) system.
+</I>&gt;<i>
+</I>&gt;<i> Is that an image on stick ? If so I fear that what Steffen said
+</I>&gt;<i> applies. The &quot;boot from hard drive&quot; seems to work reliable only if
+</I>&gt;<i> you boot from CD/DVD but not from Stick.
+</I>
+Yeah, I did warn you. :-)
+
+Anyway, there is another way. Fairly recent (10 years or so) BIOSes provide
+a 'boot next device' function which normally does what you want in this
+situation.
+
+I've done a quick check and it worked on the two test machines I tried and
+in vmware. No luck in qemu and vbox (which is based on the same bios code,
+iirc).
+
+So, if you can live with that limitation, we can try this.
+
+
+Steffen
+
+-- 
+Das Nichtrauchen entfernt uns von der Zivilisation und setzt den Mann mit
+seinem Dackel gleich. -- J. C.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001737.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+	<LI>Next message: <A HREF="001740.html">[Kiwi-users] Boot from hard drive feature
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1739">[ date ]</a>
+              <a href="thread.html#1739">[ thread ]</a>
+              <a href="subject.html#1739">[ subject ]</a>
+              <a href="author.html#1739">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

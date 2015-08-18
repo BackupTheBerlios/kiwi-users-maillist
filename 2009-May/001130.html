@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] changes in use of boot branding packages...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20changes%20in%20use%20of%20boot%20branding%20packages...&In-Reply-To=%3Cb317ae5c0905181017u43e0adb1h3148dde4dc09c767%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001128.html">
+   <LINK REL="Next"  HREF="001132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] changes in use of boot branding packages...</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20changes%20in%20use%20of%20boot%20branding%20packages...&In-Reply-To=%3Cb317ae5c0905181017u43e0adb1h3148dde4dc09c767%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] changes in use of boot branding packages...">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Mon May 18 19:17:05 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001128.html">[Kiwi-users] changes in use of boot branding packages...
+</A></li>
+        <LI>Next message: <A HREF="001132.html">[Kiwi-users] Failed to detect CD/DVD or USB drive in 3.51
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1130">[ date ]</a>
+              <a href="thread.html#1130">[ thread ]</a>
+              <a href="subject.html#1130">[ subject ]</a>
+              <a href="author.html#1130">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, May 18, 2009 at 10:18 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+&gt;<i> Hi All,
+</I>&gt;<i>
+</I>&gt;<i> there is bug #497888 opened by &quot;cyberorg&quot; which suggests to
+</I>&gt;<i> be able to setup the graphics boot and bootsplash branding
+</I>&gt;<i> as part of the system image description
+</I>&gt;<i>
+</I>&gt;<i> I have implemented support for that and would like to
+</I>&gt;<i> share the details with you on the list:
+</I>
+Thanks!!
+
+&gt;<i>
+</I>&gt;<i> 1) in openSUSE there are two kinds of branding packages
+</I>&gt;<i>
+</I>&gt;<i> &#160; &#160; bootsplash-branding-&lt;distro&gt;
+</I>&gt;<i> &#160; &#160; gfxboot-branding-&lt;distro&gt;
+</I>&gt;<i>
+</I>&gt;<i> 2) the information in this packages is used inside the
+</I>&gt;<i> &#160; boot image, the initrd. Therefore kiwi has added them
+</I>&gt;<i> &#160; statically inside the boot image descriptions. The problem
+</I>&gt;<i> &#160; is if a user has its own branding packages he needs to
+</I>&gt;<i> &#160; clone the bootimage and change the package there and point
+</I>&gt;<i> &#160; the system image description to its own copy of the boot
+</I>&gt;<i> &#160; image description
+</I>&gt;<i>
+</I>&gt;<i> This is complicated and not foolproof :)
+</I>&gt;<i>
+</I>&gt;<i> So with kiwi version &gt;=3.52 (not released yet) you can add
+</I>&gt;<i> the branding packages as part of the system image description
+</I>&gt;<i> and you can tell kiwi to use this packages inside the boot
+</I>&gt;<i> image as follows:
+</I>&gt;<i>
+</I>&gt;<i> &#160; &#160;&lt;package name=&quot;bootsplash-branding-openSUSE&quot;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i> &#160; &#160;&lt;package name=&quot;gfxboot-branding-openSUSE&quot;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i>
+</I>&gt;<i> bootinclude means include that package into the selected boot
+</I>&gt;<i> image (initrd) too. The attribute bootdelete means that the
+</I>&gt;<i> package should not stay inside the boot image as the data
+</I>&gt;<i> is no longer needed after it has been used to setup the boot
+</I>&gt;<i> graphics
+</I>&gt;<i>
+</I>&gt;<i> I have adapted the kiwi provided examples to this new system
+</I>&gt;<i> and you should do the same with your own examples. As the boot
+</I>&gt;<i> images by default don't include any branding packages anymore
+</I>&gt;<i> you will end up with an image without bootsplash and boot
+</I>&gt;<i> graphics if you don't specify branding packages in your
+</I>&gt;<i> description
+</I>&gt;<i>
+</I>&gt;<i> As a speciality you are free to use that system for inclusion
+</I>&gt;<i> of any package you like into the initrd. No idea if that makes
+</I>&gt;<i> sense but it would work :-)
+</I>&gt;<i>
+</I>Wow!! that sure will come handy, we'd never need to patch boot image
+description.
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001128.html">[Kiwi-users] changes in use of boot branding packages...
+</A></li>
+	<LI>Next message: <A HREF="001132.html">[Kiwi-users] Failed to detect CD/DVD or USB drive in 3.51
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1130">[ date ]</a>
+              <a href="thread.html#1130">[ thread ]</a>
+              <a href="subject.html#1130">[ subject ]</a>
+              <a href="author.html#1130">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] CONF in netboot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20CONF%20in%20netboot%20image&In-Reply-To=%3CAANLkTikE%3DRA-48bK9CEt6rAahZYt3A_g3oXg%2BLgow6K%2B%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001954.html">
+   <LINK REL="Next"  HREF="001956.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] CONF in netboot image</H1>
+    <B>Denis Kozlov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20CONF%20in%20netboot%20image&In-Reply-To=%3CAANLkTikE%3DRA-48bK9CEt6rAahZYt3A_g3oXg%2BLgow6K%2B%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] CONF in netboot image">dendexter51 at gmail.com
+       </A><BR>
+    <I>Mon Aug  9 12:44:49 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001954.html">[Kiwi-users] kiwi: Weekly report 2010-08-01 - 2010-08-06...
+</A></li>
+        <LI>Next message: <A HREF="001956.html">[Kiwi-users] Strange error while building an OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1955">[ date ]</a>
+              <a href="thread.html#1955">[ thread ]</a>
+              <a href="subject.html#1955">[ subject ]</a>
+              <a href="author.html#1955">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi. I have the same problem, but I resolve it.)))
+The problem is in linuxrc. Because CONF works only when you distribute your
+image to disk-based system. When you choose to deploy image to RAM ,
+Variable &quot;SystemIntegrity&quot; in linuxrc is &quot;unknown&quot;, so when the system check
+if there is any image on the client already, it compare values.
+fine - when the kiwi discover that on the hdd is already up-to-date image
+clean - when th image is not up to date or you chose option
+UPDATE(RELOAD_CONFIG)
+unknown - default value of variable SystemIntegrity(this is your case!!!!!)
+First problem - linuxrc don't have correct description, when when we deploy
+image in RAM
+Second problem - for example if you deploy image to hdd, and it is already
+up to date on the client, but you for example add new CONF file, it will not
+upload conf files to client. It will upload to client only in case when new
+image will be uploaded or if you force to re-upload image to client via
+UPDATE(RELOAD_CONFIG).
+In other words, CONF will work only when SystemIntegrity will have status
+&quot;clean&quot;
+In your case linuxrc compare values and see that variable SystemIntegrity
+don't change its default value, so --&gt;  clean == unknown --&gt; Result: no CONF
+file will be uploaded
+Solution:
+1)If your system works only with diskless system you can easily change
+default value of SystemIntegrity to &quot;clean&quot;. This will work also with
+diskbased system, but the mechanism of checking version of already uploaded
+image will not work, kiwi always will download image to client, even if it
+up-to-date.
+line 344 - export systemIntegrity=&quot;unknown&quot;
+Solution = export systemIntegrity=&quot;clean&quot;
+2)If you want diskless system and diskbased you need to add one more IF_ELSE
+for case when SystemIntegrity will &quot;unknown&quot; in linuxrc in section
+corresponding for &quot;CONF&quot;
+line 788 - Section &quot;Importing fixes config &quot;
+Solution - Add IF_ELSE for case &quot;unknown&quot;
+
+
+
+
+Sorry for my English))
+-- 
+With best regards Denis Kozlov aka DenDeXTeR51(KPI Hostel &quot;Primula&quot; Admin &amp;
+CISCO CCNA &amp; LPIC-1 &amp; Novell CLA)
+Kyiv
+Ukraine
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100809/86e3d46d/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100809/86e3d46d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001954.html">[Kiwi-users] kiwi: Weekly report 2010-08-01 - 2010-08-06...
+</A></li>
+	<LI>Next message: <A HREF="001956.html">[Kiwi-users] Strange error while building an OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1955">[ date ]</a>
+              <a href="thread.html#1955">[ thread ]</a>
+              <a href="subject.html#1955">[ subject ]</a>
+              <a href="author.html#1955">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

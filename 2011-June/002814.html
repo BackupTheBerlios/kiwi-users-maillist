@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Quick Question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Quick%20Question&In-Reply-To=%3C4E0B8668.5030201%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002811.html">
+   <LINK REL="Next"  HREF="002817.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Quick Question</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Quick%20Question&In-Reply-To=%3C4E0B8668.5030201%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] Quick Question">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Wed Jun 29 22:09:12 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002811.html">[Kiwi-users] [studio-devel] image caches, some improvements
+</A></li>
+        <LI>Next message: <A HREF="002817.html">[Kiwi-users] Quick Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2814">[ date ]</a>
+              <a href="thread.html#2814">[ thread ]</a>
+              <a href="subject.html#2814">[ subject ]</a>
+              <a href="author.html#2814">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Everyone,
+
+I have a system that uses a standard block device for a storage device, 
+using ext3, and is configured for read/write operations. However, when I 
+want to &quot;refresh&quot; the system using the IMAGE_RELOAD configuration 
+option, I get an out of space error, which is true, there's 7 MBytes 
+remaining as free space, that I don't use during the initial 
+installation stage.
+
+I suspect, the file systems that are on the block device are not being 
+properly cleared, and am wondering if there is another option that I 
+need to specify to force a reformatting of the entire system?
+
+I am currently using KIWI 4.91, and this is what I currently have 
+configured for my preferences, specific to the file system:
+
+&lt;type image=&quot;pxe&quot; filesystem=&quot;ext3&quot; compressed=&quot;true&quot; 
+boot=&quot;netboot/suse-11.4&quot;&gt;
+&lt;size unit=&quot;M&quot;&gt;512&lt;/size&gt;
+&lt;pxedeploy server=&quot;192.168.xx.11&quot; blocksize=&quot;4096&quot;&gt;
+&lt;kernel&gt;boot/linux&lt;/kernel&gt;
+&lt;initrd&gt;boot/initrd&lt;/initrd&gt;
+&lt;partitions device=&quot;/dev/sda&quot;&gt;
+&lt;partition type=&quot;swap&quot; number=&quot;1&quot; size=&quot;5&quot;/&gt;
+&lt;partition type=&quot;L&quot; number=&quot;2&quot; mountpoint=&quot;/&quot; target=&quot;true&quot;/&gt;
+&lt;/partitions&gt;
+&lt;/pxedeploy&gt;
+&lt;/type&gt;
+
+The exact error is:
+
+Not enough space available for this image.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002811.html">[Kiwi-users] [studio-devel] image caches, some improvements
+</A></li>
+	<LI>Next message: <A HREF="002817.html">[Kiwi-users] Quick Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2814">[ date ]</a>
+              <a href="thread.html#2814">[ thread ]</a>
+              <a href="subject.html#2814">[ subject ]</a>
+              <a href="author.html#2814">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

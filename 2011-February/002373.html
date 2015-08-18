@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /home in an oem preload image.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/home%20in%20an%20oem%20preload%20image.&In-Reply-To=%3C4D629DF9.3060007%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002372.html">
+   <LINK REL="Next"  HREF="002375.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /home in an oem preload image.</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/home%20in%20an%20oem%20preload%20image.&In-Reply-To=%3C4D629DF9.3060007%40novell.com%3E"
+       TITLE="[Kiwi-users] /home in an oem preload image.">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Feb 21 18:16:41 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002372.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+        <LI>Next message: <A HREF="002375.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2373">[ date ]</a>
+              <a href="thread.html#2373">[ thread ]</a>
+              <a href="subject.html#2373">[ subject ]</a>
+              <a href="author.html#2373">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 02/21/2011 11:50 AM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I am making an OEM preload image. I set the size of the root partition
+</I>&gt;&gt;<i> and of the swap space. This works great. I want to fill the rest of the
+</I>&gt;&gt;<i> disk with /home. As I understand it, the oem preload no longer does
+</I>&gt;&gt;<i> this. But it used to I guess as the docs all claim this is what it does.
+</I>&gt;&gt;<i> But not any more.
+</I>&gt;<i> 
+</I>&gt;<i> The docs has been fixed here
+</I>&gt;<i> 
+</I>&gt;&gt;<i> So, I am considering alternatives. One suggestion was to use the
+</I>&gt;&gt;<i> &lt;systemdisk/&gt; method and get a logical volume. This is not really what I
+</I>&gt;&gt;<i> am after. I want good old fashioned disk partitions: one for / and one
+</I>&gt;&gt;<i> for /home.
+</I>&gt;<i> 
+</I>&gt;<i> I'm sorry but kiwi supports custom partitions only with LVM. The LVM
+</I>&gt;<i> overhead is small and you gain persistent device names and also a lot
+</I>&gt;<i> more power over your partitions compared to the old model. And as soon
+</I>&gt;<i> as the disks start to look over the 2TB border other problems will 
+</I>&gt;<i> occur. LVM is used in enterprise environments and it's stable. So
+</I>&gt;<i> I would say give it a try
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I am using yast2-firstboot. Is there any way to tell it to add a
+</I>&gt;&gt;<i> partition that fills the rest of the disk? I looked through the docs and
+</I>&gt;&gt;<i> did not recognize such a thing. I am not adding any user in the preload,
+</I>&gt;&gt;<i> so home is empty. Adding users will happen after the system is set up.
+</I>&gt;<i> 
+</I>&gt;<i> yast2 storage and also tools like gparted can help you here. Filling
+</I>&gt;<i> the rest of the disk can also be done very easily with fdisk in a script
+</I>&gt;<i> 
+</I>&gt;&gt;<i> If yast2-firstboot does not work, could I use Autoyast? I have the
+</I>&gt;&gt;<i> feeling you should do either yast2-firstboot or Autoyast, but not both.
+</I>&gt;&gt;<i> For my own sanity, I would like to focus on one method. But I am
+</I>&gt;&gt;<i> flexible.
+</I>&gt;<i> 
+</I>&gt;<i> Autoyast also works. You can call the storage module with some predefined
+</I>&gt;<i> input telling it to add a partition filling the rest of the disk. That
+</I>&gt;<i> shouldn't be that hard. You could contact Uwe Gansert for help here
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ug at novell.com</A>&gt;
+</I>&gt;<i> 
+</I>
+Just to add to the info Marcus already provided. You can also follow the
+data separation example:
+<A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_Data_Separation">http://en.opensuse.org/SDB:KIWI_Cookbook_Data_Separation</A> to create the
+extra partition. Then in a script you can reset /etc/fstab
+
+HTH,
+Robert
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002372.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+	<LI>Next message: <A HREF="002375.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2373">[ date ]</a>
+              <a href="thread.html#2373">[ thread ]</a>
+              <a href="subject.html#2373">[ subject ]</a>
+              <a href="author.html#2373">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

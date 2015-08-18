@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with image building using ver 4.30
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20image%20building%20using%20ver%204.30&In-Reply-To=%3C4BD07B6B020000F0000A80EE%40victor.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001773.html">
+   <LINK REL="Next"  HREF="001774.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with image building using ver 4.30</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20image%20building%20using%20ver%204.30&In-Reply-To=%3C4BD07B6B020000F0000A80EE%40victor.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Issues with image building using ver 4.30">ragupta at novell.com
+       </A><BR>
+    <I>Thu Apr 22 13:08:02 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001773.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+        <LI>Next message: <A HREF="001774.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1776">[ date ]</a>
+              <a href="thread.html#1776">[ thread ]</a>
+              <a href="subject.html#1776">[ subject ]</a>
+              <a href="author.html#1776">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Here's the other interesting thing. The output of &quot;df -h&quot; is different in the two cases. 
+
+mke2fs -j -F -i 16384 -N 62528 -O resize_inode lala 
+
+Filesystem            Size  Used Avail Use% Mounted on 
+/dev/loop4             31M  5.2M   24M  19% /mnt/loop 
+------------------------- 
+
+mke2fs -T ext3 -j -F -i 16384 -N 62528 -O resize_inode lala 
+
+Filesystem            Size  Used Avail Use% Mounted on 
+/dev/loop4             23M  4.2M   17M  20% /mnt/loop 
+
+
+Why is the size different in the two cases. Maybe that's where the problem lies. 
+
+Regards, 
+Rahul 
+
+
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; 4/22/2010 16:28 &gt;&gt;&gt;
+</I>Hi,
+
+&gt;<i>   dd if=/dev/zero of=/tmp/lala bs=1 seek=39845887 count=1
+</I>&gt;<i>   mke2fs -j -F -i 16384 -N 62528 -O resize_inode lala
+</I>&gt;<i>   mount -o loop lala /mnt
+</I>
+Uff, if I call
+
+   mke2fs -T ext3 -j -F -i 16384 -N 62528 -O resize_inode lala
+
+I have only 17MB free, what the heck ??????????
+
+Regards,
+Marcus
+--
+Public Key available
+gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+-------------------------------------------------------
+Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+Tel: 0911-740 53 0             Maxfeldstrasse 5
+FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+<A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+-------------------------------------------------------
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100422/6eb82079/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100422/6eb82079/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001773.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+	<LI>Next message: <A HREF="001774.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1776">[ date ]</a>
+              <a href="thread.html#1776">[ thread ]</a>
+              <a href="subject.html#1776">[ subject ]</a>
+              <a href="author.html#1776">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

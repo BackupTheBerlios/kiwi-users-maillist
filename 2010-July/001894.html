@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] suse-oem-preload not working
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201007070046.29967.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001893.html">
+   <LINK REL="Next"  HREF="001881.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] suse-oem-preload not working</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201007070046.29967.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] suse-oem-preload not working">javier at opensuse.org
+       </A><BR>
+    <I>Wed Jul  7 00:46:26 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001893.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+        <LI>Next message: <A HREF="001881.html">[Kiwi-users] kiwi: Weekly report 2010-06-27 - 2010-07-02...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1894">[ date ]</a>
+              <a href="thread.html#1894">[ thread ]</a>
+              <a href="subject.html#1894">[ subject ]</a>
+              <a href="author.html#1894">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Martes, 6 de Julio de 2010 09:15:31 Marcus Sch&#228;fer escribi&#243;:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; Jul-02 23:30:06 &lt;1&gt; : Setting up YaST firstboot service...
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Yeah. I saw that. Sorry, I wasn't clear. It seems that kiwi cannot enable
+</I>&gt;<i> &gt; firstboot cause there's no such &quot;firstboot&quot; service.
+</I>&gt;<i> 
+</I>&gt;<i> You are right the service was removed, it simply doesn't exist
+</I>&gt;<i> anymore. Man nobody told me so I have no clue at the moment how
+</I>&gt;<i> to activate firstboot :( will ask the yast people. CC'ed
+</I>&gt;<i> yast2-firstboot maintainer.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; &gt; Is it possible to use kernel-desktop on a standard oem image? I 
+</I>have
+&gt;<i> &gt; &gt; &gt; tried but I got messages like modules.dep wasn't found and things
+</I>&gt;<i> &gt; &gt; &gt; like made networkmanager to be non functional on first boot. 
+</I>Perhaps
+&gt;<i> &gt; &gt; &gt; I'm doing something wrong.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; That should be no problem. All you need to do is calling kiwi prepare
+</I>&gt;<i> &gt; &gt; and kiwi create with the desktop profile
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;   kiwi --prepare .... --add-profile desktop
+</I>&gt;<i> &gt; &gt;   kiwi --create  .... --add-profile desktop
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I did so and kiwi said that it didn't find the profile, so I added
+</I>&gt;<i> 
+</I>&gt;<i> Sorry that was wrong from my side. Here is how it works.
+</I>&gt;<i> Edit your oem image config.xml and change the following
+</I>&gt;<i> 
+</I>&gt;<i> -  &lt;type image=&quot;split&quot; fsreadwrite=&quot;ext4&quot; fsreadonly=&quot;squashfs&quot;
+</I>&gt;<i> boot=&quot;oemboot/suse-11.3&quot; installiso=&quot;true&quot;&gt;
+</I>&gt;<i> 
+</I>&gt;<i> +  &lt;type image=&quot;split&quot; fsreadwrite=&quot;ext4&quot; fsreadonly=&quot;squashfs&quot;
+</I>&gt;<i> boot=&quot;oemboot/suse-11.3&quot; installiso=&quot;true&quot; bootkernel=&quot;desktop&quot;&gt;
+</I>&gt;<i> 
+</I>&gt;<i> ....
+</I>&gt;<i> 
+</I>&gt;<i> - &lt;package name=&quot;kernel-default&quot;/&gt;
+</I>&gt;<i> + &lt;package name=&quot;kernel-desktop&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> after that rebuild from scratch via kiwi prepare and create
+</I>
+Done. It worked fine :-)
+
+
+&gt;<i> &gt; &lt;profiles&gt;
+</I>&gt;<i> &gt; &lt;profile name=&quot;desktop&quot; description=&quot;KERNEL: Desktop kernel&quot;/&gt;
+</I>&gt;<i> &gt; &lt;/profiles&gt;
+</I>&gt;<i> &gt; &lt;packages profiles=&quot;desktop&quot; type=&quot;image&quot;&gt;
+</I>&gt;<i> &gt; &lt;package name=&quot;kernel-desktop&quot;/&gt;
+</I>&gt;<i> &gt; &lt;/packages&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; to my config.xml
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Is this correct?
+</I>&gt;<i> 
+</I>&gt;<i> That will not work, pleae revert that change
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; This means you don't want to have a bootsplash ? If so it's easy
+</I>&gt;<i> &gt; &gt; just remove the line
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;   &lt;package name=&quot;bootsplash-branding-openSUSE&quot; 
+</I>bootinclude=&quot;true&quot;
+&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; from your config.xml
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I mean that instead of seeing text messages, I would like to see an 
+</I>image
+&gt;<i> &gt; when booting up (all the time). I don't want to remove bootsplash. On 
+</I>the
+&gt;<i> &gt; contrary, I want it to hide those boot messages of the first boot using
+</I>&gt;<i> &gt; bootsplash (if possible).
+</I>&gt;<i> 
+</I>&gt;<i> ah ok so I misunderstood. Unfortunately there was the exact opposite
+</I>&gt;<i> request some weeks ago and that's the reason why you see the kernel
+</I>&gt;<i> message while the system installs. In the future I could make this
+</I>&gt;<i> an option to the xml but for now you need to change the code
+</I>&gt;<i> in:
+</I>&gt;<i> 
+</I>&gt;<i>   /usr/share/kiwi/image/oemboot/suse-linuxrc
+</I>&gt;<i> 
+</I>&gt;<i>   ===&gt; remove the line
+</I>&gt;<i>   test -e /proc/splash &amp;&amp; echo verbose &gt; /proc/splash
+</I>&gt;<i> 
+</I>&gt;<i>   ===&gt; remove the checksum as it's not valud after your change
+</I>&gt;<i>   rm -f /usr/share/kiwi/image/oemboot/*/.checksum.md5
+</I>&gt;<i> 
+</I>
+Now I know how to do it. Yepp, having a special tag for enabling/disabling 
+this would be perfect.
+
+Thanks a lot for your help!
+I will take a look at the bugs you have opened.
+kiwi is awesome :-)
+
+Greetings,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100707/34bc9558/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100707/34bc9558/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001893.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+	<LI>Next message: <A HREF="001881.html">[Kiwi-users] kiwi: Weekly report 2010-06-27 - 2010-07-02...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1894">[ date ]</a>
+              <a href="thread.html#1894">[ thread ]</a>
+              <a href="subject.html#1894">[ subject ]</a>
+              <a href="author.html#1894">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

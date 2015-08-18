@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Strange error while deploying OEM		imageusingUSBboot disk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Strange%20error%20while%20deploying%20OEM%09%0A%09imageusingUSBboot%20disk&In-Reply-To=%3C4A734AC9020000F00008E933%40victor.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001325.html">
+   <LINK REL="Next"  HREF="001314.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Strange error while deploying OEM		imageusingUSBboot disk</H1>
+    <B>Rahulkrishna Gupta</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Strange%20error%20while%20deploying%20OEM%09%0A%09imageusingUSBboot%20disk&In-Reply-To=%3C4A734AC9020000F00008E933%40victor.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Strange error while deploying OEM		imageusingUSBboot disk">ragupta at novell.com
+       </A><BR>
+    <I>Fri Jul 31 16:19:29 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001325.html">[Kiwi-users] Strange error while deploying OEM		imageusingUSBboot disk
+</A></li>
+        <LI>Next message: <A HREF="001314.html">[Kiwi-users] config.xml image description oem iso usb vmx
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1326">[ date ]</a>
+              <a href="thread.html#1326">[ thread ]</a>
+              <a href="subject.html#1326">[ subject ]</a>
+              <a href="author.html#1326">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Marcus, 
+
+I have tested using the updated KIWI packages. The situation has
+improved but the disk size is still not entirely correct. 
+
+The disk size should have been 488.7 MB whereas it shows 478 MB
+(although its improved from the earlier 60 MB). My image still fails to
+deploy because it is 488 MB in size. 
+
+However, when I manually run the command &quot;blockdev --getsize64
+/dev/sda&quot; , it reports the correct size in Bytes i.e. 512483328 which
+translates to 488.7421875 MB 
+
+I have been using this Thin Client hardware for more than a year
+sometime and it has always given me 488.7 MB of usable space.
+Consequently I have been building a .raw image of size 488 MB. 
+
+I see that in the KIWILinuxRC.sh, you have used the following code 
+
+haveBytes=`blockdev --getsize64 $rwDevice` 
+
+I think we should be using $imageDevice instead of $rwDevice. Or maybe
+use the logic used in older version (2.34). 
+
+Should I reopen the BUG ? 
+
+Regards, 
+Rahul 
+
+
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; 7/31/2009 17:07 &gt;&gt;&gt;
+</I>Hi,
+
+&gt;<i> &quot;blockdev&quot; works perfectly and gives the correct size.
+</I>&gt;<i>
+</I>&gt;<i> While you fix that code, request you to provide me a patch so that I
+</I>&gt;<i> can continue with my image deployment.
+</I>
+bug is fixed, new packages are available in the openSUSE:Tools
+repo. The diff can be created from the KIWI-301-SuSE-11-1-Devel
+branch with:
+
+git diff 73a5c90eec249d4cf1e3e017510e47fe9674ee3e \
+          0eca7ba996b591102c403f68ee39c0587c7d65d1
+
+Regards,
+Marcus
+--
+Public Key available
+gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+-------------------------------------------------------
+Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+Tel: 0911-740 53 0             Maxfeldstrasse 5
+FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+<A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+-------------------------------------------------------
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090731/ca9ddacb/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090731/ca9ddacb/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001325.html">[Kiwi-users] Strange error while deploying OEM		imageusingUSBboot disk
+</A></li>
+	<LI>Next message: <A HREF="001314.html">[Kiwi-users] config.xml image description oem iso usb vmx
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1326">[ date ]</a>
+              <a href="thread.html#1326">[ thread ]</a>
+              <a href="subject.html#1326">[ subject ]</a>
+              <a href="author.html#1326">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

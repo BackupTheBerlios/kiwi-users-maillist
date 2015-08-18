@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] multicast problem with netboot and atftpd
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20multicast%20problem%20with%20netboot%20and%20atftpd&In-Reply-To=%3Cba61a66d0804010827v2c7dd3dcg9822d16e0f9859c1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000539.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] multicast problem with netboot and atftpd</H1>
+    <B>Vincent</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20multicast%20problem%20with%20netboot%20and%20atftpd&In-Reply-To=%3Cba61a66d0804010827v2c7dd3dcg9822d16e0f9859c1%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] multicast problem with netboot and atftpd">overciv at gmail.com
+       </A><BR>
+    <I>Tue Apr  1 17:27:32 CEST 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000539.html">[Kiwi-users] multicast problem with netboot and atftpd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#536">[ date ]</a>
+              <a href="thread.html#536">[ thread ]</a>
+              <a href="subject.html#536">[ subject ]</a>
+              <a href="author.html#536">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list,
+
+I noticed that when I use the version 2.28-28 of kiwi to generate my netboot
+initrd, I get a problem during the pxe boot of my client.
+Problem is when kiwi ask tftp server for config.&lt;MAC&gt; there is no response
+and atfpd says &quot;timeout&quot;.
+I fix this by adding --no-multicast in /etc/sysconfig/atfpd :
+
+ATFTPD_OPTIONS=&quot;--daemon --no-multicast&quot;
+
+Is multicast enable by default for netboot or is just a bug ?
+
+Thanks,
+
+Vincent.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080401/5af73b16/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080401/5af73b16/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000539.html">[Kiwi-users] multicast problem with netboot and atftpd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#536">[ date ]</a>
+              <a href="thread.html#536">[ thread ]</a>
+              <a href="subject.html#536">[ subject ]</a>
+              <a href="author.html#536">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with clicfs ext3 corruption
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20clicfs%20ext3%20corruption&In-Reply-To=%3C9B154F796B67B1488D4FBCB17AB74658D389CE%40vicdcex05.lfxau.linfox.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002300.html">
+   <LINK REL="Next"  HREF="002304.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with clicfs ext3 corruption</H1>
+    <B>Matthew Parslow</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20clicfs%20ext3%20corruption&In-Reply-To=%3C9B154F796B67B1488D4FBCB17AB74658D389CE%40vicdcex05.lfxau.linfox.com%3E"
+       TITLE="[Kiwi-users] Issues with clicfs ext3 corruption">Matthew_Parslow at linfox.com
+       </A><BR>
+    <I>Tue Feb  8 23:31:17 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002300.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+        <LI>Next message: <A HREF="002304.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2303">[ date ]</a>
+              <a href="thread.html#2303">[ thread ]</a>
+              <a href="subject.html#2303">[ subject ]</a>
+              <a href="author.html#2303">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+Good catch, thanks - Unfortunately that was an error in my transposing to email, not my process - I'm still having this problem.
+Of note is that the x11vnc binary I also copied is fine - could this be a bug in clicfs with added files  under 4096bytes or some issue with the journal?
+Cheers,
+Matt
+(apologies for legal spam footer)
+-----Original Message-----
+From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>] 
+Sent: Tuesday, 8 February 2011 8:38 PM
+To: Matthew Parslow
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] Issues with clicfs ext3 corruption
+
+Hi,
+
+&gt;<i> Process followed to edit the clicfs:
+</I>&gt;<i> clicfs -m 120 /srv/kiwi-ltsp/i386.img /mnt
+</I>&gt;<i> cp /mnt/fsdata.ext3 /tmp/
+</I>&gt;<i> resize2fs /tmp/fsdata.ext3 1G
+</I>&gt;<i> mount -o loop /tmp/fsdata.ext3 /mnt/
+</I>&gt;<i> 
+</I>&gt;<i> # Copy files to the fs, eg
+</I>&gt;<i> cp x11vnc-script /mnt/etc/init.d/x11vnc
+</I>&gt;<i> 
+</I>&gt;<i> umount /mnt
+</I>&gt;<i> 
+</I>&gt;<i> e2fsck -f /tmp/fsdata.ext3
+</I>&gt;<i> resize2fs /tmp/fsdata.ext3 -M
+</I>&gt;<i> mkclicfs fsdata.ext3 /srv/kiwi-ltsp/test.cfs
+</I>
+I think the problem is that you did not free the clicfs itself
+you mounted the clicfs to /mnt and then you loop mounted the fsdata.ext3
+to the same mount point. This is ok but imho you have to umount
+/mnt twice now
+
+  umount /mnt
+  umount /mnt
+
+  e2fsck -f /tmp/fsdata.ext3
+  resize2fs /tmp/fsdata.ext3 -M
+  mkclicfs fsdata.ext3 /srv/kiwi-ltsp/test.cfs
+
+This should work.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+WARNING: This email and any attachments may be confidential and subject
+to copyright. If you are not the intended recipient, you must not
+disclose or use the information contained in this email. If you have
+received this email in error, please notify the sender and permanently
+delete the email immediately. Linfox Pty Ltd and its related
+companies do not warrant that this email and any attachments are free of
+errors, viruses or tampering by third parties, and will not be
+responsible for loss or damage resulting (either directly or indirectly)
+from any such error, virus or tampering. If this is a commercial email
+within the meaning of the Spam Act, you may unsubscribe from future
+commercial emails by emailing <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">unsubscribe at linfox.com</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002300.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+	<LI>Next message: <A HREF="002304.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2303">[ date ]</a>
+              <a href="thread.html#2303">[ thread ]</a>
+              <a href="subject.html#2303">[ subject ]</a>
+              <a href="author.html#2303">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

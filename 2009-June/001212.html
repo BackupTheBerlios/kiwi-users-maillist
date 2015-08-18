@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [zypper]	prompt.cc(read_action_ari_with_timeout):129 Unknown char	[repeat forever]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bzypper%5D%0A%09prompt.cc%28read_action_ari_with_timeout%29%3A129%20Unknown%20char%0A%09%5Brepeat%20forever%5D&In-Reply-To=%3C8f985b960906170622w37237ca4tcd5207e5a12ebc11%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001209.html">
+   <LINK REL="Next"  HREF="001213.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [zypper]	prompt.cc(read_action_ari_with_timeout):129 Unknown char	[repeat forever]</H1>
+    <B>Mike Kienenberger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bzypper%5D%0A%09prompt.cc%28read_action_ari_with_timeout%29%3A129%20Unknown%20char%0A%09%5Brepeat%20forever%5D&In-Reply-To=%3C8f985b960906170622w37237ca4tcd5207e5a12ebc11%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] [zypper]	prompt.cc(read_action_ari_with_timeout):129 Unknown char	[repeat forever]">mkienenb at gmail.com
+       </A><BR>
+    <I>Wed Jun 17 15:22:31 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001209.html">[Kiwi-users]	[zypper]	prompt.cc(read_action_ari_with_timeout):129 Unknown	char [repeat	forever]
+</A></li>
+        <LI>Next message: <A HREF="001213.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1212">[ date ]</a>
+              <a href="thread.html#1212">[ thread ]</a>
+              <a href="subject.html#1212">[ subject ]</a>
+              <a href="author.html#1212">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Ah, well that explains why I haven't seen the problem recently.  I was
+trying to reproduce a bug I hit a few weeks ago, and I intentionally
+was leaving the update repo off the repository list.  That's not my
+normal mode of operation, and your suggestion is right on target for
+fixing the issue.
+
+On Wed, Jun 17, 2009 at 2:16 AM, Jano Kupec&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jkupec at suse.cz</A>&gt; wrote:
+&gt;<i> Mike Kienenberger wrote:
+</I>&gt;&gt;<i> Jano,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> That's definitely the same zypper bug I'm seeing.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> As far as I can tell, I'm up-to-date on released zypper and related
+</I>&gt;&gt;<i> packages - no updates are pending.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> zypper --version
+</I>&gt;&gt;<i> zypper 1.0.9
+</I>&gt;<i>
+</I>&gt;<i> This version should have the fix.
+</I>&gt;<i>
+</I>&gt;<i> It think i know what is the problem. Kiwi first uses the fixed zypper
+</I>&gt;<i> from your system to install the base, but then chroots into the image
+</I>&gt;<i> and uses the zypper from the chroot. I guess that particular zypper is
+</I>&gt;<i> the one which is not fixed, and gives you problems when the connection
+</I>&gt;<i> times out.
+</I>&gt;<i>
+</I>&gt;<i> I'm not sure what we can do here to help you out of this :O( Maybe... is
+</I>&gt;<i> it possible to add also the 11.1 update repository together with the
+</I>&gt;<i> 11.1 full repo when creating an 11.1-based image? That way the fixed
+</I>&gt;<i> zypper would be installed into the image, and with --non-interative
+</I>&gt;<i> option in place, the bug should no longer hit you.
+</I>&gt;<i>
+</I>&gt;<i> cheers,
+</I>&gt;<i> jano
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> On Tue, Jun 16, 2009 at 4:31 AM, Jano Kupec&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jkupec at suse.cz</A>&gt; wrote:
+</I>&gt;&gt;&gt;<i> Marcus Schaefer wrote:
+</I>&gt;&gt;&gt;&gt;<i> Hi Mike,
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> Here's something I just hit while testing with the default 11.1
+</I>&gt;&gt;&gt;&gt;&gt;<i> suse-live-iso configuration: The zypp log fills the entire drive
+</I>&gt;&gt;&gt;&gt;&gt;<i> (several gigabytes). &#160; I've had it happen twice now in a row. &#160;The
+</I>&gt;&gt;&gt;&gt;&gt;<i> last three lines repeat indefinitely. &#160;Apparently it was triggered
+</I>&gt;&gt;&gt;&gt;&gt;<i> because the connection to <A HREF="opensuse://11.1/repo/oss/">opensuse://11.1/repo/oss/</A> timed out. &#160;This
+</I>&gt;&gt;&gt;&gt;&gt;<i> is the default 11.1 liveiso configuration with the kde pattern
+</I>&gt;&gt;&gt;&gt;&gt;<i> commented out (trying to reproduce the ConsoleKit-32bit issue again).
+</I>&gt;&gt;&gt;&gt;<i> I have CC'ed Jan Kupec he is one of the zypper developers.
+</I>&gt;&gt;&gt;&gt;<i> If the log could grow that big a logrotate setup might be
+</I>&gt;&gt;&gt;&gt;<i> worth to think of
+</I>&gt;&gt;&gt;<i> Logrotate is in place, but the log grows too fast because of a bug:
+</I>&gt;&gt;&gt;<i> <A HREF="https://bugzilla.novell.com/show_bug.cgi?id=469872">https://bugzilla.novell.com/show_bug.cgi?id=469872</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The fix has already been released, so the bug should go away after
+</I>&gt;&gt;&gt;<i> installing the latest updates (patch softwaremgmt-791).
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> HTH,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> jano
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Regards,
+</I>&gt;&gt;&gt;&gt;<i> Marcus
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> ---log excerpt---
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;1&gt; linux-k68r(26552) [zypp]
+</I>&gt;&gt;&gt;&gt;&gt;<i> MediaAccess.cc(open):150 Opened:
+</I>&gt;&gt;&gt;&gt;&gt;<i> http(<A HREF="http://download.opensuse.org/distribution/11.1/repo/oss/">http://download.opensuse.org/distribution/11.1/repo/oss/</A> not
+</I>&gt;&gt;&gt;&gt;&gt;<i> attached; localRoot &quot;&quot;)
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;1&gt; linux-k68r(26552) [zypp++]
+</I>&gt;&gt;&gt;&gt;&gt;<i> MediaManager.cc(open):426 Opened new media access using id 5 to
+</I>&gt;&gt;&gt;&gt;&gt;<i> <A HREF="http://download.opensuse.org/distribution/11.1/repo/oss/">http://download.opensuse.org/distribution/11.1/repo/oss/</A>
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;1&gt; linux-k68r(26552) [zypp++]
+</I>&gt;&gt;&gt;&gt;&gt;<i> MediaManager.cc(close):458 Close to access handler using id 5
+</I>&gt;&gt;&gt;&gt;&gt;<i> requested
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;1&gt; linux-k68r(26552) [zypp++]
+</I>&gt;&gt;&gt;&gt;&gt;<i> MediaHandler.cc(release):700 Request to release media - not attached;
+</I>&gt;&gt;&gt;&gt;&gt;<i> eject ''
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;1&gt; linux-k68r(26552) [zypp]
+</I>&gt;&gt;&gt;&gt;&gt;<i> MediaAccess.cc(close):217 Close:
+</I>&gt;&gt;&gt;&gt;&gt;<i> http(<A HREF="http://download.opensuse.org/distribution/11.1/repo/oss/">http://download.opensuse.org/distribution/11.1/repo/oss/</A> not
+</I>&gt;&gt;&gt;&gt;&gt;<i> attached; localRoot &quot;&quot;) (OK)
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;1&gt; linux-k68r(26552) [zypp++]
+</I>&gt;&gt;&gt;&gt;&gt;<i> MediaHandler.cc(release):700 Request to release media - not attached;
+</I>&gt;&gt;&gt;&gt;&gt;<i> eject ''
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;1&gt; linux-k68r(26552) [zypp++]
+</I>&gt;&gt;&gt;&gt;&gt;<i> MediaHandler.cc(removeAttachPoint):178 MediaHandler - checking if to
+</I>&gt;&gt;&gt;&gt;&gt;<i> remove attach point
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;2&gt; linux-k68r(26552) [zypper]
+</I>&gt;&gt;&gt;&gt;&gt;<i> prompt.cc(read_action_ari_with_timeout):129 Unknown char &#65533;
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;2&gt; linux-k68r(26552) [zypper]
+</I>&gt;&gt;&gt;&gt;&gt;<i> prompt.cc(read_action_ari_with_timeout):129 Unknown char &#65533;
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:42:06 &lt;2&gt; linux-k68r(26552) [zypper]
+</I>&gt;&gt;&gt;&gt;&gt;<i> prompt.cc(read_action_ari_with_timeout):129 Unknown char &#65533;
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> [...repeats until out of space or killed]
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:53:42 &lt;2&gt; linux-k68r(26552) [zypper]
+</I>&gt;&gt;&gt;&gt;&gt;<i> prompt.cc(read_action_ari_with_timeout):129 Unknown char &#65533;
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2009-06-15 20:53:42 &lt;2&gt; linux-k68r(26552) [zypper]
+</I>&gt;&gt;&gt;&gt;&gt;<i> prompt.cc(read_action_ari_with_timeout):129 Unknown char &#65533;
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> ===========v end of screen output contains v============
+</I>&gt;&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mkienenb at linux-k68r</A>:~/temp/kiwi&gt; linux32 sudo /usr/sbin/kiwi --prepare
+</I>&gt;&gt;&gt;&gt;&gt;<i> /home/mkienenb/temp/suse-live-iso -root
+</I>&gt;&gt;&gt;&gt;&gt;<i> /home/mkienenb/temp/kiwi/suse-live-iso-cd
+</I>&gt;&gt;&gt;&gt;&gt;<i> root's password:
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:23 &lt;1&gt; : Reading image description [Prepare]...
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:47 &lt;2&gt; : Description provides no MD5 hash, check
+</I>&gt;&gt;&gt;&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; skipped
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:47 &lt;1&gt; : Checking for default baseroot in XML data...
+</I>&gt;&gt;&gt;&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; notset
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:54 &lt;1&gt; : Set root log:
+</I>&gt;&gt;&gt;&gt;&gt;<i> /home/mkienenb/temp/kiwi/suse-live-iso-cd.25097.screenrc.log...
+</I>&gt;&gt;&gt;&gt;&gt;<i> &#160; &#160; done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:54 &lt;1&gt; : Setting up package manager: zypper
+</I>&gt;&gt;&gt;&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:54 &lt;1&gt; : Creating default template files for new root
+</I>&gt;&gt;&gt;&gt;&gt;<i> system &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:54 &lt;1&gt; : Importing build keys...
+</I>&gt;&gt;&gt;&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:55 &lt;1&gt; : Adding bootstrap zypper service:
+</I>&gt;&gt;&gt;&gt;&gt;<i> http:__download.opensuse.org_distribution_11.1_repo_oss done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:55 &lt;1&gt; : --&gt; Requesting pattern:default
+</I>&gt;&gt;&gt;&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:24:55 &lt;1&gt; : Initializing image system on:
+</I>&gt;&gt;&gt;&gt;&gt;<i> /home/mkienenb/temp/kiwi/suse-live-iso-cd... &#160; &#160; &#160; &#160; &#160; &#160; &#160; done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : Removing zypper service(s):
+</I>&gt;&gt;&gt;&gt;&gt;<i> http:__download.opensuse.org_distribution_11.1_repo_oss &#160; &#160; &#160;done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : Umounting path:
+</I>&gt;&gt;&gt;&gt;&gt;<i> /home/mkienenb/temp/kiwi/suse-live-iso-cd//var/cache/kiwi
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : Umounting path:
+</I>&gt;&gt;&gt;&gt;&gt;<i> /home/mkienenb/temp/kiwi/suse-live-iso-cd//var/cache/zypp
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : Mounting required file systems
+</I>&gt;&gt;&gt;&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : Adding chroot zypper service:
+</I>&gt;&gt;&gt;&gt;&gt;<i> http:__download.opensuse.org_distribution_11.1_repo_oss &#160; &#160;done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : Installing image packages...
+</I>&gt;&gt;&gt;&gt;&gt;<i> =============^ &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;^===========
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> ==============v end of log file contains v=====
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : Set package manager lock
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : EXEC [touch /var/lock/kiwi-init.lock]
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : EXEC [rm -f /var/cache/kiwi/zypper/*.repo]
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : Adding chroot zypper service:
+</I>&gt;&gt;&gt;&gt;&gt;<i> http:__download.opensuse.org_distribution_11.1_repo_oss
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : EXEC [chroot
+</I>&gt;&gt;&gt;&gt;&gt;<i> &quot;/home/mkienenb/temp/kiwi/suse-live-iso-cd&quot; /usr/bin/zypper
+</I>&gt;&gt;&gt;&gt;&gt;<i> --non-interactive --no-gpg-checks --reposd-dir /var/cache/kiwi/zypper
+</I>&gt;&gt;&gt;&gt;&gt;<i> --cache-dir /var/cache/kiwi/zypper --raw-cache-dir
+</I>&gt;&gt;&gt;&gt;&gt;<i> /var/cache/kiwi/zypper addrepo --type YaST --keep-packages
+</I>&gt;&gt;&gt;&gt;&gt;<i> '<A HREF="http://download.opensuse.org/distribution/11.1/repo/oss/">http://download.opensuse.org/distribution/11.1/repo/oss/</A>'
+</I>&gt;&gt;&gt;&gt;&gt;<i> http:__download.opensuse.org_distribution_11.1_repo_oss 2&gt;&amp;1]
+</I>&gt;&gt;&gt;&gt;&gt;<i> &#160; &#160;done
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : Installing image packages...
+</I>&gt;&gt;&gt;&gt;&gt;<i> Jun-15 16:38:51 &lt;1&gt; : EXEC [chmod 755
+</I>&gt;&gt;&gt;&gt;&gt;<i> /home/mkienenb/temp/kiwi/suse-live-iso-cd/screenrc.smart]
+</I>&gt;&gt;&gt;&gt;&gt;<i> + trap clean INT TERM
+</I>&gt;&gt;&gt;&gt;&gt;<i> + export ZYPP_MODALIAS_SYSFS=/tmp
+</I>&gt;&gt;&gt;&gt;&gt;<i> + ZYPP_MODALIAS_SYSFS=/tmp
+</I>&gt;&gt;&gt;&gt;&gt;<i> + export YAST_IS_RUNNING=true
+</I>&gt;&gt;&gt;&gt;&gt;<i> + YAST_IS_RUNNING=true
+</I>&gt;&gt;&gt;&gt;&gt;<i> + export ZYPP_CONF=/var/cache/kiwi/zypp.conf.25097
+</I>&gt;&gt;&gt;&gt;&gt;<i> + ZYPP_CONF=/var/cache/kiwi/zypp.conf.25097
+</I>&gt;&gt;&gt;&gt;&gt;<i> + SPID=26552
+</I>&gt;&gt;&gt;&gt;&gt;<i> + wait 26552
+</I>&gt;&gt;&gt;&gt;&gt;<i> + chroot /home/mkienenb/temp/kiwi/suse-live-iso-cd /usr/bin/zypper
+</I>&gt;&gt;&gt;&gt;&gt;<i> --non-interactive --no-gpg-checks --reposd-dir /var/cache/kiwi/zypper
+</I>&gt;&gt;&gt;&gt;&gt;<i> --cache-dir /var/cache/kiwi/zypper --raw-cache-dir
+</I>&gt;&gt;&gt;&gt;&gt;<i> /var/cache/kiwi/zypper refresh
+</I>&gt;&gt;&gt;&gt;&gt;<i> Retrieving repository
+</I>&gt;&gt;&gt;&gt;&gt;<i> 'http:__download.opensuse.org_distribution_11.1_repo_oss'
+</I>&gt;&gt;&gt;&gt;&gt;<i> metadataRetrieving repository
+</I>&gt;&gt;&gt;&gt;&gt;<i> 'http:__download.opensuse.org_distribution_11.1_repo_oss'
+</I>&gt;&gt;&gt;&gt;&gt;<i> metadataRetrieving repository
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> [......... repeats 186 times total]
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> 'http:__download.opensuse.org_distribution_11.1_repo_oss'
+</I>&gt;&gt;&gt;&gt;&gt;<i> metadataRetrieving repository
+</I>&gt;&gt;&gt;&gt;&gt;<i> 'http:__download.opensuse.org_distribution_11.1_repo_oss' metadata
+</I>&gt;&gt;&gt;&gt;&gt;<i> [/]Timeout exceed
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> Abort, retry, ignore?
+</I>&gt;&gt;&gt;&gt;&gt;<i> =============^ &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;^===========
+</I>&gt;&gt;&gt;&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;&gt;&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> cheers,
+</I>&gt;<i> jano
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &#160;J&#225;n Kupec
+</I>&gt;<i> &#160;YaST team
+</I>&gt;<i> ---------------------------------------------------------(PGP)---
+</I>&gt;<i> &#160;Key ID: 637EE901
+</I>&gt;<i> &#160;Fingerprint: 93B9 C79B 2D20 51C3 800B &#160;E09B 8048 46A6 637E E901
+</I>&gt;<i> ---------------------------------------------------------(IRC)---
+</I>&gt;<i> &#160;Server: irc.freenode.net
+</I>&gt;<i> &#160;Nick: jniq
+</I>&gt;<i> &#160;Channels: #zypp #yast #suse #susecz
+</I>&gt;<i> ---------------------------------------------------------(EOF)---
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001209.html">[Kiwi-users]	[zypper]	prompt.cc(read_action_ari_with_timeout):129 Unknown	char [repeat	forever]
+</A></li>
+	<LI>Next message: <A HREF="001213.html">[Kiwi-users] Package name weirdness/question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1212">[ date ]</a>
+              <a href="thread.html#1212">[ thread ]</a>
+              <a href="subject.html#1212">[ subject ]</a>
+              <a href="author.html#1212">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

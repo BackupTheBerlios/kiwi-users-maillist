@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to pass module parameters in early boot stage?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20pass%20module%20parameters%20in%20early%20boot%20stage%3F&In-Reply-To=%3C4D06322E.3070105%40pre-sense.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002218.html">
+   <LINK REL="Next"  HREF="002211.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to pass module parameters in early boot stage?</H1>
+    <B>Till D&#246;rges</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20pass%20module%20parameters%20in%20early%20boot%20stage%3F&In-Reply-To=%3C4D06322E.3070105%40pre-sense.de%3E"
+       TITLE="[Kiwi-users] How to pass module parameters in early boot stage?">doerges at pre-sense.de
+       </A><BR>
+    <I>Mon Dec 13 15:48:14 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002218.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+        <LI>Next message: <A HREF="002211.html">[Kiwi-users] How to pass module parameters in early boot stage?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2208">[ date ]</a>
+              <a href="thread.html#2208">[ thread ]</a>
+              <a href="subject.html#2208">[ subject ]</a>
+              <a href="author.html#2208">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello everybody,
+
+I was trying to pass a parameter to the ramdisk module (brd.ko). Since this is loaded
+pretty early by kiwi, one apparently cannot simply modify the root fs of the
+generated kiwi image and add a modprobe.conf file or similar.
+
+I'm using a USB boot image. So I was wondering whether it would be possible to add a
+conf file for modprobe into the *boot* image (where linuxrc resides). I tried with
+.../usbboot/suse-11.3/root/etc/modprobe.d/99-local.conf but with no effect (the very
+same file works on my desktop system).
+
+I managed manually by adding a kernel boot parameter (rd.rd_size=&lt;size&gt;).
+
+However, I did search the documentation and couldn't find a hint how to acquaint KIWI
+with my kernel boot parameter. I'd greatly appreciate a pointer to do an RTFM.
+
+
+While at it, I'm wondering whether modifying the boot image with a modprobe config
+file shouldn't work, too.
+
+
+TIA -- Till
+-- 
+Dipl.-Inform. Till D&#246;rges                  <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">doerges at pre-sense.de</A>
+                                  Tel. +49 - 40 - 244 2407 - 14
+                                  Fax  +49 - 40 - 244 2407 - 24
+PRESENSE Technologies GmbH            Sachsenstr. 5, D-20097 HH
+                                         USt-IdNr.: DE263765024
+Gesch&#228;ftsf&#252;hrer/Managing Directors       AG Hamburg, HRB 107844
+Till D&#246;rges           J&#252;rgen Sander              Axel Theilmann
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002218.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+	<LI>Next message: <A HREF="002211.html">[Kiwi-users] How to pass module parameters in early boot stage?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2208">[ date ]</a>
+              <a href="thread.html#2208">[ thread ]</a>
+              <a href="subject.html#2208">[ subject ]</a>
+              <a href="author.html#2208">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

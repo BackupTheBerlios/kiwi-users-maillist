@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: PXE + NFS + AUFS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20PXE%20%2B%20NFS%20%2B%20AUFS&In-Reply-To=%3C20080118144825.GA13796%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000217.html">
+   <LINK REL="Next"  HREF="000219.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: PXE + NFS + AUFS</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20PXE%20%2B%20NFS%20%2B%20AUFS&In-Reply-To=%3C20080118144825.GA13796%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: PXE + NFS + AUFS">ms at suse.de
+       </A><BR>
+    <I>Fri Jan 18 15:48:25 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000217.html">[Kiwi-users] kiwi: PXE + NFS + AUFS
+</A></li>
+        <LI>Next message: <A HREF="000219.html">[Kiwi-users] kiwi: PXE + NFS + AUFS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#218">[ date ]</a>
+              <a href="thread.html#218">[ thread ]</a>
+              <a href="subject.html#218">[ subject ]</a>
+              <a href="author.html#218">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> The thing is that we have PCs, with good enough CPU performances, Hard 
+</I>&gt;<i> drive (80GB) and heavy applications to run.
+</I>&gt;<i> We are not trying neither willing to run applications on a central server.
+</I>&gt;<i> Our goal is only to distribute during each reboot a clean image of an OS 
+</I>&gt;<i> on our students computers.
+</I>&gt;<i> If a part (or all) of the image can be NFS-ro mounted, then we boot much 
+</I>&gt;<i> quicker. And the unionfs/aufs would allow to write the files needed 
+</I>&gt;<i> during the use.
+</I>&gt;<i> 
+</I>&gt;<i> Do you know if LTSP can do that also, or any other solution.
+</I>
+The problem you are facing here is that you try to mount aufs with
+a NFS layer in between which is really problematic. I doubt it will
+work reliably. I established a similar system at the university I have
+studied but it doesn't use NFS root mounts. I have created a compressed
+squashfs image of the system and took care for a relatively fast
+network bandwidth (100Mbit with fast backbone). According to this
+the compressed image could be transfered rather fast on each computer
+and you can change the operating system on the machines one hour
+before the class starts. The image itself is mounted unified so all
+write operations takes part on a seperate partition of the disk.
+
+We tell the students to store their data on a seperate medium because
+these systems are re-installed day by day. This serves the purpose
+but I don't know if it would work for you too. At the Siemens
+training center they have a similar system but they spent a lot more
+money on a SAN system to be able to deploy images faster and on more
+machines but the design is the same
+
+If you consider that as a solution kiwi is appropriate to create the
+images
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000217.html">[Kiwi-users] kiwi: PXE + NFS + AUFS
+</A></li>
+	<LI>Next message: <A HREF="000219.html">[Kiwi-users] kiwi: PXE + NFS + AUFS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#218">[ date ]</a>
+              <a href="thread.html#218">[ thread ]</a>
+              <a href="subject.html#218">[ subject ]</a>
+              <a href="author.html#218">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

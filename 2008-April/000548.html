@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Data Only Image versus Split Image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Data%20Only%20Image%20versus%20Split%20Image&In-Reply-To=%3C20080407150138.GA3943%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000547.html">
+   <LINK REL="Next"  HREF="000549.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Data Only Image versus Split Image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Data%20Only%20Image%20versus%20Split%20Image&In-Reply-To=%3C20080407150138.GA3943%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Data Only Image versus Split Image">ms at suse.de
+       </A><BR>
+    <I>Mon Apr  7 17:01:38 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000547.html">[Kiwi-users] Data Only Image versus Split Image
+</A></li>
+        <LI>Next message: <A HREF="000549.html">[Kiwi-users] Data Only Image versus Split Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#548">[ date ]</a>
+              <a href="thread.html#548">[ thread ]</a>
+              <a href="subject.html#548">[ subject ]</a>
+              <a href="author.html#548">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Axel,
+
+&gt;<i> beside the split image option in KIWI which is designed for read only 
+</I>&gt;<i> partitions, does KIWI support something like a &quot;data-only&quot; image. For 
+</I>&gt;<i> example loading a tgz archive file via tftp which contains a specific 
+</I>&gt;<i> application which shall be updated on the installed system at a specific 
+</I>&gt;<i> path, to avoid transfering and installing of the whole KIWI OS image?
+</I>
+kiwi does not support data only images but I think there are several
+possibilities to get your archive onto the image after it has been
+deployed. For example you could think of an init script which you provide
+as a service (insserv) in your system image description. When the
+image boots the service runs and you can download the archive.
+Alternatively you can provide a package with the application somewhere
+and use yast2 firstboot to install it at boot time.
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000547.html">[Kiwi-users] Data Only Image versus Split Image
+</A></li>
+	<LI>Next message: <A HREF="000549.html">[Kiwi-users] Data Only Image versus Split Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#548">[ date ]</a>
+              <a href="thread.html#548">[ thread ]</a>
+              <a href="subject.html#548">[ subject ]</a>
+              <a href="author.html#548">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

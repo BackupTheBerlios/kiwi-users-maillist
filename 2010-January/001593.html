@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] delay in diskless kiwi boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20delay%20in%20diskless%20kiwi%20boot&In-Reply-To=%3C1263824733.28267.201.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001592.html">
+   <LINK REL="Next"  HREF="001594.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] delay in diskless kiwi boot</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20delay%20in%20diskless%20kiwi%20boot&In-Reply-To=%3C1263824733.28267.201.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] delay in diskless kiwi boot">roger at opq.se
+       </A><BR>
+    <I>Mon Jan 18 15:25:33 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001592.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+        <LI>Next message: <A HREF="001594.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1593">[ date ]</a>
+              <a href="thread.html#1593">[ thread ]</a>
+              <a href="subject.html#1593">[ subject ]</a>
+              <a href="author.html#1593">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-01-18 at 14:28 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; A bit more information:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;  - This happens when I get the root file system via NBD or AoE.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;  - I can ping the system during this wait. So the network card is up.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; My statement that this did not happen in an earlier KIWI cannot, alas,
+</I>&gt;<i> &gt; be verified for this hardware. It seems this is only happening on the
+</I>&gt;<i> &gt; hardware where I needed to load firmware into the network card (e100
+</I>&gt;<i> &gt; driver). Hardware that can be demonstrated not have had the delay
+</I>&gt;<i> &gt; earlier still do not have the delay.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I just wish I could locate where the delay is with more precision.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Not sure if that is useful information.
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, difficult to say what happened here. You can try to switch to
+</I>&gt;<i> console 10 where the kernel logs some information. Anything weird in
+</I>&gt;<i> there ?
+</I>
+Do you mean console 4? There is nothing on 10. On console 4, I see this
+(similar to boot.msg):
+
+	Set System Time to the current Hardware Clock
+
+Here it waits for 4 - 5 minutes with the cursor immediately after the
+'k' at the end of the line. Then it prints:
+
+	failed
+
+And then the boot continues.
+
+Mysteriously, on a system that does not wait here, I see:
+
+Set System Time to the current Hardware Clockhwclock: With --noadjfile, you must specify either --utc or --localtime
+failed
+
+Still failed, but with a bit more text about the hwclock command. These
+are both from the exact same kiwi images served by the exact same
+server. Just a different client.
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001592.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+	<LI>Next message: <A HREF="001594.html">[Kiwi-users] delay in diskless kiwi boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1593">[ date ]</a>
+              <a href="thread.html#1593">[ thread ]</a>
+              <a href="subject.html#1593">[ subject ]</a>
+              <a href="author.html#1593">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live usb stick question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20usb%20stick%20question&In-Reply-To=%3C20080310091745.GA13219%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000461.html">
+   <LINK REL="Next"  HREF="000471.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live usb stick question</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20usb%20stick%20question&In-Reply-To=%3C20080310091745.GA13219%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] live usb stick question">ms at suse.de
+       </A><BR>
+    <I>Mon Mar 10 10:17:45 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000461.html">[Kiwi-users] live usb stick question
+</A></li>
+        <LI>Next message: <A HREF="000471.html">[Kiwi-users] live usb stick question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#462">[ date ]</a>
+              <a href="thread.html#462">[ thread ]</a>
+              <a href="subject.html#462">[ subject ]</a>
+              <a href="author.html#462">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Am Fri, 07 Mar 2008 19:29:37 +0000
+</I>&gt;<i> schrieb Aubrey Bourke &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">bourke.aubrey at gmail.com</A>&gt;:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; If I have a live USB stick, will I be able to use it on any machine or
+</I>&gt;<i> &gt; is it for only 1 machine?
+</I>&gt;<i> 
+</I>&gt;<i> You can use it for any machine. The only problem, as I read somewhere,
+</I>&gt;<i> is that the xorg.conf will not automatically be updated. 
+</I>&gt;<i> An of course it depends on the architecture. 
+</I>
+yes that's correct. At the moment we don't have code in place which
+checks whether the hardware has changed at boot time. This is a problem
+for all &quot;static&quot; configurations like for example X with xorg.conf.
+
+As already said the architecture must be protected. So a 32bit x86
+stick will work on x86 32bit and 64bit (in 32bit mode) and a 64bit
+x86 stick will work on x86 64bit only. Any other architectures for
+example ppc will not work because we do not support it at the moment
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000461.html">[Kiwi-users] live usb stick question
+</A></li>
+	<LI>Next message: <A HREF="000471.html">[Kiwi-users] live usb stick question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#462">[ date ]</a>
+              <a href="thread.html#462">[ thread ]</a>
+              <a href="subject.html#462">[ subject ]</a>
+              <a href="author.html#462">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

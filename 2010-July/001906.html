@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%0A%09re-partition%09/dev/sda&In-Reply-To=%3C20100716144657.GA688%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001905.html">
+   <LINK REL="Next"  HREF="001907.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%0A%09re-partition%09/dev/sda&In-Reply-To=%3C20100716144657.GA688%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda">ms at novell.com
+       </A><BR>
+    <I>Fri Jul 16 16:46:57 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001905.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+        <LI>Next message: <A HREF="001907.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1906">[ date ]</a>
+              <a href="thread.html#1906">[ thread ]</a>
+              <a href="subject.html#1906">[ subject ]</a>
+              <a href="author.html#1906">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Something that has occurred to me, that I can't find any details on in
+</I>&gt;<i> the documentation, is that I really don't want to have to manually
+</I>&gt;<i> create 400+ config.xx:xx:xx:xx:xx:xx files when I finally start to
+</I>&gt;<i> deploy this image, and not all of the systems are doing the same thing,
+</I>&gt;<i> so I really need to create 10-15 &quot;groups&quot; where these systems will be
+</I>&gt;<i> linked into.
+</I>&gt;<i> 
+</I>&gt;<i> Other then maintaining 400+ symlinks to simulate groups, is there a
+</I>&gt;<i> defined/proper way to group like systems into a common config structure?
+</I>
+kiwi supports the same search algorithm than pxe does. If there is
+no .MAC config found it searches for a hex representation of the
+ip address. So you can group by the four tuples of the ip address.
+Would that work for you ? See the searchAlternativeConfig()
+function in /usr/share/kiwi/modules/KIWILinuxRC.sh
+
+At the end of that search there is the config.default which is
+loaded. So if most of your machines have the same setup you can
+use config.default and maintain a &quot;black&quot; list
+
+Another grouping is not possible at the moment so you need to
+live with links to the MAC in that case. I'm sorry
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001905.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+	<LI>Next message: <A HREF="001907.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1906">[ date ]</a>
+              <a href="thread.html#1906">[ thread ]</a>
+              <a href="subject.html#1906">[ subject ]</a>
+              <a href="author.html#1906">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

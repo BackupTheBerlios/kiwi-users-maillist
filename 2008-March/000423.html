@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Trying%20to%20build%20a%20SLED10SP1%20LiveDVD&In-Reply-To=%3C20080303120820.GA1110%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000422.html">
+   <LINK REL="Next"  HREF="000428.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Trying to build a SLED10SP1 LiveDVD</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Trying%20to%20build%20a%20SLED10SP1%20LiveDVD&In-Reply-To=%3C20080303120820.GA1110%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Trying to build a SLED10SP1 LiveDVD">ms at suse.de
+       </A><BR>
+    <I>Mon Mar  3 13:08:20 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000422.html">[Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+</A></li>
+        <LI>Next message: <A HREF="000428.html">[Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#423">[ date ]</a>
+              <a href="thread.html#423">[ thread ]</a>
+              <a href="subject.html#423">[ subject ]</a>
+              <a href="author.html#423">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I've been trying to build a LiveDVD for Linkat,
+</I>&gt;<i> the educational Linux distribution which is
+</I>&gt;<i> SLED10-SP1 based.
+</I>&gt;<i> 
+</I>&gt;<i> As far as I saw, only Opensuse 10.3 config.xml
+</I>&gt;<i> images are defined, so I've build my own which
+</I>&gt;<i> is attached below for your info.
+</I>&gt;<i> 
+</I>&gt;<i> The first blocking problem is that the kernel
+</I>&gt;<i> module named &quot;aufs&quot; doesn't seem to exist
+</I>&gt;<i> for SLE10 in the buildservice. It seems that kiwi
+</I>&gt;<i> scripts use this &quot;union fs&quot; to construct
+</I>&gt;<i> and to boot Live DVDs.
+</I>&gt;<i> 
+</I>&gt;<i> Is there any way to solve that ?
+</I>
+yes you have two choices:
+
+1) don't use aufs by removing the flags=&quot;unified&quot; attribute
+
+2) You need compression ? This requires squashfs
+   to be compiled for SLES which has been proven to work
+
+   - add the squashfs package to the package list of the used
+     isoboot boot description and make sure it is not ripped out:
+
+     /usr/share/kiwi/image/isoboot/suse-SLED10-SP1/config.xml
+    
+     &lt;drivers type=&quot;drivers&quot;&gt;
+        ...
+        &lt;file name=&quot;fs/squashfs/*&quot;/&gt;
+ 
+     &lt;packages type=&quot;image&quot;&gt;
+        &lt;package name=&quot;your-squashfs-package&quot;/&gt;
+
+   - remove the file:
+     /usr/share/kiwi/image/isoboot/suse-SLED10-SP1/.checksum.md5
+
+   - change your system image config.xml flags attribute
+     to flags=&quot;compressed&quot;
+
+   - add a split section to your system image config.xml
+  
+     &lt;split&gt;
+      &lt;temporary&gt;
+        &lt;!-- allow read/write access to: --&gt;
+        &lt;file name=&quot;/var&quot;/&gt;
+        &lt;file name=&quot;/var/*&quot;/&gt;
+        &lt;file name=&quot;/etc&quot;/&gt;
+        &lt;file name=&quot;/etc/*&quot;/&gt;
+      &lt;/temporary&gt;
+     &lt;/split&gt;
+
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000422.html">[Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+</A></li>
+	<LI>Next message: <A HREF="000428.html">[Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#423">[ date ]</a>
+              <a href="thread.html#423">[ thread ]</a>
+              <a href="subject.html#423">[ subject ]</a>
+              <a href="author.html#423">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

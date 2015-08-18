@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%20directory&In-Reply-To=%3C20101123143701.GA29681%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002153.html">
+   <LINK REL="Next"  HREF="002155.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%20directory&In-Reply-To=%3C20101123143701.GA29681%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory">ms at novell.com
+       </A><BR>
+    <I>Tue Nov 23 15:37:01 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002153.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+        <LI>Next message: <A HREF="002155.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2154">[ date ]</a>
+              <a href="thread.html#2154">[ thread ]</a>
+              <a href="subject.html#2154">[ subject ]</a>
+              <a href="author.html#2154">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; &gt; * Another question I have is; Do you change the disk file kiwi created
+</I>&gt;<i> &gt; &gt;   in some way ? I mean the log you posted showed me only the boot process
+</I>&gt;<i> &gt; &gt;   not the install process which could mean you have transfered the kiwi
+</I>&gt;<i> &gt; &gt;   generated raw disk file into a 8GB or 5.05GB disk yourself ? is this
+</I>&gt;<i> &gt; &gt;   correct ?.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; That's right. I dd'ed the raw image myself. And this raw image is just what 
+</I>&gt;<i> &gt; kiwi generated.. I didn't touch it in any way. 
+</I>
+Can you tell me the dd command you used ? did you dd the .raw file
+into another disk file or did you simply add empty blocks to the
+existing .raw file ? If you dd'ed the .raw into another file can you
+tell me more about that file. I mean was it empty or did it contain
+another operating system ? My guess is that in that case some LVM
+metadata survived on the disk and that causes the problems you saw
+on boot of that disk
+
+Basically the preferred way to setup a X-GB disk from a .raw file
+is just by adding empty space at the end of the file:
+
+   dd if=/dev/zero of=file.raw bs=1 count=1 seek=5G conv=notrunc
+
+after that you have turned your .raw into a 5G disk. You also
+can convert that .raw file into a vmdk or any other format. That
+way you can be sure there is no &quot;crap&quot; on the disk causing conflicts
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002153.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+	<LI>Next message: <A HREF="002155.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2154">[ date ]</a>
+              <a href="thread.html#2154">[ thread ]</a>
+              <a href="subject.html#2154">[ subject ]</a>
+              <a href="author.html#2154">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi setup questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20setup%20questions&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE9022C5945%40zuk35exm60.ds.mot.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000056.html">
+   <LINK REL="Next"  HREF="000091.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi setup questions</H1>
+    <B>Mair Wolfgang-awm013</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20setup%20questions&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE9022C5945%40zuk35exm60.ds.mot.com%3E"
+       TITLE="[Kiwi-users] kiwi setup questions">wolfgang.mair at motorola.com
+       </A><BR>
+    <I>Mon Oct  1 19:12:30 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000056.html">[Kiwi-users] kiwi setup questions
+</A></li>
+        <LI>Next message: <A HREF="000091.html">[Kiwi-users] kiwi setup questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> 
+
+-----Original Message-----
+From: CyberOrg [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jigish.gohil at gmail.com</A>] 
+Sent: Monday, October 01, 2007 18:43
+To: Mair Wolfgang-awm013
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] kiwi setup questions
+
+On 10/1/07, Mair Wolfgang-awm013 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">wolfgang.mair at motorola.com</A>&gt; wrote:
+
+&gt;<i>
+</I>&gt;<i> &gt;Do you want to use clients as a diskless thin clients or you want to
+</I>&gt;&gt;<i> perform network installation?
+</I>&gt;<i>
+</I>&gt;<i> At the moment I want to use diskless clients (nfs root mounted system)
+</I>
+KIWI-LTSP can do NFS/NBDROOT, it however uses Xsession on the server
+over ssh, if you want local Xsession and use loca apps, just remove ldm
+from kiwi-ltsp config.xml and add all the other packages you need.
+
+Well, I've got the kiwi with 'nfs root' already running and it look fine
+for me. 
+
+&gt;<i> later on I want to create out of this root directory a pxe deployable 
+</I>&gt;<i> image. From what I've already found out, is that in case of deploying,
+</I>
+&gt;<i> autoyast stats every time it realizes it is newly installed. Which is 
+</I>&gt;<i> great.
+</I>
+KIWI can do a pxe deployable images too, check kiwi.pdf for details.
+
+Yes I did it already.
+
+&gt;<i>
+</I>&gt;<i> Now, how can I do the same with the diskless client. F.e. I have a PC 
+</I>&gt;<i> with a certain hardware, I am booting via nfs mounted root autoyast is
+</I>
+&gt;<i> started and configures all devices. At the next boot, there is no need
+</I>
+&gt;<i> to do this again. After that I take a PC with a different hardware and
+</I>
+&gt;<i> boot the same system via nfs mounted root fs but this time no autoyast
+</I>
+&gt;<i> is started. Which is bad because the devices don't match with the 
+</I>&gt;<i> other PC.
+</I>&gt;<i> How can I force autoyast to be started up?
+</I>
+You would need to have nfs exported read only and use bind mounts so no
+configurations get saved when you reboot. See 00-suse-bind-mounts in
+KIWI-LTSP.
+
+But with this all changes to the system would be lost when I reboot? I
+need to be able to have it read/writable. I want to supply a system (nfs
+root) wich can be changed and configured. Once this is done I create a
+pxe deployable image out of this nfs root.
+
+&gt;&gt;<i> The add of autoyast=&lt;path&gt; to the kernel boot parameters as mentioned
+</I>&gt;<i> below, where does this have to go in? I've tried it already in the 
+</I>&gt;<i> /tftpboot/pxelinux.cfg/default like the following:
+</I>&gt;<i> append initrd=boot/initrd vga=normal ramdisk_size=256000 
+</I>&gt;<i> autoyast=/autoconf.xml kiwitftp=192.168.230.91 or append 
+</I>&gt;<i> initrd=boot/initrd vga=normal ramdisk_size=256000 
+</I>&gt;<i> autoyast=/autoconf.xml install=<A HREF="nfs://192.168.230.2/export/suse10-2">nfs://192.168.230.2/export/suse10-2</A>
+</I>&gt;<i> kiwitftp=192.168.230.91
+</I>&gt;<i>
+</I>
+autoyast=<A HREF="http://yourserverip/autoconf.xml">http://yourserverip/autoconf.xml</A>
+
+If the autoyast file is called autoconf.xml and it is on server
+/srv/www/htdocs/ folder and apache is running.
+
+I tried it with nfs:
+autoyast=<A HREF="nfs://192.168.230.2/export/suse10-2/autoconf.xml">nfs://192.168.230.2/export/suse10-2/autoconf.xml</A>
+install=<A HREF="nfs://192.168.230.2/export/suse10-2">nfs://192.168.230.2/export/suse10-2</A>
+But still the same. No autoyast is starting when I boot. 
+
+&gt;<i> If you want to use clients as a diskless thinclients see:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://en.opensuse.org/LTSP">http://en.opensuse.org/LTSP</A>
+</I>&gt;<i>
+</I>&gt;<i> If you just want to perform network installation see:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://lists.opensuse.org/opensuse/2007-06/msg02008.html">http://lists.opensuse.org/opensuse/2007-06/msg02008.html</A>
+</I>&gt;<i>
+</I>
+Ciao
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000056.html">[Kiwi-users] kiwi setup questions
+</A></li>
+	<LI>Next message: <A HREF="000091.html">[Kiwi-users] kiwi setup questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

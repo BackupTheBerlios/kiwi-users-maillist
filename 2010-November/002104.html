@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] LVM configurations with oem type
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20configurations%20with%20oem%20type&In-Reply-To=%3C20101104151625.GA918%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002103.html">
+   <LINK REL="Next"  HREF="002105.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] LVM configurations with oem type</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20configurations%20with%20oem%20type&In-Reply-To=%3C20101104151625.GA918%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] LVM configurations with oem type">ms at novell.com
+       </A><BR>
+    <I>Thu Nov  4 16:16:25 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002103.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+        <LI>Next message: <A HREF="002105.html">[Kiwi-users] kiwi: Weekly report 2010-10-31 - 2010-11-05...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2104">[ date ]</a>
+              <a href="thread.html#2104">[ thread ]</a>
+              <a href="subject.html#2104">[ subject ]</a>
+              <a href="author.html#2104">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; It would require some code changes in kiwi to do it that way but if it
+</I>&gt;<i> &gt; has a good benefit I'm willing to change it :)
+</I>&gt;<i> 
+</I>&gt;<i> Well, having the boot partition first, also for Btrfs and XFS setups
+</I>&gt;<i> would be advantageous for virtual disk setups. It is possible to add
+</I>&gt;<i> space to a virtual disk at the end and then grow the existing file
+</I>&gt;<i> system of the installed OS on the virtual disk. If the boot partition is
+</I>&gt;<i> at the end that does not work.
+</I>
+I opened bug 651331 for this one. Changing this will have a big impact on
+many critical code parts... so this needs to be done very careful
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002103.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+	<LI>Next message: <A HREF="002105.html">[Kiwi-users] kiwi: Weekly report 2010-10-31 - 2010-11-05...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2104">[ date ]</a>
+              <a href="thread.html#2104">[ thread ]</a>
+              <a href="subject.html#2104">[ subject ]</a>
+              <a href="author.html#2104">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

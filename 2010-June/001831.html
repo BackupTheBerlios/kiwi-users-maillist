@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] ssh -X into a KIWI system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20ssh%20-X%20into%20a%20KIWI%20system&In-Reply-To=%3C20100614085001.GC3887%40open-xchange.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001829.html">
+   <LINK REL="Next"  HREF="001832.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] ssh -X into a KIWI system</H1>
+    <B>Carsten Hoeger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20ssh%20-X%20into%20a%20KIWI%20system&In-Reply-To=%3C20100614085001.GC3887%40open-xchange.com%3E"
+       TITLE="[Kiwi-users] ssh -X into a KIWI system">choeger at open-xchange.com
+       </A><BR>
+    <I>Mon Jun 14 10:50:01 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001829.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+        <LI>Next message: <A HREF="001832.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1831">[ date ]</a>
+              <a href="thread.html#1831">[ thread ]</a>
+              <a href="subject.html#1831">[ subject ]</a>
+              <a href="author.html#1831">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Jun 14, Roger Oberholtzer wrote:
+
+&gt;<i> I am running a very minimal KIWI diskless system. It does not run X. The
+</I>&gt;<i> only X libraries present are the ones some apps have linked with, even
+</I>&gt;<i> if they will not use X in this context.
+</I>&gt;<i> 
+</I>&gt;<i> I now want to ssh into my KIWI system and start an X application that
+</I>&gt;<i> should display where I have ssh'd from.  The problem is that ssh is not
+</I>&gt;<i> setting up the DISPLAY variable on the KIWI system, and the socket for X
+</I>&gt;<i> is not started on the system I ssh from. The system I ssh from is
+</I>&gt;<i> configured properly for this. It works against 'regular' openSUSE
+</I>&gt;<i> systems. It only fails against the KIWI system. 
+</I>&gt;<i> 
+</I>&gt;<i> The problem is most likely that I am missing some components on the KIWI
+</I>&gt;<i> system, so the X stuff does not get set up. I have asked on the general
+</I>&gt;<i> openSUSE list, and all we could agree on was that something is probably
+</I>&gt;<i> missing. But what?
+</I>&gt;<i> 
+</I>&gt;<i> I know this is perhaps not really a KIWI question, as KIWI is most
+</I>&gt;<i> likely not doing anything other than I have told it to do. But I ask
+</I>&gt;<i> here because other KIWI users may have experienced similar problems and
+</I>&gt;<i> know of a solution. At least I hope so!
+</I>
+AFAIR all you need in order to have X exported is to install xorg-x11-xauth.
+
+-- 
+With best regards,
+
+Carsten Hoeger
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 190 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100614/9c1e5486/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100614/9c1e5486/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001829.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+	<LI>Next message: <A HREF="001832.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1831">[ date ]</a>
+              <a href="thread.html#1831">[ thread ]</a>
+              <a href="subject.html#1831">[ subject ]</a>
+              <a href="author.html#1831">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

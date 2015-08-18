@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to pass module parameters in early boot stage?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20pass%20module%20parameters%20in%20early%20boot%20stage%3F&In-Reply-To=%3C4D0648AD.4090403%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002208.html">
+   <LINK REL="Next"  HREF="002212.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to pass module parameters in early boot stage?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20pass%20module%20parameters%20in%20early%20boot%20stage%3F&In-Reply-To=%3C4D0648AD.4090403%40novell.com%3E"
+       TITLE="[Kiwi-users] How to pass module parameters in early boot stage?">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Dec 13 17:24:13 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002208.html">[Kiwi-users] How to pass module parameters in early boot stage?
+</A></li>
+        <LI>Next message: <A HREF="002212.html">[Kiwi-users] How to pass module parameters in early boot stage?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2211">[ date ]</a>
+              <a href="thread.html#2211">[ thread ]</a>
+              <a href="subject.html#2211">[ subject ]</a>
+              <a href="author.html#2211">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 12/13/2010 09:48 AM, Till D&#246;rges wrote:
+&gt;<i> Hello everybody,
+</I>&gt;<i> 
+</I>&gt;<i> I was trying to pass a parameter to the ramdisk module (brd.ko). Since this is loaded
+</I>&gt;<i> pretty early by kiwi, one apparently cannot simply modify the root fs of the
+</I>&gt;<i> generated kiwi image and add a modprobe.conf file or similar.
+</I>&gt;<i> 
+</I>&gt;<i> I'm using a USB boot image. So I was wondering whether it would be possible to add a
+</I>&gt;<i> conf file for modprobe into the *boot* image (where linuxrc resides). I tried with
+</I>&gt;<i> .../usbboot/suse-11.3/root/etc/modprobe.d/99-local.conf but with no effect (the very
+</I>&gt;<i> same file works on my desktop system).
+</I>
+To get something like this into the initrd you'd have to create a
+tarball, then include the tarbal in kiwi via the &lt;archive&gt; element and
+set the bootinclude attribute to &quot;true&quot;. The file in the tarball must
+have the proper location in the root tree, i.e. if I wanted something in
+/opt/myApp then inside the tarball the path would be
+
+opt/myApp/myFile.ext
+
+&gt;<i> 
+</I>&gt;<i> I managed manually by adding a kernel boot parameter (rd.rd_size=&lt;size&gt;).
+</I>&gt;<i> 
+</I>&gt;<i> However, I did search the documentation and couldn't find a hint how to acquaint KIWI
+</I>&gt;<i> with my kernel boot parameter.
+</I>
+Use the kernelcmdline attribute of the &lt;type&gt; element to set any kernel
+command line parameters.
+
+&gt;<i> I'd greatly appreciate a pointer to do an RTFM.
+</I>
+You can find this in the XML documentation
+
+/usr/share/doc/packages/kiwi/schema/kiwi.html
+&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> While at it, I'm wondering whether modifying the boot image with a modprobe config
+</I>&gt;<i> file shouldn't work, too.
+</I>
+It would, see above.
+
+HTH,
+Robert
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002208.html">[Kiwi-users] How to pass module parameters in early boot stage?
+</A></li>
+	<LI>Next message: <A HREF="002212.html">[Kiwi-users] How to pass module parameters in early boot stage?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2211">[ date ]</a>
+              <a href="thread.html#2211">[ thread ]</a>
+              <a href="subject.html#2211">[ subject ]</a>
+              <a href="author.html#2211">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [studio-devel] it's clean up time...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bstudio-devel%5D%20it%27s%20clean%20up%20time...&In-Reply-To=%3C4BF70ED6.5000209%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001806.html">
+   <LINK REL="Next"  HREF="001810.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [studio-devel] it's clean up time...</H1>
+    <B>James Tan</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bstudio-devel%5D%20it%27s%20clean%20up%20time...&In-Reply-To=%3C4BF70ED6.5000209%40suse.de%3E"
+       TITLE="[Kiwi-users] [studio-devel] it's clean up time...">jatan at suse.de
+       </A><BR>
+    <I>Sat May 22 00:53:10 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001806.html">[Kiwi-users] it's clean up time...
+</A></li>
+        <LI>Next message: <A HREF="001810.html">[Kiwi-users] kiwi: Weekly report 2010-05-16 - 2010-05-21...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1808">[ date ]</a>
+              <a href="thread.html#1808">[ thread ]</a>
+              <a href="subject.html#1808">[ subject ]</a>
+              <a href="author.html#1808">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+On 5/21/2010 11:08 AM, Marcus Schaefer wrote:
+&gt;<i> I'd like to discuss the support for USB stick images
+</I>&gt;<i> and also whether we can drop the &quot;old way&quot; of creating
+</I>&gt;<i> USB stick images.
+</I>&gt;<i>
+</I>&gt;<i> in the past we had several improvements with for example
+</I>&gt;<i> clicfs and als hybrid ISO's which are both an iso and a disk
+</I>&gt;<i> in one image. According to this we have three possible
+</I>&gt;<i> rocedures to create an image for a USB stick today
+</I>&gt;<i>
+</I>&gt;<i> 1) use&lt;type image=&quot;usb&quot; .../&gt;  to create an usbboot based image.
+</I>&gt;<i>     Plug in the stick and call kiwi to deploy it on the stick:
+</I>&gt;<i>     'kiwi --bootstick initrd --bootstick-system image'.
+</I>&gt;<i>
+</I>&gt;<i> 2) use&lt;type image=&quot;oem&quot; .../&gt;  to create an oem virtual disk
+</I>&gt;<i>     image. Plug in the stick and dump the raw disk on the stick:
+</I>&gt;<i>     'dd if=image of=/dev/stickdevice'
+</I>&gt;<i>
+</I>&gt;<i> 3) use&lt;type image=&quot;iso&quot; hybrid=&quot;true&quot; hybridpersistent=&quot;true&quot; .../&gt;
+</I>&gt;<i>     to create a hybrid iso image. Plug in the stick and dump the
+</I>&gt;<i>     iso on the stick: 'dd if=image of=/dev/stickdevice'
+</I>&gt;<i>
+</I>&gt;<i> The first image type is imho obsolete. I'd like to know
+</I>&gt;<i> if there are people who still use the image=&quot;usb&quot; type. Please help
+</I>&gt;<i> me to find out if we can safely drop this code. The less code
+</I>&gt;<i> to maintain the better for the remaining parts :)
+</I>
+We do not use &lt;type image=&quot;usb&quot; .../&gt; in Studio, so we have no problems 
+with dropping that.
+
+Cheers,
+James
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001806.html">[Kiwi-users] it's clean up time...
+</A></li>
+	<LI>Next message: <A HREF="001810.html">[Kiwi-users] kiwi: Weekly report 2010-05-16 - 2010-05-21...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1808">[ date ]</a>
+              <a href="thread.html#1808">[ thread ]</a>
+              <a href="subject.html#1808">[ subject ]</a>
+              <a href="author.html#1808">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

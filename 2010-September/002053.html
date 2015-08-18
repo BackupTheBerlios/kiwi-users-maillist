@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] VMDK for ESX
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMDK%20for%20ESX&In-Reply-To=%3C20100929085830.GA25296%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002045.html">
+   <LINK REL="Next"  HREF="002058.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] VMDK for ESX</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMDK%20for%20ESX&In-Reply-To=%3C20100929085830.GA25296%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] VMDK for ESX">ms at novell.com
+       </A><BR>
+    <I>Wed Sep 29 10:58:30 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002045.html">[Kiwi-users] VMDK for ESX
+</A></li>
+        <LI>Next message: <A HREF="002058.html">[Kiwi-users] VMDK for ESX
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2053">[ date ]</a>
+              <a href="thread.html#2053">[ thread ]</a>
+              <a href="subject.html#2053">[ subject ]</a>
+              <a href="author.html#2053">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am using kiwi to create VMWare format VMDK and VMX. I can play it using VMPlayer, however, I could not run the VM in ESX without converting it using VCenter Converter. Is there a way to make ESX/i compatible VMDK using kiwi or is there a command line tool that could convert it?
+</I>
+iirc ESX requires the image to be in the ovf format. If you have the
+ovftool for Linux installed:
+
+  <A HREF="http://www.vmware.com/appliances/getting-started/learn/ovf.html">http://www.vmware.com/appliances/getting-started/learn/ovf.html</A>
+
+you can change your xml from
+
+   format=&quot;vmdk&quot;
+
+into
+
+   format=&quot;ovf&quot;
+
+kiwi will then call ovftool to create an image in ovf format
+which should run on ESX too
+
+the ovftool from VMware is a binary only tool which we are not
+allowed to distribute so you need to manage the installation
+yourself. 
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002045.html">[Kiwi-users] VMDK for ESX
+</A></li>
+	<LI>Next message: <A HREF="002058.html">[Kiwi-users] VMDK for ESX
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2053">[ date ]</a>
+              <a href="thread.html#2053">[ thread ]</a>
+              <a href="subject.html#2053">[ subject ]</a>
+              <a href="author.html#2053">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

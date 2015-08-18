@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Question: Prebuilt boot images
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Question%3A%20Prebuilt%20boot%20images&In-Reply-To=%3C5DE6980A-0CE2-4022-87E3-7218D0F6850C%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002552.html">
+   <LINK REL="Next"  HREF="002539.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Question: Prebuilt boot images</H1>
+    <B>Mark Haase</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Question%3A%20Prebuilt%20boot%20images&In-Reply-To=%3C5DE6980A-0CE2-4022-87E3-7218D0F6850C%40gmail.com%3E"
+       TITLE="[Kiwi-users] Question: Prebuilt boot images">mehaase at gmail.com
+       </A><BR>
+    <I>Thu Mar 24 05:14:33 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002552.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+        <LI>Next message: <A HREF="002539.html">[Kiwi-users] Question: Prebuilt boot images
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2538">[ date ]</a>
+              <a href="thread.html#2538">[ thread ]</a>
+              <a href="subject.html#2538">[ subject ]</a>
+              <a href="author.html#2538">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I can't figure out how to use a prebuilt boot image. I'm guessing this would speed up the build, because generating a new boot image takes 5-6 minutes each time.
+
+In my system image config.xml, I did this:
+
+    &lt;type image=&quot;iso&quot; primary=&quot;true&quot; boot=&quot;initrd-oemboot-suse-11.4&quot; checkprebuilt=&quot;true&quot; hybrid=&quot;true&quot; flags=&quot;clic&quot;/&gt;
+
+Then from the command line, I did the following:
+
+    /home/mhaase/appliance $ sudo kiwi -p source --force-new-root --set-repo /mnt/cdrom -r build
+    /home/mhaase/appliance $ sudo kiwi -c build -d image --prebuiltbootimage bootimage -t iso
+
+However the create step gives me the following error:
+
+Couldn't locate configuration directory /usr/share/kiwi/image/initrd-oemboot-suse-11.4
+
+Here's what's in my bootimage directory:
+
+/home/mhaase/appliance $ find bootimage/
+bootimage/
+bootimage/initrd-oemboot-suse-11.4.x86_64-2.7.1.kernel
+bootimage/initrd-oemboot-suse-11.4.x86_64-2.7.1.md5
+bootimage/initrd-oemboot-suse-11.4-prebuilt
+bootimage/initrd-oemboot-suse-11.4-prebuilt/initrd-oemboot-suse-11.4.x86_64-2.7.1.kernel.2.6.37.1-1.2-default
+bootimage/initrd-oemboot-suse-11.4.x86_64-2.7.1.gz
+
+Any idea what I'm doing wrong?
+
+--
+Mark E. Haase
+571-334-8408
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002552.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+	<LI>Next message: <A HREF="002539.html">[Kiwi-users] Question: Prebuilt boot images
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2538">[ date ]</a>
+              <a href="thread.html#2538">[ thread ]</a>
+              <a href="subject.html#2538">[ subject ]</a>
+              <a href="author.html#2538">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

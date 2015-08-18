@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi setup questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20setup%20questions&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE9022C5933%40zuk35exm60.ds.mot.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000054.html">
+   <LINK REL="Next"  HREF="000056.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi setup questions</H1>
+    <B>Mair Wolfgang-awm013</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20setup%20questions&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE9022C5933%40zuk35exm60.ds.mot.com%3E"
+       TITLE="[Kiwi-users] kiwi setup questions">wolfgang.mair at motorola.com
+       </A><BR>
+    <I>Mon Oct  1 18:31:48 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000054.html">[Kiwi-users] blogd error on the nfs mounted root system
+</A></li>
+        <LI>Next message: <A HREF="000056.html">[Kiwi-users] kiwi setup questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#55">[ date ]</a>
+              <a href="thread.html#55">[ thread ]</a>
+              <a href="subject.html#55">[ subject ]</a>
+              <a href="author.html#55">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> 
+
+-----Original Message-----
+From: CyberOrg [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jigish.gohil at gmail.com</A>] 
+Sent: Friday, September 21, 2007 16:21
+To: Mair Wolfgang-awm013
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] kiwi setup questions
+
+On 9/21/07, Mair Wolfgang-awm013 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">wolfgang.mair at motorola.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Hello List,
+</I>&gt;<i>
+</I>&gt;<i> a few days ago I started to work my way through the kiwi.... I am 
+</I>&gt;<i> using an 'NFS mounted root system' and/or 'deploying via network using
+</I>
+&gt;<i> the pxe protocol' in a OpenSuse 10.2 environment. The final decision
+</I>is still open.
+&gt;<i> I am finally able to boot up the client, there are still some problems
+</I>
+&gt;<i> and lots of questions...
+</I>
+Do you want to use clients as a diskless thin clients or you want to
+perform network installation?
+
+At the moment I want to use diskless clients (nfs root mounted system)
+later on I want to create out of this root directory a pxe deployable
+image. From what I've already found out, is that in case of deploying,
+autoyast stats every time it realizes it is newly installed. Which is
+great. 
+
+Now, how can I do the same with the diskless client. F.e. I have a PC
+with a certain hardware, I am booting via nfs mounted root autoyast is
+started and configures all devices. At the next boot, there is no need
+to do this again. After that I take a PC with a different hardware and
+boot the same system via nfs mounted root fs but this time no autoyast
+is started. Which is bad because the devices don't match with the other
+PC. 
+How can I force autoyast to be started up?
+
+The add of autoyast=&lt;path&gt; to the kernel boot parameters as mentioned
+below, where does this have to go in? I've tried it already in the
+/tftpboot/pxelinux.cfg/default like the following:
+append initrd=boot/initrd vga=normal ramdisk_size=256000
+autoyast=/autoconf.xml kiwitftp=192.168.230.91
+or
+append initrd=boot/initrd vga=normal ramdisk_size=256000
+autoyast=/autoconf.xml install=<A HREF="nfs://192.168.230.2/export/suse10-2">nfs://192.168.230.2/export/suse10-2</A>
+kiwitftp=192.168.230.91
+
+But nothing made autoyast to be started up.. :-(
+
+Thanks
+Wolfgang
+
+
+&gt;<i>
+</I>&gt;<i> Does the Hardware of the client matter or can I use any hardware as
+</I>client?
+&gt;<i> And if yes, where does the hardware dependent part begin?
+</I>
+If you want to use clients as a diskless thinclients see:
+
+<A HREF="http://en.opensuse.org/LTSP">http://en.opensuse.org/LTSP</A>
+
+If you just want to perform network installation see:
+
+<A HREF="http://lists.opensuse.org/opensuse/2007-06/msg02008.html">http://lists.opensuse.org/opensuse/2007-06/msg02008.html</A>
+
+You can add autoyast=&lt;path to your autoyast.xml&gt; as a kernel boot
+parameter.
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000054.html">[Kiwi-users] blogd error on the nfs mounted root system
+</A></li>
+	<LI>Next message: <A HREF="000056.html">[Kiwi-users] kiwi setup questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#55">[ date ]</a>
+              <a href="thread.html#55">[ thread ]</a>
+              <a href="subject.html#55">[ subject ]</a>
+              <a href="author.html#55">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

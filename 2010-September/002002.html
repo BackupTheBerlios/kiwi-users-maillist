@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem using SLES ISOs as repository
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20using%20SLES%20ISOs%20as%20repository&In-Reply-To=%3C291A23B717F9104985651112DB6C365F271B0B8F9E%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002005.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem using SLES ISOs as repository</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20using%20SLES%20ISOs%20as%20repository&In-Reply-To=%3C291A23B717F9104985651112DB6C365F271B0B8F9E%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] Problem using SLES ISOs as repository">john.lund at emc.com
+       </A><BR>
+    <I>Fri Sep  3 23:04:27 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002005.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2002">[ date ]</a>
+              <a href="thread.html#2002">[ thread ]</a>
+              <a href="subject.html#2002">[ subject ]</a>
+              <a href="author.html#2002">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm trying to use the SLES DVD media iso images for the repository in my kiwi configuration, and I'm having a problem using the DVD2 or DVD3 iso files.  The error is below:
+
+Retrieving repository '1SLES_11_SP1_DVD2' metadata [\]
+File '/media.1/media' not found on medium 'file:/tmp/kiwimount-SLES-11-SP1-DVD-x86_64-GM-DVD2.iso'
+
+Abort, retry, ignore? [a/r/i/?] (a): a
+Retrieving repository '1SLES_11_SP1_DVD2' metadata [error]
+Repository '1SLES_11_SP1_DVD2' is invalid.
+Can't provide /media.1/media : Media Exception
+Please check if the URIs defined for this repository are pointing to a valid repository.
+Skipping repository '1SLES_11_SP1_DVD2' because of the above error.
+
+It looks like it assumes that an  iso is the first disk always.  Is there a way to get kiwi to pick up the 2nd and 3rd DVD for use as repositories?
+
+Thank you,
+John Lund
+EMC Centera Development
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002005.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2002">[ date ]</a>
+              <a href="thread.html#2002">[ thread ]</a>
+              <a href="subject.html#2002">[ subject ]</a>
+              <a href="author.html#2002">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

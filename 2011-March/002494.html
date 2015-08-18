@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] New KIWI layout, new issues.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C1300284616.32153.71.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002435.html">
+   <LINK REL="Next"  HREF="002495.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] New KIWI layout, new issues.</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C1300284616.32153.71.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] New KIWI layout, new issues.">roger at opq.se
+       </A><BR>
+    <I>Wed Mar 16 15:10:16 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002435.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+        <LI>Next message: <A HREF="002495.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2494">[ date ]</a>
+              <a href="thread.html#2494">[ thread ]</a>
+              <a href="subject.html#2494">[ subject ]</a>
+              <a href="author.html#2494">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2011-03-08 at 09:43 +0100, Roger Oberholtzer wrote:
+&gt;<i> On Mon, 2011-03-07 at 20:43 +0100, Marcus Sch&#228;fer wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; After the great success with my earlier OEM Preload KIWI, I thought I
+</I>&gt;<i> &gt; &gt; would revisit a KIWI image I was having trouble with. This time, I am
+</I>&gt;<i> &gt; &gt; making an image that boots via PXE, and has no local disk - all is in
+</I>&gt;<i> &gt; &gt; ram.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; I modeled this image on examples/suse-11.2/suse-pxe-client. I can build
+</I>&gt;<i> &gt; &gt; the image OK. The problem is when I run the results.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; The system begins the boot process. The kernel and initrd are loaded.
+</I>&gt;<i> &gt; &gt; Then, the root file system is mounted via AoE.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; What happens (in boot.local, I think) is that there are complaints like
+</I>&gt;<i> &gt; &gt; this:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; 	Buffer I/O error on device loop0.
+</I>&gt;<i> &gt; &gt; 	Lost page write due ti I/O error on loop0
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Then the system fails to complete booting.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; My config.xml has:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;  &lt;type image=&quot;pxe&quot; filesystem=&quot;clicfs&quot; boot=&quot;netboot/suse-11.2&quot;&gt;
+</I>&gt;<i> &gt; &gt;          &lt;pxedeploy server=&quot;10.2.10.14&quot; blocksize=&quot;4096&quot;&gt;
+</I>&gt;<i> &gt; &gt;                  &lt;partitions device=&quot;/dev/sda&quot;&gt;
+</I>&gt;<i> &gt; &gt;                          &lt;partition type=&quot;swap&quot; number=&quot;1&quot; size=&quot;5&quot;/&gt;
+</I>&gt;<i> &gt; &gt;                          &lt;partition type=&quot;L&quot; number=&quot;2&quot; size=&quot;image&quot; mountpoint=&quot;/&quot; target=&quot;true&quot;/&gt;
+</I>&gt;<i> &gt; &gt;                          &lt;partition type=&quot;L&quot; number=&quot;3&quot; target=&quot;false&quot;/&gt;
+</I>&gt;<i> &gt; &gt;                   &lt;/partitions&gt;
+</I>&gt;<i> &gt; &gt;                   &lt;union ro=&quot;/dev/sda2&quot; rw=&quot;/dev/sda3&quot; type=&quot;clicfs&quot;/&gt;
+</I>&gt;<i> &gt; &gt;          &lt;/pxedeploy&gt;
+</I>&gt;<i> &gt; &gt;  &lt;/type&gt;
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; and the images are generated with:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; 	/usr/sbin/kiwi -b ./spec --type pxe -d ./image
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; I then copy the appropriate files into /tftpboot, restart my vblade
+</I>&gt;<i> &gt; &gt; daemon to be sure it is service the newly created root file system.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; The config file looks like this:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; 	AOEROOT=/dev/etherd/e0.1
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; I know that the pxedeploy statement generates something else. Perhaps I
+</I>&gt;<i> &gt; &gt; should remove or change the pxedeploy in my config.xml file?
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; I realize this is a bit sketchy. But I am not certain what information
+</I>&gt;<i> &gt; &gt; might be useful.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; problem here is the fuse layer over AoE. This seems not to
+</I>&gt;<i> &gt; work reliably. Just to make sure you exported the clicfs image
+</I>&gt;<i> &gt; correctly:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;    losetup /dev/loop0 image-file.clicfs
+</I>&gt;<i> &gt;    vbladed 0 1 eth0 /dev/loop0
+</I>&gt;<i> 
+</I>&gt;<i> On the server, I use the init.d/vblade script that comes with the vblade
+</I>&gt;<i> package. All I edit is which ethernet interface and which file to serve.
+</I>&gt;<i> 
+</I>&gt;<i> This results in this process (on the server):
+</I>&gt;<i> 
+</I>&gt;<i> 	/usr/sbin/vblade 0 1 eth1 /tftpboot/KIWI/rsoft/image
+</I>&gt;<i> 
+</I>&gt;<i> This does work. Except when it doesn't...
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I think I remember that I also had trouble when I try to
+</I>&gt;<i> &gt; mount the clicfs now over the AoE path. Maybe you don't use
+</I>&gt;<i> &gt; a clicfs image here 
+</I>&gt;<i> 
+</I>&gt;<i> I think I do. At least the type statement is specifying one.
+</I>&gt;<i> 
+</I>
+The file to export is:
+
+	-rw-r--r-- 1 roger users 34329881 2011-03-16 09:11 RSofT-Mini-openSUSE-11.2.i686-1.2.8
+
+When vblade exports the image, it prints:
+
+	Starting vblade AoE daemon pid 29484: e0.1, 67050 sectors O_RDWR
+
+My config file says:
+
+	AOEROOT=/dev/etherd/e0.1
+
+One odd thing is why vblade reports 67050 sectors, which is 34,329,600
+bytes, if a sector is 512 bytes. This is 281 bytes smaller than the
+file. Perhaps this means nothing.
+
+The other thing is that the message the booting kiwi prints about &quot;I/O
+error on device loop0&quot;. This error is reported in places like logical
+block 81976. I guess these are the ext3 file system blocks.
+
+Up to that time, there is no error listed by the boot process.
+
+
+This last time I see something about detecting an unplayed ext3 journal
+being printed at the same time. This is when trying a newly created
+image. However, if I mount the image locally, I get no such message:
+
+resize2fs 1.41.9 (22-Aug-2009)
+Resizing the filesystem on cmnt/fsdata.ext3 to 622080 (1k) blocks.
+The filesystem on cmnt/fsdata.ext3 is now 622080 blocks long.
+
+fsck from util-linux-ng 2.16
+e2fsck 1.41.9 (22-Aug-2009)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+
+    4374 inodes used (13.57%)
+      27 non-contiguous files (0.6%)
+      21 non-contiguous directories (0.5%)
+         # of inodes with ind/dind/tind blocks: 953/59/0
+  102015 blocks used (16.40%)
+       0 bad blocks
+       0 large files
+
+    2818 regular files
+    1006 directories
+      18 character device files
+       4 block device files
+       0 fifos
+      78 links
+     519 symbolic links (519 fast symbolic links)
+       0 sockets
+--------
+    4443 files
+
+And the image mounts and looks reasonable...
+
+
+So I think everything is pointing to vblade or the aoe tools. I am using
+the RPMs from
+<A HREF="http://download.opensuse.org/repositories/server:/ltsp/openSUSE_11.2/i586/">http://download.opensuse.org/repositories/server:/ltsp/openSUSE_11.2/i586/</A> on all systems involved (build, vblade server, kiwi image). 
+
+	aoetools-25-3.4.i586.rpm
+
+	vblade-15-3.4.i586.rpm
+
+Is there a better one I should be using? I had such startup problems
+with NBD in the past, so I really wanted to use something else. Perhaps
+I will have to give in and return to NBD...
+
+
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002435.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+	<LI>Next message: <A HREF="002495.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2494">[ date ]</a>
+              <a href="thread.html#2494">[ thread ]</a>
+              <a href="subject.html#2494">[ subject ]</a>
+              <a href="author.html#2494">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

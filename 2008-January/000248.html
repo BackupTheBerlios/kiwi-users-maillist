@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Some hints for PXE / NFS Users when using vmware
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Some%20hints%20for%20PXE%20/%20NFS%20Users%20when%20using%20vmware&In-Reply-To=%3C47976C77.6050201%40comline.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000241.html">
+   <LINK REL="Next"  HREF="000249.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Some hints for PXE / NFS Users when using vmware</H1>
+    <B>Ralf Prengel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Some%20hints%20for%20PXE%20/%20NFS%20Users%20when%20using%20vmware&In-Reply-To=%3C47976C77.6050201%40comline.de%3E"
+       TITLE="[Kiwi-users] Some hints for PXE / NFS Users when using vmware">ralf.prengel at comline.de
+       </A><BR>
+    <I>Wed Jan 23 17:33:59 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000241.html">[Kiwi-users] Controlling display size in vmware image?
+</A></li>
+        <LI>Next message: <A HREF="000249.html">[Kiwi-users] v2.13 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#248">[ date ]</a>
+              <a href="thread.html#248">[ thread ]</a>
+              <a href="subject.html#248">[ subject ]</a>
+              <a href="author.html#248">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hallo,
+
+it was a hard and long fight but now my pxe/nfs Testsystem in vmware is
+working now.
+
+Some hints
+
+1)
+Vmware is using an own dhcp-server von nat and host-only.
+This could cause problems with your own dhcp-server
+
+2)
+Check your nfs-server in three steps
+a)
+I nfs-mount working local?
+b)
+Is nfs-mount working remote from a client that works perfect with
+another nfs-server?
+c)
+Is nfs working after the pxe-image is started?
+If /mnt contains nothing or the imagefile something is wrong.
+verify the /etc/export example on page 23 of the openSUSE-Kiwi Image
+system file with your own configuration.
+
+3)
+Using external installation-sources could be a problem when using
+vmware. This depends on your own netzwerk-configuration.
+I m using a local mirror on the nfs-server.
+
+4)
+Never use a pxe/tftp/dhcp-server in a foreign network without asking the
+administrator. Check this very carefully.
+
+
+
+
+
+-- 
+i.A. Ralf Prengel
+Customer Care Manager
+Comline AG
+Hauert 8
+D-44227 Dortmund/Germany
+
+Fon +49231 97575- 904
+Fax +49231 97575- 905
+EMail <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ralf.prengel at comline.de</A>
+
+www.comline.de
+Vorstand Stephan Schilling,Erwin Leonhardi
+Aufsichtsrat Dr. Franz Schoser (Vorsitzender)
+HR Dortmund B 14570
+USt.-ID-Nr. DE 124727422
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000241.html">[Kiwi-users] Controlling display size in vmware image?
+</A></li>
+	<LI>Next message: <A HREF="000249.html">[Kiwi-users] v2.13 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#248">[ date ]</a>
+              <a href="thread.html#248">[ thread ]</a>
+              <a href="subject.html#248">[ subject ]</a>
+              <a href="author.html#248">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

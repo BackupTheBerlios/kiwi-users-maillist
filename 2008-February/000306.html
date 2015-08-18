@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Error while creating a &quot;split&quot; image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Error%20while%20creating%20a%20%22split%22%20image&In-Reply-To=%3C20080211140856.GB3843%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000304.html">
+   <LINK REL="Next"  HREF="000307.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Error while creating a &quot;split&quot; image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Error%20while%20creating%20a%20%22split%22%20image&In-Reply-To=%3C20080211140856.GB3843%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Error while creating a &quot;split&quot; image">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 11 15:08:57 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000304.html">[Kiwi-users] Error while creating a &quot;split&quot; image
+</A></li>
+        <LI>Next message: <A HREF="000307.html">[Kiwi-users] Error while creating a &quot;split&quot; image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#306">[ date ]</a>
+              <a href="thread.html#306">[ thread ]</a>
+              <a href="subject.html#306">[ subject ]</a>
+              <a href="author.html#306">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am trying to create a split image based on SLED 10 SP1 with ext3 and cramfs filesystems.
+</I>&gt;<i> 
+</I>&gt;<i> While creating the image, Kiwi exits with an error message.
+</I>&gt;<i> 
+</I>&gt;<i> Browsing through the logs shows the following message
+</I>&gt;<i> 
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Feb-11 17:39:19 &lt;1&gt; : EXEC [/sbin/mkfs.cramfs -b 4096 -v /SLES10/KIWI/myroot /SLES10/KIWI/myimage/cbec-sled10.i686-1.1.0 2&gt;&amp;1]
+</I>&gt;<i> Feb-11 17:41:21 &lt;3&gt; : Couldn't create CRam filesystem   failed
+</I>&gt;<i> Feb-11 17:41:21 &lt;3&gt; : warning: guestimate of required size (upper bound) is 643MB, but maximum image size is 272MB.  We might die prematurely.
+</I>
+cramfs has a size limit. Your image is too big to fit into this. You should
+consider to use squashfs as your compressed part
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000304.html">[Kiwi-users] Error while creating a &quot;split&quot; image
+</A></li>
+	<LI>Next message: <A HREF="000307.html">[Kiwi-users] Error while creating a &quot;split&quot; image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#306">[ date ]</a>
+              <a href="thread.html#306">[ thread ]</a>
+              <a href="subject.html#306">[ subject ]</a>
+              <a href="author.html#306">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

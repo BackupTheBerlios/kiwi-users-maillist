@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] CONF in netboot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20CONF%20in%20netboot%20image&In-Reply-To=%3CAANLkTikM6W8j2i8bak%3Di%3D%2BOOH-SH_purXF3zxM8C99up%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001951.html">
+   <LINK REL="Next"  HREF="001953.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] CONF in netboot image</H1>
+    <B>Denis J. Cirulis</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20CONF%20in%20netboot%20image&In-Reply-To=%3CAANLkTikM6W8j2i8bak%3Di%3D%2BOOH-SH_purXF3zxM8C99up%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] CONF in netboot image">denis.cirulis at gmail.com
+       </A><BR>
+    <I>Sun Aug  8 03:24:27 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001951.html">[Kiwi-users] config-yast-autoyast debugging and embedded scripts
+</A></li>
+        <LI>Next message: <A HREF="001953.html">[Kiwi-users] CONF in netboot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1952">[ date ]</a>
+              <a href="thread.html#1952">[ thread ]</a>
+              <a href="subject.html#1952">[ subject ]</a>
+              <a href="author.html#1952">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi!
+
+I don't know is it a bug or a feature, but it seems to me that I can not use
+CONF directive when I'm diskless. On NFS/AOE/NBD this works fine, but in
+netboot variable systemIntegrity is not set to &quot;clean&quot;.
+I've modified root/linuxrc in the block where 'Echo &quot;Image checksum test:
+fine :-)&quot;' occours and now I have workaround on this. Maybe there is a tip
+for that ?
+
+During the loading of CONF files over tftp I need to change the fstab file
+to mount nfs share on my netboot machine. fstab is loading to pxe-client,
+but somehow after boot process end this file looks different from in my
+CONF. How to mount remote shares after boot ?
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100808/ecd9e234/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100808/ecd9e234/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001951.html">[Kiwi-users] config-yast-autoyast debugging and embedded scripts
+</A></li>
+	<LI>Next message: <A HREF="001953.html">[Kiwi-users] CONF in netboot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1952">[ date ]</a>
+              <a href="thread.html#1952">[ thread ]</a>
+              <a href="subject.html#1952">[ subject ]</a>
+              <a href="author.html#1952">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] non-0 return package setup scripts does not fail the build
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20non-0%20return%20package%20setup%20scripts%20does%20not%20fail%0A%20the%20build&In-Reply-To=%3C20110929072020.GA21320%40D13.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002944.html">
+   <LINK REL="Next"  HREF="002946.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] non-0 return package setup scripts does not fail the build</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20non-0%20return%20package%20setup%20scripts%20does%20not%20fail%0A%20the%20build&In-Reply-To=%3C20110929072020.GA21320%40D13.ddts.net%3E"
+       TITLE="[Kiwi-users] non-0 return package setup scripts does not fail the build">ms at suse.de
+       </A><BR>
+    <I>Thu Sep 29 09:20:20 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002944.html">[Kiwi-users] non-0 return package setup scripts does not fail the	build
+</A></li>
+        <LI>Next message: <A HREF="002946.html">[Kiwi-users] non-0 return package setup scripts does not fail the build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2945">[ date ]</a>
+              <a href="thread.html#2945">[ thread ]</a>
+              <a href="subject.html#2945">[ subject ]</a>
+              <a href="author.html#2945">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I was testing a kiwi (4.93.3) package setup script (source/config/net-snmp) and on purpose had &quot;exit 1&quot; at the end of the script. I was expecting that the non-0 exit code will result in a kiwi build failure - at least for me this makes sense. But kiwi happily finished building the image. Looking at the kiwi prepare log file, it seems that the failure was detected and ignored:
+</I>&gt;<i> 
+</I>&gt;<i> Sep-28 20:15:03 &lt;1&gt; : Preparing package setup scripts
+</I>&gt;<i> ...
+</I>&gt;<i>
+</I>&gt;<i> So my question is should kiwi be enhanced to abort the build in cases like this? It will certainly make it easier to detect image build problems.
+</I>
+I agree kiwi should exit here as it would do with the config.sh and
+images.sh scripts as well. Attached is a patch which should do the trick :)
+
+&gt;<i> Note that I think that the case when a package matching the setup script was not even found should not abort the build, e.g., the current behavior as listed below should remain as it is now:
+</I>
+yes this one won't be touched
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.patch
+Type: text/x-patch
+Size: 281 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110929/cb5ef57d/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110929/cb5ef57d/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002944.html">[Kiwi-users] non-0 return package setup scripts does not fail the	build
+</A></li>
+	<LI>Next message: <A HREF="002946.html">[Kiwi-users] non-0 return package setup scripts does not fail the build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2945">[ date ]</a>
+              <a href="thread.html#2945">[ thread ]</a>
+              <a href="subject.html#2945">[ subject ]</a>
+              <a href="author.html#2945">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

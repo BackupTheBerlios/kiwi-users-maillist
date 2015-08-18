@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Unioned NFSROOTS with aufs2 and 11.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unioned%20NFSROOTS%20with%20aufs2%20and%2011.1&In-Reply-To=%3C201002092254.38127.hpj%40urpla.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001668.html">
+   <LINK REL="Next"  HREF="001673.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Unioned NFSROOTS with aufs2 and 11.1</H1>
+    <B>Hans-Peter Jansen</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unioned%20NFSROOTS%20with%20aufs2%20and%2011.1&In-Reply-To=%3C201002092254.38127.hpj%40urpla.net%3E"
+       TITLE="[Kiwi-users] Unioned NFSROOTS with aufs2 and 11.1">hpj at urpla.net
+       </A><BR>
+    <I>Tue Feb  9 22:54:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001668.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+        <LI>Next message: <A HREF="001673.html">[Kiwi-users] eth0 / eth1 - Issue in isoboot Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1671">[ date ]</a>
+              <a href="thread.html#1671">[ thread ]</a>
+              <a href="subject.html#1671">[ subject ]</a>
+              <a href="author.html#1671">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>[Jeff, I CC'ed you, since I guess, you're not in the audience of this list, 
+but OTOH, KIWI setups suffer major pains because of the apparmor vs. aufs 
+disharmony! You might want to read the &quot;[Kiwi-users] NFSROOT and 
+UNIONFS_CONFIG touble&quot; thread]
+
+Hi, 
+
+after churning on this topic, I thought, it would be a good idea to let you 
+know about the state of affairs.
+
+My openSUSE 11.1 setup is working now, but it took quite some fiddling in 
+the details to get it right (hostname, dhcp, sax, you name it..). The roll 
+out happens this weekend. Kiwi was of immense help in this process, and it 
+already had some fallout floating back into the project, successors might 
+take advantage of.
+
+The major issue to solve was that aufs vs. apparmor disharmony, and 
+unfortunately, I'm not fluent enough with vfs to fix things up. My approach 
+was creating my own kernel in build system, with aufs2 patches applied, and 
+with apparmor (and novfs, as it depends on the API changes of AA) disabled. 
+
+BS: home:frispete:aufs2
+
+Jeff, if you're interested in adapting aufs2 on the openSUSE kernel, let me 
+know. I can give you a bunch of hints and findings that might help you in 
+this process.
+
+Of course, NFS is mightily unloved, but it is exactly done for these kind of 
+diskless setups. And the logical consequence of our doing is layering NFS 
+filesystems. Therefore, although the openSUSE kernel and aufs don't like 
+each other much, and aufs2 is not liked by some influential kernel coders 
+as well, it's by far the superior approach to this problem domain (and some 
+very interesting others: e.g. prepare build environments by layering the 
+most often used package sets above each other could speed up build service 
+by a few hundred procents, I guess..).
+
+Marcus, what do you do, if you need to install an additional rpm, or change 
+some global config? Rebuild the whole thing, and - depending on the network 
+transport system - either turn off all users of the former image before 
+switching? Add some switch logic, and wait a day? Tell a whole (small) 
+company, that they should shutdown their desktops because one user/office 
+needs another package is not going to cut it (in my environments, at 
+least).
+
+With my setup, I can do this on the fly. Yes, sometimes I suffer from some 
+caching artifacts (in the range of 30 secs max..), and I won't do a full 
+KDE* desktop update this way during the day, but that's not necessary 
+either. I love this &quot;one source feeds all approach&quot;, but that also has to 
+be dynamic, highly dynamic to be successfull in usual commercial settings.
+
+See, where the alternatives of this technology are steering: opaque throw 
+away containers, filesystem in files, only to simplify the transport, but 
+this is a administration nightmare, and conceptually wrong.
+
+I'm doing this diskless thing for two decades now, started with Ataris, 
+where I've been responsible for the Biodata client code. Our strongest 
+competitor (in the beginning) tried this block over (cheaper-)net 
+approach - and guess what - they failed. Performance, stability and 
+administration wise. They never got the locking right..
+
+There might be setups, where these static container things might work, but 
+those areas, where this diskless technology really rocks are dynamic. 
+
+I'm responsible for the IT-setup of a transport company since 20 years as 
+well, and the last aufs based NFS layered SuSE 9.3 setup was a big success, 
+running for 5 years now without any hassles. The 40 full blown desktop 
+systems (fat clients) just don't have harddisks, and a single VMware WinXP 
+instance (that most users need, unfortunately) takes more administration 
+efforts (and container space) than all SuSE systems combined. 
+
+The new setup consists from 1230 rpm packages occupying 5,8 GB disk space.
+The old one from 819 packages occupying the same 5,8 GB disk space. :-)
+All hosts combined uses 879 MB persistent space (the RW layer, incl. /tmp).
+
+Let's hope, that 11.1 works fine on the older systems, too. The box, where I 
+finally failed to get the 9.3 going, is an 4GB AMD X4-955 24&quot; dual head 
+system.
+
+Pete
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001668.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+	<LI>Next message: <A HREF="001673.html">[Kiwi-users] eth0 / eth1 - Issue in isoboot Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1671">[ date ]</a>
+              <a href="thread.html#1671">[ thread ]</a>
+              <a href="subject.html#1671">[ subject ]</a>
+              <a href="author.html#1671">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

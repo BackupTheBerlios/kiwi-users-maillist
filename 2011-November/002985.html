@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] KIWI PXE build fails to boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI%20PXE%20build%20fails%20to%20boot&In-Reply-To=%3C4EB7F3DF.5050004%40sch.bme.hu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002983.html">
+   <LINK REL="Next"  HREF="002986.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] KIWI PXE build fails to boot</H1>
+    <B>&quot;Horv&#225;th Gergely J. (Ott&#243;)&quot;</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI%20PXE%20build%20fails%20to%20boot&In-Reply-To=%3C4EB7F3DF.5050004%40sch.bme.hu%3E"
+       TITLE="[Kiwi-users] KIWI PXE build fails to boot">hgj at sch.bme.hu
+       </A><BR>
+    <I>Mon Nov  7 16:06:07 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002983.html">[Kiwi-users] Persistent Partition using PXE boot
+</A></li>
+        <LI>Next message: <A HREF="002986.html">[Kiwi-users] KIWI PXE build fails to boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2985">[ date ]</a>
+              <a href="thread.html#2985">[ thread ]</a>
+              <a href="subject.html#2985">[ subject ]</a>
+              <a href="author.html#2985">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello there!
+
+I read through some of the archive, but could not find a solution to my 
+problem on this mailing list neither. What I want to do, is create a 
+simple PXE boot client with KIWI. I've done the preparations following 
+the manual, and successfully created the image. I also set up the 
+server, to serve the image and run the services neccessary, but the ram 
+only client gives the following error:
+
+/sbin/init no such file of not executable
+
+Now I've been looking for a solution for near a week, but I did not find 
+any solution that works for me.
+
+The following briefly describes the method I am using now:
+
+1. Prepare the image
+kiwi -p /usr/share/doc/packages/kiwi/examples/suse-11.4/suse-pxe-client 
+--root /data/kiwiprepare
+
+2. Modify the configuration in /data/kiwiprepare/image/config.xml
+
+&lt;type image=&quot;pxe&quot; filesystem=&quot;ext3&quot; boot=&quot;netboot/suse-11.4&quot;&gt;
+&lt;/type&gt;
+
+3. Create the image
+kiwi -c /data/kiwiprepare -d /data/kiwicreate
+
+4. Copy images, initr and create configuration files
+
+/srv/tftpboot/KIWI/config.default:
+
+IMAGE=/dev/ram1;suse-11.4-pxe-client.i686;1.2.8;10.0.0.1;4096
+
+I do not really understand, why KIWI tests /mnt/sbin/init as it is a 
+symlink to /bin/systemd this it will not work if the image is mounted on 
+/mnt.
+I probably miss something in my configuration (in config.xml), but I 
+could not find any help, how to configure a ram only PXE boot client.
+
+Thank you for your time,
+Gregory
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002983.html">[Kiwi-users] Persistent Partition using PXE boot
+</A></li>
+	<LI>Next message: <A HREF="002986.html">[Kiwi-users] KIWI PXE build fails to boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2985">[ date ]</a>
+              <a href="thread.html#2985">[ thread ]</a>
+              <a href="subject.html#2985">[ subject ]</a>
+              <a href="author.html#2985">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

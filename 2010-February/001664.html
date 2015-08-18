@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3C20100208122628.GA29724%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001663.html">
+   <LINK REL="Next"  HREF="001666.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3C20100208122628.GA29724%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?">ms at novell.com
+       </A><BR>
+    <I>Mon Feb  8 13:26:28 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001663.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+        <LI>Next message: <A HREF="001666.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1664">[ date ]</a>
+              <a href="thread.html#1664">[ thread ]</a>
+              <a href="subject.html#1664">[ subject ]</a>
+              <a href="author.html#1664">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> thank you for reply. The Preparation is starting now, but I get the following error on running config.sh:
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> ...
+</I>&gt;<i> Feb  8 13:05:00 itc-sles11 kernel: __ratelimit: 42 callbacks suppressed
+</I>&gt;<i> Feb  8 13:05:00 itc-sles11 kernel: config.sh[3819]: segfault at bf2aef9c ip b7f24e4c sp bf2aefa0 error 6 in bash[b7f08000+a8000]
+</I>&gt;<i> Feb  8 13:05:00 itc-sles11 kernel: config.sh[3821]: segfault at bf2aeef4 ip b7f27fe3 sp bf2aeed0 error 6 in bash[b7f08000+a800
+</I>&gt;<i> ...
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Any Idea?
+</I>
+does this happen inside the running system ? I guess so. bash crashed with
+a segfault while running config.sh. Is this kiwi's config.sh script ? if
+so this is very strange. Can you chroot into the prepared tree
+
+   chroot /your/new/root/tree bash
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001663.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+	<LI>Next message: <A HREF="001666.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1664">[ date ]</a>
+              <a href="thread.html#1664">[ thread ]</a>
+              <a href="subject.html#1664">[ subject ]</a>
+              <a href="author.html#1664">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

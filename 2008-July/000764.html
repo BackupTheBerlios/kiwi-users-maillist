@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Diskless PXE client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Diskless%20PXE%20client&In-Reply-To=%3C20080714090615.GA27733%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000763.html">
+   <LINK REL="Next"  HREF="000765.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Diskless PXE client</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Diskless%20PXE%20client&In-Reply-To=%3C20080714090615.GA27733%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Diskless PXE client">ms at novell.com
+       </A><BR>
+    <I>Mon Jul 14 11:06:15 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000763.html">[Kiwi-users] Diskless PXE client
+</A></li>
+        <LI>Next message: <A HREF="000765.html">[Kiwi-users] grub message changed without notice
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#764">[ date ]</a>
+              <a href="thread.html#764">[ thread ]</a>
+              <a href="subject.html#764">[ subject ]</a>
+              <a href="author.html#764">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I've got my DHCP server configured with fixed-address leases for my 
+</I>&gt;<i> wireless clients.  This is working well for me, but I had an issue with a 
+</I>&gt;<i> rogue DHCP device on the network the other day that got me thinking.
+</I>&gt;<i> 
+</I>&gt;<i> Here's what I'd like to have happen:
+</I>&gt;<i> 
+</I>&gt;<i> 1. Only my DHCP server respond to PXE DHCP requests.  It assigns the 
+</I>&gt;<i> address, and the pxelinux.cfg entry for that device uses IPAPPEND 1 to get 
+</I>&gt;<i> the ip address to the kernel.
+</I>&gt;<i> 2. I realize this is not ideal, but since the addresses are static per 
+</I>&gt;<i> device, I think it will work for my purposes.
+</I>&gt;<i> 3. This way, my PXE server only responds to my devices (thanks to the 
+</I>&gt;<i> other standard DHCP servers ignoring PXE DHCP requests), and if another 
+</I>&gt;<i> DHCP server is place on the network, it _should_ not interfere with my 
+</I>&gt;<i> environment.
+</I>&gt;<i> 
+</I>&gt;<i> Currently, during the boot process the client sends a second DHCP request 
+</I>&gt;<i> when dhcpcd starts with networking.  Does anyone have any opinions on the 
+</I>&gt;<i> best way to approach disabling the second DHCP request?
+</I>
+the kiwi netboot linuxrc code sends a &quot;dhcpcd -k&quot; to release the
+ip address in order to allow the system image to setup the network
+in the way the user configured it. That's the reason why the linuxrc
+should release the deployment IP. 
+
+To make sure you got the IP from only one dhcp server I always use
+unique host entries, example:
+
+host D11 {
+   hardware ethernet 00:0c:6e:aa:57:2d;
+   fixed-address 192.168.100.11;
+   filename &quot;pxelinux.0&quot;;
+}
+
+Problem is you need to do that on a per mac address base but multiple
+&quot;conflicting&quot; dhcp servers in on network seems to be always problematic
+
+just my 2 cents
+
+PS:
+if you don't want linuxrc to release the network you need to clone
+the netboot image description and patch the code there
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000763.html">[Kiwi-users] Diskless PXE client
+</A></li>
+	<LI>Next message: <A HREF="000765.html">[Kiwi-users] grub message changed without notice
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#764">[ date ]</a>
+              <a href="thread.html#764">[ thread ]</a>
+              <a href="subject.html#764">[ subject ]</a>
+              <a href="author.html#764">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

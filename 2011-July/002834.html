@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20creating%20an%20OpenSuse%2011.4%20installation%0A%09disc&In-Reply-To=%3C20110717192847.GA2909%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002833.html">
+   <LINK REL="Next"  HREF="002837.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20creating%20an%20OpenSuse%2011.4%20installation%0A%09disc&In-Reply-To=%3C20110717192847.GA2909%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc">ms at suse.de
+       </A><BR>
+    <I>Sun Jul 17 21:28:47 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002833.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+</A></li>
+        <LI>Next message: <A HREF="002837.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2834">[ date ]</a>
+              <a href="thread.html#2834">[ thread ]</a>
+              <a href="subject.html#2834">[ subject ]</a>
+              <a href="author.html#2834">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I've been able to create an ISO that includes the updated kernel of OpenSuse
+</I>&gt;<i> 11.4,
+</I>&gt;<i> i.e. kernel.2.6.37.6-0.5-desktop.
+</I>&gt;<i> 
+</I>&gt;<i> However, when booting from USB at home I get this error:
+</I>&gt;<i> 
+</I>&gt;<i> FATAL: /lib/modules/2.6.37-0.5-desktop/modules.dep: no such file or
+</I>&gt;<i> directory
+</I>&gt;<i> 
+</I>&gt;<i> The modules.dep is in fact in the image the Kiwi system has generated:
+</I>&gt;<i> 
+</I>&gt;<i> $ pwd
+</I>&gt;<i> /tmp/myiso
+</I>&gt;<i> $ cd lib/modules/2.6.37.6-0.5-desktop/
+</I>&gt;<i> $ ls -l
+</I>&gt;<i> total 2472
+</I>&gt;<i> drwxr-xr-x 12 root root   4096 14 jul 19:00 kernel
+</I>&gt;<i> -rw-r--r--  1 root root 602670 14 jul 19:00 modules.alias
+</I>&gt;<i> -rw-r--r--  1 root root 580626 14 jul 19:00 modules.alias.bin
+</I>&gt;<i> -rw-r--r--  1 root root   4683 26 abr 21:18 modules.builtin
+</I>&gt;<i> -rw-r--r--  1 root root   6220 14 jul 19:00 modules.builtin.bin
+</I>&gt;<i> -rw-r--r--  1 root root 268582 14 jul 19:00 modules.dep
+</I>&gt;<i> -rw-r--r--  1 root root 396363 14 jul 19:00 modules.dep.bin
+</I>&gt;<i> -rw-r--r--  1 root root    248 14 jul 19:00 modules.devname
+</I>&gt;<i> -rw-r--r--  1 root root 105461 26 abr 21:18 modules.order
+</I>&gt;<i> -rw-r--r--  1 root root    131 14 jul 19:00 modules.softdep
+</I>&gt;<i> -rw-r--r--  1 root root 231606 14 jul 19:00 modules.symbols
+</I>&gt;<i> -rw-r--r--  1 root root 295855 14 jul 19:00 modules.symbols.bin
+</I>&gt;<i> drwxr-xr-x  2 root root   4096 14 jul 19:00 systemtap
+</I>&gt;<i> drwxr-xr-x  2 root root   4096 14 jul 19:00 vdso
+</I>&gt;<i> $
+</I>&gt;<i> 
+</I>&gt;<i> Is there any reason for which the modules.dep has not been included ?
+</I>&gt;<i> 
+</I>&gt;<i> Here are the changes I did to config.xml of the template suse-live-iso just
+</I>&gt;<i> in case...
+</I>&gt;<i> 
+</I>&gt;<i>     &lt;packages type=&quot;image&quot; patternType=&quot;plusRecommended&quot;&gt;
+</I>&gt;<i>         &lt;package name=&quot;bootsplash-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+</I>&gt;<i> bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i>         &lt;package name=&quot;gfxboot-branding-openSUSE&quot; bootinclude=&quot;true&quot;
+</I>&gt;<i> bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i>         &lt;package name=&quot;kernel-desktop&quot; bootinclude=&quot;true&quot;
+</I>&gt;<i> bootdelete=&quot;true&quot;/&gt; ## added
+</I>&gt;<i>         &lt;package
+</I>&gt;<i> name=&quot;kernel-desktop&quot;/&gt;
+</I>&gt;<i> ## modifed
+</I>&gt;<i>         &lt;package name=&quot;ifplugd&quot;/&gt;
+</I>&gt;<i>         &lt;package name=&quot;vim&quot;/&gt;
+</I>&gt;<i>          &lt;package
+</I>&gt;<i> name=&quot;yast2-live-installer&quot;/&gt;
+</I>&gt;<i> ## added
+</I>&gt;<i>         &lt;opensusePattern name=&quot;default&quot;/&gt;
+</I>&gt;<i>         &lt;opensusePattern
+</I>&gt;<i> name=&quot;gnome&quot;/&gt;                                                      ##
+</I>&gt;<i> modified
+</I>&gt;<i>     &lt;/packages&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Many thanks for your time,
+</I>
+yes you forgot one important thing:
+
+    &lt;type image=&quot;iso&quot; .... bootkernel=&quot;desktop&quot;/&gt;
+
+With your changes so far you told the system to install the
+desktop kernel but that doesn't have an effect on the boot image
+(the initrd). As result you have installed the desktop kernel
+in the system image but the default kernel in the initrd.
+Such kernel mismatches causes strange effects.
+
+So if you want another than the default kernel to be used
+you should do it the following way:
+
+1) change &lt;package name=&quot;kernel-default&quot;/&gt; to the kernel
+   you want. In your case
+
+   &lt;package name=&quot;kernel-desktop&quot;/&gt;
+
+2) add the appropriate bootkernel attribute to the &lt;type&gt;
+   you are about to build. I guess you want to build the iso
+   type so in your case
+
+   &lt;type image=&quot;iso&quot; primary=&quot;true&quot; boot=&quot;isoboot/suse-11.4&quot; hybrid=&quot;true&quot; flags=&quot;clic&quot; bootkernel=&quot;desktop&quot;/&gt;
+
+That's it you don't need more. I saw you added bootinclude=&quot;true&quot;
+that's not required because the kernel setup is all part of the
+selected bootkernel=&quot;...&quot;
+
+Hope that fixes it
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002833.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+</A></li>
+	<LI>Next message: <A HREF="002837.html">[Kiwi-users] Problems creating an OpenSuse 11.4 installation	disc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2834">[ date ]</a>
+              <a href="thread.html#2834">[ thread ]</a>
+              <a href="subject.html#2834">[ subject ]</a>
+              <a href="author.html#2834">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

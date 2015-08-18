@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] The best method to remove unwanted applets
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20The%20best%20method%20to%20remove%20unwanted%20applets&In-Reply-To=%3CAANLkTimrj7jDOZvCrSyf0mcH_C12x6fqc91fSBbVyHWD%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002565.html">
+   <LINK REL="Next"  HREF="002569.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] The best method to remove unwanted applets</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20The%20best%20method%20to%20remove%20unwanted%20applets&In-Reply-To=%3CAANLkTimrj7jDOZvCrSyf0mcH_C12x6fqc91fSBbVyHWD%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] The best method to remove unwanted applets">eportel6607 at gmail.com
+       </A><BR>
+    <I>Tue Mar 29 13:57:51 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002565.html">[Kiwi-users] The best method to remove unwanted applets
+</A></li>
+        <LI>Next message: <A HREF="002569.html">[Kiwi-users] The best method to remove unwanted applets
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2567">[ date ]</a>
+              <a href="thread.html#2567">[ thread ]</a>
+              <a href="subject.html#2567">[ subject ]</a>
+              <a href="author.html#2567">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Mar 29, 2011 at 2:37 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> Guys what is the best method to removing Yast and menu items? &#160;It it
+</I>&gt;&gt;<i> best to run commands in the image.sh script to remove the individual
+</I>&gt;&gt;<i> items (.desktop files, etc) or should this be done another way..maybe
+</I>&gt;&gt;<i> by removing them from the unpacked image (before the &quot;create&quot; stage?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> As an example I would like to remove all the printing package from my
+</I>&gt;&gt;<i> kiwi config.xml file /image. &#160; However if I remove the
+</I>&gt;&gt;<i> &quot;system-config-printer&quot; package I end up with an error when logging in
+</I>&gt;&gt;<i> to the users desktop. &#160;I'll see if I can obtain the exact error if
+</I>&gt;&gt;<i> needed. &#160; My point is that I can't seem to remove this last of the
+</I>&gt;&gt;<i> printer packages if I do I end up with a desktop environment that has
+</I>&gt;&gt;<i> many problems. &#160;I would prefer to remove as many package that aren't
+</I>&gt;&gt;<i> need as possible to make the image as small as possible but it looks
+</I>&gt;&gt;<i> like the only other alternative is to remove the .desktop file for
+</I>&gt;&gt;<i> each Yast applet and menu item that I don't want.
+</I>&gt;<i>
+</I>&gt;<i> I would do that from the config.sh script. It's kind of a time
+</I>&gt;<i> consuming task as you already found out there are many references
+</I>&gt;<i> which you might break
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>Thanks Marcus
+Ok so in the config.sh script this should most like go before the
+SuseConfig section?  Maybe where my existing &quot;rpm&quot; un/install section
+is?
+C
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002565.html">[Kiwi-users] The best method to remove unwanted applets
+</A></li>
+	<LI>Next message: <A HREF="002569.html">[Kiwi-users] The best method to remove unwanted applets
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2567">[ date ]</a>
+              <a href="thread.html#2567">[ thread ]</a>
+              <a href="subject.html#2567">[ subject ]</a>
+              <a href="author.html#2567">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

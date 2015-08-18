@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] cache for downloaded packages?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20cache%20for%20downloaded%20packages%3F&In-Reply-To=%3C200802062027.51431.ml%40radoeka.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000289.html">
+   <LINK REL="Next"  HREF="000293.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] cache for downloaded packages?</H1>
+    <B>Richard Bos</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20cache%20for%20downloaded%20packages%3F&In-Reply-To=%3C200802062027.51431.ml%40radoeka.nl%3E"
+       TITLE="[Kiwi-users] cache for downloaded packages?">ml at radoeka.nl
+       </A><BR>
+    <I>Wed Feb  6 20:27:51 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000289.html">[Kiwi-users] cache for downloaded packages?
+</A></li>
+        <LI>Next message: <A HREF="000293.html">[Kiwi-users] cache for downloaded packages?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#292">[ date ]</a>
+              <a href="thread.html#292">[ thread ]</a>
+              <a href="subject.html#292">[ subject ]</a>
+              <a href="author.html#292">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Op Wednesday 06 February 2008 06:57:22 schreef CyberOrg:
+&gt;<i> &gt; The other problem is, that some of the packages are being retrieved from
+</I>&gt;<i> &gt; within the chroot-ed image. &#160;It will be difficult to cache those
+</I>&gt;<i> &gt; packages....
+</I>&gt;<i>
+</I>&gt;<i> May be something like this can be called when the smart/zypper
+</I>&gt;<i> finishes retrieving packages in the chroot, the rpm folder can then be
+</I>&gt;<i> used as rpm-dir repo on subsequent builds.
+</I>&gt;<i>
+</I>&gt;<i> find $KIWIBUILDDIR/var/cache -type f -name *.rpm -exec cp {}
+</I>&gt;<i> /somewhere/else \;
+</I>
+smart stores it packages in /var/lib/smart/packages.  Dunno where zypper 
+stores its packages.  However, smart removes it packages after installation 
+and I'm not aware whether smart can be configured to _not_ clean the cache.
+
+If smart can not be configured to keep its cache than perhaps something like 
+this can be done?
+smart install --download &lt;packages&gt;
+rsync -a --delete &lt;smart package cache&gt; &lt;smart package store&gt;
+smart install &lt;packages&gt;
+Next time the packages from the stored can be copied in the cache.
+
+If I'm not mistaken there are actually 2 smart runs:
+1) the image creation to setup all the basics, which is done from the host 
+system.  So this run uses the host file system
+2) the other rpms (applicaton rpms) done from the chroot'ed image.  So those 
+downloaded rpms are installed in another &lt;smart package cache&gt;
+
+Is the assumption correct?  If so the copy and rsync (between the cache and 
+store need to be done twice).
+
+-- 
+Richard Bos
+We are borrowing the world of our children,
+It is not inherited from our parents.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000289.html">[Kiwi-users] cache for downloaded packages?
+</A></li>
+	<LI>Next message: <A HREF="000293.html">[Kiwi-users] cache for downloaded packages?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#292">[ date ]</a>
+              <a href="thread.html#292">[ thread ]</a>
+              <a href="subject.html#292">[ subject ]</a>
+              <a href="author.html#292">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

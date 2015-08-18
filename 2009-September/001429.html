@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] boot failure on USB stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20boot%20failure%20on%20USB%20stick&In-Reply-To=%3C20090903120325.GA23712%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001428.html">
+   <LINK REL="Next"  HREF="001430.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] boot failure on USB stick</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20boot%20failure%20on%20USB%20stick&In-Reply-To=%3C20090903120325.GA23712%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] boot failure on USB stick">ms at novell.com
+       </A><BR>
+    <I>Thu Sep  3 14:03:25 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001428.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+        <LI>Next message: <A HREF="001430.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1429">[ date ]</a>
+              <a href="thread.html#1429">[ thread ]</a>
+              <a href="subject.html#1429">[ subject ]</a>
+              <a href="author.html#1429">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Thanks, but that still leaves a significant difference in the calculation. 
+</I>&gt;<i> Using blockdev on the stick in question:
+</I>&gt;<i>
+</I>&gt;<i> # blockdev --getsize64 /dev/sde 8032092160
+</I>&gt;<i>
+</I>&gt;<i> For the same stick the boot log showed diskXMBytes=7660.
+</I>&gt;<i>
+</I>&gt;<i> Where is the additional space?
+</I>
+I don't know why fdisk sometimes reports the wrong size but
+blockdev just calls an ioctl to obtain the size of the device.
+I trust these values more because the kernel controls and registers
+the device. Even if this value wouldn't be correct according to
+what the vendor of the disk said you wouldn't be able to use
+more than the space reported by blockdev
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001428.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+	<LI>Next message: <A HREF="001430.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1429">[ date ]</a>
+              <a href="thread.html#1429">[ thread ]</a>
+              <a href="subject.html#1429">[ subject ]</a>
+              <a href="author.html#1429">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

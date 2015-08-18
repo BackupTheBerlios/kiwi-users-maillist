@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Using firstboot to run custom script
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20firstboot%20to%20run%20custom%20script&In-Reply-To=%3C200909041530.32226.jsuchome%40suse.cz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001433.html">
+   <LINK REL="Next"  HREF="001435.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Using firstboot to run custom script</H1>
+    <B>Ji&#345;&#237; Suchomel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20firstboot%20to%20run%20custom%20script&In-Reply-To=%3C200909041530.32226.jsuchome%40suse.cz%3E"
+       TITLE="[Kiwi-users] Using firstboot to run custom script">jsuchome at suse.cz
+       </A><BR>
+    <I>Fri Sep  4 15:30:32 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001433.html">[Kiwi-users] Using firstboot to run custom script
+</A></li>
+        <LI>Next message: <A HREF="001435.html">[Kiwi-users] Fw: Vedr.: Re: Problem with network module during	boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1434">[ date ]</a>
+              <a href="thread.html#1434">[ thread ]</a>
+              <a href="subject.html#1434">[ subject ]</a>
+              <a href="author.html#1434">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Friday 04 of September 2009 12:55:55 Robert Schweikert wrote:
+&gt;<i> Peter Schinagl wrote:
+</I>&gt;<i> &gt; Hi Robert,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; please have a look at the kiwi cookbook
+</I>&gt;<i> &gt;  <A HREF="http://en.opensuse.org/Build_Service/KIWI/Cookbook">http://en.opensuse.org/Build_Service/KIWI/Cookbook</A>
+</I>&gt;<i> &gt;   -&gt; Pimp your USB stick - our fourth recipe
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  <A HREF="http://en.opensuse.org/Build_Service/KIWI/Cookbook/FAQ">http://en.opensuse.org/Build_Service/KIWI/Cookbook/FAQ</A>
+</I>&gt;<i> &gt;   -&gt; Q: How to build a JeOS with a graphical firstboot
+</I>&gt;<i>
+</I>&gt;<i> Peter,
+</I>&gt;<i>
+</I>&gt;<i> Thanks for the pointers. Still leaves me with the question, once I put
+</I>&gt;<i> my Python script into /usr/share/firstboot/scripts how do I actually get
+</I>&gt;<i> it to be executed. The mere presence of the file in the directory is not
+</I>&gt;<i> sufficient.
+</I>
+Firstboot mechanism really just takes all scripts from this directory (well, 
+exactly from the directory specified as SCRIPT_DIR in 
+your /etc/sysconfig/firstboot, but this is the default value) and executes 
+them. So if your script is executable directly from shell (executable rights, 
+header pointing to interpreter), it should work.
+
+Jiri
+
+
+-- 
+Jiri Suchomel
+
+SUSE LINUX, s.r.o.                            e-mail: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jsuchome at suse.cz</A>
+Lihovarsk&#225; 1060/12                            tel: +420 284 028 960
+190 00 Praha 9, Czech Republic                <A HREF="http://www.suse.cz">http://www.suse.cz</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001433.html">[Kiwi-users] Using firstboot to run custom script
+</A></li>
+	<LI>Next message: <A HREF="001435.html">[Kiwi-users] Fw: Vedr.: Re: Problem with network module during	boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1434">[ date ]</a>
+              <a href="thread.html#1434">[ thread ]</a>
+              <a href="subject.html#1434">[ subject ]</a>
+              <a href="author.html#1434">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

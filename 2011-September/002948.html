@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi and cross platform
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20cross%20platform&In-Reply-To=%3C20110930083226.GA22868%40D13.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002947.html">
+   <LINK REL="Next"  HREF="002949.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi and cross platform</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20and%20cross%20platform&In-Reply-To=%3C20110930083226.GA22868%40D13.ddts.net%3E"
+       TITLE="[Kiwi-users] Kiwi and cross platform">ms at suse.de
+       </A><BR>
+    <I>Fri Sep 30 10:32:26 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002947.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+        <LI>Next message: <A HREF="002949.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2948">[ date ]</a>
+              <a href="thread.html#2948">[ thread ]</a>
+              <a href="subject.html#2948">[ subject ]</a>
+              <a href="author.html#2948">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Is this feeling correct. That the current kiwi version can &quot;only&quot; build
+</I>&gt;<i> images for the same architecture as it's running on?
+</I>
+yes this feeling is correct. I can't tell about other package formats
+but at least for rpm it would mean we have to pass the --ignorearch
+option which I think can't be added to zypper
+
+In theory I think it would be possible to install everything but kiwi
+also does some other tasks which conflicts here. For example scripts
+are executed inside the new root tree via chroot. It would cause e.g.
+the bash for arch 'x' to be called which surely will not work due to
+the incompatible binary format. There might be other problems here
+which I did not think about
+
+and that's basically the most important problem I see here.
+If I don't have a real machine at hand I will use a VM layer around
+and build the image inside that VM contained system. The
+downsides:
+
+ 1) it's slow
+ 2) it requires a base distro for that architecture available
+
+Another way to do cross image builds would be to massacre the
+environment like a root kit does :) so overloading of libraries
+and other hacks might work but frankly said I don't like this
+and in the end I'm not sure if that's faster than a VM
+
+Talking about arm:
+   
+In reference to your other mail talking about arm the second
+item mentioned above is a problem at least for SUSE here. The suse
+arm port is just beginning and so I was looking around and found
+that probably Debian seems to be the best arm supported system
+at the moment. In order to let kiwi create Debian images we
+have to add support for the dpkg package manager and also for
+the boot code (initrd). That surely can be done in a clean way
+because the kiwi code base is open for all distros. But I also
+would love to see a suse arm core distro available ;)  
+ 
+The other imho more important part is the arm hardware itself.
+low end machines like mobile phones and that kind of gadgets are
+surely not capable of building operating system images. They are
+more the target for the appliances. So it would be nice to have
+arm based server hardware which is rare. But it's interesting to
+watch the industry here something is going on with arm and server
+boards. The cpu emulation in kvm for arm is for a processor
+which is not available as a real toy, until then I think a good
+start would be to make kiwi work here:
+
+  <A HREF="http://www.aurel32.net/info/debian_arm_qemu.php">http://www.aurel32.net/info/debian_arm_qemu.php</A>
+
+makes sense ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002947.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+	<LI>Next message: <A HREF="002949.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2948">[ date ]</a>
+              <a href="thread.html#2948">[ thread ]</a>
+              <a href="subject.html#2948">[ subject ]</a>
+              <a href="author.html#2948">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

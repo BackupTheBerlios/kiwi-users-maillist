@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /home in an oem preload image.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/home%20in%20an%20oem%20preload%20image.&In-Reply-To=%3C1298366341.635.19.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002375.html">
+   <LINK REL="Next"  HREF="002378.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /home in an oem preload image.</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/home%20in%20an%20oem%20preload%20image.&In-Reply-To=%3C1298366341.635.19.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] /home in an oem preload image.">roger at opq.se
+       </A><BR>
+    <I>Tue Feb 22 10:19:01 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002375.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+        <LI>Next message: <A HREF="002378.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2376">[ date ]</a>
+              <a href="thread.html#2376">[ thread ]</a>
+              <a href="subject.html#2376">[ subject ]</a>
+              <a href="author.html#2376">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2011-02-21 at 12:16 -0500, Robert Schweikert wrote:
+
+&gt;<i> Just to add to the info Marcus already provided. You can also follow the
+</I>&gt;<i> data separation example:
+</I>&gt;<i> <A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_Data_Separation">http://en.opensuse.org/SDB:KIWI_Cookbook_Data_Separation</A> to create the
+</I>&gt;<i> extra partition. Then in a script you can reset /etc/fstab
+</I>
+This seems to be the method I will use.  I have only this question:
+
+Shouldn't the call to partx to update the partition info in the kernel
+be after the partition is added and BEFORE mkfs? Otherwise, mkfs
+complains that the new partition does not exist. If I move the partx
+call, this does not happen.
+
+After doing this change, the sleep call seems unnecessary as well.
+
+After I run this on a few different systems, I will let you know if I
+had to do any other changes.
+
+Thanks for this. It really has helped me a lot.
+
+
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002375.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+	<LI>Next message: <A HREF="002378.html">[Kiwi-users] /home in an oem preload image.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2376">[ date ]</a>
+              <a href="thread.html#2376">[ thread ]</a>
+              <a href="subject.html#2376">[ subject ]</a>
+              <a href="author.html#2376">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

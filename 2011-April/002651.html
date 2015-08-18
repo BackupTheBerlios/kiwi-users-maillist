@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110414073407.GA3515%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002649.html">
+   <LINK REL="Next"  HREF="002653.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110414073407.GA3515%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">ms at suse.de
+       </A><BR>
+    <I>Thu Apr 14 09:34:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002649.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002653.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2651">[ date ]</a>
+              <a href="thread.html#2651">[ thread ]</a>
+              <a href="subject.html#2651">[ subject ]</a>
+              <a href="author.html#2651">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Marcus,
+</I>&gt;<i> What ever you did, worked!
+</I>
+:<i>-) nice
+</I>
+&gt;<i> &gt; This is because I moved from fat16 to fat32
+</I>&gt;<i> Do you mean that you added the fat32 support instead of the fat16 the
+</I>&gt;<i> way we had it before?
+</I>&gt;<i> If so does that mean that the fat storage partition can now how 32gb?
+</I>&gt;<i> It doesn't really matter either way, at least not for this project as
+</I>&gt;<i> 4gb is enought...but if fat32 supports that much more space the means
+</I>&gt;<i> the the flash drive can be that much larger.
+</I>
+yes this is true the fat storage can be much larger now _BUT_
+I have no experience how syslinux behaves if it grows beyond 4G
+I mean I don't know if you still can boot from it
+
+&gt;<i> A few question on some things that have changed.
+</I>&gt;<i> Until now, after the first boot the only files/folders on the flash
+</I>&gt;<i> drive was &quot;boot&quot; and &quot;ldlinux.sys&quot; and my script would change the
+</I>&gt;<i> attubutes so these file/folders whould be hidden when viewed in
+</I>&gt;<i> Windows.  When I look at the flash drive now there is much more on the
+</I>&gt;<i> drive.
+</I>&gt;<i> 
+</I>&gt;<i> 1) syslinux
+</I>&gt;<i> 2) boot.readme
+</I>&gt;<i> 3) config-2.6.34-12-default
+</I>&gt;<i> 4) message
+</I>&gt;<i> 5) symvers-2.6.34-12-default.gz
+</I>&gt;<i> 6) System.map-2.6.34-12-default
+</I>&gt;<i> 7) vmlinux-2.6.34-12-default.gz
+</I>&gt;<i> 8) boot
+</I>&gt;<i> 9) ldlinux.sys
+</I>&gt;<i> 
+</I>&gt;<i> Is this normal that all these files remain on the drive after the
+</I>&gt;<i> first boot now that the changes have been made to kiwi?
+</I>&gt;<i> If so, I'll update my script to hide these files and folders as well.
+</I>
+This is the normal set of files yes. They are there to stay
+compatible with a standard suse linux box.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002649.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002653.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2651">[ date ]</a>
+              <a href="thread.html#2651">[ thread ]</a>
+              <a href="subject.html#2651">[ subject ]</a>
+              <a href="author.html#2651">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

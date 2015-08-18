@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] errors when building oem type with lvm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20when%20building%20oem%20type%20with%20lvm&In-Reply-To=%3C291A23B717F9104985651112DB6C365F285673C564%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002788.html">
+   <LINK REL="Next"  HREF="002778.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] errors when building oem type with lvm</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20when%20building%20oem%20type%20with%20lvm&In-Reply-To=%3C291A23B717F9104985651112DB6C365F285673C564%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] errors when building oem type with lvm">john.lund at emc.com
+       </A><BR>
+    <I>Fri Jun 17 03:16:26 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002788.html">[Kiwi-users] errors when building oem type with lvm
+</A></li>
+        <LI>Next message: <A HREF="002778.html">[Kiwi-users] problem with delete type packages list
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2789">[ date ]</a>
+              <a href="thread.html#2789">[ thread ]</a>
+              <a href="subject.html#2789">[ subject ]</a>
+              <a href="author.html#2789">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Thanks for looking into the issue.  Yes the build system is SLES11-SP1.
+I'm currently using kiwi 4.88 on another SLES11-SP1 system without this issue so far.  I'll put the diagnostics below into our build scripts and investigate further on the system where the issue has been seen consistently.
+
+Thanks again,
+John Lund 
+EMC Atmos &#8211; Access &amp; Platform Team
+(508) 249-5473 
+(571) 484-0139 Mobile 
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A> 
+
+
+________________________________________
+From: Marcus Sch&#228;fer [<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>]
+Sent: Thursday, June 16, 2011 5:17 PM
+To: Lund, John
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] errors when building oem type with lvm
+
+Hi,
+
+&gt;<i> I'm seeing the following errors when building an eom kiwi
+</I>&gt;<i> image with --lvm on SLES 11 SP1.  parted and kiwi versions follow:
+</I>&gt;<i>
+</I>&gt;<i> i | parted     | package    | 1.8.8-102.21.8 | x86_64 | SLES11SP1DVD1
+</I>&gt;<i>
+</I>&gt;<i> kiwi version v4.91.2
+</I>&gt;<i> GIT Commit: f906db3e38127c5a22bdfb8b25f55b7c4f441a81
+</I>
+The build system (the machine you called kiwi on) is SLE11-SP1 ?
+
+&gt;<i> The following is trying to build our kiwi setup:
+</I>&gt;<i> Jun-13 16:32:13 &lt;1&gt; : EXEC [/usr/sbin/parted  -s /dev/loop3 unit cyl mkpart primary 0 6 2&gt;&amp;1]
+</I>&gt;<i> Jun-13 16:32:23 &lt;1&gt; : Error: Error informing the kernel about modifications to partition /dev/loop3_part1 -- Invalid argument.  This means Linux won't know about an
+</I>&gt;<i>
+</I>&gt;<i> ...
+</I>&gt;<i>
+</I>&gt;<i> Has anyone seen this type of issue before?   Any ideas on how to troublshoot/resolve/get around the problem.
+</I>
+Hmm, that's not easy to debug without access to the machine.
+What you can do is:
+
+1) make sure the loop setup is clean. So before you call kiwi
+   check with 'losetup -a' whether there are currently loop
+   devices in use and if so clean them up if possible
+
+2) if the loop situation is clean call 'kiwi --create ...'
+   again and send me the complete log file
+
+I have tried building the JeOS with --lvm and it workded for me
+so I can't reproduce this yet. I called it that way:
+
+ kiwi --build template/ix86/suse-11.4-JeOS/ -d /tmp/mytest/ \
+      --type oem --set-repo <A HREF="iso:///image/CDs/openSUSE-11.4-DVD-x86_64.iso">iso:///image/CDs/openSUSE-11.4-DVD-x86_64.iso</A> \
+      --lvm
+
+Regards,
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002788.html">[Kiwi-users] errors when building oem type with lvm
+</A></li>
+	<LI>Next message: <A HREF="002778.html">[Kiwi-users] problem with delete type packages list
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2789">[ date ]</a>
+              <a href="thread.html#2789">[ thread ]</a>
+              <a href="subject.html#2789">[ subject ]</a>
+              <a href="author.html#2789">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

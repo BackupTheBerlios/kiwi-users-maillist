@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB stick filesystem is not properly expanded
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20stick%20filesystem%20is%20not%20properly%20expanded&In-Reply-To=%3C4DB5E35B.4010506%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002689.html">
+   <LINK REL="Next"  HREF="002695.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB stick filesystem is not properly expanded</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20stick%20filesystem%20is%20not%20properly%20expanded&In-Reply-To=%3C4DB5E35B.4010506%40novell.com%3E"
+       TITLE="[Kiwi-users] USB stick filesystem is not properly expanded">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Apr 25 23:10:51 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002689.html">[Kiwi-users] Updating the package list
+</A></li>
+        <LI>Next message: <A HREF="002695.html">[Kiwi-users] USB stick filesystem is not properly expanded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2690">[ date ]</a>
+              <a href="thread.html#2690">[ thread ]</a>
+              <a href="subject.html#2690">[ subject ]</a>
+              <a href="author.html#2690">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is the first since the change to the USB paradigm, i.e. since 
+image=&quot;usb&quot; went away that I tested the new deployment method and I have 
+run into an issue. Using the following type definition i config.xml:
+
+&lt;type image=&quot;oem&quot; boot=&quot;oemboot/suse-11.3&quot; filesystem=&quot;ext3&quot; 
+bootloader=&quot;syslinux&quot;&gt;
+     &lt;oemconfig&gt;
+	&lt;oem-swap&gt;true&lt;/oem-swap&gt;
+	&lt;oem-systemsize&gt;1024&lt;/oem-systemsize&gt;
+	&lt;oem-silent-boot&gt;true&lt;/oem-silent-boot&gt;
+     &lt;/oemconfig&gt;
+&lt;/type&gt;
+
+-&gt; kiwi --prepare .... --root ....
+-&gt; kiwi --create .... -d ....
+
+Then dd the raw image to the stick. Upon boot I would expect the file 
+system to expand to take over the rest of the stick, but it doesn't. On 
+the system running from the stick on a laptop I get the following 
+information:
+
+-&gt; df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sdb1             4.4G  3.0G  1.2G  73% /
+devtmpfs              976M  260K  976M   1% /dev
+tmpfs                 976M  7.4M  968M   1% /dev/shm
+/dev/sdb2              98M   25M   73M  26% /boot
+
+-&gt; fdisk -l
+Disk /dev/sdb: 8032 MB, 8032092160 bytes
+4 heads, 32 sectors/track, 122560 cylinders
+Units = cylinders of 128 * 512 = 65536 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x7013bf8d
+
+    Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1               1       72232     4622832   83  Linux
+/dev/sdb2   *       72233       73792       99840    c  W95 FAT32 (LBA)
+
+
+Something is amiss here. I think we have a bug :(
+
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002689.html">[Kiwi-users] Updating the package list
+</A></li>
+	<LI>Next message: <A HREF="002695.html">[Kiwi-users] USB stick filesystem is not properly expanded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2690">[ date ]</a>
+              <a href="thread.html#2690">[ thread ]</a>
+              <a href="subject.html#2690">[ subject ]</a>
+              <a href="author.html#2690">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Optimizing turnaround time
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3C20080408084034.GA9633%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000551.html">
+   <LINK REL="Next"  HREF="000553.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Optimizing turnaround time</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3C20080408084034.GA9633%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Optimizing turnaround time">ms at suse.de
+       </A><BR>
+    <I>Tue Apr  8 10:40:34 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000551.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+        <LI>Next message: <A HREF="000553.html">[Kiwi-users] Data Only Image versus Split Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#554">[ date ]</a>
+              <a href="thread.html#554">[ thread ]</a>
+              <a href="subject.html#554">[ subject ]</a>
+              <a href="author.html#554">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Luis,
+
+&gt;<i> OK, I didn't want to dedicate too long to this, but WTH...
+</I>&gt;<i> 
+</I>&gt;<i> From the smart FAQ:
+</I>&gt;<i> 
+</I>&gt;<i> ------------------
+</I>&gt;<i> 
+</I>&gt;<i> How do I keep the downloaded files after installation?
+</I>&gt;<i> 
+</I>&gt;<i> You can do this once by using  smart -o remove-packages=false
+</I>&gt;<i> &lt;insall|upgrade&gt; , or set this as a permanent option using  smart
+</I>&gt;<i> config --set remove-packages=false . The files are kept on
+</I>&gt;<i> /var/lib/smart/packages.
+</I>&gt;<i> 
+</I>&gt;<i> ------------------
+</I>&gt;<i> 
+</I>&gt;<i> I have grepped for this option in /usr/share/kiwi/modules with no
+</I>&gt;<i> results, which makes me think that it is not used, so the packages
+</I>&gt;<i> cache is deleted since that is smart's default behaviour, if I am not
+</I>&gt;<i> mistaken.
+</I>
+Holla that's pretty much true. I will fix that and give it a test
+I think I didn't had a real close look to the contents of
+/var/lib/smart. The simple existence I thought would be ok
+_bad mistake_
+
+Attached is a patch which should fix it. Could you confirm ?
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.diff
+Type: text/x-patch
+Size: 552 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080408/6e1556cb/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080408/6e1556cb/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000551.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+	<LI>Next message: <A HREF="000553.html">[Kiwi-users] Data Only Image versus Split Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#554">[ date ]</a>
+              <a href="thread.html#554">[ thread ]</a>
+              <a href="subject.html#554">[ subject ]</a>
+              <a href="author.html#554">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

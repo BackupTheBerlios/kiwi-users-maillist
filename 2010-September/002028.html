@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Request for comment, Additional grouping functionality
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Request%20for%20comment%2C%20Additional%20grouping%20functionality&In-Reply-To=%3C4C8E6D0C.7070005%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002026.html">
+   <LINK REL="Next"  HREF="002030.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Request for comment, Additional grouping functionality</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Request%20for%20comment%2C%20Additional%20grouping%20functionality&In-Reply-To=%3C4C8E6D0C.7070005%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] Request for comment, Additional grouping functionality">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Mon Sep 13 20:27:24 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002026.html">[Kiwi-users] config.sh not applied in final image
+</A></li>
+        <LI>Next message: <A HREF="002030.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2028">[ date ]</a>
+              <a href="thread.html#2028">[ thread ]</a>
+              <a href="subject.html#2028">[ subject ]</a>
+              <a href="author.html#2028">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>  Hi Everyone,
+
+After reviewing the work I did to the initial grouping code that took 
+into account cases where the IP addresses may not be sequential, or the 
+vendors are different. I have come up with a case where I think some 
+additional work may need to be done to incorporate additional 
+enhancements. As such, I'm posting here to start a discussion to get 
+input from the main KIWI developer. I should be able to help incorporate 
+these ideas into the group code, and or other areas that might be able 
+to make use of it.
+
+The working case in question requires that a set of mixed vendor 
+hardware function as a single group. This group requires these machines 
+to differ due to available hardware requirements, such as the following 
+(this is an arbitrary example, but is conceivable as a valid configuration):
+
+stations 1-5 require 2 serial ports, 1 non-touch screen with 1024x768x24 
+resolution, 1 PS/2 mouse, and 1 keyboard, 1 printer
+stations 6-15 require 4 serial ports, 1 touch screen with 800x600x16 
+resolution, no mouse and no keyboard
+stations 16-35 require 6 serial ports, 1 touch screen with 1280x1024x24 
+bit resolution, no mouse, no keyboard, but specific serial ports have to 
+be assigned to certain hardware.
+
+For what ever reason, stations 1-5 are from one vendor, 6-15 from a 
+second, and 16-35 from a third. However, the storage configuration is 
+the same with a common CF card size used across the board. In addition, 
+there are 15 groups configured exactly the same, but all are assigned to 
+boot off the same DHCP/PXE server. The 15 groups also boot from the same 
+source image, seeing as I see no need to customize multiple images with 
+simple alternative configuration files could be used. They are, however, 
+different in that they are assigned different source servers, or something.
+
+So, with the current group configuration I would create 45 group 
+entries, and 45 group files in addition to all the supporting 
+application configuration files. There would be quite a lot of 
+duplication involved as 3 group files would be pointing to the same 
+source server or other application, and that would be repeated 15 times 
+for the various source servers, etc.
+
+What I am proposing is to add some form of &quot;hardware inheritance&quot; 
+grouping that could help simplify things immensely. With hardware 
+inheritance we  would have to only create 15 group files, 3 hardware 
+&quot;vendor&quot; files, and the application specific configuration files. 
+Continuing our example, here would be an optimized set of configuration 
+files for a single group:
+
+config.group:
+
+KIWI_GROUP=&quot;group1, group2, group3, ... group15&quot;
+
+group1_KIWI_MAC_LIST=&quot;xx:xx:xx:xx:xx:x1, xx:xx:xx:xx:xx:x2, 
+xx:xx:xx:xx:xx:x3, ..., xx:xx:xx:xx:xx:35&quot;
+...
+
+The config.group1 file would contain:
+
+KIWI_INITRD=/boot/initrd
+KIWI_KERNEL=/boot/linux
+DISK=/dev/sda
+PART=5;S;x,769;L;/,x;L;x,
+IMAGE=/dev/sda2;test_group1-11.3-pxe-client.i686;0.0.1;192.168.xxx.xxx;4096
+UNIONFS_CONFIG=/dev/sda3,/dev/sda2,clicfs
+CONF=prefs.js;/home/kioskuser/.mozilla/firefox/mjc8q85s.default;192.168.xxx.xxx;4096
+HARDWARE_MAP=&quot;vendor1, vendor2, vendor3&quot;
+vendor1_HARDWARE_MAP=&quot;xx:xx:xx:xx:xx:x1, xx:xx:xx:xx:xx:x2, ..., 
+xx:xx:xx:xx:xx:x5&quot;
+vendor2_HARDWARE_MAP=&quot;xx:xx:xx:xx:xx:x6, xx:xx:xx:xx:xx:x7, ..., 
+xx:xx:xx:xx:xx:15&quot;
+vendor3_HARDWARE_MAP=&quot;xx:xx:xx:xx:xx:16, xx:xx:xx:xx:xx:17, ..., 
+xx:xx:xx:xx:xx:35&quot;
+
+This way, we could point KIWI to load up &quot;KIWI/hardware_map.vendor1&quot; or 
+even put it as part of the vendor map itself, but allow the user to link 
+hardware MAC addresses to the assigned mapping.
+
+Inside the hardware_map.vendor1 file would reside an additional set of 
+parameters:
+
+CONF=serial.vendor1;/etc/sysconfig/custom_serial_config;192.168.xxx.xxx;4096, 
+etc...
+
+inside hardware_map.vendor2 would be:
+
+CONF=serial.vendor2;/etc/sysconfig/custom_serial_config;192.168.xxx.xxx;4096, 
+etc...
+
+etc.
+
+This should reduce the number of files that require additional 
+management, and enable these hardware_map.vendorx files to be used 
+across all 15 groups, seeing as the hardware was placed as such.
+
+I think if we could add this ability to the grouping component, we could 
+address pretty much all cases that might come up in relation to terminal 
+deployment, and be able to provide more configuration flexibility.
+
+Because this would add variables to the config.&lt;group_name&gt; files, I 
+figured it would be best to talk it through first before, as essentially 
+each machine would be assigned to two groups, one to link it to what 
+ever application it is going to be utilizing, and one to ensure the 
+hardware is configured the way it is needed. It might also be useful to 
+non-PXE specific areas.
+
+I'm not sold on the HARDWARE_MAP elements being added to the 
+config.&lt;group_name&gt; file, and it may be more appropriate in the 
+config.group file, maybe by simply adding 3 additional groups at the end 
+of the group list or an additional_groups parameter or something that 
+would be searched in addition to the initial group itself.
+
+Definitely want some thoughts before moving forward with it.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002026.html">[Kiwi-users] config.sh not applied in final image
+</A></li>
+	<LI>Next message: <A HREF="002030.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2028">[ date ]</a>
+              <a href="thread.html#2028">[ thread ]</a>
+              <a href="subject.html#2028">[ subject ]</a>
+              <a href="author.html#2028">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Handling languages in KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Handling%20languages%20in%20KIWI&In-Reply-To=%3C20110301080228.GA5968%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002397.html">
+   <LINK REL="Next"  HREF="002403.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Handling languages in KIWI</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Handling%20languages%20in%20KIWI&In-Reply-To=%3C20110301080228.GA5968%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Handling languages in KIWI">ms at suse.de
+       </A><BR>
+    <I>Tue Mar  1 09:02:28 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002397.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+        <LI>Next message: <A HREF="002403.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2398">[ date ]</a>
+              <a href="thread.html#2398">[ thread ]</a>
+              <a href="subject.html#2398">[ subject ]</a>
+              <a href="author.html#2398">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I would like to know how KIWI handles languages.
+</I>
+In principal kiwi doesn't deal with the language setup of the
+later system image. That's because it's a system configuration task.
+But kiwi supports different locales and encodings while inside
+the initrd. This is used for example to display messages and
+license text and such. In order to have all the required locale
+fonts and encodings installed kiwi provides the locale element
+
+   &lt;locale&gt;en_US,de_DE&lt;/locale&gt;
+
+kiwi only supports UTF-8 locales inside the initrd though and
+we are using the unicode font to display any kind of messages
+
+&gt;<i> YaST has a &quot;languages&quot; 
+</I>&gt;<i> feature that allows you to just choose a language which autoselects packages 
+</I>&gt;<i> for that language instead of having to choose package by package for that 
+</I>&gt;<i> language. It's in YaST &#8594; Software management &#8594; View &#8594; languages
+</I>
+This is correct and imho you should make use of that feature
+by using a autoyast profile and place it inside the kiwi image
+description. Only problem here is that you need an installation
+source registered in zypper in order to install packages later
+on. You also can contact Michael Andres &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ma at novell.com</A>&gt;, he can
+tell you how to query zypper to create a list of language
+dependant packages
+
+&gt;<i> Things like this help removing languages when installing from a Live CD that 
+</I>&gt;<i> has multiple languages (instead of having to know all the language 
+</I>&gt;<i> packages).ie: a KDE Live CD installation always ends up with English, German 
+</I>&gt;<i> and Russian packages, no matter what language you chose.
+</I>&gt;<i> 
+</I>&gt;<i> Unfortunately, zypper dropped the languages feature and I don't know if KIWI 
+</I>&gt;<i> has something similar.
+</I>&gt;<i> 
+</I>&gt;<i> My idea is to clean up extra language packages from 
+</I>&gt;<i> <A HREF="http://svn.opensuse.org/svn/yast/trunk/live-">http://svn.opensuse.org/svn/yast/trunk/live-</A>
+</I>&gt;<i> installer/src/inst_live_cleanup.ycp
+</I>
+----snip--------
+Some time ago I asked the same questions and got the following:
+
+  Q: How to find all langauge specific packages.
+
+  A: All packages providing 'locale(.*)'
+
+  '.*' actually is '[PACKAGE:]LANG{;LANG}'
+
+So you'd need &quot;zypper what-provides 'locale(*)'&quot; but AFAIK what-provides does
+not support any globing or regex.
+
+&gt;<i> Thanks and in '[PACKAGE:]LANG{;LANG}' LANG is always the two letter
+</I>&gt;<i> language code like &quot;de&quot; or also de_DE or a mixture of both ?
+</I>
+Complete locale code, so it may even include '@' forms. E.g.:
+
+  locale(sr;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sr at Latn</A>;sv;ta;tr;uk;vi;wa;xh;zh_CN;zh_TW;zu)
+----snap--------
+
+&gt;<i> Does it make sense?
+</I>&gt;<i> Handling languages instead of packages in this case would facilitate this a 
+</I>&gt;<i> lot.
+</I>
+I agree it makes sense but kiwi doesn't have direct support for
+it. Let me know if the above helps you. If so we could check if we
+can add it to kiwi  
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002397.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+	<LI>Next message: <A HREF="002403.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2398">[ date ]</a>
+              <a href="thread.html#2398">[ thread ]</a>
+              <a href="subject.html#2398">[ subject ]</a>
+              <a href="author.html#2398">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

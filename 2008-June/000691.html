@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20with%3A%20kiwi%20--type%20usb%20--create%0A%09/tmp/kiwi-tmp%20-d%20/tmp/kiwi-image%20--logfile%20terminal&In-Reply-To=%3C20080612150345.GA13908%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000690.html">
+   <LINK REL="Next"  HREF="000692.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20with%3A%20kiwi%20--type%20usb%20--create%0A%09/tmp/kiwi-tmp%20-d%20/tmp/kiwi-image%20--logfile%20terminal&In-Reply-To=%3C20080612150345.GA13908%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal">ms at novell.com
+       </A><BR>
+    <I>Thu Jun 12 17:03:46 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000690.html">[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+        <LI>Next message: <A HREF="000692.html">[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#691">[ date ]</a>
+              <a href="thread.html#691">[ thread ]</a>
+              <a href="subject.html#691">[ subject ]</a>
+              <a href="author.html#691">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; The message file is required if you want to boot with a graphics
+</I>&gt;<i> &gt; screen. I don't see this problem and I'm wondering why the message file
+</I>&gt;<i> &gt; is missing. In step2 you already should have gotten a .splash.gz
+</I>&gt;<i> &gt; file. So the call should work with
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  kiwi --bootstick
+</I>&gt;<i> &gt; /tmp/kiwi-image/initrd-usbboot-suse-10.3.i686-2.1.1.splash.gz\
+</I>&gt;<i> &gt; --bootstick-system /tmp/kiwi-image/openSUSE-10.3.i686-2.5.1
+</I>&gt;<i> 
+</I>&gt;<i> I'm calling
+</I>&gt;<i> 
+</I>&gt;<i> kiwi --bootstick \
+</I>&gt;<i>   /tmp/kiwi-image/initrd-usbboot-suse-11.0.x86_64-2.1.1.splash.gz \
+</I>&gt;<i>   --bootstick-system /tmp/kiwi-image/openSUSE-11.0.x86_64-2.5.1
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> &gt; If not I need the log file from Step2
+</I>&gt;<i> 
+</I>&gt;<i> Attached.
+</I>
+Thanks for the logs. I have recreated the boot image for 11.0 and
+couldn't reproduce this problem:
+
+	gzip -cd initrd-usbboot-suse-11.0.x86_64-2.1.1.gz | cpio -it | grep image/loader/message
+	image/loader/message
+	85474 blocks
+
+The log also didn't point out that the message file has been removed
+I'm confused. which kiwi version is this ? could you call the gzip -cd ..
+command above on your initrd-usbboot-suse-11.0.x86_64-2.1.1.gz file
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000690.html">[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+	<LI>Next message: <A HREF="000692.html">[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#691">[ date ]</a>
+              <a href="thread.html#691">[ thread ]</a>
+              <a href="subject.html#691">[ subject ]</a>
+              <a href="author.html#691">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] vanilla oem image 11.4 fails in --create stage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20vanilla%20oem%20image%2011.4%20fails%20in%20--create%20stage&In-Reply-To=%3C4E157F89.90109%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002824.html">
+   <LINK REL="Next"  HREF="002826.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] vanilla oem image 11.4 fails in --create stage</H1>
+    <B>Peter Schinagl</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20vanilla%20oem%20image%2011.4%20fails%20in%20--create%20stage&In-Reply-To=%3C4E157F89.90109%40suse.de%3E"
+       TITLE="[Kiwi-users] vanilla oem image 11.4 fails in --create stage">peters at suse.de
+       </A><BR>
+    <I>Thu Jul  7 11:42:33 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002824.html">[Kiwi-users] vanilla oem image 11.4 fails in --create stage
+</A></li>
+        <LI>Next message: <A HREF="002826.html">[Kiwi-users] vanilla oem image 11.4 fails in --create stage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2825">[ date ]</a>
+              <a href="thread.html#2825">[ thread ]</a>
+              <a href="subject.html#2825">[ subject ]</a>
+              <a href="author.html#2825">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 07.07.2011 10:11, E.Waelde wrote:
+&gt;<i>
+</I>&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I'm experimenting with kiwi, I would like to build an OEM image for
+</I>&gt;<i> openSUSE 11.4.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> kiwi --version
+</I>&gt;<i> Jul-07 10:08:11 &lt;1&gt; : kiwi version v4.92.1
+</I>&gt;<i> GIT Commit: 56be332f6f3e2031fac024e28e59b120096f2f36
+</I>&gt;<i>
+</I>&gt;<i> kiwi --prepare /usr/share/kiwi/image/suse-11.4-JeOS --force-new-root
+</I>&gt;<i> --root ./mt-compile-11.4-root --set-repo /space/repos/11.4 --type oem
+</I>&gt;<i> kiwi --create ./mt-compile-11.4-root --destdir ./mt-compile-11.4-test
+</I>&gt;<i> --type oem
+</I>&gt;<i>
+</I>&gt;<i> anything wrong already?
+</I>&gt;<i>
+</I>&gt;<i> The complete log file is attached.
+</I>&gt;<i>
+</I>&gt;<i> Ideas?
+</I>The logfile show that busybox is missing which generate the error
+
+--snip--
+'busybox' not found in package names. Trying capabilities.
+No provider of 'busybox' found.
+  ECODE=104
++ echo 104
++ echo 104
++ exit 104
+[*** end ***]
+Jul-07 10:03:14 &lt;1&gt; : Removing zypper service(s): genName_1310025326 done
+Jul-07 10:03:14 &lt;3&gt; : Image installation failed failed
+--snip--
+
+So it looks like it is not in your local repository /space/repos/11.4
+
+cu
+  Peter
+
+&gt;<i> Erich
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">root at de03s-lx3</A>:/space/ew/BuildImage-11.4/trunk&gt; kiwi --prepare
+</I>&gt;<i> /usr/share/kiwi/image/suse-11.4-JeOS --force-new-root --root
+</I>&gt;<i> /mt-compile-11.4-root --set-repo /space/repos/11.4 --type oem
+</I>&gt;<i> Jul-07 09:55:26 &lt;1&gt; : Specified relative path for target directory;
+</I>&gt;<i> target is /space/ew/BuildImage-11.4/trunk/./mt-compile-11.4-root
+</I>&gt;<i> Jul-07 09:55:26 &lt;1&gt; : Description provides no MD5 hash, check
+</I>&gt;<i> Jul-07 09:55:26 &lt;1&gt; : Reading image description [Prepare]...
+</I>&gt;<i> Jul-07 09:55:26 &lt;1&gt; : Using profile(s): vmxFlavour done
+</I>&gt;<i> Jul-07 09:55:27 &lt;1&gt; : Removing old root directory
+</I>&gt;<i> '/space/ew/BuildImage-11.4/trunk/./mt-compile-11.4-root' done
+</I>&gt;<i> Jul-07 09:55:28 &lt;1&gt; : Set root log:
+</I>&gt;<i> /space/ew/BuildImage-11.4/trunk/./mt-compile-11.4-root.26845.screenrc.log...
+</I>&gt;<i> done
+</I>&gt;<i> Jul-07 09:55:28 &lt;1&gt; : Setting up package manager: zypper done
+</I>&gt;<i> Jul-07 09:55:28 &lt;1&gt; : Setting RPM doc exclusion to: true done
+</I>&gt;<i> Jul-07 09:55:28 &lt;1&gt; : Creating default template files for new root
+</I>&gt;<i> system done
+</I>&gt;<i> Jul-07 09:55:28 &lt;1&gt; : Importing build keys... done
+</I>&gt;<i> Jul-07 09:55:29 &lt;1&gt; : Adding bootstrap zypper service:
+</I>&gt;<i> genName_1310025326 done
+</I>&gt;<i> Jul-07 09:55:29 &lt;1&gt; : --&gt; Requesting product:openSUSE done
+</I>&gt;<i> Jul-07 09:55:29 &lt;1&gt; : --&gt; Requesting pattern:base done
+</I>&gt;<i> Jul-07 09:55:29 &lt;1&gt; : Setting up bootstrap baselibs... done
+</I>&gt;<i> Jul-07 09:55:29 &lt;1&gt; : Initializing image system on:
+</I>&gt;<i> /space/ew/BuildImage-11.4/trunk/./mt-compile-11.4-root... done
+</I>&gt;<i> Jul-07 09:55:49 &lt;1&gt; : Mounting required file systems done
+</I>&gt;<i> Jul-07 09:55:49 &lt;1&gt; : Mounting local channel: genName_1310025326 skipped
+</I>&gt;<i> Jul-07 09:55:49 &lt;2&gt; : Path /space/repos/11.4 is writable, trying
+</I>&gt;<i> read-only mount skipped
+</I>&gt;<i> Jul-07 09:55:49 &lt;2&gt; : Couldn't mount read-only, using bind mount done
+</I>&gt;<i> Jul-07 09:55:49 &lt;1&gt; : Setting RPM doc exclusion to: true done
+</I>&gt;<i> Jul-07 09:55:49 &lt;1&gt; : Adding chroot zypper service: genName_1310025326 done
+</I>&gt;<i> Jul-07 09:55:49 &lt;1&gt; : Installing image packages... done
+</I>&gt;<i> Jul-07 09:56:36 &lt;1&gt; : Copying user defined files to image tree done
+</I>&gt;<i> Jul-07 09:56:36 &lt;1&gt; : Create .profile for package scripts done
+</I>&gt;<i> Jul-07 09:56:36 &lt;1&gt; : Modifying user: root [root] done
+</I>&gt;<i> Jul-07 09:56:36 &lt;1&gt; : Setting owner/group permissions root [root] done
+</I>&gt;<i> Jul-07 09:56:36 &lt;1&gt; : Calling image script: config.sh done
+</I>&gt;<i> Jul-07 09:56:38 &lt;1&gt; : Cleanup temporary copy of resolv.conf done
+</I>&gt;<i> Jul-07 09:56:38 &lt;1&gt; : Cleanup temporary copy of hosts done
+</I>&gt;<i> Jul-07 09:56:38 &lt;1&gt; : Removing zypper service: genName_1310025326
+</I>&gt;<i> Jul-07 09:56:39 &lt;1&gt; : KIWI exited successfully done
+</I>&gt;<i> Jul-07 09:56:39 &lt;1&gt; : Complete logfile at:
+</I>&gt;<i> /space/ew/BuildImage-11.4/trunk/./mt-compile-11.4-root.log done
+</I>&gt;<i> Jul-07 09:56:39 &lt;1&gt; : Removing zypper service: genName_1310025326
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">root at de03s-lx3</A>:/space/ew/BuildImage-11.4/trunk&gt; kiwi --create
+</I>&gt;<i> /mt-compile-11.4-root --destdir ./mt-compile-11.4-test --type oem
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Reading image description [Create]...
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Using profile(s): vmxFlavour done
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : --&gt; Requesting product:openSUSE done
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : --&gt; Requesting pattern:base done
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Image update:
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : --&gt; Install/Update: kernel-default
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : --&gt; Remove: kernel-xen xen xen-tools
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Description provides no MD5 hash, check
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Reading image description [Upgrade]...
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Using profile(s): vmxFlavour done
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Set root log:
+</I>&gt;<i> /mt-compile-11.4-root.31417.screenrc.log... done
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Setting up package manager: zypper done
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Mounting required file systems done
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Mounting local channel: genName_1310025326 skipped
+</I>&gt;<i> Jul-07 10:02:49 &lt;2&gt; : Path /space/repos/11.4 is writable, trying
+</I>&gt;<i> read-only mount skipped
+</I>&gt;<i> Jul-07 10:02:49 &lt;2&gt; : Couldn't mount read-only, using bind mount done
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Adding chroot zypper service: genName_1310025326 done
+</I>&gt;<i> Jul-07 10:02:49 &lt;1&gt; : Upgrading image... done
+</I>&gt;<i> Jul-07 10:02:50 &lt;1&gt; : Removing zypper service: genName_1310025326
+</I>&gt;<i> Jul-07 10:02:50 &lt;1&gt; : Removing zypper service: genName_1310025326
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Updating type in .profile environment done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Image requires 695M, got 695M done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Suggested Image size: 695M done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : --&gt; Creating VMX boot image: oemboot/suse-11.4...
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Using profile(s): default,std done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Checking for pre-built boot image notset
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : --&gt; Prepare boot image (initrd)...
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Updating repository node(s) done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Updating package(s):
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : --&gt; bootsplash-branding-openSUSE
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : --&gt; gfxboot-branding-openSUSE
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Updating element locale: en_US done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Updating element boot-theme: openSUSE done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Updating element packagemanager: zypper done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Updating OEM element oem-systemsize: 2048 done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Updating OEM element oem-boot-title:
+</I>&gt;<i> LimeJeOS-openSUSE-11.4 done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Updating image attribute: displayname done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Using profile(s): default,std done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Using boot theme: openSUSE done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Setting up package manager: zypper done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Creating default template files for new root
+</I>&gt;<i> system done
+</I>&gt;<i> Jul-07 10:02:51 &lt;1&gt; : Importing build keys... done
+</I>&gt;<i> Jul-07 10:02:52 &lt;1&gt; : Adding bootstrap zypper service:
+</I>&gt;<i> genName_1310025326 done
+</I>&gt;<i> Jul-07 10:02:52 &lt;1&gt; : Setting up bootstrap baselibs... done
+</I>&gt;<i> Jul-07 10:02:52 &lt;1&gt; : Initializing image system on:
+</I>&gt;<i> /space/ew/BuildImage-11.4/trunk/mt-compile-11.4-test/boot-VMX.Fdj5OX/kiwi-VMXboot-31417...
+</I>&gt;<i> done
+</I>&gt;<i> Jul-07 10:03:13 &lt;1&gt; : Mounting required file systems done
+</I>&gt;<i> Jul-07 10:03:13 &lt;1&gt; : Mounting local channel: genName_1310025326 skipped
+</I>&gt;<i> Jul-07 10:03:13 &lt;2&gt; : Path /space/repos/11.4 is writable, trying
+</I>&gt;<i> read-only mount skipped
+</I>&gt;<i> Jul-07 10:03:13 &lt;2&gt; : Couldn't mount read-only, using bind mount done
+</I>&gt;<i> Jul-07 10:03:13 &lt;1&gt; : Adding chroot zypper service: genName_1310025326 done
+</I>&gt;<i> Jul-07 10:03:14 &lt;1&gt; : Installing image packages... failed
+</I>&gt;<i> [*** log excerpt follows, screen ***]
+</I>&gt;<i> No update candidate for 'util-linux-2.19-3.6.1.i586'. The highest
+</I>&gt;<i> available version is already installed.
+</I>&gt;<i> 'bzip2' is already installed.
+</I>&gt;<i> No update candidate for 'bzip2-1.0.6-6.11.i586'. The highest available
+</I>&gt;<i> version is already installed.
+</I>&gt;<i> 'file' is already installed.
+</I>&gt;<i> No update candidate for 'file-5.04-10.1.i586'. The highest available
+</I>&gt;<i> version is already installed.
+</I>&gt;<i> 'busybox' not found in package names. Trying capabilities.
+</I>&gt;<i> No provider of 'busybox' found.
+</I>&gt;<i> ECODE=104
+</I>&gt;<i> + echo 104
+</I>&gt;<i> + exit 104
+</I>&gt;<i> [*** end ***]
+</I>&gt;<i> Jul-07 10:03:14 &lt;1&gt; : Removing zypper service(s): genName_1310025326 done
+</I>&gt;<i> Jul-07 10:03:14 &lt;3&gt; : Image installation failed failed
+</I>&gt;<i> Jul-07 10:03:14 &lt;1&gt; : Removing zypper service: genName_1310025326
+</I>&gt;<i> [*** log excerpt follows, last significant bytes ***]
+</I>&gt;<i> &lt;specification&gt;boot/initrd image used on OEM VMX disk&lt;/specification&gt;
+</I>&gt;<i> &lt;/description&gt;
+</I>&gt;<i> &lt;preferences&gt;
+</I>&gt;<i> - &lt;type image=&quot;cpio&quot; bootprofile=&quot;default&quot; bootkernel=&quot;std&quot;/&gt;
+</I>&gt;<i> + &lt;type image=&quot;cpio&quot; bootprofile=&quot;default&quot; bootkernel=&quot;std&quot;&gt;
+</I>&gt;<i> + &lt;oemconfig&gt;
+</I>&gt;<i> + &lt;oem-systemsize&gt;2048&lt;/oem-systemsize&gt;
+</I>&gt;<i> + &lt;oem-boot-title&gt;LimeJeOS-openSUSE-11.4&lt;/oem-boot-title&gt;
+</I>&gt;<i> + &lt;/oemconfig&gt;
+</I>&gt;<i> + &lt;/type&gt;
+</I>&gt;<i> &lt;version&gt;2.7.1&lt;/version&gt;
+</I>&gt;<i> &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+</I>&gt;<i> &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+</I>&gt;<i> + &lt;locale&gt;en_US&lt;/locale&gt;
+</I>&gt;<i> + &lt;boot-theme&gt;openSUSE&lt;/boot-theme&gt;
+</I>&gt;<i> &lt;/preferences&gt;
+</I>&gt;<i> &lt;profiles&gt;
+</I>&gt;<i> &lt;profile name=&quot;default&quot; description=&quot;Booting default setup&quot;/&gt;
+</I>&gt;<i> @@ -81,9 +88,6 @@
+</I>&gt;<i> &lt;drivers type=&quot;drivers&quot; profiles=&quot;xen&quot;&gt;
+</I>&gt;<i> &lt;file name=&quot;drivers/xen/*&quot;/&gt;
+</I>&gt;<i> &lt;/drivers&gt;
+</I>&gt;<i> - &lt;repository type=&quot;yast2&quot; status=&quot;replaceable&quot;&gt;
+</I>&gt;<i> - &lt;source path=&quot;/image/CDs/full-i386&quot;/&gt;
+</I>&gt;<i> - &lt;/repository&gt;
+</I>&gt;<i> &lt;packages type=&quot;image&quot; profiles=&quot;std&quot;&gt;
+</I>&gt;<i> &lt;package name=&quot;kernel-default&quot;/&gt;
+</I>&gt;<i> &lt;/packages&gt;
+</I>&gt;<i> @@ -146,6 +150,8 @@
+</I>&gt;<i> &lt;package name=&quot;dosfstools&quot;/&gt;
+</I>&gt;<i> &lt;package name=&quot;xfsprogs&quot;/&gt;
+</I>&gt;<i> &lt;package name=&quot;kernel-firmware&quot;/&gt;
+</I>&gt;<i> + &lt;package name=&quot;bootsplash-branding-openSUSE&quot;/&gt;
+</I>&gt;<i> + &lt;package name=&quot;gfxboot-branding-openSUSE&quot;/&gt;
+</I>&gt;<i> &lt;/packages&gt;
+</I>&gt;<i> &lt;packages type=&quot;bootstrap&quot;&gt;
+</I>&gt;<i> &lt;package name=&quot;filesystem&quot;/&gt;
+</I>&gt;<i> @@ -191,5 +197,10 @@
+</I>&gt;<i> &lt;package name=&quot;pmtools&quot;/&gt;
+</I>&gt;<i> &lt;package name=&quot;suse-build-key&quot;/&gt;
+</I>&gt;<i> &lt;package name=&quot;make&quot;/&gt;
+</I>&gt;<i> + &lt;package name=&quot;bootsplash-branding-openSUSE&quot;/&gt;
+</I>&gt;<i> + &lt;package name=&quot;gfxboot-branding-openSUSE&quot;/&gt;
+</I>&gt;<i> &lt;/packages&gt;
+</I>&gt;<i> + &lt;repository type=&quot;yast2&quot; status=&quot;fixed&quot; alias=&quot;genName_1310025326&quot;&gt;
+</I>&gt;<i> + &lt;source path=&quot;/space/repos/11.4&quot;/&gt;
+</I>&gt;<i> + &lt;/repository&gt;
+</I>&gt;<i> &lt;/image&gt;
+</I>&gt;<i> :
+</I>&gt;<i> Jul-07 10:03:14 &lt;1&gt; : END XML diff
+</I>&gt;<i> [*** end ***]
+</I>&gt;<i> Jul-07 10:03:14 &lt;3&gt; : KIWI exited with error(s) done
+</I>&gt;<i> Jul-07 10:03:14 &lt;1&gt; : Complete logfile at: ./mt-compile-11.4-root.log done
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+
+-- 
+Peter Schinagl - Technical ISV Relationship Manager
+SUSE LINUX Products GmbH,Maxfeldstrasse 5, 90409 N&#252;rnberg,Germany
+Tel  : +49-911-74053-684           Mobil: +49-179-1308082
+Email: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">peter.schinagl at suse.de</A>
+-----------------------------------------------------------------
+SUSE LINUX Products GmbH, GF: Jeff Hawn, Jennifer Guild, Felix 
+Imend&#246;rffer, HRB 16746 (AG N&#252;rnberg)
+-----------------------------------------------------------------
+Great Minds UnITe
+BrainShare 2011
+Register at novell.com/brainshare
+Follow us at twitter.com/brainshare
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002824.html">[Kiwi-users] vanilla oem image 11.4 fails in --create stage
+</A></li>
+	<LI>Next message: <A HREF="002826.html">[Kiwi-users] vanilla oem image 11.4 fails in --create stage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2825">[ date ]</a>
+              <a href="thread.html#2825">[ thread ]</a>
+              <a href="subject.html#2825">[ subject ]</a>
+              <a href="author.html#2825">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

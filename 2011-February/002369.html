@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SquashFS support in OEM image with SLES10
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SquashFS%20support%20in%20OEM%20image%20with%20SLES10&In-Reply-To=%3C20110221154130.GA4435%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002391.html">
+   <LINK REL="Next"  HREF="002370.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SquashFS support in OEM image with SLES10</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SquashFS%20support%20in%20OEM%20image%20with%20SLES10&In-Reply-To=%3C20110221154130.GA4435%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] SquashFS support in OEM image with SLES10">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 21 16:41:30 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002391.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+        <LI>Next message: <A HREF="002370.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2369">[ date ]</a>
+              <a href="thread.html#2369">[ thread ]</a>
+              <a href="subject.html#2369">[ subject ]</a>
+              <a href="author.html#2369">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have an OpenSuSE 11.3 with kiwi-4.74-203.1 installed with all its utils
+</I>&gt;<i> and templates (kiwi-desc-oemboot-4.74-203.1 included) and I need to build an
+</I>&gt;<i> ISO with a custom SLES10 installable image so once the ISO is booted, it
+</I>&gt;<i> installs the image in a hard drive, I have this in the config.xml file:
+</I>&gt;<i> 
+</I>&gt;<i> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+</I>&gt;<i> &lt;image schemaversion=&quot;4.43&quot; name=&quot;sles10-oem-preload&quot;
+</I>&gt;<i> displayname=&quot;SLES10_OEM-ISO&quot;&gt;
+</I>&gt;<i> ...
+</I>&gt;<i> &lt;preferences&gt;
+</I>&gt;<i>       &lt;version&gt;0.0.2&lt;/version&gt;
+</I>&gt;<i>     &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+</I>&gt;<i>     &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+</I>&gt;<i>     &lt;rpm-force&gt;true&lt;/rpm-force&gt;
+</I>&gt;<i>     &lt;rpm-excludedocs&gt;true&lt;/rpm-excludedocs&gt;
+</I>&gt;<i>     &lt;keytable&gt;es.map.gz&lt;/keytable&gt;
+</I>&gt;<i>     &lt;timezone&gt;America/Mexico_City&lt;/timezone&gt;
+</I>&gt;<i>         &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-SLES10&quot;
+</I>&gt;<i> installiso=&quot;true&quot;&gt;
+</I>&gt;<i>           &lt;oemconfig&gt;
+</I>&gt;<i>             &lt;!-- &lt;oem-align-partition&gt;true&lt;/oem-align-partition&gt; --&gt;
+</I>&gt;<i>             &lt;oem-boot-title&gt;SLES 10 OEM-ISO&lt;/oem-boot-title&gt;
+</I>&gt;<i>             &lt;oem-bootwait&gt;false&lt;/oem-bootwait&gt;
+</I>&gt;<i>             &lt;oem-inplace-recovery&gt;false&lt;/oem-inplace-recovery&gt;
+</I>&gt;<i>             &lt;oem-kiwi-initrd&gt;false&lt;/oem-kiwi-initrd&gt;
+</I>&gt;<i>             &lt;oem-partition-install&gt;false&lt;/oem-partition-install&gt;
+</I>&gt;<i>             &lt;oem-reboot&gt;false&lt;/oem-reboot&gt;
+</I>&gt;<i>             &lt;oem-reboot-interactive&gt;false&lt;/oem-reboot-interactive&gt;
+</I>&gt;<i>             &lt;oem-recovery&gt;false&lt;/oem-recovery&gt;
+</I>&gt;<i>             &lt;oem-shutdown&gt;false&lt;/oem-shutdown&gt;
+</I>&gt;<i>             &lt;oem-shutdown-interactive&gt;false&lt;/oem-shutdown-interactive&gt;
+</I>&gt;<i>             &lt;oem-swap&gt;true&lt;/oem-swap&gt;
+</I>&gt;<i>             &lt;oem-swapsize&gt;300&lt;/oem-swapsize&gt;
+</I>&gt;<i>             &lt;oem-unattended&gt;true&lt;/oem-unattended&gt;
+</I>&gt;<i>           &lt;/oemconfig&gt;
+</I>&gt;<i>         &lt;/type&gt;
+</I>&gt;<i>     &lt;/preferences&gt;
+</I>&gt;<i> 
+</I>&gt;<i> The thing is that it makes a SquashFS compressed image, that SLES10 doesn't
+</I>&gt;<i> support, and for special requirements, I don't want to install it in the
+</I>&gt;<i> kernel and/or image.
+</I>&gt;<i> 
+</I>&gt;<i> How can I make this OEM Image inside an ISO but without using SquashFS?
+</I>
+The current version of kiwi rely on squashfs to compress the
+image file which is installed on the target. Because sle10 doesn't
+support squashfs in the kernel you have two options:
+
+1) use the kiwi version SuSE Studio uses (11.3 kiwi plus patches)
+   from here:
+
+   <A HREF="http://download.opensuse.org/repositories/home:/ctso/openSUSE_11.3">http://download.opensuse.org/repositories/home:/ctso/openSUSE_11.3</A>
+
+2) use the SLE11 kiwi which also should work for SLE10 images if
+   you use smart as package manager (which you did).
+
+These kiwi versions still uses gzip to compress the image file on
+the install media. But be aware that we will switch to the latest
+version of kiwi for SuSE studio as soon as 11.4 is out
+
+I'm sorry but I think there is no squashfs enabled sle10 kernel
+out there which you would need in order to use the latest
+version of kiwi's install images
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002391.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+	<LI>Next message: <A HREF="002370.html">[Kiwi-users] SquashFS support in OEM image with SLES10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2369">[ date ]</a>
+              <a href="thread.html#2369">[ thread ]</a>
+              <a href="subject.html#2369">[ subject ]</a>
+              <a href="author.html#2369">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

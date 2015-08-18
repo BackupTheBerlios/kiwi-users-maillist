@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Can't set permissions for user to write to fat	partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20set%20permissions%20for%20user%20to%20write%20to%20fat%0A%09partition&In-Reply-To=%3C20110418082749.GB24217%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002659.html">
+   <LINK REL="Next"  HREF="002663.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Can't set permissions for user to write to fat	partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20set%20permissions%20for%20user%20to%20write%20to%20fat%0A%09partition&In-Reply-To=%3C20110418082749.GB24217%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Can't set permissions for user to write to fat	partition">ms at suse.de
+       </A><BR>
+    <I>Mon Apr 18 10:27:49 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002659.html">[Kiwi-users] Can't set permissions for user to write to fat	partition
+</A></li>
+        <LI>Next message: <A HREF="002663.html">[Kiwi-users] Can't set permissions for user to write to fat	partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2661">[ date ]</a>
+              <a href="thread.html#2661">[ thread ]</a>
+              <a href="subject.html#2661">[ subject ]</a>
+              <a href="author.html#2661">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi
+
+&gt;<i> I've been doing the majority of my devel work on my live usb image as
+</I>&gt;<i> root.  I'm am now ready to set all the permissions for a user.  I have
+</I>&gt;<i> been unsuccessful to change the permissions on the mounted directory
+</I>&gt;<i> to allow a user to write/read from it.  Even manually setting the
+</I>&gt;<i> permission does not work.  Although there is no error when the command
+</I>&gt;<i> is executed the permissions.
+</I>&gt;<i> 
+</I>&gt;<i> Marcus helped me with a script that looks for the fat partition an
+</I>&gt;<i> mounts this partition.  This partition mounts to a folder in / file
+</I>&gt;<i> tree.  Inside this folder is a bunch of system files and folder such
+</I>&gt;<i> as &quot;boot&quot; and other config files.  Also in this folder is a storage
+</I>&gt;<i> folder. It is this folder that I would like to change the permissions
+</I>&gt;<i> for and everything inside this folder.  Robert gave me a few tips to
+</I>&gt;<i> look at regarding mounting rules but nothing seem to worked.
+</I>
+Are you talking about the permissions on the fat filesystem ?
+if so fat doesn't have the user bits other filesystems have.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002659.html">[Kiwi-users] Can't set permissions for user to write to fat	partition
+</A></li>
+	<LI>Next message: <A HREF="002663.html">[Kiwi-users] Can't set permissions for user to write to fat	partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2661">[ date ]</a>
+              <a href="thread.html#2661">[ thread ]</a>
+              <a href="subject.html#2661">[ subject ]</a>
+              <a href="author.html#2661">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-tools version question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C20110216161448.GA29404%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002333.html">
+   <LINK REL="Next"  HREF="002335.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-tools version question</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C20110216161448.GA29404%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi-tools version question">ms at suse.de
+       </A><BR>
+    <I>Wed Feb 16 17:14:48 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002333.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+        <LI>Next message: <A HREF="002335.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2334">[ date ]</a>
+              <a href="thread.html#2334">[ thread ]</a>
+              <a href="subject.html#2334">[ subject ]</a>
+              <a href="author.html#2334">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> If I am making an OEM preload using 
+</I>&gt;<i> 
+</I>&gt;<i> &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;&gt;
+</I>&gt;<i> 
+</I>&gt;<i> should it be using this repo for anything: 
+</I>&gt;<i> 
+</I>&gt;<i> 	/usr/share/kiwi/repo/suse-repo/suse-sle11-repo/
+</I>
+no that doesn't fit together, as the name says it's a sle11 repo
+and it only contains a few packages which are not distributed by
+the sle11 media (DVD)
+
+Roger, for a 11.2 image you need a 11.2 distribution repo. This is
+either the 11.2 DVD or the online repo:
+
+   <A HREF="http://download.opensuse.org/distribution/11.2/repo/oss/">http://download.opensuse.org/distribution/11.2/repo/oss/</A>
+
+&gt;<i> In there is kiwi-tools-3.85, which is what gets installed in any images
+</I>&gt;<i> I create (I see this in the log of the image build). But as I am
+</I>&gt;<i> building things with kiwi 4.73, couldn't there be some mismatch between
+</I>&gt;<i> the build tools and the tools later used in the image?
+</I>
+I don't understand why you added that repo for a 11.2 image ?
+you don't need it. 11.2 provides kiwi-tools on the media, sle11 doesn't
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002333.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+	<LI>Next message: <A HREF="002335.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2334">[ date ]</a>
+              <a href="thread.html#2334">[ thread ]</a>
+              <a href="subject.html#2334">[ subject ]</a>
+              <a href="author.html#2334">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Need help with KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Need%20help%20with%20KIWI&In-Reply-To=%3C1277722923.4251.34.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001860.html">
+   <LINK REL="Next"  HREF="001862.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Need help with KIWI</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Need%20help%20with%20KIWI&In-Reply-To=%3C1277722923.4251.34.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] Need help with KIWI">roger at opq.se
+       </A><BR>
+    <I>Mon Jun 28 13:02:03 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001860.html">[Kiwi-users] Need help with KIWI
+</A></li>
+        <LI>Next message: <A HREF="001862.html">[Kiwi-users] Need help with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1861">[ date ]</a>
+              <a href="thread.html#1861">[ thread ]</a>
+              <a href="subject.html#1861">[ subject ]</a>
+              <a href="author.html#1861">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-06-28 at 11:28 +0200, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; In your description, it is most likely option #2 that is happening for
+</I>&gt;<i> &gt; me. The whole point of the original problem is that action #2 works
+</I>&gt;<i> &gt; every single time with images made with kiwi at the time of openSUSE
+</I>&gt;<i> &gt; 10.3. (In fact, I later use the DHCPSIADDR variable to locate some
+</I>&gt;<i> &gt; resources. That is why I recognize it.) By contrast, the exact same
+</I>&gt;<i> &gt; hardware often fails with kiwi images made with kiwi releases for
+</I>&gt;<i> &gt; openSUSE 11.2. The DHCP server is the same. The only difference is that
+</I>&gt;<i> &gt; it is serving an 11.2 kiwi image. I cannot understand why one image
+</I>&gt;<i> &gt; (those made in 10.3) always works, and another (those made in 11.2) have
+</I>&gt;<i> &gt; a high failure rate at this point in booting.
+</I>&gt;<i> 
+</I>&gt;<i> The reason could be the dhcp client contacting the server. on 10.3
+</I>&gt;<i> another client version is used compared to 11.2. I don't have enough
+</I>&gt;<i> knowledge about dhcp but I had a similar problem in my office when
+</I>&gt;<i> updating a machine. I had to remove the lease file which was assigned
+</I>&gt;<i> to this machine in order to make dhcp work again for this client and
+</I>&gt;<i> the reason was the update of the client 
+</I>
+When switching back and forth (10.3 to 11.2), the 11.2 is always having
+the problem. And, after the 11.2 works, it may still fail the very next
+boot. So, two consecutive boots can fail on the second one. The server
+log appear tells that the dhcp requests happened as expected. When a
+lease fails, the server complains in the log.
+
+&gt;<i> &gt; &gt;       /var/lib/dhcpcd/dhcpcd-X.info   (X = interface name eg eth0)
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;    kiwi simply sources that file and it should contain
+</I>&gt;<i> &gt; &gt;    the DHCPSIADDR or DHCPSID information. If you can't find that
+</I>&gt;<i> &gt; &gt;    data you should check the dhcpd.conf why it doesn't provide it
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Is it really the dhcp server that provides this? I would have thought
+</I>&gt;<i> &gt; this was set by the dhcpd client in the kiwi image. I do not think
+</I>&gt;<i> &gt; anything in my kiwi config touches that. It must be whatever kiwi sets
+</I>&gt;<i> &gt; up. Perhaps that is where the issue is?
+</I>&gt;<i> 
+</I>&gt;<i> the dhcp client contacts the server and on success (interface set up)
+</I>&gt;<i> it writes the .info file mentioned above. kiwi sources that file
+</I>&gt;<i> and makes use of the variables in there. The contents of the .info
+</I>&gt;<i> file depends on what the dhcp server exports. That is not related
+</I>&gt;<i> to kiwi
+</I>
+It would be great if I could look at that file when it fails. But even
+with debug on, I do not think I got a prompt. IIRC, this failure is too
+early for that to be possible. I may be remembering wrong.
+
+&gt;<i> &gt; Having said all this, I must admit that the details are a bit rusty. It
+</I>&gt;<i> &gt; was over a year ago that I encountered this. I really should build
+</I>&gt;<i> &gt; images with the latest kiwi releases and see what happens. Lots has
+</I>&gt;<i> &gt; changed in kiwi in the last year.
+</I>&gt;<i> 
+</I>&gt;<i> yep, long time :) but at this point we didn't change much in the
+</I>&gt;<i> kiwi netboot code
+</I>
+I will try making new images some time during the week. I have these
+kiwi things installed. I trust they are up-to-date:
+
+kiwi-doc-4.41-124.1.i586
+kiwi-desc-netboot-4.41-124.1.i586
+kiwi-pxeboot-prebuild-4.26-91.1.i586
+kiwi-instsource-plugins-openSUSE-11-1-2.0-17.1.noarch
+kiwi-desc-vmxboot-4.41-124.1.i586
+kiwi-instsource-plugins-openSUSE-11-3-0.9-5.1.noarch
+kiwi-tools-4.41-124.1.i586
+kiwi-4.41-124.1.i586
+kiwi-desc-usbboot-4.41-124.1.i586
+kiwi-tools-imagewriter-4.16-81.1.i586
+kiwi-desc-isoboot-4.41-124.1.i586
+kiwi-desc-ltsp-0.8.1-3.1.noarch
+kiwi-config-openSUSE-11.2-16.17.2.i586
+kiwi-instsource-4.41-124.1.i586
+kiwi-templates-4.41-124.1.i586
+kiwi-instsource-plugins-openSUSE-11-2-0.9-8.1.noarch
+kiwi-desc-xenboot-4.41-124.1.i586
+kiwi-pxeboot-4.41-124.1.i586
+kiwi-desc-oemboot-4.41-124.1.i586
+kiwi-ltsp-bootimages-0.8.1-2.1.noarch
+kiwi-ltsp-prebuilt-0.8.1-2.1.noarch
+
+
+&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001860.html">[Kiwi-users] Need help with KIWI
+</A></li>
+	<LI>Next message: <A HREF="001862.html">[Kiwi-users] Need help with KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1861">[ date ]</a>
+              <a href="thread.html#1861">[ thread ]</a>
+              <a href="subject.html#1861">[ subject ]</a>
+              <a href="author.html#1861">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Optimizing turnaround time
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804090642g454a998y552e372acf4f62d9%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000556.html">
+   <LINK REL="Next"  HREF="000558.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Optimizing turnaround time</H1>
+    <B>Luis Garrido</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804090642g454a998y552e372acf4f62d9%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Optimizing turnaround time">luisgarrido at users.sourceforge.net
+       </A><BR>
+    <I>Wed Apr  9 15:42:35 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000556.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+        <LI>Next message: <A HREF="000558.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#557">[ date ]</a>
+              <a href="thread.html#557">[ thread ]</a>
+              <a href="subject.html#557">[ subject ]</a>
+              <a href="author.html#557">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>  right, I have added a smart clean at the end of the preparation step
+</I>&gt;<i>
+</I>
+So how do I tell kiwi to keep the cache in the physical extend but not
+to bundle it into the logical extend?
+
+&gt;<i>  I think you have modified the &quot;wrong&quot; config.xml. After you have
+</I>&gt;<i>  prepared the new root tree all information is in that tree including
+</I>&gt;<i>  the image description. So you should change the file:
+</I>&gt;<i>
+</I>&gt;<i>         &lt;image-root&gt;/image/config.xml
+</I>&gt;<i>
+</I>
+Hmm, nope, I think it was indeed the right one. My kiwi tree looks like this:
+
+~/kiwi
+~/kiwi/image
+~/kiwi/image/barebones
+~/kiwi/image/barebones/config.xml
+~/kiwi/root
+
+config.xml includes &lt;defaultroot&gt;root/barebones&lt;/defaultroot&gt;
+
+After executing 'kiwi -p image/barebones' from ~/kiwi I get, among others:
+
+~/kiwi/root/barebones
+~/kiwi/root/barebones/image
+~/kiwi/root/barebones/image/config.xml
+
+I edited ~/kiwi/root/barebones/image/config.xml to add a package and
+then run 'kiwi -u root/barebones'
+
+The resulting log shows that nothing happened and indeed there are no
+new files on my physical extend.
+
+&gt;<i>  right, such a guess may fail as you also could mix up
+</I>&gt;<i>  repositories
+</I>&gt;<i>
+</I>
+But the point is there is no need for it to do it, it is the image
+designer who decides on which repos to use, be them networked or local
+caches.
+
+&gt;<i>  do you mean a paper describing the process ?
+</I>&gt;<i>
+</I>
+Yup, at least in a general way. The PDF is more sort of a user guide
+than a design document, but for me it is difficult to effectively use
+the tool or suggest ways of improvement if I don't understand how the
+process works. A rough sketch would do, even in German, I'd appreciate
+not having to dissect the sources for this :-)
+
+Luis
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000556.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+	<LI>Next message: <A HREF="000558.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#557">[ date ]</a>
+              <a href="thread.html#557">[ thread ]</a>
+              <a href="subject.html#557">[ subject ]</a>
+              <a href="author.html#557">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

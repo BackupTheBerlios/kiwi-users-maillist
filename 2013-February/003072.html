@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to create a pxe image type for a diskless client?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20create%20a%20pxe%20image%20type%20for%20a%20diskless%20client%3F&In-Reply-To=%3C51121643.5070007%40uni-koblenz.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003063.html">
+   <LINK REL="Next"  HREF="003073.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to create a pxe image type for a diskless client?</H1>
+    <B>Rainer Krienke</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20create%20a%20pxe%20image%20type%20for%20a%20diskless%20client%3F&In-Reply-To=%3C51121643.5070007%40uni-koblenz.de%3E"
+       TITLE="[Kiwi-users] How to create a pxe image type for a diskless client?">krienke at uni-koblenz.de
+       </A><BR>
+    <I>Wed Feb  6 09:37:23 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003063.html">[Kiwi-users] xeno kiwi
+</A></li>
+        <LI>Next message: <A HREF="003073.html">[Kiwi-users] How to create a pxe image type for a diskless	client?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3072">[ date ]</a>
+              <a href="thread.html#3072">[ thread ]</a>
+              <a href="subject.html#3072">[ subject ]</a>
+              <a href="author.html#3072">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I would like to create an PXE image using kiwi where the pxe client
+machine has no local disks. I started with the suse-pxe-client example
+which works fine by using the default config.xml provided. Unfortuantely
+this setup needs a local disk.
+
+For the diskless setup I removed the partioning part of config.xml and
+changed the the filesystem to ext3. The cotrresponding part of
+config.xml now looks like this:
+
+        &lt;preferences&gt;
+                &lt;type image=&quot;pxe&quot; filesystem=&quot;ext3&quot;
+boot=&quot;netboot/suse-12.2&quot; ramonly=&quot;true&quot;&gt;
+                        &lt;pxedeploy server=&quot;192.168.10.1&quot; blocksize=&quot;4096&quot;&gt;
+                        &lt;/pxedeploy&gt;
+                &lt;/type&gt;
+		...
+        &lt;/preferences&gt;
+
+On the PXE server I modified tftpboot/KIWI/config.default file so that
+it contains only this line:
+
+IMAGE='/dev/ram1;suse-12.2-pxe-client.x86_64;1.2.8;192.168.10.1;4096'
+
+Building the image is no problem. When the client boots up it loads the
+config.default file and a short while after booting fails. The last
+message I see is:
+
+/sbin/init no such file or not executable
+
+After 2 minutes the system then resets itself.
+
+Doe anyone have a idea what goes wrong or what I have to change in the
+configuration?
+
+Thanks a lot in advance
+Rainer
+-- 
+Rainer Krienke, Uni Koblenz, Rechenzentrum, A22, Universitaetsstrasse  1
+56070 Koblenz, <A HREF="http://userpages.uni-koblenz.de/~krienke,">http://userpages.uni-koblenz.de/~krienke,</A> Tel: +49261287 1312
+PGP: <A HREF="http://userpages.uni-koblenz.de/~krienke/mypgp.html,Fax:">http://userpages.uni-koblenz.de/~krienke/mypgp.html,Fax:</A> +49261287
+1001312
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 263 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20130206/9db004a4/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20130206/9db004a4/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003063.html">[Kiwi-users] xeno kiwi
+</A></li>
+	<LI>Next message: <A HREF="003073.html">[Kiwi-users] How to create a pxe image type for a diskless	client?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3072">[ date ]</a>
+              <a href="thread.html#3072">[ thread ]</a>
+              <a href="subject.html#3072">[ subject ]</a>
+              <a href="author.html#3072">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

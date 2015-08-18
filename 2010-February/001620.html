@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Persistent diskless setup with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3C20100201101806.GC14668%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001617.html">
+   <LINK REL="Next"  HREF="001616.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Persistent diskless setup with kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Persistent%20diskless%20setup%20with%20kiwi&In-Reply-To=%3C20100201101806.GC14668%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Persistent diskless setup with kiwi">ms at novell.com
+       </A><BR>
+    <I>Mon Feb  1 11:18:06 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001617.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+        <LI>Next message: <A HREF="001616.html">[Kiwi-users] NFSROOT and UNIONFS_CONFIG touble
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1620">[ date ]</a>
+              <a href="thread.html#1620">[ thread ]</a>
+              <a href="subject.html#1620">[ subject ]</a>
+              <a href="author.html#1620">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Funny enough, if aufs goes away, what will kiwi do? It uses it for accessing 
+</I>&gt;<i> the repos (for unknown reasons..). At least, it does strange things, if 
+</I>&gt;<i> kiwi cannot load aufs (it leaves strange mount points lying around, which 
+</I>&gt;<i> need to be mkdir'ed before they can be unmounted again.
+</I>
+kiwi doesn't rely on aufs. If it is installed I use it to establish
+real read-only mounts of the repositories to be more safe if people
+call rm -rf on the kiwi root tree :) Unfortunately a bind mount can't
+be done using other options than the original base mount. If no aufs
+is present kiwi uses bind mount to mount the repos inside the chroot
+with the risk that if there is something wrong and people call rm -rf
+on their kiwi root tree they might remove their repos too
+
+&gt;<i> Okay, as a project maintainer, you have to say that.
+</I>
+:<i>-)
+</I>
+&gt;<i> But I'm happy, if I get 
+</I>&gt;<i> to the point, where I was in 2005. Unfortunately it isn't all that easy. 
+</I>&gt;<i> Looks like NFSROOT isn't exercised with UNIONFS_CONFIG setups for some time 
+</I>&gt;<i> as problems in suse-linuxrc and friends indicate. I'm preparing a separate 
+</I>&gt;<i> mail for that.
+</I>
+something like this should work:
+
+   NFSROOT=192.168.100.7;/tmp/kiwi-11.1
+   UNIONFS_CONFIG=/dev/ram1,nfs,aufs
+
+but you don't want to write into RAM you want to write into another
+NFS based location iirc. This is not implemented but I opened
+#575658 for this one (Novell bugzilla)
+
+&gt;<i> That sounds interesting, but again, I'm loosing performance, as I do access 
+</I>&gt;<i> and modify the read-write parts. Is that at least possible with this 
+</I>&gt;<i> approach? (IOW, is that cow file mountable, examinable and modifyable?)
+</I>
+If you want to modify the cow file you need to mount the clicfs
+I agree it's not as easy as with an NFS based system
+
+&gt;<i> &gt; &gt; It looks like current technologies in this area are not able to mimic
+</I>&gt;<i> &gt; &gt; that fully out of the box. Aufs cannot use a nfs mount for its xino
+</I>&gt;<i> &gt; &gt; file, and I do not want to give up on the two nfs mounts, either. But I
+</I>&gt;<i> &gt; &gt; might want to add nfs or nbd based swap (now, that's available). Looks
+</I>&gt;<i> &gt; &gt; like, that I need to use an tmpfs for the xino.
+</I>
+When kiwi mounts the aufs it creates a tmpfs for the xino. If #575658
+is done you should at least be able to use the NFS based system.
+
+Along with #575658 we could also add support for an alternative
+write location for the NBDROOT system. You should be able to export your
+NFS tree's then via nbd and could make use of the swap over nbd feature.
+But you will still use aufs.
+
+&gt;<i> Marcus, be prepared for a couple of patches soon..
+</I>
+whooo, sounds great :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001617.html">[Kiwi-users] Persistent diskless setup with kiwi
+</A></li>
+	<LI>Next message: <A HREF="001616.html">[Kiwi-users] NFSROOT and UNIONFS_CONFIG touble
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1620">[ date ]</a>
+              <a href="thread.html#1620">[ thread ]</a>
+              <a href="subject.html#1620">[ subject ]</a>
+              <a href="author.html#1620">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

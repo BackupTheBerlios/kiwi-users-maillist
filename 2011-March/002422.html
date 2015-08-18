@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTikWBzxvL-jqYp95_eiUN-4p%2BBAzpRU0r4F0sLp1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002421.html">
+   <LINK REL="Next"  HREF="002423.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTikWBzxvL-jqYp95_eiUN-4p%2BBAzpRU0r4F0sLp1%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Mar  4 14:16:19 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002421.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002423.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2422">[ date ]</a>
+              <a href="thread.html#2422">[ thread ]</a>
+              <a href="subject.html#2422">[ subject ]</a>
+              <a href="author.html#2422">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Mar 4, 2011 at 5:44 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> Update.
+</I>&gt;&gt;<i> Thanks guys for setting me straight on this. Ok the two partitions
+</I>&gt;&gt;<i> worked well. &#160;When the OS is running off the USB drive there is
+</I>&gt;&gt;<i> another partition to store data on. &#160;The issue is if I place this
+</I>&gt;&gt;<i> USB drive in a Windows machine (XP, Vista, 7) it indicates that the
+</I>&gt;&gt;<i> USB drive needs to be formated for it to be used.
+</I>&gt;<i>
+</I>&gt;<i> Thanks for the feedback. I really have to blame on Windows here.
+</I>&gt;<i> Sorry man but a USB stick is a disk and it can have more than
+</I>&gt;<i> one partition. Forcing the user to kill everything on the storage
+</I>&gt;<i> just because the first partition is something Windows doesn't
+</I>&gt;<i> understand is insanely pointing into the wrong direction.
+</I>&gt;<i>
+</I>&gt;&gt;<i> &#160;So I think it
+</I>&gt;&gt;<i> evident that the formating used in this case isn't correct or the
+</I>&gt;&gt;<i> order in which the partitions is incorrect. Is it possible that the
+</I>&gt;&gt;<i> Fat partition is &quot;after&quot; the Ext4 partition and that's why Windows
+</I>&gt;&gt;<i> isn't seeing it?
+</I>&gt;<i>
+</I>&gt;<i> Problem is that the fat partition is not the first partition but
+</I>&gt;<i> the second. I think when you plug in a usb stick on Windows it
+</I>&gt;<i> doesn't expect any partition table here and look for a data
+</I>&gt;<i> container and not a disk
+</I>&gt;<i>
+</I>&gt;<i> At the moment I don't know how to fix this. It's because when
+</I>&gt;<i> you create a hybrid image (an iso with a partition table in it)
+</I>&gt;<i> it will always have the OS on the first partition. That's because
+</I>&gt;<i> you don't know about the real geometry of the USB stick you put
+</I>&gt;<i> that image onto, so you have to start at the beginning which is
+</I>&gt;<i> the same place Windows looks for something it understands :(
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+Hmmm  I have to try to get this to work otherwise this project is a
+total waste of time.
+I'm almost positive that Matt (the author of Image Writer) told me
+that this would work.  Today I'm going to look at my notes on what he
+said (3 months ago) and see if he recommended to do anything different
+to achieve what I'm looking for.
+
+When plug in this USB drive into a Linux machine the storage partition
+shows up in the file manager as &quot;CDROM&quot;.  I'm assuming it does this
+because it's a hybrid and the CDROM label is the result of OS seeing
+this partition as an ISO.  Do you guys know of a way to relabel this?
+The label &quot;CDROM&quot; will be confusing for the intended user of this
+image.
+I'm going to my shop now an will focus on this issue today.  I'll
+report back on this issue and what I found. It will most likely take a
+few days to sort out what other possibilities exist.
+
+I was going to try reversing the partition order...but I'm sure you
+guys thought of that.  I assume if I did that, the image wouldn't boot
+from it?
+Ahh  ok I found the email from Matt.  Here is a quote from that email.
+ If you guys see anything wrong with this let me know. I'll work on
+this issue today.
+
+-------------------------------------------------------------------------------------------------------------------
+&quot;If you're building with Kiwi, here's a rough guide that should work:
+
+- Set &lt;type image=&quot;usb&quot;&gt; in the Kiwi XML config.  That'll prevent kiwi
+ from resizing partitions on first boot to take up the whole disk.
+- Write it to disk
+- Resize the partition by running fdisk, deleting the first partition and
+ creating a new first partition a bit larger than it was (say 1GB or so)
+- Unmount the disk if your system automounted it
+- Run
+ # e2fsck /dev/XXX
+ # resize2fs /dev/XXX1
+- Create a new VFAT partition and format it
+
+Now, you might need to reinstall the bootloader, but I can't remember
+what the USB filesystem layout looks like, so see if this works:
+
+- # mount /dev/XXX1 /temporary/mountpoint
+- # grub-install.unsupported --root-directory=/temporary/mountpoint /dev/XXX
+- # rm /temporary/mountpoint/grub/device.map
+
+Otherwise, see if there's a directory on the drive with a grub
+directory, and call grub-install with it as the root-directory.
+
+After that you should have your 1G system partition, the rest as VFAT,
+and the first-boot procedure shouldn't mess it up.&quot;
+
+------------------------------------------------------------------------------------------------------------------
+Thanks guys,
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002421.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002423.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2422">[ date ]</a>
+              <a href="thread.html#2422">[ thread ]</a>
+              <a href="subject.html#2422">[ subject ]</a>
+              <a href="author.html#2422">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

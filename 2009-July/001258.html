@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Howto add your custom boot menu branding...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C4A54DB67.5090609%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001257.html">
+   <LINK REL="Next"  HREF="001260.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Howto add your custom boot menu branding...</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C4A54DB67.5090609%40novell.com%3E"
+       TITLE="[Kiwi-users] Howto add your custom boot menu branding...">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Jul  8 19:46:15 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001257.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+        <LI>Next message: <A HREF="001260.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1258">[ date ]</a>
+              <a href="thread.html#1258">[ thread ]</a>
+              <a href="subject.html#1258">[ subject ]</a>
+              <a href="author.html#1258">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+More questions as I have now entered my usual state of confusion.
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> However, I do not understand/know how to use my own theme, i.e. 
+</I>&gt;&gt;<i> usr/share/gfxboot/themes/myBrand instead of 
+</I>&gt;&gt;<i> usr/share/gfxboot/themes/openSUSE
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> - you need to provide all data according to an existing theme
+</I>&gt;<i>   in your own myBrand directory first
+</I>&gt;<i>
+</I>&gt;<i> - then set:
+</I>&gt;<i>
+</I>&gt;<i>   &lt;boot-theme&gt;myBrand&lt;/boot-theme&gt;
+</I>&gt;<i>
+</I>&gt;<i>   in config.xml
+</I>&gt;<i>   
+</I>Couldn't find a &quot;boot-theme&quot; element in 
+/usr/share/doc/packages/kiwi/schema/kiwi.xsd.html?
+
+Using version 3.61.
+&gt;<i>   
+</I>&gt;&gt;<i> Second when creating an ISO image I still get the openSUSE welcome 
+</I>&gt;&gt;<i> screen, how can this be customized, avoided?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> you can't avoid the welcome message but brand it:
+</I>&gt;<i>
+</I>&gt;<i> /usr/share/gfxboot/themes/SuSE/install/welcome.jpg
+</I>&gt;<i>   
+</I>OK, thanks. Is it correct that this only comes into play for Live ISO 
+images?
+&gt;<i>   
+</I>&gt;&gt;<i> Third, when booting no image is shown, simply a black background with 
+</I>&gt;&gt;<i> the kernel message scrolling by. Is the an ISO image oddity or would 
+</I>&gt;&gt;<i> this be a problem with an installed image as well?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> You are talking about the splash screen. If you can't see
+</I>&gt;<i> it your image doesn't include something like
+</I>&gt;<i>
+</I>&gt;<i> &lt;package name=&quot;bootsplash-branding-openSUSE&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i>
+</I>&gt;<i> in config.xml. To brand the splash screen the data in
+</I>&gt;<i>
+</I>&gt;<i> /etc/bootsplash/themes/openSUSE/images/
+</I>&gt;<i>
+</I>&gt;<i> needs to be changed
+</I>&gt;<i>   
+</I>So the branding via the tarball just takes care of the grub menu 
+background? For my own brand I presume this should then be 
+/etc/bootsplash/themes/myBrand/images and I would get the files into the 
+image via the overlay mechanism or build an rpm, correct?
+
+Thanks,
+Robert
+&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i>   
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001257.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+	<LI>Next message: <A HREF="001260.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1258">[ date ]</a>
+              <a href="thread.html#1258">[ thread ]</a>
+              <a href="subject.html#1258">[ subject ]</a>
+              <a href="author.html#1258">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

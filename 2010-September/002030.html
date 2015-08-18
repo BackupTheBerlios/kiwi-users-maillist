@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Request for comment,	Additional grouping	functionality
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Request%20for%20comment%2C%0A%09Additional%20grouping%09functionality&In-Reply-To=%3C20100914092317.GA19934%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002028.html">
+   <LINK REL="Next"  HREF="002033.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Request for comment,	Additional grouping	functionality</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Request%20for%20comment%2C%0A%09Additional%20grouping%09functionality&In-Reply-To=%3C20100914092317.GA19934%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Request for comment,	Additional grouping	functionality">ms at novell.com
+       </A><BR>
+    <I>Tue Sep 14 11:23:17 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002028.html">[Kiwi-users] Request for comment, Additional grouping functionality
+</A></li>
+        <LI>Next message: <A HREF="002033.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2030">[ date ]</a>
+              <a href="thread.html#2030">[ thread ]</a>
+              <a href="subject.html#2030">[ subject ]</a>
+              <a href="author.html#2030">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Chris,
+
+&gt;<i> What I am proposing is to add some form of &quot;hardware inheritance&quot; grouping 
+</I>&gt;<i> that could help simplify things immensely. With hardware inheritance we  
+</I>&gt;<i> would have to only create 15 group files, 3 hardware &quot;vendor&quot; files, and 
+</I>&gt;<i> the application specific configuration files. Continuing our example, here 
+</I>&gt;<i> would be an optimized set of configuration files for a single group:
+</I>&gt;<i>
+</I>&gt;<i> config.group:
+</I>&gt;<i>
+</I>&gt;<i> KIWI_GROUP=&quot;group1, group2, group3, ... group15&quot;
+</I>&gt;<i>
+</I>&gt;<i> group1_KIWI_MAC_LIST=&quot;xx:xx:xx:xx:xx:x1, xx:xx:xx:xx:xx:x2, 
+</I>&gt;<i> xx:xx:xx:xx:xx:x3, ..., xx:xx:xx:xx:xx:35&quot;
+</I>&gt;<i> ...
+</I>&gt;<i>
+</I>&gt;<i> The config.group1 file would contain:
+</I>&gt;<i>
+</I>&gt;<i> KIWI_INITRD=/boot/initrd
+</I>&gt;<i> KIWI_KERNEL=/boot/linux
+</I>&gt;<i> DISK=/dev/sda
+</I>&gt;<i> PART=5;S;x,769;L;/,x;L;x,
+</I>&gt;<i> IMAGE=/dev/sda2;test_group1-11.3-pxe-client.i686;0.0.1;192.168.xxx.xxx;4096
+</I>&gt;<i> UNIONFS_CONFIG=/dev/sda3,/dev/sda2,clicfs
+</I>&gt;<i> CONF=prefs.js;/home/kioskuser/.mozilla/firefox/mjc8q85s.default;192.168.xxx.xxx;4096
+</I>&gt;<i> HARDWARE_MAP=&quot;vendor1, vendor2, vendor3&quot;
+</I>&gt;<i> vendor1_HARDWARE_MAP=&quot;xx:xx:xx:xx:xx:x1, xx:xx:xx:xx:xx:x2, ..., 
+</I>&gt;<i> xx:xx:xx:xx:xx:x5&quot;
+</I>&gt;<i> vendor2_HARDWARE_MAP=&quot;xx:xx:xx:xx:xx:x6, xx:xx:xx:xx:xx:x7, ..., 
+</I>&gt;<i> xx:xx:xx:xx:xx:15&quot;
+</I>&gt;<i> vendor3_HARDWARE_MAP=&quot;xx:xx:xx:xx:xx:16, xx:xx:xx:xx:xx:17, ..., 
+</I>&gt;<i> xx:xx:xx:xx:xx:35&quot;
+</I>&gt;<i>
+</I>&gt;<i> This way, we could point KIWI to load up &quot;KIWI/hardware_map.vendor1&quot; or 
+</I>&gt;<i> even put it as part of the vendor map itself, but allow the user to link 
+</I>&gt;<i> hardware MAC addresses to the assigned mapping.
+</I>&gt;<i>
+</I>&gt;<i> Inside the hardware_map.vendor1 file would reside an additional set of 
+</I>&gt;<i> parameters:
+</I>&gt;<i>
+</I>&gt;<i> CONF=serial.vendor1;/etc/sysconfig/custom_serial_config;192.168.xxx.xxx;4096, 
+</I>&gt;<i> etc...
+</I>&gt;<i>
+</I>&gt;<i> inside hardware_map.vendor2 would be:
+</I>&gt;<i>
+</I>&gt;<i> CONF=serial.vendor2;/etc/sysconfig/custom_serial_config;192.168.xxx.xxx;4096, 
+</I>&gt;<i> etc...
+</I>&gt;<i>
+</I>&gt;<i> etc.
+</I>
+If I understand you correctly this is kind of a stacked configuration.
+So the main entrance is the MAC based mapping from a group followed by
+a vendor specific add-on. If this is correct I really like the idea.
+
+How do you plan to specify the vendor ? Do you want to use a unique
+machine id ? I mean somehow we need to check which vendor map fits
+to the machine we are currently on.
+
+&gt;<i> Definitely want some thoughts before moving forward with it.
+</I>
+I think it's worth to implement it :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002028.html">[Kiwi-users] Request for comment, Additional grouping functionality
+</A></li>
+	<LI>Next message: <A HREF="002033.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2030">[ date ]</a>
+              <a href="thread.html#2030">[ thread ]</a>
+              <a href="subject.html#2030">[ subject ]</a>
+              <a href="author.html#2030">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,1003 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C1205234216.4536.4.camel%40pesol.grn.es%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000465.html">
+   <LINK REL="Next"  HREF="000467.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Troubles with SLED10-SP1 LiveDVD</H1>
+    <B>Jordi Bruguera i Cortada</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Troubles%20with%20SLED10-SP1%20LiveDVD&In-Reply-To=%3C1205234216.4536.4.camel%40pesol.grn.es%3E"
+       TITLE="[Kiwi-users] Troubles with SLED10-SP1 LiveDVD">jordi at grn.es
+       </A><BR>
+    <I>Tue Mar 11 12:16:56 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000465.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+        <LI>Next message: <A HREF="000467.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#466">[ date ]</a>
+              <a href="thread.html#466">[ thread ]</a>
+              <a href="subject.html#466">[ subject ]</a>
+              <a href="author.html#466">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>El dl 10 de 03 del 2008 a les 14:44 +0100, en/na Marcus Sch&#228;fer va
+escriure:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Adding more info to my previous post:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/pipermail/kiwi-users/2008-March/000435.html">https://lists.berlios.de/pipermail/kiwi-users/2008-March/000435.html</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I got two screen captures of ttys 3 and 4 where
+</I>&gt;<i> &gt; logs are thrown, I attach them.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; These screenshots where taken on a virtual machine with 512 MB
+</I>&gt;<i> &gt; of RAM trying to boot from a LiveDVD created with the configs
+</I>&gt;<i> &gt; attached. It fails when trying to decompress in RAM the
+</I>&gt;<i> &gt; rootfs.tar.gz file.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If I raise the RAM to 1024 the LiveDVD boots, but as detailed
+</I>&gt;<i> &gt; in the previous message, I have the impression that something
+</I>&gt;<i> &gt; isn't at place:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Why I need more than 512 MB RAM to boot when the RW part is only as
+</I>&gt;<i> &gt; much as 150 MB  ?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Yes, I have the temporary split defined in the xmls.
+</I>&gt;<i> 
+</I>&gt;<i> According to your previos posting I have made some tests and also
+</I>&gt;<i> found a bug which might be the reason for at least one of the problems
+</I>&gt;<i> you had.
+</I>&gt;<i> 
+</I>&gt;<i> * If you use the latest kiwi version 2.36 your rootfs.tar.gz
+</I>&gt;<i>   tarball should contain /var /etc and /home as complete directories
+</I>&gt;<i>   to put into RAM. It would be great if you can verify if the tarball
+</I>&gt;<i>   really contains the directory _and_ files and no links to read-only
+</I>&gt;<i>   concerning /var, /etc and /home. You can do that directly after you
+</I>&gt;<i>   have called kiwi --create ... the prepared root tree contains an
+</I>&gt;<i>   up to date rootfs.tar.gz if the create operation was successful
+</I>
+Ok, updated to 2.36 and done all tests.
+
+Right, the file rootfs.tar.gz contains complete /var /etc and /home
+( with files and directories ), the rest ( /lib /usr ... ) are real
+dirs with simlinks to files to the read-only part. This is OK as
+you've stated.
+
+
+&gt;<i> * The log you sent shows:
+</I>&gt;<i>   252MB left in tmpfs and 143MB required for the uncompressed archive
+</I>&gt;<i>   With the latest kiwi version we allow up to 512MB for a tmpfs but
+</I>&gt;<i>   that's not a problem for you. My problem is that I think my RAM space
+</I>&gt;<i>   calculation could be wrong because if we extract the tarball into
+</I>&gt;<i>   a tmpfs the tar and gzip programs also requires RAM space to operate.
+</I>&gt;<i>   Maybe there are RAM caches when extracting which gets freed afterwards
+</I>&gt;<i>   but during the process we may need more RAM space. It would be
+</I>&gt;<i>   interesting if you can try to run that image within qemu and call
+</I>&gt;<i>   it like the following:
+</I>&gt;<i> 
+</I>&gt;<i>     qemu -cdrom &lt;the-iso&gt; -m 512
+</I>&gt;<i> 
+</I>&gt;<i>   does that work ? if not it should work with -m 1024 as you already
+</I>&gt;<i>   have tested. I would like to know in case of a successful boot how
+</I>&gt;<i>   much RAM is still available (cat /proc/meminfo).
+</I>
+I'm using VMWare Workstation 6, hope this is not an inconvenience.
+If you think it is, I'll switch to qemu.
+
+No, it still doesn't boot with 512 MB of RAM. Now I need 688 MB, which
+is far less than 800 MB of my last try, un still far from the desired
+512 MBminimum.
+
+The tests where run at intervals of 4 MB of RAM and 688 resulted the
+first RAM value which booted OK, the memory data you asked for
+a successful boot is shown above in the email.
+
+I'm also attaching /var/log/boot.kiwi, wich contains the following
+error:
+
+....
+mkdir /mnt/read-write
+mount /dev/loop2 /mnt/read-write
+mount: /dev/loop2: can't read superblock
+....
+
+Data taken from a 688MB RAM system successful boot:
+
+File rootfs.tar.gz:
+# gzip -l rootfs.tar.gz
+         compressed        uncompressed  ratio uncompressed_name
+           21353825           117012480  81.8% rootfs.tar
+
+# df
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/loop1              524288     86576    437712  17% /
+udev                    347580        92    347488   1% /dev
+
+# cat /proc/meminfo
+MemTotal:       695164 kB
+MemFree:         71148 kB
+Buffers:         97724 kB
+Cached:         436948 kB
+SwapCached:          0 kB
+Active:          80180 kB
+Inactive:       464620 kB
+HighTotal:           0 kB
+HighFree:            0 kB
+LowTotal:       695164 kB
+LowFree:         71148 kB
+SwapTotal:           0 kB
+SwapFree:            0 kB
+Dirty:               0 kB
+Writeback:           0 kB
+AnonPages:       10144 kB
+Mapped:           9228 kB
+Slab:            72480 kB
+CommitLimit:    347580 kB
+Committed_AS:   117728 kB
+PageTables:        416 kB
+VmallocTotal:   327672 kB
+VmallocUsed:      7096 kB
+VmallocChunk:   320520 kB
+HugePages_Total:     0
+HugePages_Free:      0
+HugePages_Rsvd:      0
+Hugepagesize:     4096 kB
+
+# mount
+/dev/loop1 on / type unknown (rw)
+proc on /proc type proc (rw)
+sysfs on /sys type sysfs (rw)
+debugfs on /sys/kernel/debug type debugfs (rw)
+udev on /dev type tmpfs (rw)
+devpts on /dev/pts type devpts (rw,mode=0620,gid=5)
+
+And finally:
+
+Read Only squash filesystem inside the ISO:
+-rw-r--r-- 1 root  root 506560512 2008-03-11 10:28 linkat-2.i686-2.5
+
+
+The ISO:
+# ls -l /tmp/linkat-2.i686-2.5.iso
+-rw-r--r-- 1 root root 529070080 2008-03-11
+10:31 /tmp/linkat-2.i686-2.5.iso
+
+Tell me if I can help with more data.
+
+Thanks a lot,
+
+ 
+&gt;<i> Thanks
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>-- 
+---
+Jordi Bruguera i Cortada &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jordi at grn.es</A>&gt;
+Consultor en Programari Lliure
+LPIC1-ID: 000001116 - Novell CLP10
+Linux User #21587
+
+
+
+-------------- next part --------------
+KIWI Log:
++ openKernelConsole
++ test 0 = 0
++ Echo 'Kernel logging enabled on: /dev/tty4'
++ test 'Kernel logging enabled on: /dev/tty4' = -n
++ test 'Kernel logging enabled on: /dev/tty4' = -b
++ echo '-----&gt; Kernel logging enabled on: /dev/tty4'
++ setctsid /dev/tty4 klogconsole -l 7 -r4
++ probeDevices
++ Echo 'Including required kernel modules...'
++ test 'Including required kernel modules...' = -n
++ test 'Including required kernel modules...' = -b
++ echo '-----&gt; Including required kernel modules...'
++ IFS=%
++ local module=
++ local stdevs=
++ local hwicmd=/usr/sbin/hwinfo
+++ /usr/sbin/hwinfo --storage
+++ grep 'Driver [IA]'
+++ sed '<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">-es at modprobe</A>\(.*\)&quot;@\1%@'
+++ tr -d '\n'
++ for i in '`$hwicmd --storage | grep &quot;Driver [IA]&quot; | 
+		sed -es&quot;@modprobe\(.*\)\&quot;@\1%@&quot; | tr -d &quot;\n&quot;`'
++ echo '  Driver Info #0:    Driver Activation Cmd: &quot; piix'
++ grep -q '#0'
+++ echo '  Driver Info #0:    Driver Activation Cmd: &quot; piix'
+++ cut -f2 '-d&quot;'
+++ tr -d ' '
++ module=piix
+++ echo piix
+++ sed <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">-es at modprobe</A>@@g
++ module=piix
++ IFS=';'
++ for m in '$module'
++ echo
++ grep -q piix
++ stdevs=' piix'
++ for i in '`$hwicmd --storage | grep &quot;Driver [IA]&quot; | 
+		sed -es&quot;@modprobe\(.*\)\&quot;@\1%@&quot; | tr -d &quot;\n&quot;`'
++ echo '  Driver Info #1:    Driver Activation Cmd: &quot; ata_piix'
++ grep -q '#0'
++ for i in '`$hwicmd --storage | grep &quot;Driver [IA]&quot; | 
+		sed -es&quot;@modprobe\(.*\)\&quot;@\1%@&quot; | tr -d &quot;\n&quot;`'
++ echo '  Driver Info #2:    Driver Activation Cmd: &quot; generic'
++ grep -q '#0'
++ for i in '`$hwicmd --storage | grep &quot;Driver [IA]&quot; | 
+		sed -es&quot;@modprobe\(.*\)\&quot;@\1%@&quot; | tr -d &quot;\n&quot;`'
++ echo '  Driver Info #0:    Driver Activation Cmd: &quot; mptspi'
++ grep -q '#0'
+++ echo '  Driver Info #0:    Driver Activation Cmd: &quot; mptspi'
+++ cut -f2 '-d&quot;'
+++ tr -d ' '
++ module=mptspi
+++ echo mptspi
+++ sed <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">-es at modprobe</A>@@g
++ module=mptspi
++ IFS=';'
++ for m in '$module'
++ echo ' piix'
++ grep -q mptspi
++ stdevs=' piix mptspi'
++ IFS=' 	
+'
+++ echo piix mptspi
++ stdevs='piix mptspi'
++ '[' '!' -z '' ']'
++ for module in '$stdevs'
++ loadok=1
++ '[' 1 = 1 ']'
++ Echo 'Probing module: piix'
++ test 'Probing module: piix' = -n
++ test 'Probing module: piix' = -b
++ echo '-----&gt; Probing module: piix'
++ INITRD_MODULES=' piix'
++ modprobe piix
++ for module in '$stdevs'
++ loadok=1
++ '[' 1 = 1 ']'
++ Echo 'Probing module: mptspi'
++ test 'Probing module: mptspi' = -n
++ test 'Probing module: mptspi' = -b
++ echo '-----&gt; Probing module: mptspi'
++ INITRD_MODULES=' piix mptspi'
++ modprobe mptspi
++ hwinfo --block
++ modprobe ide-disk
++ modprobe rd
++ probeUSB
++ IFS=%
++ local module=
++ local stdevs=
++ local hwicmd=/usr/sbin/hwinfo
+++ /usr/sbin/hwinfo --usb
+++ grep 'Driver [IA]'
+++ sed '<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">-es at modprobe</A>\(.*\)&quot;@\1%@'
+++ tr -d '\n'
++ IFS=%
+++ /usr/sbin/hwinfo --usb-ctrl
+++ grep 'Driver [IA]'
+++ tr -d '\n'
+++ sed '<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">-es at modprobe</A>\(.*\)&quot;@\1%@'
++ for i in '`$hwicmd --usb-ctrl | grep &quot;Driver [IA]&quot; | 
+		sed -es&quot;@modprobe\(.*\)\&quot;@\1%@&quot; | tr -d &quot;\n&quot;`'
++ echo '  Driver Info #0:    Driver Activation Cmd: &quot; uhci-hcd'
++ grep -q '#0'
+++ echo '  Driver Info #0:    Driver Activation Cmd: &quot; uhci-hcd'
+++ cut -f2 '-d&quot;'
+++ tr -d ' '
++ module=uhci-hcd
+++ echo uhci-hcd
+++ sed <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">-es at modprobe</A>@@g
++ module=uhci-hcd
++ IFS=';'
++ for m in '$module'
++ echo
++ grep -q uhci-hcd
++ stdevs=' uhci-hcd'
++ for i in '`$hwicmd --usb-ctrl | grep &quot;Driver [IA]&quot; | 
+		sed -es&quot;@modprobe\(.*\)\&quot;@\1%@&quot; | tr -d &quot;\n&quot;`'
++ echo '  Driver Info #0:    Driver Activation Cmd: &quot; ehci-hcd'
++ grep -q '#0'
+++ echo '  Driver Info #0:    Driver Activation Cmd: &quot; ehci-hcd'
+++ cut -f2 '-d&quot;'
+++ tr -d ' '
++ module=ehci-hcd
+++ echo ehci-hcd
+++ sed <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">-es at modprobe</A>@@g
++ module=ehci-hcd
++ IFS=';'
++ for m in '$module'
++ echo ' uhci-hcd'
++ grep -q ehci-hcd
++ stdevs=' uhci-hcd ehci-hcd'
++ for i in '`$hwicmd --usb-ctrl | grep &quot;Driver [IA]&quot; | 
+		sed -es&quot;@modprobe\(.*\)\&quot;@\1%@&quot; | tr -d &quot;\n&quot;`'
++ echo '  Driver Info #1:    Driver Activation Cmd: &quot; ehci_hcd'
++ grep -q '#0'
++ IFS=' 	
+'
+++ echo uhci-hcd ehci-hcd
++ stdevs='uhci-hcd ehci-hcd'
++ for module in '$stdevs'
++ Echo 'Probing module: uhci-hcd'
++ test 'Probing module: uhci-hcd' = -n
++ test 'Probing module: uhci-hcd' = -b
++ echo '-----&gt; Probing module: uhci-hcd'
++ modprobe uhci-hcd
+FATAL: Module uhci_hcd not found.
++ for module in '$stdevs'
++ Echo 'Probing module: ehci-hcd'
++ test 'Probing module: ehci-hcd' = -n
++ test 'Probing module: ehci-hcd' = -b
++ echo '-----&gt; Probing module: ehci-hcd'
++ modprobe ehci-hcd
++ CDMount
++ local count=0
++ mkdir -p /cdrom
++ true
++ CDDevice
++ local count=0
++ for module in usb-storage sr_mod cdrom ide-cd BusLogic
++ /sbin/modprobe usb-storage
++ for module in usb-storage sr_mod cdrom ide-cd BusLogic
++ /sbin/modprobe sr_mod
++ for module in usb-storage sr_mod cdrom ide-cd BusLogic
++ /sbin/modprobe cdrom
++ for module in usb-storage sr_mod cdrom ide-cd BusLogic
++ /sbin/modprobe ide-cd
++ for module in usb-storage sr_mod cdrom ide-cd BusLogic
++ /sbin/modprobe BusLogic
++ true
+++ /usr/sbin/hwinfo --cdrom
+++ grep 'Device File:'
+++ cut -f2 -d:
++ cddevs=' /dev/hdc'
+++ sed -e 's@(.*)@@'
+++ echo /dev/hdc
++ cddevs=/dev/hdc
++ for i in '$cddevs'
++ '[' -b /dev/hdc ']'
++ test -z
++ cddev=/dev/hdc
++ '[' '!' -z /dev/hdc ']'
++ break
++ '[' -z /dev/hdc ']'
++ IFS=:
++ for i in '$cddev'
++ mount /dev/hdc /cdrom
+mount: block device /dev/hdc is write-protected, mounting read-only
++ '[' -f /cdrom/config.isoclient ']'
++ cddev=/dev/hdc
++ return
++ importFile
++ IFS='
+	'
++ read line
++ echo 'IMAGE=/dev/loop1;linkat-2.i686;2.5'
++ grep -qi '^#'
+++ echo 'IMAGE=/dev/loop1;linkat-2.i686;2.5'
+++ cut -d = -f1
++ key=IMAGE
+++ echo 'IMAGE=/dev/loop1;linkat-2.i686;2.5'
+++ cut -d = -f2-
+++ tr -d '\'\'''
+++ tr -d '&quot;'
++ item='/dev/loop1;linkat-2.i686;2.5'
++ '[' -z IMAGE ']'
++ '[' -z '/dev/loop1;linkat-2.i686;2.5' ']'
++ Debug 'IMAGE=/dev/loop1;linkat-2.i686;2.5'
++ test 0 = 1
++ eval export 'IMAGE\=&quot;/dev/loop1;linkat-2.i686;2.5&quot;'
+++ export 'IMAGE=/dev/loop1;linkat-2.i686;2.5'
+++ IMAGE='/dev/loop1;linkat-2.i686;2.5'
++ read line
++ echo COMBINED_IMAGE=yes
++ grep -qi '^#'
+++ echo COMBINED_IMAGE=yes
+++ cut -d = -f1
++ key=COMBINED_IMAGE
+++ echo COMBINED_IMAGE=yes
+++ cut -d = -f2-
+++ tr -d '\'\'''
+++ tr -d '&quot;'
++ item=yes
++ '[' -z COMBINED_IMAGE ']'
++ '[' -z yes ']'
++ Debug COMBINED_IMAGE=yes
++ test 0 = 1
++ eval export 'COMBINED_IMAGE\=&quot;yes&quot;'
+++ export COMBINED_IMAGE=yes
+++ COMBINED_IMAGE=yes
++ read line
++ IFS=,
++ for i in '$IMAGE'
++ field=0
++ IFS=';'
++ for n in '$i'
++ case $field in
++ imageDevice=/dev/loop1
++ field=1
++ for n in '$i'
++ case $field in
++ imageName=linkat-2.i686
++ field=2
++ for n in '$i'
++ case $field in
++ imageVersion=2.5
++ imageReadOnly=linkat-2.i686
+++ echo linkat-2.i686
+++ sed -e <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">s at .i686</A>@@
++ imageReadOnly=linkat-2
++ imageReadOnly=linkat-2-read-only.i686-2.5
++ imageName=/cdrom/linkat-2.i686-2.5
++ gzippName=/cdrom/linkat-2.i686-2.5.gz
++ imageMD5s=/cdrom/linkat-2.i686-2.5.md5
++ '[' '!' -z '' ']'
++ '[' '!' -z yes ']'
++ continue
++ CDUmount
++ umount /dev/hdc
++ '[' -z '' ']'
++ probeFileSystem /dev/loop1
++ FSTYPE=unknown
++ dd if=/dev/loop1 of=/tmp/filesystem-1 bs=128k count=1
+0+0 records in
+0+0 records out
+0 bytes (0 B) copied, 0.00035 seconds, 0.0 kB/s
+++ file /tmp/filesystem-1
++ data='/tmp/filesystem-1: empty'
++ rm -f /tmp/filesystem-1
++ case $data in
++ FSTYPE=unknown
++ export FSTYPE
++ test unknown = reiserfs
++ test unknown = ext2
++ test unknown = ext3
+++ searchSwapSpace
+++ '[' '!' -z ']'
+++ local hwapp=/usr/sbin/hwinfo
++++ /usr/sbin/hwinfo --disk
++++ cut -f2 -d:
++++ grep 'Device File:'
+++ local 'diskdevs= /dev/sda (/dev/sg0)'
++++ echo ' /dev/sda (/dev/sg0)'
++++ sed -e 's@(.*)@@'
+++ diskdevs=' /dev/sda '
+++ for diskdev in '$diskdevs'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 1
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 2
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 3
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 4
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 5
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 6
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 7
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 8
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 9
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 10
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 11
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 12
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 13
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 14
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 15
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' '' = 82 ']'
++ swapSpace=
++ '[' '!' -z '' ']'
+++ searchDiskSpace
+++ '[' '!' -z ']'
+++ local hwapp=/usr/sbin/hwinfo
++++ /usr/sbin/hwinfo --disk
++++ grep 'Device File:'
++++ cut -f2 -d:
+++ local 'diskdevs= /dev/sda (/dev/sg0)'
++++ echo ' /dev/sda (/dev/sg0)'
++++ sed -e 's@(.*)@@'
+++ diskdevs=' /dev/sda '
+++ for diskdev in '$diskdevs'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 1
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 2
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 3
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 4
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 5
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 6
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 7
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 8
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 9
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 10
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 11
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 12
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 13
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 14
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
+++ for disknr in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
++++ /sbin/sfdisk --print-id ' /dev/sda ' 15
+ /dev/sda : No such file or directory
+
+sfdisk: cannot open  /dev/sda  read-write
+++ id=
+++ '[' -z ']'
+++ id=0
+++ '[' 0 -ne 82 ']'
+++ '[' 0 -ne 0 ']'
++ swapDevice=
++ '[' '!' -z '' ']'
++ runHook premount
++ HOOK=/hooks/premount.sh
++ '[' -e /hooks/premount.sh ']'
++ '[' -z '' ']'
++ '[' -z yes ']'
++ '[' '!' -z yes ']'
++ Echo 'Mounting compressed split tree...'
++ test 'Mounting compressed split tree...' = -n
++ test 'Mounting compressed split tree...' = -b
++ echo '-----&gt; Mounting compressed split tree...'
+++ echo linkat-2-read-only.i686-2.5
+++ sed -e s/-read-only//
++ imageReadOnly=linkat-2.i686-2.5
++ mkdir -p /mnt/livecd
++ mount /dev/hdc /mnt/livecd
+mount: block device /dev/hdc is write-protected, mounting read-only
++ losetup /dev/loop1 /mnt/livecd/linkat-2.i686-2.5
++ mountSystem /dev/loop1
++ local retval=0
++ local 'OLDIFS=;'
++ IFS=' 	
+'
++ local mountDevice=
++ test '!' -z /dev/loop1
++ mountDevice=/dev/loop1
++ test '!' -z yes
++ mountSystemCombined /dev/loop1
++ local mountDevice=/dev/loop1
++ local roDevice=/dev/loop1
+++ getNextPartition /dev/loop1
+++ part=/dev/loop1
++++ echo /dev/loop1
++++ sed -e 's/\(.*\)[0-9]/\1/'
+++ nextPart=/dev/loop
++++ echo /dev/loop1
++++ sed -e 's/.*\([0-9]\)/\1/'
+++ nextPartNum=1
++++ expr 1 + 1
+++ nextPartNum=2
+++ nextPart=/dev/loop2
+++ echo /dev/loop2
++ local rwDevice=/dev/loop2
++ mkdir /read-only
++ modprobe squashfs
++ mount -t auto -o ro /dev/loop1 /read-only
++ local rootfs=/read-only/rootfs.tar.gz
++ mount -t tmpfs tmpfs -o size=512M /mnt
++ validateTarSize /mnt /read-only/rootfs.tar.gz
++ local dest=/mnt
++ local tsrc=/read-only/rootfs.tar.gz
++ local haveKByte=0
++ local haveMByte=0
++ local needBytes=0
++ local needMByte=0
+++ cat /proc/meminfo
+++ grep MemFree
+++ cut -f2 -d:
+++ cut -f1 -dk
++ haveKByte='        642008 '
+++ expr 642008 / 1024
++ haveMByte=626
+++ gzip -l /read-only/rootfs.tar.gz
+++ tail -n 1
+++ column -t
+++ cut -f3 -d ' '
++ needBytes=117012480
+++ expr 117012480 / 1048576
++ needMByte=111
+++ gzip -l /read-only/rootfs.tar.gz
+++ column -t
+++ cut -f1 -d ' '
+++ tail -n 1
++ needBytes=21353825
+++ expr 21353825 / 1048576
++ needBytes=20
+++ expr 20 '*' 2
++ needBytes=40
+++ expr 111 + 40
++ needMByte=151
++ Echo 'Have size: /mnt -&gt; 626 MB'
++ test 'Have size: /mnt -&gt; 626 MB' = -n
++ test 'Have size: /mnt -&gt; 626 MB' = -b
++ echo '-----&gt; Have size: /mnt -&gt; 626 MB'
++ Echo 'Need size: /read-only/rootfs.tar.gz -&gt; 151 MB [ uncompressed ]'
++ test 'Need size: /read-only/rootfs.tar.gz -&gt; 151 MB [ uncompressed ]' = -n
++ test 'Need size: /read-only/rootfs.tar.gz -&gt; 151 MB [ uncompressed ]' = -b
++ echo '-----&gt; Need size: /read-only/rootfs.tar.gz -&gt; 151 MB [ uncompressed ]'
++ test 626 -gt 151
++ return 0
++ cd /mnt
++ tar xvfz /read-only/rootfs.tar.gz
++ cd /
++ mkdir /mnt/read-only
++ mount --move /read-only /mnt/read-only
++ rm -rf /read-only
++ ln -s /mnt/read-only /read-only
++ sfdisk -s /dev/loop2
++ mkdir /mnt/read-write
++ mount /dev/loop2 /mnt/read-write
+mount: /dev/loop2: can't read superblock
++ rm -f /read-write
++ ln -s /mnt/read-write /read-write
++ retval=0
++ IFS=';'
++ return 0
++ validateRootTree
++ '[' '!' -x /mnt/sbin/init ']'
++ runHook postmount
++ HOOK=/hooks/postmount.sh
++ '[' -e /hooks/postmount.sh ']'
++ setupDefaultFstab /config
++ local prefix=/config
++ local nfstab=/config/etc/fstab
++ mkdir -p /config/etc
++ cat
++ echo 'devpts  /dev/pts   devpts  mode=0620,gid=5 0 0'
++ echo 'proc    /proc      proc    defaults 0 0'
++ echo 'sysfs   /sys       sysfs   noauto 0 0'
++ updateRootDeviceFstab /config /dev/loop1
++ local prefix=/config
++ local rdev=/dev/loop1
++ local nfstab=/config/etc/fstab
++ '[' -z '' ']'
++ echo '/dev/loop1 / unknown defaults 0 0'
++ '[' '!' -z '' ']'
++ '[' '!' -z '' ']'
++ cd /config
++ find . -type d
++ read d
++ mkdir -p /mnt/.
++ read d
++ mkdir -p /mnt/./etc
++ read d
++ find . -type f
++ read f
++ cp ./etc/fstab /mnt/./etc/fstab
++ read f
++ cd /
++ rm -rf /config
++ echo 256
++ umountSystemFilesystems
++ umount /dev/pts
+umount: /dev/pts: device is busy
+umount: /dev/pts: device is busy
++ umount /sys
++ umount /proc
++ importBranding
++ '[' -f /image/loader/message ']'
++ '[' -f /image/loader/branding/logo.mng ']'
++ cp /preinit /mnt
++ cp /include /mnt
++ killShell
++ local umountProc=0
++ '[' '!' -e /proc/mounts ']'
++ mount -t proc proc /proc
++ umountProc=1
++ Echo 'Stopping boot shell'
++ test 'Stopping boot shell' = -n
++ test 'Stopping boot shell' = -b
++ echo '-----&gt; Stopping boot shell'
++ fuser -k /dev/tty2
+/dev/tty2:          
++ '[' 1 -eq 1 ']'
++ umount /proc
++ killBlogD
++ local umountProc=0
++ '[' '!' -e /proc/mounts ']'
++ mount -t proc proc /proc
++ umountProc=1
++ Echo 'Stopping boot logging'
++ test 'Stopping boot logging' = -n
++ test 'Stopping boot logging' = -b
++ echo '-----&gt; Stopping boot logging'
++ killall -9 blogd
++ '[' 1 -eq 1 ']'
++ umount /proc
++ Echo 'Activating Image: [/cdrom/linkat-2.i686-2.5]'
++ test 'Activating Image: [/cdrom/linkat-2.i686-2.5]' = -n
++ test 'Activating Image: [/cdrom/linkat-2.i686-2.5]' = -b
++ echo '-----&gt; Activating Image: [/cdrom/linkat-2.i686-2.5]'
++ reopenKernelConsole
++ Echo 'Kernel logging enabled on: /dev/tty1'
++ test 'Kernel logging enabled on: /dev/tty1' = -n
++ test 'Kernel logging enabled on: /dev/tty1' = -b
++ echo '-----&gt; Kernel logging enabled on: /dev/tty1'
++ klogconsole -l 7 -r1
++ /sbin/udevsettle --timeout=30
++ mount --move /dev /mnt/dev
++ udevKill
++ killproc /sbin/udevd
++ rm -f /var/log/boot.msg
++ umount -t devpts /mnt/dev/pts
++ mkdir -p /mnt/var/log
++ cp /mnt/dev/shm/initrd.msg /mnt/var/log/boot.msg
++ cp -f /var/log/boot.kiwi /mnt/var/log/boot.kiwi
+KIWI PreInit Log
++ updateMTAB
++ prefix=
++ umount=0
++ '[' '!' -e /proc/mounts ']'
++ mount -t proc proc /proc
++ umount=1
++ cat /proc/mounts
++ '[' 1 -eq 1 ']'
++ umount /proc
++ createFramebufferDevices
++ '[' -f /proc/fb ']'
+-------------- next part --------------
+
+Boot logging started on /dev/tty1(/dev/console) at Tue Mar 11 11:02:08 2008
+
+-----&gt; Starting boot shell on tty2
+-----&gt; Error logging enabled on /dev/tty3
+-----&gt; Kernel logging enabled on: /dev/tty4
+-----&gt; Including required kernel modules...
+-----&gt; Probing module: piix
+-----&gt; Probing module: mptspi
+-----&gt; Probing module: uhci-hcd
+-----&gt; Probing module: ehci-hcd
+-----&gt; Mounting compressed split tree...
+-----&gt; Have size: /mnt -&gt; 626 MB
+-----&gt; Need size: /read-only/rootfs.tar.gz -&gt; 151 MB [ uncompressed ]
+-----&gt; Stopping boot shell
+-----&gt; Stopping boot logging
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000465.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+	<LI>Next message: <A HREF="000467.html">[Kiwi-users] Troubles with SLED10-SP1 LiveDVD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#466">[ date ]</a>
+              <a href="thread.html#466">[ thread ]</a>
+              <a href="subject.html#466">[ subject ]</a>
+              <a href="author.html#466">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

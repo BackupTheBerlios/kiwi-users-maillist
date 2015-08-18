@@ -1,0 +1,433 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTikFTvB%3Dpp2wjE6fafWqN%3DxcRYsm3G5C0DNCyuBQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002342.html">
+   <LINK REL="Next"  HREF="002361.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTikFTvB%3Dpp2wjE6fafWqN%3DxcRYsm3G5C0DNCyuBQ%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Feb 18 17:35:00 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002342.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+        <LI>Next message: <A HREF="002361.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2359">[ date ]</a>
+              <a href="thread.html#2359">[ thread ]</a>
+              <a href="subject.html#2359">[ subject ]</a>
+              <a href="author.html#2359">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Feb 16, 2011 at 5:48 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 02/16/2011 05:00 PM, Chris Cunha wrote:
+</I>&gt;&gt;<i> On Wed, Feb 16, 2011 at 2:55 PM, Robert Schweikert
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+</I>&gt;&gt;&gt;<i> Hi Chris,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> I hope I'm posting this correctly. I'm not sure if the all the post
+</I>&gt;&gt;&gt;&gt;<i> from the buildservice ML made it over to the kiwi ML.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Let me try an break down where I am so far and give as much info as I
+</I>&gt;&gt;&gt;&gt;<i> can regarding packages.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> The technique that I used to make all of my branding packages was this.
+</I>&gt;&gt;&gt;&gt;<i> 1) I first download the source files from the openSUSE11.3 project of
+</I>&gt;&gt;&gt;&gt;<i> the particular branding package that I want in OBS.
+</I>&gt;&gt;&gt;&gt;<i> 2) I then make a copy on my local machine of that branding package.
+</I>&gt;&gt;&gt;&gt;<i> 3) I go though the config files, spec file, tar, and image and replace
+</I>&gt;&gt;&gt;&gt;<i> and update everything to what I need it to be.
+</I>&gt;&gt;&gt;&gt;<i> 4) I then repackage it create a new package in my OBS account and
+</I>&gt;&gt;&gt;&gt;<i> upload the contents of the source and have OBS build the package.
+</I>&gt;&gt;&gt;&gt;<i> I've had many issue with builds but I'm sure they were a lack of
+</I>&gt;&gt;&gt;&gt;<i> experience on my part.
+</I>&gt;&gt;&gt;&gt;<i> 5) I then update my config.xml file locally so that Kiwi can pull that
+</I>&gt;&gt;&gt;&gt;<i> package in from my repo.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> I do remember the link that (I think it was Marcus) posted (
+</I>&gt;&gt;&gt;&gt;<i> <A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen#Custom_GRUB_and_boot_splash_images">http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen#Custom_GRUB_and_boot_splash_images</A>).
+</I>&gt;&gt;&gt;&gt;<i> &#160;I know for sure that I did go though MOST of that page but I'm also
+</I>&gt;&gt;&gt;&gt;<i> sure that I ended up using OpenPC version of GFXBOOT and BootSplash to
+</I>&gt;&gt;&gt;&gt;<i> fill in the blanks...BIG mistake as OpenPC has Javier. He has some
+</I>&gt;&gt;&gt;&gt;<i> experience and kind of did things his own way. &#160;I think his way works
+</I>&gt;&gt;&gt;&gt;<i> very well but I need to build a foundation for my methods and his way
+</I>&gt;&gt;&gt;&gt;<i> is over my head right now.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Now regarding the question &quot;&quot;where do your package install the files&quot;.
+</I>&gt;&gt;&gt;&gt;<i> &#160;Well since my branding package such as GFXBOOT and Bootsplash are
+</I>&gt;&gt;&gt;&gt;<i> based on SUSE versions they are where the SUSE branding package would
+</I>&gt;&gt;&gt;&gt;<i> be EXCEPT that my projects name is the folder for the theme not
+</I>&gt;&gt;&gt;&gt;<i> &quot;openSUSE&quot; or &quot;SUSE&quot;. &#160;So this project name right now is SOS. &#160;So all
+</I>&gt;&gt;&gt;&gt;<i> of my themes are all in the SOS theme folder. &#160;The rule of thumb on
+</I>&gt;&gt;&gt;&gt;<i> this is that EVERYTHING in the whatever branding package that we are
+</I>&gt;&gt;&gt;&gt;<i> talking about that was named/labeled &quot;openSUSE&quot; is now named &quot;SOS&quot;.
+</I>&gt;&gt;&gt;&gt;<i> So I don't think there is a problem with the package itself...although
+</I>&gt;&gt;&gt;&gt;<i> I remember about a month ago I had a similar issue with my GFXBOOT
+</I>&gt;&gt;&gt;&gt;<i> package. &#160;Same conflict. &#160;I can't remember who helped me with that but
+</I>&gt;&gt;&gt;&gt;<i> I do remember having to tweak the spec file of this package and remove
+</I>&gt;&gt;&gt;&gt;<i> some &quot;openSUSE&quot; stuff and I think we removed the &quot;conflicts&quot; string on
+</I>&gt;&gt;&gt;&gt;<i> one of the subpackages. &#160;I'm sure this issue is my fault I just don't
+</I>&gt;&gt;&gt;&gt;<i> know where the faults is.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Please, post the error message. Without it we will be guessing forever
+</I>&gt;&gt;&gt;<i> more. Playing a guessing game looses it's appeal at some point as there
+</I>&gt;&gt;&gt;<i> is little satisfaction after a while.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> I ran the command &quot;kiwi --info /path/to/image/description --select
+</I>&gt;&gt;&gt;&gt;<i> packages&quot;. &#160; This command looks like it shows EVERY package that is
+</I>&gt;&gt;&gt;&gt;<i> being installed. &#160;Including the ones in the patterns. Is this correct?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Yes
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> &#160; I can clearly see both the &quot;lxde-common-branding-SOS&quot; and the
+</I>&gt;&gt;&gt;&gt;<i> &quot;lxde-common-branding-openSUSE&quot; package visible.
+</I>&gt;&gt;&gt;&gt;<i> Looking at the LONG list of packages that shows up when running &#160;this
+</I>&gt;&gt;&gt;&gt;<i> command seems like it's crazy to manually enter the package separately
+</I>&gt;&gt;&gt;&gt;<i> and remove the patterens. &#160;Correct?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Yes
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> &#160;Learning what is causing this
+</I>&gt;&gt;&gt;&gt;<i> package conflict is the key to this issue...and to avoid many more
+</I>&gt;&gt;&gt;&gt;<i> like it as I have lots of other branded packages to replace, such as
+</I>&gt;&gt;&gt;&gt;<i> Suse.release and others like it.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> For this project I always was trying to do my rebrands all the way.
+</I>&gt;&gt;&gt;&gt;<i> Not using the existing SUSE dir and files to hold my images and
+</I>&gt;&gt;&gt;&gt;<i> configs with the openSUSE name. &#160;I thought by taking the original
+</I>&gt;&gt;&gt;&gt;<i> source and changing everything that this issue wouldn't exist because
+</I>&gt;&gt;&gt;&gt;<i> the packages have their own direct and configs.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> The answer to the question &quot;What is the oem branding package ?&quot; &#160;By
+</I>&gt;&gt;&gt;&gt;<i> OEM I mean the our branded packages. &#160;Original Equipment Manufacturer.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Maybe the best way to get to the problem is if you guys could take a
+</I>&gt;&gt;&gt;&gt;<i> look at my spec file for this lxde-common-branding-SOS package,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Seeing the actual error message would certainly help to speed things up.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> In general, while Marcus and I are more than happy to help, as are other
+</I>&gt;&gt;&gt;<i> users on this list, it is much easier for us to help if we have an error
+</I>&gt;&gt;&gt;<i> message to work with.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Statements such as
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> package A conflicts with package B
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> are not very useful to us for providing good answers.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> the
+</I>&gt;&gt;&gt;&gt;<i> config.xml file that kiwi is using to make the image and anything else
+</I>&gt;&gt;&gt;&gt;<i> that you can think of that will confirm one way or another what the
+</I>&gt;&gt;&gt;&gt;<i> issue is. &#160;The more I do the more I know what isn't or is correct. &#160;I
+</I>&gt;&gt;&gt;&gt;<i> just don't have enough of &quot;correct&quot; to know what I'm doing yet.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> This SOS project is &#160;subproject of another project of mine...if that matters.
+</I>&gt;&gt;&gt;&gt;<i> The link to the lxde-common-branding-SOS branding package is here
+</I>&gt;&gt;&gt;&gt;<i> <A HREF="https://build.opensuse.org/project/packages?package=&amp;project=home%3Aeportel6607%3ASOS">https://build.opensuse.org/project/packages?package=&amp;project=home%3Aeportel6607%3ASOS</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> You have the conflict built right into your spec file:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Provides: &#160; &#160; &#160; lxde-common-branding = %{version}
+</I>&gt;&gt;&gt;<i> Conflicts: &#160; &#160; &#160;otherproviders(lxde-common-branding)
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I bet the project provided LXDE branding package also provides
+</I>&gt;&gt;&gt;<i> lxde-common-branding, and since your spec explicitly declares these two
+</I>&gt;&gt;&gt;<i> in conflict there is no away around the problem from a package manager
+</I>&gt;&gt;&gt;<i> perspective.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Ok I apologize for the lack of info. &#160; I'm so caught up in learning
+</I>&gt;&gt;<i> this and kind of overwhelmed with making sure that I truly understand
+</I>&gt;&gt;<i> what is 'the fix' and 'what is the problem' that I lost sight of the
+</I>&gt;&gt;<i> basics...posting the error.
+</I>&gt;&gt;<i> The error in the terminal when running kiwi --prepare is this:
+</I>&gt;&gt;<i> Problem: lxde-common-branding-SOS-11.3-29.1.noarch conflicts with
+</I>&gt;&gt;<i> namespace:otherproviders(lxde-common-branding) provided by
+</I>&gt;&gt;<i> lxde-common-branding-openSUSE-11.3-54.2.noarch
+</I>&gt;&gt;<i> &#160;Solution 1: deinstallation of
+</I>&gt;&gt;<i> lxde-common-branding-openSUSE-11.3-54.2.noarch
+</I>&gt;&gt;<i> &#160;Solution 2: do not install lxde-common-branding-SOS-11.3-29.1.noarch
+</I>&gt;<i>
+</I>&gt;<i> So this error points directly at the &quot;Conflicts&quot; line in your spec file.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I didn't think that the line in the spec file &quot;Conflicts:
+</I>&gt;&gt;<i> otherproviders(lxde-common-branding)&quot; was a problem because I thought
+</I>&gt;&gt;<i> there can only be one version of a package installed. &#160;Also there is a
+</I>&gt;&gt;<i> line in that spec file that points to a Suse package called
+</I>&gt;&gt;<i> &quot;desktop-data-openSUSE&quot;. This is still pointing to this package
+</I>&gt;&gt;<i> because I haven't made the SOS equivalent for it. &#160; As a reminder, I
+</I>&gt;&gt;<i> didn't make this spec file up from scratch this it the default Suse
+</I>&gt;&gt;<i> spec file for this package just modified for my branding themes. &#160;I
+</I>&gt;&gt;<i> thought if it worked for Suse it should work for me too. &#160;WRONG.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Ahhhh Ok I commented out the Conflicts line in the spec file and now I
+</I>&gt;&gt;<i> got the opposite packages conflicting. &#160;The new error reads&quot; Problem:
+</I>&gt;&gt;<i> lxde-common-branding-openSUSE-11.3-54.2.noarch conflicts with
+</I>&gt;&gt;<i> namespace:otherproviders(lxde-common-branding) provided by
+</I>&gt;&gt;<i> lxde-common-branding-SOS-11.3-30.1.noarch
+</I>&gt;<i>
+</I>&gt;<i> This means the lxde-common-branding-openSUSE spec file also has a
+</I>&gt;<i> &quot;Conflicts&quot; line in it. You can try to get the maintainer of the
+</I>&gt;<i> lxde-common-branding-openSUSE-11.3 package to remove the &quot;Conflicts&quot;
+</I>&gt;<i> line from the spec file to allow multiple packages to provide the
+</I>&gt;<i> lxde-common-branding requirement. If the maintainer is not willing to do
+</I>&gt;<i> this you're out of luck and will have to do your branding using the
+</I>&gt;<i> tarball method as described in the example (link previously posted).
+</I>&gt;<i>
+</I>&gt;&gt;<i> &#160;Solution 1: deinstallation of
+</I>&gt;&gt;<i> lxde-common-branding-openSUSE-11.3-54.2.noarch
+</I>&gt;&gt;<i> &#160;Solution 2: do not install lxde-common-branding-SOS-11.3-30.1.noarch &#160;&quot;
+</I>&gt;&gt;<i> I have the suse package in the delete section and my config.sh file
+</I>&gt;&gt;<i> and have &quot;suseRemovePackagesMarkedForDeletion&quot; string under the
+</I>&gt;&gt;<i> &quot;Functions&quot; section. &#160;I'm am sooo lost. &#160;Should I try the &quot;replaces&quot;
+</I>&gt;&gt;<i> again in my config.xml file?
+</I>&gt;<i>
+</I>&gt;<i> There is nothing Kiwi can do to resolve this conflict as the problem
+</I>&gt;<i> occurs when the package manager (zypper) tries to create a self
+</I>&gt;<i> consistent set of packages to install. The problem is the &quot;Conflicts&quot;
+</I>&gt;<i> specification in both spec files. IMHO there is no reason to have this,
+</I>&gt;<i> but I am not the maintainer of LXDE, you'll have to convince her/him.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The option 1 method seems very similar to the way I did branding in
+</I>&gt;&gt;<i> the past with my other base project (PCLOS and Unity). &#160;Correct if I'm
+</I>&gt;&gt;<i> wrong but doesn't this method leave you in a situation that if the OS
+</I>&gt;&gt;<i> was to do an Update, any package(s) that were updated that regarding
+</I>&gt;&gt;<i> branding would overwrite your branding packages?
+</I>&gt;<i>
+</I>&gt;<i> No, the &quot;Provides&quot; specification in the spec file tells the package
+</I>&gt;<i> management system what dependency is satisfied by this package.
+</I>&gt;<i> Somewhere in an LXDE package spec file you will be able to find a
+</I>&gt;<i>
+</I>&gt;<i> Requires: lxde-common-branding
+</I>&gt;<i>
+</I>&gt;<i> This requirement will then (in a situation without your branding
+</I>&gt;<i> package) pull in the lxde-common-branding-openSUSE-11.3-54.2.noarch
+</I>&gt;<i> package. Now, with the current spec file setup to get your branding onto
+</I>&gt;<i> a system one would have to run the following commands:
+</I>&gt;<i>
+</I>&gt;<i> # rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch
+</I>&gt;<i> # rpm -i lxde-common-branding-SOS-11.3-30.1.noarch
+</I>&gt;<i>
+</I>&gt;<i> Now the system would be consistent as both packages provide the
+</I>&gt;<i> lxde-common-branding requirement. During an update process the
+</I>&gt;<i> lxde-common-branding-openSUSE-11.3-54.2.noarch would not be updated as
+</I>&gt;<i> it is not installed in the first place. Remember the dependency is on
+</I>&gt;<i> ANY package that provides the lxde-common-branding dependency, which
+</I>&gt;<i> after the rpm commands above would be your package.
+</I>&gt;<i>
+</I>&gt;<i> Now back to the image build. Kiwi cannot do this for you. At the time
+</I>&gt;<i> packages get installed Kiwi is out of the picture and the package
+</I>&gt;<i> manager has full control. If there is a conflict it will complain and
+</I>&gt;<i> subsequently exit.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> I need to do this in
+</I>&gt;&gt;<i> a way that it works as if it's the default package. Therefore updating
+</I>&gt;&gt;<i> with the correct branding package. &#160;Basiclly I think it needs to work
+</I>&gt;&gt;<i> the way that Suse packages work with each other.
+</I>&gt;<i>
+</I>&gt;<i> It would, with the exception that in the current arrangement there is no
+</I>&gt;<i> way for you to get your package into the image if you continue to use
+</I>&gt;<i> the LXDE pattern.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'm not lazy that's for sure so I could do option 3 however I don't
+</I>&gt;&gt;<i> think under these circumstances that it make sense to do it that way
+</I>&gt;&gt;<i> because the list of packages that I don't want is far smaller than the
+</I>&gt;&gt;<i> package I do want.
+</I>&gt;<i>
+</I>&gt;<i> Well, you have to consider how often you will be updating the branding
+</I>&gt;<i> package. Using the tarball method (option 1) may just be the ticket. You
+</I>&gt;<i> can then leave the project provided package in place, but it will not be
+</I>&gt;<i> used, other than satisfying a dependency in the RPM DB.
+</I>&gt;<i>
+</I>&gt;<i> Of course you still have the option of convincing the maintained of the
+</I>&gt;<i> LXDE project package to remove the &quot;Conflicts&quot; setting in the spec file.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I guess there are many ways to approach resolving a problem like this.
+</I>&gt;&gt;<i> &#160;Right now I need to know one way and fully understand why I'm doing
+</I>&gt;&gt;<i> it this/that way. &#160;THEN I can apply that knowledge to other methods.
+</I>&gt;&gt;<i> My goal is to make sure whatever I do to solve an issue is not going
+</I>&gt;&gt;<i> to bite me in the butt 3 months from now and then have to rethink and
+</I>&gt;&gt;<i> redo it all over again. That's happen before.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In terms of the &quot;ignore&quot; and &quot;delete&quot; elements. &#160;First is there
+</I>&gt;&gt;<i> something wrong with the &quot;ignore&quot; element?
+</I>&gt;<i>
+</I>&gt;<i> No.
+</I>&gt;<i>
+</I>&gt;&gt;<i> Is it working the way that
+</I>&gt;&gt;<i> it should?
+</I>&gt;<i>
+</I>&gt;<i> It works the best it can. We cannot ignore packages that are part of a
+</I>&gt;<i> pattern in Kiwi since we do not inspect the package list represented by
+</I>&gt;<i> the named pattern.
+</I>&gt;<i>
+</I>&gt;&gt;<i> I'm thinking that it was working fine it's just my
+</I>&gt;&gt;<i> circumstances.
+</I>&gt;<i>
+</I>&gt;<i> Correct.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You mentioned that the &quot;delete&quot; element can be used if I choose to use
+</I>&gt;&gt;<i> method 2 to delete the unwanted packages.
+</I>&gt;<i>
+</I>&gt;<i> Yes, but only if you could install your package in the first place.
+</I>&gt;<i> However, at this point you cannot do to the &quot;Conflicts&quot; setting in the
+</I>&gt;<i> spec files.
+</I>&gt;<i>
+</I>&gt;&gt;<i> But this deletes the
+</I>&gt;&gt;<i> packages when exactly...before Kiwi makes the final ISO, during the
+</I>&gt;&gt;<i> completion of the &quot;unpacked&quot; image (at the end of the Kiwi --prepare&quot;
+</I>&gt;&gt;<i> stage) or upon the install or live boot of the ISO itself?
+</I>&gt;<i>
+</I>&gt;<i> Towards the of the prepare step. Packages first get installed into the
+</I>&gt;<i> unpacked tree, then any packages marked for delete get deleted later.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> So is the method that I'm using to make branded package acceptable or
+</I>&gt;&gt;<i> am I asking for problems?
+</I>&gt;<i>
+</I>&gt;<i> It is perfectly acceptable. However, as you are experiencing you are
+</I>&gt;<i> also at the mercy of others. In this case you can see that the
+</I>&gt;<i> maintainer of the LXDE package wants to be the only one supplying the
+</I>&gt;<i> lxde-common-branding requirement. Thus you now have to negotiate with
+</I>&gt;<i> that person. If you do branding using the tarball method you are not
+</I>&gt;<i> dependent on other people, live is easier from an install point of view.
+</I>&gt;<i> But from an update point of view on a running image the tarball method
+</I>&gt;<i> is of course not so nice as it operates outside of the package manager.
+</I>&gt;<i>
+</I>&gt;&gt;<i> I naturally thought taking the original
+</I>&gt;&gt;<i> branded package from openSUSE11.3 would be a good starting point.
+</I>&gt;&gt;<i> I have many more branding packages to create. &#160;To find out all the
+</I>&gt;&gt;<i> branding package within this LXDE project should I run the rpm -q
+</I>&gt;&gt;<i> command and then download the orignal default branding package and
+</I>&gt;&gt;<i> then do what I've been doing so far. &#160;That is copy package and rebrand
+</I>&gt;&gt;<i> everything, spec, images, configs then repackage it and have OBS
+</I>&gt;&gt;<i> rebuild it?
+</I>&gt;<i>
+</I>&gt;<i> I think you will need to have a converstation with the LXDE maintainer.
+</I>&gt;<i> This is way outside of the Kiwi and even regular packaging scope.
+</I>&gt;<i>
+</I>&gt;<i> There is one more option you have at your disposal. You can put your
+</I>&gt;<i> branding package into the overlay tree for example in /opt/mypackages.
+</I>&gt;<i> Then in config.sh you can insert the rpm commands shown above. This will
+</I>&gt;<i> leave you with a consistent system. But more maintenance of your Kiwi
+</I>&gt;<i> config tree as you will not be able to get the latest version of your
+</I>&gt;<i> branding packages via the config.xml file. This is now a manual step.
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>Hi guys,
+I emailed the LXDE maintainer about this issue but still haven't herd
+back from him yet.
+I'm trying so hard to understand and get the flow of all this but so
+far nothing has gone smoothly enough for me to get comfortable with
+anything.  We talked about getting the contents of this package and
+using the Tar method to installing it and I assume that it would also
+work using the Overlay file method, both would be a problem if the
+package manager updated these file.  I would think the results would
+be that my branding (at least the branding that was installed by one
+of these two methods) would be overwritten with the default Suse
+version.
+
+Will mentioned that since I have the RPM package for this branding
+package that it could be used in a similar way to Tar file method but
+that I wouldn't get overwritten by the package manager during an
+update.  He had a meeting to go to so that's all I have on this.  Does
+he mean that the RPM can be &quot;tar-ed&quot; and is installed like a tar
+file??  I checked the kiwi PDF docs and can't find anything on this.
+
+Can the RPM be &quot;forced&quot; in?
+
+There are sooo many questions I have regarding this sort of stuff.
+When it comes to branding/re-branding that I'm at the mercy of whoever
+packaged the originals Suse packages.
+
+Is there a way that if I built all the branding package that these
+RPMs can be installed in to the image without the &quot;overwrite&quot; issues?
+I would think that if the RPMs are of the branding packages are used
+that the PM would &quot;know&quot; that they are there as compared to the tar
+and overlay method the PM wouldn't know the branding packages were
+there.  I guess it would be the difference between managed and
+unmanaged package installations.
+
+If this is possible I assume the config.xml file would have to be
+tweaked to have the repos section allow for local installs of the
+RPMs?
+Would the &quot;image.sh&quot; script have to actually install the RPMs?
+
+Thanks guys. You guys have helped me more in the last 3 days than I&quot;ve
+received in the last 3 months with IRC.
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002342.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+	<LI>Next message: <A HREF="002361.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2359">[ date ]</a>
+              <a href="thread.html#2359">[ thread ]</a>
+              <a href="subject.html#2359">[ subject ]</a>
+              <a href="author.html#2359">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

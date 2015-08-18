@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.xml%20schema%20reference%3F%20Want%20to%20build%20an%0A%20image%20with%20multiple%20partitions&In-Reply-To=%3C4FB05C4B.6080105%40sgi.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003023.html">
+   <LINK REL="Next"  HREF="003025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions</H1>
+    <B>Eric Richards</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.xml%20schema%20reference%3F%20Want%20to%20build%20an%0A%20image%20with%20multiple%20partitions&In-Reply-To=%3C4FB05C4B.6080105%40sgi.com%3E"
+       TITLE="[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions">erichards at sgi.com
+       </A><BR>
+    <I>Mon May 14 03:13:47 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003023.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+        <LI>Next message: <A HREF="003025.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3024">[ date ]</a>
+              <a href="thread.html#3024">[ thread ]</a>
+              <a href="subject.html#3024">[ subject ]</a>
+              <a href="author.html#3024">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, Marcus,
+
+Sorry to keep bugging you about this.
+
+On 05/12/2012 01:17 PM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>Okay, my &quot;type&quot; section of config.xml looks like:
+
+&lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; checkprebuilt=&quot;true&quot; 
+fsnocheck=&quot;true&quot; boot=&quot;oemboot/suse-12.1&quot; kernelcmdline=&quot;splash=silent 
+quiet&quot; boottimeout=&quot;0&quot;&gt;
+&lt;oemconfig&gt;
+&lt;oem-swap&gt;true&lt;/oem-swap&gt;
+&lt;oem-boot-title&gt;SGI Testsmall&lt;/oem-boot-title&gt;
+&lt;oem-silent-boot&gt;true&lt;/oem-silent-boot&gt;
+&lt;oem-bootwait&gt;false&lt;/oem-bootwait&gt;
+&lt;oem-swapsize&gt;8192&lt;/oem-swapsize&gt;
+&lt;oem-systemsize&gt;30720&lt;/oem-systemsize&gt;
+&lt;/oemconfig&gt;
+
+&lt;systemdisk&gt;
+&lt;volume name=&quot;tmp&quot; size=&quot;10G&quot;/&gt;
+&lt;volume name=&quot;var&quot; size=&quot;10G&quot;/&gt;
+&lt;volume name=&quot;log&quot; freespace=&quot;all&quot;/&gt;
+&lt;/systemdisk&gt;
+&lt;/type&gt;
+
+&gt;<i> why should it be empty ? sorry that doesn't follow any of
+</I>&gt;<i> the results I have built. With the above setup the partition
+</I>&gt;<i> table should have two partition
+</I>&gt;<i>
+</I>&gt;<i>     1: type 0x83 boot
+</I>&gt;<i>     2: type 0x8e LVM
+</I>I see that as well.
+&gt;<i> inside the LVM there is the entire root filesystem whereas
+</I>&gt;<i> var,tmp and log are extra volumes. All in all there are four
+</I>&gt;<i> logcal volumes inside the LVM:
+</I>&gt;<i>
+</I>&gt;<i>     LVRoot (with the size to hold the rest of the root filesystem)
+</I>&gt;<i>     LVtmp  (size set as 100G)
+</I>&gt;<i>     LVvar  (size set as 200G)
+</I>&gt;<i>     LVlog  (size set to take all the rest space)
+</I>&gt;<i>
+</I>&gt;<i> I can see all of these volumes when loop mounting/activating
+</I>&gt;<i> the LVM from the generated raw disk file
+</I>And I don't see that at all.
+
+On boot, this is what I see (hand copied rather than cut/paste,  sorry 
+if there are mistakes):
+
+Searching for boot device...
+Found boot device: /dev/sda
+Activating kiwiVG volume group
+4 logical volume(s) in &quot;kiwiVG&quot; now active
+0 logical volume(s) in &quot;kiwiVG&quot; now active
+Repartition disc according to real geometry [ parted ]
+0 physical volumes resized / 0 physical volumes not resized
+Filesystem of OEM system is unknown -&gt;  /dev/kiwiVG/LVRoot
+Waiting for device /dev/kiwiVG/LVRoot to settle...
+Waiting for device /dev/kiwiVG/LVRoot to settle...
+Waiting for device /dev/kiwiVG/LVRoot to settle...
+Waiting for device /dev/kiwiVG/LVRoot to settle...
+/sbin/init no such file or not executable
+
+I made a version of the config small enough to fit on a USB stick, and my development SUSE box can't find them there, either.
+
+
+(For completeness's sake)
+
+&lt;oem-swapsize&gt;20&lt;/oem-swapsize&gt;
+&lt;oem-systemsize&gt;150&lt;/oem-systemsize&gt;
+&lt;/oemconfig&gt;
+
+&lt;systemdisk&gt;
+&lt;volume name=&quot;tmp&quot; size=&quot;10M&quot;/&gt;
+&lt;volume name=&quot;var&quot; size=&quot;10M&quot;/&gt;
+&lt;volume name=&quot;log&quot; size=&quot;10M&quot;/&gt;
+&lt;/systemdisk&gt;
+
+
+Clearly I'm missing something obvious, because this should be very simple.
+
+-- 
+
+Eric Richards
+Kernel Software Engineer
+SGI logo
+1900 Pike Road
+Longmont, CO 80501
+Phone: 303-532-0233
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ERichards at sgi.com</A>&gt;
+Website: www.sgi.com &lt;<A HREF="http://www.sgi.com">http://www.sgi.com</A>&gt;
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120513/c25bc7a9/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120513/c25bc7a9/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: SGI_small_logo.png
+Type: image/png
+Size: 2653 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20120513/c25bc7a9/attachment.png">https://lists.berlios.de/pipermail/kiwi-users/attachments/20120513/c25bc7a9/attachment.png</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003023.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+	<LI>Next message: <A HREF="003025.html">[Kiwi-users] config.xml schema reference? Want to build an image with multiple partitions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3024">[ date ]</a>
+              <a href="thread.html#3024">[ thread ]</a>
+              <a href="subject.html#3024">[ subject ]</a>
+              <a href="author.html#3024">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

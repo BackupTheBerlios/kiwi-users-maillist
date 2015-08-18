@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie KIWI questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20KIWI%20questions&In-Reply-To=%3C1202731482.20890.49.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000301.html">
+   <LINK REL="Next"  HREF="000305.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie KIWI questions</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20KIWI%20questions&In-Reply-To=%3C1202731482.20890.49.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] Newbie KIWI questions">roger at opq.se
+       </A><BR>
+    <I>Mon Feb 11 13:04:41 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000301.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+        <LI>Next message: <A HREF="000305.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#302">[ date ]</a>
+              <a href="thread.html#302">[ thread ]</a>
+              <a href="subject.html#302">[ subject ]</a>
+              <a href="author.html#302">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2008-02-11 at 10:45 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi Roger,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 1) If I do not specify a kernel in my config.xml file, I still get a set
+</I>&gt;<i> &gt; of images. However, after the kernel boots and the nbd image is
+</I>&gt;<i> &gt; accessed, I get a message that the kernel versions do not match. Of
+</I>&gt;<i> &gt; course, I will always specify a kernel, but I was surprised that this
+</I>&gt;<i> &gt; happened. What is used if I do not specify a kernel?
+</I>&gt;<i> 
+</I>&gt;<i> The reason for the kernelCheck function is the following. If you boot
+</I>&gt;<i> an image via network the client has to receive the kernel and the
+</I>&gt;<i> initrd (kiwi boot image) first. The client loads and according to the
+</I>&gt;<i> deployment method it downloads the system image or mounts a remote
+</I>&gt;<i> tree via NFS or NBD. The later happens in your case. The problem here
+</I>&gt;<i> is if the initrd provides another kernel than the system image, in your
+</I>&gt;<i> case the NBD root tree, you will have problems to load any kernel module
+</I>&gt;<i> which hasn't been loaded within the initrd already. As Linux has the
+</I>&gt;<i> concept of modules it is most likely the case that you need additional
+</I>&gt;<i> kernel modules which are not required to _boot_ the image but required
+</I>&gt;<i> to use the operating system with all it's features later on.
+</I>&gt;<i> 
+</I>&gt;<i> Because of that kiwi checks the kernel version in RAM with the kernel
+</I>&gt;<i> provided by the system image. In your case with the kernel provided by
+</I>&gt;<i> the exported NBD root tree.
+</I>&gt;<i> 
+</I>&gt;<i> I'm wondering why you don't require a kernel in your image. Is it
+</I>&gt;<i> because you really don't need any additional kernel module when your
+</I>
+I do need and want a kernel :) I was just playing with where I specified
+the kernel: in the boot or in the image part. Just to see what effect,
+if any, this had. In one test, I did not specify it in either. I
+expected the image build to fail. To my surprise it did not fail. But
+the boot only got so far. Thus my question.
+
+&gt;<i> system boots ? USB is a good example here. For booting you most often
+</I>&gt;<i> don't required any USB module but later on you may want to use your
+</I>&gt;<i> USB mouse or another USB hardware which requires you to have the USB
+</I>&gt;<i> modules loadable. So you need them to be installed in your system image
+</I>&gt;<i> and of course for the right kernel version
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 2) Maybe I missed this one in the docs: I can specify a kernel in either
+</I>&gt;<i> &gt; the boot or the image part of my config.xml. Do either places have
+</I>&gt;<i> &gt; specific advantages? I am now specifying kernel-default in the boot
+</I>&gt;<i> &gt; section. I would have thought this would result in all the kernel
+</I>&gt;<i> &gt; modules being in the initrd image. And not in the nbd image. But the
+</I>&gt;<i> &gt; modules are in the nbd image. Is there a good description of this part
+</I>&gt;<i> &gt; of kiwi?
+</I>&gt;<i> 
+</I>&gt;<i> I think we agree that we urgently need a kernel in the kiwi boot
+</I>&gt;<i> images (the initrd's) otherwise we can't boot, right ? ;) the question
+</I>&gt;<i> whether we need a kernel in the system image depends on if you need
+</I>&gt;<i> kernel modules or kernel information in your later system image too
+</I>&gt;<i> because the initrd is gone (RAM only). If you remove the kernel-default
+</I>&gt;<i> package name in your config.xml it still can happen that a kernel
+</I>&gt;<i> is installed because of package requirements. If you really don't want
+</I>&gt;<i> a kernel in the system image you can remove the package manually as
+</I>&gt;<i> part of the &lt;packages type=&quot;delete&quot;&gt; section and reference that to be
+</I>&gt;<i> removed in images.sh.
+</I>
+OK. But I have been playing with your nice wyse setup. In there, you
+remove unused kernel modules via the images.sh script. This works fine
+for me as well, so I plan on using that method. Given the name of the
+script, I am guessing that this only removes modules from the system
+image. What modules are in the boot image? Is there any control over
+that?
+
+&gt;<i> &gt; 3) I have removed all references to X in my config.xml file. I do not
+</I>&gt;<i> &gt; think any packages I have specified use X. But X keeps getting pulled
+</I>&gt;<i> &gt; in. Is there anything in kiwi itself that could cause this behavior?
+</I>&gt;<i> 
+</I>&gt;<i> no kiwi itself doesn't require X at all. It's really hard to make sure
+</I>&gt;<i> there is _no_ reference to any X library, program... whatever. I have an 
+</I>&gt;<i> example image description provided with kiwi which doesn't install X
+</I>&gt;<i> 
+</I>&gt;<i> 	/usr/share/doc/packages/kiwi/examples/test2
+</I>
+I think this gets X as well: hal-&gt;PolicyKit-&gt;ConsoleKit-&gt;libx11.so.6
+
+The offending package is ConsoleKit, which gets pulled in just about
+anywhere. Which means you will probably always have X. I think the
+'best' that can be done is to remove X from the image, knowing that it
+will not be needed. At least the obvious parts can be deleted.
+
+Given that ConsoleKit should presumably work at run level 3, I am
+confused how it can require x11. I would think it should be sensed
+dynamically. But that is an issue for the ConsoleKit guys.
+
+&gt;<i> Hope that helps
+</I>
+Yes indeed. I am happily booting and all. I am just playing with
+refinements and image trimming.
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Kapellgr&#228;nd 7
+P.O. Box 4205
+SE-102 65 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000301.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+	<LI>Next message: <A HREF="000305.html">[Kiwi-users] Newbie KIWI questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#302">[ date ]</a>
+              <a href="thread.html#302">[ thread ]</a>
+              <a href="subject.html#302">[ subject ]</a>
+              <a href="author.html#302">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

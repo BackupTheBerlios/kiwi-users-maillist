@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%0A%09/dev/sda&In-Reply-To=%3C4C45E784.9080002%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001910.html">
+   <LINK REL="Next"  HREF="001913.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%0A%09/dev/sda&In-Reply-To=%3C4C45E784.9080002%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Tue Jul 20 20:14:28 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001910.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+        <LI>Next message: <A HREF="001913.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1912">[ date ]</a>
+              <a href="thread.html#1912">[ thread ]</a>
+              <a href="subject.html#1912">[ subject ]</a>
+              <a href="author.html#1912">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+We've made it past the initial issue with the repartitioning of the CF
+cards we are using, but we are now running into another issue that has
+me confused. I've been forced to increment the major version number,
+even after leaving the config.xml and size of the image alone, and it's
+completely hit or miss as to whether it will work.
+
+This could simply be me miss-reading things again, but here's what we
+are doing:
+
+I've solidified the package information and am simply making adjustments
+in the config.sh and images.sh files. The changes to the config.sh file
+are simply adjusting the default window manager, autologin aspects, and
+disabling some services we don't need. The changes in the images.sh have
+been to retain some x-windows drivers that we use, but were being removed.
+
+Each time I've incremented the release value, and left the Major and
+minor numbers alone (as per your own defined rules for it).
+
+When I rebuild the image, deploy and attempt to reboot the terminal, we
+get the following set of errors:
+
+
+Failed to mount ext3 clic container
+Failed to mount root filesystem
+attempt to access beyond end of device
+loop0: rw=0, wamt=4319144069, limit=6595072
+JBD: Failed to read block at offset 15
+JBD: recovery failed
+EXT3-fs: error loading journal
+
+Also, where can I enable the kiwidebug=1 variable so that we can gain
+shell access, things are occurring too quickly after the PXE image
+booting phase to be able to catch a spot to enter it? I suspect it would
+be in the pxelinux.cfg/default file, but just want to confirm first.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100720/a5e94b06/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100720/a5e94b06/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001910.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+	<LI>Next message: <A HREF="001913.html">[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1912">[ date ]</a>
+              <a href="thread.html#1912">[ thread ]</a>
+              <a href="subject.html#1912">[ subject ]</a>
+              <a href="author.html#1912">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

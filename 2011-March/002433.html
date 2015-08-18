@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] New KIWI layout, new issues.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C20110307194300.GC7421%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002427.html">
+   <LINK REL="Next"  HREF="002435.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] New KIWI layout, new issues.</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C20110307194300.GC7421%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] New KIWI layout, new issues.">ms at suse.de
+       </A><BR>
+    <I>Mon Mar  7 20:43:01 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002427.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+        <LI>Next message: <A HREF="002435.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2433">[ date ]</a>
+              <a href="thread.html#2433">[ thread ]</a>
+              <a href="subject.html#2433">[ subject ]</a>
+              <a href="author.html#2433">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> After the great success with my earlier OEM Preload KIWI, I thought I
+</I>&gt;<i> would revisit a KIWI image I was having trouble with. This time, I am
+</I>&gt;<i> making an image that boots via PXE, and has no local disk - all is in
+</I>&gt;<i> ram.
+</I>&gt;<i> 
+</I>&gt;<i> I modeled this image on examples/suse-11.2/suse-pxe-client. I can build
+</I>&gt;<i> the image OK. The problem is when I run the results.
+</I>&gt;<i> 
+</I>&gt;<i> The system begins the boot process. The kernel and initrd are loaded.
+</I>&gt;<i> Then, the root file system is mounted via AoE.
+</I>&gt;<i> 
+</I>&gt;<i> What happens (in boot.local, I think) is that there are complaints like
+</I>&gt;<i> this:
+</I>&gt;<i> 
+</I>&gt;<i> 	Buffer I/O error on device loop0.
+</I>&gt;<i> 	Lost page write due ti I/O error on loop0
+</I>&gt;<i> 
+</I>&gt;<i> Then the system fails to complete booting.
+</I>&gt;<i> 
+</I>&gt;<i> My config.xml has:
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i>  &lt;type image=&quot;pxe&quot; filesystem=&quot;clicfs&quot; boot=&quot;netboot/suse-11.2&quot;&gt;
+</I>&gt;<i>          &lt;pxedeploy server=&quot;10.2.10.14&quot; blocksize=&quot;4096&quot;&gt;
+</I>&gt;<i>                  &lt;partitions device=&quot;/dev/sda&quot;&gt;
+</I>&gt;<i>                          &lt;partition type=&quot;swap&quot; number=&quot;1&quot; size=&quot;5&quot;/&gt;
+</I>&gt;<i>                          &lt;partition type=&quot;L&quot; number=&quot;2&quot; size=&quot;image&quot; mountpoint=&quot;/&quot; target=&quot;true&quot;/&gt;
+</I>&gt;<i>                          &lt;partition type=&quot;L&quot; number=&quot;3&quot; target=&quot;false&quot;/&gt;
+</I>&gt;<i>                   &lt;/partitions&gt;
+</I>&gt;<i>                   &lt;union ro=&quot;/dev/sda2&quot; rw=&quot;/dev/sda3&quot; type=&quot;clicfs&quot;/&gt;
+</I>&gt;<i>          &lt;/pxedeploy&gt;
+</I>&gt;<i>  &lt;/type&gt;
+</I>&gt;<i> 
+</I>&gt;<i> and the images are generated with:
+</I>&gt;<i> 
+</I>&gt;<i> 	/usr/sbin/kiwi -b ./spec --type pxe -d ./image
+</I>&gt;<i> 
+</I>&gt;<i> I then copy the appropriate files into /tftpboot, restart my vblade
+</I>&gt;<i> daemon to be sure it is service the newly created root file system.
+</I>&gt;<i> 
+</I>&gt;<i> The config file looks like this:
+</I>&gt;<i> 
+</I>&gt;<i> 	AOEROOT=/dev/etherd/e0.1
+</I>&gt;<i> 
+</I>&gt;<i> I know that the pxedeploy statement generates something else. Perhaps I
+</I>&gt;<i> should remove or change the pxedeploy in my config.xml file?
+</I>&gt;<i> 
+</I>&gt;<i> I realize this is a bit sketchy. But I am not certain what information
+</I>&gt;<i> might be useful.
+</I>
+problem here is the fuse layer over AoE. This seems not to
+work reliably. Just to make sure you exported the clicfs image
+correctly:
+
+   losetup /dev/loop0 image-file.clicfs
+   vbladed 0 1 eth0 /dev/loop0
+
+I think I remember that I also had trouble when I try to
+mount the clicfs now over the AoE path. Maybe you don't use
+a clicfs image here 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002427.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+	<LI>Next message: <A HREF="002435.html">[Kiwi-users] New KIWI layout, new issues.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2433">[ date ]</a>
+              <a href="thread.html#2433">[ thread ]</a>
+              <a href="subject.html#2433">[ subject ]</a>
+              <a href="author.html#2433">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

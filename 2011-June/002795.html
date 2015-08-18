@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] broken kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20broken%20kiwi&In-Reply-To=%3CBANLkTin4h9dD-bLf6EV9eqf-t7xQ6T9x4Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002794.html">
+   <LINK REL="Next"  HREF="002798.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] broken kiwi</H1>
+    <B>Eduardo Kaftanski</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20broken%20kiwi&In-Reply-To=%3CBANLkTin4h9dD-bLf6EV9eqf-t7xQ6T9x4Q%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] broken kiwi">ekaftan at gmail.com
+       </A><BR>
+    <I>Tue Jun 28 16:34:41 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002794.html">[Kiwi-users] broken kiwi
+</A></li>
+        <LI>Next message: <A HREF="002798.html">[Kiwi-users] broken kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2795">[ date ]</a>
+              <a href="thread.html#2795">[ thread ]</a>
+              <a href="subject.html#2795">[ subject ]</a>
+              <a href="author.html#2795">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks Marcus,
+
+
+I upgrades kiwi and the error stays, so I am doing something wrong.
+
+Background:
+
+I have a working SLEPOS 11 setup working and booting via PXE, using the
+infrastructure provides by SLEPOS (adminserver/branchserver). I now have to
+support usb boot and install, ie, replace PXE with USB and then install the
+same image to the harddisk.
+
+I modified the image type to usb and rebuilt it. That went fine. I then
+tried to execute kiwi --installstick and got the errors in my last mail.
+
+I think its because my image is not a 'vmx' image, but I dont know how to
+build one.
+
+Many thanks for our help.
+
+
+
+On Fri, Jun 24, 2011 at 4:30 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+
+&gt;<i> Hi Eduardo,
+</I>&gt;<i>
+</I>&gt;<i> &gt;  I have been banging my head against the wall for 3 days....
+</I>&gt;<i>
+</I>&gt;<i> Uhh, that hurts ;)
+</I>&gt;<i>
+</I>&gt;<i> &gt; I am using the version of kiwi
+</I>&gt;<i> &gt; that comes with SLEPOS11 and have to build an installstick and and boot
+</I>&gt;<i> or
+</I>&gt;<i> &gt; installcd... but nothing I do works...
+</I>&gt;<i>
+</I>&gt;<i> I suggest to use the kiwi version for SLE11 including updates and
+</I>&gt;<i> fixes from here:
+</I>&gt;<i>
+</I>&gt;<i>   <A HREF="http://download.opensuse.org/repositories/home:/ctso/SLE_11_SP1/">http://download.opensuse.org/repositories/home:/ctso/SLE_11_SP1/</A>
+</I>&gt;<i>
+</I>&gt;<i> &gt;  kiwi --installstick comes back with a strange error about odd numbers in
+</I>&gt;<i> &gt; hash  and then this:
+</I>&gt;<i> &gt;   Failed to mount /dev/mapper/loop0p2
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  kiwi --bootcd gives me this:
+</I>&gt;<i> &gt; fileparse(): need a valid pathname at /usr/share/kiwi/modules/KIWIBoot.pm
+</I>&gt;<i> &gt; line 1465
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  kiwi --installcd the same as installstick.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Whats the secret? a newer kiwi? I have to build images with SLEPOS, but I
+</I>&gt;<i> &gt; think I can
+</I>&gt;<i> &gt; get away with a newer kiwi if I have no other option.
+</I>&gt;<i>
+</I>&gt;<i> I'm afraid but I can't help you with that information at hand.
+</I>&gt;<i> If you stumble over a problem it would be great if you can
+</I>&gt;<i> provide the log file kiwi wrotes. Just attach it to the mail
+</I>&gt;<i> and we can have a look at it
+</I>&gt;<i>
+</I>&gt;<i> Additionally you would help us a lot if you provide your image
+</I>&gt;<i> description and a short description how and where (build system distro ?)
+</I>&gt;<i> you called kiwi to build it.
+</I>&gt;<i>
+</I>&gt;<i> Thanks
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>
+
+
+-- 
+Eduardo Kaftanski
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ekaftan at gmail.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">eduardo at linuxsoporte.cl</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110628/e53dbd39/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110628/e53dbd39/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002794.html">[Kiwi-users] broken kiwi
+</A></li>
+	<LI>Next message: <A HREF="002798.html">[Kiwi-users] broken kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2795">[ date ]</a>
+              <a href="thread.html#2795">[ thread ]</a>
+              <a href="subject.html#2795">[ subject ]</a>
+              <a href="author.html#2795">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

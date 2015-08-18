@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C20121231123747.GA8075%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003053.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C20121231123747.GA8075%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">ms at suse.de
+       </A><BR>
+    <I>Mon Dec 31 13:37:47 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003053.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3054">[ date ]</a>
+              <a href="thread.html#3054">[ thread ]</a>
+              <a href="subject.html#3054">[ subject ]</a>
+              <a href="author.html#3054">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Is there a possibility to make kiwi install its
+</I>&gt;<i> unpackaged image tree into an existing directory?
+</I>
+kiwi supports an oem-partition-install mode along with
+the kiwi install images. This mode installs the partitions
+of the image into partitions you select. kiwi checks the
+slected install disk for free (no filesystem) partitions
+and offers you to choose one for root, boot, ... according
+to the layout of your image. There are some things you
+should know about this mode:
+
+1) it's rarely used
+
+2) the bootloader is setup to boot the kiwi installed system
+   Thus the existing systems on this disk cannot be booted
+   by the setup kiwi does here. The reason for this is, it's too
+   complex to analyse and integrate smoothly here with all
+   the different types of loaders. You can use yast2 bootloader
+   to rewrite a new bootloader setup. This code is able to
+   identify e.g Windows and Linux systems and put them all
+   together. I made several tests and it also only worked
+   well with pretty simple disk layouts. As soon as the systems
+   are spread more complex on the disk also yast will fail.
+   Most people have their own scripts to integrate multiple
+   systems into one bootloader concept
+
+3) the install disk must be prepared prior to the installation.
+   kiwi will not change the existing partition table on the
+   selected disk. Thus there need to be at least one Linux
+   partition (id=0x83) with no filesystem on board providing
+   enough space. If the disk does not offer enough or suitable
+   partitions kiwi will try to open a gparted session to let
+   you change the table, if the system image does not provide
+   gparted and a minimal X system, kiwi will stop with some
+   information about the expected partitions, types and sizes
+
+4) existing swap partitions will be re-used
+   
+You can activate the mode with any oem install CD/DVD Stick by
+using the following boot option on the kernel commandline
+
+   OEM_PARTITION_INSTALL=1
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003053.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3054">[ date ]</a>
+              <a href="thread.html#3054">[ thread ]</a>
+              <a href="subject.html#3054">[ subject ]</a>
+              <a href="author.html#3054">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem using SLES ISOs as repository
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20using%20SLES%20ISOs%20as%20repository&In-Reply-To=%3C291A23B717F9104985651112DB6C365F271F0FA966%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002006.html">
+   <LINK REL="Next"  HREF="002009.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem using SLES ISOs as repository</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20using%20SLES%20ISOs%20as%20repository&In-Reply-To=%3C291A23B717F9104985651112DB6C365F271F0FA966%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] Problem using SLES ISOs as repository">john.lund at emc.com
+       </A><BR>
+    <I>Wed Sep  8 16:43:33 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002006.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+        <LI>Next message: <A HREF="002009.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2008">[ date ]</a>
+              <a href="thread.html#2008">[ thread ]</a>
+              <a href="subject.html#2008">[ subject ]</a>
+              <a href="author.html#2008">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> -----Original Message-----
+</I>
+&gt;<i>
+</I>
+&gt;<i> how did you make them available to kiwi ? I mean can you post the
+</I>
+&gt;<i> &lt;repository&gt; section for this repo or the commandline (--add-repo ...)
+</I>
+&gt;<i> you used ?
+</I>
+
+
+[Lund, John] I have tried a couple of different ways.  This is the way it looks in the config.xml now (but I usually have the SLES_11_SP1_DVD2 commented out as it causes the error noted below):
+
+
+
+    &lt;repository alias=&quot;SLES_11_SP1_DVD&quot; type=&quot;yast2&quot; priority=&quot;98&quot;&gt;
+
+      &lt;source path=&quot;<A HREF="iso:///platform/kiwi-repos/SLES/SLES-11-SP1-DVD-x86_64-GM-DVD1.iso">iso:///platform/kiwi-repos/SLES/SLES-11-SP1-DVD-x86_64-GM-DVD1.iso</A>&quot; /&gt;
+
+    &lt;/repository&gt;
+
+    &lt;repository alias=&quot;SLES_11_SP1_DVD2&quot; type=&quot;yast2&quot; profiles=&quot;Develop&quot; priority=&quot;98&quot;&gt;
+
+        &lt;source path=&quot;<A HREF="iso:///platform/kiwi-repos/SLES/SLES-11-SP1-DVD-x86_64-GM-DVD2.iso">iso:///platform/kiwi-repos/SLES/SLES-11-SP1-DVD-x86_64-GM-DVD2.iso</A>&quot; /&gt;
+
+    &lt;/repository&gt;
+
+    &lt;repository alias=&quot;SLES11_SP1_SDK_DVD&quot; type=&quot;yast2&quot; priority=&quot;98&quot;&gt;
+
+        &lt;source path=&quot;<A HREF="iso:///platform/kiwi-repos/SLES/SLE-11-SP1-SDK-DVD-x86_64-GM-DVD1.iso">iso:///platform/kiwi-repos/SLES/SLE-11-SP1-SDK-DVD-x86_64-GM-DVD1.iso</A>&quot; /&gt;
+
+    &lt;/repository&gt;
+
+
+
+The SLES_11_SP1_DVD2 repo definition causes the error:
+
+Retrieving repository 'SLES_11_SP1_DVD2' metadata [/]
+
+File '/media.1/media' not found on medium 'file:/tmp/kiwimount-SLES-11-SP1-DVD-x86_64-GM-DVD2.iso'
+
+
+
+Abort, retry, ignore? [a/r/i/?] (a): a
+
+Retrieving repository 'SLES_11_SP1_DVD2' metadata [error]
+
+Repository 'SLES_11_SP1_DVD2' is invalid.
+
+
+
+&gt;<i>
+</I>
+&gt;<i> Thanks
+</I>
+&gt;<i>
+</I>
+&gt;<i> Regards,
+</I>
+&gt;<i> Marcus
+</I>
+&gt;<i> --
+</I>
+&gt;<i>  Public Key available
+</I>
+&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>
+&gt;<i>  -------------------------------------------------------
+</I>
+&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>
+&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>
+&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>
+&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>
+&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>
+&gt;<i>  -------------------------------------------------------
+</I>
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100908/ef58bc52/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100908/ef58bc52/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002006.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+	<LI>Next message: <A HREF="002009.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2008">[ date ]</a>
+              <a href="thread.html#2008">[ thread ]</a>
+              <a href="subject.html#2008">[ subject ]</a>
+              <a href="author.html#2008">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

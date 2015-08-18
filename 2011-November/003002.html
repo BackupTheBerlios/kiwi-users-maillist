@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /sbin/init no such file or not executable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/sbin/init%20no%20such%20file%20or%20not%20executable&In-Reply-To=%3CCABKsJ%3DRWotio-unNANeDmtbOpF_v_c9qcFf17SD-XQZNm0TmFg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003000.html">
+   <LINK REL="Next"  HREF="002999.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /sbin/init no such file or not executable</H1>
+    <B>marcin kowalski</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/sbin/init%20no%20such%20file%20or%20not%20executable&In-Reply-To=%3CCABKsJ%3DRWotio-unNANeDmtbOpF_v_c9qcFf17SD-XQZNm0TmFg%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] /sbin/init no such file or not executable">yoshi314 at gmail.com
+       </A><BR>
+    <I>Mon Nov 28 13:39:46 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003000.html">[Kiwi-users] /sbin/init no such file or not executable
+</A></li>
+        <LI>Next message: <A HREF="002999.html">[Kiwi-users] Starting Remount Root FS failed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3002">[ date ]</a>
+              <a href="thread.html#3002">[ thread ]</a>
+              <a href="subject.html#3002">[ subject ]</a>
+              <a href="author.html#3002">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>well, that doesn't fix my problem.
+
+i use isoboot/suse-12.1 based iso config. and apparently /bin/systemd does
+not exist.
+
+boot process stops right after mounting the cloop file.
+
+2011/11/20 &quot;Horv&#225;th Gergely J. (Ott&#243;)&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">hgj at sch.bme.hu</A>&gt;
+
+&gt;<i> Hello Mike,
+</I>&gt;<i>
+</I>&gt;<i> I had the a same problem. I'm not sure what solved it, but one thing you
+</I>&gt;<i> can try is to use the templates from:
+</I>&gt;<i>
+</I>&gt;<i> /usr/share/kiwi/image/
+</I>&gt;<i>
+</I>&gt;<i> Instead of what you mentioned. JeOS worked for me.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Greg
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 19/11/11 06:27, Mike Turchenkov wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hello, I'm trying to pxeboot a system using examples in
+</I>&gt;&gt;<i> /usr/share/doc/packages/kiwi, namely suse-11.4/suse-pxe-client
+</I>&gt;&gt;<i> I use openSuSE 11.4
+</I>&gt;&gt;<i> It loads /boot/linux and then boot/initrd.
+</I>&gt;&gt;<i> But on the Loading KIWI PXE Boot-System it fails:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Base system is up to date, activating disk system...
+</I>&gt;&gt;<i> /sbin/init no such file or not executable
+</I>&gt;&gt;<i> rebootException: error consoles at Alt-F3/F4
+</I>&gt;&gt;<i> rebootException: reboot in 120 sec...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> And then after 120 sec it does not reboot and instead goes loading,
+</I>&gt;&gt;<i> and even gives login prompt.
+</I>&gt;&gt;<i> Resulting system seems to work correctly.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> How to get rid of that message and what does that behaviour mean?
+</I>&gt;&gt;<i> ______________________________**_________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/**mailman/listinfo/kiwi-users&lt;https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/**mailman/listinfo/kiwi-users&lt;https://lists.berlios.de/mailman/listinfo/kiwi-users</A>&gt;
+</I>&gt;&gt;<i>
+</I>&gt;<i> ______________________________**_________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/**mailman/listinfo/kiwi-users&lt;https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/**mailman/listinfo/kiwi-users&lt;https://lists.berlios.de/mailman/listinfo/kiwi-users</A>&gt;
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20111128/203aa6db/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20111128/203aa6db/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003000.html">[Kiwi-users] /sbin/init no such file or not executable
+</A></li>
+	<LI>Next message: <A HREF="002999.html">[Kiwi-users] Starting Remount Root FS failed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3002">[ date ]</a>
+              <a href="thread.html#3002">[ thread ]</a>
+              <a href="subject.html#3002">[ subject ]</a>
+              <a href="author.html#3002">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

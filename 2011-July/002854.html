@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] RAID configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3C5B1B6AC8-1A58-4F50-8C64-8CA98CDC65A1%40danl.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002852.html">
+   <LINK REL="Next"  HREF="002855.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] RAID configuration</H1>
+    <B>Daniel Little</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3C5B1B6AC8-1A58-4F50-8C64-8CA98CDC65A1%40danl.org%3E"
+       TITLE="[Kiwi-users] RAID configuration">me at danl.org
+       </A><BR>
+    <I>Fri Jul 22 22:45:19 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002852.html">[Kiwi-users] RAID configuration
+</A></li>
+        <LI>Next message: <A HREF="002855.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2854">[ date ]</a>
+              <a href="thread.html#2854">[ thread ]</a>
+              <a href="subject.html#2854">[ subject ]</a>
+              <a href="author.html#2854">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+&gt;<i> The RAID feature kiwi supports is the software raid stack of the kernel
+</I>&gt;<i> If you have a machine with a hardware raid controller on board it's
+</I>&gt;<i> important that the kiwi initrd includes the kernel driver for that
+</I>&gt;<i> controller.
+</I>
+Ok, that makes sense. Just not sure that I am including the drivers section properly. When the system boots from the standard 11.4 dist, it identifies a 'Broadcom CSB6 RAID/IDE controller' and indicates that it is going to use the 'pata_serverworks' driver. I added the following to the config.xml at one point but it did not make a difference.
+
+	&lt;drivers type='drivers'&gt;
+		&lt;file name='drivers/pata/*'/&gt;
+		&lt;file name='drivers/ata/*'/&gt;
+	&lt;/drivers&gt;
+
+I think the first line is actually wrong, but the second line should have got it as the file
+
+	/lib/modules/2.6.37.6-0.5-default/kernel/drivers/ata/pata_serverworks.ko
+
+exists on the server that Kiwi is running on and 'uname -a' gives the following:
+
+	Linux deployment 2.6.37.6-0.5-default #1 SMP 2011-04-25 21:48:33 +0200 i686 i686 i386 GNU/Linux
+
+Furthermore, I verified that file is in the prepared image directory and it is. So I think I'm missing something in getting the right RAID device on the image. I also have an images.sh file with 'suseStripKernel' and 'suseStripInitrd' as identified somewhere in the docs. 
+
+&gt;<i> Along with the software raid feature there are some
+</I>&gt;<i> restrictions at the moment:
+</I>&gt;<i> 
+</I>&gt;<i> 1) only raid1 (mirroring) support
+</I>
+That's exactly what I'm looking for, so that's good.
+
+&gt;<i> 2) the RAID setup as described in the pxe image chapter in the kiwi
+</I>&gt;<i>   documentation works with the pxe image type only. You can't use
+</I>&gt;<i>   that together with an oem image deployed via pxe. I will explain
+</I>&gt;<i>   why later in that mail
+</I>
+I get it now - this makes sense.
+
+
+&gt;&gt;<i> /dev/disk/by-id/raid-lsi_chedfhiceaa-part2 swap 
+</I>&gt;&gt;<i> /dev/disk/by-id/raid-lsi_chedfhiceaa-part3 / 
+</I>&gt;&gt;<i> /dev/disk/by-id/raid-lsi_chedfhiceaa-part1 /boot
+</I>&gt;<i> 
+</I>&gt;<i> Well if I go with the by-id device names I would say there is a
+</I>&gt;<i> hardware raid controller in your machine and it was detected by the
+</I>&gt;<i> linux kernel as well as there are storage device populated by the
+</I>&gt;<i> raid controller setup. So I would say everything is fine here ? :)
+</I>
+Yes, but again, this was from a standard 11.4 dist installation. It is a hardware raid controller, but if we have to do this with software raid, I don't have a problem with that either. Note that even though /dev/sda is used in the OEM boot that I've created, 'dmraid -s' tells me that the raid controller is there. However, it's not in use as I'm able to mount /dev/sdb and nothing is on that drive. When I attempt to mount /dev/sdb under a standard 11.4 install, it tells me that the device is busy and can't be mounted (which is the expected behaviour).
+
+&gt;&gt;<i> I tried putting the following 'config.00:11:25:29:8D:20' file in the directory SERV/tftpboot/KIWI/
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> DISK=/dev/sda
+</I>&gt;&gt;<i> IMAGE=/dev/md1;App-Server-11.4.i686;1.0.0;192.168.169.248;8192
+</I>&gt;&gt;<i> PART=5;S;x,2000;83;/
+</I>&gt;&gt;<i> RAID=1;/dev/sda;/dev/sdb
+</I>&gt;<i> 
+</I>&gt;<i> What's really problematic is that in that mode we don't support
+</I>&gt;<i> raid as I mentioned at the beginning of my mail. The problem is that
+</I>&gt;<i> an oem image is an all-in-one bundle and so far we don't support
+</I>&gt;<i> to have software raid as part of this setup. If you want to make
+</I>&gt;<i> use of the RAID feature you need to create a &quot;real&quot; pxe image
+</I>
+Okie, that makes sense.
+
+&gt;&gt;<i> I hope that's enough information in describing the problem I'm having.
+</I>&gt;&gt;<i> I've spent a good week trying to figure this portion out so far and haven't
+</I>&gt;&gt;<i> progressed on it at all, although I'm getting most of the rest of Kiwi.
+</I>&gt;&gt;<i> If there's anyone that can provide pointers for what I would need to do, 
+</I>&gt;&gt;<i> that would be great.
+</I>&gt;<i> 
+</I>&gt;<i> I'm sorry that you had a hard time with kiwi. Unfortunately
+</I>&gt;<i> along with the trouble I still have some questions ;)
+</I>
+Don't get me wrong - I love Kiwi! Actually, it's perfect for what I'm looking for. My problem has been a lack of understanding of Linux internals and how those pieces fit with Kiwi. The part I really don't fully understand is the initrd portion and how to customize the installation of that in Kiwi. The rest of Kiwi couldn't be better. As I mentioned, I had a slight hiccup with busybox not working properly but worked around that just fine with HTTP image instead.
+
+&gt;<i> 1) which kiwi version do you use
+</I>
+It's running 4.92.1 on an 11.4 openSUSE install with kernel version 2.6.37.6-0.5-default
+
+&gt;<i> 2) Do you want to use hardware or software raid ?
+</I>&gt;<i>   I mean from what I read it looks like the target machine has
+</I>&gt;<i>   a linux supported lsi raid controller and there is the disk
+</I>&gt;<i>   device:
+</I>&gt;<i> 
+</I>&gt;<i>   /dev/disk/by-id/raid-lsi_chedfhiceaa
+</I>&gt;<i> 
+</I>&gt;<i>   if this is the only disk device on that machine the oem install
+</I>&gt;<i>   procedure should have installed the image there and everything
+</I>&gt;<i>   is done. If there are multiple disks available you should have
+</I>&gt;<i>   gotten a selection box to choose the target
+</I>
+It's a hardware raid controller for a Broadcom CSB6 RAID/IDE interface. The selection box that you mention only has the two underlying disks that I want mirrored - /dev/sda and /dev/sdb, instead of the raid-lsi device. I'm OK with using either software raid targeting the two individual devices although hardware raid would be preferable for obvious reasons. 
+
+&gt;<i> 3) If you want to use software RAID you have to add the pxe type
+</I>&gt;<i>   in your image config.xml
+</I>&gt;<i> 
+</I>&gt;<i>   &lt;type image=&quot;pxe&quot; filesystem=&quot;ext3&quot; boot=&quot;netboot/suse-11.4&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i>   Build the pxe image 'kiwi --create ... --type pxe'
+</I>&gt;<i>   After that take a look into:
+</I>&gt;<i> 
+</I>&gt;<i>   <A HREF="http://isny.homelinux.com/data/kiwi.html#chap.pxe">http://isny.homelinux.com/data/kiwi.html#chap.pxe</A>
+</I>&gt;<i>   <A HREF="http://isny.homelinux.com/data/kiwi.html#sec.pxe.client-config-file">http://isny.homelinux.com/data/kiwi.html#sec.pxe.client-config-file</A>
+</I>&gt;<i> 
+</I>&gt;<i>   Again only raid1 is supported here at the moment
+</I>
+I'll take another look at this. My understanding, though, is that is going to create a PXE system entirely, correct? That makes it more like an EC2 kind of system, that wont directly installing anything onto the raid device. The downside of that is that we'd have to re-do some architecting of our software to make it more server-stateless. Although we're doing that too, it's not a short term problem to deal with. 
+
+&gt;<i> Hope that helps
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+Thanks Marcus! Your input has been really appreciated.
+
+Daniel.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002852.html">[Kiwi-users] RAID configuration
+</A></li>
+	<LI>Next message: <A HREF="002855.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2854">[ date ]</a>
+              <a href="thread.html#2854">[ thread ]</a>
+              <a href="subject.html#2854">[ subject ]</a>
+              <a href="author.html#2854">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

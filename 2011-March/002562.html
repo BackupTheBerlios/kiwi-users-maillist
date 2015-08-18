@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config.sh rpm won't install
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20rpm%20won%27t%20install&In-Reply-To=%3CAANLkTikgn7VZeJCnzsQ9LuEVbXbijBKriuJd-LaX6HtS%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002561.html">
+   <LINK REL="Next"  HREF="002563.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config.sh rpm won't install</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20rpm%20won%27t%20install&In-Reply-To=%3CAANLkTikgn7VZeJCnzsQ9LuEVbXbijBKriuJd-LaX6HtS%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] config.sh rpm won't install">eportel6607 at gmail.com
+       </A><BR>
+    <I>Tue Mar 29 04:01:04 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002561.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+        <LI>Next message: <A HREF="002563.html">[Kiwi-users] The best method to remove unwanted applets
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2562">[ date ]</a>
+              <a href="thread.html#2562">[ thread ]</a>
+              <a href="subject.html#2562">[ subject ]</a>
+              <a href="author.html#2562">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Mar 28, 2011 at 11:37 AM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 03/28/2011 11:14 AM, Chris Cunha wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Sat, Mar 26, 2011 at 4:34 PM, Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; &#160;wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> and by the way the following bash statement:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> &#160; if [ $? ];then
+</I>&gt;&gt;&gt;&gt;<i> &#160; &#160; exit 1
+</I>&gt;&gt;&gt;&gt;<i> &#160; fi
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> is invalid. the test parameters expects an expression
+</I>&gt;&gt;&gt;<i> but this expression is true if $? has a value not matter
+</I>&gt;&gt;&gt;<i> what value it is :) as $? is the return code of the last
+</I>&gt;&gt;&gt;<i> command it always has a value.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> so in short your script always exits with 1 and causes
+</I>&gt;&gt;&gt;<i> kiwi to stop here. The correct syntax is
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &#160; if [ $? -ne 0 ];then
+</I>&gt;&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;exit 1
+</I>&gt;&gt;&gt;<i> &#160; fi
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Regards,
+</I>&gt;&gt;&gt;<i> Marcus
+</I>&gt;&gt;&gt;<i> --
+</I>&gt;&gt;&gt;<i> &#160;Public Key available
+</I>&gt;&gt;&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;&gt;&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;&gt;&gt;<i> &#160;Marcus Sch&#228;fer (Res.&amp; &#160;Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;&gt;&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;&gt;&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;&gt;&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;&gt;&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;&gt;&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Ha ha ha.
+</I>&gt;&gt;<i> Interesting Marcus. &#160;ROBERT! :) what did you do?!
+</I>&gt;<i>
+</I>&gt;<i> Sorry, confusion, shell, perl, python...... yes, in the shell the comparison
+</I>&gt;<i> is needed, truth testing is not sufficient.
+</I>&gt;<i>
+</I>&gt;&gt;<i> Robert sugested
+</I>&gt;&gt;<i> that I add that if/then statement and verbose mode to the rpm install
+</I>&gt;&gt;<i> commands to help track down an issue with one of my packages. &#160; It
+</I>&gt;&gt;<i> turns out there wasn't anything wrong it's just that the combo of the
+</I>&gt;&gt;<i> wrong version indicated in the config.sh script AND the fact that I
+</I>&gt;&gt;<i> didn't move a copy of the newly repaired packages to /opt is what
+</I>&gt;&gt;<i> caused alot of the issues.
+</I>&gt;<i>
+</I>&gt;<i> Sounds like something was wrong to me ;)
+</I>&gt;<i>
+</I>&gt;&gt;<i> Well I learn a lot this time.
+</I>&gt;&gt;<i> Once I fixed the packages, and actually remembered that those two
+</I>&gt;&gt;<i> packages where actually installed by the config.sh file from a local
+</I>&gt;&gt;<i> source everything works fine again. &#160;I rebuilt the packages in OBS and
+</I>&gt;&gt;<i> didn't remember to take the finished rpm from OBS and move it to my
+</I>&gt;&gt;<i> local install source which is /opt in my case.
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>Hi
+I totally understand Robert.  You have a lot of stuff in your head.
+No need to apoligize. I really appreciate your efforts to help me.
+Yes there was a problem but it was more of an oversight on my part
+with the wrong versions of a package and that fact the I forgot to
+move the package to the local storage folder.  It builds find now.
+Thanks
+chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002561.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+	<LI>Next message: <A HREF="002563.html">[Kiwi-users] The best method to remove unwanted applets
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2562">[ date ]</a>
+              <a href="thread.html#2562">[ thread ]</a>
+              <a href="subject.html#2562">[ subject ]</a>
+              <a href="author.html#2562">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

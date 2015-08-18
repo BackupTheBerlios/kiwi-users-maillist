@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi's pattern module...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%27s%20pattern%20module...&In-Reply-To=%3C20100423092746.GA8429%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001783.html">
+   <LINK REL="Next"  HREF="001785.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi's pattern module...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%27s%20pattern%20module...&In-Reply-To=%3C20100423092746.GA8429%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi's pattern module...">ms at novell.com
+       </A><BR>
+    <I>Fri Apr 23 11:27:46 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001783.html">[Kiwi-users] kiwi's pattern module...
+</A></li>
+        <LI>Next message: <A HREF="001785.html">[Kiwi-users] kiwi's pattern module...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1784">[ date ]</a>
+              <a href="thread.html#1784">[ thread ]</a>
+              <a href="subject.html#1784">[ subject ]</a>
+              <a href="author.html#1784">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; With the next release of kiwi (4.32) I plan to remove the
+</I>&gt;<i> &gt; kiwi pattern module (KIWIPattern.pm). This module was used to solve
+</I>&gt;<i> &gt; the contents of the pattern files provided with the SuSE distribution.
+</I>&gt;<i> &gt; The module will only be used if all of the following items applies:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;  * the config.xml requested a pattern eg: &lt;opensusePattern name=&quot;base&quot;/&gt;
+</I>&gt;<i> &gt;  * the smart packagemanager is used
+</I>&gt;<i> &gt;  * there is no libsatsolver available on the image building machine
+</I>&gt;<i> &gt;    which applies to SuSE &lt;= 10.1 and SLE10
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Are there users who have that environment and therefore still
+</I>&gt;<i> &gt; rely on the functionality of the KIWIPattern.pm module ? If so
+</I>&gt;<i> &gt; please drop me a note otherwise I will remove it during the
+</I>&gt;<i> &gt; next week
+</I>&gt;<i> 
+</I>&gt;<i> The only working kiwi image description I am using (with openSUSE 11.1) is
+</I>&gt;<i> using that.  So i'd would be very glad, if you do not remove that.
+</I>&gt;<i>  
+</I>&gt;<i> I use this:
+</I>&gt;<i> 
+</I>&gt;<i>                 &lt;opensusePattern name=&quot;kde3&quot;/&gt;
+</I>&gt;<i>                 &lt;opensusePattern name=&quot;default&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> If that's no longer available, I cannot create any images... :-(
+</I>
+Nobody said that pattern support will no longer be available.
+my goodness nearly everybody use that.
+
+Only if you use _smart_ on a _SLES10 or an older_ build machine 
+_without libsatsolver_ on board kiwi uses its own pattern solver but that
+doesn't apply to you as you wrote that you use 11.1 and most likely
+zypper not smart
+
+So why are you concerned ? :)
+
+I say it again there is only a problem if you have the
+following combination:
+
+  smart +
+     build on 10.1/SLES10 or older without libsatsolver + 
+          opensusePattern
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001783.html">[Kiwi-users] kiwi's pattern module...
+</A></li>
+	<LI>Next message: <A HREF="001785.html">[Kiwi-users] kiwi's pattern module...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1784">[ date ]</a>
+              <a href="thread.html#1784">[ thread ]</a>
+              <a href="subject.html#1784">[ subject ]</a>
+              <a href="author.html#1784">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

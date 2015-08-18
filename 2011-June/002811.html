@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [studio-devel] image caches, some improvements
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bstudio-devel%5D%20image%20caches%2C%20some%20improvements&In-Reply-To=%3C20110629121134.GA12613%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002813.html">
+   <LINK REL="Next"  HREF="002814.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [studio-devel] image caches, some improvements</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bstudio-devel%5D%20image%20caches%2C%20some%20improvements&In-Reply-To=%3C20110629121134.GA12613%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] [studio-devel] image caches, some improvements">ms at suse.de
+       </A><BR>
+    <I>Wed Jun 29 14:11:34 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002813.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+        <LI>Next message: <A HREF="002814.html">[Kiwi-users] Quick Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2811">[ date ]</a>
+              <a href="thread.html#2811">[ thread ]</a>
+              <a href="subject.html#2811">[ subject ]</a>
+              <a href="author.html#2811">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+today I found a way to make the image caches perform better
+by an increased junk size for the dm cow file. I made a first
+test and things looks much better now:
+
+-----------------------------------
+Standard build on my system
+-----------------------------------
+time kiwi \
+   --prepare template/ix86/suse-11.3-JeOS/ \
+   --root /tmp/kiwi-11.3-std \
+   --set-repo <A HREF="iso:///image/CDs/openSUSE-11.3-DVD-i586.iso">iso:///image/CDs/openSUSE-11.3-DVD-i586.iso</A>
+
+real    4m32.537s
+user    1m6.076s
+sys     0m30.186s
+
+time kiwi --create /tmp/kiwi-11.3-std -d /tmp/mytest --type vmx
+# the initrd is build without a cache here
+
+real    7m54.963s
+user    1m53.383s
+sys     0m54.959s
+=====================================
+real    12m26s  (100%)
+=====================================
+
+
+-----------------------------------
+Using a cache on my system
+-----------------------------------
+time kiwi \
+   --prepare template/ix86/suse-11.3-JeOS/ \
+   --root /tmp/kiwi-11.3 \
+   --cache /var/cache/kiwi/image/ \
+   --set-repo <A HREF="iso:///image/CDs/openSUSE-11.3-DVD-i586.iso">iso:///image/CDs/openSUSE-11.3-DVD-i586.iso</A>
+
+real    1m57.740s
+user    0m26.282s
+sys     0m8.465s
+
+time kiwi \
+   --create /tmp/kiwi-11.3 -d /tmp/mytest --type vmx \
+   --cache /var/cache/kiwi/image
+
+real    5m6.200s
+user    1m4.540s
+sys     0m33.550s
+=====================================
+real    7m03s   (~60%)
+=====================================
+
+So that's really worth it :)
+What do you think ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002813.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+	<LI>Next message: <A HREF="002814.html">[Kiwi-users] Quick Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2811">[ date ]</a>
+              <a href="thread.html#2811">[ thread ]</a>
+              <a href="subject.html#2811">[ subject ]</a>
+              <a href="author.html#2811">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

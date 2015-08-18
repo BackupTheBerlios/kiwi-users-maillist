@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] default vs pae kernel in diskless builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C49BE4051.3090103%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001002.html">
+   <LINK REL="Next"  HREF="001010.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] default vs pae kernel in diskless builds</H1>
+    <B>Vladimir V. Kolpakov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C49BE4051.3090103%40gmail.com%3E"
+       TITLE="[Kiwi-users] default vs pae kernel in diskless builds">vova.kolpakov at gmail.com
+       </A><BR>
+    <I>Mon Mar 16 13:04:33 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001002.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+        <LI>Next message: <A HREF="001010.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1009">[ date ]</a>
+              <a href="thread.html#1009">[ thread ]</a>
+              <a href="subject.html#1009">[ subject ]</a>
+              <a href="author.html#1009">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Roger Oberholtzer wrote:
+&gt;<i> On Fri, 2009-03-13 at 14:24 +0100, Marcus Sch&#228;fer wrote:
+</I>&gt;&gt;<i> Hi Roger,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Sorry for posting to my own message. But does anyone know what I am
+</I>&gt;&gt;&gt;<i> doing wrong to get two different kernels?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> sorry I'm a bit confused and can't tell you why there are two
+</I>&gt;&gt;<i> kernels. If you don't mind post the image description and
+</I>&gt;&gt;<i> we can try to reproduce the problem and find a solution
+</I>&gt;<i> 
+</I>&gt;<i> I have attached my files. ...
+</I>
+Marcus, --
+
+Just to avoid further confusion,
+let me highlight what you have said earlier:
+Roger wants to get 2 kernels in one bundle,
+rather then investigates cause of having two kernels in an image.
+
+Regards to config.xml,
+bootprofile=&quot;smp,default&quot; is more appropriate there
+then &quot;smp,diskless&quot;, as long as /dev/sda* are involved.
+
+I've tested build with updated config.xml
+(see patch and listings below),
+and it seems working, in one condition:
+kernel either can't be build for -pae and -default modes both
+(some CPU-s can't run with -pae kernel),
+thus kiwi requires 2 runs:
+ bootprofile=&quot;default&quot;
+ bootprofile=&quot;smp,default&quot;
+
+It might be helpful to teach kiwi to create multiple
+kernel files in single run, -- for every bootprofile's profile
+in the list.
+Currently it always creates -pae only for the profiles list.
+
+On the other side, again,
+I don't see strong point of tying sysimage's kernel version
+with bootimage's kernel.
+Kiwi's linuxrc does that check and runs to reboot in 5 seconds,
+in case of mismatch.
+Whenever all required modules are loaded at initrd rollout,
+sysimage's /lib/modules can be almost empty
+(only modules.dep still being necessary).
+
+&quot;2-kernels&quot; case means requirement to bundle two /lib/modules/
+variants (-pae and -default) in two places: initrd and sysimage.
+Result is: pxe loading and in-RAM reserving of /lib/modules/ space
+happens 4 times, rather then 1, --
+that's about extra 20 MB uncompressed, in this case.
+
+
+Tested with kiwi-3.14-80.1
+--w
+
+
+---------
+knob:/tftpboot/image-roger # mount -r -o loop
+RSofT-Mini-openSUSE-11.1.i686-1.1.1 /tmp/z
+knob:/tftpboot/image-roger # l /tmp/z/lib/modules/*/modules.dep
+-rw-r--r-- 1 root root 315859 Mar 16 01:46
+/tmp/z/lib/modules/2.6.27.7-9-default/modules.dep
+-rw-r--r-- 1 root root 297426 Mar 16 01:46
+/tmp/z/lib/modules/2.6.27.7-9-pae/modules.dep
+knob:/tftpboot/image-roger # zcat initrd-netboot-suse-11.1.i686-2.1.1.splash.gz
+|<i> cpio -itv | fgrep modules.dep
+</I>-rw-r--r-- 1 root root 95993 Mar 16 01:50 lib/modules/2.6.27.7-9-pae/modules.dep
+-rw-r--r-- 1 root root 102241 Mar 16 01:50
+lib/modules/2.6.27.7-9-default/modules.dep
+132452 blocks
+knob:/tftpboot/image-roger # l RSofT-Mini-openSUSE-11.1.i686-1.1.1
+initrd-netboot-suse-11.1.i686-2.1.1.kernel.* *.gz
+-rw-r--r-- 1 root root 34279424 Mar 16 01:47 RSofT-Mini-openSUSE-11.1.i686-1.1.1
+-rw-r--r-- 1 root root  2493200 Mar 16 01:41
+initrd-netboot-suse-11.1.i686-2.1.1.kernel.2.6.27.7-9-default
+-rw-r--r-- 1 root root  2531376 Mar 16 01:50
+initrd-netboot-suse-11.1.i686-2.1.1.kernel.2.6.27.7-9-pae
+-rw-r--r-- 1 root root 26779889 Mar 16 01:50
+initrd-netboot-suse-11.1.i686-2.1.1.splash.gz
+knob:/tftpboot/image-roger #
+----------
+
+
+-----------
+--- config.xml..	2009-03-13 21:06:22.000000000 +0200
++++ config.xml	2009-03-16 01:43:27.000000000 +0200
+@@ -6,7 +6,8 @@
+      &lt;specification&gt;openSUSE 11.1 for RST diskless beasts&lt;/specification&gt;
+    &lt;/description&gt;
+    &lt;preferences&gt;
+- &lt;type filesystem=&quot;squashfs&quot; boot=&quot;netboot/suse-11.1&quot; bootprofile=&quot;smp&quot;&gt;pxe&lt;/type&gt;
++ &lt;type filesystem=&quot;squashfs&quot; boot=&quot;netboot/suse-11.1&quot;
+bootprofile=&quot;smp,default&quot;&gt;pxe&lt;/type&gt;
++
+  &lt;version&gt;1.1.1&lt;/version&gt;
+  &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+  &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+@@ -36,12 +38,12 @@
+ 		&lt;package name=&quot;binutils&quot;/&gt;
+ 		&lt;package name=&quot;file&quot;/&gt;
+ 		&lt;package name=&quot;gawk&quot;/&gt;
++
++		&lt;package name=&quot;kernel-default&quot;/&gt;
+ 		&lt;package name=&quot;kernel-pae&quot;/&gt;
+-		&lt;package name=&quot;kernel-pae-base&quot;/&gt;
+-		&lt;package name=&quot;kernel-pae-extra&quot;/&gt;
++		&lt;package name=&quot;aufs-kmp-default&quot;/&gt;
+ 		&lt;package name=&quot;aufs-kmp-pae&quot;/&gt;
+-		&lt;!--&lt;package name=&quot;kernel-default&quot;/&gt;--&gt;
+-		&lt;!--&lt;package name=&quot;kernel-default-extra&quot;/&gt;--&gt;
++
+ 		&lt;package name=&quot;module-init-tools&quot;/&gt;
+ 		&lt;package name=&quot;net-tools&quot;/&gt;
+ 		&lt;package name=&quot;netcfg&quot;/&gt;
+------------
+
+--w
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001002.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+	<LI>Next message: <A HREF="001010.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1009">[ date ]</a>
+              <a href="thread.html#1009">[ thread ]</a>
+              <a href="subject.html#1009">[ subject ]</a>
+              <a href="author.html#1009">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Order of creating users and installing rpm packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Order%20of%20creating%20users%20and%20installing%20rpm%20packages&In-Reply-To=%3C4E9D76E3.5020208%40suse.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002963.html">
+   <LINK REL="Next"  HREF="002965.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Order of creating users and installing rpm packages</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Order%20of%20creating%20users%20and%20installing%20rpm%20packages&In-Reply-To=%3C4E9D76E3.5020208%40suse.com%3E"
+       TITLE="[Kiwi-users] Order of creating users and installing rpm packages">rjschwei at suse.com
+       </A><BR>
+    <I>Tue Oct 18 14:53:55 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002963.html">[Kiwi-users] Order of creating users and installing rpm packages
+</A></li>
+        <LI>Next message: <A HREF="002965.html">[Kiwi-users] switching to googlegroups?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2964">[ date ]</a>
+              <a href="thread.html#2964">[ thread ]</a>
+              <a href="subject.html#2964">[ subject ]</a>
+              <a href="author.html#2964">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 10/18/2011 08:21 AM, E.Waelde wrote:
+&gt;<i> Hi all,
+</I>&gt;<i>
+</I>&gt;<i> Symptom:
+</I>&gt;<i> 1. In config.xml I create 2 additional users.
+</I>&gt;<i> 2. I have a bunch of rpms, which hold files, which should belong to 
+</I>&gt;<i> the users created in 1.
+</I>&gt;<i> 3. turns out that some of the packages are installed before these 
+</I>&gt;<i> users show up in
+</I>&gt;<i>    /etc/passwd,group,shadow ...
+</I>&gt;<i>    This is clearly visible in the logfile:
+</I>&gt;<i>
+</I>&gt;<i>     |Retrieving package XXX-base-0.2-1.i586 (2/214), 3.0 KiB (1.0 KiB 
+</I>&gt;<i> unpacked)
+</I>&gt;<i>     |Installing: XXX-base-0.2-1 [done]
+</I>&gt;<i>     |Additional rpm output:
+</I>&gt;<i>     |warning: user XXX does not exist - using root
+</I>&gt;<i>     |warning: group YYY does not exist - using root
+</I>&gt;<i>     |...
+</I>&gt;<i>     |warning: %post(mta-base-0.2-1.i586) scriptlet failed, exit status 1
+</I>
+Yes, and there's little we can do about this. Before we setup users in 
+the image we are building we need the tools to do just that. The tools 
+are installed via packages, thus this dictates that package installation 
+has to be first.
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> So: how is this solved correctly?
+</I>&gt;<i>
+</I>&gt;<i> a. Is there a requirement, that should be added to XXX-base.spec ?
+</I>&gt;<i>
+</I>&gt;<i> b. Should I use a pre-install scriptlet to create the users and let 
+</I>&gt;<i> kiwi (config.xml)
+</I>&gt;<i> handle the missing details like passwd string etc.?
+</I>
+Yes, this is definitely an option. I am aware of a number of packages 
+that create the user as part of package install.
+
+&gt;<i>
+</I>&gt;<i> c. other?
+</I>
+You can setup you package such that all your files have &quot;regular&quot; 
+permissions, i.e. root ownership. In config.sh you can then change the 
+permissions as you see fit. This is probably the most explicit approach 
+and thus a good approach from a maintenance point of view.
+
+Another option would be to includ eth rpm files as overlay files in 
+/opt, then install them from config.sh (rpm -i /opt/mypackage.rpm) and 
+after install delete the package files.
+
+BTW, as berlios is closing by towards the end of the year we are moving 
+to <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-images at googlegroups.com</A>
+
+HTH,
+Robert
+
+
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweik at ca.ibm.com</A>
+781-464-8147
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002963.html">[Kiwi-users] Order of creating users and installing rpm packages
+</A></li>
+	<LI>Next message: <A HREF="002965.html">[Kiwi-users] switching to googlegroups?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2964">[ date ]</a>
+              <a href="thread.html#2964">[ thread ]</a>
+              <a href="subject.html#2964">[ subject ]</a>
+              <a href="author.html#2964">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

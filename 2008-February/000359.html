@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problem with using &lt;split&gt;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%20with%20using%20%3Csplit%3E&In-Reply-To=%3C20080225104002.GA17867%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000354.html">
+   <LINK REL="Next"  HREF="000365.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problem with using &lt;split&gt;</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%20with%20using%20%3Csplit%3E&In-Reply-To=%3C20080225104002.GA17867%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] problem with using &lt;split&gt;">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 25 11:40:03 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000354.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+        <LI>Next message: <A HREF="000365.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#359">[ date ]</a>
+              <a href="thread.html#359">[ thread ]</a>
+              <a href="subject.html#359">[ subject ]</a>
+              <a href="author.html#359">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; &gt;  I see, my problem was I was NOT using absolute paths!  
+</I>&gt;<i> &gt; Might be good 
+</I>&gt;<i> &gt; &gt; to warn the user if pathnames do not start with '/`.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Hmm, what exactly do you mean ? your split section has 
+</I>&gt;<i> &gt; absolute paths in it. Or is it the kiwi call which causes 
+</I>&gt;<i> &gt; that problem ? We definitely should fix this it sounds like a 
+</I>&gt;<i> &gt; real bug. Could you advise us how to reproduce ? Thanks
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>&gt;<i> The problem occurred when I did not have absolute paths in the kiwi call:
+</I>&gt;<i> kiwi -c phys-image/ -d /srv/tftpboot/image
+</I>
+following patch has worked for me. Could you confirm ?
+Make sure there no &quot;trash&quot; from earlier attempts.
+
+&gt;<i> Thanks for a great tool!
+</I>
+Thank you for using it :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.diff
+Type: text/x-patch
+Size: 3233 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/05f7d509/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/05f7d509/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000354.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+	<LI>Next message: <A HREF="000365.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#359">[ date ]</a>
+              <a href="thread.html#359">[ thread ]</a>
+              <a href="subject.html#359">[ subject ]</a>
+              <a href="author.html#359">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

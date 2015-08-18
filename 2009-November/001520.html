@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi (3.79) on openSUSE 11.2 does not find some	packages...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%283.79%29%20on%20openSUSE%2011.2%20does%20not%20find%20some%0A%09packages...&In-Reply-To=%3C20091124150442.GF5371%40open-xchange.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001533.html">
+   <LINK REL="Next"  HREF="001521.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi (3.79) on openSUSE 11.2 does not find some	packages...</H1>
+    <B>Carsten Hoeger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%283.79%29%20on%20openSUSE%2011.2%20does%20not%20find%20some%0A%09packages...&In-Reply-To=%3C20091124150442.GF5371%40open-xchange.com%3E"
+       TITLE="[Kiwi-users] kiwi (3.79) on openSUSE 11.2 does not find some	packages...">choeger at open-xchange.com
+       </A><BR>
+    <I>Tue Nov 24 16:04:42 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001533.html">[Kiwi-users] Hybrid iso (live) issues
+</A></li>
+        <LI>Next message: <A HREF="001521.html">[Kiwi-users] kiwi (3.79) ISO on openSUSE 11.1 does not boot anymore
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1520">[ date ]</a>
+              <a href="thread.html#1520">[ thread ]</a>
+              <a href="subject.html#1520">[ subject ]</a>
+              <a href="author.html#1520">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+
+since one of the openSUSE 11.2 milestone up to the openSUSE 11.2 GA version, I
+have the problem, that zypper inside of kiwi does not find one package from
+the open-xchange repository.
+
+This is the screen log:
+
++ chroot /oxlive/oxlive /usr/bin/zypper --non-interactive --no-gpg-checks
+--reposd-dir /var/cache/kiwi/zypper --cache-dir /var/cache/kiwi/zypper
+--raw-cache-dir /var/cache/kiwi/zypper install --auto-agree-with-licenses
+clicfs cyrus-imapd cyrus-sasl-saslauthd open-xchange open-xchange-admin-client
+open-xchange-admin-lib open-xchange-admin-plugin-hosting
+open-xchange-admin-plugin-hosting-client open-xchange-admin-plugin-hosting-lib
+open-xchange-configjump-generic open-xchange-configjump-generic-gui
+open-xchange-contactcollector open-xchange-contacts-ldap open-xchange-control
+open-xchange-conversion open-xchange-conversion-engine
+open-xchange-conversion-servlet open-xchange-crypto
+open-xchange-data-conversion-ical4j open-xchange-dataretention
+open-xchange-dataretention-csv open-xchange-easylogin open-xchange-genconf
+open-xchange-genconf-mysql open-xchange-gui open-xchange-imap
+open-xchange-mailfilter open-xchange-management open-xchange-monitoring
+open-xchange-passwordchange-database open-xchange-passwordchange-servlet
+open-xchange-pop3 open-xchange-publish open-xchange-publish-basic
+open-xchange-publish-infostore-online open-xchange-publish-json
+open-xchange-publish-microformats open-xchange-push-udp
+open-xchange-resource-managerequest open-xchange-server
+open-xchange-settings-extensions open-xchange-smtp
+open-xchange-spamhandler-default open-xchange-sql open-xchange-subscribe
+open-xchange-subscribe-crawler open-xchange-subscribe-json
+open-xchange-subscribe-microformats open-xchange-templating open-xchange-timer
+open-xchange-unifiedinbox rsync strace telnet vim
++ SPID=8145
++ wait 8145
+Loading repository data...
+Reading installed packages...
+'open-xchange' not found.
++ ECODE=104
++ echo 104
+ exit 104
+
+
+The package open-xchange does exist and can be installed with zypper on
+the same openSUSE11.2 system I run kiwi in without problems.
+
+This is the repo: 
+
+<A HREF="http://download.opensuse.org/repositories/server:/OX:/ox6/openSUSE_11.2/">http://download.opensuse.org/repositories/server:/OX:/ox6/openSUSE_11.2/</A>
+
+
+Any idea?
+
+I'd really to use the new hybrid feature...
+
+-- 
+With best regards,
+
+Carsten Hoeger
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20091124/daa9aa58/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20091124/daa9aa58/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001533.html">[Kiwi-users] Hybrid iso (live) issues
+</A></li>
+	<LI>Next message: <A HREF="001521.html">[Kiwi-users] kiwi (3.79) ISO on openSUSE 11.1 does not boot anymore
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1520">[ date ]</a>
+              <a href="thread.html#1520">[ thread ]</a>
+              <a href="subject.html#1520">[ subject ]</a>
+              <a href="author.html#1520">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] dependancy problem?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20dependancy%20problem%3F&In-Reply-To=%3Ccccedfc60811030725g10f6b171t6e39dbc286bbbacf%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000866.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] dependancy problem?</H1>
+    <B>Jon Nelson</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20dependancy%20problem%3F&In-Reply-To=%3Ccccedfc60811030725g10f6b171t6e39dbc286bbbacf%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] dependancy problem?">jnelson-kiwi at jamponi.net
+       </A><BR>
+    <I>Mon Nov  3 16:25:06 CET 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000866.html">[Kiwi-users] dependancy problem?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#865">[ date ]</a>
+              <a href="thread.html#865">[ thread ]</a>
+              <a href="subject.html#865">[ subject ]</a>
+              <a href="author.html#865">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm pretty new to kiwi, but I've had early success.
+That's a testament to great work!
+
+However, I've had some issues, too.
+I'm trying to build a system with kde4 using opensuse11.1(betaXX)
+
+I was using this:
+
+       &lt;packages type=&quot;image&quot;&gt;
+               &lt;package name=&quot;kernel-default&quot;/&gt;
+               &lt;package name=&quot;bootsplash&quot;/&gt;
+               &lt;package name=&quot;bootsplash-branding-openSUSE&quot;/&gt;
+               &lt;package name=&quot;vim&quot;/&gt;
+               &lt;opensusePattern name=&quot;default&quot;/&gt;
+               &lt;opensusePattern name=&quot;kde4&quot;/&gt;
+       &lt;/packages&gt;
+
+but it did not include kdm. Even so, when I tried to log in (using
+xdm) I got an error about dbus.
+I tracked the error down to a missing dbus-launch binary, provided by
+dbus-1-x11.
+I'm rebuilding my image now with these additional packages:
+
+               &lt;package name=&quot;kde4-kdm&quot;/&gt;
+               &lt;package name=&quot;kde4-kdm-branding-openSUSE&quot;/&gt;
+               &lt;package name=&quot;dbus-1-x11&quot;/&gt;
+
+however, why weren't they included if they were necessary for
+operation? Is this a patterns problem wherein the pattern for kde4 is
+missing the prequirement?
+
+--
+Jon
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000866.html">[Kiwi-users] dependancy problem?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#865">[ date ]</a>
+              <a href="thread.html#865">[ thread ]</a>
+              <a href="subject.html#865">[ subject ]</a>
+              <a href="author.html#865">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

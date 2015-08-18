@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] nbd mystery
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20nbd%20mystery&In-Reply-To=%3C1209021042.17800.37.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000583.html">
+   <LINK REL="Next"  HREF="000600.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] nbd mystery</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20nbd%20mystery&In-Reply-To=%3C1209021042.17800.37.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] nbd mystery">roger at opq.se
+       </A><BR>
+    <I>Thu Apr 24 09:10:40 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000583.html">[Kiwi-users] nbd mystery
+</A></li>
+        <LI>Next message: <A HREF="000600.html">[Kiwi-users] nbd mystery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#591">[ date ]</a>
+              <a href="thread.html#591">[ thread ]</a>
+              <a href="subject.html#591">[ subject ]</a>
+              <a href="author.html#591">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2008-04-21 at 17:54 +0200, Roger Oberholtzer wrote:
+&gt;<i> We have a real mystery on our hands. Perhaps someone on the list can
+</I>&gt;<i> help.
+</I>&gt;<i> 
+</I>&gt;<i> I have made some images with KIWI that allow systems to boot openSUSE
+</I>&gt;<i> 10.3 as a diskless OS. In fact, I made one set of images and we use
+</I>&gt;<i> these for all our systems. It has been working great. There are only two
+</I>&gt;<i> basic hardware layouts for this.
+</I>&gt;<i> 
+</I>&gt;<i> The images boot with PXE, and at some point, a root file system is
+</I>&gt;<i> mounted via NBD.
+</I>&gt;<i> 
+</I>&gt;<i> We now have a situation where some systems fail when they get to the
+</I>&gt;<i> point of mounting the root file system with NBD. They do not always
+</I>&gt;<i> fail, but they fail more often than not. They are used in a road
+</I>&gt;<i> vehicle, so they do get powered off/on on a regular basis.
+</I>&gt;<i> 
+</I>&gt;<i> We cannot see any difference in the hardware. They are SuperMicro 1U
+</I>&gt;<i> computers. Of course, even though they are the same model and all, there
+</I>&gt;<i> are always differences. But none that we can see.
+</I>&gt;<i> 
+</I>&gt;<i> When we get the failure, we can investigate a bit with ALT-F3 and
+</I>&gt;<i> ALT-F4.
+</I>&gt;<i> 
+</I>&gt;<i> With ALT-F3, things look the same as usual, except at the end, where we
+</I>&gt;<i> get the message:
+</I>&gt;<i> 
+</I>&gt;<i> + echo '------&gt; Mounting NBD root system: 10.1.6.2o 2000
+</I>&gt;<i> [/dev/nbd1] ...'
+</I>&gt;<i> Error: Cannot open NBD: No such file or directory
+</I>&gt;<i> + systemException 'Failed to setup /dev/nbd1 device' reboot
+</I>&gt;<i> 
+</I>&gt;<i> At the same time, the last thing on ALT-F4 is:
+</I>&gt;<i> 
+</I>&gt;<i> nbd: registered device at major 43
+</I>&gt;<i> 
+</I>&gt;<i> which is as expected.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Sometimes, it will go as far as printing Negotiation:, but then fail.
+</I>&gt;<i> 
+</I>&gt;<i> The odd thing is that a different computer will always boot from our
+</I>&gt;<i> kiwi images.
+</I>&gt;<i> 
+</I>&gt;<i> On the server, the nbd-server process is happily running. Restarting it
+</I>&gt;<i> makes no difference.
+</I>&gt;<i> 
+</I>&gt;<i> The difficulty here is that nbd is a very secretive program. There is no
+</I>&gt;<i> debugging. I do not know if it is getting requests and failing with some
+</I>&gt;<i> great reason. Or if the requests never arrive. I will have access to
+</I>&gt;<i> such troubled systems tomorrow, so I can do proper testing then. I am
+</I>&gt;<i> currently only getting user reports. So, any bits of advice are welcome!
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+A bit more information. I ran strace on the nbd-server. I noted
+different activity between when it worked:
+
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+select(4, [3], NULL, NULL, {0, 500})    = 1 (in [3], left {0, 500})
+accept(3, {sa_family=AF_INET, sin_port=htons(53045),
+sin_addr=inet_addr(&quot;10.1.6.220&quot;)}, [16]) = 4
+getpeername(4, {sa_family=AF_INET, sin_port=htons(53045),
+sin_addr=inet_addr(&quot;10.1.6.220&quot;)}, [16]) = 0
+open(&quot;/usr/lib/charset.alias&quot;, O_RDONLY|O_LARGEFILE) = -1 ENOENT (No
+such file or directory)
+open(&quot;/usr/lib/gconv/gconv-modules.cache&quot;, O_RDONLY) = 5
+fstat64(5, {st_mode=S_IFREG|0644, st_size=25486, ...}) = 0
+mmap2(NULL, 25486, PROT_READ, MAP_SHARED, 5, 0) = 0xb7f5a000
+close(5)                                = 0
+write(2, &quot;** Message: connect from 10.1.6.&quot;..., 111) = 111
+open(NULL, O_RDONLY|O_LARGEFILE)        = -1 EFAULT (Bad address)
+write(2, &quot;** Message: Can\'t open authoriza&quot;..., 64) = 64
+write(2, &quot;** Message: Authorized client\n&quot;, 30) = 30
+clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|
+SIGCHLD, child_tidptr=0xb7d4e708) = 6712
+close(4)                                = 0
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+
+
+
+ and whan is failed:
+
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+select(4, [3], NULL, NULL, {0, 500})    = 0 (Timeout)
+select(4, [3], NULL, NULL, {0, 500})    = 1 (in [3], left {0, 500})
+accept(3, {sa_family=AF_INET, sin_port=htons(47628),
+sin_addr=inet_addr(&quot;10.1.6.220&quot;)}, [16]) = 4
+getpeername(4, {sa_family=AF_INET, sin_port=htons(47628),
+sin_addr=inet_addr(&quot;10.1.6.220&quot;)}, [16]) = 0
+write(2, &quot;** Message: connect from 10.1.6.&quot;..., 111) = 111
+open(NULL, O_RDONLY|O_LARGEFILE)        = -1 EFAULT (Bad address)
+write(2, &quot;** Message: Can\'t open authoriza&quot;..., 64) = 64
+write(2, &quot;** Message: Authorized client\n&quot;, 30) = 30
+clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|
+SIGCHLD, child_tidptr=0xb7d58708) = 6655
+--- SIGCHLD (Child exited) @ 0 (0) ---
+waitpid(-1, [{WIFEXITED(s) &amp;&amp; WEXITSTATUS(s) == 1}], WNOHANG) = 6655
+futex(0xb7e89140, FUTEX_WAIT, 2, NULLc^[[A &lt;unfinished ...&gt;
+Process 6450 detached
+
+
+Sorry for the line wraps. I do no know how to format the e-mail so this
+does not happen. The difference is that when it fails, for some reason
+it is not trying to open /usr/lib/charset.alias
+and /usr/lib/gconv/gconv-modules.cache. Then it clones itself, but the
+child dies. nbd-server then is stuck in a futex. It must be restarted
+for any further nbd-server stuff to work happen.
+
+Of course, this seems like a nbd-server issue. OTOH, the client command
+is from a KIWI system. So I cannot rule out some KIWI thing.
+
+Still no ideas out there?
+
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Kapellgr&#228;nd 7
+P.O. Box 4205
+SE-102 65 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000583.html">[Kiwi-users] nbd mystery
+</A></li>
+	<LI>Next message: <A HREF="000600.html">[Kiwi-users] nbd mystery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#591">[ date ]</a>
+              <a href="thread.html#591">[ thread ]</a>
+              <a href="subject.html#591">[ subject ]</a>
+              <a href="author.html#591">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] split image type and read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C20080305090719.GA4236%40d124.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000421.html">
+   <LINK REL="Next"  HREF="000457.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] split image type and read-only</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C20080305090719.GA4236%40d124.suse.de%3E"
+       TITLE="[Kiwi-users] split image type and read-only">ms at suse.de
+       </A><BR>
+    <I>Wed Mar  5 10:07:19 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000421.html">[Kiwi-users] split image type and read-only
+</A></li>
+        <LI>Next message: <A HREF="000457.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#442">[ date ]</a>
+              <a href="thread.html#442">[ thread ]</a>
+              <a href="subject.html#442">[ subject ]</a>
+              <a href="author.html#442">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi David,
+
+&gt;<i> &gt; I don't think I was clear enough.  I would like to make the entire /var/ directory tree &quot;temporary&quot; (because I don't want to figure out exactly which files/dirs in /var need to be writeable), but specify exceptions to it that are read-only (because I want changes in these files to persist when I do updates).  Example:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &lt;split&gt;
+</I>&gt;<i> &gt;   &lt;temporary&gt;
+</I>&gt;<i> &gt;     &lt;!-- make entire /var tree [rw] in tmpfs --&gt;
+</I>&gt;<i> &gt;     &lt;file name=&quot;/var&quot;/&gt;
+</I>&gt;<i> &gt;   &lt;/temporary&gt;
+</I>&gt;<i> &gt;   &lt;read-only&gt;
+</I>&gt;<i> &gt;     &lt;!-- EXCEPT these files/dirs should be read-only --&gt;
+</I>&gt;<i> &gt;     &lt;file name=&quot;/var/lib/rpm/*&quot;/&gt;
+</I>&gt;<i> &gt;     &lt;file name=&quot;/var/lib/locatedb&quot;/&gt;
+</I>&gt;<i> &gt;   &lt;/read-only&gt;
+</I>&gt;<i> &gt; &lt;/split&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Sorry if I'm being thick, but I don't see how I can achieve this so simply as Kiwi exists today.  The alternative is listing all the subdirs of /var/ in &lt;temporary&gt;, then all the subdirs of /var/lib, etc..., a tedious, error-prone process that will miss several vagaries of different OSes.
+</I>&gt;<i> 
+</I>&gt;<i> You are right I got your point. You want to say &quot;all ... except ...&quot;
+</I>&gt;<i> That can't be expressed with the current split section at the moment
+</I>&gt;<i> and is worth an enhancement bug report:
+</I>&gt;<i> 
+</I>&gt;<i> 	<A HREF="https://bugzilla.novell.com/show_bug.cgi?id=366510">https://bugzilla.novell.com/show_bug.cgi?id=366510</A> 
+</I>&gt;<i> 
+</I>&gt;<i> just set yourself to CC if you have a novell bugzilla account. I will
+</I>&gt;<i> take care asap.
+</I>
+Attached is a patch which allows you to specify exceptions. It also
+fixes a bug when creating read-write links on files
+
+Something like the following is possible:
+
+	&lt;split&gt;
+        &lt;temporary&gt;
+            &lt;!-- allow read/write access to: --&gt;
+            &lt;file name=&quot;/var&quot;/&gt;
+            &lt;file name=&quot;/var/*&quot;/&gt;
+            &lt;!-- but not on this file: --&gt;
+            &lt;except name=&quot;/etc/shadow&quot;/&gt;
+        &lt;/temporary&gt;
+        &lt;persistent&gt;
+            &lt;!-- allow persistent read/write access to: --&gt;
+            &lt;file name=&quot;/etc&quot;/&gt;
+            &lt;file name=&quot;/etc/*&quot;/&gt;
+            &lt;!-- but not on this file: --&gt;
+            &lt;except name=&quot;/etc/passwd&quot;/&gt;
+        &lt;/persistent&gt;
+    &lt;/split&gt;
+
+I think this is what you you requested. Would you mind to give it 
+a test ?
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.diff
+Type: text/x-patch
+Size: 8091 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080305/fbd69366/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080305/fbd69366/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000421.html">[Kiwi-users] split image type and read-only
+</A></li>
+	<LI>Next message: <A HREF="000457.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#442">[ date ]</a>
+              <a href="thread.html#442">[ thread ]</a>
+              <a href="subject.html#442">[ subject ]</a>
+              <a href="author.html#442">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with clicfs ext3 corruption
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20clicfs%20ext3%20corruption&In-Reply-To=%3C9B154F796B67B1488D4FBCB17AB74658D39749%40vicdcex05.lfxau.linfox.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002304.html">
+   <LINK REL="Next"  HREF="002301.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with clicfs ext3 corruption</H1>
+    <B>Matthew Parslow</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20clicfs%20ext3%20corruption&In-Reply-To=%3C9B154F796B67B1488D4FBCB17AB74658D39749%40vicdcex05.lfxau.linfox.com%3E"
+       TITLE="[Kiwi-users] Issues with clicfs ext3 corruption">Matthew_Parslow at linfox.com
+       </A><BR>
+    <I>Mon Feb 14 03:47:19 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002304.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+        <LI>Next message: <A HREF="002301.html">[Kiwi-users] diskless netboot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2322">[ date ]</a>
+              <a href="thread.html#2322">[ thread ]</a>
+              <a href="subject.html#2322">[ subject ]</a>
+              <a href="author.html#2322">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>FYI all,
+I have worked around this by adding a 5mb file of zeros as the last action before unmounting the ext3 fs, and I'm forwarding the issue to  Stephan.
+Cheers,
+Matt
+
+-----Original Message-----
+From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>] 
+Sent: Wednesday, 9 February 2011 8:45 PM
+To: Matthew Parslow
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] Issues with clicfs ext3 corruption
+
+Hi,
+
+&gt;<i> Good catch, thanks - Unfortunately that was an error in my transposing
+</I>&gt;<i> to email, not my process - I'm still having this problem.
+</I>
+ah what a pitty. So you are sure when you call the mkclicfs everything
+is umounted and there is no active clicfs process in the process list ?
+
+&gt;<i> Of note is that the x11vnc binary I also copied is fine - could this
+</I>&gt;<i> be a bug in clicfs with added files  under 4096bytes or some
+</I>&gt;<i> issue with the journal? Cheers
+</I>
+Hmm, I have no clue. But you should try to remount the clicfs after
+you have recreated it. Try to access the x11vnc binary and check if
+it works. If you do that when the root filesystem is on clicfs you
+are screwed up if it crashes. So it might be better to test outside
+of an image. You also can mount the clicfs with a debug option
+(man clicfs). If you think it's a clicfs bug you should contact
+Stephan Kulow &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coolo at suse.de</A>&gt;
+
+another part you can check is the clicfs version.
+
+* are you using the latest &gt;= 1.3.10 version inside your image ?
+* do you use mkclicfs compatible to the clicfs mounting it inside the image ?
+
+I find it really strange that the added x11vnc is the only
+file you can't access, or if you access it the clicfs process crashes
+That's really weird
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+WARNING: This email and any attachments may be confidential and subject
+to copyright. If you are not the intended recipient, you must not
+disclose or use the information contained in this email. If you have
+received this email in error, please notify the sender and permanently
+delete the email immediately. Linfox Pty Ltd and its related
+companies do not warrant that this email and any attachments are free of
+errors, viruses or tampering by third parties, and will not be
+responsible for loss or damage resulting (either directly or indirectly)
+from any such error, virus or tampering. If this is a commercial email
+within the meaning of the Spam Act, you may unsubscribe from future
+commercial emails by emailing <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">unsubscribe at linfox.com</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002304.html">[Kiwi-users] Issues with clicfs ext3 corruption
+</A></li>
+	<LI>Next message: <A HREF="002301.html">[Kiwi-users] diskless netboot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2322">[ date ]</a>
+              <a href="thread.html#2322">[ thread ]</a>
+              <a href="subject.html#2322">[ subject ]</a>
+              <a href="author.html#2322">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

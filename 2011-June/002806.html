@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Unable to reduce size of OEM split image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20reduce%20size%20of%20OEM%20split%20image&In-Reply-To=%3C20110629114719.GA22228%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002805.html">
+   <LINK REL="Next"  HREF="002807.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Unable to reduce size of OEM split image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20reduce%20size%20of%20OEM%20split%20image&In-Reply-To=%3C20110629114719.GA22228%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Unable to reduce size of OEM split image">ms at suse.de
+       </A><BR>
+    <I>Wed Jun 29 13:47:19 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002805.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+        <LI>Next message: <A HREF="002807.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2806">[ date ]</a>
+              <a href="thread.html#2806">[ thread ]</a>
+              <a href="subject.html#2806">[ subject ]</a>
+              <a href="author.html#2806">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Thanks for the pointer. I am trying this out. 
+</I>&gt;<i> I was checking the build logs and I see the message &quot;Set boot space to: 100&quot; . I am assuming this means that the boot partition size is being set to 100 MB. 
+</I>
+correct
+
+&gt;<i> I tried 2 different builds (without the changes that you suggested) where the size of the squashfs partition was different, but the size of the .raw file was exactly the same in both instances. 
+</I>&gt;<i> 
+</I>&gt;<i> Here are my observations. 
+</I>&gt;<i> 
+</I>&gt;<i> Instance 1 : 
+</I>&gt;<i> Size of squashfs : 700 MB 
+</I>&gt;<i> Size of .raw : 1.1 GB (1132462080 bytes) 
+</I>&gt;<i> 
+</I>&gt;<i> Instance 2 : 
+</I>&gt;<i> Size of squashfs : 647 MB 
+</I>&gt;<i> Size of .raw : 1.1 GB (1132462080 bytes) 
+</I>&gt;<i> 
+</I>&gt;<i> In Instance 2, I had removed some packages in trying to reduce the size of the image. The  interesting part is that the size of .raw file is exactly the same (in terms of bytes) in both the instances.  
+</I>&gt;<i> 
+</I>&gt;<i> I suspect that there is some other place where the size of the .raw file is being defined. This did not happen earlier where I observed that the size of the .raw file would change if the size of squashfs or ext3 filesystems changed. 
+</I>
+Did you define any size in your XML ?
+can you send the partition geometry of the raw file
+
+  parted file.raw print
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002805.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+	<LI>Next message: <A HREF="002807.html">[Kiwi-users] Unable to reduce size of OEM split image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2806">[ date ]</a>
+              <a href="thread.html#2806">[ thread ]</a>
+              <a href="subject.html#2806">[ subject ]</a>
+              <a href="author.html#2806">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] --type pxe on the command line
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20--type%20pxe%20on%20the%20command%20line&In-Reply-To=%3C4B68670A.6020701%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001638.html">
+   <LINK REL="Next"  HREF="001641.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] --type pxe on the command line</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20--type%20pxe%20on%20the%20command%20line&In-Reply-To=%3C4B68670A.6020701%40novell.com%3E"
+       TITLE="[Kiwi-users] --type pxe on the command line">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Feb  2 18:55:22 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001638.html">[Kiwi-users] --type pxe on the command line
+</A></li>
+        <LI>Next message: <A HREF="001641.html">[Kiwi-users] --type pxe on the command line
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1639">[ date ]</a>
+              <a href="thread.html#1639">[ thread ]</a>
+              <a href="subject.html#1639">[ subject ]</a>
+              <a href="author.html#1639">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Roger Oberholtzer wrote:
+&gt;<i> I have a statement like this in my config.xml
+</I>&gt;<i> 
+</I>&gt;<i> 	&lt;type image=&quot;pxe&quot; filesystem=&quot;clicfs&quot; boot=&quot;netboot/suse-11.2&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Oddly, I have not had &quot;--type pxe&quot; on the kiwi command line. Don't ask
+</I>&gt;<i> why. I do not know. It sits there in the manual I have been looking
+</I>&gt;<i> at... I have now added that to my scripts.
+</I>&gt;<i> 
+</I>&gt;<i> My question is, given that the type is specified in the config.xml file,
+</I>&gt;<i> does the command line --type add any useful value? 
+</I>
+The --type command line argument is used to switch between different 
+image types in they are configured in config.xml. For example in a 
+config.xml file with
+
+&lt;type image=&quot;vmx&quot; filesystem=&quot;ext3&quot; boot=&quot;vmxboot/suse-11.0&quot;/&gt;
+&lt;type image=&quot;xen&quot; filesystem=&quot;ext3&quot; boot=&quot;xenboot/suse-11.0&quot;/&gt;
+
+One can switch between creating VMware image of a Xen image by using the 
+--type command line argument.
+
+If the pxe image is the only one you have configured in config.xml then 
+Kiwi will use it as the default and generate the PXE image, thus --type 
+is not required on the command line.
+
+
+Could the absence of
+&gt;<i> this option have been a cause of my 'unstable images' that I mentioned
+</I>&gt;<i> earlier?
+</I>
+This should be unrelated.
+
+Robert
+
+  You may recall that the problem was that images from one build
+&gt;<i> may work, while images from another might not.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001638.html">[Kiwi-users] --type pxe on the command line
+</A></li>
+	<LI>Next message: <A HREF="001641.html">[Kiwi-users] --type pxe on the command line
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1639">[ date ]</a>
+              <a href="thread.html#1639">[ thread ]</a>
+              <a href="subject.html#1639">[ subject ]</a>
+              <a href="author.html#1639">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

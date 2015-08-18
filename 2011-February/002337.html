@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-tools version question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C1297874842.25868.230.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002336.html">
+   <LINK REL="Next"  HREF="002343.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-tools version question</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C1297874842.25868.230.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] kiwi-tools version question">roger at opq.se
+       </A><BR>
+    <I>Wed Feb 16 17:47:22 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002336.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+        <LI>Next message: <A HREF="002343.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2337">[ date ]</a>
+              <a href="thread.html#2337">[ thread ]</a>
+              <a href="subject.html#2337">[ subject ]</a>
+              <a href="author.html#2337">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2011-02-16 at 17:37 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; That is my point: I did not add this! There is no reference anywhere in
+</I>&gt;<i> &gt; my files. I checked! But when looking at the build log, I see that it is
+</I>&gt;<i> &gt; being added!
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The only repo line I have is:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &lt;repository type=&quot;yast2&quot;&gt;
+</I>&gt;<i> &gt;      &lt;source path=&quot;/home/roger/source.18.00/Tools_Diskless/openSUSE-11.2-DVD-i586&quot;/&gt;
+</I>&gt;<i> &gt; &lt;/repository&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I will run this one more time just to be sure I did not look at an old
+</I>&gt;<i> &gt; log from something I tried a while back. That must be the only
+</I>&gt;<i> &gt; explanation.
+</I>&gt;<i> 
+</I>&gt;<i> ok, now I understand. You see this only for the creation of the boot
+</I>&gt;<i> image (initrd). oemboot/suse-11.2. I remember we updated kiwi-tools
+</I>&gt;<i> and because this happened after 11.2 was done we use the sle11 version
+</I>&gt;<i> of the kiwi-tools for the boot image. That works because it contains
+</I>&gt;<i> only simple C helper programs (no deep library dependencies)
+</I>&gt;<i> 
+</I>&gt;<i> I though you added that repo for your system image which wouldn't make
+</I>&gt;<i> much sense imho. The kiwi-tools package is only relevant for the
+</I>&gt;<i> boot code. It contains small helper programs important when the system
+</I>&gt;<i> boots up but you don't need them in the system itself
+</I>
+And it is during this startup that my earlier-reported problem is
+occurring. But I would like to finish gathering info before continuing
+here. Too bad it takes my system sooo long to make an image, even with
+only local disk repos.
+
+&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002336.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+	<LI>Next message: <A HREF="002343.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2337">[ date ]</a>
+              <a href="thread.html#2337">[ thread ]</a>
+              <a href="subject.html#2337">[ subject ]</a>
+              <a href="author.html#2337">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

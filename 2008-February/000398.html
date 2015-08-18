@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to configure partition size for oemboot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20configure%20partition%20size%20for%20oemboot%20image&In-Reply-To=%3C20080227153337.GA7993%40d124.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000397.html">
+   <LINK REL="Next"  HREF="000399.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to configure partition size for oemboot image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20configure%20partition%20size%20for%20oemboot%20image&In-Reply-To=%3C20080227153337.GA7993%40d124.suse.de%3E"
+       TITLE="[Kiwi-users] How to configure partition size for oemboot image">ms at suse.de
+       </A><BR>
+    <I>Wed Feb 27 16:33:37 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000397.html">[Kiwi-users] How to configure partition size for oemboot image
+</A></li>
+        <LI>Next message: <A HREF="000399.html">[Kiwi-users] How to configure partition size for oemboot	image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#398">[ date ]</a>
+              <a href="thread.html#398">[ thread ]</a>
+              <a href="subject.html#398">[ subject ]</a>
+              <a href="author.html#398">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+ 
+&gt;<i> &gt; I tried using  OEM_SWAPSIZE in &quot;config.oempartition&quot; to control
+</I>&gt;<i> &gt; the SWAP size but this seems to be ineffective.
+</I>&gt;<i> 
+</I>&gt;<i> It was ineffective because it's a split image. Hmm at the
+</I>&gt;<i> moment it is expected that we can have at least 50MB free
+</I>&gt;<i> after RO,RW and swap. Could you open an enhancement bugreport
+</I>&gt;<i> for this one ?
+</I>
+I created a first patch which prevents the system from being
+repartitioned if there is not enough space left. enough space
+means 50MB. If there is less free space the disk stays untouched.
+If you like you can test it.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.diff
+Type: text/x-patch
+Size: 8914 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080227/475aec11/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080227/475aec11/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000397.html">[Kiwi-users] How to configure partition size for oemboot image
+</A></li>
+	<LI>Next message: <A HREF="000399.html">[Kiwi-users] How to configure partition size for oemboot	image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#398">[ date ]</a>
+              <a href="thread.html#398">[ thread ]</a>
+              <a href="subject.html#398">[ subject ]</a>
+              <a href="author.html#398">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

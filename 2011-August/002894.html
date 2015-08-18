@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe-images%20give%20%22Image%20checksum%20test%20failed%22&In-Reply-To=%3CD3F65705CA63344FB0DF3196C8BC36450E5274D7%40SRV364.tudelft.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002893.html">
+   <LINK REL="Next"  HREF="002895.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;</H1>
+    <B>Rob Haverkort</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe-images%20give%20%22Image%20checksum%20test%20failed%22&In-Reply-To=%3CD3F65705CA63344FB0DF3196C8BC36450E5274D7%40SRV364.tudelft.net%3E"
+       TITLE="[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;">R.J.Haverkort at tudelft.nl
+       </A><BR>
+    <I>Mon Aug  8 12:27:20 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002893.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+        <LI>Next message: <A HREF="002895.html">[Kiwi-users] minor oemboot/suse-SLES11/root/linuxrc error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2894">[ date ]</a>
+              <a href="thread.html#2894">[ thread ]</a>
+              <a href="subject.html#2894">[ subject ]</a>
+              <a href="author.html#2894">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Since Im still in the developing-phase of my image, I'm rebuilding it multiple times a day.
+
+My versions are:
+
+rpm -qa | grep -i kiwi
+kiwi-instsource-plugins-openSUSE-11-1-2.0-12.1.noarch
+kiwi-desc-oemboot-4.94.1-278.1.noarch
+kiwi-instsource-plugins-openSUSE-11-2-0.9-9.1.noarch
+kiwi-desc-isoboot-4.94.1-278.1.noarch
+kiwi-doc-4.94.1-278.1.noarch
+kiwi-desc-vmxboot-4.94.1-278.1.noarch
+kiwi-4.94.1-278.1.x86_64
+kiwi-templates-4.94.1-278.1.noarch
+kiwi-pxeboot-4.94.1-278.1.noarch
+kiwi-desc-netboot-4.94.1-278.1.noarch
+kiwi-config-openSUSE-11.4-6.6.3.x86_64
+kiwi-instsource-4.94.1-278.1.noarch
+kiwi-tools-4.94.1-278.1.x86_64
+kiwi-instsource-plugins-openSUSE-11-3-0.9-6.1.noarch
+
+and im not using my own bootcode, but the code provided in kiwi-desc-netboot which looks up-to-date with the rest.
+
+I attached the boot.kiwi for you to look at the error.
+
+thanks for the help
+
+Rob
+________________________________________
+From: Marcus Sch&#228;fer [<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>]
+Sent: Monday, August 08, 2011 11:15
+To: Rob Haverkort
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+
+Hi Rob,
+
+&gt;<i> Im using KIWI to create a pxe-image and until today all worked perfect,
+</I>&gt;<i> but after I updated all kiwi-packages this morning, the pxe-booting pc gives
+</I>
+Only updating the kiwi packages can't have such an effect. Did you rebuilt
+the images with this kiwi version and upload it on the bootp/pxe server ?
+which version of kiwi did you use ?
+
+&gt;<i> Image checksum test failed
+</I>&gt;<i> and after the automatic retry it gives:
+</I>&gt;<i>
+</I>&gt;<i> Have size: /dev/sda -&gt; 1073741824 Bytes [ 1024 MB ]
+</I>&gt;<i> Need size: * Bytes [  MB ]
+</I>&gt;<i> Not enough space available for this image
+</I>&gt;<i>
+</I>&gt;<i> ths image is under 300 MB in size.
+</I>&gt;<i>
+</I>&gt;<i> What I can find on one of the consoles is this:
+</I>&gt;<i>
+</I>&gt;<i> ++ expr bin boot bootsplash  dev etc image include init iprocs lib lib64
+</I>&gt;<i> linuxrc mnt preinit proc progress root sbin selinux sys tmp usr var /
+</I>&gt;<i> 1048576
+</I>&gt;<i> expr: syntax error
+</I>&gt;<i>
+</I>&gt;<i> any help is welcome, thanks in advance
+</I>All in all I can tell you more about the error if you could provide
+the l
+Hmm, so far I can't reproduce this with kiwi v4.94.1
+
+I guess this is because of the change due to bug 708711. The request
+was to add a progress information for the download and verification
+progress.
+
+1) Do you use your own version of the netboot code ? if _yes_ you
+   should adapt the code according to the attached patch.
+
+2) If you just use the boot code provided by the kiwi-desc-netboot
+   package you should make sure this package was also part of your
+   update
+
+All in all I can tell you more about the error if you could provide
+the log file /var/log/boot.kiwi. Add the paramter 'kiwidebug=1' to
+your pxelinux config file and boot the pxe client machine. You will
+now get a shell instead of a reboot exception. transfer the log file
+via atftp on your bootp/pxe server and provide it from there to me
+or the list
+
+Thanks
+
+Regards,
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: boot.kiwi
+Type: application/octet-stream
+Size: 43319 bytes
+Desc: boot.kiwi
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110808/fa974fc6/attachment.obj">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110808/fa974fc6/attachment.obj</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002893.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+	<LI>Next message: <A HREF="002895.html">[Kiwi-users] minor oemboot/suse-SLES11/root/linuxrc error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2894">[ date ]</a>
+              <a href="thread.html#2894">[ thread ]</a>
+              <a href="subject.html#2894">[ subject ]</a>
+              <a href="author.html#2894">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Package download error with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Package%20download%20error%20with%20kiwi&In-Reply-To=%3C002001c8a0b6%24cceb8be0%2466c2a3a0%24%40com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000578.html">
+   <LINK REL="Next"  HREF="000580.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Package download error with kiwi</H1>
+    <B>Alan Arthur</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Package%20download%20error%20with%20kiwi&In-Reply-To=%3C002001c8a0b6%24cceb8be0%2466c2a3a0%24%40com%3E"
+       TITLE="[Kiwi-users] Package download error with kiwi">aarthur at speedscript.com
+       </A><BR>
+    <I>Thu Apr 17 20:13:55 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000578.html">[Kiwi-users] kiwi-ltsp booting problem
+</A></li>
+        <LI>Next message: <A HREF="000580.html">[Kiwi-users] Package download error with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#579">[ date ]</a>
+              <a href="thread.html#579">[ thread ]</a>
+              <a href="subject.html#579">[ subject ]</a>
+              <a href="author.html#579">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>When attempting to compile my newest revision of the live cd I receive this
+error during the making of the ISO.
+
+ 
+
+Apr-17 11:53:41 &lt;1&gt; : Installing image packages...+ trap clean INT TERM
+
++ chroot /tmp/kiwi-cdboot.O16905/kiwi-cdboot-16858 smart update
+
++ SPID=17452
+
++ wait 17452
+
+Loading cache...
+
+Updating cache...               ########################################
+[100%]
+
+ 
+
+Fetching information for 'kiwi1-16858'...
+
+-&gt;
+<A HREF="http://download.opensuse.org/repositories/openSUSE:10.3/standard/.../media">http://download.opensuse.org/repositories/openSUSE:10.3/standard/.../media</A>
+
+media                           ######################################## [
+25%]
+
+-&gt; <A HREF="http://download.opensuse.org/repositories/openSUSE:10.3/standard/content">http://download.opensuse.org/repositories/openSUSE:10.3/standard/content</A>
+
+content                         ######################################## [
+50%]
+
+-&gt; <A HREF="http://download.opensuse.org/repositories/openSUSE:10.3/.../packages.gz">http://download.opensuse.org/repositories/openSUSE:10.3/.../packages.gz</A>
+
+packages.gz                                                              [
+50%]
+
+error: Failed acquiring information for 'kiwi1-16858':
+
+error:
+<A HREF="http://download.opensuse.org/repositories/openSUSE%3A10.3/standard/suse/setu">http://download.opensuse.org/repositories/openSUSE%3A10.3/standard/suse/setu</A>
+p/descr/packages.gz: timed
+
+out
+
+ 
+
+Updating cache...               ########################################
+[100%]
+
+ 
+
+Channels have no new packages.
+
+Saving cache...
+
+ 
+
++ test 1 = 0
+
++ SPID=17468
+
++ wait 17468
+
++ echo 1
+
+Apr-17 11:54:36 &lt;1&gt; : Removing smart channel(s): kiwi1-16858   done
+
+Apr-17 11:54:36 &lt;3&gt; : Image installation failed   failed
+
+Apr-17 11:54:36 &lt;1&gt; : Umounting path:
+/tmp/kiwi-cdboot.O16905/kiwi-cdboot-16858/dev/pts
+
+Apr-17 11:54:36 &lt;1&gt; : Umounting path:
+/tmp/kiwi-cdboot.O16905/kiwi-cdboot-16858/sys
+
+Apr-17 11:54:36 &lt;1&gt; : Umounting path:
+/tmp/kiwi-cdboot.O16905/kiwi-cdboot-16858/proc
+
+Apr-17 11:54:37 &lt;1&gt; : Logfile available at:
+/tmp/rescuedisk2/compile_test3/.log   done
+
+Apr-17 11:54:38 &lt;3&gt; : KIWI exited with error(s)   done
+
+Apr-17 11:54:38 &lt;1&gt; : Release package manager lock
+
+Apr-17 11:54:38 &lt;1&gt; : Removing cache directory: /var/cache/kiwi/smart-16858
+
+ 
+
+--------------------------------
+
+ 
+
+I did some investigating and found out that that link that it tried to get
+the packages.gz from is currently dead, however; I did find an alternative,
+which is:
+
+ 
+
+<A HREF="http://mirrors.kernel.org/opensuse/distribution/10.3/repo/oss/suse/setup/des">http://mirrors.kernel.org/opensuse/distribution/10.3/repo/oss/suse/setup/des</A>
+cr/packages.gz
+
+ 
+
+So how do I get KIWI to use this link instead of the original which points
+to openSUSE's website?
+
+ 
+
+Alan Arthur
+
+Network Administrator,
+
+Speed Script Pharmacy Systems
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">aarthur at speedscript.com</A>
+
+www.speedscript.com
+
+ 
+
+Speed Script is a registered trademark of Digital Simplistics, Inc.
+
+ 
+
+This electronic message, including any attachments, may contain confidential
+or privileged information and is intended for the individual or entity named
+above.  If you are not the intended recipient, any disclosure, copying,
+distribution or use of the contents of this information is prohibited.  If
+you have received this electronic transmission in error, please notify the
+sender immediately and destroy all electronic and hard copies of the
+communication, including attachments.
+
+ 
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080417/6a58941b/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080417/6a58941b/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000578.html">[Kiwi-users] kiwi-ltsp booting problem
+</A></li>
+	<LI>Next message: <A HREF="000580.html">[Kiwi-users] Package download error with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#579">[ date ]</a>
+              <a href="thread.html#579">[ thread ]</a>
+              <a href="subject.html#579">[ subject ]</a>
+              <a href="author.html#579">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

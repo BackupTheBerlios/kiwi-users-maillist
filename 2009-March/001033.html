@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Setting up splash screen
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20up%20splash%20screen&In-Reply-To=%3C20090317142126.GA19651%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001024.html">
+   <LINK REL="Next"  HREF="001044.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Setting up splash screen</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20up%20splash%20screen&In-Reply-To=%3C20090317142126.GA19651%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Setting up splash screen">ms at novell.com
+       </A><BR>
+    <I>Tue Mar 17 15:21:26 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001024.html">[Kiwi-users] Setting up splash screen
+</A></li>
+        <LI>Next message: <A HREF="001044.html">[Kiwi-users] Setting up splash screen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1033">[ date ]</a>
+              <a href="thread.html#1033">[ thread ]</a>
+              <a href="subject.html#1033">[ subject ]</a>
+              <a href="author.html#1033">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jon,
+
+&gt;<i> &gt; That means you didn't change anything below the above mentioned
+</I>&gt;<i> &gt; directory only your own system image description, right ?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>&gt;<i> The description and the checksum, but nothing below it.
+</I>
+ah ok that's a mistake you should not have the need to
+change anything in there
+
+&gt;<i> I first prepare the image by
+</I>&gt;<i> 
+</I>&gt;<i> kiwi --prepare /usr/share/kiwi/image/usbboot/suse-11.1 --root
+</I>&gt;<i> /home/jon/live/usb/tmp --logfile terminal
+</I>&gt;<i> 
+</I>&gt;<i> Nothing seems wrong at this point. In creating the image,
+</I>&gt;<i> 
+</I>&gt;<i> kiwi --type usb --create /home/jon/live/usb/tmp -d
+</I>&gt;<i> /home/jon/live/usb/image --logfile terminal
+</I>
+ok, so first I'd like to ask you to revert the changes you
+made in the usbboot/suse-11.1 directory. Best way is to
+re-install the kiwi-desc-* packages
+
+after that try the following to create an image from a
+template:
+
+   kiwi --build suse-11.1-JeOS -d /home/jon/live/usb/image --type oem
+        [ --set-repo &lt;local-repo-path-if-you-have-one ]
+
+The result will be available in /home/jon/live/usb/image. You can
+dump the .raw file on your USB stick with dd if you like. If you plan
+to use the image on the USB stick only it might make sense to
+add the usb type to the image description too.
+
+   vi /home/jon/live/usb/image/image-root/image/config.xml
+   
+   ==&gt; add the following to the preferences section
+
+   &lt;type 
+      filesystem=&quot;ext3&quot;
+      boot=&quot;usbboot/suse-11.1&quot;
+   &gt;usb&lt;/type&gt;
+
+   ==&gt; re-create the image
+
+   kiwi --create /home/jon/live/usb/image/image-root \
+        -d /home/jon/live/usb/image --type usb \
+        [ --set-repo &lt;local-repo-path-if-you-have-one ]
+
+   ==&gt; plug in the stick and call
+
+   kiwi --bootstick /home/jon/live/usb/image/initrd-usbboot-suse-11.1.i686-2.1.1.splash.gz \
+        --bootstick-system /home/jon/live/usb/image/LimeJeOS-openSUSE-11.1.i686-1.11.1
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001024.html">[Kiwi-users] Setting up splash screen
+</A></li>
+	<LI>Next message: <A HREF="001044.html">[Kiwi-users] Setting up splash screen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1033">[ date ]</a>
+              <a href="thread.html#1033">[ thread ]</a>
+              <a href="subject.html#1033">[ subject ]</a>
+              <a href="author.html#1033">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

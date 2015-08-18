@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] filesystem usage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20filesystem%20usage&In-Reply-To=%3C49F8362B.8070700%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001091.html">
+   <LINK REL="Next"  HREF="001095.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] filesystem usage</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20filesystem%20usage&In-Reply-To=%3C49F8362B.8070700%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] filesystem usage">bernd at ixsoft.de
+       </A><BR>
+    <I>Wed Apr 29 13:12:43 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001091.html">[Kiwi-users] filesystem usage
+</A></li>
+        <LI>Next message: <A HREF="001095.html">[Kiwi-users] filesystem usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1093">[ date ]</a>
+              <a href="thread.html#1093">[ thread ]</a>
+              <a href="subject.html#1093">[ subject ]</a>
+              <a href="author.html#1093">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> If I issue &quot;df&quot; or other filesystem usage commands, only udev (usage 1%,
+</I>&gt;&gt;<i> 1 GByte) is shown there, no /home, no /tmp, no /var.
+</I>&gt;&gt;<i> How can I find out about current filesystem usage (e.g. the persistent
+</I>&gt;&gt;<i> partition) and Ramdisk usage?
+</I>&gt;&gt;<i> In the Desktop, I can see the ext3 volume for persistence plus the
+</I>&gt;&gt;<i> squashfs volume on the stick, but no usage.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Try this:
+</I>&gt;<i>
+</I>&gt;<i>    cat /proc/mount &gt; /etc/mtab
+</I>&gt;<i>    df -h
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Thanks a lot, that helped me for the persistent partition and tmpfs ;-)
+But I had to change /proc/mount to /proc/mounts on my system ...
+
+Bernd
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 300 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090429/6c2a4c0f/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090429/6c2a4c0f/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001091.html">[Kiwi-users] filesystem usage
+</A></li>
+	<LI>Next message: <A HREF="001095.html">[Kiwi-users] filesystem usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1093">[ date ]</a>
+              <a href="thread.html#1093">[ thread ]</a>
+              <a href="subject.html#1093">[ subject ]</a>
+              <a href="author.html#1093">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

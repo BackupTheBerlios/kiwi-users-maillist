@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] RECONFIGURE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RECONFIGURE&In-Reply-To=%3C487B2AE9.7060601%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000769.html">
+   <LINK REL="Next"  HREF="000772.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] RECONFIGURE</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RECONFIGURE&In-Reply-To=%3C487B2AE9.7060601%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] RECONFIGURE">bernd at ixsoft.de
+       </A><BR>
+    <I>Mon Jul 14 12:31:05 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000769.html">[Kiwi-users] RECONFIGURE
+</A></li>
+        <LI>Next message: <A HREF="000772.html">[Kiwi-users] RECONFIGURE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#770">[ date ]</a>
+              <a href="thread.html#770">[ thread ]</a>
+              <a href="subject.html#770">[ subject ]</a>
+              <a href="author.html#770">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+&gt;<i>   
+</I>&gt;&gt;<i> in create_xconf the flag &quot;RECONFIGURE&quot; is used to determine if the X 
+</I>&gt;&gt;<i> configuration should be reset.
+</I>&gt;&gt;<i> Where is $RECONFIGURE set and how can I manipulate this flag at boot time?
+</I>&gt;&gt;<i> It should be through cmdline, but I cannot find the script mapping the 
+</I>&gt;&gt;<i> kernel parm to RECONFIGURE, so I would have to do this manually.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Ah well this RECONFIGURE thing is work in progress.
+</I>
+&gt;<i> I see that it's
+</I>&gt;<i> important to be able to re-configure but it's much more complex
+</I>&gt;<i> than it seems to be. At the moment the RECONFIGURE flag was only
+</I>&gt;<i> implemented in the runlevel script but there is no infrastructure
+</I>&gt;<i> which set the variable at the moment except if you are booting
+</I>&gt;<i> via pxe you can plase that RECONFIGURE=yes into your config.&lt;MAC&gt;
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>ok, that should not be difficult to do
+&gt;<i> It would be easy to add a mapping from the kernel commandline but
+</I>&gt;<i> it hasn't happen so far. As you know I'm willing to accept
+</I>&gt;<i> patches :-)
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Ok, I have made some other changes to create_xconf as well, I can send 
+you the file for your review ;-)
+
+I found that create_xconf (and boot.langset) were not started initially 
+because they are dependent from $localfs.
+$localfs itself is dependent on some fsck script which is obviously not 
+used for type=usb.
+I am not sure why this worked for 10.3 but fails for 11.0. Something 
+must have changed ...
+
+Thanks+Regards
+
+Bernd
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 300 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080714/0a1f4755/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080714/0a1f4755/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000769.html">[Kiwi-users] RECONFIGURE
+</A></li>
+	<LI>Next message: <A HREF="000772.html">[Kiwi-users] RECONFIGURE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#770">[ date ]</a>
+              <a href="thread.html#770">[ thread ]</a>
+              <a href="subject.html#770">[ subject ]</a>
+              <a href="author.html#770">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

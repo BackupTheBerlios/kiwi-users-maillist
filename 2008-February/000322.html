@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] UNIONFS_CONFIG
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20UNIONFS_CONFIG&In-Reply-To=%3C20080218083348.GA28325%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000321.html">
+   <LINK REL="Next"  HREF="000323.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] UNIONFS_CONFIG</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20UNIONFS_CONFIG&In-Reply-To=%3C20080218083348.GA28325%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] UNIONFS_CONFIG">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 18 09:33:49 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000321.html">[Kiwi-users] UNIONFS_CONFIG
+</A></li>
+        <LI>Next message: <A HREF="000323.html">[Kiwi-users] UNIONFS_CONFIG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#322">[ date ]</a>
+              <a href="thread.html#322">[ thread ]</a>
+              <a href="subject.html#322">[ subject ]</a>
+              <a href="author.html#322">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i>  - When did you add tar program? from 2.25?
+</I>
+jap for the isoboot part I have added it with 2.25
+
+&gt;<i>  - Did you change the processing of CD mount? 
+</I>
+no except for the bug you reported #359511 :)
+
+&gt;<i>  - It seems there is no smp configuration?
+</I>
+I wrote that in my last announcement. The kernel flavors are gone and
+exchanged by a bootprofile. So if you have set for example:
+
+	boot=&quot;isoboot/suse-SLES10-SP1-smp&quot;
+
+you should change that to
+
+	boot=&quot;isoboot/suse-SLES10-SP1&quot; bootprofile=&quot;smp&quot; 
+
+&gt;<i> p.s
+</I>&gt;<i> RunHooks works fine. Thank you for your work.
+</I>&gt;<i> Sorry for I reported it so late.
+</I>
+no problem :) Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000321.html">[Kiwi-users] UNIONFS_CONFIG
+</A></li>
+	<LI>Next message: <A HREF="000323.html">[Kiwi-users] UNIONFS_CONFIG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#322">[ date ]</a>
+              <a href="thread.html#322">[ thread ]</a>
+              <a href="subject.html#322">[ subject ]</a>
+              <a href="author.html#322">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

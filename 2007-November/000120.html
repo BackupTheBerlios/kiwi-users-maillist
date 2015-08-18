@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] is unionfs/aufs a requirement for using kiwi?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20is%20unionfs/aufs%20a%20requirement%20for%20using%20kiwi%3F&In-Reply-To=%3C9E4B9FB420C90F44A370E287C7878F47051E571F%40XCH-NW-1V1.nw.nos.boeing.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000119.html">
+   <LINK REL="Next"  HREF="000121.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] is unionfs/aufs a requirement for using kiwi?</H1>
+    <B>Mattes, David</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20is%20unionfs/aufs%20a%20requirement%20for%20using%20kiwi%3F&In-Reply-To=%3C9E4B9FB420C90F44A370E287C7878F47051E571F%40XCH-NW-1V1.nw.nos.boeing.com%3E"
+       TITLE="[Kiwi-users] is unionfs/aufs a requirement for using kiwi?">david.mattes at boeing.com
+       </A><BR>
+    <I>Thu Nov  1 18:10:47 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000119.html">[Kiwi-users] %arch macro
+</A></li>
+        <LI>Next message: <A HREF="000121.html">[Kiwi-users] is unionfs/aufs a requirement for using kiwi?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#120">[ date ]</a>
+              <a href="thread.html#120">[ thread ]</a>
+              <a href="subject.html#120">[ subject ]</a>
+              <a href="author.html#120">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Is unionfs or aufs a requirement to build images with kiwi?  I could
+</I>not
+&gt;<i> find it mentioned anywhere in the docs, except as a tool for building
+</I>&gt;<i> split (ro/rw) images.
+</I>&gt;<i> 
+</I>
+I was mistakenly using the --base-root option with --prepare, which was
+causing aufs/unionfs to be used on that directory.
+
+It took a while to understand the power and elegance of the aufs/unionfs
+approach for the read-only image.  Pretty Cool!
+
+Question:
+Is it possible to get aufs/unionfs support in the kernel for images
+based on SLE10 SP1?  Without building a custom kernel?
+
+Thanks,
+David
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000119.html">[Kiwi-users] %arch macro
+</A></li>
+	<LI>Next message: <A HREF="000121.html">[Kiwi-users] is unionfs/aufs a requirement for using kiwi?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#120">[ date ]</a>
+              <a href="thread.html#120">[ thread ]</a>
+              <a href="subject.html#120">[ subject ]</a>
+              <a href="author.html#120">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

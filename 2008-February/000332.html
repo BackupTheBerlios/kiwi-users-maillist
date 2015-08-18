@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Possible bug in kiwi 2.27-28.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Possible%20bug%20in%20kiwi%202.27-28.1&In-Reply-To=%3C20080220083259.GC26894%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000329.html">
+   <LINK REL="Next"  HREF="000333.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Possible bug in kiwi 2.27-28.1</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Possible%20bug%20in%20kiwi%202.27-28.1&In-Reply-To=%3C20080220083259.GC26894%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Possible bug in kiwi 2.27-28.1">ms at suse.de
+       </A><BR>
+    <I>Wed Feb 20 09:33:00 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000329.html">[Kiwi-users] Possible bug in kiwi 2.27-28.1
+</A></li>
+        <LI>Next message: <A HREF="000333.html">[Kiwi-users] best way to install more packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#332">[ date ]</a>
+              <a href="thread.html#332">[ thread ]</a>
+              <a href="subject.html#332">[ subject ]</a>
+              <a href="author.html#332">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Tina,
+
+&gt;<i> Thank you for your fast response. Not surprisingly you were completely
+</I>&gt;<i> right! Building upon your example #2 i was able to create a vmdk / raw
+</I>&gt;<i> image that represents a minimal textmode installation with Yast and works
+</I>&gt;<i> flawless in VirtualBox - except two new problems:
+</I>
+ah good news so far :)
+
+&gt;<i> 1. The size tag is ignored - regardless of what i set there, the image will always have a size of ~600MB.
+</I>
+the problem is you are creating a virtual disk and this disk is created
+as a sparse file. the size information in the config.xml would apply if you
+are creating a filesystem based only image. So to influence the size
+in your case you need to influence the size of the virtual disk. This
+can be done by setting the paramater
+ 
+	--bootvm-disksize 2GB
+
+while you call kiwi with --create
+
+&gt;<i> 2. I'm unable to switch the keyboard layout from us
+</I>&gt;<i> (or whatever the default is) to german. Keytable and locale are correctly
+</I>&gt;<i> set in my config.xml (please see <A HREF="http://pastebin.ca/910335">http://pastebin.ca/910335</A> ) and in
+</I>&gt;<i> the resulting image KEYTABLE in /etc/sysconfig/keyboard is set
+</I>&gt;<i> to de-latin1-nodeadkeys.map.gz and RC_LANG in /etc/sysconfig/language
+</I>&gt;<i> is set to de_DE.UTF-8. Further Yast shows that the keyboard layout is
+</I>&gt;<i> set to german and it actually works correctly in the &quot;Test&quot; box but
+</I>&gt;<i> nowhere else.
+</I>
+does
+
+/etc/init.d/kbd restart
+
+help ?
+
+&gt;<i> Last but not least i would love to know how the passwords in config.xml files are encrypted - unfortunately there seems to be no information regarding
+</I>&gt;<i> this in the manual.
+</I>
+this information is in /usr/share/doc/packages/kiwi/examples/README :-)
+
+---snip---
+ You are able to login to the system with user root or linux
+ and password 'linux'
+---snap---
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000329.html">[Kiwi-users] Possible bug in kiwi 2.27-28.1
+</A></li>
+	<LI>Next message: <A HREF="000333.html">[Kiwi-users] best way to install more packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#332">[ date ]</a>
+              <a href="thread.html#332">[ thread ]</a>
+              <a href="subject.html#332">[ subject ]</a>
+              <a href="author.html#332">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

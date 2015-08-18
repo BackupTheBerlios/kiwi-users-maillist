@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] opensuse11.1 prelod example failes,
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20opensuse11.1%20prelod%20example%20failes%2C&In-Reply-To=%3C20090612131101.GA24954%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001187.html">
+   <LINK REL="Next"  HREF="001189.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] opensuse11.1 prelod example failes,</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20opensuse11.1%20prelod%20example%20failes%2C&In-Reply-To=%3C20090612131101.GA24954%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] opensuse11.1 prelod example failes,">ms at novell.com
+       </A><BR>
+    <I>Fri Jun 12 15:11:02 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001187.html">[Kiwi-users] opensuse11.1 prelod example failes,
+</A></li>
+        <LI>Next message: <A HREF="001189.html">[Kiwi-users] opensuse11.1 prelod example failes,
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1188">[ date ]</a>
+              <a href="thread.html#1188">[ thread ]</a>
+              <a href="subject.html#1188">[ subject ]</a>
+              <a href="author.html#1188">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; &gt; I'm trying to do an OEM image for sled11, and having some problems, so I
+</I>&gt;<i> &gt; &gt; thought I'd test the opensuse11.1 example and then move from that.
+</I>&gt;<i> &gt; &gt; However, when I run
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; linux32 kiwi --prepare ./suse-oem-preload --root
+</I>&gt;<i> &gt; &gt; /data_sas/kiwi/myoem_suse -- set-repo /mnt/SLED-11-DVD-i586-GM-DVD1
+</I>&gt;<i> &gt; &gt; --force-new-root
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; it fails at
+</I>&gt;<i> &gt; &gt; [*** log excerpt follows, screen ***]
+</I>&gt;<i> &gt; &gt; + wait 21752
+</I>&gt;<i> &gt; &gt; + test 0 = 0
+</I>&gt;<i> &gt; &gt; + chroot /data_sas/kiwi/myoem_suse /usr/bin/zypper --non-interactive
+</I>&gt;<i> &gt; &gt; --no-gpg- checks --reposd-dir /var/cache/kiwi/zypper --cache-dir
+</I>&gt;<i> &gt; &gt; /var/cache/kiwi/zypper --raw-cache-dir /var/cache/kiwi/zypper install
+</I>&gt;<i> &gt; &gt; --auto-agree-with-licenses bootsplash bootsplash-branding-openSUSE
+</I>&gt;<i> &gt; &gt; gfxboot-branding-openSUSE ifplugd kernel-default vim
+</I>&gt;<i> &gt; &gt; Loading repository data...
+</I>&gt;<i> &gt; &gt; Reading installed packages...
+</I>&gt;<i> &gt; &gt; 'bootsplash' is already installed.
+</I>&gt;<i> &gt; &gt; 'bootsplash-branding-openSUSE' not found.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; opensuse11.1 has bootsplash-branding-openSUSE but SLES has
+</I>&gt;<i> &gt; bootsplash-branding-SLES
+</I>&gt;<i> 
+</I>&gt;<i> I'm trying to generate an openSUSE11.1 image for testing.
+</I>
+I thought you want to create a sled11 image, you said:
+&quot;I'm trying to do an OEM image for sled11...&quot; ? confused.
+I was guessing that you used a sled11 repository along with an
+openSUSE 11.1 sample image description
+
+Anyway the repo you used for building the image did not provide
+the package &quot;bootsplash-branding-openSUSE&quot; but the image description
+requested it in the config.xml. That's the reason for the problem
+
+&gt;<i> Or, do I
+</I>&gt;<i> need to use an opensuse system to generate the image too ?
+</I>
+no
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001187.html">[Kiwi-users] opensuse11.1 prelod example failes,
+</A></li>
+	<LI>Next message: <A HREF="001189.html">[Kiwi-users] opensuse11.1 prelod example failes,
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1188">[ date ]</a>
+              <a href="thread.html#1188">[ thread ]</a>
+              <a href="subject.html#1188">[ subject ]</a>
+              <a href="author.html#1188">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

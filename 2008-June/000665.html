@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Building oemboot split image with 2.38 SVN:	Revision: 1311 fails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Building%20oemboot%20split%20image%20with%202.38%20SVN%3A%0A%09Revision%3A%201311%20fails&In-Reply-To=%3C20080609075254.GB15789%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000661.html">
+   <LINK REL="Next"  HREF="000663.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Building oemboot split image with 2.38 SVN:	Revision: 1311 fails</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Building%20oemboot%20split%20image%20with%202.38%20SVN%3A%0A%09Revision%3A%201311%20fails&In-Reply-To=%3C20080609075254.GB15789%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Building oemboot split image with 2.38 SVN:	Revision: 1311 fails">ms at novell.com
+       </A><BR>
+    <I>Mon Jun  9 09:52:54 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000661.html">[Kiwi-users] Building oemboot split image with 2.38 SVN: Revision:	1311 fails
+</A></li>
+        <LI>Next message: <A HREF="000663.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#665">[ date ]</a>
+              <a href="thread.html#665">[ thread ]</a>
+              <a href="subject.html#665">[ subject ]</a>
+              <a href="author.html#665">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Jun-09 09:53:04 &lt;1&gt; : EXEC [mount -t  /dev/mapper/loop2p2 /tmp/kiwicdinst.V13646 2&gt;&amp;1]
+</I>&gt;<i> Jun-09 09:53:04 &lt;3&gt; : Failed to mount system partition: Usage: mount -V                 : print version
+</I>&gt;<i>        mount -h                 : print this help
+</I>&gt;<i>        mount                    : list mounted filesystems
+</I>&gt;<i>        mount -l                 : idem, including volume labels
+</I>&gt;<i> So far the informational part. Next the mounting.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Looking at the KIWIBoot.pm , it seems that the filesystem type is not being detected while attempting to mount the loop device.  Not sure why this is happening.
+</I>&gt;<i> 
+</I>&gt;<i> I am building an image based on SLED 10 SP1 and I am using &quot;squashfs&quot; for the RO partition and &quot;reiserfs&quot; for the RW partition.
+</I>&gt;<i> 
+</I>&gt;<i> I have filed a BUG on this #398381
+</I>
+your observations are correct. I will have a look at this one asap
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000661.html">[Kiwi-users] Building oemboot split image with 2.38 SVN: Revision:	1311 fails
+</A></li>
+	<LI>Next message: <A HREF="000663.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#665">[ date ]</a>
+              <a href="thread.html#665">[ thread ]</a>
+              <a href="subject.html#665">[ subject ]</a>
+              <a href="author.html#665">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

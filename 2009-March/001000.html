@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] default vs pae kernel in diskless builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C1236931617.26009.1.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000995.html">
+   <LINK REL="Next"  HREF="001001.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] default vs pae kernel in diskless builds</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C1236931617.26009.1.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] default vs pae kernel in diskless builds">roger at opq.se
+       </A><BR>
+    <I>Fri Mar 13 09:06:57 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000995.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+        <LI>Next message: <A HREF="001001.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1000">[ date ]</a>
+              <a href="thread.html#1000">[ thread ]</a>
+              <a href="subject.html#1000">[ subject ]</a>
+              <a href="author.html#1000">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2009-03-03 at 08:11 +0100, Roger Oberholtzer wrote:
+&gt;<i> On Fri, 2009-02-20 at 19:35 +0100, Marcus Sch&#228;fer wrote:
+</I>&gt;<i> &gt; Roger,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; I did not have the bootprofile=&quot;smp&quot; tag. So I added it. I also did not
+</I>&gt;<i> &gt; &gt; have the kernel-pae-base and aufs-kmp-pae rpms. So I added them. But
+</I>&gt;<i> &gt; &gt; things are still not working. I have attached the logs from when I made
+</I>&gt;<i> &gt; &gt; the images. Note that my logs also contain a line for each deleted
+</I>&gt;<i> &gt; &gt; kernel module, and a list of the modules that remain when my image.sh is
+</I>&gt;<i> &gt; &gt; run.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; What happens now is that the boot prints &quot;Booting KIWI...&quot; and then a
+</I>&gt;<i> &gt; &gt; few lines later says &quot;Network module: Failed to load network module !&quot;
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; When I used kernel-default everywhere (and no bootprofile=&quot;smp&quot; or
+</I>&gt;<i> &gt; &gt; aufs-kmp-pae) it works fine. I think the drivers are there.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; To debug this you should pass the kernel parameter
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;    kiwidebug=1
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; in your pxe configuration. If the kiwi boot now fails you will
+</I>&gt;<i> &gt; get a shell instead of a reboot exception and can debug what 
+</I>&gt;<i> &gt; network kernel modules was about to become loaded and why this
+</I>&gt;<i> &gt; failed
+</I>&gt;<i> 
+</I>&gt;<i> (Sorry for the delay. I was away.)
+</I>&gt;<i> 
+</I>&gt;<i> The kernel that is running is the -default kernel. But all the modules
+</I>&gt;<i> in the image are for the -pae kernel. So, it seems that I get the
+</I>&gt;<i> modules correct, but not the running kernel itself.
+</I>
+Sorry for posting to my own message. But does anyone know what I am
+doing wrong to get two different kernels?
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000995.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+	<LI>Next message: <A HREF="001001.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1000">[ date ]</a>
+              <a href="thread.html#1000">[ thread ]</a>
+              <a href="subject.html#1000">[ subject ]</a>
+              <a href="author.html#1000">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] A means to update critical packages on a RAM only	image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20A%20means%20to%20update%20critical%20packages%20on%20a%20RAM%20only%0A%09image&In-Reply-To=%3C20110608114105.GA13603%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002773.html">
+   <LINK REL="Next"  HREF="002775.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] A means to update critical packages on a RAM only	image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20A%20means%20to%20update%20critical%20packages%20on%20a%20RAM%20only%0A%09image&In-Reply-To=%3C20110608114105.GA13603%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] A means to update critical packages on a RAM only	image">ms at suse.de
+       </A><BR>
+    <I>Wed Jun  8 13:41:06 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002773.html">[Kiwi-users] A means to update critical packages on a RAM only	image
+</A></li>
+        <LI>Next message: <A HREF="002775.html">[Kiwi-users] A means to update critical packages on a RAM only image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2774">[ date ]</a>
+              <a href="thread.html#2774">[ thread ]</a>
+              <a href="subject.html#2774">[ subject ]</a>
+              <a href="author.html#2774">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Guys as some of you know I'm using a RAM only (live) image.  This
+</I>&gt;<i> image &quot;resets&quot; itself on each reboot.  A fat partition is created
+</I>&gt;<i> during the build and used for storage that is compatible with Windows.
+</I>&gt;<i>  This Fat  partition is mounted to a folder when the user logs in.  So
+</I>&gt;<i> the partition storage folder is only available after the user logs in.
+</I>&gt;<i> Since this is a ram only live image anything embedded into the image
+</I>&gt;<i> is there to stay and anything added to the OS will be lost on the next
+</I>&gt;<i> boot.  Because of this I've run into a possible issue in the future
+</I>&gt;<i> that may cause an issue.  Since my product is only valid for 1 year I
+</I>&gt;<i> only have to be concerned with critical updates within this time
+</I>&gt;<i> period.  One of the updates that may be necessary is Adobe Flash
+</I>&gt;<i> Player, Java or Adobe Reader.  These products seem to update often and
+</I>&gt;<i> may leave a user without the most recent version unable to view or use
+</I>&gt;<i> the material on the Web page.
+</I>&gt;<i> 
+</I>&gt;<i> I was hoping to enable a simple update system for this issue. During
+</I>&gt;<i> the creation of the storage folders on the fat partition I have a
+</I>&gt;<i> script create a &quot;Updates&quot; directory.  This folder, since it's part of
+</I>&gt;<i> the fat partition must be mounted before access. 
+</I>
+I think I don't understand why it has to be mounted ? imho the
+fat partition is mounted to /SOS via some boot script in /etc/init.d
+while the machine boots up. Is that correct ? if so /SOS/Updates is just
+a directory on the fat partition which should be there as soon as the
+fat partition is mounted to /SOS... or did I misunderstand this ?
+
+&gt;<i> This is done at the
+</I>&gt;<i> users login.  I've added a simple command line(s) to an existing
+</I>&gt;<i> script that runs as root from the /etc/init.d/boot.local script
+</I>&gt;<i> however the fat partition isn't mounted yet (the &quot;Updates&quot; folder
+</I>&gt;<i> isn't either) so when this script runs it never finds the &quot;Updates&quot;
+</I>&gt;<i> folder.
+</I>&gt;<i> The command are:
+</I>&gt;<i> &quot;cd /SOS/SOS_Storage/Updates&quot;
+</I>&gt;<i> &quot;rpm -i --force *&quot;
+</I>
+As you have to do that every time the machine boots on a ramonly system
+you can add that calls to the script which does the fat mount. You can
+be sure to access the fat if the mount did not fail
+
+&gt;<i> The thought was to simply place the updated rpm files (such as
+</I>&gt;<i> flash-player) into this folder and anything in this folder would
+</I>&gt;<i> simply install at the users login or before it.  This issues of course
+</I>&gt;<i> is that this script needs to run as root (or the RPM command needs to
+</I>&gt;<i> be able to run as a user) when the user logs in OR the &quot;Updates&quot;
+</I>&gt;<i> folder needs to be accessible when the boot.local script runs (before
+</I>&gt;<i> the users login).   Is there a kiwi solution for this issue or maybe a
+</I>&gt;<i> better approach to this?
+</I>
+concerning libflashplayer you can place it on the fat partition
+and link it from there:
+
+  /usr/lib64/browser-plugins/libflashplayer.so -&gt; /SOS/Updates/libflashplayer.so
+
+In that case you don't have to install it all the time the system
+boots up and you can update the flash version without the live system
+up and running
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002773.html">[Kiwi-users] A means to update critical packages on a RAM only	image
+</A></li>
+	<LI>Next message: <A HREF="002775.html">[Kiwi-users] A means to update critical packages on a RAM only image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2774">[ date ]</a>
+              <a href="thread.html#2774">[ thread ]</a>
+              <a href="subject.html#2774">[ subject ]</a>
+              <a href="author.html#2774">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

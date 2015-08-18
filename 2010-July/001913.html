@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%0A%20/dev/sda&In-Reply-To=%3C1279653040.16133.10.camel%40manta.site%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001912.html">
+   <LINK REL="Next"  HREF="001914.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%0A%20/dev/sda&In-Reply-To=%3C1279653040.16133.10.camel%40manta.site%3E"
+       TITLE="[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda">roger at opq.se
+       </A><BR>
+    <I>Tue Jul 20 21:10:40 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001912.html">[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda
+</A></li>
+        <LI>Next message: <A HREF="001914.html">[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1913">[ date ]</a>
+              <a href="thread.html#1913">[ thread ]</a>
+              <a href="subject.html#1913">[ subject ]</a>
+              <a href="author.html#1913">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2010-07-20 at 15:14 -0300, Chris Bowlby wrote:
+
+&gt;<i> Also, where can I enable the kiwidebug=1 variable so that we can gain
+</I>&gt;<i> shell access, things are occurring too quickly after the PXE image
+</I>&gt;<i> booting phase to be able to catch a spot to enter it? I suspect it
+</I>&gt;<i> would be in the pxelinux.cfg/default file, but just want to confirm
+</I>&gt;<i> first.
+</I>
+It goes on the command line to the kernel. So it is
+in /tftpboot/.../pxelinux.cfg/default. Mine is:
+        
+ LABEL KIWI-Boot
+   kernel rsoft/linux-w
+   append initrd=rsoft/initrd-w vga=791 ramdisk_size=512000 ramdisk_blocksize=4096 kiwidebug=1
+   IPAPPEND 2
+
+-- 
+Roger Oberholtzer
+
+Ramb&#246;ll RST/OPQ
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001912.html">[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda
+</A></li>
+	<LI>Next message: <A HREF="001914.html">[Kiwi-users] Problem with PXE image failing to re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1913">[ date ]</a>
+              <a href="thread.html#1913">[ thread ]</a>
+              <a href="subject.html#1913">[ subject ]</a>
+              <a href="author.html#1913">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

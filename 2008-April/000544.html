@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Optimizing turnaround time
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3C20080407092543.GA25955%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000541.html">
+   <LINK REL="Next"  HREF="000545.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Optimizing turnaround time</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3C20080407092543.GA25955%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Optimizing turnaround time">ms at suse.de
+       </A><BR>
+    <I>Mon Apr  7 11:25:44 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000541.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+        <LI>Next message: <A HREF="000545.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#544">[ date ]</a>
+              <a href="thread.html#544">[ thread ]</a>
+              <a href="subject.html#544">[ subject ]</a>
+              <a href="author.html#544">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> One of the things I find more uncomfortable is that the tool is very
+</I>&gt;<i> monolithic, so every time you make a small change, a lot of operations
+</I>&gt;<i> are unnecessarily repeated. Normally you do not come up with the
+</I>&gt;<i> perfect config.xml from scratch, you have to fine tune your image one
+</I>&gt;<i> step at a time (add a package here, tweak a rc file there...) and then
+</I>&gt;<i> you have to redownload the packages and build all the mammoth again.
+</I>&gt;<i> Not fun :(
+</I>
+There are ways to make that more comfortable. In principal the
+following &quot;optimizations&quot; are already in place:
+
+1) you can use a pre-built boot image which means the initrd
+   can be previously built and you can re-use it with any
+   subsequent --create step. To make use of this take a look
+   at the following example:
+
+   kiwi -p /usr/share/kiwi/image/netboot/suse-10.3 \
+        --root /tmp/myboot
+
+   kiwi --create /tmp/myboot \
+        -d /usr/share/kiwi/image/netboot/suse-10.3-prebuilt
+
+   ==&gt; the destination directory name must be the prepare path
+       followed by the prefix -prebuilt
+
+   add in your system image config.xml to the image type which should
+   use the prebuilt boot image the following attribute:
+
+   &lt;type .... checkprebuilt=&quot;true&quot;&gt;...&lt;/type&gt;
+
+2) if you store the prepared tree you are free to change it in
+   terms of config files or something. You also have the possibility
+   to add packages in the config.xml description _inside_ the
+   tree:
+
+     path-to-tree/image/config.xml
+
+   and after that you can run
+
+     kiwi --upgrade
+
+   you also can use the upgrade if only the source repo has changed.
+   For example update of a package.
+
+   In any of these cases you are only upgrading an existing tree
+   which is faster than rebuilding it
+
+3) if you don't want to re-prepare a complete root tree but you
+   know it's based on the same set of packages you also can create
+   a base root system first and use this tree as the base for your
+   images. the prepare step is much faster depending on the
+   differences. So you can for example create a base root tree
+   as part of a &quot;generic&quot; image description (base 10.3 for example)
+   after that you can create your own special 10.3 image description
+   which is a simply copy of the base image description but changed
+   by you. After that you can call kiwi like you would do to build
+   a normal image but you can specify with the --base-root option
+   the path to the already prepared base root data. In the
+   base-root mode &quot;copy&quot; kiwi will copy the base tree and modify
+   this tree. The copy is faster than rebuilding the base-root by
+   an &quot;installation&quot; process. The fastest way to use a base-root
+   is to make use of an overlay filesystem. Your new root system
+   will consist of only the differences according to the base-root
+   tree in this mode. This also means the base-root is required for
+   prepare _and_ create which is different from the copy mode. In
+   the recyle mode the base-root will be modified directly which
+   means you can use the original base-root only once if you don't
+   have a backup copy
+    
+The default behavior of kiwi is &quot;slow but safe&quot;. As you know it
+builds complete operating systems and applications it's urgently
+required to take an eye on the integrity of the system which I can
+only make sure exists if we start building the image from an
+empty root tree.
+
+&gt;<i> Being no expert in the intricacies or either Suse and smart I found a
+</I>&gt;<i> little trick to avoid repeated downloads: redirect kiwi log to the
+</I>&gt;<i> terminal (--logfile terminal) and after all the new packages are
+</I>&gt;<i> downloaded pause the process (Ctrl-Z), copy the contents of
+</I>&gt;<i> yourkiwiroot/var/lib/smart/packages in a directory and add that
+</I>&gt;<i> directory to the config file as a rpm-dir repo. I'm sure you could
+</I>&gt;<i> come up with cleverer schemes, but my research time in tools I am not
+</I>&gt;<i> familiar with is unfortunately limited and this pedestrian hack just
+</I>&gt;<i> works. It shouldn't be too difficult to mainstream something like this
+</I>&gt;<i> and add a --rpmcachedir option, should it?
+</I>
+The current version of kiwi does this. See KIWIManager:85
+
+	my $dataDir = &quot;$root/var/lib/smart&quot;;
+
+&gt;<i> Now I am intrigued by a the nifty 'baseroot' option that promises to
+</I>&gt;<i> &quot;speed up the build process.&quot; An example on how would this work would
+</I>&gt;<i> be heartily welcome, please. Couldn't find anything in the docs, the
+</I>&gt;<i> sample images or either mailing list.
+</I>
+You can give it a try with your current image description. Just
+prepare a tree and name it your base root:
+
+	kiwi -p &lt;your-image-description&gt; --root /tmp/myBaseRoot
+
+now copy your image description and add changes into the copy
+for example add a package into the description. After that call
+
+	kiwi -p &lt;your-image-description-copy&gt; --root /tmp/myimage \
+		--base-root /tmp/myBaseRoot
+
+As I explained there are different base-root modes which you can
+give a try with:
+
+	--base-root-mode &lt;copy|union|recycle&gt;
+
+&gt;<i> Sometimes I have chroot'ed the prepared root system, tweaked things
+</I>&gt;<i> there and then exported the changes to the image dir, so if I have to
+</I>&gt;<i> re-prepare they are performed again. But I am always having the
+</I>&gt;<i> nagging suspicion that I might break something. It would be nice if
+</I>&gt;<i> the devels could state what can and what cannot be done in a chroot'ed
+</I>&gt;<i> prepared environment so:
+</I>&gt;<i> a) It doesn't interfere with the --create process.
+</I>&gt;<i> b) It is automatically repeated if the --prepare process must be retriggered.
+</I>
+There will be a KIWITest module in the future which allows you to
+check the integrity after such changes.
+
+I think what I can't do is
+
+a) automatically repeat manual user changes which had happen as consequence
+   of a chroot ... vi ... action. The one who does this has enough knowledge
+   to persistently store the manual changes as command sequence in a
+   config.sh or images.sh script and save that as part of the image description
+   which persistently stores the changes and re-apply them if required
+
+b) as you are free to do anything with the prepared tree for example
+   remove /bin or other important data it's hard to make sure that
+   manual changes doesn't interfere with the later --create process
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000541.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+	<LI>Next message: <A HREF="000545.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#544">[ date ]</a>
+              <a href="thread.html#544">[ thread ]</a>
+              <a href="subject.html#544">[ subject ]</a>
+              <a href="author.html#544">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

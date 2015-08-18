@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi sat plugin unusable with kiwi	buildservice	packages for SUSE 11.0
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20sat%20plugin%20unusable%20with%20kiwi%0A%09buildservice%09packages%20for%20SUSE%2011.0&In-Reply-To=%3C20081121124920.GA29191%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000898.html">
+   <LINK REL="Next"  HREF="000899.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi sat plugin unusable with kiwi	buildservice	packages for SUSE 11.0</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20sat%20plugin%20unusable%20with%20kiwi%0A%09buildservice%09packages%20for%20SUSE%2011.0&In-Reply-To=%3C20081121124920.GA29191%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi sat plugin unusable with kiwi	buildservice	packages for SUSE 11.0">ms at novell.com
+       </A><BR>
+    <I>Fri Nov 21 13:49:20 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000898.html">[Kiwi-users] kiwi sat plugin unusable with kiwi buildservice	packages for SUSE	11.0
+</A></li>
+        <LI>Next message: <A HREF="000899.html">[Kiwi-users] Enhancement Request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#908">[ date ]</a>
+              <a href="thread.html#908">[ thread ]</a>
+              <a href="subject.html#908">[ subject ]</a>
+              <a href="author.html#908">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> This is just for your information and for all people who use
+</I>&gt;<i> smart and openSUSE 11.0 with kiwi
+</I>&gt;<i> 
+</I>&gt;<i> The kiwi packages built on BS for 11.0 use a newer version
+</I>&gt;<i> of libsatsolver-devel and not the original package from the
+</I>&gt;<i> 11.0 distribution to build the kiwi packages. The result is
+</I>&gt;<i> that kiwi complains about:
+</I>&gt;<i> 
+</I>&gt;<i>   unsupported SOLV version
+</I>&gt;<i> 
+</I>&gt;<i> The problem ist that the solvable file is created with the
+</I>&gt;<i> 11.0 sat tools but the result can't be read because the
+</I>&gt;<i> packages have been built with a newer library version of
+</I>&gt;<i> the satsolver. I already get in contact with the buildservice
+</I>&gt;<i> people to find the reason of the problem but didn't get
+</I>&gt;<i> a response so far
+</I>&gt;<i> 
+</I>&gt;<i> If you have that issue you can solve it as follows:
+</I>&gt;<i> 
+</I>&gt;<i>   - make sure your system has rpm-devel, a C compiler and
+</I>&gt;<i>     swig installed
+</I>&gt;<i> 
+</I>&gt;<i>   - make sure you have installed the libsatsolver-devel
+</I>&gt;<i>     package from your 11.0 distro (DVD)
+</I>&gt;<i> 
+</I>&gt;<i>   - download the kiwi sources:
+</I>&gt;<i>     svn co <A HREF="https://svn.berlios.de/svnroot/repos/kiwi/kiwi-head">https://svn.berlios.de/svnroot/repos/kiwi/kiwi-head</A> .
+</I>&gt;<i> 
+</I>&gt;<i>   - cd tools/satplugin
+</I>&gt;<i>     make -f Makefile.swig
+</I>&gt;<i>     make
+</I>&gt;<i>     sudo make install
+</I>
+This issue is fixed, it was a schaefi too stupid to build
+correct packages bug
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000898.html">[Kiwi-users] kiwi sat plugin unusable with kiwi buildservice	packages for SUSE	11.0
+</A></li>
+	<LI>Next message: <A HREF="000899.html">[Kiwi-users] Enhancement Request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#908">[ date ]</a>
+              <a href="thread.html#908">[ thread ]</a>
+              <a href="subject.html#908">[ subject ]</a>
+              <a href="author.html#908">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

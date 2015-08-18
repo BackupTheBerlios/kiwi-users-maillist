@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Install into existing root dir with kiwi ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C50F1948B.5000104%40public-files.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003056.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Install into existing root dir with kiwi ?</H1>
+    <B>Yarny</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Install%20into%20existing%20root%20dir%20with%20kiwi%20%3F&In-Reply-To=%3C50F1948B.5000104%40public-files.de%3E"
+       TITLE="[Kiwi-users] Install into existing root dir with kiwi ?">Yarny at public-files.de
+       </A><BR>
+    <I>Sat Jan 12 17:51:23 CET 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003056.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3055">[ date ]</a>
+              <a href="thread.html#3055">[ thread ]</a>
+              <a href="subject.html#3055">[ subject ]</a>
+              <a href="author.html#3055">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks for your detailed explanations, Marcus,
+
+&gt;<i> kiwi supports an oem-partition-install mode along with
+</I>&gt;<i> [...]
+</I>I tried this but it won't work in my usecase,
+in particular because I have a very elaborate
+partitioning scheme (several lvm volume groups with
+preexisting filesystems) and there is almost no disk
+space for the creation of a temporary image root;
+it has to be written directly into its final place.
+
+I patched some kiwi-modules to
+ * permit an existing and non-empty root directory.
+Also, due to disk space constraints, I had to
+ * add &quot;--download as-needed&quot; to
+   the zypper command line of kiwi.
+With these settings, the kiwi perpare step is able
+to install a working system directly on hard disk.
+
+My question to you, Marcus:
+Would you be willing to accept patches
+which implement these two functionalities?
+
+My current use-existing-root patch is ugly and breaks
+other kiwi functionality, but I can improve it,
+possibly by adding a --use-existing-root option
+to the kiwi executable.
+
+I attached the patches that I used for testing.
+
+Best wishes,
+Yarny
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: download-as-needed.patch
+Type: text/x-patch
+Size: 1858 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20130112/6356e271/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20130112/6356e271/attachment.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: use-existing-root.patch
+Type: text/x-patch
+Size: 529 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20130112/6356e271/attachment-0001.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20130112/6356e271/attachment-0001.bin</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003056.html">[Kiwi-users] Install into existing root dir with kiwi ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3055">[ date ]</a>
+              <a href="thread.html#3055">[ thread ]</a>
+              <a href="subject.html#3055">[ subject ]</a>
+              <a href="author.html#3055">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config-cdroot.tgz contents don't appear to be included into the iso
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config-cdroot.tgz%20contents%20don%27t%20appear%20to%20be%0A%20included%20into%20the%20iso&In-Reply-To=%3C20110819100710.GA12119%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002898.html">
+   <LINK REL="Next"  HREF="002900.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config-cdroot.tgz contents don't appear to be included into the iso</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config-cdroot.tgz%20contents%20don%27t%20appear%20to%20be%0A%20included%20into%20the%20iso&In-Reply-To=%3C20110819100710.GA12119%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] config-cdroot.tgz contents don't appear to be included into the iso">ms at suse.de
+       </A><BR>
+    <I>Fri Aug 19 12:07:10 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002898.html">[Kiwi-users] config-cdroot.tgz contents don't appear to be included	into the iso
+</A></li>
+        <LI>Next message: <A HREF="002900.html">[Kiwi-users] kiwi: Weekly report 2011-08-14 - 2011-08-19...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2899">[ date ]</a>
+              <a href="thread.html#2899">[ thread ]</a>
+              <a href="subject.html#2899">[ subject ]</a>
+              <a href="author.html#2899">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Hi list, i'm having a small problem building an iso with kiwi.
+</I>&gt;<i> I also included root/testfile and config-cdroot.tgz into the directory
+</I>&gt;<i> containing the config.xml.
+</I>&gt;<i> 
+</I>&gt;<i> So it's
+</I>&gt;<i> config.xml
+</I>&gt;<i> root/testfile
+</I>&gt;<i> config-cdroot.tgz
+</I>&gt;<i> 
+</I>&gt;<i> config-cdroot.tgz contains a file named &quot;roottestfile&quot;
+</I>&gt;<i> 
+</I>&gt;<i> I build the iso with
+</I>&gt;<i> kiwi --prepare configdir --root rootimage
+</I>&gt;<i> kiwi --create rootimage --type iso -d isodir
+</I>&gt;<i> 
+</I>&gt;<i> During iso creation i see that the tgz file is copied over to iso
+</I>&gt;<i> directory white squashfs image is being created, although not
+</I>&gt;<i> unpacked. And it doesn't seem to end up in the final iso image, nor
+</I>&gt;<i> its contents.
+</I>
+The meaning of config-cdroot.tgz is that the contents of this archive
+are packed as files to the iso filesystem. So you should be able to
+do this:
+
+   mount -o loop image.iso /mnt
+   ls -l /mnt
+
+   ==&gt; see your &quot;roottestfile&quot; in that listing ?
+
+If you can't see that file it's a bug. If you expect roottestfile
+to be part of the image itself it's a misunderstanding of the
+meaning of config-cdroot.tgz. Normally people use config-cdroot.tgz
+to store a license file or some README or help information as part
+of the iso
+
+Could you check this ?
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002898.html">[Kiwi-users] config-cdroot.tgz contents don't appear to be included	into the iso
+</A></li>
+	<LI>Next message: <A HREF="002900.html">[Kiwi-users] kiwi: Weekly report 2011-08-14 - 2011-08-19...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2899">[ date ]</a>
+              <a href="thread.html#2899">[ thread ]</a>
+              <a href="subject.html#2899">[ subject ]</a>
+              <a href="author.html#2899">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

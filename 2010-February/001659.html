@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3C20100208103604.GA16350%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001669.html">
+   <LINK REL="Next"  HREF="001665.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SLES%2011%20ISO%20Boot%20/%20Split%20and%20Compressed%20Option%3F&In-Reply-To=%3C20100208103604.GA16350%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?">ms at novell.com
+       </A><BR>
+    <I>Mon Feb  8 11:36:04 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001669.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+        <LI>Next message: <A HREF="001665.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1659">[ date ]</a>
+              <a href="thread.html#1659">[ thread ]</a>
+              <a href="subject.html#1659">[ subject ]</a>
+              <a href="author.html#1659">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> When SLES11 try to load haldaemon a lot of Errors comes up. I see, that
+</I>&gt;<i> Directories cannot be mounted rw. In the kiwi.pdf the Split Option is
+</I>&gt;<i> described. I tried following Statement in config.xml:
+</I>
+The split section must be a subsection of the used &lt;type&gt;
+I'm sorry we need to rework the docs here
+
+I'm wondering why you get that error though because if no
+split section is defined the default split section is used and
+it should be appropriate to boot the image without that errors
+
+I'll give it a try myself today
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001669.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+	<LI>Next message: <A HREF="001665.html">[Kiwi-users] SLES 11 ISO Boot / Split and Compressed Option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1659">[ date ]</a>
+              <a href="thread.html#1659">[ thread ]</a>
+              <a href="subject.html#1659">[ subject ]</a>
+              <a href="author.html#1659">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

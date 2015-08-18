@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi on PPC
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20on%20PPC&In-Reply-To=%3C20080609153130.GB25799%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000677.html">
+   <LINK REL="Next"  HREF="000684.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi on PPC</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20on%20PPC&In-Reply-To=%3C20080609153130.GB25799%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi on PPC">ms at novell.com
+       </A><BR>
+    <I>Mon Jun  9 17:31:30 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000677.html">[Kiwi-users] kiwi on PPC
+</A></li>
+        <LI>Next message: <A HREF="000684.html">[Kiwi-users] kiwi on PPC
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#681">[ date ]</a>
+              <a href="thread.html#681">[ thread ]</a>
+              <a href="subject.html#681">[ subject ]</a>
+              <a href="author.html#681">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Peter,
+
+&gt;<i> I was very happy to see a few kiwi related lines in 'factory' ChangeLog:
+</I>&gt;<i> 
+</I>&gt;<i>   - make kiwi build on all archs. This does _not_ mean it
+</I>&gt;<i>     has full functionality on other archs than ix86 and x86_64
+</I>&gt;<i>     Support for other archs is still work in progress !
+</I>&gt;<i>   - create generic bootloader functions which calls specific
+</I>&gt;<i>     bootloader code according to the architecture. At the moment
+</I>&gt;<i>     only x*86 and x86_64 have code for it
+</I>&gt;<i> 
+</I>&gt;<i> I gave it a try, how far it gets, and after a few edits, here is where I 
+</I>&gt;<i> have no more clue where to continue. First here is what I changed:
+</I>&gt;<i> 
+</I>&gt;<i> linux-3e5t:/usr/share/doc/packages/kiwi/examples/suse-oem-preload # diff 
+</I>&gt;<i> config.xml.orig config.xml
+</I>&gt;<i> 21,22c21
+</I>&gt;<i> &lt;               &lt;source path=&quot;/image/CDs/full-10.3-i386&quot;/&gt;
+</I>&gt;<i> &lt;               &lt;!--&lt;source path=&quot;<A HREF="opensuse://openSUSE:10.3/standard/">opensuse://openSUSE:10.3/standard/</A>&quot;/&gt;--&gt;
+</I>&gt;<i> ---
+</I>&gt;<i>  &gt;               &lt;source path=&quot;/data/factory/&quot;/&gt;
+</I>&gt;<i> 26,27d24
+</I>&gt;<i> &lt;               &lt;package name=&quot;bootsplash&quot;/&gt;
+</I>&gt;<i> &lt;               &lt;package name=&quot;bootsplash-theme-SuSE&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> And what I can't figure out, how comes 'gfxboot' into the picture:
+</I>
+Well I spent some time to make the packages build and I cleaned the
+code to be ready for further implementations which could be arch
+specific. One of these missing implementations is support for other
+bootloaders than grub. On ppc another boot loader is used and along
+with the bootloader background graphics another system than gfxboot
+is used. It simply doesn't exist on ppc. I'm sorry but I had no
+time to adapt the image descriptions for ppc and I also did not find
+time to make the boot setup work for ppc. There is also s390 which
+requested basic root image tree support first.
+
+yeah fruit lovers there are many challenging tasks and free
+positions so I would be glad to see people join :-) 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000677.html">[Kiwi-users] kiwi on PPC
+</A></li>
+	<LI>Next message: <A HREF="000684.html">[Kiwi-users] kiwi on PPC
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#681">[ date ]</a>
+              <a href="thread.html#681">[ thread ]</a>
+              <a href="subject.html#681">[ subject ]</a>
+              <a href="author.html#681">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

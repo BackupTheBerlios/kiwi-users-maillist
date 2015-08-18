@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] split image type and read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A6041B%40XCH-NW-04P.nw.nos.boeing.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000371.html">
+   <LINK REL="Next"  HREF="000376.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] split image type and read-only</H1>
+    <B>Mattes, David</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A6041B%40XCH-NW-04P.nw.nos.boeing.com%3E"
+       TITLE="[Kiwi-users] split image type and read-only">david.mattes at boeing.com
+       </A><BR>
+    <I>Mon Feb 25 20:08:13 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000371.html">[Kiwi-users] split image type and read-only
+</A></li>
+        <LI>Next message: <A HREF="000376.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#372">[ date ]</a>
+              <a href="thread.html#372">[ thread ]</a>
+              <a href="subject.html#372">[ subject ]</a>
+              <a href="author.html#372">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Oh, yeah, that makes sense.  I guess we never considered 
+</I>&gt;<i> that someone 
+</I>&gt;<i> &gt; may want to use a 'normal' filesystem in the read-only 
+</I>&gt;<i> split scenario.
+</I>&gt;<i> 
+</I>&gt;<i> right :-)
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; &gt; I'm also having a hard time understanding the logic behind the 
+</I>&gt;<i> &gt; &gt; &gt; contortions in the mountSystemCombined function from
+</I>&gt;<i> &gt; &gt; &gt; KIWILinuxRC.sh:
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; Ha Ha yeah that's a bit magic and should be more documented. I'll 
+</I>&gt;<i> &gt; &gt; try to explain:
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt;  1) mount the read-only partition to a /read-only mount point
+</I>&gt;<i> &gt; &gt;  2) mount a tmpfs to /mnt and extract the writable but temporary
+</I>&gt;<i> &gt; &gt;    in RAM data into it (tarball) /mnt will become the later
+</I>&gt;<i> &gt; &gt;    root directory (/)
+</I>&gt;<i> &gt; &gt;  3) create a read-only mountpoint below /mnt
+</I>&gt;<i> &gt; &gt;  4) move the /read-only mount into the tmpfs (/mnt) mount
+</I>&gt;<i> &gt; &gt;    all the read-only links which have been created as 
+</I>&gt;<i> part of the tarball
+</I>&gt;<i> &gt; &gt;    will become valid if /mnt becomes /
+</I>&gt;<i> &gt; &gt;  *  NOW OPTIONALLY
+</I>&gt;<i> &gt; &gt;  5) mount the read-write partition to a /mnt/read-write 
+</I>&gt;<i> mount point
+</I>&gt;<i> &gt; &gt;  6) create a link named /read-write because all the links created
+</I>&gt;<i> &gt; &gt;    in the tarball are pointing to /read-write
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; ===&gt; now move /mnt to / and got the tree ===&gt; I know it's weird. 
+</I>&gt;<i> &gt; &gt; Snorp would you mind to add some comments
+</I>&gt;<i> &gt; &gt;     to your magic :-) Thanks
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; You explained it perfectly :)
+</I>&gt;<i> 
+</I>&gt;<i> Thanks ;)
+</I>&gt;<i> 
+</I>&gt;<i> Attached is a patch which includes the patch by David and 
+</I>&gt;<i> some source code docs. David are you ok with the change ?
+</I>&gt;<i> 
+</I>
+Looks good!  Thanks for the support!
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000371.html">[Kiwi-users] split image type and read-only
+</A></li>
+	<LI>Next message: <A HREF="000376.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#372">[ date ]</a>
+              <a href="thread.html#372">[ thread ]</a>
+              <a href="subject.html#372">[ subject ]</a>
+              <a href="author.html#372">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

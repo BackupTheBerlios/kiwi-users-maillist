@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi help to create SLED10
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help%20to%20create%20SLED10&In-Reply-To=%3C47444D39.F132.00B1.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000146.html">
+   <LINK REL="Next"  HREF="000148.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi help to create SLED10</H1>
+    <B>Kazuhiro Takagi</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help%20to%20create%20SLED10&In-Reply-To=%3C47444D39.F132.00B1.0%40novell.com%3E"
+       TITLE="[Kiwi-users] kiwi help to create SLED10">KTakagi at novell.com
+       </A><BR>
+    <I>Wed Nov 21 07:22:26 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000146.html">[Kiwi-users] USB size allocation problem
+</A></li>
+        <LI>Next message: <A HREF="000148.html">[Kiwi-users] kiwi help to create SLED10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#147">[ date ]</a>
+              <a href="thread.html#147">[ thread ]</a>
+              <a href="subject.html#147">[ subject ]</a>
+              <a href="author.html#147">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list,
+
+I'm attempting to create a SLED10 LiveCD using Kiwi, but I am having a
+problem.
+
+o  Installed openSUSE 10.3 
+o  Copied contents of DVD to /mounts/SLED10
+o  Created config.xml and build other environment
+ - Typed
+   &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-SLED10-SP1&quot;
+flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+ - Typed
+    &lt;source path=&quot;/mounts/SLED10&quot;/&gt;
+o  Run kiwi --prepare /usr/share/kiwi/image/SLED10-thin --root
+/root/mkdvd
+      this runs successfully
+o  Run kiwi --create /root/mkdvd -d /root
+     Error message is displayed:
+Nov-21 15:20 &lt;1&gt; : Copying boot image and kernel [i386]cp: target
+`/tmp/kiwi-cdboot.E14559/kiwi-cdboot-14498/CD/boot/i386/loader/linux' is
+not a directory
+
+What kind of mistake do I do? Any help would be greatly appreciated.
+
+Thanks,
+Kazuhiro Takagi
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000146.html">[Kiwi-users] USB size allocation problem
+</A></li>
+	<LI>Next message: <A HREF="000148.html">[Kiwi-users] kiwi help to create SLED10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#147">[ date ]</a>
+              <a href="thread.html#147">[ thread ]</a>
+              <a href="subject.html#147">[ subject ]</a>
+              <a href="author.html#147">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

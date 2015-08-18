@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BFwd%3A%20Re%3A%20%5Bopensuse%5D%20kiwi%20%2B%20encryption%5D&In-Reply-To=%3C4BF58D8A.9040402%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001798.html">
+   <LINK REL="Next"  HREF="001800.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BFwd%3A%20Re%3A%20%5Bopensuse%5D%20kiwi%20%2B%20encryption%5D&In-Reply-To=%3C4BF58D8A.9040402%40novell.com%3E"
+       TITLE="[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]">rschweikert at novell.com
+       </A><BR>
+    <I>Thu May 20 21:29:14 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001798.html">[Kiwi-users] kiwi: Weekly report 2010-05-09 - 2010-05-14...
+</A></li>
+        <LI>Next message: <A HREF="001800.html">[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1799">[ date ]</a>
+              <a href="thread.html#1799">[ thread ]</a>
+              <a href="subject.html#1799">[ subject ]</a>
+              <a href="author.html#1799">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I take it that Marcus' answers on the list resolved this problem?
+
+Robert
+
+On 05/12/2010 10:28 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">J.Witvliet at mindef.nl</A> wrote:
+&gt;<i>  Hi Robert,
+</I>&gt;<i> Tnx for the reply.
+</I>&gt;<i> 
+</I>&gt;<i> I presume you mean a config.xml like: 
+</I>&gt;<i> 
+</I>&gt;<i> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+</I>&gt;<i> &lt;image schemaversion=&quot;3.7&quot; name=&quot;portable-CA-stick-0.3&quot;&gt;
+</I>&gt;<i> 	&lt;description type=&quot;system&quot;&gt;
+</I>&gt;<i> 		&lt;author&gt;Marcus Sch&#195;&#164;fer&lt;/author&gt;
+</I>&gt;<i> 		&lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&lt;/contact&gt;
+</I>&gt;<i> 		&lt;specification&gt;openSUSE 11.2 live stick system 2GB&lt;/specification&gt;
+</I>&gt;<i> 	&lt;/description&gt;
+</I>&gt;<i> 	&lt;preferences&gt;
+</I>&gt;<i> 		&lt;type	
+</I>&gt;<i> 			filesystem=&quot;ext4&quot; 
+</I>&gt;<i> 			fsreadwrite=&quot;ext4&quot;
+</I>&gt;<i> 			fsreadonly=&quot;squashfs&quot; 
+</I>&gt;<i> 			boot=&quot;oemboot/suse-11.2&quot; 
+</I>&gt;<i> 			luks=&quot;123456&quot;
+</I>&gt;<i> 			lvm=&quot;true&quot;&gt;oem&lt;/type&gt;
+</I>&gt;<i> 		&lt;version&gt;1.1.2&lt;/version&gt;
+</I>&gt;<i> 		&lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+</I>&gt;<i> 		&lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+</I>&gt;<i> 		&lt;rpm-force&gt;true&lt;/rpm-force&gt;
+</I>&gt;<i> 		&lt;rpm-excludedocs&gt;true&lt;/rpm-excludedocs&gt;
+</I>&gt;<i> 		&lt;oem-swap&gt;false&lt;/oem-swap&gt;
+</I>&gt;<i> 		&lt;oem-kiwi-initrd&gt;true&lt;/oem-kiwi-initrd&gt;
+</I>&gt;<i> 		&lt;oem-boot-title&gt;portable-CA&lt;/oem-boot-title&gt;
+</I>&gt;<i> 		&lt;locale&gt;en_US.UTF-8&lt;/locale&gt;
+</I>&gt;<i> 		&lt;keytable&gt;us.map.gz&lt;/keytable&gt;
+</I>&gt;<i> 		&lt;timezone&gt;Europe/Amsterdam&lt;/timezone&gt;
+</I>&gt;<i> 	&lt;/preferences&gt;
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Prepare goes ok:
+</I>&gt;<i> # linux32 kiwi --prepare /root/kiwi/11.2/ca-0.3/ --root /test/root/ --lvm --create /test/stick --type oem -d /test/results/
+</I>&gt;<i> But creating fails:
+</I>&gt;<i> linux32 kiwi --lvm --create /test/root/ --type oem -d /test/results/
+</I>&gt;<i> 
+</I>&gt;<i> *** log excerpt follows, last significant bytes ***]                                                                                                                                                          
+</I>&gt;<i>  May-11 17:13:43 &lt;1&gt; : EXEC [rm -rf /tmp/kiwisplash.OoPhFb/splash/12801024.spl.dir]                                                                                                                            
+</I>&gt;<i>  May-11 17:13:43 &lt;1&gt; : EXEC [rm -f  /tmp/kiwisplash.OoPhFb/splash/12801024.spl.bob*]                                                                                                                           
+</I>&gt;<i>  May-11 17:13:43 &lt;1&gt; : EXEC [rm -f  /tmp/kiwisplash.OoPhFb/splash/12801024.spl]                                                                                                                                
+</I>&gt;<i>  May-11 17:13:43 &lt;1&gt; : EXEC [(cd /tmp/kiwisplash.OoPhFb/splash &amp;&amp;                                                                                                                                              
+</I>&gt;<i>                 find|cpio --quiet -oH newc | gzip -9) &gt; /tmp/kiwisplash.OoPhFb/all.spl]                                                                                                                        
+</I>&gt;<i>  May-11 17:13:44 &lt;1&gt; : EXEC [rm -f /test/results/initrd-oemboot-suse-11.2.i686-2.7.1.splash.gz &amp;&amp;                                                                                                              
+</I>&gt;<i>                 (cd /tmp/kiwisplash.OoPhFb/initrd &amp;&amp; find | cpio --quiet -oH newc | gzip -9) &gt; /test/results/initrd-oemboot-suse-11.2.i686-2.7.1.splash.gz]                                                    
+</I>&gt;<i>  May-11 17:14:03 &lt;1&gt; : EXEC [cat /tmp/kiwisplash.OoPhFb/all.spl &gt;&gt; /test/results/initrd-oemboot-suse-11.2.i686-2.7.1.splash.gz]                                                                                
+</I>&gt;<i>  May-11 17:14:03 &lt;1&gt; : EXEC [rm -rf /tmp/kiwisplash.OoPhFb]                                                                                                                                                    
+</I>&gt;<i>     done                                                                                                                                                                                                       
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [rm -rf /tmp/kiwiboot.cyIlyF 2&gt;&amp;1]                                                                                                                                                 
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [rm -rf /tmp/kiwiloop.2bGH9H 2&gt;&amp;1]                                                                                                                                                 
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : Creating boot VM disk from: /test/results/initrd-oemboot-suse-11.2.i686-2.7.1.splash.gz...                                                                                              
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [file /test/results/portable-CA-stick-0.3.i686-1.1.2 | grep -q 'gzip compressed data']                                                                                             
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [dd if=/test/results/portable-CA-stick-0.3.i686-1.1.2 bs=128k count=1 2&gt;/dev/null | file -]                                                                                        
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [mktemp -q -d /tmp/kiwiboot.XXXXXX]                                                                                                                                                
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [mktemp -q -d /tmp/kiwiloop.XXXXXX]                                                                                                                                                
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [dd if=/test/results/portable-CA-stick-0.3.i686-1.1.2 bs=128k count=1 2&gt;/dev/null | file -]                                                                                        
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [dd if=/test/results/portable-CA-stick-0.3.i686-1.1.2 bs=128k count=1 2&gt;/dev/null | file -]                                                                                        
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [/sbin/losetup -s -f /test/results/portable-CA-stick-0.3.i686-1.1.2 2&gt;&amp;1]                                                                                                          
+</I>&gt;<i>  May-11 17:14:04 &lt;1&gt; : EXEC [echo 123456 | cryptsetup luksOpen /dev/loop0 luks-4 2&gt;&amp;1]                                                                                                                         
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [mount /dev/mapper/luks-4 /tmp/kiwiboot.YZuzjE 2&gt;&amp;1]                                                                                                                               
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [uname -m]                                                                                                                                                                         
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [pwd]                                                                                                                                                                              
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [pwd]                                                                                                                                                                              
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [pwd]                                                                                                                                                                              
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [umount /tmp/kiwiboot.YZuzjE 2&gt;&amp;1]                                                                                                                                                 
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [cryptsetup luksClose luks-4 2&gt;&amp;1]                                                                                                                                                 
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [losetup -d /dev/loop0 2&gt;&amp;1]                                                                                                                                                       
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : Starting with disk size: 3370M                                                                                                                                                          
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [uname -m]                                                                                                                                                                         
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [dd if=/test/results/portable-CA-stick-0.3.i686-1.1.2 bs=128k count=1 2&gt;/dev/null | file -]                                                                                        
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [/sbin/losetup -s -f /test/results/portable-CA-stick-0.3.i686-1.1.2 2&gt;&amp;1]                                                                                                          
+</I>&gt;<i>  May-11 17:14:06 &lt;1&gt; : EXEC [echo 123456 | cryptsetup luksOpen /dev/loop0 luks-16 2&gt;&amp;1]                                                                                                                        
+</I>&gt;<i>  May-11 17:14:08 &lt;1&gt; : EXEC [mount /dev/mapper/luks-16 /tmp/kiwiboot.YZuzjE 2&gt;&amp;1]                                                                                                                              
+</I>&gt;<i>  May-11 17:14:08 &lt;1&gt; : EXEC [uname -m]                                                                                                                                                                         
+</I>&gt;<i>  May-11 17:14:08 &lt;1&gt; : EXEC [pwd]                                                                                                                                                                              
+</I>&gt;<i>  May-11 17:14:08 &lt;1&gt; : EXEC [pwd]                                                                                                                                                                              
+</I>&gt;<i>  May-11 17:14:08 &lt;1&gt; : EXEC [pwd]                                                                                                                                                                              
+</I>&gt;<i>  May-11 17:14:08 &lt;1&gt; : EXEC [umount /tmp/kiwiboot.YZuzjE 2&gt;&amp;1]                                                                                                                                                 
+</I>&gt;<i>  May-11 17:14:08 &lt;1&gt; : EXEC [cryptsetup luksClose luks-16 2&gt;&amp;1]                                                                                                                                                
+</I>&gt;<i>  May-11 17:14:08 &lt;1&gt; : EXEC [losetup -d /dev/loop0 2&gt;&amp;1]                                                                                                                                                       
+</I>&gt;<i>  May-11 17:14:08 &lt;3&gt; : LVM volumes setup requires root tree but got image file   failed                                                                                                                        
+</I>&gt;<i>  May-11 17:14:08 &lt;1&gt; : EXEC [vgchange -an kiwiVG 2&gt;&amp;1]                                                                                                                                                         
+</I>&gt;<i>  May-11 17:14:09 &lt;1&gt; : EXEC [rm -rf /tmp/kiwiboot.YZuzjE 2&gt;&amp;1]                                                                                                                                                 
+</I>&gt;<i>  May-11 17:14:09 &lt;1&gt; : EXEC [rm -rf /tmp/kiwiloop.i1QYbQ 2&gt;&amp;1]                                                                                                                                                 
+</I>&gt;<i>  May-11 17:14:09 &lt;1&gt; : EXEC [vgchange -an kiwiVG 2&gt;&amp;1]                                                                                                                                                         
+</I>&gt;<i>  May-11 17:14:09 &lt;1&gt; : EXEC [rm -rf /tmp/kiwiboot.YZuzjE 2&gt;&amp;1]                                                                                                                                                 
+</I>&gt;<i>  May-11 17:14:09 &lt;1&gt; : EXEC [rm -rf /tmp/kiwiloop.i1QYbQ 2&gt;&amp;1]                                                                                                                                                 
+</I>&gt;<i>  May-11 17:14:10 &lt;1&gt; : EXEC [cp /test/root.11780.screenrc.log /tmp/kiwi-VMX.mx9Q2G/kiwi-VMXboot-11780/.broken 2&gt;&amp;1]                                                                                            
+</I>&gt;<i>  [*** end ***]                                                                      
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Creating a bootable stick *without* either luks or lvm works!
+</I>&gt;<i> 
+</I>&gt;<i> Am i using a non supported combination of other options??
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Kind regards, Hans
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> -----Original Message-----
+</I>&gt;<i> From: Hans Witvliet [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">hwit at a-domani.nl</A>] 
+</I>&gt;<i> Sent: Wednesday, April 28, 2010 12:26 AM
+</I>&gt;<i> To: Witvliet, J, CDC/IVENT/OPS/I&amp;S/PLS/SMP/HRM/RP1
+</I>&gt;<i> Subject: [Fwd: Re: [opensuse] kiwi + encryption]
+</I>&gt;<i> 
+</I>&gt;<i> -------- Forwarded Message --------
+</I>&gt;&gt;<i> From: Robert Schweikert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt;
+</I>&gt;&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">opensuse at opensuse.org</A>, kiwi-users &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>&gt;
+</I>&gt;&gt;<i> Subject: Re: [opensuse] kiwi + encryption
+</I>&gt;&gt;<i> Date: Tue, 27 Apr 2010 08:33:30 -0400
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On 04/26/2010 05:31 PM, Hans Witvliet wrote:
+</I>&gt;&gt;&gt;<i> Hi all,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Just exploring the kiwi-software again..
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I was wondering, does anybody allready has experience with making an 
+</I>&gt;&gt;&gt;<i> bootable usb-stick with an encrypted root+swap?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> afaicr, it should be someting like this:
+</I>&gt;&gt;&gt;<i> first partition: /boot
+</I>&gt;&gt;&gt;<i> second partition encrypted LVM
+</I>&gt;&gt;&gt;<i> and within the lvm:
+</I>&gt;&gt;&gt;<i> root, swap and any other partitions.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Question however is, how to feed this (and the luks-passwords) to KIWI..
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The &lt;type&gt; element has an attribute called &quot;luks&quot;, the value for this 
+</I>&gt;&gt;<i> attribute is the password.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Posting to: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A> where this thread should be.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Robert
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Anybody invented this wheel before?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hans
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -- 
+</I>&gt;&gt;<i> Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;<i> Software Engineer Consultant                          LINUX
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;&gt;<i> 781-464-8147
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Novell
+</I>&gt;&gt;<i> Making IT Work As One
+</I>&gt;<i> 
+</I>&gt;<i> ______________________________________________________________________
+</I>&gt;<i> Dit bericht kan informatie bevatten die niet voor u is bestemd. Indien u niet de geadresseerde bent of dit bericht abusievelijk aan u is toegezonden, wordt u verzocht dat aan de afzender te melden en het bericht te verwijderen. De Staat aanvaardt geen aansprakelijkheid voor schade, van welke aard ook, die verband houdt met risico's verbonden aan het elektronisch verzenden van berichten.
+</I>&gt;<i> 
+</I>&gt;<i> This message may contain information that is not intended for you. If you are not the addressee or if this message was sent to you by mistake, you are requested to inform the sender and delete the message. The State accepts no liability for damage of any kind resulting from the risks inherent in the electronic transmission of messages.
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001798.html">[Kiwi-users] kiwi: Weekly report 2010-05-09 - 2010-05-14...
+</A></li>
+	<LI>Next message: <A HREF="001800.html">[Kiwi-users] [Fwd: Re: [opensuse] kiwi + encryption]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1799">[ date ]</a>
+              <a href="thread.html#1799">[ thread ]</a>
+              <a href="subject.html#1799">[ subject ]</a>
+              <a href="author.html#1799">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

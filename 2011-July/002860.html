@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Best way to cache packages for kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Best%20way%20to%20cache%20packages%20for%20kiwi&In-Reply-To=%3CCADFKw8i4oh-CuREhh7aGGkSwdqcsFfSjWyqUP_7_HauUE0%2BChg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002859.html">
+   <LINK REL="Next"  HREF="002863.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Best way to cache packages for kiwi</H1>
+    <B>James Ford</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Best%20way%20to%20cache%20packages%20for%20kiwi&In-Reply-To=%3CCADFKw8i4oh-CuREhh7aGGkSwdqcsFfSjWyqUP_7_HauUE0%2BChg%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Best way to cache packages for kiwi">jford at endeavorsystems.com
+       </A><BR>
+    <I>Mon Jul 25 17:00:14 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002859.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+        <LI>Next message: <A HREF="002863.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2860">[ date ]</a>
+              <a href="thread.html#2860">[ thread ]</a>
+              <a href="subject.html#2860">[ subject ]</a>
+              <a href="author.html#2860">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks Marcus,
+
+I seem to have the latest copy of kiwi from the Virtualization:Appliance
+repo, unless there is another repository I should be using, details on the
+package is below.
+
+Repository: @System
+Name: kiwi
+Version: 4.93.2-274.1
+Arch: x86_64
+Vendor: <A HREF="obs://build.opensuse.org/Virtualization:Appliances">obs://build.opensuse.org/Virtualization:Appliances</A>
+Installed: Yes
+Status: up-to-date
+Installed Size: 36.2 MiB
+Summary: OpenSuSE - KIWI Image System
+Description:
+The OpenSuSE KIWI Image System provides a complete operating system
+image solution for Linux supported hardware platforms as well as for
+virtualization systems like Xen.
+
+I added aliases to each repository and re-ran kiwi, on the first try kiwi
+downloaded 77 packages.
+
+77 new packages to install.
+Overall download size: 26.6 MiB. After the operation, additional 181.1 MiB
+will
+be used.
+Continue? [y/n/?] (y): y
+Retrieving package terminfo-base-5.7-14.1.x86_64 (1/77), 112.0 KiB (1.0 MiB
+unpacked)
+Retrieving: terminfo-base-5.7-14.1.x86_64.rpm [done (131.7 KiB/s)]
+Installing: terminfo-base-5.7-14.1 [done]
+Retrieving package filesystem-11.4-11.14.1.x86_64 (2/77), 51.0 KiB (0 B
+unpacked)
+
+The second run produced the same results:
+
+77 new packages to install.
+Overall download size: 26.6 MiB. After the operation, additional 181.1 MiB
+will
+be used.
+Continue? [y/n/?] (y): y
+Retrieving package terminfo-base-5.7-14.1.x86_64 (1/77), 112.0 KiB (1.0 MiB
+unpacked)
+Retrieving: terminfo-base-5.7-14.1.x86_64.rpm [done (40.3 KiB/s)]
+Installing: terminfo-base-5.7-14.1 [done]
+Retrieving package filesystem-11.4-11.14.1.x86_64 (2/77), 51.0 KiB (0 B
+unpacked)
+Retrieving: filesystem-11.4-11.14.1.x86_64.rpm [done]
+Installing: filesystem-11.4-11.14.1 [done]
+Retrieving package cracklib-dict-full-2.8.12-50.1.x86_64 (3/77), 3.1 MiB
+(10.5 MiB unpacked)
+Retrieving: cracklib-dict-full-2.8.12-50.1.x86_64.rpm [79% (156.3 KiB/s)]
+
+
+
+
+
+
+On Mon, Jul 25, 2011 at 5:39 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; I'm curious how everyone has decided to cache repositories for local kiwi
+</I>&gt;<i> &gt; builds. I am just getting started with kiwi building and it seems the
+</I>&gt;<i> &gt; longest portion of the kiwi build process is downloading packages. I
+</I>&gt;<i> &gt; substituted an iso image for the repository however there were still a
+</I>&gt;<i> &gt; couple of more packages that were downloaded and I also have a couple of
+</I>&gt;<i> &gt; packages from the opensuse build service. I wanted to see what everyone
+</I>&gt;<i> else
+</I>&gt;<i> &gt; recommends? Is there any way to force kiwi to re-use the previous cache?
+</I>&gt;<i> If
+</I>&gt;<i> &gt; not, what is the best way to mirror a remote repository as a local one?
+</I>&gt;<i>
+</I>&gt;<i> kiwi calls zypper with the option &quot;--keep-packages&quot; for all attached
+</I>&gt;<i> remote repositories. So once you have built the image with the repo
+</I>&gt;<i> '<A HREF="http://x">http://x</A>' zypper will re-use the generated cache if the same repo is
+</I>&gt;<i> used again.
+</I>&gt;<i>
+</I>&gt;<i> Recently there was the Problem that kiwi generated an alias name for
+</I>&gt;<i> repos which doesn't have the alias=&quot;name&quot; attribute set in their repo
+</I>&gt;<i> definition. The generated alias name was based on a timestamp which
+</I>&gt;<i> means the same repo got a different zypper cache name for each
+</I>&gt;<i> invocation. We fixed that in the latest release. If you don't want
+</I>&gt;<i> to update make sure you have set alias=&quot;some-name&quot; for each of your
+</I>&gt;<i> repos
+</I>&gt;<i>
+</I>&gt;<i> zypper will only store the packages it had to download to create the
+</I>&gt;<i> image. If you build a new image which requires other packages not yet
+</I>&gt;<i> downloaded it has to do that first of course. So this zypper cache
+</I>&gt;<i> is not an entire mirror of the remote repo
+</I>&gt;<i>
+</I>&gt;<i> How and if zypper uses the local version of the package is outside
+</I>&gt;<i> of kiwi's control. So if you think there is something wrong I'd
+</I>&gt;<i> like to handover that questions into the zypper team
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer
+</I>&gt;<i>  HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110725/14f8c67b/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110725/14f8c67b/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002859.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+	<LI>Next message: <A HREF="002863.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2860">[ date ]</a>
+              <a href="thread.html#2860">[ thread ]</a>
+              <a href="subject.html#2860">[ subject ]</a>
+              <a href="author.html#2860">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Possible bug in kiwi 2.27-28.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Possible%20bug%20in%20kiwi%202.27-28.1&In-Reply-To=%3C20080221094850.GA26744%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000339.html">
+   <LINK REL="Next"  HREF="000345.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Possible bug in kiwi 2.27-28.1</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Possible%20bug%20in%20kiwi%202.27-28.1&In-Reply-To=%3C20080221094850.GA26744%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Possible bug in kiwi 2.27-28.1">ms at suse.de
+       </A><BR>
+    <I>Thu Feb 21 10:48:50 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000339.html">[Kiwi-users] Possible bug in kiwi 2.27-28.1
+</A></li>
+        <LI>Next message: <A HREF="000345.html">[Kiwi-users] Possible bug in kiwi 2.27-28.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#343">[ date ]</a>
+              <a href="thread.html#343">[ thread ]</a>
+              <a href="subject.html#343">[ subject ]</a>
+              <a href="author.html#343">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Tina,
+
+&gt;<i> the good news is that both issues have been resolved following your advice.
+</I>&gt;<i> The not so good part is that &quot;/etc/init.d/kbd restart&quot; is only a
+</I>&gt;<i> temporary solution because the change is gone after a reboot because kbd
+</I>&gt;<i> is turned off in chkconfig.
+</I>
+Oh the kbd service isn't activated...
+
+&gt;<i> Therefore, wouldn't it be better if kbd is automatically turned on _if_
+</I>&gt;<i> a keytable setting exists in config.xml and its value differs from the
+</I>&gt;<i> default (us layout or so afaik).
+</I>
+Definitely yes it should be in any case. If you have a look at the config.sh
+script in your test2 image description you can see there is a part which
+enables the services.
+
+	#======================================
+	# Activate services
+	#--------------------------------------
+	suseActivateDefaultServices
+	suseInsertService boot.device-mapper
+
+so I thought my suseActivateDefaultServices would enable the kbd service
+but obviosly it doesn't. You can do the following to enable the service
+by default:
+
+	suseInsertService kbd
+
+I will check the suseActivateDefaultServices function
+
+&gt;<i> Further i would like so suggest a similar behavior for the size
+</I>&gt;<i> setting - e.g. if there exists a size tag in config.xml and it isn't
+</I>&gt;<i> overridden with --bootvm-disksize during the create step kiwi should
+</I>&gt;<i> take the size from config.xml as default. Or is there a specific
+</I>&gt;<i> reason for the current behavior (that one has to manually set it again
+</I>&gt;<i> during creation although it is already defined in config.xml)?
+</I>
+Hmm, I will check that. I can understand it sounds odd to you but
+from an image type perspective the size of a disk (virtual disk) is
+something different than the size of the filesystem within the
+virtual disk. When kiwi creates a virtual disk image it copies the
+data into the previosly created virtual disk partition. There is no
+step in between which creates the filesystem based image with the
+requested size in config.xml that's the reason why you got the feeling
+it's silently ignored. At the moment I'm not sure how to change
+the behavior consistently
+ 
+&gt;<i> Last but not least you misunderstood me regarding the passwords.
+</I>&gt;<i> I noticed that the passwords for root &amp; linux are linux ;). What i mean
+</I>&gt;<i> is how do i have to encrypt the password in config.xml if i would like
+</I>&gt;<i> to add a new user - e.g. a user called &quot;foo&quot; with a password &quot;bar&quot;?
+</I>
+	kiwi --createpassword
+
+the result you can put into the config.xml
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000339.html">[Kiwi-users] Possible bug in kiwi 2.27-28.1
+</A></li>
+	<LI>Next message: <A HREF="000345.html">[Kiwi-users] Possible bug in kiwi 2.27-28.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#343">[ date ]</a>
+              <a href="thread.html#343">[ thread ]</a>
+              <a href="subject.html#343">[ subject ]</a>
+              <a href="author.html#343">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

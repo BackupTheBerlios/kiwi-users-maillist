@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimhZtWOzkzqryHYF10z6WO7dypjTo_5-zCsDa6n%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002528.html">
+   <LINK REL="Next"  HREF="002551.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimhZtWOzkzqryHYF10z6WO7dypjTo_5-zCsDa6n%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Mar 25 15:24:12 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002528.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002551.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2550">[ date ]</a>
+              <a href="thread.html#2550">[ thread ]</a>
+              <a href="subject.html#2550">[ subject ]</a>
+              <a href="author.html#2550">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Mar 21, 2011 at 2:56 PM, Chris Cunha &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">eportel6607 at gmail.com</A>&gt; wrote:
+&gt;<i> On Mon, Mar 21, 2011 at 2:30 PM, Robert Schweikert
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+</I>&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Nice trick :)
+</I>&gt;&gt;&gt;<i> It built nicely now.
+</I>&gt;&gt;&gt;<i> The script you gave me to auto detect and mounts the fat partition
+</I>&gt;&gt;&gt;<i> works great. &#160; With a few mods I was able to have it create a better
+</I>&gt;&gt;&gt;<i> mount point (not media) and using Mtools, hide the &quot;boot&quot; and
+</I>&gt;&gt;&gt;<i> &quot;ldlinux.sys&quot; files when using this USB drive in WIndows. I'll share
+</I>&gt;&gt;&gt;<i> this with you guys once I get it all built.
+</I>&gt;&gt;&gt;<i> I added a couple of packages to the config.xml file. Broadcom drivers
+</I>&gt;&gt;&gt;<i> for wireless and a package &quot;ntp&quot; for clock sync to local time.
+</I>&gt;&gt;&gt;<i> When I run kiwi --prepare I can an error that reads:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &quot;Mar-21 14:03:01&lt;3&gt; &#160;: Schema validation failed
+</I>&gt;&gt;&gt;<i> &#160;failed
+</I>&gt;&gt;&gt;<i> Mar-21 14:03:01&lt;1&gt; &#160;: Automatically upgraded
+</I>&gt;&gt;&gt;<i> /home/linux/SOSbuild/SOS-min-live-Gnome/config.xml to
+</I>&gt;&gt;&gt;<i> Mar-21 14:03:01&lt;1&gt; &#160;:
+</I>&gt;&gt;&gt;<i> /home/linux/SOSbuild/SOS-min-live-Gnome/config.converted.xml
+</I>&gt;&gt;&gt;<i> Mar-21 14:03:01&lt;1&gt; &#160;: Reported line numbers may not match the
+</I>&gt;&gt;&gt;<i> Mar-21 14:03:01&lt;1&gt; &#160;: file
+</I>&gt;&gt;&gt;<i> /home/linux/SOSbuild/SOS-min-live-Gnome/config.xml
+</I>&gt;&gt;&gt;<i> Mar-21 14:03:01&lt;3&gt; &#160;: unknown-93736a0:0: Relax-NG validity error :
+</I>&gt;&gt;&gt;<i> Element packages has extra content: text
+</I>&gt;&gt;&gt;<i> Relax-NG validity error : Extra element packages in interleave
+</I>&gt;&gt;&gt;<i> unknown-93736a0:0: Relax-NG validity error : Element image failed to
+</I>&gt;&gt;&gt;<i> validate content&quot;
+</I>&gt;&gt;&gt;<i> This is the only error I get which is displayed in the terminal.
+</I>&gt;&gt;&gt;<i> There is no log files as kiwi never really got the chance to run. &#160; It
+</I>&gt;&gt;&gt;<i> mentions &quot;extra content&quot; in the form of &quot;text&quot; but I can't seem to
+</I>&gt;&gt;&gt;<i> locate the issue. &#160;This is the config.xml as of the error.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You have a trailing &quot;comment close&quot; markup
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;package name=&quot;bundle-lang-gnome-extras-en&quot;/&gt;--&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> A couple of tips, install jing on your build machine, to get better error
+</I>&gt;&gt;<i> messages, don't insert blank lines as those cause nodes to be created during
+</I>&gt;&gt;<i> XML processing and might throw off the line numbers reported as error.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Run kiwi --check-config PATH_TO_config.xml
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> to verify the configuration file.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Robert
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;&gt;<i> Tech Lead
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;&gt;<i> 781-464-8147
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Novell
+</I>&gt;&gt;<i> Making IT Work As One
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Thanks Robert for the tips.
+</I>&gt;<i> I will rmemeber that. I removed all the blank lines and have installed
+</I>&gt;<i> jing. &#160;I feel stupid on this one. &#160;I looked 3 times and didn't pickup
+</I>&gt;<i> on the half commented line. &#160;Thanks.
+</I>&gt;<i> C
+</I>&gt;<i>
+</I>Guys this fat partition that we created on the USB drive...is this
+FAT16 or FAT32?
+I ask because Fat 16 looks like it has a file storage limited of
+either 2gb or 4 gb depending on the OS it's running on and Fat32 it
+seems to have 32GB for all OSs and 2TB for some OSs.
+If we are using FAT16 is it nothing more than changing something in
+Kiwi to make it use Fat32?
+I just figured that the more storage on the USB drive the better but
+I'm not sure of Fat options with Kiw/Linux.
+Chris
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002528.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002551.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2550">[ date ]</a>
+              <a href="thread.html#2550">[ thread ]</a>
+              <a href="subject.html#2550">[ subject ]</a>
+              <a href="author.html#2550">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

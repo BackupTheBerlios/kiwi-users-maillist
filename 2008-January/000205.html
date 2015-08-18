@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi Suse 10.3 Live Image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Suse%2010.3%20Live%20Image&In-Reply-To=%3C002201c84ee4%2474cb2700%245e617500%24%40com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000206.html">
+   <LINK REL="Next"  HREF="000207.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi Suse 10.3 Live Image</H1>
+    <B>Alan Arthur</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Suse%2010.3%20Live%20Image&In-Reply-To=%3C002201c84ee4%2474cb2700%245e617500%24%40com%3E"
+       TITLE="[Kiwi-users] Kiwi Suse 10.3 Live Image">aarthur at speedscript.com
+       </A><BR>
+    <I>Fri Jan  4 16:14:09 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000206.html">[Kiwi-users] Kiwi-users Digest, Vol 12, Issue 4
+</A></li>
+        <LI>Next message: <A HREF="000207.html">[Kiwi-users] Kiwi Suse 10.3 Live Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#205">[ date ]</a>
+              <a href="thread.html#205">[ thread ]</a>
+              <a href="subject.html#205">[ subject ]</a>
+              <a href="author.html#205">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus and J,
+
+Sorry about sending this in twice but I wanted to make sure I kept the same
+subject name so it will be easy for me to find.
+
+&gt;<i> Could you maybe point me in the direction of a working image file that I
+</I>can
+&gt;<i> use to build off of? As it appears creating my own isn't working properly.
+</I>&gt;<i> Or maybe could take a look at my configuration?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I><A HREF="http://download.opensuse.org/repositories/openSUSE:/Tools/openSUSE_10.3/noar">http://download.opensuse.org/repositories/openSUSE:/Tools/openSUSE_10.3/noar</A>
+ch/kiwi-desc-livesystem-1.55-29.1.noarch.rpm
+&gt;&gt;<i> 
+</I>&gt;&gt;<i> or
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i>
+</I><A HREF="https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/kwliveCD">https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/kwliveCD</A>
+-suse-10.3/
+&gt;&gt;<i> 
+</I>&gt;&gt;<i> Cheers
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -J
+</I>
+What does the live system rpm install as it shows I already have it in
+YaST2. Is there a certain directory it gets put in?
+
+------------------------------------------
+
+&gt;&gt;<i>* the missing parport and lp modules problem has been fixed in 2.08
+</I>&gt;&gt;<i>  Anyway these modules are not needed for booting an iso.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>* the problem you are facing is very strange because we didn't get
+</I>&gt;&gt;<i>  a size information for /dev/ram1. I saw you ran the image in qemu
+</I>&gt;&gt;<i>  could you test if it works if you call qemu the following:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>	mount -t tmpfs -o size=512m none /dev/shm
+</I>&gt;&gt;<i>	qemu -cdrom &lt;your-iso&gt; -m 256
+</I>&gt;&gt;<i>
+</I>
+Here is the result of the above command.
+<A HREF="http://img145.imageshack.us/img145/3726/liveimagesecondchancekr6.jpg">http://img145.imageshack.us/img145/3726/liveimagesecondchancekr6.jpg</A> 
+I even gave the qemu a 1024mb of room to play with for memory and it still
+didn't show any memory being used.
+
+
+&gt;&gt;<i>  Additionally could you tell me the contents of your config.xml
+</I>&gt;&gt;<i>  file ?
+</I>
+Now this config I found in
+/var/lib/YaST2/product-creator/images/initrd-isoboot-suse-10.3/ and this is
+the only config I could get to work and go this far to actually make an iso.
+The configs I wrote don't work and won't make it past the compile part.
+
+&lt;image name=&quot;initrd-isoboot-suse-10.3&quot; schemeversion=&quot;1.4&quot;&gt;
+        &lt;description type=&quot;system&quot;&gt;
+                &lt;author&gt;Marcus Schaefer&lt;/author&gt;
+                &lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&lt;/contact&gt;
+                &lt;specification&gt;boot/initrd image used for LiveDVD
+media&lt;/specification&gt;
+        &lt;/description&gt;
+        &lt;preferences&gt;
+                &lt;type boot=&quot;isoboot/suse-10.2&quot; primary=&quot;true&quot;&gt;iso&lt;/type&gt;
+                &lt;version&gt;2.1.2&lt;/version&gt;
+                &lt;size unit=&quot;M&quot;&gt;60&lt;/size&gt;
+                &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+                &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+                &lt;rpm-force&gt;True&lt;/rpm-force&gt;
+ 
+&lt;defaultdestination&gt;/tmp/rescuedisk/live&lt;/defaultdestination&gt;
+        &lt;/preferences&gt;
+        &lt;repository type=&quot;rpm-dir&quot;&gt;
+                &lt;source path=&quot;/media/SU1030.001/suse&quot;/&gt;
+        &lt;/repository&gt;
+        &lt;packages type=&quot;image&quot;&gt;
+                &lt;package name=&quot;psmisc&quot;/&gt;
+                &lt;package name=&quot;bind-libs&quot;/&gt;
+                &lt;package name=&quot;bind-utils&quot;/&gt;
+                &lt;package name=&quot;dhcpcd&quot;/&gt;
+                &lt;package name=&quot;gawk&quot;/&gt;
+                &lt;package name=&quot;hwinfo&quot;/&gt;
+                &lt;package name=&quot;iproute2&quot;/&gt;
+                &lt;package name=&quot;lvm2&quot;/&gt;
+                &lt;package name=&quot;netcfg&quot;/&gt;
+                &lt;package name=&quot;sysconfig&quot;/&gt;
+                &lt;package name=&quot;sysfsutils&quot;/&gt;
+                &lt;package name=&quot;file&quot;/&gt;
+                &lt;package name=&quot;gfxboot&quot;/&gt;
+                &lt;package name=&quot;syslinux&quot;/&gt;
+                &lt;package name=&quot;make&quot;/&gt;
+                &lt;package name=&quot;memtest86+&quot;/&gt;
+                &lt;package name=&quot;squashfs&quot;/&gt;
+                &lt;package name=&quot;aufs&quot;/&gt;
+                &lt;package name=&quot;aufs-kmp-default&quot;/&gt;
+                &lt;package name=&quot;fribidi&quot;/&gt;
+                &lt;package name=&quot;hdparm&quot;/&gt;
+                &lt;package name=&quot;grub&quot;/&gt;
+                &lt;package name=&quot;bootsplash&quot;/&gt;
+                &lt;package name=&quot;bootsplash-theme-SuSE&quot;/&gt;
+        &lt;/packages&gt;
+        &lt;packages type=&quot;boot&quot;&gt;
+                &lt;package name=&quot;kernel-default&quot;/&gt;
+                &lt;package name=&quot;filesystem&quot;/&gt;
+                &lt;package name=&quot;glibc-locale&quot;/&gt;
+                &lt;package name=&quot;procps&quot;/&gt;
+        &lt;/packages&gt;
+&lt;/image&gt;
+
+&gt;&gt;<i>* if you add the following option at the kernel commandline
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>	kiwidebug=1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  you will get a shell instead of a reboot exception. When in this
+</I>&gt;&gt;<i>  shell type:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>	sfdisk -s /dev/ram1
+</I>
+What do you mean by kernel command line? I'm using the GUI of kiwi to create
+images, so can it be added in there?
+
+&gt;&gt;<i>  and tell me what it prints. Additionally the information of
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>    cat /etc/modprobe.conf.local
+</I>
+Exact output is the following three lines.
+#
+# please add local extensions to this file
+#
+
+&gt;&gt;<i>  and
+</I>&gt;&gt;<i>    lsmod | grep rd
+</I>Returns nothing. I type the command and I get no returned values.
+
+Regards,
+Alan
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000206.html">[Kiwi-users] Kiwi-users Digest, Vol 12, Issue 4
+</A></li>
+	<LI>Next message: <A HREF="000207.html">[Kiwi-users] Kiwi Suse 10.3 Live Image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#205">[ date ]</a>
+              <a href="thread.html#205">[ thread ]</a>
+              <a href="subject.html#205">[ subject ]</a>
+              <a href="author.html#205">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

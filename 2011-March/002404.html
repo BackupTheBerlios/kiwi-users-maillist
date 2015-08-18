@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D6D7A3B.8090800%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002402.html">
+   <LINK REL="Next"  HREF="002420.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D6D7A3B.8090800%40novell.com%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Mar  1 23:59:07 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002402.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002420.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2404">[ date ]</a>
+              <a href="thread.html#2404">[ thread ]</a>
+              <a href="subject.html#2404">[ subject ]</a>
+              <a href="author.html#2404">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 03/01/2011 04:39 PM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Guys I seem to remember a thread about a simlar quest but can't seem
+</I>&gt;&gt;<i> to find it in my ML records.
+</I>&gt;&gt;<i> I currently am having kiwi make an ISO image.  Then I use Suse Image
+</I>&gt;&gt;<i> Writer to write this image to USB flash drive.  This is a live image
+</I>&gt;&gt;<i> so changes to the image once on the flash drive are stored in RAM .
+</I>&gt;&gt;<i> Another words the changes are lost upon a reboot of the image.  Which
+</I>&gt;&gt;<i> is exacty what I want.
+</I>&gt;&gt;<i> The issue however is that Image Writer uses the whole USB drive.  I
+</I>&gt;&gt;<i> need to have about 1gb dedicated to the OS Live image and the rest of
+</I>&gt;&gt;<i> it formated as Fat.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've changed the image type in my config.xml file from &lt;type
+</I>&gt;&gt;<i> image=&quot;iso&quot; primary=&quot;true&quot; boot=&quot;isoboot/suse-11.3&quot; hybrid=&quot;true&quot;
+</I>&gt;&gt;<i> flags=&quot;clic&quot;/&gt; to  &lt;type image=&quot;usb&quot; primary=&quot;true&quot;
+</I>&gt;&gt;<i> boot=&quot;usboboot/suse-11.3&quot; hybrid=&quot;true&quot; flags=&quot;clic&quot;/&gt;
+</I>
+You need to use the filesystem attribute. When you create an ISO image
+the filesystem is determined, however, for a system on a USB stick you
+can use any of the supported file systems, i.e. btrfs, ext2, ext3, ext4,
+xfs... You'll need to tell Kiwi which filesystem you want.
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> I ran the kiwi with 'prepare'.  Which is completed without error.
+</I>&gt;&gt;<i> However when I ran it the &quot;create&quot; step I got this error.  &quot;Mar-01
+</I>&gt;&gt;<i> 11:33:23 &lt;1&gt; : Checking for default baseroot in XML data...  notset
+</I>&gt;&gt;<i> Use of uninitialized value $type{&quot;filesystem&quot;} in split at
+</I>&gt;&gt;<i> /usr/sbin/kiwi line 2379.&quot;
+</I>
+What version of Kiwi are you using, you should have gotten a better
+message than an &quot;unitialized variable&quot; error.
+
+&gt;<i> 
+</I>&gt;<i> Don't understand why you changed the image type from iso to usb
+</I>&gt;<i> without specifying a filesystem... anyway you want a fat partition
+</I>&gt;<i> with the rest of your stick. This works the following way:
+</I>&gt;<i> 
+</I>&gt;<i> Instead of using imagewriter you can do the follwing
+</I>&gt;<i> 
+</I>&gt;<i>    1) dump the iso on the stick with dd
+</I>&gt;<i> 
+</I>&gt;<i>       dd if=image-file.iso of=/dev/sdX bs=32k
+</I>&gt;<i> 
+</I>&gt;<i>       NOTE !!!! make sure /dev/sdX is your stick !!! check with
+</I>&gt;<i>       cat proc/partitions the one which appear if you plug the stick in
+</I>&gt;<i> 
+</I>&gt;<i>       NOTE !!!! make sure /dev/sdX[1..4] is not mounted
+</I>&gt;<i>       umount /dev/sdX1
+</I>&gt;<i>       umount /dev/sdX2
+</I>&gt;<i>       ...
+</I>&gt;<i> 
+</I>&gt;<i>    2) call fdisk on the stick
+</I>&gt;<i> 
+</I>&gt;<i>       fdisk /dev/sdX
+</I>&gt;<i> 
+</I>&gt;<i>    3) create a new fat partition with the rest space
+</I>&gt;<i> 
+</I>&gt;<i>       n
+</I>&gt;<i>       p
+</I>&gt;<i>       2
+</I>&gt;<i>       ---&gt; accept start sector
+</I>&gt;<i>       ---&gt; accept end sector
+</I>&gt;<i> 
+</I>&gt;<i>       t
+</I>&gt;<i>       2
+</I>&gt;<i>       ---&gt; partition type number 6 is FAT
+</I>&gt;<i>       
+</I>&gt;<i>       w
+</I>&gt;<i>       q
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i>    4) create DOS filesystem on the fat partition
+</I>&gt;<i> 
+</I>&gt;<i>       mkdosfs /dev/sdX2
+</I>&gt;<i> 
+</I>&gt;<i> Hope that helps. I heared from others that Windows has problems
+</I>&gt;<i> when the fat partition is not the first one on the disk but
+</I>&gt;<i> can't reproduce this one. So any feedback is appreciated
+</I>
+
+Yes, if you are creating the FAT partition to share data with Windoze
+this may not work due to the issue Marcus pointed out. Please report
+back on this one.
+
+Thanks,
+Robert
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002402.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002420.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2404">[ date ]</a>
+              <a href="thread.html#2404">[ thread ]</a>
+              <a href="subject.html#2404">[ subject ]</a>
+              <a href="author.html#2404">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

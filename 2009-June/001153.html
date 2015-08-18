@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image - Live-Stick System error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3C20090602161757.GA11135%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001152.html">
+   <LINK REL="Next"  HREF="001151.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image - Live-Stick System error</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20-%20Live-Stick%20System%20error&In-Reply-To=%3C20090602161757.GA11135%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] USB image - Live-Stick System error">ms at novell.com
+       </A><BR>
+    <I>Tue Jun  2 18:17:57 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001152.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+        <LI>Next message: <A HREF="001151.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1153">[ date ]</a>
+              <a href="thread.html#1153">[ thread ]</a>
+              <a href="subject.html#1153">[ subject ]</a>
+              <a href="author.html#1153">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Thanks for your assistance everything now work correctly. just a quick
+</I>&gt;<i> question i read in Kiwi man page that i can create an usb disc for
+</I>&gt;<i> installing a system like i did with my oem version on dvd using this command
+</I>&gt;<i> kiwi --installstick Initrd --installstick-system VMXSystemImage
+</I>&gt;<i> that is correct or i misunderstood ??
+</I>
+this is not quite correct. If you want the oem type to create
+an install USB stick instead of an install CD/DVD you only need
+to change the format attribute from:
+ 
+   format=&quot;iso&quot; 
+
+to
+
+   format=&quot;usb&quot;
+
+when calling kiwi create with --type oem the result will
+create an additional image with the extension:
+
+   .install.raw
+
+You can dump (dd) this image on the stick and it will
+behave the same way as the install iso image
+
+The usb image type is meant for live sticks where you
+work from the stick. If the man page doesn't make that
+clear we really should fix the documentation. Feel free
+to send any suggestions on how to make the docs better
+
+There is also the kiwi-doc package which includes the
+full doc (kiwi.pdf) where I try to exlpain each image
+type more detailed
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001152.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+	<LI>Next message: <A HREF="001151.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1153">[ date ]</a>
+              <a href="thread.html#1153">[ thread ]</a>
+              <a href="subject.html#1153">[ subject ]</a>
+              <a href="author.html#1153">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

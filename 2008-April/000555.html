@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Optimizing turnaround time
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804090236h3e058669lf4894c28a8e05819%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000553.html">
+   <LINK REL="Next"  HREF="000556.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Optimizing turnaround time</H1>
+    <B>Luis Garrido</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804090236h3e058669lf4894c28a8e05819%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Optimizing turnaround time">luisgarrido at users.sourceforge.net
+       </A><BR>
+    <I>Wed Apr  9 11:36:54 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000553.html">[Kiwi-users] Data Only Image versus Split Image
+</A></li>
+        <LI>Next message: <A HREF="000556.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#555">[ date ]</a>
+              <a href="thread.html#555">[ thread ]</a>
+              <a href="subject.html#555">[ subject ]</a>
+              <a href="author.html#555">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i>  &gt; Now I have a /var/lib/smart/packages in chroot but it is emptied after
+</I>&gt;<i>  &gt; the installation, I have checked interrupting the process during the
+</I>&gt;<i>  &gt; installation phase.
+</I>&gt;<i>
+</I>&gt;<i>  this has been fixed now according to your investigations. Thanks
+</I>
+OK, I see that your patch simply adds this option to smart. Perhaps to
+keep backwards compatibility you could leave the default behavior as
+it is now and add a --keep-package-cache option or something.
+Otherwise some cleaning must be done before packing the image, 'smart
+clean' . Or perhaps there is a way to prevent the contents of that
+folder to make it to the image?
+
+Anyway, I wanted to test it, so I added a package to the 'image'
+section of myroot/image/config.xml and run kiwi -u myroot, but the new
+package was not installed. Was that not the correct method?
+
+I have also tried to use the checkprebuilt option as you suggested,
+that is indeed useful, thanks.
+
+
+&gt;<i>  imho the smart cache does not only contain packages it also has the
+</I>&gt;<i>  latest dependency resolution and other data in it which may be
+</I>&gt;<i>  obsolete in another new situation. The code in smart to find that
+</I>&gt;<i>  the cache needs to be rebuilt may consume more time compared to
+</I>&gt;<i>  build up a new cache. That's one thing and the other problem I see
+</I>
+Well, you could use then createrepo to create a local rpm-md
+repository. I tested it and works fine, smart doesn't have to compute
+anything then. However there is the problem of having it updated
+manually. What would be cool, especially for local networks, would be
+a sort of proxy cache repo system so you don't have to mirror every
+single package, but only those which are pulled from the master repo,
+but I haven't seen anything like that anywhere. Perhaps you could do
+that with squid...
+
+&gt;<i>  is that your packages cache could be from distribution let's say
+</I>&gt;<i>  10.3 but your next image is for 11.0 so the package cache is
+</I>&gt;<i>  only a huge data which you can't use for this image. That's why
+</I>&gt;<i>  I said you need some magic to find out whether the use of the
+</I>&gt;<i>  cache really improves the action
+</I>&gt;<i>
+</I>
+Hmm, well, that would mean changing repos in the config, so instead of
+changing it to point to your remote 10.3 repo you use your local 11.0
+repo. Kiwi cannot guess what version are you targeting, right?
+
+Say, is there some kind of document with a list of the operations
+performed by kiwi and in what order are they executed? That would be
+very useful to figure out what's happening when. Like:
+
+&quot;config.sh is an optional configuration script used during the
+creation of the physical extend. This script is executed at the end of
+the installation after the chroot command is used to switch to the
+operating system image but before the package scripts paced in the
+config directory (see the section called &quot; config &quot;) are run. This
+script can be used, for example, to configure the image system by
+activating or deactivating services.&quot;
+
+but for the whole kiwi process.
+
+Luis
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000553.html">[Kiwi-users] Data Only Image versus Split Image
+</A></li>
+	<LI>Next message: <A HREF="000556.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#555">[ date ]</a>
+              <a href="thread.html#555">[ thread ]</a>
+              <a href="subject.html#555">[ subject ]</a>
+              <a href="author.html#555">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

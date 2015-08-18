@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Minimal X configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Minimal%20X%20configuration&In-Reply-To=%3C20080625101832.GA20600%40e210.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000736.html">
+   <LINK REL="Next"  HREF="000738.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Minimal X configuration</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Minimal%20X%20configuration&In-Reply-To=%3C20080625101832.GA20600%40e210.suse.de%3E"
+       TITLE="[Kiwi-users] Minimal X configuration">ms at novell.com
+       </A><BR>
+    <I>Wed Jun 25 12:18:32 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000736.html">[Kiwi-users] Minimal X configuration
+</A></li>
+        <LI>Next message: <A HREF="000738.html">[Kiwi-users] Screen Resolution on KIWI-LTSP Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#737">[ date ]</a>
+              <a href="thread.html#737">[ thread ]</a>
+              <a href="subject.html#737">[ subject ]</a>
+              <a href="author.html#737">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; 	NFSROOT=192.168.100.20;/tmp/kiwi-test
+</I>&gt;<i> &gt; 	UNIONFS_CONFIG=/dev/ram1,nfs,aufs
+</I>&gt;<i> 
+</I>&gt;<i> This NFS volume must contain the individual files, whereas an NBD volume
+</I>&gt;<i> is a single image that contains the individual files that gets served,
+</I>&gt;<i> right?
+</I>
+yes with NFS you share a directory and with NBD you bind a file
+to a socket combined with the block device layer.
+
+&gt;<i> When using NFS, I wonder if some image containing the files couldn't be
+</I>&gt;<i> mounted on the server (via loop), and this gets exported via NFS. So,
+</I>&gt;<i> NFS is serving the individual files. They are just stored in a single
+</I>&gt;<i> mounted file. Does Linux even support this sort of thing?
+</I>
+yes that works:
+
+	mount -o loop &lt;image-file&gt; /tmp/mytree
+	vi /etc/exports 
+       /tmp/mytree  *(rw,no_root_squash,sync,no_subtree_check)
+
+But: If your loop mount mounts a read-only filesystem you can't
+write to it even if you export it rw with NFS
+
+&gt;<i> The reason for
+</I>&gt;<i> wanting to do this is that such an image is far easier to distribute /
+</I>&gt;<i> maintain than a directory tree.
+</I>
+definitly yes, but with kiwi it's no big deal to re-create and
+distribute images in different formats
+
+&gt;<i> In my case, this file system is read-only.
+</I>
+yep so you can't export it read-write with NFS :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000736.html">[Kiwi-users] Minimal X configuration
+</A></li>
+	<LI>Next message: <A HREF="000738.html">[Kiwi-users] Screen Resolution on KIWI-LTSP Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#737">[ date ]</a>
+              <a href="thread.html#737">[ thread ]</a>
+              <a href="subject.html#737">[ subject ]</a>
+              <a href="author.html#737">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

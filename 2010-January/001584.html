@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /lib/firmware in PXE diskless image initrd
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/lib/firmware%20in%20PXE%20diskless%20image%20initrd&In-Reply-To=%3C1263400407.3413.142.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001583.html">
+   <LINK REL="Next"  HREF="001585.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /lib/firmware in PXE diskless image initrd</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/lib/firmware%20in%20PXE%20diskless%20image%20initrd&In-Reply-To=%3C1263400407.3413.142.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] /lib/firmware in PXE diskless image initrd">roger at opq.se
+       </A><BR>
+    <I>Wed Jan 13 17:33:27 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001583.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+        <LI>Next message: <A HREF="001585.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1584">[ date ]</a>
+              <a href="thread.html#1584">[ thread ]</a>
+              <a href="subject.html#1584">[ subject ]</a>
+              <a href="author.html#1584">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-01-13 at 15:00 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I have a system that uses the Intel e100 driver. The last KIWI image I
+</I>&gt;<i> &gt; made for this type of system was with openSUSE 10.3, when, it seems, the
+</I>&gt;<i> &gt; e100 driver did not load any firmware. The e100 driver in openSUSE 11.2,
+</I>&gt;<i> &gt; however, does require firmware. I see in the failed boot that the
+</I>&gt;<i> &gt; firmware file was not found, and it is indeed not present.
+</I>&gt;<i> 
+</I>&gt;<i> We had a similar problem with an adaptec driver. And I recently added
+</I>&gt;<i> at least that firmware to be present in the initrd. It's this kiwi
+</I>&gt;<i> changelog entry:
+</I>&gt;<i> 
+</I>&gt;<i> -------------------------------------------------------------------
+</I>&gt;<i> Thu Dec 17 12:04:12 CET 2009 - <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> - removed adaptec-firmware from SLED boot images. The package
+</I>&gt;<i>   does not exist on SLED (bnc #562224)
+</I>&gt;<i> 
+</I>&gt;<i> With this change the /lib/firmware directory will not be removed
+</I>&gt;<i> from the initrd as it was before. So you have a good chance if you
+</I>&gt;<i> add the eventual missing firmware package that it stays inside the
+</I>&gt;<i> initrd :-)
+</I>
+I updated to kiwi-3.91-81.1, and I get this error message in the create
+step:
+
+Can't call method &quot;get_node&quot; on an undefined value at /usr/share/kiwi/modules/KIWIXML.pm line 984.
+
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001583.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+	<LI>Next message: <A HREF="001585.html">[Kiwi-users] /lib/firmware in PXE diskless image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1584">[ date ]</a>
+              <a href="thread.html#1584">[ thread ]</a>
+              <a href="subject.html#1584">[ subject ]</a>
+              <a href="author.html#1584">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

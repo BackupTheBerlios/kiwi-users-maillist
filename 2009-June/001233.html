@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Howto add your custom boot menu branding...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C4A49730A.6020402%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001226.html">
+   <LINK REL="Next"  HREF="001235.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Howto add your custom boot menu branding...</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C4A49730A.6020402%40novell.com%3E"
+       TITLE="[Kiwi-users] Howto add your custom boot menu branding...">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Jun 30 04:06:02 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001226.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+        <LI>Next message: <A HREF="001235.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1233">[ date ]</a>
+              <a href="thread.html#1233">[ thread ]</a>
+              <a href="subject.html#1233">[ subject ]</a>
+              <a href="author.html#1233">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Thanks, this feature comes just in time and I am hoping to use it for a 
+project I am working on. Unfortunately I am having trouble getting this 
+to work. My test is based on the suse-live-iso example using an openSUSE 
+11.1 x86-64 system, but creating a 32 bit image.
+
+Help is appreciated, details below.
+
+# kiwi --version
+Jun-29 14:27:51 &lt;1&gt; : kiwi version v3.60
+# cp -r /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-live-iso .
+# ls ./suse-live-iso/
+brand.tgz  config.sh  config.xml  config.xml~  root
+
+Then modified the config.xml file as attached.
+
+# linux32 kiwi --prepare ./suse-live-iso -root /tmp/brandTest_iso
+# linux32 kiwi --create /tmp/brandTest_iso -d /tmp/brandTest_img
+
+-&gt; qemu -cdrom /tmp/brandTest_img/suse-11.1-live-iso.i686-2.5.1.iso -m 1024
+
+But the resulting ISO image does not show the modified images as shown 
+in the attached screenshot. Further, the image only starts in runlevel 
+3, although KDE is used as a pattern.
+
+Help is appreciated.
+
+Thanks,
+Robert
+
+
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> with the gfxboot-branding and bootsplash-branding packages
+</I>&gt;<i> SuSE provides the possibility to have custom brandings. But
+</I>&gt;<i> many people just don't want to create a package from their
+</I>&gt;<i> data. According to this kiwi now allows you to pack your
+</I>&gt;<i> branding data into a tarball and include that which makes
+</I>&gt;<i> your branding tasks a bit easier.
+</I>&gt;<i>
+</I>&gt;<i> Well you still need to know where to place the branded
+</I>&gt;<i> files inside the archive.
+</I>&gt;<i>
+</I>&gt;<i> Example:
+</I>&gt;<i> * The following example shows how to use my custom grub boot
+</I>&gt;<i>   screen (see attachment *don't laugh I'm a bad designer* :)
+</I>&gt;<i>   based on the suse-11.1-JeOS template
+</I>&gt;<i>
+</I>&gt;<i> 1) cp brand.tgz /usr/share/kiwi/image/suse-11.1-JeOS
+</I>&gt;<i> 2) edit /usr/share/kiwi/image/suse-11.1-JeOS/config.xml
+</I>&gt;<i>    * remove standard branding gfxboot-branding-openSUSE
+</I>&gt;<i>    * add my branding requires gfxboot-devel
+</I>&gt;<i>
+</I>&gt;<i>      &lt;archive name=&quot;brand.tgz&quot; bootinclude=&quot;true&quot;/&gt;
+</I>&gt;<i>      &lt;package name=&quot;gfxboot-devel&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i>
+</I>&gt;<i> That's it, build the JeOS and see my great grub boot background :-))
+</I>&gt;<i> All this with kiwi &gt;= v3.60
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i>   
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: info.tar.bz2
+Type: application/x-bzip
+Size: 266208 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090629/635ea123/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090629/635ea123/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001226.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+	<LI>Next message: <A HREF="001235.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1233">[ date ]</a>
+              <a href="thread.html#1233">[ thread ]</a>
+              <a href="subject.html#1233">[ subject ]</a>
+              <a href="author.html#1233">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

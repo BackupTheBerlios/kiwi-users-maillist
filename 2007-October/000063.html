@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%0A%09%3D%3Fiso-8859-15%3Fq%3FR%3DE9p%3D2E_%3D3A_Re%3D3A__Clarification_on%3F%3D%0A%09%3D%3Fiso-8859-15%3Fq%3F_PXE_deployment%3F%3D&In-Reply-To=%3C20071004124035.GA6370%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000062.html">
+   <LINK REL="Next"  HREF="000064.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%0A%09%3D%3Fiso-8859-15%3Fq%3FR%3DE9p%3D2E_%3D3A_Re%3D3A__Clarification_on%3F%3D%0A%09%3D%3Fiso-8859-15%3Fq%3F_PXE_deployment%3F%3D&In-Reply-To=%3C20071004124035.GA6370%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment">ms at suse.de
+       </A><BR>
+    <I>Thu Oct  4 14:40:36 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000062.html">[Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment
+</A></li>
+        <LI>Next message: <A HREF="000064.html">[Kiwi-users] v1.65 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#63">[ date ]</a>
+              <a href="thread.html#63">[ thread ]</a>
+              <a href="subject.html#63">[ subject ]</a>
+              <a href="author.html#63">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> But one last thing... :P 
+</I>&gt;<i> If the process happens that way, how do you handle the multiple-partitions
+</I>&gt;<i> scenario? In the kiwi tftp configuration file, you can specify multiple
+</I>&gt;<i> partitions with the PART variable.
+</I>
+yes
+
+&gt;<i> If the whole image is
+</I>&gt;<i> downloaded on the root partition, eg: /dev/sda2, how do you take account of
+</I>&gt;<i> any extra partitions? (eg: /home or /opt or even /usr).
+</I>
+You should imagine there is one image which represents a complete OS
+this includes all mandatory files and directories of a root system. So
+/usr or /lib or ... is always part of this image. With the PART line in
+the config.&lt;MAC&gt; you can specify other partitions which will be created
+and addressed as an entry in the /etc/fstab file but there is no
+checksum test or something. The additional partitions you specify there
+are not mandatory for the OS in order to work correctly.
+
+&gt;<i> That's why I was thinking that the image was first mounted and then
+</I>&gt;<i> the content copied on the correct partition(s). But with the process
+</I>&gt;<i> you just described me, I now think that if I want data on multiple
+</I>&gt;<i> partition, I have to create one image for each of them. Correct?
+</I>
+Well what you want is not an image anymore it would a part of an image
+just a data blob whereas multiple of them may sum up to an operating
+system. That's in the first place dangerous concerning system integrity
+and secondly not really supported with kiwi. 
+
+kiwi knows an image type called &quot;split&quot;. With this image type kiwi will
+split the image into _two_ parts whereas one part build the read-write part
+and the other part build the read-only part. This happens according to the
+current specifications of the FHS (file hirachy standard). The reason for
+this image type is to use different filesystems for each which allows you
+to have a compressed read-only image. With newer techniques like aufs or
+unionfs (overlay filesystems) this will become more and more obsolete 
+
+&gt;<i> I'm very sorry for asking you so much questions. I just want to have a
+</I>&gt;<i> very clear picture of the whole process in my
+</I>&gt;<i> head, it's very useful when debugging problems for customers :)
+</I>
+No problem I appreciate all your questions. It's made for customers
+so it must be comfortable and somewhat useful now and in the future
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000062.html">[Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment
+</A></li>
+	<LI>Next message: <A HREF="000064.html">[Kiwi-users] v1.65 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#63">[ date ]</a>
+              <a href="thread.html#63">[ thread ]</a>
+              <a href="subject.html#63">[ subject ]</a>
+              <a href="author.html#63">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

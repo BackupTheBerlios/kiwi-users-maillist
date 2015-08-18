@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%20an%0A%09image%20with%20kiwi&In-Reply-To=%3C20080102093053.GA19599%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000196.html">
+   <LINK REL="Next"  HREF="000198.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] errors of uninstalled packages when building an	image with kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20errors%20of%20uninstalled%20packages%20when%20building%20an%0A%09image%20with%20kiwi&In-Reply-To=%3C20080102093053.GA19599%40suse.de%3E"
+       TITLE="[Kiwi-users] errors of uninstalled packages when building an	image with kiwi">ms at suse.de
+       </A><BR>
+    <I>Wed Jan  2 10:30:54 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000196.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+        <LI>Next message: <A HREF="000198.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#197">[ date ]</a>
+              <a href="thread.html#197">[ thread ]</a>
+              <a href="subject.html#197">[ subject ]</a>
+              <a href="author.html#197">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Richard,
+
+&gt;<i> I was about to shut down my computer, I'm therefor just assuming that you 
+</I>&gt;<i> would not mind to I sent you the config file (sorry if this was the wrong the 
+</I>&gt;<i> assumption).  It's a 500k file (not too big).
+</I>&gt;<i> 
+</I>&gt;<i> I hope that you find some time (plus spirit perhaps ;) ) to actually test
+</I>&gt;<i> 'my' config file.  The base is example/test2 plus added packages.
+</I>&gt;<i> For a long time I was able to  create bootable iso images, but than this
+</I>&gt;<i> stopped suddenly. Hopefully you can determine what it is wrong???
+</I>
+I have created and tested the iso image with your image description.
+I didn't change anything just extract the tarball and use the description:
+
+   kiwi --prepare /tmp/kiwi-kh --root /tmp/kiwi-test
+   kiwi --create /tmp/kiwi-test --type iso -d /tmp
+
+I got:
+
+   -rw-r--r-- 1 root root 435M 2008-01-01 18:23 /tmp/kolab-horde.i686-1.1.4.iso
+
+and I ran:
+
+   qemu -cdrom /tmp/kolab-horde.i686-1.1.4.iso
+
+and all works fine :)
+
+Attached you'll find the kiwi prepare and create logs.
+Maybe your problems are not directly related to kiwi ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi-test-create.log
+Type: text/x-log
+Size: 4075479 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080102/0ba85a4d/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080102/0ba85a4d/attachment.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi-test-prepare.log
+Type: text/x-log
+Size: 320606 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080102/0ba85a4d/attachment-0001.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080102/0ba85a4d/attachment-0001.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000196.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+	<LI>Next message: <A HREF="000198.html">[Kiwi-users] errors of uninstalled packages when building an	image with kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#197">[ date ]</a>
+              <a href="thread.html#197">[ thread ]</a>
+              <a href="subject.html#197">[ subject ]</a>
+              <a href="author.html#197">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

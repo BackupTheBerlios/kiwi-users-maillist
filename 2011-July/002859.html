@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Best way to cache packages for kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Best%20way%20to%20cache%20packages%20for%20kiwi&In-Reply-To=%3C20110725093913.GA8331%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002857.html">
+   <LINK REL="Next"  HREF="002860.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Best way to cache packages for kiwi</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Best%20way%20to%20cache%20packages%20for%20kiwi&In-Reply-To=%3C20110725093913.GA8331%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Best way to cache packages for kiwi">ms at suse.de
+       </A><BR>
+    <I>Mon Jul 25 11:39:13 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002857.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+        <LI>Next message: <A HREF="002860.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2859">[ date ]</a>
+              <a href="thread.html#2859">[ thread ]</a>
+              <a href="subject.html#2859">[ subject ]</a>
+              <a href="author.html#2859">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm curious how everyone has decided to cache repositories for local kiwi
+</I>&gt;<i> builds. I am just getting started with kiwi building and it seems the
+</I>&gt;<i> longest portion of the kiwi build process is downloading packages. I
+</I>&gt;<i> substituted an iso image for the repository however there were still a
+</I>&gt;<i> couple of more packages that were downloaded and I also have a couple of
+</I>&gt;<i> packages from the opensuse build service. I wanted to see what everyone else
+</I>&gt;<i> recommends? Is there any way to force kiwi to re-use the previous cache? If
+</I>&gt;<i> not, what is the best way to mirror a remote repository as a local one?
+</I>
+kiwi calls zypper with the option &quot;--keep-packages&quot; for all attached
+remote repositories. So once you have built the image with the repo
+'<A HREF="http://x">http://x</A>' zypper will re-use the generated cache if the same repo is
+used again.
+
+Recently there was the Problem that kiwi generated an alias name for
+repos which doesn't have the alias=&quot;name&quot; attribute set in their repo
+definition. The generated alias name was based on a timestamp which
+means the same repo got a different zypper cache name for each
+invocation. We fixed that in the latest release. If you don't want
+to update make sure you have set alias=&quot;some-name&quot; for each of your
+repos
+
+zypper will only store the packages it had to download to create the
+image. If you build a new image which requires other packages not yet
+downloaded it has to do that first of course. So this zypper cache
+is not an entire mirror of the remote repo
+
+How and if zypper uses the local version of the package is outside
+of kiwi's control. So if you think there is something wrong I'd
+like to handover that questions into the zypper team
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002857.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+	<LI>Next message: <A HREF="002860.html">[Kiwi-users] Best way to cache packages for kiwi
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2859">[ date ]</a>
+              <a href="thread.html#2859">[ thread ]</a>
+              <a href="subject.html#2859">[ subject ]</a>
+              <a href="author.html#2859">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

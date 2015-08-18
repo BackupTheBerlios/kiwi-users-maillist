@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Netboot and diskless - config.default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Netboot%20and%20diskless%20-%20config.default&In-Reply-To=%3C1203938344.5968.38.camel%40pc-00184.batley.id.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000358.html">
+   <LINK REL="Next"  HREF="000363.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Netboot and diskless - config.default</H1>
+    <B>TrevorB</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Netboot%20and%20diskless%20-%20config.default&In-Reply-To=%3C1203938344.5968.38.camel%40pc-00184.batley.id.au%3E"
+       TITLE="[Kiwi-users] Netboot and diskless - config.default">trevorbatley at users.sourceforge.net
+       </A><BR>
+    <I>Mon Feb 25 12:19:04 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000358.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+        <LI>Next message: <A HREF="000363.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#360">[ date ]</a>
+              <a href="thread.html#360">[ thread ]</a>
+              <a href="subject.html#360">[ subject ]</a>
+              <a href="author.html#360">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2008-02-25 at 11:36 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; NEwbie to kiwi alert!! (but not newbie to linux or pxe booting)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I have managed to build the basic netboot initrd &amp; kernel for suse 10.3
+</I>&gt;<i> &gt; using the default config.xml in kiwi/image/netboot/suse-10.3 &amp;
+</I>&gt;<i> &gt; --add-profile diskless (ended up having to create an openSUSE 10.3 vm to
+</I>&gt;<i> &gt; build this on due to issues on my AMD64 box).
+</I>&gt;<i> 
+</I>&gt;<i> The diskless profile intentionally does not include the kernel
+</I>&gt;<i> ramdisk module. You should consider to use the default profile
+</I>
+Except it also includes all of the extra nic drivers.
+&gt;<i> 
+</I>&gt;<i> &gt; If I have a line IMAGE=/dev/ram0;initrd;;192.168.1.1;4096 
+</I>&gt;<i> &gt; Have size: /dev/ram0 -&gt;  Bytes [  MB ]
+</I>&gt;<i> 
+</I>&gt;<i> Jap, there is no ramdisk module loaded by the kernel so /dev/ram
+</I>&gt;<i> doesn't exist
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Need size: 10598932 Bytes [ 10 MB ]
+</I>&gt;<i> &gt; Not enough space for this image
+</I>&gt;<i> 
+</I>&gt;<i> your IMAGE= line tells kiwi to use the initrd as system image
+</I>&gt;<i> that's not a good start :-)
+</I>
+It was a different initrd to the original boot one, but I didn't
+actually understand that the netboot initrd was actually just a
+prep/loader, see next comment...
+&gt;<i> 
+</I>&gt;<i> &gt; I guess I'm misunderstanding the doco in kiwi.pdf.
+</I>&gt;<i> &gt; Any advice, pointing at other guides, etc. most welcome.
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, you are almost done:
+</I>&gt;<i> 
+</I>&gt;<i> 1) make sure your initrd contains all stuff you need. In case
+</I>&gt;<i>    of doubth don't use the diskless profile but the default profile
+</I>&gt;<i>    simply don't specify --add-profile
+</I>&gt;<i> 
+</I>&gt;<i> 2) make sure you build a real system image too. See the example
+</I>&gt;<i>    in from here:
+</I>&gt;<i> 
+</I>&gt;<i> 	<A HREF="https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/wyseXMini-suse-10.3">https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/wyseXMini-suse-10.3</A>
+</I>&gt;<i> 
+</I>&gt;<i>    Well it's a system image description for a wyse terminal but it should
+</I>&gt;<i>    serve as a first good start. If you have built
+</I>&gt;<i>    an example system image copy this one to the /srv/tftpboot/image
+</I>&gt;<i>    directory and remove your initrd image from this directory it
+</I>&gt;<i>    doesn't make sense.
+</I>
+I had played a little more and almost come to the same understanding. I
+was assuming that the diskless option was similar to loading an initrd
+for a thinclient image like thinstation or pxes.... Not
+
+The netboot IS a very good deployment option that allows for the
+configuration of hardware etc. and then deployment of the image.
+
+I'm pretty sure that the Wyse one gives me enough info to make the next
+step.
+
+A little more playing and then expect a whole group of extra
+questions :-)
+
+Trevor B
+&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000358.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+	<LI>Next message: <A HREF="000363.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#360">[ date ]</a>
+              <a href="thread.html#360">[ thread ]</a>
+              <a href="subject.html#360">[ subject ]</a>
+              <a href="author.html#360">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

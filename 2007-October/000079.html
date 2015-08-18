@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20create%20partition%20table%20on%3A%20/dev/sda%0A%09after%20kiwi%20update%20to%201.68-29.1&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90233B336%40zuk35exm60.ds.mot.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000078.html">
+   <LINK REL="Next"  HREF="000080.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1</H1>
+    <B>Mair Wolfgang-awm013</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20to%20create%20partition%20table%20on%3A%20/dev/sda%0A%09after%20kiwi%20update%20to%201.68-29.1&In-Reply-To=%3C6A8A89431E1B2B4A876F254183108BE90233B336%40zuk35exm60.ds.mot.com%3E"
+       TITLE="[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1">wolfgang.mair at motorola.com
+       </A><BR>
+    <I>Wed Oct 10 13:04:33 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000078.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+        <LI>Next message: <A HREF="000080.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#79">[ date ]</a>
+              <a href="thread.html#79">[ thread ]</a>
+              <a href="subject.html#79">[ subject ]</a>
+              <a href="author.html#79">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Now it looks different but still not working
+
+My current function:
+#======================================
+# probeDevices
+#--------------------------------------
+function probeDevices {
+        IFS=$IFS_ORG
+        Echo &quot;Including required kernel modules...&quot;
+        stdevs=`/usr/sbin/hwinfo --storage | grep &quot;Activation Cmd&quot;| cut -f2 -d:`
+        stdevs=`echo $stdevs | tr -d \&quot; | sed -e s&quot;@modprobe@@g&quot;`
+        for module in $stdevs;do
+                Echo &quot;Probing module: $module&quot;
+                INITRD_MODULES=&quot;$INITRD_MODULES $module&quot;
+                modprobe $module
+                sleep 2
+        done
+} 
+
+
+Brings up this now:
+
+Probing module: piix 
+ata_piix 
+generic 
+mptspi
+FATAL: Module piix 
+ata_piix 
+generic 
+mptspi not found.
+
+Attached it a screen shot (not sure if I can post one here on the list)
+
+
+-----Original Message-----
+From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>] 
+Sent: Wednesday, October 10, 2007 11:37
+To: Mair Wolfgang-awm013
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] Failed to create partition table on: /dev/sda after kiwi update to 1.68-29.1
+
+Hi,
+
+&gt;<i> I can see these lines:
+</I>&gt;<i> Probing module: piix ata_piix generic mptspi
+</I>&gt;<i> FATAL: Module piix ata_piix generic mptspi mptspi not found.
+</I>&gt;<i> 
+</I>&gt;<i> But still the same, if I execute 'modprobe mptspi' I can see the drive with 'fdisk -l'
+</I>&gt;<i> 
+</I>&gt;<i> 'hwinfo --storage' says:
+</I>&gt;<i> Driver status: mptspi is not active
+</I>&gt;<i> 
+</I>&gt;<i> After I execute the 'modprobe mptspi' is says:
+</I>&gt;<i> Driver status: mptspi is active
+</I>
+Whops it should be multiple lines
+
+	Probing piix
+	Probing ata_piix
+	...
+
+I assume a IFS problem. Could you set:
+
+	function probeDevices {
+		IFS=$IFS_ORIG
+		...
+	}
+
+and test again ?
+
+Thanks a lot for helping here
+
+Regards,
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.jpg
+Type: image/jpeg
+Size: 51913 bytes
+Desc: kiwi.jpg
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20071010/dceef036/attachment.jpg">https://lists.berlios.de/pipermail/kiwi-users/attachments/20071010/dceef036/attachment.jpg</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000078.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+	<LI>Next message: <A HREF="000080.html">[Kiwi-users] Failed to create partition table on: /dev/sda	after kiwi update to 1.68-29.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#79">[ date ]</a>
+              <a href="thread.html#79">[ thread ]</a>
+              <a href="subject.html#79">[ subject ]</a>
+              <a href="author.html#79">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

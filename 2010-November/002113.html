@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20using%20%22kiwi%20-i%20--select%20packages%22&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2730438FEF%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002115.html">
+   <LINK REL="Next"  HREF="002114.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20using%20%22kiwi%20-i%20--select%20packages%22&In-Reply-To=%3C291A23B717F9104985651112DB6C365F2730438FEF%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;">john.lund at emc.com
+       </A><BR>
+    <I>Thu Nov 11 22:06:24 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002115.html">[Kiwi-users] Kiwi ISO images and OBS
+</A></li>
+        <LI>Next message: <A HREF="002114.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2113">[ date ]</a>
+              <a href="thread.html#2113">[ thread ]</a>
+              <a href="subject.html#2113">[ subject ]</a>
+              <a href="author.html#2113">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm getting a failure when running the following:
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jlund at kiwi1</A>:~/kiwi/AtmosISO&gt; sudo /usr/sbin/kiwi -i source --select packages
+Nov-11 09:46:51 &lt;1&gt; : Reading image description [ListXMLInfo]...
+Nov-11 09:46:51 &lt;1&gt; : Using profile(s): AtmosBase,AtmosAppliance,AtmosDebug,x86                   done
+Nov-11 09:46:51 &lt;1&gt; : Setting up SaT solver...
+Nov-11 09:46:51 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/1.4.0/3p...">http://10.5.114.25/kiwi-repos/1.4.0/3p...</A>                       done
+Nov-11 09:46:53 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/1.4.0/3p_modified...">http://10.5.114.25/kiwi-repos/1.4.0/3p_modified...</A>              done
+Nov-11 09:46:55 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_SDK1...">http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_SDK1...</A>            done
+Nov-11 09:46:55 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/SLES/HF...">http://10.5.114.25/kiwi-repos/SLES/HF...</A>                        done
+Nov-11 09:46:57 &lt;1&gt; : --&gt; Loading <A HREF="http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_D1...">http://10.5.114.25/kiwi-repos/SLES/SLES11SP1_D1...</A>              failed
+Nov-11 09:47:06 &lt;3&gt; : --&gt; Can't create SaT solvable file                                          failed
+Nov-11 09:47:06 &lt;2&gt; : SaT solver setup failed                                                     failed
+
+I can build the &quot;source&quot; configuration with kiwi, and it doesn't have any problems with loading the repo database info during the build.
+What can I do to troubleshoot this?  I want to be able to validate that certain packages are at certain version levels in the repos before I run our full kiwi build.
+
+Thank you,
+John Lund
+EMC Centera Development
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002115.html">[Kiwi-users] Kiwi ISO images and OBS
+</A></li>
+	<LI>Next message: <A HREF="002114.html">[Kiwi-users] problems using &quot;kiwi -i --select packages&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2113">[ date ]</a>
+              <a href="thread.html#2113">[ thread ]</a>
+              <a href="subject.html#2113">[ subject ]</a>
+              <a href="author.html#2113">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

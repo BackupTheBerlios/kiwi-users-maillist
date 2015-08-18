@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Stick-Image wouldn't boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C201104211404.49780.hj.beckers%40onlinehome.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002671.html">
+   <LINK REL="Next"  HREF="002673.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Stick-Image wouldn't boot</H1>
+    <B>Hermann J. Beckers</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Stick-Image%20wouldn%27t%20boot&In-Reply-To=%3C201104211404.49780.hj.beckers%40onlinehome.de%3E"
+       TITLE="[Kiwi-users] Stick-Image wouldn't boot">hj.beckers at onlinehome.de
+       </A><BR>
+    <I>Thu Apr 21 14:04:49 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002671.html">[Kiwi-users] obs kiwi build: nothing provides ciutils (SOLVED)
+</A></li>
+        <LI>Next message: <A HREF="002673.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2672">[ date ]</a>
+              <a href="thread.html#2672">[ thread ]</a>
+              <a href="subject.html#2672">[ subject ]</a>
+              <a href="author.html#2672">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Hi, 
+
+I build am small/minimal OS-11.3 usb-image on susestudio. This images boots 
+when I use it in qemu (&quot;qemu -boot c -hda image.raw -m 384 -monitor stdio&quot;). 
+It also works after copying/writing the image to an stick, still using qemu 
+(&quot;qemu -boot c -hda /dev/sdc &quot;). 
+
+But booting from this stick on a USB-bootable net/notebook stops depending on 
+the boot menu entry used. The following is /boot/grub/menu.lst:
+
+timeout 10
+gfxmenu (hd0,0)/boot/message
+title hjbeckers_JeOS
+ kernel (hd0,0)/boot/vmlinuz-2.6.34.7-0.7-default root=/dev/disk/by-
+path/pci-0000:00:01.1-scsi-0:0:0:0-part1 disk=/dev/disk/by-
+path/pci-0000:00:01.1-scsi-0:0:0:0  vga=0x314 splash=silent   showopts
+ initrd (hd0,0)/boot/initrd-2.6.34.7-0.7-default
+title Failsafe_--_hjbeckers_sda1
+ kernel (hd0,0)/boot/vmlinuz-2.6.34.7-0.7-default root=/dev/sda1 
+disk=/dev/sda1  vga=0x314 splash=silent   showopts ide=nodma apm=off acpi=off 
+noresume selinux=0 nosmp noapic maxcpus=0 edd=off
+ initrd (hd0,0)/boot/initrd-2.6.34.7-0.7-default
+
+Using the first entry it stops &quot;waiting for /dev/disk/by ... to appear&quot;. Using 
+the second entry (modified to point to /dev/sda1) it drops me into the busybox 
+shell?
+
+Any tips?
+
+Hermann-Josef Beckers
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002671.html">[Kiwi-users] obs kiwi build: nothing provides ciutils (SOLVED)
+</A></li>
+	<LI>Next message: <A HREF="002673.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2672">[ date ]</a>
+              <a href="thread.html#2672">[ thread ]</a>
+              <a href="subject.html#2672">[ subject ]</a>
+              <a href="author.html#2672">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

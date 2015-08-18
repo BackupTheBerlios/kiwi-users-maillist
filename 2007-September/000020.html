@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-ltsp-setup problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-ltsp-setup%20problem&In-Reply-To=%3C1190050010.6284.2.camel%40tytus%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000019.html">
+   <LINK REL="Next"  HREF="000021.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-ltsp-setup problem</H1>
+    <B>Rybczynski, Mitch</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-ltsp-setup%20problem&In-Reply-To=%3C1190050010.6284.2.camel%40tytus%3E"
+       TITLE="[Kiwi-users] kiwi-ltsp-setup problem">Mitch.Rybczynski at christiedigital.com
+       </A><BR>
+    <I>Mon Sep 17 19:26:50 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000019.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+        <LI>Next message: <A HREF="000021.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#20">[ date ]</a>
+              <a href="thread.html#20">[ thread ]</a>
+              <a href="subject.html#20">[ subject ]</a>
+              <a href="author.html#20">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have had better luck using the DVD suse distro as my package
+repository.
+
+Check if the &quot;pwdutils&quot; package is part of your profile(s), this is what
+'useradd' belongs to.
+
+rpm -qf $(which useradd)
+
+Cheers,
+Mitch
+
+On Mon, 2007-09-17 at 16:44 +0100, Mark Dickie wrote:
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> I'm following the instructions on this wiki <A HREF="http://en.opensuse.org/LTSP">http://en.opensuse.org/LTSP</A> to try 
+</I>&gt;<i> and setup LTSP on a newly installed OpenSUSE 10.3 machine.  I installed from 
+</I>&gt;<i> the standard 10.3 amd64 KDE install CDand then added the repositories as 
+</I>&gt;<i> normal.  When I run the kiwi-ltsp-setup -s command I get a couple of errors 
+</I>&gt;<i> such as:-
+</I>&gt;<i> 
+</I>&gt;<i> Sep-17 11:31 &lt;1&gt; : Adding user: linux [users]   failed
+</I>&gt;<i> Sep-17 11:31 &lt;1&gt; : chroot: cannot run command `/usr/sbin/useradd': No such 
+</I>&gt;<i> file or directory
+</I>&gt;<i>    failed
+</I>&gt;<i> Sep-17 11:31 &lt;3&gt; : Couldn't setup image system   failed
+</I>&gt;<i> 
+</I>&gt;<i> And
+</I>&gt;<i> 
+</I>&gt;<i> Sep-17 11:34 &lt;1&gt; : Checking for package: kernel-default   failed
+</I>&gt;<i> Sep-17 11:34 &lt;3&gt; : Package kernel-default is not installed   skipped
+</I>&gt;<i> 
+</I>&gt;<i> Of course when I try to boot a thin client after this it doesn't work.  It 
+</I>&gt;<i> gets assigned an IP address but complains it can't find the kernel 
+</I>&gt;<i> boot/linux.  I have attatched the full output of the kiwi-ltsp-setup command 
+</I>&gt;<i> if anyone is interested.
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20070917/854cc113/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20070917/854cc113/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000019.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+	<LI>Next message: <A HREF="000021.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#20">[ date ]</a>
+              <a href="thread.html#20">[ thread ]</a>
+              <a href="subject.html#20">[ subject ]</a>
+              <a href="author.html#20">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

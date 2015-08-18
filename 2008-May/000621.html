@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%202.38-59.1%20%20initrd%20kernel%20panic&In-Reply-To=%3C48235023.6020304%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000620.html">
+   <LINK REL="Next"  HREF="000622.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%202.38-59.1%20%20initrd%20kernel%20panic&In-Reply-To=%3C48235023.6020304%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic">bernd at ixsoft.de
+       </A><BR>
+    <I>Thu May  8 21:10:27 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000620.html">[Kiwi-users] Improving the documentation...
+</A></li>
+        <LI>Next message: <A HREF="000622.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#621">[ date ]</a>
+              <a href="thread.html#621">[ thread ]</a>
+              <a href="subject.html#621">[ subject ]</a>
+              <a href="author.html#621">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+when creating a new 10.3 image with --bootstick, the following output 
+occurs:
+
+-------------
+May-08 20:03:50 &lt;1&gt; : Dumping system image to stick                  done
+May-08 20:04:25 &lt;1&gt; : Installing grub on USB stick                   failed
+May-08 20:04:26 &lt;3&gt; : Couldn't install grub on USB stick:
+    GNU GRUB  version 0.97  (640K lower / 3072K upper memory)
+ [ Minimal BASH-like line editing is supported.  For the first word, TAB
+   lists possible command completions.  Anywhere else TAB lists the possible
+   completions of a device/filename. ]
+grub&gt; device (hd0) /dev/sdb
+grub&gt; root (hd0,0)
+ Filesystem type is ext2fs, partition type 0x83
+grub&gt; setup (hd0)
+ Checking if &quot;/boot/grub/stage1&quot; exists... yes
+ Checking if &quot;/boot/grub/stage2&quot; exists... yes
+ Checking if &quot;/boot/grub/e2fs_stage1_5&quot; exists... yes
+ Running &quot;embed /boot/grub/e2fs_stage1_5 (hd0)&quot;... failed (this is not 
+fatal)
+ Running &quot;embed /boot/grub/e2fs_stage1_5 (hd0,0)&quot;... failed (this is not 
+fatal)
+ Running &quot;install /boot/grub/stage1 (hd0) /boot/grub/stage2 p 
+/boot/grub/menu.lst &quot;... succeeded
+Done.
+grub&gt; quit
+                                                                    failed
+May-08 20:04:26 &lt;3&gt; : KIWI exited with error(s)                      done
+-------------
+
+The resulting stick is booting, but initrd fails with kernel panic and some VFS error later (do you need details?).
+The system image seems to work ok, at least I can boot it with the previous grub or syslinux bootloader.
+The last version known to work ok was 2.38-42... should I switch to 11.0?
+
+
+-- 
+Mit freundlichem Gru&#223;
+
+Kind Regards
+
+Bernd Hentig
+---
+             ixsoft.de - Ihr Spezialist f&#252;r Linux&amp;BSD
+        verion GmbH, Gesch&#228;ftsbereich ixsoft, HRB 11618 FF
+     Gesch&#228;ftsf&#252;hrer: Bernd Hentig, EU-USt-Nr.: DE 256 168 957 
+          Unter den Buchen 22E, D-16244 Altenhof, Germany
+          Voice ++49 333 63 46 100 Fax ++49 333 63 46 109
+                     eMail <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Bernd.Hentig at ixsoft.de</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 311 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080508/b8c764b7/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080508/b8c764b7/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000620.html">[Kiwi-users] Improving the documentation...
+</A></li>
+	<LI>Next message: <A HREF="000622.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#621">[ date ]</a>
+              <a href="thread.html#621">[ thread ]</a>
+              <a href="subject.html#621">[ subject ]</a>
+              <a href="author.html#621">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

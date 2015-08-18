@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to create a pxe image type for a diskless	client?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20create%20a%20pxe%20image%20type%20for%20a%20diskless%0A%09client%3F&In-Reply-To=%3C5128C269.3080508%40public-files.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003072.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to create a pxe image type for a diskless	client?</H1>
+    <B>Yarny</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20create%20a%20pxe%20image%20type%20for%20a%20diskless%0A%09client%3F&In-Reply-To=%3C5128C269.3080508%40public-files.de%3E"
+       TITLE="[Kiwi-users] How to create a pxe image type for a diskless	client?">Yarny at public-files.de
+       </A><BR>
+    <I>Sat Feb 23 14:21:45 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003072.html">[Kiwi-users] How to create a pxe image type for a diskless client?
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3073">[ date ]</a>
+              <a href="thread.html#3073">[ thread ]</a>
+              <a href="subject.html#3073">[ subject ]</a>
+              <a href="author.html#3073">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Rainer,
+
+&gt;<i> IMAGE='/dev/ram1;suse-12.2-pxe-client.x86_64;1.2.8;192.168.10.1;4096'
+</I>&gt;<i> 
+</I>&gt;<i> Building the image is no problem. When the client boots up it loads the
+</I>&gt;<i> config.default file and a short while after booting fails. The last
+</I>&gt;<i> message I see is:
+</I>&gt;<i> 
+</I>&gt;<i> /sbin/init no such file or not executable
+</I>
+Is it possible that your client fails to fit the image into
+its memory?  I'm using the nbd-server to serve my disk image
+to the client.  My config.default reads
+&gt;<i> NBDROOT=10.250.0.10;54024;/dev/nbd0
+</I>&gt;<i> UNIONFS_CONFIG=/dev/ram1;/dev/nbd0;clicfs
+</I>where 10.250.0.10 is the server's ip and 54024
+the port of the nbd-server.
+
+I'm also using clicfs instead of pure ext3.  clicfs is a compressed
+ext3 where the changes reside in the client's memory and are lost
+on reboot.  The preferences-part of my config.xml looks like this:
+&gt;<i>   &lt;preferences&gt;
+</I>&gt;<i>     &lt;type boot=&quot;isoboot/suse-12.2&quot; flags=&quot;clic&quot; hybrid=&quot;true&quot; image=&quot;iso&quot; /&gt;
+</I>&gt;<i>     &lt;type boot=&quot;netboot/suse-12.2&quot; filesystem=&quot;clicfs&quot; image=&quot;pxe&quot; /&gt;
+</I>&gt;<i>     &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+</I>&gt;<i>     &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+</I>&gt;<i>     &lt;version&gt;0.0.0&lt;/version&gt;
+</I>&gt;<i>     &lt;rpm-force&gt;true&lt;/rpm-force&gt;
+</I>&gt;<i>   &lt;/preferences&gt;
+</I>
+This has the advantage that the image is smaller and
+does not need to be transfered over the network in full.
+Of course the client depends on the availability of
+the server until it is shut down.
+
+Best wishes!
+Yarny
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003072.html">[Kiwi-users] How to create a pxe image type for a diskless client?
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3073">[ date ]</a>
+              <a href="thread.html#3073">[ thread ]</a>
+              <a href="subject.html#3073">[ subject ]</a>
+              <a href="author.html#3073">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

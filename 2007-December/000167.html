@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to insert a kernel module in KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20insert%20a%20kernel%20module%20in%20KIWI&In-Reply-To=%3C20071211091223.GA18040%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000165.html">
+   <LINK REL="Next"  HREF="000166.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to insert a kernel module in KIWI</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20insert%20a%20kernel%20module%20in%20KIWI&In-Reply-To=%3C20071211091223.GA18040%40suse.de%3E"
+       TITLE="[Kiwi-users] How to insert a kernel module in KIWI">ms at suse.de
+       </A><BR>
+    <I>Tue Dec 11 10:12:24 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000165.html">[Kiwi-users] How to insert a kernel module in KIWI
+</A></li>
+        <LI>Next message: <A HREF="000166.html">[Kiwi-users]  How to insert a kernel module in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Sorry, it may easy question.
+</I>&gt;<i>  
+</I>&gt;<i> I want to insert a additional kernel module to image.
+</I>&gt;<i> It is squashfs.ko. I create a compressed image from SLED10.
+</I>&gt;<i>  
+</I>&gt;<i> I tried to add to config.xml
+</I>&gt;<i>  
+</I>&gt;<i>  &lt;drivers type=&quot;drivers&quot;&gt;
+</I>&gt;<i>             :
+</I>&gt;<i>        &lt;file name=&quot;fs/squashfs.ko&quot;/&gt;
+</I>
+Hmm, at least on all kernels I use the squashfs module is part of
+a directory. For example in the 10.3 kernel it's
+
+	/lib/modules/2.6.22.13-0.3-default/kernel/fs/squashfs
+	/lib/modules/2.6.22.13-0.3-default/kernel/fs/squashfs/squashfs.ko
+
+I guess you compiled your own module ?	
+
+&gt;<i> and module is inserted to correct directory. Also add module name to
+</I>&gt;<i> INITRD_MODULES in sysconfig/kernel.
+</I>&gt;<i> But &quot;Failed to mount RO root filesystem&quot;.
+</I>
+The INITRD_MODULES variable just stores the modules which should be
+part of the initrd created by the distribution tool named mkinitrd.
+The code in there will not be able to mount a root system based on
+squashfs and the subsequent overlay aufs mount.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000165.html">[Kiwi-users] How to insert a kernel module in KIWI
+</A></li>
+	<LI>Next message: <A HREF="000166.html">[Kiwi-users]  How to insert a kernel module in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

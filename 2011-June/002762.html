@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] netboot error in v4.90, v4.74 was ok
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20netboot%20error%20in%20v4.90%2C%20v4.74%20was%20ok&In-Reply-To=%3C20110601074506.GA3193%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002763.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] netboot error in v4.90, v4.74 was ok</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20netboot%20error%20in%20v4.90%2C%20v4.74%20was%20ok&In-Reply-To=%3C20110601074506.GA3193%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] netboot error in v4.90, v4.74 was ok">ms at suse.de
+       </A><BR>
+    <I>Wed Jun  1 09:45:06 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002763.html">[Kiwi-users] kiwi: Weekly report 2011-05-29 - 2011-06-03...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2762">[ date ]</a>
+              <a href="thread.html#2762">[ thread ]</a>
+              <a href="subject.html#2762">[ subject ]</a>
+              <a href="author.html#2762">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> On 05/31/2011 12:54 PM, Kalman Szabo wrote:
+</I>&gt;<i> &gt;Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;I have a problem with the create step of netboot image with the recent
+</I>&gt;<i> &gt;kiwi release (v4.90, kiwi-135b10b). The create step I am calling is:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;kiwi -c image/ --type pxe -d image-res
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;After making the steps:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;-&gt; Creating PXE boot image: netboot/suse-11.2...
+</I>&gt;<i> &gt;Using profile(s): default,std
+</I>&gt;<i> &gt;Checking for pre-built boot image
+</I>&gt;<i> &gt;--&gt; Prepare boot image (initrd)...
+</I>&gt;<i> &gt;Updating repository node(s)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;it dies with the error message:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Can't use an undefined value as an ARRAY reference at
+</I>&gt;<i> &gt;/usr/share/kiwi/modules/KIWIXML.pm line 1912.
+</I>&gt;<i> 
+</I>&gt;<i> Yes, sorry this is a bug :( in the code that is fixed in devel
+</I>&gt;<i> repository. If you feel comfortable editing the file
+</I>&gt;<i> (/usr/share/kiwi/modules/KIWIXML.pm) you can fix the problem as
+</I>&gt;<i> follows:
+</I>
+yes I found that bug yesterday. I will submit new packages today
+because I think that will happen quite often
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002763.html">[Kiwi-users] kiwi: Weekly report 2011-05-29 - 2011-06-03...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2762">[ date ]</a>
+              <a href="thread.html#2762">[ thread ]</a>
+              <a href="subject.html#2762">[ subject ]</a>
+              <a href="author.html#2762">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] non-0 return package setup scripts does not fail the	build
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20non-0%20return%20package%20setup%20scripts%20does%20not%20fail%20the%0A%09build&In-Reply-To=%3C4B99756AC4788D48ACDE69294733D0ABA1B95D8F%40MX22A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002940.html">
+   <LINK REL="Next"  HREF="002945.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] non-0 return package setup scripts does not fail the	build</H1>
+    <B>natcho.natchev at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20non-0%20return%20package%20setup%20scripts%20does%20not%20fail%20the%0A%09build&In-Reply-To=%3C4B99756AC4788D48ACDE69294733D0ABA1B95D8F%40MX22A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] non-0 return package setup scripts does not fail the	build">natcho.natchev at emc.com
+       </A><BR>
+    <I>Wed Sep 28 22:57:14 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002940.html">[Kiwi-users] kiwi: Weekly report 2011-09-18 - 2011-09-23...
+</A></li>
+        <LI>Next message: <A HREF="002945.html">[Kiwi-users] non-0 return package setup scripts does not fail the build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2944">[ date ]</a>
+              <a href="thread.html#2944">[ thread ]</a>
+              <a href="subject.html#2944">[ subject ]</a>
+              <a href="author.html#2944">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I was testing a kiwi (4.93.3) package setup script (source/config/net-snmp) and on purpose had &quot;exit 1&quot; at the end of the script. I was expecting that the non-0 exit code will result in a kiwi build failure - at least for me this makes sense. But kiwi happily finished building the image. Looking at the kiwi prepare log file, it seems that the failure was detected and ignored:
+
+Sep-28 20:15:03 &lt;1&gt; : Preparing package setup scripts
+Sep-28 20:15:03 &lt;1&gt; : EXEC [mkdir -p /home/autobuild/sumatra-networking/Output~/kiwi/image-root/image/config]
+Sep-28 20:15:03 &lt;1&gt; : EXEC [cp /home/autobuild/sumatra-networking/Output~/kiwi/source/config/* /home/autobuild/sumatra-networking/Output~/kiwi/image-root/image/config 2&gt;&amp;1]
+   done
+Sep-28 20:15:03 &lt;1&gt; : Checking for package: net-snmp
+Sep-28 20:15:03 &lt;1&gt; : EXEC [rpm -q &quot;net-snmp&quot; 2&gt;&amp;1]
+   done
+Sep-28 20:15:04 &lt;1&gt; : Calling package setup script: net-snmp
+Sep-28 20:15:04 &lt;1&gt; : EXEC [chmod u+x /home/autobuild/sumatra-networking/Output~/kiwi/image-root/image/config/net-snmp]
+Sep-28 20:15:04 &lt;1&gt; : EXEC [chroot /home/autobuild/sumatra-networking/Output~/kiwi/image-root /image/config/net-snmp 2&gt;&amp;1]
+   failed
+Sep-28 20:15:04 &lt;1&gt; : /etc/sysconfig/net-snmp exists and will be updated
+   failed
+Sep-28 20:15:04 &lt;1&gt; : EXEC [rm -f /home/autobuild/sumatra-networking/Output~/kiwi/image-root/image/config/net-snmp]
+   Done
+
+So my question is should kiwi be enhanced to abort the build in cases like this? It will certainly make it easier to detect image build problems.
+
+Note that I think that the case when a package matching the setup script was not even found should not abort the build, e.g., the current behavior as listed below should remain as it is now:
+
+Sep-28 20:15:04 &lt;1&gt; : Checking for package: README.txt
+Sep-28 20:15:04 &lt;1&gt; : EXEC [rpm -q &quot;README.txt&quot; 2&gt;&amp;1]
+   failed
+Sep-28 20:15:04 &lt;3&gt; : Package README.txt is not installed   skipped
+
+Thanks,
+N.
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110928/3dd8eae3/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110928/3dd8eae3/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002940.html">[Kiwi-users] kiwi: Weekly report 2011-09-18 - 2011-09-23...
+</A></li>
+	<LI>Next message: <A HREF="002945.html">[Kiwi-users] non-0 return package setup scripts does not fail the build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2944">[ date ]</a>
+              <a href="thread.html#2944">[ thread ]</a>
+              <a href="subject.html#2944">[ subject ]</a>
+              <a href="author.html#2944">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

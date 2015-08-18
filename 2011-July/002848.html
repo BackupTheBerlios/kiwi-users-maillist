@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] openSUSE 11.4 64-bit OEM image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20openSUSE%2011.4%2064-bit%20OEM%20image&In-Reply-To=%3C20110721140206.GA7608%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002847.html">
+   <LINK REL="Next"  HREF="002849.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] openSUSE 11.4 64-bit OEM image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20openSUSE%2011.4%2064-bit%20OEM%20image&In-Reply-To=%3C20110721140206.GA7608%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] openSUSE 11.4 64-bit OEM image">ms at suse.de
+       </A><BR>
+    <I>Thu Jul 21 16:02:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002847.html">[Kiwi-users] openSUSE 11.4 64-bit OEM image
+</A></li>
+        <LI>Next message: <A HREF="002849.html">[Kiwi-users] openSUSE 11.4 64-bit OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2848">[ date ]</a>
+              <a href="thread.html#2848">[ thread ]</a>
+              <a href="subject.html#2848">[ subject ]</a>
+              <a href="author.html#2848">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;&gt;5) you used the --target-arch=&quot;i586&quot; option when building ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;The only one is #2. Is this not possible then?
+</I>&gt;<i> 
+</I>&gt;<i> I've never tried, in any event you'd have to use
+</I>&gt;<i> --target-arch=&quot;x86_64&quot;, did you use that argument?
+</I>&gt;<i> 
+</I>&gt;<i> Kiwi just passes this on to the package manager (zypper). Kiwi
+</I>&gt;<i> itself has little to do with the package installation and finding
+</I>&gt;<i> the proper packages.
+</I>
+As I said this is not possible. The architecture does not match
+If you try to install for example the joe editor 64bit on a 32bit
+machine you get:
+
+rpm -Uhv --nodeps /mnt/suse/x86_64/joe-3.7-12.3.x86_64.rpm 
+Preparing...                ########################################### [100%]
+        package joe-3.7-12.3.x86_64 is intended for a x86_64 architecture
+
+the --target-arch option will not change this. You can use target-arch
+only within a limited space. It will for example allow you to install
+all i686 optimized packages on a x86 machine, or force all 32bit packages
+on a 64bit machine. But it cannot overcome the architecture specific
+design. Only a virtual machine emulating the architecture would be
+able to do this
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002847.html">[Kiwi-users] openSUSE 11.4 64-bit OEM image
+</A></li>
+	<LI>Next message: <A HREF="002849.html">[Kiwi-users] openSUSE 11.4 64-bit OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2848">[ date ]</a>
+              <a href="thread.html#2848">[ thread ]</a>
+              <a href="subject.html#2848">[ subject ]</a>
+              <a href="author.html#2848">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

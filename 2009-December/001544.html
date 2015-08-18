@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Network card problem on opneSUSE 11.2 PXE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Network%20card%20problem%20on%20opneSUSE%2011.2%20PXE&In-Reply-To=%3C20091208150208.GA24305%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001543.html">
+   <LINK REL="Next"  HREF="001545.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Network card problem on opneSUSE 11.2 PXE</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Network%20card%20problem%20on%20opneSUSE%2011.2%20PXE&In-Reply-To=%3C20091208150208.GA24305%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Network card problem on opneSUSE 11.2 PXE">ms at novell.com
+       </A><BR>
+    <I>Tue Dec  8 16:02:08 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001543.html">[Kiwi-users] Network card problem on opneSUSE 11.2 PXE
+</A></li>
+        <LI>Next message: <A HREF="001545.html">[Kiwi-users] Network card problem on opneSUSE 11.2 PXE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1544">[ date ]</a>
+              <a href="thread.html#1544">[ thread ]</a>
+              <a href="subject.html#1544">[ subject ]</a>
+              <a href="author.html#1544">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am making a diskless pxe boot image for openSUSE 11.2. I am using
+</I>&gt;<i> kiwi-3.74-17.21.2.i586
+</I>&gt;<i> 
+</I>&gt;<i> To simplify things (read: eliminate any odd things I might have done), I
+</I>&gt;<i> used the files
+</I>&gt;<i> in /usr/share/doc/packages/kiwi/examples/suse-11.2/suse-pxe-client
+</I>&gt;<i> 
+</I>&gt;<i> When I boot this image, it stops saying that it could not load the
+</I>&gt;<i> network driver. I added kiwidebug=1 to the kernel command, so I get a
+</I>&gt;<i> prompt. At this time, there are no modules loaded, and only the lo
+</I>&gt;<i> device exists. I am expecting the e1000 driver to be used, as that is
+</I>&gt;<i> what openSUSE normally uses in this machine. If I do 'modprobe e1000'
+</I>&gt;<i> the driver gets loaded. It is using kernel-default, which is what the
+</I>&gt;<i> example uses.
+</I>&gt;<i> 
+</I>&gt;<i> I am not sure what to do next to see what the problem is. This also
+</I>&gt;<i> happens with my own kiwi files. But I reverted to the examples to
+</I>&gt;<i> eliminate my changes. Of course, I did have to set the repository in my
+</I>&gt;<i> copy of the example.
+</I>
+Hmm, the function which does the loading is probeNetworkCard()
+it uses hwinfo to search the card and the appropriate module.
+Maybe something has changed which leads to the problem. Could you
+first check if
+
+  hwinfo --netcard
+
+prints something useful on your system ? if yes the code in kiwi
+seems to be broken.
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001543.html">[Kiwi-users] Network card problem on opneSUSE 11.2 PXE
+</A></li>
+	<LI>Next message: <A HREF="001545.html">[Kiwi-users] Network card problem on opneSUSE 11.2 PXE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1544">[ date ]</a>
+              <a href="thread.html#1544">[ thread ]</a>
+              <a href="subject.html#1544">[ subject ]</a>
+              <a href="author.html#1544">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

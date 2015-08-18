@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Mixing unionfs and split image?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Mixing%20unionfs%20and%20split%20image%3F&In-Reply-To=%3C20090312105938.GA5999%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000998.html">
+   <LINK REL="Next"  HREF="001021.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Mixing unionfs and split image?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Mixing%20unionfs%20and%20split%20image%3F&In-Reply-To=%3C20090312105938.GA5999%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Mixing unionfs and split image?">ms at novell.com
+       </A><BR>
+    <I>Thu Mar 12 11:59:38 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000998.html">[Kiwi-users] Mixing unionfs and split image?
+</A></li>
+        <LI>Next message: <A HREF="001021.html">[Kiwi-users] Mixing unionfs and split image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#999">[ date ]</a>
+              <a href="thread.html#999">[ thread ]</a>
+              <a href="subject.html#999">[ subject ]</a>
+              <a href="author.html#999">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Thomas,
+
+&gt;<i> What I would like to have is that changes to the system (like personal data, 
+</I>&gt;<i> temporary files, etc.) are removed every time I restart the client. I thought 
+</I>&gt;<i> of putting the read-write part to /dev/ram1 instead of /dev/sda3. But as far 
+</I>&gt;<i> as I can see, the bootloader config is also put onto the harddisk and would 
+</I>&gt;<i> be removed, if I specified /dev/ram1.
+</I>
+that is correct yes
+
+&gt;<i> Would it be possible to have one partition for the read-only squashfs system, 
+</I>&gt;<i> one partition for the bootloader files and /dev/ram1 for all other temporary 
+</I>&gt;<i> changes? This shouldn't conflict with aufs, because the /boot partition isn't 
+</I>&gt;<i> used after booting has finished.
+</I>
+Such a setup is not implemented at the moment. You can give it a try
+with the split image type as you have a good understanding of how your
+system should look like this might solve your problem:
+
+   &lt;type
+     fsreadwrite=&quot;ext3&quot;
+     fsreadonly=&quot;squashfs&quot;
+     boot=&quot;netboot/suse-...&quot;
+   &gt;split&lt;/type&gt;
+
+   ...
+
+   &lt;split&gt;
+        &lt;persistent&gt;
+            &lt;file name=&quot;/&quot;/&gt;
+            &lt;file name=&quot;/*&quot;/&gt;
+			&lt;except name=&quot;/home&quot;/&gt;
+			&lt;except name=&quot;/home/*&quot;/&gt;
+        &lt;/persistent&gt;
+        &lt;temporary&gt;
+			&lt;file name=&quot;/home&quot;/&gt;
+			&lt;file name=&quot;/home/*&quot;/&gt;
+        &lt;/temporary&gt;
+   &lt;/split&gt;
+
+
+I have never tried this so in principal everything in /home will
+be part of a tmpfs and the rest will be part of the disk
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000998.html">[Kiwi-users] Mixing unionfs and split image?
+</A></li>
+	<LI>Next message: <A HREF="001021.html">[Kiwi-users] Mixing unionfs and split image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#999">[ date ]</a>
+              <a href="thread.html#999">[ thread ]</a>
+              <a href="subject.html#999">[ subject ]</a>
+              <a href="author.html#999">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

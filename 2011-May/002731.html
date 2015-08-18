@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] fixupOverlayFilesOwnership issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20fixupOverlayFilesOwnership%20issue&In-Reply-To=%3C4B99756AC4788D48ACDE69294733D0AB9A73357E%40MX22A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002730.html">
+   <LINK REL="Next"  HREF="002732.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] fixupOverlayFilesOwnership issue</H1>
+    <B>natcho.natchev at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20fixupOverlayFilesOwnership%20issue&In-Reply-To=%3C4B99756AC4788D48ACDE69294733D0AB9A73357E%40MX22A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] fixupOverlayFilesOwnership issue">natcho.natchev at emc.com
+       </A><BR>
+    <I>Mon May 16 21:25:35 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002730.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+        <LI>Next message: <A HREF="002732.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2731">[ date ]</a>
+              <a href="thread.html#2731">[ thread ]</a>
+              <a href="subject.html#2731">[ subject ]</a>
+              <a href="author.html#2731">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks Robert!
+
+It didn't work as expected, here is a quick test of your suggestion from the command line (look at the third command below):
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">autobuild at sles-build01</A>:~/mauisrc/atmos-kona-mozy-gen3/Output~/kiwi/source&gt; tar -tvf emcKiwiHooks.tgz  | grep -v ^d
+-rwxr-xr-x autobuild/autobuild 1614 2011-05-16 19:10 kiwi-hooks/postImageDump.sh.sav
+-rwxr-xr-x autobuild/autobuild 6060 2011-05-16 19:10 kiwi-hooks/preCallInit.sh.sav
+-rwxr-xr-x autobuild/autobuild 4744 2011-05-16 19:10 kiwi-hooks/preHWdetect.sh
+-rwxr-xr-x autobuild/autobuild 6203 2011-05-16 19:10 kiwi-hooks/preCallInit.sh
+
+-rwxr-xr-x autobuild/autobuild 1636 2011-05-16 19:10 kiwi-hooks/postImageDump.shtar -tvf emcKiwiHooks.tgz  | grep -v ^d | cut -c49-
+9:10 kiwi-hooks/postImageDump.sh.sav
+9:10 kiwi-hooks/preCallInit.sh.sav
+9:10 kiwi-hooks/preHWdetect.sh
+9:10 kiwi-hooks/preCallInit.sh
+9:10 kiwi-hooks/postImageDump.sh
+
+tar -tvf emcKiwiHooks.tgz  | grep -v ^d | cut -c49- | cut -f1 -d ' '
+9:10
+9:10
+9:10
+9:10
+9:10
+
+Based on this I still think that &quot;cut -c49-&quot; is not right. BTW, the following works:
+tar -tvf emcKiwiHooks.tgz | grep -v ^d | cut -f6 -d ' '
+kiwi-hooks/postImageDump.sh.sav
+kiwi-hooks/preCallInit.sh.sav
+kiwi-hooks/preHWdetect.sh
+kiwi-hooks/preCallInit.sh
+kiwi-hooks/postImageDump.sh
+
+In other words, change the last cut to &quot;-f6&quot; and get rid of the &quot;cut -c49-&quot;. Not sure if it is universally applicable to all archives that kiwi has to process, but works in this case.
+
+Regards,
+N.
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A> [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A>] On Behalf Of Robert Schweikert
+Sent: Monday, May 16, 2011 3:01 PM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] fixupOverlayFilesOwnership issue
+
+Hi Natcho,
+
+On 05/16/2011 02:16 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">natcho.natchev at emc.com</A> wrote:
+&gt;<i> Hi Robert and Marcus,
+</I>&gt;<i>
+</I>&gt;<i> I work with John on this, so here is my analysis of where the things break:
+</I>&gt;<i>
+</I>&gt;<i> /usr/share/kiwi/modules/KIWIManager.pm, line 1753:
+</I>&gt;<i>
+</I>&gt;<i>          print $fd &quot;   tar -tvf $idesc/\$i | grep -v ^d | cut -c49- | cut -f1 -d-&quot;;
+</I>&gt;<i>          print $fd &quot;&gt;&gt;  $root/bootincluded_archives.filelist\n&quot;;
+</I>
+I think it should look like this:
+
+print $fd &quot;  tar -tvf $idesc/\$i | grep -v ^d | cut -c49- | cut -f1 -d ' '&quot;;
+
+i.e. replace -d- with -d ' '
+
+There is a space after -d and a spece between the single quotes. With 
+this change the file we are writing will look as follows:
+
+kiwi-hooks/preHWdetect.sh
+kiwi-hooks/preCallInit.sh
+
+When we loop through this file line by line we have the proper filename 
+for the ownership change.
+
+Can you test this change?
+
+Thanks,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+_______________________________________________
+Kiwi-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002730.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+	<LI>Next message: <A HREF="002732.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2731">[ date ]</a>
+              <a href="thread.html#2731">[ thread ]</a>
+              <a href="subject.html#2731">[ subject ]</a>
+              <a href="author.html#2731">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

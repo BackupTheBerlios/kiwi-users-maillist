@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] how the partition schema looks.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20how%20the%20partition%20schema%20looks.&In-Reply-To=%3CBANLkTinv2ReKAD7X2UOtJeozE82_db--%2Bw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002694.html">
+   <LINK REL="Next"  HREF="002698.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] how the partition schema looks.</H1>
+    <B>Josh Duvall</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20how%20the%20partition%20schema%20looks.&In-Reply-To=%3CBANLkTinv2ReKAD7X2UOtJeozE82_db--%2Bw%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] how the partition schema looks.">josh.duvall at endeavorsystems.com
+       </A><BR>
+    <I>Tue Apr 26 20:22:47 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002694.html">[Kiwi-users] oem example doesn't work
+</A></li>
+        <LI>Next message: <A HREF="002698.html">[Kiwi-users] using patternType=&quot;plusRecommended&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2696">[ date ]</a>
+              <a href="thread.html#2696">[ thread ]</a>
+              <a href="subject.html#2696">[ subject ]</a>
+              <a href="author.html#2696">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+Getting closer.. thanks Robert!
+
+I am building an appliance and I wanted to find out how the lvm partition
+looks after the lvm is installed: I finally am getting somewhere!
+
+So far I see.....
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">support at linux</A>: df -h
+
+rootfs
+devtmpfs
+tmpfs
+/dev/mapper/sysVG-LVhome
+/dev/mapper/sysVG-LVRoot
+/dev/mapper/sysVG-LVtmp
+/dev/mapper/sysVG-LVvar
+/dev/sda1
+/dev/sda1
+
+
+The volumes I wanted were the root, tmp, var.... does the rootfs devtmpfs
+tmpfs ect... stay on as part of the system?
+I am looking to have (4 additional)
+
+Swap
+/
+/tmp
+/var
+
+Is what I have correct? Can the rootfs devtmpfs and tmpfs be removed? Are
+they supposed to be there even though I am making my own partition?
+
+Thanks again
+
+
+-- 
+Josh Duvall
+Jr. Systems Administrator
+Endeavor Systems, Inc. - *Securing the Business of Government*
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">josh.duvall at endeavorsystems.com</A> | (w) 571.730.1992 x111  | (c) 301.802.8083
+www.endeavorsystems.com
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110426/4b717dc9/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110426/4b717dc9/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002694.html">[Kiwi-users] oem example doesn't work
+</A></li>
+	<LI>Next message: <A HREF="002698.html">[Kiwi-users] using patternType=&quot;plusRecommended&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2696">[ date ]</a>
+              <a href="thread.html#2696">[ thread ]</a>
+              <a href="subject.html#2696">[ subject ]</a>
+              <a href="author.html#2696">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

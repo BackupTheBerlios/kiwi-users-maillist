@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] License file patch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20License%20file%20patch&In-Reply-To=%3C4C7BCC03.1030006%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001999.html">
+   <LINK REL="Next"  HREF="002001.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] License file patch</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20License%20file%20patch&In-Reply-To=%3C4C7BCC03.1030006%40novell.com%3E"
+       TITLE="[Kiwi-users] License file patch">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Aug 30 17:19:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001999.html">[Kiwi-users] License file patch
+</A></li>
+        <LI>Next message: <A HREF="002001.html">[Kiwi-users] License file patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2000">[ date ]</a>
+              <a href="thread.html#2000">[ thread ]</a>
+              <a href="subject.html#2000">[ subject ]</a>
+              <a href="author.html#2000">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 08/30/2010 10:45 AM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Hi Marcus,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> commit 3f9d9546d989983dba3fad94e7ab61fbaba77260
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Adds the automatic inclusion of the license tarball if found into
+</I>&gt;&gt;<i> /etc/YaST2/licenses/base
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> With this new logic in place would it make sense to have a
+</I>&gt;&gt;<i> &lt;displayLicense&gt; element in the XML to also display this license if desired?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Without this one would end up with 2 copies of the license in the image,
+</I>&gt;&gt;<i> once due to the automatic inclusion and once added by the user for
+</I>&gt;&gt;<i> display purposes (is desired) added via a copy from the overlay file system.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thoughts?
+</I>&gt;<i> 
+</I>&gt;<i> Also thought about it and I think we can add that.
+</I>&gt;<i> 
+</I>&gt;<i> - change the linuxrc code to look at /etc/YaST2/licenses/base
+</I>&gt;<i> - add a bool option displayLicense true|false
+</I>&gt;<i> - print a warning if no repo provides a license tarball
+</I>&gt;<i>   but it was requested to show one
+</I>&gt;<i> 
+</I>&gt;<i> the system which we had before only changes in the way
+</I>&gt;<i> that an optional license tarball which is bootincluded has to
+</I>&gt;<i> put the licenses into /etc/YaST2/licenses/base
+</I>&gt;<i> 
+</I>&gt;<i> Could you implement that ?
+</I>
+Yes, I'll look at it this week.
+
+Robert
+
+&gt;<i> If not could you make a bug
+</I>&gt;<i> report for it ?
+</I>&gt;<i> 
+</I>&gt;<i> Thanks
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001999.html">[Kiwi-users] License file patch
+</A></li>
+	<LI>Next message: <A HREF="002001.html">[Kiwi-users] License file patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2000">[ date ]</a>
+              <a href="thread.html#2000">[ thread ]</a>
+              <a href="subject.html#2000">[ subject ]</a>
+              <a href="author.html#2000">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

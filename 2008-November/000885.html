@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] unmount /tmp/kiwi-tmp/proc failed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20unmount%20/tmp/kiwi-tmp/proc%20failed&In-Reply-To=%3C20081110094812.GA14832%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000884.html">
+   <LINK REL="Next"  HREF="000886.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] unmount /tmp/kiwi-tmp/proc failed</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20unmount%20/tmp/kiwi-tmp/proc%20failed&In-Reply-To=%3C20081110094812.GA14832%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] unmount /tmp/kiwi-tmp/proc failed">ms at novell.com
+       </A><BR>
+    <I>Mon Nov 10 10:48:12 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000884.html">[Kiwi-users] unmount /tmp/kiwi-tmp/proc failed
+</A></li>
+        <LI>Next message: <A HREF="000886.html">[Kiwi-users] How to build 32-bit image on 64-bit system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#885">[ date ]</a>
+              <a href="thread.html#885">[ thread ]</a>
+              <a href="subject.html#885">[ subject ]</a>
+              <a href="author.html#885">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I can reproduce this on 2 different pc's. Known issue ?
+</I>&gt;<i> 
+</I>&gt;<i> Nov-08 11:56:31 &lt;1&gt; : EXEC [umount &quot;/tmp/kiwi-tmp/proc&quot; 2&gt;&amp;1]
+</I>&gt;<i> Nov-08 11:56:31 &lt;1&gt; : Umount failed: umount: /tmp/kiwi-tmp/proc: Das Ger&#228;t 
+</I>&gt;<i> wird momentan noch benutzt
+</I>&gt;<i> umount: /tmp/kiwi-tmp/proc: Das Ger&#228;t wird momentan noch benutzt
+</I>&gt;<i> Nov-08 11:56:31 &lt;2&gt; : Umount failed: calling lazy umount
+</I>&gt;<i> Nov-08 11:56:31 &lt;1&gt; : EXEC [umount -l &quot;/tmp/kiwi-tmp/proc&quot; 2&gt;&amp;1]
+</I>
+The proc umount only fails if /tmp/kiwi-tmp/proc is already mounted
+after the cleanup procedure runs. This could happen if proc is
+mounted explicitly or implicitly (by another program) inside the
+config.sh script for example. kiwi will then call &quot;umount -l&quot; which will
+free the mount as soon as it is no longer busy. This behavior will
+not cause an error or a backtrace. You should make sure your scripts
+leave the system with a clean mount table
+
+&gt;<i> [*** back trace follows ***]
+</I>&gt;<i> Trace Level 1 at /usr/share/kiwi/modules/KIWIManager.pm line 319
+</I>&gt;<i>         KIWIManager::setupScreenCall('KIWIManager=HASH(0x2019678)') called 
+</I>&gt;<i> at /usr/share/kiwi/modules/KIWIManager.pm line 1564
+</I>
+your build was exited unsuccessfully inside the screen call which means
+something went wrong when installing the packages. That's the reason
+for the trace and for the error. You also should have a screen trace
+but didn't post it in the mail. Anyway the log file shows you exactly
+why the installation failed
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000884.html">[Kiwi-users] unmount /tmp/kiwi-tmp/proc failed
+</A></li>
+	<LI>Next message: <A HREF="000886.html">[Kiwi-users] How to build 32-bit image on 64-bit system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#885">[ date ]</a>
+              <a href="thread.html#885">[ thread ]</a>
+              <a href="subject.html#885">[ subject ]</a>
+              <a href="author.html#885">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

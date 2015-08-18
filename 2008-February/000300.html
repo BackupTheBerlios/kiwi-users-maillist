@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Localization
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization&In-Reply-To=%3C20080211092516.GA9924%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000298.html">
+   <LINK REL="Next"  HREF="000353.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Localization</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization&In-Reply-To=%3C20080211092516.GA9924%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Localization">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 11 10:25:16 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000298.html">[Kiwi-users] Localization
+</A></li>
+        <LI>Next message: <A HREF="000353.html">[Kiwi-users] Localization
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#300">[ date ]</a>
+              <a href="thread.html#300">[ thread ]</a>
+              <a href="subject.html#300">[ subject ]</a>
+              <a href="author.html#300">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I have added Stephan Binner, he might be interested in this too
+
+&gt;<i> after upgrading to kiwi 2.19.28.1 and livesystem 1.57.27.1, both ISO 
+</I>&gt;<i> live images and flash images boot correctly and start the KDE desktop 
+</I>&gt;<i> (since I selected the KDE profile).
+</I>
+sounds good
+
+&gt;<i> However, I added the right &quot;keytable= de-latin1-nodeadkeys.map.gz&quot; and 
+</I>&gt;<i> locale for Germany, but the KDE desktop still is coming up in US English 
+</I>&gt;<i> and the keyboard is set to english-us,pc104.
+</I>
+Hmm, what exactly does that mean ? Did you provide the file
+/etc/sysconfig/keyboard along with your image description ? I guess
+the problem is the creation of the xorg.conf file. We use sax2 to do
+the job and sax2 takes a look into the sysconfig/keyboard file to
+map the console keyboard layout into the X keyboard layout. If it
+runs X in English as you said I guess your console keyboard layout
+is also in English. You can try to edit the sysconfig/keyboard
+file and after that run sax2 again.
+
+kiwi creates the keyboard setup by the function suseConfig() which
+should be called in your config.sh as part of the image description.
+The suseConfig function evaluates the contents of the optionally
+set &lt;keytable&gt; section as part of the &lt;preferences&gt; section. Did you
+have set that ?
+
+&gt;<i> Yes, I selected &quot;German&quot; from the boot manager (German and English are 
+</I>&gt;<i> selectable). Some applications are coming up in English (firefox), while 
+</I>&gt;<i> the same application package uses German locale if installed in a 
+</I>&gt;<i> regular desktop installation.
+</I>
+The problem here is that we currently don't hand over the value here
+from the initrd into the system. We are still searching for a general
+setup because in a normal installation yast is doing that for us but
+it also has to work if no yast is in place
+
+&gt;<i> So I guess I am missing some packages for localization plus some of the 
+</I>&gt;<i> settings in config.xml are incorrect or not used, since the localization 
+</I>&gt;<i> is not in the first step physical image. Is there a package list for a 
+</I>&gt;<i> German KDE or GNOME desktop installation?
+</I>
+I think for English and German all should be in place. If you have more
+complex languages like for example Japanese there might be some fonts
+missing. I think you should give it a try with the KDE keyboard selector.
+It's this nice litle application in your taskbar showing a flag as indicator
+for the currently used keyboard. If you click on it you can change the
+keyboard setup on the fly. It has worked for me and you could make sure
+if all required software is there to be able to use the keyboard you like.
+If it works we are only dealing with a configuration problem
+
+&gt;<i> If I want to enable multiple desktops to choose from on Live DVD startup 
+</I>&gt;<i> (like GNOME, KDE and some other things), does kiwi already support this? 
+</I>&gt;<i> So I would not have to create multiple live images; most users have a 
+</I>&gt;<i> DVD drive or a large enough flash anyway.
+</I>
+To choose different window/desktop managers at login is implemented in
+the KDE and GNome login managers (kdm/gdm) so as soon as they are installed
+in parallel you have the possibility to choose between the two anyway.
+For kiwi this means you need to call the prepare step with
+
+	--add-profile KDE,GNOME
+
+What we don't support is to choose for a desktop environment at boot
+time. I don't want to have the complexity of switching desktop environments
+within the initrd.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000298.html">[Kiwi-users] Localization
+</A></li>
+	<LI>Next message: <A HREF="000353.html">[Kiwi-users] Localization
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#300">[ date ]</a>
+              <a href="thread.html#300">[ thread ]</a>
+              <a href="subject.html#300">[ subject ]</a>
+              <a href="author.html#300">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

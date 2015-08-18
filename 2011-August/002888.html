@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe-images%20give%20%22Image%20checksum%20test%20failed%22&In-Reply-To=%3C4E39406C.4050309%40suse.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002886.html">
+   <LINK REL="Next"  HREF="002890.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe-images%20give%20%22Image%20checksum%20test%20failed%22&In-Reply-To=%3C4E39406C.4050309%40suse.com%3E"
+       TITLE="[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;">rjschwei at suse.com
+       </A><BR>
+    <I>Wed Aug  3 14:34:52 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002886.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+        <LI>Next message: <A HREF="002890.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2888">[ date ]</a>
+              <a href="thread.html#2888">[ thread ]</a>
+              <a href="subject.html#2888">[ subject ]</a>
+              <a href="author.html#2888">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 08/01/2011 10:26 AM, Rob Haverkort wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> Im using KIWI to create a pxe-image and until today all worked perfect,
+</I>&gt;<i> but after I updated all kiwi-packages this morning, the pxe-booting pc gives
+</I>&gt;<i>
+</I>&gt;<i> Image checksum test failed
+</I>
+There was a change recently that added a progress indicator to the PXE 
+install procedure. I would say that this change is the most likely 
+culprit of breaking the checksum test.
+
+You should be able to modify /usr/share/kiwi/image/netboot/suse-linuxrc 
+and avoid the problem. Make sure the test on line 497 fails, then you'll 
+get back to the code that was executed prior to the change. For example 
+replace
+
+if [ -x /usr/bin/dcounter ];then
+
+with
+
+if [ -d /usr/bin/dcounter ];then
+
+That should do the trick for now. After you modify the file you will 
+need to remove the checksum files:
+
+find /usr/share/kiwi/image/netboot/ -name &quot;*md5*&quot; | xargs rm
+
+HTH,
+Robert
+&gt;<i>
+</I>&gt;<i> and after the automatic retry it gives:
+</I>&gt;<i>
+</I>&gt;<i> Have size: /dev/sda -&gt;  1073741824 Bytes [ 1024 MB ]
+</I>&gt;<i> Need size: * Bytes [  MB ]
+</I>&gt;<i> Not enough space available for this image
+</I>&gt;<i>
+</I>&gt;<i> ths image is under 300 MB in size.
+</I>&gt;<i>
+</I>&gt;<i> What I can find on one of the consoles is this:
+</I>&gt;<i>
+</I>&gt;<i> ++ expr bin boot bootsplash  dev etc image include init iprocs lib lib64
+</I>&gt;<i> linuxrc mnt preinit proc progress root sbin selinux sys tmp usr var /
+</I>&gt;<i> 1048576
+</I>&gt;<i> expr: syntax error
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> any help is welcome, thanks in advance
+</I>&gt;<i>
+</I>&gt;<i> Rob
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweik at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002886.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+	<LI>Next message: <A HREF="002890.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2888">[ date ]</a>
+              <a href="thread.html#2888">[ thread ]</a>
+              <a href="subject.html#2888">[ subject ]</a>
+              <a href="author.html#2888">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

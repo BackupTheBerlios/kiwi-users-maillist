@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] netcat-openbsd in suse-pxe-client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20netcat-openbsd%20in%20suse-pxe-client&In-Reply-To=%3CAANLkTi%3DgqojWMhUcnndeEyJodJRvDLeOGEsJarKEtatW%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001921.html">
+   <LINK REL="Next"  HREF="001923.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] netcat-openbsd in suse-pxe-client</H1>
+    <B>Denis J. Cirulis</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20netcat-openbsd%20in%20suse-pxe-client&In-Reply-To=%3CAANLkTi%3DgqojWMhUcnndeEyJodJRvDLeOGEsJarKEtatW%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] netcat-openbsd in suse-pxe-client">denis.cirulis at gmail.com
+       </A><BR>
+    <I>Mon Jul 26 10:39:52 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001921.html">[Kiwi-users] netcat-openbsd in suse-pxe-client
+</A></li>
+        <LI>Next message: <A HREF="001923.html">[Kiwi-users] netcat-openbsd in suse-pxe-client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1922">[ date ]</a>
+              <a href="thread.html#1922">[ thread ]</a>
+              <a href="subject.html#1922">[ subject ]</a>
+              <a href="author.html#1922">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Problem solved. I've already found the solution.
+There is a block in images.sh &quot;removing unneeded tools in /usr/bin&quot;.
+Adding nc,qemu-kvm  and the rest to the list did the trick :)
+
+Thanks!
+
+On Mon, Jul 26, 2010 at 11:36 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; I'm trying to build pxe bootable vm hypervisor appliance. I achieved
+</I>&gt;<i> &gt; successfully build pxe-client with automatically starting libvirt
+</I>&gt;<i> interface
+</I>&gt;<i> &gt; to linux kvm virtualization layer.
+</I>&gt;<i> &gt; The problem is - for communication through libvirt I do need to 'nc'
+</I>&gt;<i> binary
+</I>&gt;<i> &gt; which is located in netcat-openbsd. I've added &lt;package
+</I>&gt;<i> &gt; name=&quot;netcat-openbsd'/&gt; to confix.xml &lt;packages type=&quot;image&quot;&gt; section but
+</I>&gt;<i> &gt; after bootstraping the image and booting it I can not find 'nc' utility.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; How can I check if kiwi removed /usr/bin/nc or not. It must be in the
+</I>&gt;<i> image
+</I>&gt;<i> &gt; because of these lines from log:
+</I>&gt;<i>
+</I>&gt;<i> it surely doesn't remove that except you have some config.sh or
+</I>&gt;<i> images.sh script which does it. So I would first check the custom scripts
+</I>&gt;<i>
+</I>&gt;<i> &gt; + chroot /tmp/kiwi/vmh-32-root /usr/bin/zypper --non-interactive
+</I>&gt;<i> &gt; --no-gpg-checks --reposd-dir /var/cache/kiwi/zypper --cache-dir
+</I>&gt;<i> &gt; /var/cache/kiwi/zypper --raw-cache-dir /var/cache/kiwi/zypper install
+</I>&gt;<i> &gt; --auto-agree-with-licenses --no-recommends acpid binutils dhcpcd file
+</I>&gt;<i> gawk
+</I>&gt;<i> &gt; grub ifplugd initviocons iputils kbd kernel-default ksymoops kvm less
+</I>&gt;<i> &gt; libcgroup1 libvirt lxc module-init-tools netcat-openbsd netcfg nfs-client
+</I>&gt;<i> &gt; openssh portmap procinfo qemu sysconfig sysfsutils syslinux syslog-ng
+</I>&gt;<i> &gt;   licenses logrotate lvm2 lxc mkinitrd module-init-tools mtools
+</I>&gt;<i> &gt; netcat-openbsd
+</I>&gt;<i> &gt; Installing: netcat-openbsd-1.89-71.2 [done]
+</I>&gt;<i> &gt; warning:
+</I>&gt;<i> &gt;
+</I>&gt;<i> /var/cache/kiwi/zypper/packages/http:__download.opensuse.org_distribution_11.3_repo_oss/suse/i586/netcat-openbsd-1.89-71.2.i586.rpm:
+</I>&gt;<i> &gt; Header V3 RSA/SHA256 Signature, key ID 3dbdc284: NOKEY
+</I>&gt;<i>
+</I>&gt;<i> ok so it has been installed. Can you make sure you don't have
+</I>&gt;<i> netcat-openbsd
+</I>&gt;<i> listed in the &quot;&lt;packages type=&quot;delete&quot;&gt;&quot; section too ? I saw people adding
+</I>&gt;<i> the package in all packages sections they can find, which results in an
+</I>&gt;<i> install followed by an uninstall of the package :-)
+</I>&gt;<i>
+</I>&gt;<i> After that chroot into your tree:
+</I>&gt;<i>
+</I>&gt;<i>   chroot /tmp/kiwi/vmh-32-root bash
+</I>&gt;<i>   rpm -ql netcat-openbsd
+</I>&gt;<i>
+</I>&gt;<i> is it really installed or not ? if not it must be uninstalled by
+</I>&gt;<i> some script or by kiwi's delete list
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100726/6cedc4bc/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100726/6cedc4bc/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001921.html">[Kiwi-users] netcat-openbsd in suse-pxe-client
+</A></li>
+	<LI>Next message: <A HREF="001923.html">[Kiwi-users] netcat-openbsd in suse-pxe-client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1922">[ date ]</a>
+              <a href="thread.html#1922">[ thread ]</a>
+              <a href="subject.html#1922">[ subject ]</a>
+              <a href="author.html#1922">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

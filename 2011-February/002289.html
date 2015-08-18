@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Bug in Kiwi and U3 ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bug%20in%20Kiwi%20and%20U3%20%3F&In-Reply-To=%3C20110201085121.GA16886%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002290.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Bug in Kiwi and U3 ?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bug%20in%20Kiwi%20and%20U3%20%3F&In-Reply-To=%3C20110201085121.GA16886%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Bug in Kiwi and U3 ?">ms at suse.de
+       </A><BR>
+    <I>Tue Feb  1 09:51:22 CET 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002290.html">[Kiwi-users] Bug in Kiwi and U3 ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2289">[ date ]</a>
+              <a href="thread.html#2289">[ thread ]</a>
+              <a href="subject.html#2289">[ subject ]</a>
+              <a href="author.html#2289">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> First of all I tried kiwi many times here on my pc with different openSUSE 
+</I>&gt;<i> versions (from 11.1 to 11.4) and never had a success really in booting it 
+</I>&gt;<i> successfully with my U3 USB stick.
+</I>
+I'm sorry that you had so much trouble with it. I hope the following
+helps to get you started and I hope it's not too late concerning the
+hard time you had ;)
+
+1) I don't recommend to use kiwi on a distro not yet released.
+   So I don't suggest to run it on 11.4 at the moment
+
+2) use the kiwi packages from here:
+   <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances">http://download.opensuse.org/repositories/Virtualization:/Appliances</A>
+   We fixed many many problems and you make the most out of it if you
+   use that version
+
+3) make sure you have the kiwi-templates package installed
+   this package provides our JeOS (Just Enough Linux) example image
+   descriptions. They are tested very well
+
+4) if you have a good network connection you can build a live iso
+   image as follows (Example 11.3):
+
+   kiwi --build suse-11.3-JeOS -d /tmp/mylive --type iso
+
+   if you don't have a good network connection. I suggest to copy
+   a 11.3 DVD locally on your machine and point to that repo
+
+   dd if=/dev/dvd of=/tmp/dvd.iso
+   kiwi --build suse-11.3-JeOS -d /tmp/mylive --type iso \
+        --set-repo <A HREF="iso:///tmp/dvd.iso">iso:///tmp/dvd.iso</A>
+
+Without any changes the created iso will boot *last famous words*
+Does that work for you ?
+
+&gt;<i> As I found some time now to investigate the 
+</I>&gt;<i> problem a little further I grabbed a openSUSE 11.4 M6 Hybrid LiveISO (KDE4 
+</I>&gt;<i> variant) and tried it once again. As expected it didn't boot and gave me the 
+</I>&gt;<i> &quot;Couldn't find Live image configuration file&quot; error. 
+</I>
+That sounds bad. The 11.4 live iso is not created by me so I don't
+know much about that image. Please contact Stephan Kulow &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coolo at suse.de</A>&gt;
+for details why it does not work. As I said 11.4 is not out it also
+could be a temmporary problem related to the distro development.
+
+&gt;<i> ...
+</I>&gt;<i> pointed me to take a look into the include file which then pointed me to the 
+</I>&gt;<i> CDDevice function in the same file. 
+</I>&gt;<i> First of all I tried echo'ing out the devices which where found with CDDevice 
+</I>&gt;<i> (line 2924 where the 'search for CD/DVD devices' part starts) because I 
+</I>&gt;<i> guessed the script detected only the CD part of the U3 stick and not the usb 
+</I>&gt;<i> drive itself somehow. (and no I don't have a cd/dvd drive, because its a 
+</I>&gt;<i> netbook) And well it was exactly what I expected to see it mounted 12 times 
+</I>&gt;<i> /dev/sr0 which is the cd part of the U3 stick and searched for the isoclient 
+</I>&gt;<i> live configuration file which is obviously not on the U3s cd part. 
+</I>&gt;<i> So I took a look at the CDDevice function in the include file and to my 
+</I>&gt;<i> surprise I found that 'hwinfo --cdrom' is used to get the device name (i.e. 
+</I>&gt;<i> /dev/sr0). So I changed that to '$h --block ...' and rebuild initrd replaced 
+</I>&gt;<i> the one on the stick with my patched one and what can I say it boots
+</I>&gt;<i> just fine 
+</I>
+Well if you looked into the include file then you also found:
+
+  function CDMount {
+       ...
+       #======================================
+       # walk through media
+       #--------------------------------------
+       if [ -z &quot;$kiwi_hybrid&quot; ];then
+          # this is the non hybrid case, searching for CD/DVD
+       else
+          # this is the hybrid case, searching for a disk 
+       fi
+
+In your case which boots the iso as a disk the path searching for
+a CD device never should have been entered. What kiwi does here is, it
+calls the function searchBIOSBootDevice() which searches for a disk
+and a special Master-Boot-Record ID written into the hybrid iso.
+I have no clue and I also can't reproduce why it did not find it
+in your case. In order to debug this I need the file
+
+  /var/log/boot.kiwi
+
+you can get that file if you boot with kiwidebug=1 and store it 
+somewhere on the stick
+
+&gt;<i> now without any error. (I attached a patch file which highlights
+</I>&gt;<i> the changes for the devs) 
+</I>
+Problem with the patch is that it breaks the CDDevice() function.
+This function intentionally searches for CD/DVD devices only. As I
+said it shouldn't have been called at all in your case. 
+
+&gt;<i> It might be also better as the current usb boot option (which I only saw in 
+</I>&gt;<i> the code and didn't test out though) which somehow just like I understand it 
+</I>&gt;<i> will check if there is space on the usb stick and will automatically create a 
+</I>&gt;<i> cow (copy on write / overlay / persistent) image and uses it. Using this
+</I>&gt;<i> slows down the experience of the live usb user as writing to some common
+</I>&gt;<i> usb sticks is slow and especially its a somehow pain in the ass for every
+</I>&gt;<i> netbook user who just only wants to test out if openSUSE runs on his
+</I>&gt;<i> netbook and when it does install it.
+</I>
+The so called hybrid_persistent feature is an option which one can
+turn on. By default we don't create a persistent cow space
+
+Thanks for your report. It would be great if we can find out why it does
+not boot on your side. So the boot.kiwi log file would be great and I'm
+eager to understand if building the JeOS as I described it works for
+you.
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002290.html">[Kiwi-users] Bug in Kiwi and U3 ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2289">[ date ]</a>
+              <a href="thread.html#2289">[ thread ]</a>
+              <a href="subject.html#2289">[ subject ]</a>
+              <a href="author.html#2289">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

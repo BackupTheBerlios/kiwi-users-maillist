@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20with%3A%20kiwi%20--type%20usb%20--create%0A%09/tmp/kiwi-tmp%20-d%20/tmp/kiwi-image%20--logfile%20terminal&In-Reply-To=%3C20080610150951.GA19143%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000685.html">
+   <LINK REL="Next"  HREF="000687.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problems%20with%3A%20kiwi%20--type%20usb%20--create%0A%09/tmp/kiwi-tmp%20-d%20/tmp/kiwi-image%20--logfile%20terminal&In-Reply-To=%3C20080610150951.GA19143%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Problems with: kiwi --type usb --create	/tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal">ms at novell.com
+       </A><BR>
+    <I>Tue Jun 10 17:09:52 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000685.html">[Kiwi-users] Problems with: kiwi --type usb --create /tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+        <LI>Next message: <A HREF="000687.html">[Kiwi-users] Problems with: kiwi --type usb --create /tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#686">[ date ]</a>
+              <a href="thread.html#686">[ thread ]</a>
+              <a href="subject.html#686">[ subject ]</a>
+              <a href="author.html#686">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Kai,
+
+&gt;<i> kiwi --type usb --create /tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</I>&gt;<i> 
+</I>&gt;<i> Jun-09 18:05:20 &lt;1&gt; : Setting log file to: terminal
+</I>&gt;<i> Jun-09 18:05:20 &lt;1&gt; : Reading image description...   failed
+</I>&gt;<i> Jun-09 18:05:20 &lt;3&gt; : Invalid version format: 2.5    failed
+</I>&gt;<i> Jun-09 18:05:20 &lt;3&gt; : Expected 'Major.Minor.Release' failed
+</I>&gt;<i> Jun-09 18:05:20 &lt;3&gt; : KIWI exited with error(s)      done
+</I>
+your config.xml includes &lt;version&gt;2.5&lt;/version&gt; which is not
+Major.Minor.Release just change that to something like
+
+	&lt;version&gt;2.5.1&lt;/version&gt;
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000685.html">[Kiwi-users] Problems with: kiwi --type usb --create /tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+	<LI>Next message: <A HREF="000687.html">[Kiwi-users] Problems with: kiwi --type usb --create /tmp/kiwi-tmp -d /tmp/kiwi-image --logfile terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#686">[ date ]</a>
+              <a href="thread.html#686">[ thread ]</a>
+              <a href="subject.html#686">[ subject ]</a>
+              <a href="author.html#686">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

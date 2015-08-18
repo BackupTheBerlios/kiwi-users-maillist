@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi preload image failure [perhaps solved]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure%20%5Bperhaps%20solved%5D&In-Reply-To=%3C1298220954.7560.6.camel%40barracuda.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002311.html">
+   <LINK REL="Next"  HREF="002310.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi preload image failure [perhaps solved]</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure%20%5Bperhaps%20solved%5D&In-Reply-To=%3C1298220954.7560.6.camel%40barracuda.pacific%3E"
+       TITLE="[Kiwi-users] kiwi preload image failure [perhaps solved]">roger at opq.se
+       </A><BR>
+    <I>Sun Feb 20 17:55:54 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002311.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+        <LI>Next message: <A HREF="002310.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2362">[ date ]</a>
+              <a href="thread.html#2362">[ thread ]</a>
+              <a href="subject.html#2362">[ subject ]</a>
+              <a href="author.html#2362">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-02-10 at 12:54 +0100, Roger Oberholtzer wrote:
+&gt;<i> On Thu, 2011-02-10 at 12:46 +0100, Marcus Sch&#228;fer wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; &gt; &gt; &gt;   sda2: EXT4-fs error: double free of inode 0's block XXXX, 0 in gd
+</I>&gt;<i> &gt; &gt; &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &gt; &gt; This looks pretty much like a disk or filesystem error. Do you see
+</I>&gt;<i> &gt; &gt; &gt; &gt; the same issue when using ext3 ?                
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; jfi: I have created that ext4 split image type for a 11.3 system
+</I>&gt;<i> &gt; and couldn't find any problems, just worked :-)
+</I>&gt;<i> 
+</I>&gt;<i> OK. But I need to do this for 11.2. 
+</I>&gt;<i> 
+</I>&gt;<i> Did you make a preload image that also loaded as expected?
+</I>
+I think the problem is the etc/init.d/boot file that is in the examples
+in kiwi-doc on which I based my attempts. It does not work with 11.2. In
+fact, it is different from the real one in many ways.  AIUI, the only
+difference should be a call to sax2 if X has not been configured. If I
+remove the boot file from my builds, all works as expected.
+
+I see a variant on configuring X via an init script called 'sax'. If I
+use that approach, I get much further. In fact, the only thing remaining
+on my list of thing to accomplish with this oem preload is getting X
+configured better. I think all other requirements are in place.
+
+As long as I do not use the boot script in the kiwi-doc examples...
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+SHAW'S PRINCIPAL
+    Build a system that even a fool can use,
+    and only a fool will want to use it.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002311.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+	<LI>Next message: <A HREF="002310.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2362">[ date ]</a>
+              <a href="thread.html#2362">[ thread ]</a>
+              <a href="subject.html#2362">[ subject ]</a>
+              <a href="author.html#2362">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

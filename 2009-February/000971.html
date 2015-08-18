@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] swap order of split image parts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20swap%20order%20of%20split%20image%20parts&In-Reply-To=%3C499025E5.3080603%40sfgate.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000970.html">
+   <LINK REL="Next"  HREF="000974.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] swap order of split image parts</H1>
+    <B>Vladimir V. Kolpakov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20swap%20order%20of%20split%20image%20parts&In-Reply-To=%3C499025E5.3080603%40sfgate.com%3E"
+       TITLE="[Kiwi-users] swap order of split image parts">w at sfgate.com
+       </A><BR>
+    <I>Mon Feb  9 13:47:33 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000970.html">[Kiwi-users] swap order of split image parts
+</A></li>
+        <LI>Next message: <A HREF="000974.html">[Kiwi-users] swap order of split image parts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#971">[ date ]</a>
+              <a href="thread.html#971">[ thread ]</a>
+              <a href="subject.html#971">[ subject ]</a>
+              <a href="author.html#971">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Markus, --
+
+&gt;<i> The motivation is to have a full flexible system.
+</I>
+I see.
+Flexibility and stability are antonyms,
+at least in common sense ;)
+
+&gt;<i> We had that system before and it turned out to be not
+</I>&gt;<i> flexible enough.
+</I>
+Such kind of reason I've suspected,
+all right.
+While stability and security were not on the table,
+design decision made seems adequate.
+
+My focus was sort of opposite, paranoid:
+&quot;what could we do to disable any possible tampering
+of image content on the system run?&quot;
+
+Obvious first reaction is: read-only root file system.
+I knew that unionfs encourages altering of
+system files by it's design: top layer is always read-write.
+Even if aufs allows read-only layer on the top of union,
+this option is not used in kiwi.
+Therefore only split image type left then
+as the candidate for read-only root.
+Now I see, split image won't fit security needs,
+because of different point.
+As of 11.4.5 section in kiwi.pdf:
+&quot;Unfortunately all common compressed filesystems
+provides only read-only access.&quot;
+
+Thanks to your detailed explanations, we can conclude that
+read-only part of image had been considered as
+a media restriction, rather then opportunity
+for improve system security.
+
+In this case, it may worth to not mess up
+with two opposite requirements, but rather
+ * invent new type of image, or
+ * adjust one of other type images to
+include option of read-only root, or something similar,
+such as option &quot;immune&quot;.
+
+&gt;<i> I think that we have both a full flexible system but also at
+</I>&gt;<i> least a standard system working of no split information is there.
+</I>
+Agreed,
+I end up my image build with similar conclusion.
+There are little changes made in linuxrc
+I could send you for certainty in further discussion,
+out of kiwi-users list, if you don't mind.
+
+Thanks!
+--w
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000970.html">[Kiwi-users] swap order of split image parts
+</A></li>
+	<LI>Next message: <A HREF="000974.html">[Kiwi-users] swap order of split image parts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#971">[ date ]</a>
+              <a href="thread.html#971">[ thread ]</a>
+              <a href="subject.html#971">[ subject ]</a>
+              <a href="author.html#971">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

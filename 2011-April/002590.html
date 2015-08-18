@@ -1,0 +1,534 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] LiveISO create Error on SLES 11 ia64
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LiveISO%20create%20Error%20on%20SLES%2011%20ia64&In-Reply-To=%3C000001cbf03b%244c4973d0%24e4dc5b70%24%40ru%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002591.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] LiveISO create Error on SLES 11 ia64</H1>
+    <B>&#1044;&#1084;&#1080;&#1090;&#1088;&#1080;&#1081; &#1041;&#1091;&#1082;&#1088;&#1080;&#1085;</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LiveISO%20create%20Error%20on%20SLES%2011%20ia64&In-Reply-To=%3C000001cbf03b%244c4973d0%24e4dc5b70%24%40ru%3E"
+       TITLE="[Kiwi-users] LiveISO create Error on SLES 11 ia64">dbukrin at vniiaes-asutp.ru
+       </A><BR>
+    <I>Fri Apr  1 09:06:12 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002591.html">[Kiwi-users] LiveISO create Error on SLES 11 ia64
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2590">[ date ]</a>
+              <a href="thread.html#2590">[ thread ]</a>
+              <a href="subject.html#2590">[ subject ]</a>
+              <a href="author.html#2590">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello!
+
+ 
+
+I have problem with create iso live disk. 
+
+package aufs not foun, I have not this package, But what for this package is
+necessary to my system?
+
+ 
+
+System SLES 11 
+
+cat /etc/*-release
+
+LSB_VERSION=&quot;core-2.0-noarch:core-3.2-noarch:core-4.0-noarch:core-2.0-ia64:c
+ore-3.2-ia64:core-4.0-ia64&quot;
+
+SUSE Linux Enterprise Server 11 (ia64)
+
+VERSION = 11
+
+PATCHLEVEL = 0
+
+uname -a
+
+Linux 40HCB10 2.6.27.19-5-default #1 SMP 2009-02-28 04:40:21 +0100 ia64 ia64
+ia64 GNU/Linux
+
+rpm -qa | grep kiwi
+
+kiwi-instsource-4.43-1.6
+
+kiwi-instsource-plugins-openSUSE-11-1-2.0-4.5
+
+kiwi-desc-isoboot-4.43-1.6
+
+kiwi-instsource-plugins-openSUSE-11-0-1.20-3.21
+
+kiwi-doc-4.43-1.6
+
+kiwi-tools-4.43-1.6
+
+kiwi-4.43-1.6
+
+Up next my config.xml and log
+
+ 
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+ 
+
+&lt;image schemaversion=&quot;4.6&quot; name=&quot;suse-11.1-live-iso&quot;&gt;
+
+&lt;------&gt;&lt;description type=&quot;system&quot;&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;author&gt;Dmitry&lt;/author&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">dbukrin at vniiaes-asutp.ru</A>&lt;/contact&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;specification&gt;openSUSE 11.1 Live system&lt;/specification&gt;
+
+&lt;------&gt;&lt;/description&gt;
+
+&lt;------&gt;&lt;preferences&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;type image=&quot;iso&quot; primary=&quot;true&quot; boot=&quot;isoboot/suse-11.1&quot;
+filesystem=&quot;ext3&quot; hybrid=&quot;true&quot; flags=&quot;unified&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;version&gt;2.5.1&lt;/version&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;rpm-force&gt;true&lt;/rpm-force&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;locale&gt;en_US.UTF-8&lt;/locale&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;keytable&gt;us.map.gz&lt;/keytable&gt;
+
+&lt;------&gt;&lt;/preferences&gt;
+
+&lt;------&gt;&lt;users group=&quot;root&quot;&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;user pwd=&quot;$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0&quot; home=&quot;/root&quot;
+name=&quot;root&quot;/&gt;
+
+&lt;------&gt;&lt;/users&gt;
+
+&lt;------&gt;&lt;repository alias=&quot;SLES_11_DVD1&quot; type=&quot;yast2&quot;&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;source
+path=&quot;<A HREF="iso:///home/pls/iso/SUSE_SLES-11-0-0-DVD1.iso">iso:///home/pls/iso/SUSE_SLES-11-0-0-DVD1.iso</A>&quot;/&gt;
+
+&lt;------&gt;&lt;/repository&gt;
+
+&lt;------&gt;&lt;repository alias=&quot;SLES_11_DVD2&quot; type=&quot;rpm-dir&quot;&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;source
+path=&quot;<A HREF="iso:///home/pls/iso/SUSE_SLES-11-0-0-DVD2.iso">iso:///home/pls/iso/SUSE_SLES-11-0-0-DVD2.iso</A>&quot;/&gt;
+
+&lt;------&gt;&lt;/repository&gt;
+
+&lt;------&gt;&lt;packages type=&quot;image&quot;&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;bootsplash-branding-SLES&quot; bootinclude=&quot;true&quot;
+bootdelete=&quot;true&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;install-initrd-branding-SLES&quot;
+bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;kernel-default&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;bootsplash&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;ifplugd&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;elilo&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;efibootmgr&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;lsscsi&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;sg3_utils&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;mc&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;yast2-iscsi-client&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;yast2-iscsi-server&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;tar&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;dds2tar&quot;/&gt;
+
+&lt;------&gt;&lt;/packages&gt;
+
+&lt;------&gt;&lt;packages type=&quot;bootstrap&quot;&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;filesystem&quot;/&gt;
+
+&lt;------&gt;&lt;------&gt;&lt;package name=&quot;glibc-locale&quot;/&gt;
+
+&lt;------&gt;&lt;/packages&gt;
+
+&lt;/image&gt;
+
+ 
+
+40HCB10:/ # kiwi -p
+/usr/share/doc/packages/kiwi/examples/suse-11.1/suse-live-iso/ --root
+/home/pls/tmp/iso/iso-tree/
+
+Apr-01 06:42:59 &lt;1&gt; : Reading image description [Prepare]...
+
+Apr-01 06:42:59 &lt;2&gt; : Description provides no MD5 hash, check
+skipped
+
+Apr-01 06:42:59 &lt;1&gt; : Checking for default baseroot in XML data...
+notset
+
+Apr-01 06:42:59 &lt;1&gt; : Set root log:
+/home/pls/tmp/iso/iso-tree/.22180.screenrc.log...
+done
+
+Apr-01 06:42:59 &lt;1&gt; : Setting up package manager: zypper
+done
+
+Apr-01 06:42:59 &lt;1&gt; : Creating default template files for new root system
+done
+
+Apr-01 06:42:59 &lt;1&gt; : Importing build keys...
+done
+
+Apr-01 06:42:59 &lt;1&gt; : Adding bootstrap zypper service: SLES_11_DVD1
+done
+
+Apr-01 06:42:59 &lt;1&gt; : Adding bootstrap zypper service: SLES_11_DVD2
+done
+
+Apr-01 06:43:00 &lt;1&gt; : Setting up bootstrap baselibs...
+done
+
+Apr-01 06:43:00 &lt;1&gt; : Initializing image system on:
+/home/pls/tmp/iso/iso-tree/...
+done
+
+Apr-01 06:43:29 &lt;1&gt; : Umounting path:
+/home/pls/tmp/iso/iso-tree///var/cache/kiwi
+
+Apr-01 06:43:29 &lt;1&gt; : Umounting path:
+/home/pls/tmp/iso/iso-tree///var/cache/zypp
+
+Apr-01 06:43:29 &lt;1&gt; : Mounting required file systems
+done
+
+Apr-01 06:43:29 &lt;1&gt; : Mounting local channel: SLES_11_DVD1
+done
+
+Apr-01 06:43:29 &lt;1&gt; : Mounting local channel: SLES_11_DVD2
+done
+
+Apr-01 06:43:29 &lt;1&gt; : Adding chroot zypper service: SLES_11_DVD1
+done
+
+Apr-01 06:43:29 &lt;1&gt; : Adding chroot zypper service: SLES_11_DVD2
+done
+
+Apr-01 06:43:29 &lt;1&gt; : Installing image packages...
+done
+
+Apr-01 06:43:53 &lt;1&gt; : Copying user defined files to image tree
+done
+
+Apr-01 06:43:53 &lt;1&gt; : Create .profile for package scripts
+done
+
+Apr-01 06:43:53 &lt;1&gt; : Modifying user: root [root]
+done
+
+Apr-01 06:43:53 &lt;1&gt; : Setting owner/group permissions root [root]
+done
+
+Apr-01 06:43:53 &lt;1&gt; : Calling image script: config.sh
+done
+
+Apr-01 06:43:54 &lt;1&gt; : Cleanup temporary copy of resolv.conf
+done
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path:
+/home/pls/tmp/iso/iso-tree///base-system/tmp/kiwimount-SUSE_SLES-11-0-0-DVD2
+.iso
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path:
+/home/pls/tmp/iso/iso-tree///base-system/tmp/kiwimount-SUSE_SLES-11-0-0-DVD1
+.iso
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path:
+/home/pls/tmp/iso/iso-tree///var/cache/kiwi
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path:
+/home/pls/tmp/iso/iso-tree///var/cache/zypp
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path: /home/pls/tmp/iso/iso-tree//dev/pts
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path: /home/pls/tmp/iso/iso-tree//sys
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path:
+/home/pls/tmp/iso/iso-tree//var/run/dbus
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path: /home/pls/tmp/iso/iso-tree//dev
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path: /home/pls/tmp/iso/iso-tree//proc
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path:
+/tmp/kiwimount-SUSE_SLES-11-0-0-DVD2.iso
+
+Apr-01 06:43:54 &lt;1&gt; : Umounting path:
+/tmp/kiwimount-SUSE_SLES-11-0-0-DVD1.iso
+
+Apr-01 06:43:55 &lt;1&gt; : KIWI exited successfully
+done
+
+Apr-01 06:43:55 &lt;1&gt; : Complete logfile at: /home/pls/tmp/iso/iso-tree/.log
+done
+
+40HCB10:/ # kiwi --create /home/pls/tmp/iso/iso-tree/ --type iso -d
+/home/pls/tmp/iso/iso-result/                    
+
+Apr-01 06:44:47 &lt;1&gt; : Reading image description [Create]...
+
+Apr-01 06:44:47 &lt;1&gt; : Updating type in .profile environment
+done
+
+Apr-01 06:44:47 &lt;1&gt; : Checking for default baseroot in XML data...
+notset
+
+Apr-01 06:44:47 &lt;1&gt; : Set root log:
+/home/pls/tmp/iso/iso-tree.27151.screenrc.log...
+done
+
+Apr-01 06:44:47 &lt;1&gt; : Creating squashfs read only filesystem...
+
+Apr-01 06:46:41 &lt;1&gt; : Creating ISO boot image: isoboot/suse-11.1...
+
+Apr-01 06:46:41 &lt;1&gt; : Checking for pre-built boot image
+notset
+
+Apr-01 06:46:41 &lt;1&gt; : Reading image description [Prepare]...
+
+Apr-01 06:46:41 &lt;1&gt; : Including foreign repository node(s)
+done
+
+Apr-01 06:46:41 &lt;1&gt; : Adding foreign package(s):
+
+Apr-01 06:46:41 &lt;1&gt; : --&gt; bootsplash-branding-SLES
+
+Apr-01 06:46:41 &lt;1&gt; : --&gt; install-initrd-branding-SLES
+
+Apr-01 06:46:41 &lt;1&gt; : Including foreign element locale: en_US.UTF-8
+done
+
+Apr-01 06:46:41 &lt;1&gt; : Including foreign element packagemanager: zypper
+done
+
+Apr-01 06:46:41 &lt;1&gt; : Including foreign type attribute: hybrid
+done
+
+Apr-01 06:46:41 &lt;1&gt; : Using profile(s): default,std
+done
+
+Apr-01 06:46:42 &lt;1&gt; : Checking for default baseroot in XML data...
+notset
+
+Apr-01 06:46:42 &lt;1&gt; : Setting up package manager: zypper
+done
+
+Apr-01 06:46:42 &lt;1&gt; : Creating default template files for new root system
+done
+
+Apr-01 06:46:42 &lt;1&gt; : Importing build keys...
+done
+
+Apr-01 06:46:42 &lt;1&gt; : Adding bootstrap zypper service: SLES_11_DVD1
+done
+
+Apr-01 06:46:42 &lt;1&gt; : Adding bootstrap zypper service: SLES_11_DVD2
+done
+
+Apr-01 06:46:42 &lt;1&gt; : Setting up bootstrap baselibs...
+done
+
+Apr-01 06:46:42 &lt;1&gt; : Initializing image system on:
+/tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151...
+failed
+
+[*** log excerpt follows, screen ***]
+
++ test 0 = 0
+
++ /usr/bin/zypper --non-interactive --no-gpg-checks --reposd-dir
+/var/cache/kiwi/zypper --cache-dir /var/cache/kiwi/zypper --raw-cache-dir
+/var/cache/kiwi/zypper --root /tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151
+install --auto-agree-with-licenses --no-recommends adaptec-firmware aufs
+aufs-kmp-default bind-libs bind-utils bootsplash bootsplash-branding-SLES
+checkmedia cromfs cryptsetup dhcpcd dialog file filesystem fribidi gawk
+gfxboot glibc glibc-locale grub hdparm hwinfo install-initrd-branding-SLES
+iproute2 kernel-default kernel-default-base kernel-default-extra kiwi-tools
+lvm2 make memtest86+ netcfg parted psmisc rpm squashfs sysconfig sysfsutils
+syslinux tar
+
++ SPID=30262
+
++ wait 30262
+
+Loading repository data...
+
+Reading installed packages...
+
+'aufs' not found.
+
++ ECODE=104
+
++ echo 104
+
++ exit 104
+
+[*** end ***]
+
+Apr-01 06:46:45 &lt;1&gt; : Removing zypper service(s): SLES_11_DVD1 SLES_11_DVD2
+done
+
+Apr-01 06:46:45 &lt;1&gt; : Removing zypper service(s): SLES_11_DVD1 SLES_11_DVD2
+done
+
+Apr-01 06:46:45 &lt;1&gt; : Umounting path:
+/tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151//var/cache/kiwi
+
+Apr-01 06:46:45 &lt;1&gt; : Umounting path:
+/tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151//var/cache/zypp
+
+Apr-01 06:46:45 &lt;1&gt; : Umounting path:
+/tmp/kiwimount-SUSE_SLES-11-0-0-DVD1.iso
+
+Apr-01 06:46:45 &lt;1&gt; : Umounting path:
+/tmp/kiwimount-SUSE_SLES-11-0-0-DVD2.iso
+
+Apr-01 06:46:45 &lt;3&gt; : Base initialization failed
+failed
+
+[*** log excerpt follows, last significant bytes ***]
+
+Apr-01 06:46:45 &lt;1&gt; : Umounting path:
+/tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151//var/cache/kiwi
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [umount
+&quot;/tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151//var/cache/kiwi&quot; 2&gt;&amp;1]
+
+Apr-01 06:46:45 &lt;1&gt; : Umounting path:
+/tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151//var/cache/zypp
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [umount
+&quot;/tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151//var/cache/zypp&quot; 2&gt;&amp;1]
+
+Apr-01 06:46:45 &lt;1&gt; : Umounting path:
+/tmp/kiwimount-SUSE_SLES-11-0-0-DVD1.iso
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [umount
+&quot;/tmp/kiwimount-SUSE_SLES-11-0-0-DVD1.iso&quot; 2&gt;&amp;1]
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [rmdir -p
+&quot;/tmp/kiwimount-SUSE_SLES-11-0-0-DVD1.iso&quot; 2&gt;&amp;1]
+
+Apr-01 06:46:45 &lt;1&gt; : Umounting path:
+/tmp/kiwimount-SUSE_SLES-11-0-0-DVD2.iso
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [umount
+&quot;/tmp/kiwimount-SUSE_SLES-11-0-0-DVD2.iso&quot; 2&gt;&amp;1]
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [rmdir -p
+&quot;/tmp/kiwimount-SUSE_SLES-11-0-0-DVD2.iso&quot; 2&gt;&amp;1]
+
+Apr-01 06:46:45 &lt;1&gt; : Release package manager lock
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [rm -f /var/lock/kiwi-init.lock]
+
+Apr-01 06:46:45 &lt;3&gt; : Base initialization failed   failed
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [rm -rf
+/tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151]
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [rm -rf /tmp/kiwi-cdboot.BFgXNT]
+
+Apr-01 06:46:45 &lt;1&gt; : EXEC [cp /home/pls/tmp/iso/iso-tree.27151.screenrc.log
+/tmp/kiwi-cdboot.BFgXNT/kiwi-cdboot-27151/.broken 2&gt;&amp;1]
+
+[*** end ***]
+
+Apr-01 06:46:45 &lt;3&gt; : KIWI exited with error(s)
+done
+
+Apr-01 06:46:45 &lt;1&gt; : Complete logfile at: /home/pls/tmp/iso/iso-tree.log
+done
+
+40HCB10:/ #
+
+ 
+
+Thanks for all help!
+
+Sorry my English is not good.
+
+With best regards Dmitry Bukrin
+
+ 
+
+    &#1057; &#1091;&#1074;&#1072;&#1078;&#1077;&#1085;&#1080;&#1077;&#1084;, &#1044;&#1084;&#1080;&#1090;&#1088;&#1080;&#1081; &#1041;&#1091;&#1082;&#1088;&#1080;&#1085;
+
+&#1086;&#1090;&#1076;&#1077;&#1083; &#1074;&#1085;&#1077;&#1076;&#1088;&#1077;&#1085;&#1080;&#1103; &#1080; &#1089;&#1086;&#1087;&#1088;&#1086;&#1074;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1103;
+
+                   &#1054;&#1040;&#1054; &#1042;&#1053;&#1048;&#1048;&#1040;&#1069;&#1057;
+
+ 
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110401/355b6291/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110401/355b6291/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: iso-tree.log
+Type: application/octet-stream
+Size: 16616 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110401/355b6291/attachment.obj">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110401/355b6291/attachment.obj</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002591.html">[Kiwi-users] LiveISO create Error on SLES 11 ia64
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2590">[ date ]</a>
+              <a href="thread.html#2590">[ thread ]</a>
+              <a href="subject.html#2590">[ subject ]</a>
+              <a href="author.html#2590">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

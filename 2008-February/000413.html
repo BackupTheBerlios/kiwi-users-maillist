@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] split image type and read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A60448%40XCH-NW-04P.nw.nos.boeing.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000406.html">
+   <LINK REL="Next"  HREF="000373.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] split image type and read-only</H1>
+    <B>Mattes, David</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A60448%40XCH-NW-04P.nw.nos.boeing.com%3E"
+       TITLE="[Kiwi-users] split image type and read-only">david.mattes at boeing.com
+       </A><BR>
+    <I>Fri Feb 29 19:26:18 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000406.html">[Kiwi-users] split image type and read-only
+</A></li>
+        <LI>Next message: <A HREF="000373.html">[Kiwi-users] squashfs in SLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#413">[ date ]</a>
+              <a href="thread.html#413">[ thread ]</a>
+              <a href="subject.html#413">[ subject ]</a>
+              <a href="author.html#413">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> 
+&gt;<i> &gt; I wish there was a &lt;read-only&gt; section in &lt;split&gt; to specify 
+</I>&gt;<i> &gt; exceptions to an entire directory tree:
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, I don't think you need that. The current split 
+</I>&gt;<i> implementation should allow what you want: Example
+</I>&gt;<i> 
+</I>&gt;<i> &lt;split&gt;
+</I>&gt;<i>   &lt;temporary&gt;
+</I>&gt;<i>     &lt;!-- make following files [rw] in tmpfs --&gt;
+</I>&gt;<i>     &lt;file name=&quot;/etc/resolv.conf&quot;/&gt;
+</I>&gt;<i>     &lt;!-- make following directory and files in it [rw] in tmpfs --&gt;
+</I>&gt;<i>     &lt;file name=&quot;/root&quot;/&gt;
+</I>&gt;<i>     &lt;file name=&quot;/root/*&quot;/&gt;
+</I>&gt;<i>     &lt;file name=&quot;/home&quot;/&gt;
+</I>&gt;<i>     &lt;file name=&quot;/home/*&quot;/&gt;
+</I>&gt;<i>   &lt;/temporary&gt;
+</I>&gt;<i>   &lt;persistent&gt;
+</I>&gt;<i>     &lt;!-- make /var/log directory and files in it persistent [rw] --&gt;
+</I>&gt;<i>     &lt;file name=&quot;/var/log&quot;/&gt;
+</I>&gt;<i>     &lt;file name=&quot;/var/log/*&quot;/&gt;
+</I>&gt;<i>   &lt;/persistent&gt;
+</I>&gt;<i> &lt;/split&gt;
+</I>&gt;<i>  
+</I>&gt;<i> According to this you can write in /var/log /root /home and 
+</I>&gt;<i> the /etc/resolv.conf file. The rest stays read-only which 
+</I>&gt;<i> also includes /var/lib/rpm and /var/lib/locatedb. The current 
+</I>&gt;<i> split system design requires you to set what should be 
+</I>&gt;<i> writable and as consequnce the rest would be read-only
+</I>&gt;<i> 
+</I>
+I don't think I was clear enough.  I would like to make the entire /var/ directory tree &quot;temporary&quot; (because I don't want to figure out exactly which files/dirs in /var need to be writeable), but specify exceptions to it that are read-only (because I want changes in these files to persist when I do updates).  Example:
+
+&lt;split&gt;
+  &lt;temporary&gt;
+    &lt;!-- make entire /var tree [rw] in tmpfs --&gt;
+    &lt;file name=&quot;/var&quot;/&gt;
+  &lt;/temporary&gt;
+  &lt;read-only&gt;
+    &lt;!-- EXCEPT these files/dirs should be read-only --&gt;
+    &lt;file name=&quot;/var/lib/rpm/*&quot;/&gt;
+    &lt;file name=&quot;/var/lib/locatedb&quot;/&gt;
+  &lt;/read-only&gt;
+&lt;/split&gt;
+
+Sorry if I'm being thick, but I don't see how I can achieve this so simply as Kiwi exists today.  The alternative is listing all the subdirs of /var/ in &lt;temporary&gt;, then all the subdirs of /var/lib, etc..., a tedious, error-prone process that will miss several vagaries of different OSes.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000406.html">[Kiwi-users] split image type and read-only
+</A></li>
+	<LI>Next message: <A HREF="000373.html">[Kiwi-users] squashfs in SLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#413">[ date ]</a>
+              <a href="thread.html#413">[ thread ]</a>
+              <a href="subject.html#413">[ subject ]</a>
+              <a href="author.html#413">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

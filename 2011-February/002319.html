@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi preload image failure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C20110211111846.GA19613%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002318.html">
+   <LINK REL="Next"  HREF="002315.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi preload image failure</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C20110211111846.GA19613%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi preload image failure">ms at suse.de
+       </A><BR>
+    <I>Fri Feb 11 12:18:46 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002318.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+        <LI>Next message: <A HREF="002315.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2319">[ date ]</a>
+              <a href="thread.html#2319">[ thread ]</a>
+              <a href="subject.html#2319">[ subject ]</a>
+              <a href="author.html#2319">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Roger,
+
+&gt;<i> I am using whatever is in kiwi-templates-4.73-195.1.i586. 
+</I>&gt;<i> The JeOS seem to be Xen/VMX. I am getting confused.
+</I>
+Sorry I have no clue what you are doing. Here is a short howto
+to get started:
+
+1) make sure your kiwi installation is not rotten.
+   The following uninstalls all kiwi packages
+   
+   for i in $(rpm -qa | grep kiwi);do rpm -e --nodeps $i;done
+
+2) now install 4.73
+
+   kiwi
+   kiwi-tools
+   kiwi-desc-vmxboot
+   kiwi-desc-oemboot
+   kiwi-templates
+
+3) now build an oem JeOS image. I guess you are using 11.2
+
+   mkdir /tmp/myimage
+   kiwi --build suse-11.2-JeOS --type oem -d /tmp/myimage
+
+4) now test the image in for example vmware, kvm, virtualbox
+   a real disk... whatever you prefer. Following is an example
+   for a test with kvm
+
+   qemu-img create mydisk 5G
+   qemu-kvm -cdrom LimeJeOS-openSUSE-11.2.i686-1.11.2.iso -hda mydisk
+
+You will be asked to install the system on the disk. After
+that operation is done the new system on the disk will be resized
+according to the oem setup. The default setup in the 11.2 JeOS
+will create a 2G root partition and some swap (depending on the
+amount of RAM). After that the system boots up and that's it 
+I'm sorry I don't see any of the mentioned problems you had.
+
+&gt;<i> The JeOS seem to be Xen/VMX. I am getting confused.
+</I>
+The JeOS is just a small image description and we make them in
+a way that you can build the following image types out of it
+
+ * Live CD
+ * Virtual Disk (vmx)
+ * Virtual Disk OEM, installs on disk (oem)
+ * Virtual Disk Xen guest domU (vmx with profile xenFlavour)
+ * Virtual Disk OEM dom0, installs on disk (oem with profile xenFlavour) 
+
+If you don't specify any profile and type a Live CD is build.
+But as you are talking about oem (and I think Xen is not of interest)
+ added '--type oem' in the howto above. I think you just built
+a live cd and was wondering why it did not behave like an oem ?
+just guessing
+
+I'm a bit confused what your goals are. Anyway I hope it
+helps what I wrote and didn't confuse you even more :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002318.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+	<LI>Next message: <A HREF="002315.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2319">[ date ]</a>
+              <a href="thread.html#2319">[ thread ]</a>
+              <a href="subject.html#2319">[ subject ]</a>
+              <a href="author.html#2319">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

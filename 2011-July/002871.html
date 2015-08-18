@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] RAID configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3C20110727093243.GA10118%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002869.html">
+   <LINK REL="Next"  HREF="002880.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] RAID configuration</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3C20110727093243.GA10118%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] RAID configuration">ms at suse.de
+       </A><BR>
+    <I>Wed Jul 27 11:32:43 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002869.html">[Kiwi-users] RAID configuration
+</A></li>
+        <LI>Next message: <A HREF="002880.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2871">[ date ]</a>
+              <a href="thread.html#2871">[ thread ]</a>
+              <a href="subject.html#2871">[ subject ]</a>
+              <a href="author.html#2871">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Daniel,
+
+&gt;<i> A bit of a delay as there were a couple of things I had to identify but
+</I>&gt;<i> it's all working now. It's a long story so I'll try to keep it as concise
+</I>&gt;<i> as possible.
+</I>
+wow I'm impressed. Before I start to comment on your report I'd like to
+tell that I have tried to import all your changes as a patch to kiwi
+which is attached to this mail. The patch includes:
+
+* make dmraid utility part of the initrd (oemboot and netboot)
+* add fake raid device detection code in probeDevices()
+* use option --listmd in hwinfo to show dmraid devices
+* add device mapper name resolution in function ddn()
+* add fallback code for DHCP network. if PXE_IFACE from the
+  pxeboot does not work, walk through the list and try to setup
+  the interface
+  
+Unfortunately I don't have such a controller so I can't test this
+It would be really great if you can give this a test again
+
+&gt;<i> 7. Other things to note: 
+</I>&gt;<i> 
+</I>&gt;<i> a) the fake raid controller will not properly overwrite data on the disk when writing out the OEM file downloaded from the server. I think this may have been the cause of the busybox problem I was mentioning before. I think whenever I was using TFTP to download the image, I was not working from a clean disk. For some reason, the write fails and an exception is raised, crashing the install.
+</I>
+Don't think I can do much here :( So ftp or http backend can be used via
+kiwiserver and kiwiservertype as you already know
+
+&gt;<i> b) insufficient memory does not seem to cause the download checks to fail.
+</I>&gt;<i> At all times, the download image is checked as fine, but the system of course
+</I>&gt;<i> crashes shortly afterwards - where depending on just how much it was able
+</I>&gt;<i> to download before it ran out of memory. 
+</I>
+What kind of memory do you mean ? disk space or RAM ? the /var/log/boot.kiwi
+file helps here to identify how it checks the size. Normally it should
+print &quot;Not enough space available for this image&quot; if the disk space is not
+big enough to store the image
+
+&gt;<i> So the final questions I have are:
+</I>&gt;<i> 1. Any idea why the dmraid package is not getting included in the boot initrd?
+</I>
+yes suseStripInitrd() did not know about it, see my patch
+
+&gt;<i> 2. Does it seem feasible that the above changes can somehow be incorporated
+</I>&gt;<i> into KIWI and/or am I missing something in my config? 
+</I>
+I have tried to address everything you wrote in the attached patch.
+I really would like to include it if we don't break other stuff. So
+far I think this should be possible
+
+&gt;<i> Anyway, I hope all that makes sense. Let me know if you've got any
+</I>&gt;<i> more questions or suggestions. Thanks for your feedback in helping me
+</I>&gt;<i> go down this path. I now know more than I ever expected (or wanted to)
+</I>&gt;<i> about the Linux internals! 
+</I>
+That was great work, let's include it :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.patch
+Type: text/x-patch
+Size: 8160 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110727/3c9a67d8/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110727/3c9a67d8/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002869.html">[Kiwi-users] RAID configuration
+</A></li>
+	<LI>Next message: <A HREF="002880.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2871">[ date ]</a>
+              <a href="thread.html#2871">[ thread ]</a>
+              <a href="subject.html#2871">[ subject ]</a>
+              <a href="author.html#2871">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

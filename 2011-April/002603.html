@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C4D99BC2B.2000205%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002606.html">
+   <LINK REL="Next"  HREF="002600.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C4D99BC2B.2000205%40novell.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Apr  4 14:40:11 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002606.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002600.html">[Kiwi-users] howto specify fixed package version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2603">[ date ]</a>
+              <a href="thread.html#2603">[ thread ]</a>
+              <a href="subject.html#2603">[ subject ]</a>
+              <a href="author.html#2603">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 04/03/2011 05:22 PM, Chris Cunha wrote:
+&gt;<i> On Sun, Apr 3, 2011 at 3:38 PM, Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt;  wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I'm not confused. :)  I'm just stating that the &quot;ramonly&quot; element was
+</I>&gt;&gt;&gt;<i> removed from the config.xml file and I have almost exactly the same
+</I>&gt;&gt;&gt;<i> issues with streaming video.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Does the system swap ?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> When using a live image on CD it still uses the host system's ram so
+</I>&gt;&gt;&gt;<i> what makes this so different than the same image on a CD?  The USB
+</I>&gt;&gt;&gt;<i> transfer rates are higher than an optical drives..I'm pretty sure.  I
+</I>&gt;&gt;&gt;<i> can live with the read/write image but this issues still exists.
+</I>&gt;&gt;&gt;<i> I would imaging that the size of the USB drive would matter somewhat
+</I>&gt;&gt;&gt;<i> because that is where the system swaps to once ram is full...no?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I don't understand what you are saying, sorry.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The USB stick image you created uses two techniques which
+</I>&gt;&gt;<i> are different compared to a &quot;normal&quot; linux system:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   1) root overlay
+</I>&gt;&gt;<i>   2) root compression
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> root is an overlay filesystem based on clicfs. Overlay
+</I>&gt;&gt;<i> means the root filesystem is a compressed read-only
+</I>&gt;&gt;<i> root tree which is mounted in a way that all write
+</I>&gt;&gt;<i> actions are directed to either the RAM (ramonly) or
+</I>&gt;&gt;<i> to a write space on the stick. If you choose the USB
+</I>&gt;&gt;<i> stick as target to write you have more space left
+</I>&gt;&gt;<i> on the RAM side. If you choose to write to RAM you
+</I>&gt;&gt;<i> have less RAM space but writing is faster
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It depends on the applications you are running if they
+</I>&gt;&gt;<i> perform well on that system. If you think it doesn't
+</I>&gt;&gt;<i> work well you can try the following:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> a) remove ramonly and rebuild, you did that already
+</I>&gt;&gt;<i>    you said there were no change in the performance
+</I>&gt;&gt;<i>    I think that means there was no RAM space issue
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> b) change from clicfs to another filesystem type
+</I>&gt;&gt;<i>    for example ext3. But that means you will loose
+</I>&gt;&gt;<i>    root compression and will at least double size your
+</I>&gt;&gt;<i>    image.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hope that helps
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Marcus
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i>   Public Key available
+</I>&gt;&gt;<i>   gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;&gt;<i>   -------------------------------------------------------
+</I>&gt;&gt;<i>   Marcus Sch&#228;fer (Res.&amp;  Dev.)   SUSE LINUX Products GmbH
+</I>&gt;&gt;<i>   Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;&gt;<i>   FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;&gt;<i>   GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;&gt;<i>   <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;&gt;<i>   -------------------------------------------------------
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> hi Marcus,
+</I>&gt;<i>
+</I>&gt;<i> Ok let me regroup here a bit.
+</I>&gt;<i> I have an 8GB flash drive that I'm now testing with.
+</I>&gt;<i>
+</I>&gt;<i> In my config.xml file I removed the &quot;ramonly&quot; setting to allow
+</I>&gt;<i> swap/save to the drive.
+</I>&gt;<i> &lt;type image=&quot;oem&quot; boottimeout=&quot;2&quot; filesystem=&quot;clicfs&quot; boot=&quot;oemboot/suse-11.3&quot;&gt;
+</I>&gt;<i>
+</I>&gt;<i> You wrote:&gt;  a) remove ramonly and rebuild, you did that already
+</I>&gt;&gt;<i>    you said there were no change in the performance
+</I>&gt;&gt;<i>    I think that means there was no RAM space issue
+</I>&gt;<i>
+</I>&gt;<i> Since I removed the &quot;ramonly&quot; element from my config.xml file do I
+</I>&gt;<i> have to add a ram space element?
+</I>&gt;<i>
+</I>&gt;<i> My config.xml file has my oem swap space set to 4000.  I did this as
+</I>&gt;<i> an extreme test to see if the behavior changes.
+</I>&gt;<i> When I ran kiwi --create I set my fat storage to 3500mb..as I
+</I>&gt;<i> understand that fat16 can have a max of 4000mb.
+</I>
+So lets do a little math here. You set swap to 4000 = 3.9 GB and your 
+storage to 3500 = 3.42 GB and you have an 8GB stick.
+
+8 - 3.9 - 3.24 = 0.86 GB = 880.64 MB. Then you have to take off some 
+space for overhead and you end up with maybe 840 MB for your image. 
+considering you have a GUI and other stuff my gut feel tells me there is 
+not really enough space.
+
+The size of the swap space does not matter. Once you start swapping your 
+performance will go out the window, especially for streaming.
+
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002606.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002600.html">[Kiwi-users] howto specify fixed package version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2603">[ date ]</a>
+              <a href="thread.html#2603">[ thread ]</a>
+              <a href="subject.html#2603">[ subject ]</a>
+              <a href="author.html#2603">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Localization failure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization%20failure&In-Reply-To=%3C4E83119E.5000409%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002942.html">
+   <LINK REL="Next"  HREF="002947.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Localization failure</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization%20failure&In-Reply-To=%3C4E83119E.5000409%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] Localization failure">bernd at ixsoft.de
+       </A><BR>
+    <I>Wed Sep 28 14:22:54 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002942.html">[Kiwi-users] Localization failure
+</A></li>
+        <LI>Next message: <A HREF="002947.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2943">[ date ]</a>
+              <a href="thread.html#2943">[ thread ]</a>
+              <a href="subject.html#2943">[ subject ]</a>
+              <a href="author.html#2943">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+&gt;<i>   
+</I>&gt;&gt;<i> However, my locale settings are completely ignored:
+</I>&gt;&gt;<i> - on startup, the live image is still booting up in English ( I can
+</I>&gt;&gt;<i> select German via F2 though )
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> correct, that's the intented behavior. gfxboot doesn't allow me to
+</I>&gt;<i> setup another master language. So I can only add additional ones for
+</I>&gt;<i> selection
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>I thought *maybe* it was possible to change the gfxboot setup within
+kiwi to reflect the locale from config.xml as the master language.
+This is done in the regular DVD installer (from language selection
+during installation), so the code and tricks should be there already.
+&gt;&gt;<i> - if I select &quot;German&quot;, the firstboot still is presented in English
+</I>&gt;&gt;<i> (although it says &quot;German&quot; as selected default locale/keyboard, timezone
+</I>&gt;&gt;<i> is set correctly)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> correct, the master locale is German but the services are not configured
+</I>&gt;<i> This means you might be missing language specific translation packages
+</I>&gt;<i> and sometimes other configuration files telling the service what it
+</I>&gt;<i> should do (e.g gnome settings daemon and friends)
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>I switched off firstboot since it isn't very useful for live media anyways.
+Most defaults are already setup via config.xml and things like network
+setup should be left to Network Manager etc.
+
+&gt;&gt;<i> - on first startup, the KDE-Desktop is completely in English, with some
+</I>&gt;&gt;<i> programs like yast also showing up in German (some modules only)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> most probably missing language packages... I know it's a nightmare ;) 
+</I>&gt;<i> You can ask Michael Andres &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ma at suse.de</A>&gt; for details here. There is a
+</I>&gt;<i> way to find all language specific packages. You can add them to
+</I>&gt;<i> your XML description afterwards
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Right. I figured that one out, but it was a bit different from 11.0
+(last version I rebuilt with kiwi).
+This is the additional list for KDE4-Live that works quite perfectly now
+(everything shows up in German now):
+
+                &lt;package name=&quot;MozillaFirefox&quot;/&gt;
+                &lt;package name=&quot;MozillaFirefox-translations-common&quot;/&gt;
+                &lt;package name=&quot;MozillaThunderbird&quot;/&gt;
+                &lt;package name=&quot;MozillaThunderbird-translations-common&quot;/&gt;
+                &lt;package name=&quot;libreoffice-help-de&quot;/&gt;
+                &lt;package name=&quot;libreoffice-l10n-de&quot;/&gt;
+                &lt;package name=&quot;libreoffice-languagetool-de&quot;/&gt;
+                &lt;package name=&quot;bundle-lang-common-de&quot;/&gt;
+               &lt;package name=&quot;bundle-lang-kde-de&quot;/&gt;
+               &lt;package name=&quot;kde4-l10n-de&quot;/&gt;
+               &lt;package name=&quot;kde4-l10n-de-data&quot;/&gt;
+               &lt;package name=&quot;kde4-l10n-de-doc&quot;/&gt;
+                &lt;package name=&quot;kde-susetranslations&quot;/&gt;
+                &lt;package name=&quot;yast2-trans-de&quot;/&gt;
+                &lt;package name=&quot;bundle-lang-common-de&quot;/&gt;
+
+
+&gt;<i> If you say... what a mess... I can only agree but it's not kiwi missing
+</I>&gt;<i> the functionality it's the distribution which doesn't easily allow
+</I>&gt;<i> to install depending on a language setup. Maybe zypper has added such
+</I>&gt;<i> a functionality or it's on the plan but so far I know only a yast module
+</I>&gt;<i> which allows to switch/add languages and also address the package
+</I>&gt;<i> situation. But still with that in mind I'm sure each desktop has its
+</I>&gt;<i> own mechanism of handling the language 
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Maybe someone could just create a META package (or pattern) containing
+the locales files for different languages.
+Something like &quot;default_german&quot; or &quot;kde4_german&quot; comes into mind.
+Or if possible, create a pattern like &quot;kde_locale&quot; and then the package
+names macros are replaced by the default locale chosen in config.xml.
+
+IMHO, a live media without proper localization packages is a very poor
+sample for new users - that fact alone might cost openSuse a lot of
+prospective users.
+
+Regards
+Bernd
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 300 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110928/e48df9f1/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110928/e48df9f1/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002942.html">[Kiwi-users] Localization failure
+</A></li>
+	<LI>Next message: <A HREF="002947.html">[Kiwi-users] Kiwi and cross platform
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2943">[ date ]</a>
+              <a href="thread.html#2943">[ thread ]</a>
+              <a href="subject.html#2943">[ subject ]</a>
+              <a href="author.html#2943">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

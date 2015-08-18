@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Adding software
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20software&In-Reply-To=%3C20071116094521.GA4321%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000137.html">
+   <LINK REL="Next"  HREF="000139.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Adding software</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adding%20software&In-Reply-To=%3C20071116094521.GA4321%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Adding software">ms at suse.de
+       </A><BR>
+    <I>Fri Nov 16 10:45:22 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000137.html">[Kiwi-users] Adding software
+</A></li>
+        <LI>Next message: <A HREF="000139.html">[Kiwi-users] v1.90 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;&gt; Actually I want to add it to the image. In some cases root would not be
+</I>&gt;<i> &gt;&gt; mounted.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Adding software to the image can be done by editing the config.xml
+</I>&gt;<i> &gt; file and include additional packages you would like to install.
+</I>&gt;<i> &gt; For example
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 	&lt;package name=&quot;vim&quot;/&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; installs vim ;)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Regards,
+</I>&gt;<i> &gt; Marcus
+</I>&gt;<i> 
+</I>&gt;<i> I see that config.xml has three package types, &quot;image&quot;, &quot;boot&quot; and
+</I>&gt;<i> &quot;delete&quot;. Some packages are listed in both image and delete. What's the
+</I>&gt;<i> purpose of this? Which group would I use to add software, image?
+</I>
+you should stick to the image type for adding your software.
+
+The boot type is for boot-strapping the image. Somehow a minimal set of
+packages must be installed first before you are able to chroot into that new
+tree and proceed with the installation process in that tree.
+This minimal set is defined in the boot section.
+
+The delete section is just an optional collection of packages which you don't
+want to have in your image later but get installed for some reason
+(dependencies,etc...) The list there must be handled manually in the
+images.sh script. There is a function which returns all those delete packages
+and you can handle them like you want to. Within the boot images there
+the following
+
+	for i in `baseGetPackagesForDeletion`;do
+		rpm -e $i --nodeps
+	done
+
+so we simple uninstall them. Normally you don't need the delete section
+that's something we need to make things smaller. A good example of
+a system image description you can start with is the live CD for 
+suse 10.3:
+
+	<A HREF="http://download.opensuse.org/repositories/openSUSE:/Tools/openSUSE_10.3/noarch/kiwi-desc-livesystem-1.52-26.1.noarch.rpm">http://download.opensuse.org/repositories/openSUSE:/Tools/openSUSE_10.3/noarch/kiwi-desc-livesystem-1.52-26.1.noarch.rpm</A>
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000137.html">[Kiwi-users] Adding software
+</A></li>
+	<LI>Next message: <A HREF="000139.html">[Kiwi-users] v1.90 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

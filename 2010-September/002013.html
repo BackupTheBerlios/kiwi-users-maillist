@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem using SLES ISOs as repository
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20using%20SLES%20ISOs%20as%20repository&In-Reply-To=%3C4C89357C.3040306%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002011.html">
+   <LINK REL="Next"  HREF="002014.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem using SLES ISOs as repository</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20using%20SLES%20ISOs%20as%20repository&In-Reply-To=%3C4C89357C.3040306%40novell.com%3E"
+       TITLE="[Kiwi-users] Problem using SLES ISOs as repository">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Sep  9 21:29:00 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002011.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+        <LI>Next message: <A HREF="002014.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2013">[ date ]</a>
+              <a href="thread.html#2013">[ thread ]</a>
+              <a href="subject.html#2013">[ subject ]</a>
+              <a href="author.html#2013">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 09/09/2010 09:59 AM, Robert Schweikert wrote:
+&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> On 09/09/2010 09:22 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">john.lund at emc.com</A> wrote:
+</I>&gt;&gt;&gt;<i> Ok, so maybe the DVD2 is not a yast repository. Frankly said I don't
+</I>&gt;&gt;&gt;<i> know about the structure of DVD2 because I never needed it. Could you
+</I>&gt;&gt;&gt;<i> loop mount it and check the contents ?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  mount -o loop platform/kiwi-repos/SLES/SLES-11-SP1-DVD-x86_64-GM-
+</I>&gt;&gt;&gt;<i> DVD2.iso /mnt
+</I>&gt;&gt;&gt;<i>  ls -l /mnt
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> * is there a repodata directory ? if yes I would try to change
+</I>&gt;&gt;&gt;<i>   from type=&quot;yast2&quot; to type=&quot;rpm-md&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> [Lund, John] I'm pretty sure it is a yast2 repository.  And it does not have the file /media.1/media, but it does have a media.2/media file (and so on for the DVD3).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> kiwi1:/cdrom # ls -l
+</I>&gt;&gt;<i> total 6
+</I>&gt;&gt;<i> -r--r--r-- 1 root root  521 2010-05-20 10:11 content
+</I>&gt;&gt;<i> -r--r--r-- 1 root root  307 2010-05-20 10:11 content.asc
+</I>&gt;&gt;<i> -r--r--r-- 1 root root   35 2010-05-20 10:11 directory.yast
+</I>&gt;&gt;<i> dr-xr-xr-x 2 root root 2048 2010-05-20 10:09 media.2
+</I>&gt;&gt;<i> dr-xr-xr-x 5 root root 2048 2010-05-20 10:05 suse
+</I>&gt;&gt;<i> kiwi1:/cdrom # ls -l media.2/
+</I>&gt;&gt;<i> total 2
+</I>&gt;&gt;<i> -r--r--r-- 1 root root 33 2010-05-20 10:09 build
+</I>&gt;&gt;<i> -r--r--r-- 1 root root 60 2010-05-20 10:09 media
+</I>&gt;&gt;<i> -r--r--r-- 1 root root 51 2010-05-20 10:09 products
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Is there a quick way to modify the code that does the automount of ISOs and checks for the repository information to look for media.*/media?
+</I>&gt;<i> 
+</I>&gt;<i> The problem appears to be in KIWIURL.pm where the media.1 location is
+</I>&gt;<i> hard coded. Looking at the code now.
+</I>
+Looks like this is a zypper problem as I am able to reproduce this on
+the command line outside of a kiwi build.
+
+Investigating....
+
+Robert
+&gt;<i> 
+</I>&gt;<i> Robert
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thank you,
+</I>&gt;&gt;<i> John Lund
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i> 
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002011.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+	<LI>Next message: <A HREF="002014.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2013">[ date ]</a>
+              <a href="thread.html#2013">[ thread ]</a>
+              <a href="subject.html#2013">[ subject ]</a>
+              <a href="author.html#2013">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

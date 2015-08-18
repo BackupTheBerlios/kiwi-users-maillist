@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] schema changes for oem- bool values
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20schema%20changes%20for%20oem-%20bool%20values&In-Reply-To=%3C20090825164243.GA1267%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001405.html">
+   <LINK REL="Next"  HREF="001411.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] schema changes for oem- bool values</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20schema%20changes%20for%20oem-%20bool%20values&In-Reply-To=%3C20090825164243.GA1267%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] schema changes for oem- bool values">ms at novell.com
+       </A><BR>
+    <I>Tue Aug 25 18:42:43 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001405.html">[Kiwi-users] [opensuse] Adding a .tar.gz file into SUSEStudio	Appliance Without Extracted it ?
+</A></li>
+        <LI>Next message: <A HREF="001411.html">[Kiwi-users] recent upgrade causes core dump
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1410">[ date ]</a>
+              <a href="thread.html#1410">[ thread ]</a>
+              <a href="subject.html#1410">[ subject ]</a>
+              <a href="author.html#1410">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+just to let you know I have adapted the oem- bool
+elements from content &quot;text&quot; to boolean. This means
+only &quot;true&quot; or &quot;false&quot; are allowed as values. If you
+have something like yes or no you need to adapt it
+
+The schema will not validate if you don't adapt it
+but the error message from libXML doesn't directly
+point someone to this problem
+
+That's the reason why I'm writing it on the list
+
+Have fun
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001405.html">[Kiwi-users] [opensuse] Adding a .tar.gz file into SUSEStudio	Appliance Without Extracted it ?
+</A></li>
+	<LI>Next message: <A HREF="001411.html">[Kiwi-users] recent upgrade causes core dump
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1410">[ date ]</a>
+              <a href="thread.html#1410">[ thread ]</a>
+              <a href="subject.html#1410">[ subject ]</a>
+              <a href="author.html#1410">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

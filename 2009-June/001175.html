@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] case inconsistency when looking for config.* files
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20case%20inconsistency%20when%20looking%20for%20config.%2A%20files&In-Reply-To=%3C20090610113901.GA7686%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001173.html">
+   <LINK REL="Next"  HREF="001176.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] case inconsistency when looking for config.* files</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20case%20inconsistency%20when%20looking%20for%20config.%2A%20files&In-Reply-To=%3C20090610113901.GA7686%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] case inconsistency when looking for config.* files">ms at novell.com
+       </A><BR>
+    <I>Wed Jun 10 13:39:01 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001173.html">[Kiwi-users] case inconsistency when looking for config.* files
+</A></li>
+        <LI>Next message: <A HREF="001176.html">[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1175">[ date ]</a>
+              <a href="thread.html#1175">[ thread ]</a>
+              <a href="subject.html#1175">[ subject ]</a>
+              <a href="author.html#1175">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Due to this inconsistency it is inconvenient to automate the config.*
+</I>&gt;<i> creation process. However it can be taken care of by creating config
+</I>&gt;<i> file names in both upper and lower case but is undesirable.
+</I>&gt;<i> 
+</I>&gt;<i> This looks like a kiwi initrd issue. Kindly advise.
+</I>
+no this depends on the dhcp client you use. The kiwi initrd
+turns the value of the DHCPCHADDR into an uppercase value and
+handles only this value
+
+see commit eab401dd32565d6851880aca18477ce32ff5e909 for details
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001173.html">[Kiwi-users] case inconsistency when looking for config.* files
+</A></li>
+	<LI>Next message: <A HREF="001176.html">[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1175">[ date ]</a>
+              <a href="thread.html#1175">[ thread ]</a>
+              <a href="subject.html#1175">[ subject ]</a>
+              <a href="author.html#1175">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

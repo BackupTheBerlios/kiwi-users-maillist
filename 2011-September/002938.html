@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] passwordless user in kiwi created system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20passwordless%20user%20in%20kiwi%20created%20system&In-Reply-To=%3C4E6F9946.9060704%40nassur.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002937.html">
+   <LINK REL="Next"  HREF="002939.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] passwordless user in kiwi created system</H1>
+    <B>e.waelde</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20passwordless%20user%20in%20kiwi%20created%20system&In-Reply-To=%3C4E6F9946.9060704%40nassur.net%3E"
+       TITLE="[Kiwi-users] passwordless user in kiwi created system">ew.ng7125 at nassur.net
+       </A><BR>
+    <I>Tue Sep 13 19:56:22 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002937.html">[Kiwi-users] passwordless user in kiwi created system
+</A></li>
+        <LI>Next message: <A HREF="002939.html">[Kiwi-users] kiwi: Weekly report 2011-09-11 - 2011-09-16...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2938">[ date ]</a>
+              <a href="thread.html#2938">[ thread ]</a>
+              <a href="subject.html#2938">[ subject ]</a>
+              <a href="author.html#2938">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+On 09/13/2011 08:28 AM, Roger Oberholtzer wrote:
+&gt;<i> On Mon, 2011-09-12 at 07:42 -0400, Robert Schweikert wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On 09/12/2011 05:20 AM, marcin kowalski wrote:
+</I>&gt;&gt;&gt;<i> Hi list, does kiwi support a configuration stanza to setup a user with
+</I>&gt;&gt;&gt;<i> no password prompt? Or at least to automatically login a specific user
+</I>&gt;&gt;&gt;<i> in text mode (graphical mode is covered by login manager afaik) ?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You can follow the instructions found here:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="http://littlesvr.ca/linux-stuff/articles/autologinconsole/autologinconsole.php">http://littlesvr.ca/linux-stuff/articles/autologinconsole/autologinconsole.php</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> To set up a user autologin in run level 3. All modifications to system
+</I>&gt;&gt;<i> files can be done from withing config.sh
+</I>&gt;<i>
+</I>&gt;<i> Interesting. I wonder about two things:
+</I>&gt;<i>
+</I>&gt;<i> 1. The man page for login.defs (and the supplied file in /etc) do not
+</I>&gt;<i> contain the NO_PASSWORD_CONSOLE directive. Is is an undocumented
+</I>&gt;<i> feature? This is based on openSUSE 11.2.
+</I>&gt;<i>
+</I>&gt;<i> 2. Would this work for those logging in via ssh? If you were to login
+</I>&gt;<i> via ssh, you would get a pts/X console, where X is unknown.
+</I>&gt;<i>
+</I>
+Autologin:
+there are two solutions that I use:
+
+1. image built with kiwi
+we do use some specific startup stuff, which amounts to starting
+a script /etc/init.d/startX
+in which
+   start-stop-daemon ... -u otheruser  ... runX
+is called. in runX there is a line
+   xinit /usr/bin/fvwm -- :0 -br vt7 ...
+which will make X started as &quot;otheruser&quot; and everything will be fine.
+This additional stuff is put into several rpm packages, which are
+installed into the kiwi made image via config.xml.
+
+2. openmoko phone with Debian
+there is a small utility called &quot;nodm&quot; which will start X as
+user otheruser if so instructed, and all X clients need to show up
+in otheruser's home dir in .xinit.
+
+maybe some of this helps.
+
+Erich
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002937.html">[Kiwi-users] passwordless user in kiwi created system
+</A></li>
+	<LI>Next message: <A HREF="002939.html">[Kiwi-users] kiwi: Weekly report 2011-09-11 - 2011-09-16...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2938">[ date ]</a>
+              <a href="thread.html#2938">[ thread ]</a>
+              <a href="subject.html#2938">[ subject ]</a>
+              <a href="author.html#2938">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] RAID configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3CE4C68E2D-1460-4A6E-A0E9-784FD81179AF%40danl.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002862.html">
+   <LINK REL="Next"  HREF="002871.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] RAID configuration</H1>
+    <B>Daniel Little</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3CE4C68E2D-1460-4A6E-A0E9-784FD81179AF%40danl.org%3E"
+       TITLE="[Kiwi-users] RAID configuration">me at danl.org
+       </A><BR>
+    <I>Wed Jul 27 03:02:48 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002862.html">[Kiwi-users] RAID configuration
+</A></li>
+        <LI>Next message: <A HREF="002871.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2869">[ date ]</a>
+              <a href="thread.html#2869">[ thread ]</a>
+              <a href="subject.html#2869">[ subject ]</a>
+              <a href="author.html#2869">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+A bit of a delay as there were a couple of things I had to identify but it's all working now. It's a long story so I'll try to keep it as concise as possible.
+
+1. The RAID controller on these servers is an LSI controller, and is affectionately known, as I discovered, as &quot;fake raid&quot;. Fake raid is neither a pure hardware controller, nor a pure software raid, but a mixture of the two. Some things are addressed by the BIOS, but the majority of the work is handled essentially by dmraid, at least as far as I can ascertain. 
+
+2. There are several kernel modules that need to be loaded for this to work. These are dm-log.ko, dm-region-hash.ko and dm-mirror.ko - there may be more in other server configurations but these were the ones used on our server. Adding these devices to the config.xml wasn't sufficient because they are only loaded when '/sbin/dmraid' is in initrd. For some reason I still have not been able to identify, the 'dmraid' package is not getting included in the first initrd package, even though 
+	&lt;package name=&quot;dmraid&quot; bootinclude=&quot;true&quot;/&gt;' 
+is included in the config.xml. So once the ISOs are built, I have to explode the initrd, add the binary and it's shared libraries and then put it back together to make the initrd that is loaded over PXE.
+
+3. Loading the modules, however, does not create the necessary devices for KIWI to look at installing the partition into. In the '--prepare' directory, the file [prepare-root]/lib/mkinitrd/boot/21-dmraid.sh has the command '/sbin/dmraid -a y -p' which creates the initial device '/dev/mapper/lsi_chedfhiceaa' which is the underlying device that should appear on the disk selection screen. Unfortunately, the '21-dmraid.sh' file doesn't seem to be included in the initrd either. Again, this is part of the 'dmraid' package so having that package properly installed may solve everything up to this point.
+
+4. Having done all the above, the installer still failed. In the file '/usr/share/kiwi/image/oemboot/suse-dump', there is a check to find appropriate disk devices like so:
+ 
+	deviceDisks=`$hwinfo --disk |\
+		grep &quot;Device File:&quot; | cut -f2 -d: |\
+		cut -f1 -d&quot;(&quot;`
+Unfortunately, the fake-raid device does not show with the 'hwinfo --disk' command. You can add '--listmd' to it to show raid devices, but as the device hasn't yet been created as a raid device, that wont help either. Eventually, I settled on the following replacement which works for our purposes (and could probably be shortened), but may not cover all cases:
+	deviceDisks=`fdisk -l|grep Disk|grep :|grep -v identifier|cut -f1 -d:|sed -e 's/Disk //'`
+This got us to the point that the disk selection showed the '/dev/sda', '/devsdb' and '/dev/mapper/lsi_chedfhiceaa' - our fake raid device. Awesome! I thought I was done. Alas, no!
+
+5. At this point, the image is successfully downloaded and written to the disk. But the final step is to resize the partitiion and for that to happen, the system needs to find the partition. Something odd happens here and I'm not entirely sure what it is, but I did work around the problem again. The device doesn't appear until 'draid -a y' is run. At that point, the device shows up as '/dev/mapper/lsi_chedfhiceaap1' (note p1 added on the end). The KIWI scripts then run another command to check the disk partitions, and the device is now '/dev/mapper/lsi_chedfhiceaa_part1'. After the 'dmraid -a y' command is run, 'function() ddn' (KIWILinuxrc.sh) is called from waitForStorageDevices() , and then waitForStorageDevice is called once more after the device is now named with the _part1 at the end. As I could not get the device name to be consistent, I modified function() ddn to add the following:
+
+	if echo $1 | grep -q &quot;^\/dev\/mapper\/&quot; ; then
+		mapper=`echo $1&quot;p&quot;$2`
+		if [ -e $mapper ]  ; then
+			echo $mapper
+			return
+		fi
+		echo $1&quot;_part&quot;$2
+		return
+	fi
+
+This approach will test to see if the first form of the name is there, and if it is, will return that, otherwise it will return the second form.
+
+6. Having done all that, the blade was finally able to install just fine. There's only one more hiccup - some of the other blades have four NICs in them. These NICs are weird. The PXE server acquires its address from the DHCP server of eth0, but that interface is only used for the PXE portion. After that, eth2 is used instead. I'm not sure if there's a &quot;proper way&quot; to deal with this, but to address it here, I changed the file 'KIWILinuxRC.sh' has the following lines in function setupNetwork() changed from:
+
+        if ! dhcpcd $opts $PXE_IFACE 1&gt;&amp;2;then
+                systemException \
+                        &quot;Failed to setup DHCP network interface !&quot; \
+                &quot;reboot&quot;
+        fi
+
+to the following:
+
+        PXE_IFACE=&quot;&quot;
+        for iface in ${dev_list[*]};do
+                if dhcpcd $opts $iface  1&gt;&amp;2;then
+                        PXE_IFACE=$iface
+                        break
+                fi
+        done
+
+        if [ -z $PXE_IFACE ] ;then
+                systemException \
+                        &quot;Failed to setup DHCP network interface !&quot; \
+                &quot;reboot&quot;
+        fi
+That finally gets all the blade servers booting just fine. 
+
+7. Other things to note: 
+
+a) the fake raid controller will not properly overwrite data on the disk when writing out the OEM file downloaded from the server. I think this may have been the cause of the busybox problem I was mentioning before. I think whenever I was using TFTP to download the image, I was not working from a clean disk. For some reason, the write fails and an exception is raised, crashing the install. 
+
+b) insufficient memory does not seem to cause the download checks to fail. At all times, the download image is checked as fine, but the system of course crashes shortly afterwards - where depending on just how much it was able to download before it ran out of memory. 
+
+
+So the final questions I have are:
+
+1. Any idea why the dmraid package is not getting included in the boot initrd?
+
+2. Does it seem feasible that the above changes can somehow be incorporated into KIWI and/or am I missing something in my config? 
+
+Anyway, I hope all that makes sense. Let me know if you've got any more questions or suggestions. Thanks for your feedback in helping me go down this path. I now know more than I ever expected (or wanted to) about the Linux internals! 
+
+Daniel.
+
+On 2011-07-25, at 12:04 PM, Marcus Sch&#228;fer wrote:
+
+&gt;<i> Hi Daniel,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I managed to get this working, but had to modify the initrd of the boot image to get it to do so. I'll post more details later today as it was a fairly long process to get it resolved. There are some portions of the way Kiwi works that would not work with the configuration and some portions that I'm trying to understand whether I have something missing in my config.xml. I didn't know about the kiwidebug=1 so that will help resolve where the issues are in the config, I think. But thank you - the questions you had helped point me in the right path to finding the solution. Now I just want to make it repeatable! :)
+</I>&gt;<i> 
+</I>&gt;<i> I'm very interested in your solution. If there is something we can
+</I>&gt;<i> include to kiwi as a generic solution this would be great. That way
+</I>&gt;<i> others would benefit from your hard work to get that done
+</I>&gt;<i> 
+</I>&gt;<i> Thanks
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> -- 
+</I>&gt;<i> Public Key available
+</I>&gt;<i> gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> -------------------------------------------------------
+</I>&gt;<i> Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i> Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i> FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i> GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+</I>&gt;<i> HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i> <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i> -------------------------------------------------------
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002862.html">[Kiwi-users] RAID configuration
+</A></li>
+	<LI>Next message: <A HREF="002871.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2869">[ date ]</a>
+              <a href="thread.html#2869">[ thread ]</a>
+              <a href="subject.html#2869">[ subject ]</a>
+              <a href="author.html#2869">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

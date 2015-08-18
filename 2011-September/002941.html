@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Localization failure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization%20failure&In-Reply-To=%3C4E808721.5010806%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002946.html">
+   <LINK REL="Next"  HREF="002942.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Localization failure</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization%20failure&In-Reply-To=%3C4E808721.5010806%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] Localization failure">bernd at ixsoft.de
+       </A><BR>
+    <I>Mon Sep 26 16:07:29 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002946.html">[Kiwi-users] non-0 return package setup scripts does not fail the build
+</A></li>
+        <LI>Next message: <A HREF="002942.html">[Kiwi-users] Localization failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2941">[ date ]</a>
+              <a href="thread.html#2941">[ thread ]</a>
+              <a href="subject.html#2941">[ subject ]</a>
+              <a href="author.html#2941">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I'm trying to setup a live cd/usb for 11.4 with the latest kiwi 4.97.
+
+However, my locale settings are completely ignored:
+- on startup, the live image is still booting up in English ( I can
+select German via F2 though )
+- if I select &quot;German&quot;, the firstboot still is presented in English
+(although it says &quot;German&quot; as selected default locale/keyboard, timezone
+is set correctly)
+- on first startup, the KDE-Desktop is completely in English, with some
+programs like yast also showing up in German (some modules only)
+- keyboard is in German, so at least this seems to work
+
+I used the example config.xml with KDE 4 desktop.
+This is my configuration for locale:
+            &lt;locale&gt;de_DE&lt;/locale&gt;
+            &lt;timezone&gt;Europe/Berlin&lt;/timezone&gt; 
+            &lt;keytable&gt;de-latin1-nodeadkeys.map.gz&lt;/keytable&gt;
+
+
+What do I have to add to make the default live boot, the firstboot and
+the desktop all come up in German (without having to select F2)?
+I did not find anything about this in kiwi.pdf or the other docs?
+
+Regards
+
+Bernd
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 311 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110926/dc5a2e2c/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110926/dc5a2e2c/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002946.html">[Kiwi-users] non-0 return package setup scripts does not fail the build
+</A></li>
+	<LI>Next message: <A HREF="002942.html">[Kiwi-users] Localization failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2941">[ date ]</a>
+              <a href="thread.html#2941">[ thread ]</a>
+              <a href="subject.html#2941">[ subject ]</a>
+              <a href="author.html#2941">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] KDE 3.5 Base System LiveCD / LiveUSB
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KDE%203.5%20Base%20System%20LiveCD%20/%20LiveUSB&In-Reply-To=%3C20080825075249.GC30136%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000813.html">
+   <LINK REL="Next"  HREF="000816.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] KDE 3.5 Base System LiveCD / LiveUSB</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KDE%203.5%20Base%20System%20LiveCD%20/%20LiveUSB&In-Reply-To=%3C20080825075249.GC30136%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] KDE 3.5 Base System LiveCD / LiveUSB">ms at novell.com
+       </A><BR>
+    <I>Mon Aug 25 09:52:50 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000813.html">[Kiwi-users] KDE 3.5 Base System LiveCD / LiveUSB
+</A></li>
+        <LI>Next message: <A HREF="000816.html">[Kiwi-users] KDE 3.5 Base System LiveCD / LiveUSB
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#815">[ date ]</a>
+              <a href="thread.html#815">[ thread ]</a>
+              <a href="subject.html#815">[ subject ]</a>
+              <a href="author.html#815">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; Thank you for the response, Carlos. If I add the pattern, should I
+</I>&gt;<i> &gt; leave package configuration as is as shown ?
+</I>&gt;<i> 
+</I>&gt;<i> I think you can just use patterns instead of packages and it will work. Some 
+</I>&gt;<i> recommended packages might not be included but for sure you will notice if 
+</I>&gt;<i> that happens.
+</I>
+I agree, it has turned out that the best way is to use a pattern
+(if it exists for the purpose you need the image for) and add those
+packages which are the &quot;special&quot; ones you additionally need and are
+not installed by the package manager due to the dependencies of these
+packages. This keeps the list small and maintainable
+
+&gt;<i> &gt; Another question, How if I want to know another pattern provided by
+</I>&gt;<i> &gt; kiwi ?
+</I>
+kiwi does not provide patterns, patterns are provided by the repository
+and the package manager which handles the repository should have the
+functionality to display what patterns are available. As the patterns 
+we talk about are something SUSE specific smart can't handle them but
+zypper knows about it:
+
+	zypper patterns
+
+&gt;<i> Is this same pattern with yast repositories pattern ? 
+</I>
+yes
+
+&gt;<i> Is there any special command to display available pattern ?
+</I>
+not in kiwi
+
+&gt;<i> I don't know which the best way to list them is, but I use patterns-openSUSE 
+</I>&gt;<i> (SRPM). It is great to check which packages a pattern require, recommend and 
+</I>&gt;<i> suggest. You can also use 'zypper se | grep pattern'.
+</I>
+yes you should use the package manager functionality to show these
+kind of information.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000813.html">[Kiwi-users] KDE 3.5 Base System LiveCD / LiveUSB
+</A></li>
+	<LI>Next message: <A HREF="000816.html">[Kiwi-users] KDE 3.5 Base System LiveCD / LiveUSB
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#815">[ date ]</a>
+              <a href="thread.html#815">[ thread ]</a>
+              <a href="subject.html#815">[ subject ]</a>
+              <a href="author.html#815">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

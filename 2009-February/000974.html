@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] swap order of split image parts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20swap%20order%20of%20split%20image%20parts&In-Reply-To=%3C20090210093559.GA32159%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000971.html">
+   <LINK REL="Next"  HREF="000972.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] swap order of split image parts</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20swap%20order%20of%20split%20image%20parts&In-Reply-To=%3C20090210093559.GA32159%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] swap order of split image parts">ms at novell.com
+       </A><BR>
+    <I>Tue Feb 10 10:36:00 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000971.html">[Kiwi-users] swap order of split image parts
+</A></li>
+        <LI>Next message: <A HREF="000972.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#974">[ date ]</a>
+              <a href="thread.html#974">[ thread ]</a>
+              <a href="subject.html#974">[ subject ]</a>
+              <a href="author.html#974">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Vladimir,
+
+&gt;<i> I see.
+</I>&gt;<i> Flexibility and stability are antonyms,
+</I>&gt;<i> at least in common sense ;)
+</I>
+That's correct the more you can do the more mistakes you can
+make. But the design of kiwi was not to prevent somebody to
+score an own goal :)
+
+Before I started the implementation I saw many different codings
+which were all located in the same area but they were all done for
+one or two specific requirement purposes and not compatible to each
+other. The result was not re-usable or maintainable code which also
+most often worked on one specific version of an OS only.
+
+If you ask 100 people for their needs in the Imaging area you
+get 80 different requirements. With kiwi I'd like to be able to
+offer one tool to make them all happy but that also means service
+and help from the operating system vendor. Novell is really
+focused in the appliance market and that means a strong
+communication and partnership with application vendors to
+integrate their software smootly into the OS. In my opinion
+you can't separate tools and service in the Image world to be
+successful
+
+The idea of kiwi is also to be able to re-use what others did.
+Everything inside an image description can serve as a template
+for somebody else with the same or a similar problem. Adapting
+an existing solution seems to be easier than starting from
+scratch
+
+stability and security are important for kiwi but as of the
+design they can only be guaranteed to some degree. I fully agree
+to what you have said here. In other words we don't prevent somebody
+from removing potentionally important files of the image in for
+example config.sh. So for me it's important that when kiwi runs
+it works reliable and the result should be as stable and secure
+as the creator of the image description took care of. If that
+applies an image description can be signed and also certified
+which then guarantees stability, security and supportability
+of the system created out of this description. kiwi itself should
+not be the code which introduces security or stability
+problems... which is a challenge :)
+
+&gt;<i> My focus was sort of opposite, paranoid:
+</I>&gt;<i> &quot;what could we do to disable any possible tampering
+</I>&gt;<i> of image content on the system run?&quot;
+</I>
+yeah and you are not the only one thinking that way. I really
+would like to make that possible if we need to enhance kiwi
+to do it let's do it
+
+&gt;<i> Obvious first reaction is: read-only root file system.
+</I>&gt;<i> I knew that unionfs encourages altering of
+</I>&gt;<i> system files by it's design: top layer is always read-write.
+</I>&gt;<i> Even if aufs allows read-only layer on the top of union,
+</I>&gt;<i> this option is not used in kiwi.
+</I>
+That's correct we use the overlay filesystems to allow read-write
+for the entire filesystem exactly for the reason one portion is a
+read-only filesystem. It would be no big deal to have a config.xml
+flag which says &quot;mount this union but mount it read-only&quot;. The
+problem with this would be that the system doesn't work well if you
+really can't write to nowhere. Each login attempt for example is
+logged by pam and if it can't write that information the login failed.
+So as consequence you would have a system you can't login to
+
+&gt;<i> Therefore only split image type left then
+</I>&gt;<i> as the candidate for read-only root.
+</I>
+correct
+
+&gt;<i> In this case, it may worth to not mess up
+</I>&gt;<i> with two opposite requirements, but rather
+</I>&gt;<i>  * invent new type of image, or
+</I>&gt;<i>  * adjust one of other type images to
+</I>&gt;<i> include option of read-only root, or something similar,
+</I>&gt;<i> such as option &quot;immune&quot;.
+</I>
+I would vote for the second option even though I'm not sure if
+a 100% not writable root system will work for you
+
+&gt;<i> I end up my image build with similar conclusion.
+</I>&gt;<i> There are little changes made in linuxrc
+</I>&gt;<i> I could send you for certainty in further discussion,
+</I>&gt;<i> out of kiwi-users list, if you don't mind.
+</I>
+That would be great I appreciate all your help and patches
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000971.html">[Kiwi-users] swap order of split image parts
+</A></li>
+	<LI>Next message: <A HREF="000972.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#974">[ date ]</a>
+              <a href="thread.html#974">[ thread ]</a>
+              <a href="subject.html#974">[ subject ]</a>
+              <a href="author.html#974">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

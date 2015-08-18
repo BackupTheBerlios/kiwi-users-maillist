@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi autostart app/script or other means
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20autostart%20app/script%20or%20other%20means&In-Reply-To=%3CAANLkTim3cbQiJ3imdjUqgbf5LOGNxnTNBLC4x79e72_%3D%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002576.html">
+   <LINK REL="Next"  HREF="002575.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi autostart app/script or other means</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20autostart%20app/script%20or%20other%20means&In-Reply-To=%3CAANLkTim3cbQiJ3imdjUqgbf5LOGNxnTNBLC4x79e72_%3D%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] kiwi autostart app/script or other means">eportel6607 at gmail.com
+       </A><BR>
+    <I>Wed Mar 30 04:53:16 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002576.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+        <LI>Next message: <A HREF="002575.html">[Kiwi-users] kiwi autostart app/script or other means
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2572">[ date ]</a>
+              <a href="thread.html#2572">[ thread ]</a>
+              <a href="subject.html#2572">[ subject ]</a>
+              <a href="author.html#2572">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Guys I'm trying to run two scripts.  One a login and one at logout or
+halt/shutdown.  I did get the shut down script to run by adding the
+command to (trigger the script) the /etc/init.rd/halt.local.
+However I've tried every way that I know how to trigger this script to
+run upon login and it hasn't ran once.
+Attempts include
+ 1) creating a .desktop file in the ~/.config/autostart that points to
+the script.  When I click on this .desktop file it will run the script
+no problem.  If I run the command for the script manually it will also
+run no problem.
+2) I've added the script directly to the ~/config/autostart
+folder....didn't work
+3) I've added the command for the script directly to the
+/etc/init.rd/boot.local...didn't work
+4) I've renamed the scripts with a &quot;.sh&quot; extension....didn't work.
+
+Oddly I have a .desktop file (located in the ~/config/autostart
+folder) that exec a script for auto locating and mounting the fat
+partition on the flash drive and this same script changes the Windows
+attributes so certain files and folders are hidden when viewed in
+windows.  The strange thing is that the part of the script that
+locates and mounts the fat partition ALWAYS works...and the hiding
+(for Windows) of the &quot;boot&quot; folder...always works also.  However there
+is another file (located in the same exact directory as the &quot;boot&quot;
+folder)  that only is hidden after booting the image a second time.
+I've tried adding my Windows attributes parts before the fat locating
+and mount section...I've tried many things be it still only seems to
+hide this other file after two boots of the image.    I have no idea
+what is going on here but I was wondering if there might be a better
+way to run a login script.  Can Kiwi help?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002576.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+	<LI>Next message: <A HREF="002575.html">[Kiwi-users] kiwi autostart app/script or other means
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2572">[ date ]</a>
+              <a href="thread.html#2572">[ thread ]</a>
+              <a href="subject.html#2572">[ subject ]</a>
+              <a href="author.html#2572">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

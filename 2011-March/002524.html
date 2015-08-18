@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] New KIWI layout, new issues.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C20110321150017.GA12611%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002553.html">
+   <LINK REL="Next"  HREF="002532.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] New KIWI layout, new issues.</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20New%20KIWI%20layout%2C%20new%20issues.&In-Reply-To=%3C20110321150017.GA12611%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] New KIWI layout, new issues.">ms at suse.de
+       </A><BR>
+    <I>Mon Mar 21 16:00:17 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002553.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002532.html">[Kiwi-users] Broadcom drivers/kernel module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2524">[ date ]</a>
+              <a href="thread.html#2524">[ thread ]</a>
+              <a href="subject.html#2524">[ subject ]</a>
+              <a href="author.html#2524">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Perhaps a compatibility matrix for kiwi is needed. Various OS releases
+</I>&gt;<i> by kiwi recipe. Fill in what works out-of-the-box, and what needs to be
+</I>&gt;<i> tweaked to make it work.
+</I>
+yes this is pretty hard to setup. there is the &quot;build system version&quot;
+vs &quot;the image system version&quot; and then there are also different versions
+of tools like clicfs, squashfs and more, combined with bugs sometimes
+fixed in update repos and sometimes not.
+
+Kiwi supports many combinations (maybe too much) and kiwi itself
+also has bugs. So it's really hard. So far I can only say it's
+a good approach to:
+
+ * use the same version for the building system and the image system,
+   that sorts out many incompatibilities
+
+ * next it's good to always add the update repo for the distribution
+   because that sorts out many bugs found after the release
+
+Would that have helped you... no because you ran into a kernel
+issue which was only fixed in a newer kernel branch but not as
+an update to an older one :(
+
+You should always have in mind that I can only influence the
+stability to a certain degree. I cannot make the kernel developer
+to fix a bug in an old kernel and I also can't push others to
+fix their code ;) I certainly encourage all of them to fix
+as much as they can but it's all about cooperation and willingness.
+
+In SuSE Studio we do exactly that. We support a subset of image
+types for one version (11.4) and not more. For our enterprise
+products we specify a subset of features which has to work.
+In none of them we mention support for 
+
+   &quot;PXE images with root over AoE + clicfs&quot;
+
+This is one of the reasony why things might break and are not
+tested well enough. The people using kiwi directly do all
+sorts of things, which is great :) but also wide opens the
+door for problems in all areas of the distribution and kiwi
+itself.
+
+That's why I appreciate your help, feedback and reports.
+
+I hope despite the fact that you stumbled over so many
+bad problems you still keep on trying it the kiwi way
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002553.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002532.html">[Kiwi-users] Broadcom drivers/kernel module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2524">[ date ]</a>
+              <a href="thread.html#2524">[ thread ]</a>
+              <a href="subject.html#2524">[ subject ]</a>
+              <a href="author.html#2524">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] default vs pae kernel in diskless builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C1240472322.6760.11.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001061.html">
+   <LINK REL="Next"  HREF="001090.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] default vs pae kernel in diskless builds</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C1240472322.6760.11.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] default vs pae kernel in diskless builds">roger at opq.se
+       </A><BR>
+    <I>Thu Apr 23 09:38:42 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001061.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+        <LI>Next message: <A HREF="001090.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1073">[ date ]</a>
+              <a href="thread.html#1073">[ thread ]</a>
+              <a href="subject.html#1073">[ subject ]</a>
+              <a href="author.html#1073">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Did I miss an answer to this? I changed my computer and I think a few
+messages may have fell through the cracks...
+
+
+&gt;<i> &gt; On Tue, 2009-03-17 at 13:04 +0100, Marcus Sch&#228;fer wrote:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; So Roger with version v3.33 you can set
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;    bootprofile=&quot;diskless&quot; bootkernel=&quot;pae&quot;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Sorry for taking so long to respond. I am happy to report that this
+</I>&gt;<i> &gt; works exactly as expected. But you probably already knew that :)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; My next steps are to get a specific SUSE kernel release used. And then
+</I>&gt;<i> &gt; to convert from NBD to AoE. No rest for the wicked.
+</I>&gt;<i> 
+</I>&gt;<i> I tried specifying a different kernel version, and had mixed results.
+</I>&gt;<i> 
+</I>&gt;<i> If I add a local repository and add the RPMs for the version I want, the
+</I>&gt;<i> build goes ok. I think it is using the newer kernel. I specified in my
+</I>&gt;<i> config.xml:
+</I>&gt;<i> 
+</I>&gt;<i> 	&lt;package name=&quot;kernel-pae-2.6.27.21-0.1.2&quot;/&gt;
+</I>&gt;<i> 	&lt;package name=&quot;kernel-pae-base-2.6.27.21-0.1.2&quot;/&gt;
+</I>&gt;<i> 	&lt;package name=&quot;kernel-pae-extra-2.6.27.21-0.1.2&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> But then I get an error telling that my kernel versions do not match.
+</I>&gt;<i> Fair enough. Glad it is checking.
+</I>&gt;<i> 
+</I>&gt;<i> So, I thought that must be because my bootkernel=&quot;pae&quot; statement is
+</I>&gt;<i> pulling in the original default kernel, not the newer one in my local
+</I>&gt;<i> repository. FTHOI, I tried:
+</I>&gt;<i> 
+</I>&gt;<i> 	bootkernel=&quot;pae-2.6.27.21-0.1.2&quot;
+</I>&gt;<i> 
+</I>&gt;<i> The prepare step did not complain. But the create step stopped with the
+</I>&gt;<i> error &quot;Profile pae-2.6.27.21-0.1.2: not found failed&quot;
+</I>&gt;<i> 
+</I>&gt;<i> Should I be able to do what I am trying yo do? Do I need to make a copy
+</I>&gt;<i> of the pae profile and change the kernel version there in the same way I
+</I>&gt;<i> did in my config.xml? Or is there some other way?
+</I>&gt;<i> 
+</I>&gt;<i> I am so close in this that I can taste it!
+</I>&gt;<i> 
+</I>-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001061.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+	<LI>Next message: <A HREF="001090.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1073">[ date ]</a>
+              <a href="thread.html#1073">[ thread ]</a>
+              <a href="subject.html#1073">[ subject ]</a>
+              <a href="author.html#1073">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-05-02 - 2010-05-07...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-05-02%20-%202010-05-07...&In-Reply-To=%3C20100507145227.GA1593%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001793.html">
+   <LINK REL="Next"  HREF="001796.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-05-02 - 2010-05-07...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-05-02%20-%202010-05-07...&In-Reply-To=%3C20100507145227.GA1593%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-05-02 - 2010-05-07...">ms at novell.com
+       </A><BR>
+    <I>Fri May  7 16:52:27 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001793.html">[Kiwi-users] kiwi: Weekly report 2010-04-25 - 2010-04-30...
+</A></li>
+        <LI>Next message: <A HREF="001796.html">[Kiwi-users] Luks and/or lvm for 4.34-110
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1795">[ date ]</a>
+              <a href="thread.html#1795">[ thread ]</a>
+              <a href="subject.html#1795">[ subject ]</a>
+              <a href="author.html#1795">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report v4.34 2010-05-02 - 2010-05-07
+--------------------------------------------------
+I apologize for any regressions introduced with the last kiwi
+version and would like to thank you all for reporting bugs that
+quickly. I hope everything runs smooth now with this weeks
+release
+
+most important changes for this weeks kiwi release...
+
+GIT: fixed old live iso type (no flags set) to work again.
+     The problem was that we prevent --follow-symlinks in this
+     mode but then we also have to copy the fixed read-write
+     part as file to the iso structure instead of linking it.
+     This fix is related to (bnc #599712)
+
+* If you use an old style iso specified like this
+  &lt;type image=&quot;iso&quot; boot=&quot;...&quot;/&gt; without any flags attribute
+  kiwi failed to boot this image because of a link which should
+  be followed but won't be since we changed that due to bug
+  #599712. With this fix the old style iso's works again
+
+
+GIT: removed check for utimer program, it's not a mandatory
+     requirement for the system to be able to boot correctly
+GIT: fixed mkinitrd call, check if the option -B exists and
+     don't pass it if it doesn't first (bnc #603338)
+
+* This is the most important fix for this weeks release. Every
+  image for distros &lt;= 11.1 will fail the second boot because of the
+  missing -B option for mkinitrd. Another reason for a failed
+  boot could also be the missing utimer helper program which
+  is part of the kiwi-tools package. If this program is missing
+  you will not see the boot time values but this causes kiwi
+  to throw a reboot exception which is stupid and not necessary
+
+
+GIT: beautify migration report and fixed html code
+
+* The migration module now has some css code to make the HTML
+  report look nicer. The HTML code is now also valid
+
+
+GIT: fixed space problem when setting up boot partition for
+     images which requires a separate boot partition which is
+     the case for filesystems like clicfs. This caused a wrong
+     copy of the initrd and prevents the system from being
+     able to reboot
+
+* also an important fix for all oem users. In case of a separate
+  boot partition the size of this partition was too small. The
+  result was that the initrd can't be copied to this partition and
+  a reboot of the appliance failed with a kernel trace because
+  of an invalid initrd cpio archive
+
+GIT: added support for Xen dom0 over netboot (bnc #601890)
+
+* I added a xen + xenk kernel profile to the netboot images to
+  be able to create pxe images with Xen kernel and appropriate
+  boot setup. If you build such an image your type line should
+  look like this: &lt;type image=&quot;pxe&quot; bootprofile=&quot;xen&quot; bootkernel=&quot;xenk&quot; .../&gt;
+  Along with this change the netboot code uses now the common
+  partition functions like all other images too.
+  
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001793.html">[Kiwi-users] kiwi: Weekly report 2010-04-25 - 2010-04-30...
+</A></li>
+	<LI>Next message: <A HREF="001796.html">[Kiwi-users] Luks and/or lvm for 4.34-110
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1795">[ date ]</a>
+              <a href="thread.html#1795">[ thread ]</a>
+              <a href="subject.html#1795">[ subject ]</a>
+              <a href="author.html#1795">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

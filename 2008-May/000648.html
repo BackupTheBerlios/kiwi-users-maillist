@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Announcement: KIWI-LTSP 0.3.15 for openSUSE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Announcement%3A%20KIWI-LTSP%200.3.15%20for%20openSUSE&In-Reply-To=%3Cb317ae5c0805180555n5258e86awd9b6e82641dbd8cf%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000651.html">
+   <LINK REL="Next"  HREF="000652.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Announcement: KIWI-LTSP 0.3.15 for openSUSE</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Announcement%3A%20KIWI-LTSP%200.3.15%20for%20openSUSE&In-Reply-To=%3Cb317ae5c0805180555n5258e86awd9b6e82641dbd8cf%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Announcement: KIWI-LTSP 0.3.15 for openSUSE">cyberorg at opensuse.org
+       </A><BR>
+    <I>Sun May 18 14:55:38 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000651.html">[Kiwi-users] Loading image into RAM
+</A></li>
+        <LI>Next message: <A HREF="000652.html">[Kiwi-users] Announcing openSUSE KIWI-LTSP 0.3.16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#648">[ date ]</a>
+              <a href="thread.html#648">[ thread ]</a>
+              <a href="subject.html#648">[ subject ]</a>
+              <a href="author.html#648">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Community
+
+Here is another release of KIWI-LTSP - a LTSP5 implementation on
+openSUSE using KIWI imaging technology.
+
+Major changes from the last release are:
+
+* Boot and LTSP images based on openSUSE 11.0 Beta3
+* Patches from Jacob Parry for lbmount fixing ownership and
+permissions. HPJ is working on getting GNOME patched up to fix mounts
+showing on all users.
+* Added ltsp-build-client and ltsp-server-initialize wrapper scripts
+in preparation for LTSP GUI
+* Added python so jetpipe for printing works once again
+* Synced all ltsp packages with upstream
+
+Follow these three simple steps to get LTSP5 on openSUSE:
+
+1. 1-click install of kiwi-ltsp-prebuilt image from
+<A HREF="http://en.opensuse.org/LTSP">http://en.opensuse.org/LTSP</A> (about 100M image, so need good internet
+connection)
+2. Edit /etc/sysconfig/kiwi-ltsp either via YaST sysconfig editor GUI
+or any text editor of your preference, fill in server IP, name server
+and dhcp IP range to give to all clients.
+3. Run ltsp-server-initialize to configure and enable all the required services
+
+Thanks to Lars Voght, founder and maintainer of openSUSE-Edu project,
+we now have KIWI-LTSP integrated in upcoming openSUSE-Edu release for
+10.3 as well as 11.0.
+
+In case you need to customize how the thin client behaves, change
+/srv/tftpboot/KIWI/lts.conf. Explanation of what you can put there is
+given here: <A HREF="http://doc.ubuntu.com/edubuntu/edubuntu/handbook/C/customizing-thin-client.html">http://doc.ubuntu.com/edubuntu/edubuntu/handbook/C/customizing-thin-client.html</A>
+
+We are working on a GUI to manage the lts.conf and other configuration
+as a part of Google Summer of Code, Jan Weber is keeping records of
+the progress so far here: <A HREF="http://www.luckylemon.de/">http://www.luckylemon.de/</A> and the project
+white board with more information is here:
+<A HREF="http://developer.novell.com/wiki/index.php/Easy-LTSP">http://developer.novell.com/wiki/index.php/Easy-LTSP</A>
+
+Thanks to all who have contributed to the project, especially gbolte
+and japerry for all the testing and patches.
+
+Have a lot of fun!
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000651.html">[Kiwi-users] Loading image into RAM
+</A></li>
+	<LI>Next message: <A HREF="000652.html">[Kiwi-users] Announcing openSUSE KIWI-LTSP 0.3.16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#648">[ date ]</a>
+              <a href="thread.html#648">[ thread ]</a>
+              <a href="subject.html#648">[ subject ]</a>
+              <a href="author.html#648">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

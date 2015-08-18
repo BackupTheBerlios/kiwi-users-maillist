@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110308165437.20094gjf8vb3aa68%40webmail.df.eu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002434.html">
+   <LINK REL="Next"  HREF="002437.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>E.Waelde</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110308165437.20094gjf8vb3aa68%40webmail.df.eu%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">ew.ng7125 at nassur.net
+       </A><BR>
+    <I>Tue Mar  8 16:54:37 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002434.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002437.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2436">[ date ]</a>
+              <a href="thread.html#2436">[ thread ]</a>
+              <a href="subject.html#2436">[ subject ]</a>
+              <a href="author.html#2436">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+since this seems to be of interest, I'll add some details
+at the end of the quoted text.
+
+Quoting Chris Cunha &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">eportel6607 at gmail.com</A>&gt;:
+
+&gt;<i> On Mon, Mar 7, 2011 at 2:28 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi Erich,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> We have needed a bootable usbstick carrying an installable system.
+</I>&gt;&gt;&gt;<i> We do it like this:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> 1.
+</I>&gt;&gt;&gt;<i> The usb stick has *no* partition and is formatted FAT32, so it can
+</I>&gt;&gt;&gt;<i> be handled by Windows.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> 2.
+</I>&gt;&gt;&gt;<i> The usbstick contains
+</I>&gt;&gt;&gt;<i> a. a live image, which contains the root file system of the &quot;live&quot; system.
+</I>&gt;&gt;&gt;<i> &#160; &#160;It consists of 3 files
+</I>&gt;&gt;&gt;<i> &#160; &#160;1 &#160;rootfs.raw
+</I>&gt;&gt;&gt;<i> &#160; &#160;2 &#160;vmlinuz
+</I>&gt;&gt;&gt;<i> &#160; &#160;3 &#160;initrd
+</I>&gt;&gt;&gt;<i> b. a target image, maybe specialized to the particular target hardware
+</I>&gt;&gt;&gt;<i> &#160; &#160;in question
+</I>&gt;&gt;&gt;<i> &#160; &#160;4 &#160;target.raw.gz
+</I>&gt;&gt;&gt;<i> c. syslinux
+</I>&gt;&gt;&gt;<i> &#160; &#160;5. syslinux.cfg etc.
+</I>&gt;&gt;&gt;<i> d. install-to-disk script
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The usbstick is made bootable, booting from the stick will start syslinux,
+</I>&gt;&gt;&gt;<i> which in turn will load the kernel (2), the initial ram disk (3) and loop
+</I>&gt;&gt;&gt;<i> mount the rootfs.raw as READ ONLY. A writeable layer is added using aufs.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The content of the stick itself is made available as /usb/1.
+</I>&gt;&gt;&gt;<i> The install-to-disk script is called like any application and will install
+</I>&gt;&gt;&gt;<i> the target.raw.gz image to the disk in the target system. The  
+</I>&gt;&gt;&gt;<i> install-to-disk
+</I>&gt;&gt;&gt;<i> script will analyze the disk size, calculate sizes of the desired  
+</I>&gt;&gt;&gt;<i> partitions.
+</I>&gt;&gt;&gt;<i> The image is installed using
+</I>&gt;&gt;&gt;<i> &#160; &#160;gzip -cd target.raw.gz | dd of=/dev/sdXXX bs=1M
+</I>&gt;&gt;&gt;<i> Then the partition table is corrected using fdisk or similar, and  
+</I>&gt;&gt;&gt;<i> after that
+</I>&gt;&gt;&gt;<i> fsck and resize2fs will expand the root fs to its final size.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The driving reason for doing it this way was, that the boot stick  
+</I>&gt;&gt;&gt;<i> is created
+</I>&gt;&gt;&gt;<i> on a Windows system, which is not under our control. So using ext2fsd or
+</I>&gt;&gt;&gt;<i> similar on Windows was no option.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The above mentioned images are all created using kiwi.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks for this report. There are some new aspects in it which
+</I>&gt;&gt;<i> I did not thought about. I think you had to modify the linuxrc code
+</I>&gt;&gt;<i> in the initrd in order to mount the rootfs.raw on the fat fs ?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> nice stick solution :)
+</I>&gt;&gt;<i>
+</I>&lt;snip&gt;&gt;
+&gt;<i>
+</I>&gt;<i> Is this a possible solution?  How is this being done?
+</I>&gt;<i> C
+</I>&gt;<i>
+</I>
+outline, no garanties whatsoever. I might have missed important
+bits.
+
+1. usb-stick image (live image on FAT32 stick)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+config/config.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;image schemaversion=&quot;3.7&quot; name=&quot;live-10.3&quot;&gt;
+
+     &lt;preferences&gt;
+         &lt;version&gt;0.0.2&lt;/version&gt;
+         &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+         &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+         &lt;oem-kiwi-initrd&gt;true&lt;/oem-kiwi-initrd&gt;
+     &lt;/preferences&gt;
+
+     &lt;preferences profiles=&quot;usb-stick&quot;&gt;
+         &lt;type primary=&quot;true&quot; filesystem=&quot;ext3&quot;  
+boot=&quot;vmxboot/usbboot-loop&quot; checkprebuilt=&quot;false&quot;  
+bootkernel=&quot;std&quot;&gt;vmx&lt;/type&gt;
+     &lt;/preferences&gt;
+     &lt;preferences profiles=&quot;disk-image&quot;&gt;
+         &lt;type primary=&quot;true&quot; filesystem=&quot;ext3&quot;  
+boot=&quot;vmxboot/suse-10.3&quot; checkprebuilt=&quot;false&quot;  
+bootkernel=&quot;std&quot;&gt;vmx&lt;/type&gt;
+     &lt;/preferences&gt;
+
+     ...
+
+&lt;/image&gt;
+
+
+kiwi --prepare config --root min-root-usbstick --add-profile default \
+         --add-profile ... \  &lt;-- more profiles
+         --add-profile usb-stick --type vmx
+
+kiwi --create min-root-usbstick --destdir min-out-usbstick \
+         --fs-inodesize 128 --add-profile usb-stick --type vmx
+
+This creates 3 files:
+   min-out-usbstick/live-10.3.i686-0.0.2.raw               ==&gt; root.raw
+   min-out-usbstick/initrd-vmxboot-suse-10.3.i686-2.7.1.gz ==&gt; initrd
+   min-out-root/boot/vmlinuz                               ==&gt; vmlinuz
+
+
+And yes, we have changed building the initial ram disk by editing
+vmxboot/usbboot-loop/root/linuxrc:
+...
+#======================================
+# 23) Unmount initrd / system init
+#--------------------------------------
+#bootImage $@cd /mnt
+if test &quot;$USE_AUFS&quot; = 1
+then
+   mkdir /mnt/ro
+   mkdir /mnt/rw
+   /bin/mount -o ro /dev/loop0 /mnt/ro
+   mount -t tmpfs aufs-tmpfs /mnt/rw
+   mount -t aufs -o dirs=/mnt/rw:/mnt/ro=ro aufs /mnt
+else
+   /bin/mount -o rw /dev/loop0 /mnt
+fi
+cd /mnt
+createInitialDevices /mnt/dev
+if test &quot;$USE_AUFS&quot; = 1
+then
+     grep &quot;.*#AUFS&quot; /mnt/etc/mta_orig.fstab  &gt; /mnt/etc/fstab
+else
+     grep &quot;.*#PERSISTENT&quot; /mnt/etc/mta_orig.fstab  &gt; /mnt/etc/fstab
+fi
+if test &quot;$usbStickDevice&quot; = &quot;/dev/sda&quot;
+then
+     sed -i &quot;s|sda1|sda|&quot; /mnt/etc/fstab
+fi
+if test &quot;$DEBUG&quot; = 1
+then
+   echo &quot;Debugging shell press [Ctrl] + d to continue&quot;
+   bash
+fi
+umount -f /dev
+mount --move . /
+exec chroot . /sbin/init
+----------------------------------------
+
+2. target image:
+~~~~~~~~~~~~~~~~
+The target image is created similarly, however, it basically contains
+different packages, selected via different profiles
+
+
+kiwi --prepare config --root min-root-target --add-profile default \
+        --add-profile ... \ &lt;-- more profiles
+        --add-profile disk-image --type vmx
+
+kiwi --create min-root-target --destdir min-out-target
+        --fs-inodesize 128 --add-profile disk-image --type vmx
+
+This creates 1 more file
+   min-out-target/target-X-10.3.i686-0.0.2.raw         ==&gt; target.raw.gz
+
+
+
+Still reading?
+Cool.
+
+Maybe, this is worth folding into a cookbook recipe???
+
+
+Cheers,
+Erich
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002434.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002437.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2436">[ date ]</a>
+              <a href="thread.html#2436">[ thread ]</a>
+              <a href="subject.html#2436">[ subject ]</a>
+              <a href="author.html#2436">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Adaption of Kiwi to Scientific Linux?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adaption%20of%20Kiwi%20to%20Scientific%20Linux%3F&In-Reply-To=%3C20090317163603.GA23812%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001025.html">
+   <LINK REL="Next"  HREF="001030.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Adaption of Kiwi to Scientific Linux?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Adaption%20of%20Kiwi%20to%20Scientific%20Linux%3F&In-Reply-To=%3C20090317163603.GA23812%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Adaption of Kiwi to Scientific Linux?">ms at novell.com
+       </A><BR>
+    <I>Tue Mar 17 17:36:03 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001025.html">[Kiwi-users] Adaption of Kiwi to Scientific Linux?
+</A></li>
+        <LI>Next message: <A HREF="001030.html">[Kiwi-users] Usb thumb drive and X + KDE desktop effects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1032">[ date ]</a>
+              <a href="thread.html#1032">[ thread ]</a>
+              <a href="subject.html#1032">[ subject ]</a>
+              <a href="author.html#1032">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan,
+
+&gt;<i> at the moment I try to get KIWI running with another Linux distribution and 
+</I>&gt;<i> get some trouble. Any advise how to solve this problem or what causes the 
+</I>&gt;<i> problem would be good.
+</I>
+Those parts of kiwi which are distribution dependent are prefixed with
+a &quot;suse&quot;. This includes for example some functions in KIWIConfig.sh
+as well as the entire boot code which is different in every distro:
+
+   suse-linuxrc
+   suse-preinit
+
+The boot code includes the KIWILinuxRC.sh as common set of functions
+which should work on every distro.
+
+&gt;<i> What is working for me is the creation of the physical extend, things go worse 
+</I>&gt;<i> while the creation of the logical extend, independent of choosing xen or vmx 
+</I>&gt;<i> as output - i have not tried the other output formats.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Below you can see some output, chroot'ing is working, and smart is also 
+</I>&gt;<i> running. But on some point I get an ImportError from Python that the module 
+</I>&gt;<i> rpm is not available.
+</I>&gt;<i> I checked the list of installed rpms in the physical extend :
+</I>&gt;<i> (mount as loop, rpm -qa)
+</I>&gt;<i> 
+</I>&gt;<i> rpm-4.3.3-22_nonptl.i386                                                                                                           
+</I>&gt;<i> rpm-libs-4.3.3-22_nonptl.i386                                                                                                      
+</I>&gt;<i> rpm-python-4.3.3-22_nonptl.i386 
+</I>
+rpm -qa --root /tmp/kiwi-Xen.d24942/kiwi-Xenboot-20991
+
+gives the same result ?
+
+&gt;<i> So the import Error should not occur, or?
+</I>&gt;<i> Even when I start pyhton on the command line and issue &quot;import rpm&quot;, the 
+</I>&gt;<i> import seems to be ok.
+</I>
+Are you sure you can do a
+
+  chroot /tmp/kiwi-Xen.d24942/kiwi-Xenboot-20991 bash
+  and run smart in it ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001025.html">[Kiwi-users] Adaption of Kiwi to Scientific Linux?
+</A></li>
+	<LI>Next message: <A HREF="001030.html">[Kiwi-users] Usb thumb drive and X + KDE desktop effects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1032">[ date ]</a>
+              <a href="thread.html#1032">[ thread ]</a>
+              <a href="subject.html#1032">[ subject ]</a>
+              <a href="author.html#1032">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

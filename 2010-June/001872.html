@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] suse-oem-preload not working
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201006302035.23701.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001870.html">
+   <LINK REL="Next"  HREF="001868.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] suse-oem-preload not working</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201006302035.23701.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] suse-oem-preload not working">javier at opensuse.org
+       </A><BR>
+    <I>Wed Jun 30 20:35:20 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001870.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+        <LI>Next message: <A HREF="001868.html">[Kiwi-users] kiwi2puppet
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1872">[ date ]</a>
+              <a href="thread.html#1872">[ thread ]</a>
+              <a href="subject.html#1872">[ subject ]</a>
+              <a href="author.html#1872">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mi&#233;rcoles, 30 de Junio de 2010 16:56:30 Marcus Sch&#228;fer escribi&#243;:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Done. Here's the log for the suse-oem-preload/11.2 based image:
+</I>&gt;<i> &gt; <A HREF="http://pastebin.de/7926">http://pastebin.de/7926</A>
+</I>&gt;<i> 
+</I>&gt;<i> Thanks. first the language question. If you have set de_DE which you
+</I>&gt;<i> had when I saw the log the only reason why you see the language 
+</I>selection
+&gt;<i> dialog is if the bootloader doesn't set lang=... to the kernel commandline
+</I>&gt;<i> Can you please check the following in your kiwidebug shell:
+</I>&gt;<i> 
+</I>&gt;<i>    cat /proc/cmdline
+</I>&gt;<i> 
+</I>&gt;<i> what are the contents ?
+</I>
+vga=0x314 loader=grub splash=silent COMBINED_IMAGE=yes showopts 
+kiwidebug=1
+
+
+[...]
+
+&gt;<i> yep and the problem is that parted version. You build your image on
+</I>&gt;<i> 11.3 with the new parted. this means the partition starts at sector 2048
+</I>&gt;<i> but you built a 11.2 image which has the old parted installed. The old
+</I>&gt;<i> parted by default starts the partition at sector 63. When kiwi repartitions
+</I>&gt;<i> the partition starting at sector 2048 with the old parted it destroys the
+</I>&gt;<i> filesystem inside. This causes subsequent errors in the kiwi code
+</I>&gt;<i> (can't mount it, can't resize it, can't use it, exception)
+</I>
+New version, new challenges in this case.
+
+&gt;<i> It's what I wrote I have a solution the other way round (build images
+</I>&gt;<i> on hosts with old parted including new parted) but I don't have a
+</I>&gt;<i> solution for this problem so far.
+</I>&gt;<i> 
+</I>&gt;<i> If anybody has a good idea I'm eager to hear it
+</I>
+I am not an expert but perhaps having some kind of mini system for kiwi 
+(independent of openSUSE) which includes some system utilities like 
+parted, would help.
+
+&gt;<i> It turns out more and more that the most robust way to build images
+</I>&gt;<i> is when the build host and the build target are using the same
+</I>&gt;<i> distro version... which is bad because it's a great advantage if you
+</I>&gt;<i> don't have that restrictions. But somehow I feel I can't prevent
+</I>&gt;<i> this.
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+Thanks for your help.
+I am going to try building my OEM image on openSUSE 11.2
+
+Greetings,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100630/7a75b576/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100630/7a75b576/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001870.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+	<LI>Next message: <A HREF="001868.html">[Kiwi-users] kiwi2puppet
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1872">[ date ]</a>
+              <a href="thread.html#1872">[ thread ]</a>
+              <a href="subject.html#1872">[ subject ]</a>
+              <a href="author.html#1872">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

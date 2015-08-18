@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help&In-Reply-To=%3C20071017112435.10ba50bb%40dhcp194.bycast.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000098.html">
+   <LINK REL="Next"  HREF="000102.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi help</H1>
+    <B>Jonty Pearson</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help&In-Reply-To=%3C20071017112435.10ba50bb%40dhcp194.bycast.com%3E"
+       TITLE="[Kiwi-users] kiwi help">jpearson at bycast.com
+       </A><BR>
+    <I>Wed Oct 17 20:24:35 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000098.html">[Kiwi-users] kiwi help
+</A></li>
+        <LI>Next message: <A HREF="000102.html">[Kiwi-users] kiwi help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#104">[ date ]</a>
+              <a href="thread.html#104">[ thread ]</a>
+              <a href="subject.html#104">[ subject ]</a>
+              <a href="author.html#104">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 17 Oct 2007 21:33:59 +0530
+CyberOrg &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jigish.gohil at gmail.com</A>&gt; wrote:
+
+&gt;<i> On 10/17/07, Jonty Pearson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jpearson at bycast.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'm attempting to create a LiveCD using Kiwi, but I am having a few
+</I>&gt;<i> &gt; problems.  My intention is to create a LiveCD (by generating an iso
+</I>&gt;<i> &gt; with kiwi, which can then be burnt to CD/DVD) to be used for
+</I>&gt;<i> &gt; booting and running some scripts from, without installing any other
+</I>&gt;<i> &gt; software.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; So far, this is what I've done:
+</I>&gt;<i> &gt; o  Installed openSUSE 10.3 from a downloaded DVD
+</I>&gt;<i> &gt; o  Copied contents of DVD to /images/DVD for quicker access
+</I>&gt;<i> 
+</I>&gt;<i> install kiwi-desc-livesystem
+</I>&gt;<i> 
+</I>&gt;<i> &gt; o  Edited /usr/share/kiwi/image/isoboot/suse-10.3/config.xml
+</I>&gt;<i> &gt;  - Changed:
+</I>&gt;<i> &gt;    &lt;type&gt;cpio&lt;/type&gt; to &lt;type boot=&quot;isoboot/suse-10.3&quot;&gt;iso&lt;/type&gt;
+</I>&gt;<i> &gt;  - Changed:
+</I>&gt;<i> &gt;    &lt;source path=&quot;/image/CDs/full-i386&quot;/&gt; to &lt;source
+</I>&gt;<i> &gt; path=&quot;/images/DVD&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> change image/kwliveCD-suse-10.3/config.xml too
+</I>&gt;<i> 
+</I>&gt;<i> &gt; o  Run kiwi --prepare /usr/share/kiwi/image/isoboot/suse-10.3
+</I>&gt;<i> &gt; --root /tmp/kiwip --logfile terminal - this runs successfully
+</I>&gt;<i> &gt; o  Run kiwi --create /tmp/kiwip -d /tmp/kiwic --logfile terminal
+</I>&gt;<i> 
+</I>&gt;<i> Do not run that, run:
+</I>&gt;<i> 
+</I>&gt;<i> kiwi --prepare kwliveCD-suse-10.3 --add-profile kde --root
+</I>&gt;<i> /tmp/kiwi-tmp --logfile terminal
+</I>&gt;<i> 
+</I>&gt;<i> and if that complete's successfully:
+</I>&gt;<i> 
+</I>&gt;<i> kiwi --create /tmp/kiwi-tmp  -d /tmp/kiwi-image --logfile terminal
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'm not sure what I'm doing wrong, any help would be greatly
+</I>&gt;<i> &gt; appreciated.
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> See all the links here: <A HREF="http://en.opensuse.org/KIWI">http://en.opensuse.org/KIWI</A>
+</I>&gt;<i> 
+</I>&gt;<i> Cheers
+</I>&gt;<i> 
+</I>&gt;<i> -J
+</I>
+I followed your instructions (changing kde to gnome :)  ) and it works
+great now.
+
+Thanks for the prompt reply,
+
+Jonty.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000098.html">[Kiwi-users] kiwi help
+</A></li>
+	<LI>Next message: <A HREF="000102.html">[Kiwi-users] kiwi help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#104">[ date ]</a>
+              <a href="thread.html#104">[ thread ]</a>
+              <a href="subject.html#104">[ subject ]</a>
+              <a href="author.html#104">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

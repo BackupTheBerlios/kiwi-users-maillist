@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Patterns with SLED11
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Patterns%20with%20SLED11&In-Reply-To=%3C1233593290.3748.14.camel%40ramuz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000952.html">
+   <LINK REL="Next"  HREF="000954.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Patterns with SLED11</H1>
+    <B>Gary Ekker</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Patterns%20with%20SLED11&In-Reply-To=%3C1233593290.3748.14.camel%40ramuz%3E"
+       TITLE="[Kiwi-users] Patterns with SLED11">gekker at novell.com
+       </A><BR>
+    <I>Mon Feb  2 17:48:10 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000952.html">[Kiwi-users] Patterns with SLED11
+</A></li>
+        <LI>Next message: <A HREF="000954.html">[Kiwi-users] kiwi support ATA over Ethernet...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#953">[ date ]</a>
+              <a href="thread.html#953">[ thread ]</a>
+              <a href="subject.html#953">[ subject ]</a>
+              <a href="author.html#953">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2009-02-02 at 17:04 +0100, Thierry Rangeard wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I am currently testing SLED11 RC2 with KIWI OEM_DESCR.
+</I>&gt;<i> How can I obtain the pattern name which I should used for the
+</I>&gt;<i> config.xml file configuration ?.
+</I>&gt;<i> I tried to open the pattern fils in /suse/setup/descr/patterns, it
+</I>&gt;<i> doesn't help me a lot.
+</I>&gt;<i> In the same way is the arch type is mandatory ? I 'create' images for
+</I>&gt;<i> x86_64.
+</I>&gt;<i> 
+</I>
+Assuming you have access to the DVD, still in closed  beta, you can just
+do the following:
+
+zgrep Pat: suse/setup/descr/sled-11-*.pat.gz
+
+And you get the following output of pattern names:
+
+=Pat:  Basis-Devel 11 77.3 i586
+=Pat:  Minimal 11 77.3 i586
+=Pat:  Novell-software 11 77.3 i586
+=Pat:  WBEM 11 77.3 i586
+=Pat:  apparmor 11 77.3 i586
+=Pat:  default 11 77.3 i586
+=Pat:  desktop-base 11 77.3 i586
+=Pat:  desktop-gnome 11 77.3 i586
+=Pat:  desktop-gnome-devel 11 77.3 i586
+=Pat:  desktop-gnome-laptop 11 77.3 i586
+=Pat:  desktop-kde 11 77.3 i586
+=Pat:  desktop-kde-devel 11 77.3 i586
+=Pat:  desktop-kde-laptop 11 77.3 i586
+=Pat:  documentation 11 77.3 i586
+=Pat:  fonts 11 77.3 i586
+=Pat:  kernel-devel 11 77.3 i586
+=Pat:  laptop 11 77.3 i586
+=Pat:  mono 11 77.3 i586
+=Pat:  rest_sled 11 77.3 i586
+=Pat:  tabletpc 11 77.3 i586
+=Pat:  x11 11 77.3 i586
+=Pat:  xen_server 11 77.3 i586
+
+Hope this helps.
+
+-Gary
+
+&gt;<i> Regards.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Thierry
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> netonline Net Online: Service &amp; Formation at Net Online
+</I>&gt;<i> 5, Av de la Gare - BP 10376 Alixan - 26958 Valence Cedex 9 - France
+</I>&gt;<i> contact | <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">thierry.rangeard at net-online.fr</A> | T&#233;l:+33(0)4 75 60 43 79 |
+</I>&gt;<i> Fax:+33(0)8 26 69 84 9
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Novell Platinum Partner | Novell Training Partner
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000952.html">[Kiwi-users] Patterns with SLED11
+</A></li>
+	<LI>Next message: <A HREF="000954.html">[Kiwi-users] kiwi support ATA over Ethernet...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#953">[ date ]</a>
+              <a href="thread.html#953">[ thread ]</a>
+              <a href="subject.html#953">[ subject ]</a>
+              <a href="author.html#953">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

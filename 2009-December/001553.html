@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] password encryption problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C20091210094208.GA8822%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001556.html">
+   <LINK REL="Next"  HREF="001559.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] password encryption problem</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C20091210094208.GA8822%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] password encryption problem">ms at novell.com
+       </A><BR>
+    <I>Thu Dec 10 10:42:08 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001556.html">[Kiwi-users] password encryption problem
+</A></li>
+        <LI>Next message: <A HREF="001559.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1553">[ date ]</a>
+              <a href="thread.html#1553">[ thread ]</a>
+              <a href="subject.html#1553">[ subject ]</a>
+              <a href="author.html#1553">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> this whole discussion makes me think if the passwords are handled secure.
+</I>&gt;<i> 
+</I>&gt;<i> On my system (SuSE 11.1) a blowfish key is created by&#160; kiwi
+</I>&gt;<i> --createpassword. I'm wondering if it is just a coincidence or the intended
+</I>&gt;<i> result. 
+</I>&gt;<i> 
+</I>&gt;<i> If I'm right this is the only secure option out of the 3 possibilities
+</I>&gt;<i> available. (MD5, DES and Blowfish).
+</I>&gt;<i> 
+</I>&gt;<i> To see what algorithm is used on your system: 
+</I>&gt;<i> 
+</I>&gt;<i> Eahrk85ODPvlY is DES. Blowfish ones
+</I>&gt;<i> ($2a$10$yM1cRna.S8gA2y/tkLuhZuca7mJYPF5kyKzx5KTt.z0WZNvf.ieCG) are much
+</I>&gt;<i> longer. MD5 is somewhere in between that and uses $1$ for identification.
+</I>&gt;<i> 
+</I>&gt;<i> DES and MD5 are insecure!
+</I>&gt;<i> 
+</I>&gt;<i> If I understood it correctly the salt used to create the password is always
+</I>&gt;<i> the userid? 
+</I>&gt;<i> 
+</I>&gt;<i> The salt does need to be random and using the userid makes it a lot more
+</I>&gt;<i> easier to crack (is this a known plain attack?).  
+</I>
+ok ok I will add blowfish encryption, but please keep the list in the
+loop. Thanks
+
+    #562105
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001556.html">[Kiwi-users] password encryption problem
+</A></li>
+	<LI>Next message: <A HREF="001559.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1553">[ date ]</a>
+              <a href="thread.html#1553">[ thread ]</a>
+              <a href="subject.html#1553">[ subject ]</a>
+              <a href="author.html#1553">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

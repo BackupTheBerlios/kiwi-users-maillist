@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Creating an USB readonly system?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Creating%20an%20USB%20readonly%20system%3F&In-Reply-To=%3C20090914074227.GA11899%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001436.html">
+   <LINK REL="Next"  HREF="001446.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Creating an USB readonly system?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Creating%20an%20USB%20readonly%20system%3F&In-Reply-To=%3C20090914074227.GA11899%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Creating an USB readonly system?">ms at novell.com
+       </A><BR>
+    <I>Mon Sep 14 09:42:27 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001436.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+        <LI>Next message: <A HREF="001446.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1445">[ date ]</a>
+              <a href="thread.html#1445">[ thread ]</a>
+              <a href="subject.html#1445">[ subject ]</a>
+              <a href="author.html#1445">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> is it also possible to create an USB (squashfs) image similar to an ISO image
+</I>&gt;<i> readonly?
+</I>&gt;<i> I do not want the stick to be changed when booting in one system, because a
+</I>&gt;<i> different one could have a different hardware.
+</I>&gt;<i> I was not able to find any information in the manual.
+</I>
+Hmm, I haven't implemented such a use case. By default a compressed
+stick with squashfs uses either aufs or clicfs as overlay filesystem
+and therefore intentionally allow write actions on the stick.
+
+What you are asking for sounds like a hybrid live system. As I wrote
+earlier you can create an ISO as hybrid (including a partition table)
+and dump that image on the stick. If you boot from the stick the
+device appears as a disk to the system. kiwi only activates a copy
+on write device if there is a single type 0x83 (linux) partition
+on the stick too. If you don't create such a partition on your stick
+all writes will go into RAM and are therefore not persistent. If
+you boot that stick again the same situation compared to the
+initial deployment applies.
+
+There is also the image type split which allows you to divide
+your system into two portions. One is the compressed read-only part
+and the other is the read-write part which appears as a seperate
+partition on the stick. If you design your &lt;split&gt; section in a
+way that for example only /home , /var and /boot are
+persistently writable and /etc as temporarly writable you can
+create an image which allows you to store your user data
+persistently and any configuration below /etc temporarly. All
+the rest will be read-only and can't be changed. The downside
+of this type is that you need to know before where you need
+what kind of access type.
+
+     &lt;split&gt;
+        &lt;persistent&gt;
+			&lt;file name=&quot;/var&quot;/&gt;
+			&lt;file name=&quot;/var/*&quot;/&gt;
+			&lt;file name=&quot;/boot&quot;/&gt;
+			&lt;file name=&quot;/boot/*&quot;/&gt;
+			&lt;file name=&quot;/home&quot;/&gt;
+			&lt;file name=&quot;/home/*&quot;/&gt;
+        &lt;/persistent&gt;
+        &lt;temporary&gt;
+			&lt;file name=&quot;/etc&quot;/&gt;
+			&lt;file name=&quot;/etc/*&quot;/&gt;
+		&lt;/temporary&gt;
+     &lt;/split&gt;
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001436.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+	<LI>Next message: <A HREF="001446.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1445">[ date ]</a>
+              <a href="thread.html#1445">[ thread ]</a>
+              <a href="subject.html#1445">[ subject ]</a>
+              <a href="author.html#1445">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

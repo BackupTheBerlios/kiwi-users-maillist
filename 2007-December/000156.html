@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oemboot suse10.2 - kernel cannot find root device
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oemboot%20suse10.2%20-%20kernel%20cannot%20find%20root%20device&In-Reply-To=%3C20071203091342.GA14969%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000155.html">
+   <LINK REL="Next"  HREF="000157.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oemboot suse10.2 - kernel cannot find root device</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oemboot%20suse10.2%20-%20kernel%20cannot%20find%20root%20device&In-Reply-To=%3C20071203091342.GA14969%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] oemboot suse10.2 - kernel cannot find root device">ms at suse.de
+       </A><BR>
+    <I>Mon Dec  3 10:13:43 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000155.html">[Kiwi-users] Starting X Font Server
+</A></li>
+        <LI>Next message: <A HREF="000157.html">[Kiwi-users] Athentication problem heppen on LiveCD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#156">[ date ]</a>
+              <a href="thread.html#156">[ thread ]</a>
+              <a href="subject.html#156">[ subject ]</a>
+              <a href="author.html#156">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mitch,
+
+&gt;<i> We've got an oemboot opensuse 10.2 system built from kiwi 1.92 with the
+</I>&gt;<i> following problem:
+</I>&gt;<i> 
+</I>&gt;<i> After all the installation from CD is done, and once the kernel is
+</I>&gt;<i> loaded from grub on the hard disk of the machine;
+</I>&gt;<i> 
+</I>&gt;<i> the &quot;init&quot; shell script dies at finding the rootfs, it is looking
+</I>&gt;<i> for /dev/hda2, and it cannot find it.  The cause is that there are very
+</I>&gt;<i> few kernel modules loaded, no ide-disk, no sd_mod, etc.  Also, the
+</I>&gt;<i> device nodes for these drivers are not created, even after manually
+</I>&gt;<i> insmod-ing the above modules.
+</I>
+Hmm, this sounds like a udev problem. Would you mind to use the
+latest version 1.99 and check if the problem still exists ? Additonally
+we have more log information in this release. You can find the
+packages here:
+
+	<A HREF="http://download.opensuse.org/repositories/openSUSE:/Tools/">http://download.opensuse.org/repositories/openSUSE:/Tools/</A>
+
+&gt;<i> Where does this init script come from?  It doesn't seem to be defined in
+</I>&gt;<i> the kiwi system anywhere, we've grepped around.
+</I>
+If the oemboot wasn't touched it is provided:
+
+a) as package kiwi-desc-oemboot (see the URL above)
+b) in the kiwi SVN at system/boot/oemboot:
+   <A HREF="https://svn.berlios.de/svnroot/repos/kiwi/kiwi-head/system/boot/oemboot">https://svn.berlios.de/svnroot/repos/kiwi/kiwi-head/system/boot/oemboot</A>
+
+&gt;<i> How do we edit or fix the source for this &quot;init&quot; script.
+</I>
+Each init script makes use of a common set of functions defined in
+/usr/share/kiwi/modules/KIWILinuxRC.sh. If the bug is there you need
+to have a look at this file. The boot specific parts for booting SuSE
+based systems are implemented in files named suse-linuxrc. For the
+oemboot boot image this file can be found in
+/usr/share/kiwi/image/oemboot/suse-linuxrc
+
+&gt;<i> Where do we add more drivers to this
+</I>&gt;<i> final initrd?
+</I>
+The drivers are defined in the config.xml of the oemboot boot description.
+For example /usr/share/kiwi/image/oemboot/suse-10.2/config.xml. Normally
+it shouldn't be required to add drivers here, all ide, sata, scsi drivers
+should be part of the image as you can verify by checking the config.xml
+
+&gt;<i>  Or is this the oemboot initrd that is failing to load
+</I>&gt;<i> drivers?  How would we edit the source of either one?
+</I>
+There is only one initrd created by the definitions of the oemboot
+config.xml file. If possible the KIWI system will replace itself 
+(the initrd) with the distribution specific initrd. For SuSE this
+means mkinitrd is called and on next boot this initrd takes over
+control of the boot process. If possible means, whenever the
+distribution specific initrd can boot the image type created by
+kiwi. There are image types for example the squashfs compressed ones
+which can't be booted by the initrd created by mkinitrd. In such
+a case the kiwi initrd stays and takes over control of the boot
+process at any time.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000155.html">[Kiwi-users] Starting X Font Server
+</A></li>
+	<LI>Next message: <A HREF="000157.html">[Kiwi-users] Athentication problem heppen on LiveCD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#156">[ date ]</a>
+              <a href="thread.html#156">[ thread ]</a>
+              <a href="subject.html#156">[ subject ]</a>
+              <a href="author.html#156">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Setting the size of a VMware disk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20size%20of%20a%20VMware%20disk&In-Reply-To=%3C4A686334.6010006%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001292.html">
+   <LINK REL="Next"  HREF="001294.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Setting the size of a VMware disk</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20size%20of%20a%20VMware%20disk&In-Reply-To=%3C4A686334.6010006%40novell.com%3E"
+       TITLE="[Kiwi-users] Setting the size of a VMware disk">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Jul 23 15:18:44 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001292.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+        <LI>Next message: <A HREF="001294.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1293">[ date ]</a>
+              <a href="thread.html#1293">[ thread ]</a>
+              <a href="subject.html#1293">[ subject ]</a>
+              <a href="author.html#1293">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;&gt;<i>    &lt;preferences&gt;
+</I>&gt;&gt;&gt;<i>       ...
+</I>&gt;&gt;&gt;<i>       &lt;size unit=&quot;G&quot;&gt;50&lt;/size&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> Thanks, does this apply to other images types in some way? If it only 
+</I>&gt;&gt;<i> applies to VM (Xen and VMware) images I wonder if it shouldn't be moved to 
+</I>&gt;&gt;<i> the appropriat options for those images.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> It applies to all image types. In case of a virtual disk creation the
+</I>&gt;<i> size references the disk size and in any other case the size references
+</I>&gt;<i> the size of the root filesystem
+</I>&gt;<i>   
+</I>If I understand this correctly this will create a big problem for me. I 
+have a description that is used to create an OEM image and a VMware 
+image. Thus if I set size to 50G to get a 50 GB VM disk I also only get 
+a 50 GB root partition in the OEM image. However, in the OEM image I 
+want the root partition to use the available space on the hard drive 
+(minus the 128 GB swap) I've set up.
+
+How do I deal with this?
+&gt;<i>   
+</I>&gt;&gt;<i> Further I noticed that all the oem- options are part of preferences and was 
+</I>&gt;&gt;<i> thinking it would be nice to collect these in an oem-options element.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Well I agree putting them all into the preferences section was not
+</I>&gt;<i> the best place. If we change this we also should think of changing the
+</I>&gt;<i> type schema completely. I was thinking on something like this for each
+</I>&gt;<i> type:
+</I>&gt;<i>
+</I>&gt;<i>    &lt;oem attributes&gt;
+</I>&gt;<i>       &lt;size .../&gt;
+</I>&gt;<i>       &lt;oem-parameters/&gt;
+</I>&gt;<i>    &lt;/oem&gt;
+</I>&gt;<i>
+</I>&gt;<i>    &lt;vmx attributes&gt;
+</I>&gt;<i>    &lt;/vmx&gt;
+</I>&gt;<i>
+</I>&gt;<i>    &lt;iso attributes&gt;
+</I>&gt;<i>    &lt;/iso&gt;
+</I>&gt;<i>
+</I>&gt;<i>    ... and so on
+</I>&gt;<i>   
+</I>
+This looks good to me, when I get my current project of the ground 
+(hopefully the end of August) I should have some spare cycles to help 
+with this work.
+
+Thanks,
+Robert
+&gt;<i>
+</I>&gt;<i> This would be a hard change and we need a very good xsl stylesheet
+</I>&gt;<i> to transform from the old scheme into the new scheme. I have that
+</I>&gt;<i> on my todo list but prio is low atm
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i>   
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001292.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+	<LI>Next message: <A HREF="001294.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1293">[ date ]</a>
+              <a href="thread.html#1293">[ thread ]</a>
+              <a href="subject.html#1293">[ subject ]</a>
+              <a href="author.html#1293">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

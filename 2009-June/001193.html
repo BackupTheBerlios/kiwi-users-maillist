@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Installing a custom kernel
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installing%20a%20custom%20kernel&In-Reply-To=%3C20090615085630.GA8094%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001191.html">
+   <LINK REL="Next"  HREF="001197.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Installing a custom kernel</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installing%20a%20custom%20kernel&In-Reply-To=%3C20090615085630.GA8094%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Installing a custom kernel">ms at novell.com
+       </A><BR>
+    <I>Mon Jun 15 10:56:30 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001191.html">[Kiwi-users] Installing a custom kernel
+</A></li>
+        <LI>Next message: <A HREF="001197.html">[Kiwi-users] Installing a custom kernel
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1193">[ date ]</a>
+              <a href="thread.html#1193">[ thread ]</a>
+              <a href="subject.html#1193">[ subject ]</a>
+              <a href="author.html#1193">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> What's the easiest way to install a custom kernel for a live cd/dvd?
+</I>
+so far we have kernel profiles in isoboot for:
+
+ std =&gt; kernel-default
+ pae =&gt; kernel-pae
+ rt  =&gt; kernel-rt
+ nex =&gt; kernel-xen
+
+you can select them with the bootkernel=&quot;...&quot; in your
+system image description.
+
+if none of the above matches your kernel I suggest the
+following way to integrate your own kernel (I guess you want
+to create an image for suse-11.1):
+
+1) clone the appropriate isoboot boot image description
+
+   cd /usr/share/kiwi/image/isoboot
+   cp -a suse-11.1 suse-11.1-mike
+   rm -f suse-11.1-mike/.checksum.md5
+   
+2) edit the cloned description
+
+   vi suse-11.1-mike/config.xml
+
+   ===&gt; change for example the std profiled kernel
+        and replace it with the name of your own package
+
+3) reference suse-11.1-mike instead of suse-11.1 in your
+   system image description:
+
+   &lt;type ... boot=&quot;suse-11.1-mike&quot;&gt;iso&lt;/type&gt;
+
+4) make sure your system image description also includes
+   your version of the kernel and therefore ensure that
+   the system image have the same kernel than the boot
+   image
+
+5) don't open bug reports with custom kernels :-))
+  
+That's it
+
+Best,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001191.html">[Kiwi-users] Installing a custom kernel
+</A></li>
+	<LI>Next message: <A HREF="001197.html">[Kiwi-users] Installing a custom kernel
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1193">[ date ]</a>
+              <a href="thread.html#1193">[ thread ]</a>
+              <a href="subject.html#1193">[ subject ]</a>
+              <a href="author.html#1193">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

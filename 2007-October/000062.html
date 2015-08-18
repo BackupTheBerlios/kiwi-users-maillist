@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%0A%20%3D%3Futf-8%3Fq%3FR%3DC3%3DA9p%3D2E_%3D3A_Re%3D3A__Clarification_on_PX%3F%3D%0A%20%3D%3Futf-8%3Fq%3FE_deployment%3F%3D&In-Reply-To=%3C4704F293.FD00.00D6.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000061.html">
+   <LINK REL="Next"  HREF="000063.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment</H1>
+    <B>Mathieu Cadet</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%0A%20%3D%3Futf-8%3Fq%3FR%3DC3%3DA9p%3D2E_%3D3A_Re%3D3A__Clarification_on_PX%3F%3D%0A%20%3D%3Futf-8%3Fq%3FE_deployment%3F%3D&In-Reply-To=%3C4704F293.FD00.00D6.0%40novell.com%3E"
+       TITLE="[Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment">mcadet at novell.com
+       </A><BR>
+    <I>Thu Oct  4 14:02:59 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000061.html">[Kiwi-users] Clarification on PXE deployment
+</A></li>
+        <LI>Next message: <A HREF="000063.html">[Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#62">[ date ]</a>
+              <a href="thread.html#62">[ thread ]</a>
+              <a href="subject.html#62">[ subject ]</a>
+              <a href="author.html#62">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>ok, I understand the whole process better now!
+
+But one last thing... :P 
+If the process happens that way, how do you handle the multiple-partitions scenario?
+In the kiwi tftp configuration file, you can specify multiple partitions with the PART variable. If the whole image is
+downloaded on the root partition, eg: /dev/sda2, how do you take account of any extra partitions? (eg: /home or /opt or
+even /usr).
+That's why I was thinking that the image was first mounted and then the content copied on the correct partition(s). But
+with the process you just described me, I now think that if I want data on multiple partition, I have to create one
+image for each of them. Correct?
+
+
+I'm very sorry for asking you so much questions. I just want to have a very clear picture of the whole process in my
+head, it's very useful when debugging problems for customers :)
+
+
+Thanks again,
+
+Regards,
+
+ 
+
+Mathieu Cadet
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">mcadet at novell.com</A>
+Office +33 1 55 62 50 25
+Fax +33 1 55 62 51 99
+
+
+
+
+
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; 4/10/2007 13:35 &gt;&gt;&gt; 
+</I>Hi Mathieu,
+
+&gt;<i> The image is downloaded entirely on the disk, then KIWI performs
+</I>&gt;<i> a checksum on it and mounts it in order to copy the content of
+</I>&gt;<i> the image on the filesystem.
+</I>
+No, the image is downloaded onto a previosly created partition.
+This happens via atftp whereas the destination is a device like
+/dev/sda2. The mount happens after that and is only made to be
+able to boot into the deployed system.
+
+&gt;<i> My understanding is that the disk should then have to be at
+</I>&gt;<i> least twice as big as the image, is that correct? 
+</I>&gt;<i> Or did you use some smart tricks I overlooked? :)
+</I>
+The md5sum of the image exists as file image-name.md5 on the
+tftpserver. kiwi creates the md5sum directly from the device it
+has deployed the image before. So the command md5sum /dev/sda2
+for example gives you the md5sum of your image. This value is
+compared with the contents of the .md5 file kiwi downloads
+from the network.
+
+Believe me there is not more space needed than your image
+requires :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000061.html">[Kiwi-users] Clarification on PXE deployment
+</A></li>
+	<LI>Next message: <A HREF="000063.html">[Kiwi-users] R&#233;p. : Re:  Clarification on PXE deployment
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#62">[ date ]</a>
+              <a href="thread.html#62">[ thread ]</a>
+              <a href="subject.html#62">[ subject ]</a>
+              <a href="author.html#62">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTi%3DNN0TeB5-ri33xh%2BCqvFasYKyoMw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002601.html">
+   <LINK REL="Next"  HREF="002605.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTi%3DNN0TeB5-ri33xh%2BCqvFasYKyoMw%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Mon Apr  4 17:02:18 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002601.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002605.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2604">[ date ]</a>
+              <a href="thread.html#2604">[ thread ]</a>
+              <a href="subject.html#2604">[ subject ]</a>
+              <a href="author.html#2604">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Apr 4, 2011 at 5:49 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> My config.xml file has my oem swap space set to 4000. &#160;I did this as
+</I>&gt;&gt;<i> an extreme test to see if the behavior changes.
+</I>&gt;&gt;<i> When I ran kiwi --create I set my fat storage to 3500mb..as I
+</I>&gt;&gt;<i> understand that fat16 can have a max of 4000mb.
+</I>&gt;&gt;<i> I booted from this image off the usb drive. &#160;The boot time was a bit
+</I>&gt;&gt;<i> slower. &#160; I open a task manager to monitor RAM and CPU usage.
+</I>&gt;&gt;<i> I then opened Firefox went to stream some video. &#160;The video streaming
+</I>&gt;&gt;<i> went very well for about 4 to 5 mins. &#160;The RAM usage never made it
+</I>&gt;&gt;<i> past 384mb (I'm assuming because I didn't set the &quot;RAM space&quot; as you
+</I>&gt;&gt;<i> said? &#160; The CPU usage after 4 to 5 minutes went to 100 percent and the
+</I>&gt;&gt;<i> machine was useless. Nothing functioned. &#160; Doing a ctrl+alt+backspace
+</I>&gt;&gt;<i> took me out of the gui but didn't take me to the usual login/LXDM
+</I>&gt;&gt;<i> screen. &#160; It took me instead to a black screen with a flashing
+</I>&gt;&gt;<i> cursor...and that was it.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> All of the above was test on the first boot of the image after kiwi
+</I>&gt;&gt;<i> --create. &#160; The second time I was opened Firefox and browsed Ebay and
+</I>&gt;&gt;<i> some other basic sites and again the CPU maxed out and locked up the
+</I>&gt;&gt;<i> machine...and the ram never made it past about 350mb.
+</I>&gt;<i>
+</I>&gt;<i> Hmm, this sounds more like a clicfs problem. Can you do the
+</I>&gt;<i> following:
+</I>&gt;<i>
+</I>&gt;<i> &#160;* boot the machine
+</I>&gt;<i> &#160;* open a terminal window and type
+</I>&gt;<i>
+</I>&gt;<i> &#160; &#160;su root
+</I>&gt;<i> &#160; &#160;tail -f /var/log/messages
+</I>&gt;<i>
+</I>&gt;<i> &#160;* leave the terminal alone but visible and start to do
+</I>&gt;<i> &#160; &#160;what you did before (browsing, streaming video, etc...)
+</I>&gt;<i>
+</I>&gt;<i> &#160;* watch the messages window for errors, do you see any
+</I>&gt;<i> &#160; &#160;filesystem related information ?
+</I>&gt;<i>
+</I>&gt;<i> Thanks
+</I>&gt;<i>
+</I>&gt;&gt;<i> When you mentioned &quot;ram space&quot; are you referring to the &quot;oem swap
+</I>&gt;&gt;<i> space&quot; in my config.xml file?
+</I>&gt;<i>
+</I>&gt;<i> no, when I talked about RAM I meant the physical ram space
+</I>&gt;<i> in your machine. From what you've said it looks like the
+</I>&gt;<i> system doesn't swap at all. You said the CPU is at 100% and the
+</I>&gt;<i> system is locked up. That's not normal for a system on swap.
+</I>&gt;<i>
+</I>&gt;&gt;<i> The primary purpose of this live image is to run an Internet browser
+</I>&gt;&gt;<i> on a variety of sites. That would be it's primary function.
+</I>&gt;<i>
+</I>&gt;<i> I got that. Would it be a problem for you to make another
+</I>&gt;<i> test without the clicfs filesystem:
+</I>&gt;<i>
+</I>&gt;<i> &#160; &lt;type image=&quot;oem&quot; boottimeout=&quot;2&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.3&quot;&gt;
+</I>&gt;<i> Be aware after create the image will be much larger. But it's
+</I>&gt;<i> for testing if we run into a clicfs problem here
+</I>&gt;<i>
+</I>&gt;<i> Thanks
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+Ok booted the image from the USB drive.
+then:
+&gt;<i>    su root
+</I>&gt;<i>    tail -f /var/log/messages
+</I>&gt;<i>
+</I>&gt;<i>  * leave the terminal alone but visible and start to do
+</I>&gt;<i>    what you did before (browsing, streaming video, etc...)
+</I>&gt;<i>
+</I>&gt;<i>  * watch the messages window for errors, do you see any
+</I>&gt;<i>    filesystem related information ?
+</I>&gt;<i>
+</I>Two errors showed up...both before I opened Firefox but after I
+entered the network key to get connected to my router.
+&quot;kernel: [443.601043] IWL3935 ( my wifi card) Failed to get channel
+info for channel 165.&quot;
+&quot;kernel: [414.545673] npviewer.bin [60570]: segfault at 0 ip (null) sp
+bf9be10c error 4 in npviewer.bin [8048000=2a000]
+
+
+&gt;<i> I got that. Would it be a problem for you to make another
+</I>&gt;<i> test without the clicfs filesystem:
+</I>&gt;<i>
+</I>&gt;<i>   &lt;type image=&quot;oem&quot; boottimeout=&quot;2&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.3&quot;&gt;
+</I>&gt;<i> Be aware after create the image will be much larger. But it's
+</I>&gt;<i> for testing if we run into a clicfs problem here
+</I>
+Yes Marcus of course. I'll do this now and report back to you guys.
+
+Robert:
+&gt;<i>So lets do a little math here. You set swap to 4000 = 3.9 GB and your storage to 3500 = 3.42 GB and you have an 8GB stick.
+</I>
+&gt;<i>8 - 3.9 - 3.24 = 0.86 GB = 880.64 MB. Then you have to take off some space for overhead and you end up with maybe 840 MB for &gt;your image. considering you have a GUI and other stuff my gut feel tells me there is not really enough space.
+</I>
+&gt;<i>The size of the swap space does not matter. Once you start swapping your performance will go out the window, especially for &gt;streaming.
+</I>
+&gt;<i>I get it.  Yup.  But That was just my first test.  I also did tests where the swap was 2000mb and the fat partition was 200mb.  The &gt;results were the same.
+</I>
+
+c
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002601.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002605.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2604">[ date ]</a>
+              <a href="thread.html#2604">[ thread ]</a>
+              <a href="subject.html#2604">[ subject ]</a>
+              <a href="author.html#2604">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

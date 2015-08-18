@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Create LiveCD-based installation CD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20LiveCD-based%20installation%20CD&In-Reply-To=%3C20100729084303.GA19296%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001930.html">
+   <LINK REL="Next"  HREF="001931.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Create LiveCD-based installation CD</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20LiveCD-based%20installation%20CD&In-Reply-To=%3C20100729084303.GA19296%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Create LiveCD-based installation CD">ms at novell.com
+       </A><BR>
+    <I>Thu Jul 29 10:43:03 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001930.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+        <LI>Next message: <A HREF="001931.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1932">[ date ]</a>
+              <a href="thread.html#1932">[ thread ]</a>
+              <a href="subject.html#1932">[ subject ]</a>
+              <a href="author.html#1932">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; The image type you need here is an oem plus install media like this
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &lt;type image=&quot;oem&quot;
+</I>&gt;<i> &gt; &#160; &#160; &#160;filesystem=&quot;ext3&quot;
+</I>&gt;<i> &gt; &#160; &#160; &#160;boot=&quot;oemboot/suse-SLES11&quot;
+</I>&gt;<i> &gt; &#160; &#160; &#160;installiso=&quot;true&quot;
+</I>&gt;<i> &gt; /&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The image and the install iso works on arbitrary as well as a
+</I>&gt;<i> &gt; installation media for VM systems
+</I>&gt;<i> 
+</I>&gt;<i> Thanks. But does this install iso allow us to do any of the following
+</I>&gt;<i> before booting off the installation target:
+</I>&gt;<i> * Hardware detection with the ability to add/remove packages from the
+</I>&gt;<i> installation target?
+</I>
+that should be done by an autoyast script during boot of the system
+kiwi detects the hardware required for running the system which means
+the disk, possibly network, etc... but it will never setup your
+sound card or something. All this must be done when the system runs.
+You have several options here. As Jordi already said you can setup
+a web page, you can also use an autoyast script, or you can write
+your own workflow
+
+&gt;<i>  * Or can we add additional packages to oemboot/suse-SLES11 to modify
+</I>&gt;<i> the installation CD itself so that it does hardware detection and
+</I>&gt;<i> add/remove packages?
+</I>
+you can do that but you shouldn't because oemboot/suse-SLES11 is
+the initrd and not the system. You have only a very minimalistic system
+here and the risk of failure is high. Additionally oemboot is delivered
+as part of the kiwi package set and we maintain the provided functionality
+If you change it to your needs you are alone with errors :-)
+It would be much easier and better to put packages into the system
+image as overlay files and handle them while the system boots up in
+a runlevel script or on your desktop with a desktop startup script
+
+&gt;<i> * Can we modify partitioning for an OEM install during installation?
+</I>
+to some degree:
+
+- you can specify swap and swapsize
+- you can specify home
+
+if you use LVM which is the preferred method when using kiwi images
+you are free to create as much volumes (partitions) as you like
+
+&gt;<i> * Is Yast/Autoyast available before booting off the installation target?
+</I>
+no, yast is available in your system image not in the initrd.
+So you can run it after the init process is called to boot up the
+system. But you don't have to take care for the call yourself. if
+there is a autoyast script part of the image description kiwi sets up
+the environment so that it is called on first boot automatically.
+You only have to make sure there is a working X configuration so that
+it can start in graphics mode... or you'd be fine using the textmode
+interface
+
+&gt;<i> &gt;&gt; 3) The final installation on the device's hard drive will only contain
+</I>&gt;<i> &gt;&gt; what's necessary to run a text-mode only appliance. Even if X11 was on
+</I>&gt;<i> &gt;&gt; the CD to facilitate a graphical installation, it will not be
+</I>&gt;<i> &gt;&gt; installed on the destination appliance.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; you can influence all that yourself by defining what pattern
+</I>&gt;<i> &gt; and packages should make up the oem system image
+</I>&gt;<i> 
+</I>&gt;<i> Does this mean that we can add packages to the ISO boot image
+</I>&gt;<i> independently of the system image that we install?
+</I>
+no that means you specify the contents of the system image.
+You can put whatever you like there
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001930.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+	<LI>Next message: <A HREF="001931.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1932">[ date ]</a>
+              <a href="thread.html#1932">[ thread ]</a>
+              <a href="subject.html#1932">[ subject ]</a>
+              <a href="author.html#1932">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

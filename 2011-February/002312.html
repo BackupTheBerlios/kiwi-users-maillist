@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi preload image failure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C20110210120432.GA18446%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002310.html">
+   <LINK REL="Next"  HREF="002313.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi preload image failure</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C20110210120432.GA18446%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi preload image failure">ms at suse.de
+       </A><BR>
+    <I>Thu Feb 10 13:04:32 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002310.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+        <LI>Next message: <A HREF="002313.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2312">[ date ]</a>
+              <a href="thread.html#2312">[ thread ]</a>
+              <a href="subject.html#2312">[ subject ]</a>
+              <a href="author.html#2312">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I just rebuilt everything to be sure. The resizing takes much longer
+</I>&gt;<i> compared to the EXT4 resize, which happened almost immediately. But this
+</I>&gt;<i> seems not to fail now. So, one step forward.
+</I>
+So it's a 11.2 ext4 issue. You can report that... don't know if
+anybody will fix it for the old distro though
+
+&gt;<i> After the resizing, the system makes some complaints about various
+</I>&gt;<i> things not being writable. Unfortunately they zip off the screen before
+</I>&gt;<i> I can see them all. They were things like:
+</I>
+Well you are creating a split image and that means you decide what's
+writable and what's not. That's done by the split section. kiwi's
+default split section looks like this:
+
+   &lt;split&gt;
+    &lt;persistent&gt;
+        &lt;file name=&quot;/var&quot;/&gt;
+        &lt;file name=&quot;/var/*&quot;/&gt;
+        &lt;file name=&quot;/boot&quot;/&gt;
+        &lt;file name=&quot;/boot/*&quot;/&gt;
+        &lt;file name=&quot;/etc&quot;/&gt;
+        &lt;file name=&quot;/etc/*&quot;/&gt;
+        &lt;file name=&quot;/home&quot;/&gt;
+        &lt;file name=&quot;/home/*&quot;/&gt;
+        &lt;file name=&quot;/tmp&quot;/&gt;
+        &lt;file name=&quot;/tmp/*&quot;/&gt;
+    &lt;/persistent&gt;
+   &lt;/split&gt;
+
+These are the minimum write requirements in order to be able to
+login to the system. Of course depending on what you are doing more
+parts of the system must be writable which is always the tough 
+task when creating a split image
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002310.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+	<LI>Next message: <A HREF="002313.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2312">[ date ]</a>
+              <a href="thread.html#2312">[ thread ]</a>
+              <a href="subject.html#2312">[ subject ]</a>
+              <a href="author.html#2312">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

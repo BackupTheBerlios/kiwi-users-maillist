@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] LVM configurations with oem type
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20configurations%20with%20oem%20type&In-Reply-To=%3C4CD2AF3C.4000402%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002097.html">
+   <LINK REL="Next"  HREF="002104.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] LVM configurations with oem type</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LVM%20configurations%20with%20oem%20type&In-Reply-To=%3C4CD2AF3C.4000402%40novell.com%3E"
+       TITLE="[Kiwi-users] LVM configurations with oem type">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Nov  4 14:03:56 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002097.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+        <LI>Next message: <A HREF="002104.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2103">[ date ]</a>
+              <a href="thread.html#2103">[ thread ]</a>
+              <a href="subject.html#2103">[ subject ]</a>
+              <a href="author.html#2103">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 11/03/2010 04:51 PM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I'm creating an install ISO using an oem kiwi configuration file for my project, and setting lvm=&quot;true&quot;.  When the system is installed I see three physical partitions created on the drive where the system is installed.  Two for LVM and one boot partition.
+</I>&gt;&gt;<i> Is there any reason that the boot partition can't be created first?  So that there can  be only one physical volume for the LVM setup.  Is there a way to do this currently, or would this involve making changes to kiwi?
+</I>&gt;<i> 
+</I>&gt;<i> when kiwi creates the oem image the first partition is the LVM and the
+</I>&gt;<i> second one is the boot partition. Now when it does the repartition step
+</I>&gt;<i> kiwi simply creates another partition and adds the physical extends into
+</I>&gt;<i> the existing volume group. I did it that way because this involves only
+</I>&gt;<i> a little change in the partition table with low risk to fail
+</I>&gt;<i> 
+</I>&gt;<i> Is there any big downside ? I mean extending the existing volume group
+</I>&gt;<i> inside one partition is more effort and a higher risk to fail. One need
+</I>&gt;<i> to preserve the boot data first, then resize the partition table, then resize
+</I>&gt;<i> the physical volumes inside the partition and then resize the volume group
+</I>&gt;<i> by the new pv set and restore the boot data.
+</I>&gt;<i> 
+</I>&gt;<i> It would require some code changes in kiwi to do it that way but if it
+</I>&gt;<i> has a good benefit I'm willing to change it :)
+</I>
+Well, having the boot partition first, also for Btrfs and XFS setups
+would be advantageous for virtual disk setups. It is possible to add
+space to a virtual disk at the end and then grow the existing file
+system of the installed OS on the virtual disk. If the boot partition is
+at the end that does not work.
+
+
+My $0.02
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002097.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+	<LI>Next message: <A HREF="002104.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2103">[ date ]</a>
+              <a href="thread.html#2103">[ thread ]</a>
+              <a href="subject.html#2103">[ subject ]</a>
+              <a href="author.html#2103">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

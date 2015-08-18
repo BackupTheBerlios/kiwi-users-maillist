@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] split image type and read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3Cb8edc91f0802250931h5cfa9830x52ca7b2d93d43eba%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000369.html">
+   <LINK REL="Next"  HREF="000371.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] split image type and read-only</H1>
+    <B>James Willcox</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3Cb8edc91f0802250931h5cfa9830x52ca7b2d93d43eba%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] split image type and read-only">snorp at novell.com
+       </A><BR>
+    <I>Mon Feb 25 18:31:56 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000369.html">[Kiwi-users] split image type and read-only
+</A></li>
+        <LI>Next message: <A HREF="000371.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#370">[ date ]</a>
+              <a href="thread.html#370">[ thread ]</a>
+              <a href="subject.html#370">[ subject ]</a>
+              <a href="author.html#370">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus,
+
+On Mon, Feb 25, 2008 at 11:24 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; I've been using the &lt;split&gt; element, hoping I could achieve
+</I>&gt;<i> &gt; a read-only diskful image. But after building several images and
+</I>&gt;<i> &gt; looking through the kiwi modules, I think &quot;read-only&quot; might be a
+</I>&gt;<i> &gt; misnomer.  To me,     read-only implies that no writes are possible;
+</I>&gt;<i> &gt; yet when the image is booted, a mount command shows that this
+</I>&gt;<i> &gt; &quot;read-only&quot; partition is mounted read-write. I think I understand
+</I>&gt;<i> &gt; the read-write partition to allow some file persistence.
+</I>&gt;<i>
+</I>&gt;<i> It is true we are mounting the read-only partition read-write.
+</I>&gt;<i> We do that because we assume the read-only partition to use a
+</I>&gt;<i> read-only filesystem like for example squashfs. But in principal
+</I>&gt;<i> you are right we should add a
+</I>&gt;<i>
+</I>&gt;<i>        -o ro
+</I>&gt;<i>
+</I>&gt;<i> to the mount of the read-only part. Snorp I think we should change:
+</I>&gt;<i>
+</I>&gt;<i>        if ! mount -t auto $roDevice /read-only &gt;/dev/null;then
+</I>&gt;<i>        return 1
+</I>&gt;<i>    fi
+</I>&gt;<i>
+</I>&gt;<i> to
+</I>&gt;<i>
+</I>&gt;<i>        if ! mount -t auto -o ro $roDevice /read-only &gt;/dev/null;then
+</I>&gt;<i>        return 1
+</I>&gt;<i>    fi
+</I>&gt;<i>
+</I>
+Oh, yeah, that makes sense.  I guess we never considered that someone may
+want to use a 'normal' filesystem in the read-only split scenario.
+
+
+&gt;<i>
+</I>&gt;<i> &gt; I'm also having a hard time understanding the logic
+</I>&gt;<i> &gt; behind the contortions in the mountSystemCombined function from
+</I>&gt;<i> &gt; KIWILinuxRC.sh:
+</I>&gt;<i>
+</I>&gt;<i> Ha Ha yeah that's a bit magic and should be more documented. I'll
+</I>&gt;<i> try to explain:
+</I>&gt;<i>
+</I>&gt;<i>  1) mount the read-only partition to a /read-only mount point
+</I>&gt;<i>  2) mount a tmpfs to /mnt and extract the writable but temporary
+</I>&gt;<i>    in RAM data into it (tarball) /mnt will become the later
+</I>&gt;<i>    root directory (/)
+</I>&gt;<i>  3) create a read-only mountpoint below /mnt
+</I>&gt;<i>  4) move the /read-only mount into the tmpfs (/mnt) mount
+</I>&gt;<i>    all the read-only links which have been created as part of the tarball
+</I>&gt;<i>    will become valid if /mnt becomes /
+</I>&gt;<i>  *  NOW OPTIONALLY
+</I>&gt;<i>  5) mount the read-write partition to a /mnt/read-write mount point
+</I>&gt;<i>  6) create a link named /read-write because all the links created
+</I>&gt;<i>    in the tarball are pointing to /read-write
+</I>&gt;<i>
+</I>&gt;<i> ===&gt; now move /mnt to / and got the tree
+</I>&gt;<i> ===&gt; I know it's weird. Snorp would you mind to add some comments
+</I>&gt;<i>     to your magic :-) Thanks
+</I>
+
+You explained it perfectly :)
+
+I will try to find some time to write proper docs for it.  I have a lot of
+doc-related tasks on my plate already though.
+
+Thanks,
+James
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/1fbbdd1e/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/1fbbdd1e/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000369.html">[Kiwi-users] split image type and read-only
+</A></li>
+	<LI>Next message: <A HREF="000371.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#370">[ date ]</a>
+              <a href="thread.html#370">[ thread ]</a>
+              <a href="subject.html#370">[ subject ]</a>
+              <a href="author.html#370">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

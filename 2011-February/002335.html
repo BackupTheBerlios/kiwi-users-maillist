@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-tools version question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C1297873564.25868.228.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002334.html">
+   <LINK REL="Next"  HREF="002336.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-tools version question</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C1297873564.25868.228.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] kiwi-tools version question">roger at opq.se
+       </A><BR>
+    <I>Wed Feb 16 17:26:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002334.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+        <LI>Next message: <A HREF="002336.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2335">[ date ]</a>
+              <a href="thread.html#2335">[ thread ]</a>
+              <a href="subject.html#2335">[ subject ]</a>
+              <a href="author.html#2335">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2011-02-16 at 17:14 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; If I am making an OEM preload using 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; should it be using this repo for anything: 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 	/usr/share/kiwi/repo/suse-repo/suse-sle11-repo/
+</I>&gt;<i> 
+</I>&gt;<i> no that doesn't fit together, as the name says it's a sle11 repo
+</I>&gt;<i> and it only contains a few packages which are not distributed by
+</I>&gt;<i> the sle11 media (DVD)
+</I>&gt;<i> 
+</I>&gt;<i> Roger, for a 11.2 image you need a 11.2 distribution repo. This is
+</I>&gt;<i> either the 11.2 DVD or the online repo:
+</I>&gt;<i> 
+</I>&gt;<i>    <A HREF="http://download.opensuse.org/distribution/11.2/repo/oss/">http://download.opensuse.org/distribution/11.2/repo/oss/</A>
+</I>&gt;<i> 
+</I>&gt;<i> &gt; In there is kiwi-tools-3.85, which is what gets installed in any images
+</I>&gt;<i> &gt; I create (I see this in the log of the image build). But as I am
+</I>&gt;<i> &gt; building things with kiwi 4.73, couldn't there be some mismatch between
+</I>&gt;<i> &gt; the build tools and the tools later used in the image?
+</I>&gt;<i> 
+</I>&gt;<i> I don't understand why you added that repo for a 11.2 image ?
+</I>&gt;<i> you don't need it. 11.2 provides kiwi-tools on the media, sle11 doesn't
+</I>
+That is my point: I did not add this! There is no reference anywhere in
+my files. I checked! But when looking at the build log, I see that it is
+being added!
+
+The only repo line I have is:
+
+&lt;repository type=&quot;yast2&quot;&gt;
+     &lt;source path=&quot;/home/roger/source.18.00/Tools_Diskless/openSUSE-11.2-DVD-i586&quot;/&gt;
+&lt;/repository&gt;
+
+I will run this one more time just to be sure I did not look at an old
+log from something I tried a while back. That must be the only
+explanation.
+
+&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002334.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+	<LI>Next message: <A HREF="002336.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2335">[ date ]</a>
+              <a href="thread.html#2335">[ thread ]</a>
+              <a href="subject.html#2335">[ subject ]</a>
+              <a href="author.html#2335">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

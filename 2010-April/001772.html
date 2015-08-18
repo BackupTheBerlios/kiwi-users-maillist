@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues with image building using ver 4.30
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20image%20building%20using%20ver%204.30&In-Reply-To=%3C20100422104948.GA5770%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001771.html">
+   <LINK REL="Next"  HREF="001773.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues with image building using ver 4.30</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20with%20image%20building%20using%20ver%204.30&In-Reply-To=%3C20100422104948.GA5770%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Issues with image building using ver 4.30">ms at novell.com
+       </A><BR>
+    <I>Thu Apr 22 12:49:48 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001771.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+        <LI>Next message: <A HREF="001773.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1772">[ date ]</a>
+              <a href="thread.html#1772">[ thread ]</a>
+              <a href="subject.html#1772">[ subject ]</a>
+              <a href="author.html#1772">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Rahul,
+
+&gt;<i> I am facing a very strange issue while building a OEM split image
+</I>&gt;<i> using KIWI ver4.30 and SLED 11 +updates repo. 
+</I>&gt;<i> 
+</I>&gt;<i> I am frequently running into the following error 
+</I>&gt;<i> No space left on device: Bad file descriptor   failed. 
+</I>
+This is very strange. I checked the log and found the following:
+Here are the size requirements for the read-write part:
+
+  EXEC [du -s --block-size=1 /virtual-machines/KIWI/myimage/myroot-read-write | cut -f1]
+  getSize: files: 2219
+  getSize: spare: 1.6
+  getSize: usage: 20811776 Bytes
+  getSize: inode: 256 Bytes
+  getSize: journ: 5242880 Bytes
+  getSize: minsz: 39450624 Bytes
+
+Ok we need 20811776 (19MB) and calculated 39450624 Bytes (38MB) according
+to inodes filesystem overhead, journal and some spare space. Because of
+rounding to MB and back to bytes this results in 39845887 Bytes passed to
+the dd call when creating the read-write image. That looks good to me,
+further in the log:
+
+  Image RW part requires 38 MB of disk space
+  EXEC [dd if=/dev/zero of=/virtual-machines/KIWI/myimage/SLED11-TC-PANACHE-1G-read-write.i686-1.0.4 bs=1 seek=39845887 count=1 2&gt;&amp;1]
+  EXEC [/sbin/mke2fs -i 16384 -O resize_inode -T ext3 -j -F -N 62528 /virtual-machines/KIWI/myimage/SLED11-TC-PANACHE-1G-read-write.i686-1.0.4 2&gt;&amp;1]
+  EXEC [mount -o loop /virtual-machines/KIWI/myimage/SLED11-TC-PANACHE-1G-read-write.i686-1.0.4 /virtual-machines/KIWI/myimage/mnt-21302 2&gt;&amp;1]
+  Copying physical to logical [myroot-read-write]...
+  EXEC [df -h /virtual-machines/KIWI/myimage/mnt-21302 2&gt;&amp;1]
+  getSize: mount: Size Used Avail Use% Mounted on /dev/loop4
+                  23M  4.2M   17M  20% /virtual-machines/KIWI/myimage/mnt-21302
+  EXEC [cp -a -x /virtual-machines/KIWI/myimage/myroot-read-write/* /virtual-machines/KIWI/myimage/mnt-21302 2&gt;&amp;1]
+   failed
+  No space left on device: Bad file descriptor   failed
+
+As you can see the getSize mount information after the image has been created
+told us that there are only 17MB free where we need at least 19MB which
+causes the problem. I have tried to reproduce that by the following
+test:
+
+  dd if=/dev/zero of=/tmp/lala bs=1 seek=39845887 count=1
+  mke2fs -j -F -i 16384 -N 62528 -O resize_inode lala
+  mount -o loop lala /mnt
+
+  mount | grep lala
+  ===&gt; /dev/loop0 on /mnt type ext3 (rw)
+
+  df -h /mnt
+  Size Used Avail Use% Mounted on
+  31M  5.2M   24M  19% /mnt
+  ===&gt; so I have 24MB free and no problem building the image
+
+My buildsystem is a 11.1 system. Can you reproduce the test on your
+build machine and tell me the result ?
+
+An easy fix for you should be to increase
+
+  my $spare  = 1.6;
+
+in the function /usr/share/kiwi/modules/KIWIImage::getSize()
+But this is not really a solution for me because I want to
+understand why we again and again run into that &quot;no space left on device&quot;
+issue :((
+
+&gt;<i> Pls also let me know if I need to file a BUG report on this. 
+</I>
+I think it would be good if you can do this
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001771.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+	<LI>Next message: <A HREF="001773.html">[Kiwi-users] Issues with image building using ver 4.30
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1772">[ date ]</a>
+              <a href="thread.html#1772">[ thread ]</a>
+              <a href="subject.html#1772">[ subject ]</a>
+              <a href="author.html#1772">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

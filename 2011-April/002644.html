@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110412204104.GA18504%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002643.html">
+   <LINK REL="Next"  HREF="002645.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110412204104.GA18504%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">ms at suse.de
+       </A><BR>
+    <I>Tue Apr 12 22:41:05 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002643.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002645.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2644">[ date ]</a>
+              <a href="thread.html#2644">[ thread ]</a>
+              <a href="subject.html#2644">[ subject ]</a>
+              <a href="author.html#2644">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I made a new image with a fat partition of 3500mb and a swap of
+</I>&gt;<i> 2000mb.  The raw image size was 5473mb on a USB storage media of
+</I>&gt;<i> 7646mb.
+</I>&gt;<i> During the first boot the system did not prompt &quot;Flag to Invert&quot;.  So
+</I>&gt;<i> that's a good thing.
+</I>
+ok
+
+&gt;<i> It logged me into the user desktop and everything tested fine.  I was
+</I>&gt;<i> able to stream FF youtube as always.
+</I>
+ok
+
+&gt;<i> When I rebooted for the second the boot loader is displayed and just
+</I>&gt;<i> as it indicates &quot;Loading Linux Kernel&quot; another message window shows up
+</I>&gt;<i> with a title of &quot;Boot Loader&quot; and a message of &quot;/boot/linux.1: file
+</I>&gt;<i> not found&quot; my only option is to click &quot;OK&quot;...that's it.  This is (with
+</I>&gt;<i> the exception of &quot;Flag to Invert&quot; prompt)  the same issue I had the
+</I>&gt;<i> last few times I attempted my second boot from an image.
+</I>
+Hmm, this is bad. Are you sure you have updated _all_ relevant
+kiwi packages: kiwi, kiwi-tools, kiwi-desc-oemboot ? 
+
+&gt;<i> I noticed something very interesting about this USB drive when plugged
+</I>&gt;<i> into a Linux or Windows machine (not boot from the USB drive but just
+</I>&gt;<i> looking at it from the file manager).  Normally when I look at the
+</I>&gt;<i> contents of the USB drive after the first boot there is only 3 files
+</I>&gt;<i> on the drive.   1)the &quot;boot&quot; folder  2) the ldlinux.sys file and  3)
+</I>&gt;<i> the Storage folder.  Now after the first boot (and the second boot not
+</I>&gt;<i> working) there is the above files on the USB drive plus the
+</I>&gt;<i> &quot;boot.readme&quot;, &quot;config-2.6.34.12-default&quot;, &quot;initrd.1&quot; , &quot;linux.1&quot;,
+</I>&gt;<i> &quot;message&quot;, &quot;symvers-2.6.34.12-default.gz&quot;,
+</I>&gt;<i> &quot;System.map-2.6.34.12-default&quot;, &quot;vmlinux-2.6.24-12-default.gz&quot;.  None
+</I>&gt;<i> of these files were present when the system boots properly the second
+</I>&gt;<i> time around.
+</I>
+This is because I moved from fat16 to fat32
+
+will double check this
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002643.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002645.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2644">[ date ]</a>
+              <a href="thread.html#2644">[ thread ]</a>
+              <a href="subject.html#2644">[ subject ]</a>
+              <a href="author.html#2644">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

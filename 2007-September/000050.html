@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oemboot problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oemboot%20problems&In-Reply-To=%3C1190988502.23494.44.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000046.html">
+   <LINK REL="Next"  HREF="000051.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oemboot problems</H1>
+    <B>Rybczynski, Mitch</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oemboot%20problems&In-Reply-To=%3C1190988502.23494.44.camel%40localhost.localdomain%3E"
+       TITLE="[Kiwi-users] oemboot problems">Mitch.Rybczynski at christiedigital.com
+       </A><BR>
+    <I>Fri Sep 28 16:08:22 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000046.html">[Kiwi-users] oemboot problems
+</A></li>
+        <LI>Next message: <A HREF="000051.html">[Kiwi-users] oemboot problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+On Fri, 2007-09-28 at 10:02 +0200, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi Mitch,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 1.  what is the difference between using a VMX image type like:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;vmdk&quot;&gt;vmx&lt;/type&gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; and running 'kiwi --installcd' on it after creation, and the following
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;iso&quot;&gt;vmx&lt;/type&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; where the 'kiwi --installcd' step is unnecessary.  The two iso's created
+</I>&gt;<i> &gt; are not identical.  And neither work completely for me, which brings me
+</I>&gt;<i> &gt; to my next point
+</I>&gt;<i> 
+</I>&gt;<i> You can't use --installcd if your boot image is not the oemboot image.
+</I>&gt;<i> That's because the code for installing the system is in the oemboot
+</I>&gt;<i> boot image only. The vmxboot is meant for booting a virtual disk
+</I>&gt;<i> without the possibility of installing or re-partitioning, so in
+</I>&gt;<i> principal if used within a full virtual machine like VMware.
+</I>
+
+I'm a bit confused about your answer;
+
+&lt;type boot=&quot;oemboot/suse-10.2&quot; filesystem=&quot;ext3&quot; format=&quot;iso&quot;&gt;vmx&lt;/type&gt; 
+
+functions as a &quot;vmware&quot; image rather than an &quot;install&quot; image?  The
+&quot;Installation from CD/DVD or USB stick&quot; section of kiwi.pdf suggests
+using it for an installer...  Is the documentation wrong?
+
+Cheers,
+Mitch
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20070928/92522584/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20070928/92522584/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000046.html">[Kiwi-users] oemboot problems
+</A></li>
+	<LI>Next message: <A HREF="000051.html">[Kiwi-users] oemboot problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

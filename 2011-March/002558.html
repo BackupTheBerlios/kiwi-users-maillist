@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config.sh rpm won't install
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20rpm%20won%27t%20install&In-Reply-To=%3C20110326202337.GA6754%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002557.html">
+   <LINK REL="Next"  HREF="002559.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config.sh rpm won't install</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20rpm%20won%27t%20install&In-Reply-To=%3C20110326202337.GA6754%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] config.sh rpm won't install">ms at suse.de
+       </A><BR>
+    <I>Sat Mar 26 21:23:37 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002557.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+        <LI>Next message: <A HREF="002559.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2558">[ date ]</a>
+              <a href="thread.html#2558">[ thread ]</a>
+              <a href="subject.html#2558">[ subject ]</a>
+              <a href="author.html#2558">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> As a test I just ran 'prepare'...but in the config.sh script
+</I>&gt;<i> (<A HREF="http://paste2.org/p/1326835">http://paste2.org/p/1326835</A>) I commented out my package
+</I>&gt;<i> installations.  The error still exists.  Well the &quot;Couldn't set up
+</I>&gt;<i> image&quot; error and the &quot;insserv&quot; error still existing.  Is there a typo
+</I>&gt;<i> with config.sh script it's self?   I'm going to look at some other
+</I>&gt;<i> examples of this script and see if there is a syntax error in the
+</I>&gt;<i> script.  THe output log is this  <A HREF="http://paste2.org/p/1326843.">http://paste2.org/p/1326843.</A>
+</I>
+What I can see here is that your config.sh script does the
+following:
+
+  rpm -ev --nodeps desktop-data-openSUSE-11.3-1.3.noarch
+  #rpm -iv /opt/SOS/desktop-data-SOS-11.3-17.1.noarch.rpm
+  rpm -ev --nodeps lxde-common-branding-openSUSE-11.3-9.1.noarch
+  #rpm -iv /opt/SOS/lxde-common-branding-SOS-11.3-33.1.noarch.rpm
+  if [ $? ];then
+    exit 1
+  fi
+
+it looks like it exits with 1 which causes kiwi to stop.
+To find more about the error you can run the prepare step 
+with the default config.sh (or none) and after that is done
+copy the script you want to run into the newly prepared
+tree:
+
+    cp script.sh /new/tree/
+    chroot /new/tree bash
+
+    /script.sh
+    echo $?
+
+now you can better debug what happens and also fix the
+script until it works as expected. So far this all looks
+like packaging bugs:
+
+   insserv: warning: script 'SOS_firstboot' missing LSB tags and overrides
+   insserv: Default-Start undefined, assuming default start runlevel(s) for script `SOS_firstboot'
+
+   insserv: warning: script 'suse_studio_firstboot' missing LSB tags and overrides
+   insserv: Default-Start undefined, assuming default start runlevel(s) for script `suse_studio_firstboot'
+
+
+This means that these scripts are broken. The runlevel scripts have to
+follow the rules you can find in the example:
+
+   /etc/init.d/skeleton
+
+I did not follow the entire thread, so I'm wondering why that
+services needs to be included at all ? I also think that you are
+not responsible for that services, but the one who wrote them
+should fix them according to the LSB requirements
+
+you can ignore all of that errors if you make sure your config.xml
+exits with &quot;exit 0&quot; but that way the result might also be unexpected
+
+Don't know if that helps
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002557.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+	<LI>Next message: <A HREF="002559.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2558">[ date ]</a>
+              <a href="thread.html#2558">[ thread ]</a>
+              <a href="subject.html#2558">[ subject ]</a>
+              <a href="author.html#2558">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

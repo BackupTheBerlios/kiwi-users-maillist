@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi help to create SLED10
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help%20to%20create%20SLED10&In-Reply-To=%3C474498F1.F132.00B1.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000148.html">
+   <LINK REL="Next"  HREF="000150.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi help to create SLED10</H1>
+    <B>Kazuhiro Takagi</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help%20to%20create%20SLED10&In-Reply-To=%3C474498F1.F132.00B1.0%40novell.com%3E"
+       TITLE="[Kiwi-users] kiwi help to create SLED10">KTakagi at novell.com
+       </A><BR>
+    <I>Wed Nov 21 12:45:30 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000148.html">[Kiwi-users] kiwi help to create SLED10
+</A></li>
+        <LI>Next message: <A HREF="000150.html">[Kiwi-users] kiwi help to create SLED10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#149">[ date ]</a>
+              <a href="thread.html#149">[ thread ]</a>
+              <a href="subject.html#149">[ subject ]</a>
+              <a href="author.html#149">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Thank you for the suggestion.
+It is solved after clean up /root. Here was chaos.
+
+BTW, is there typically SLED10 config or sample with GUI. ?
+
+Thanks,
+&gt;&gt;&gt;<i>  6:15 &#21320;&#24460; &#12398; 2007/11/21 &#12398;&#12513;&#12483;&#12475;&#12540;&#12472; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">20071121091537.GA7053 at D7.ddts.net</A>&gt;:
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I'm attempting to create a SLED10 LiveCD using Kiwi, but I am having a
+</I>&gt;&gt;<i> problem.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> o  Installed openSUSE 10.3 
+</I>&gt;&gt;<i> o  Copied contents of DVD to /mounts/SLED10
+</I>&gt;&gt;<i> o  Created config.xml and build other environment
+</I>&gt;&gt;<i>  - Typed
+</I>&gt;&gt;<i>    &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-SLED10-SP1&quot;
+</I>&gt;&gt;<i> flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+</I>&gt;<i> 
+</I>&gt;<i> flags=&quot;unified&quot; not a good idea for SLE products, they don't provide
+</I>&gt;<i> aufs/unionfs and squashfs. Just remove the flags attribute
+</I>&gt;<i> 
+</I>&gt;&gt;<i>  - Typed
+</I>&gt;&gt;<i>     &lt;source path=&quot;/mounts/SLED10&quot;/&gt;
+</I>&gt;&gt;<i> o  Run kiwi --prepare /usr/share/kiwi/image/SLED10-thin --root
+</I>&gt;&gt;<i> /root/mkdvd
+</I>&gt;&gt;<i>       this runs successfully
+</I>&gt;<i> 
+</I>&gt;<i> ok
+</I>&gt;<i> 
+</I>&gt;&gt;<i> o  Run kiwi --create /root/mkdvd -d /root
+</I>&gt;&gt;<i>      Error message is displayed:
+</I>&gt;&gt;<i> Nov-21 15:20 &lt;1&gt; : Copying boot image and kernel [i386]cp: target
+</I>&gt;&gt;<i> `/tmp/kiwi-cdboot.E14559/kiwi-cdboot-14498/CD/boot/i386/loader/linux' is
+</I>&gt;&gt;<i> not a directory
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> What kind of mistake do I do? Any help would be greatly appreciated.
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, that could happen if the glob match:
+</I>&gt;<i> 
+</I>&gt;<i>    /root/initrd-isoboot-suse-SLED10*i686*.kernel
+</I>&gt;<i> 
+</I>&gt;<i> matches multiple files which shouldn't happen. Maybe the environment
+</I>&gt;<i> of /root is not clean or there is another kiwi process running.
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000148.html">[Kiwi-users] kiwi help to create SLED10
+</A></li>
+	<LI>Next message: <A HREF="000150.html">[Kiwi-users] kiwi help to create SLED10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#149">[ date ]</a>
+              <a href="thread.html#149">[ thread ]</a>
+              <a href="subject.html#149">[ subject ]</a>
+              <a href="author.html#149">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Using firstboot to run custom script
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20firstboot%20to%20run%20custom%20script&In-Reply-To=%3C4AA0F23B.5080509%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001432.html">
+   <LINK REL="Next"  HREF="001434.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Using firstboot to run custom script</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20firstboot%20to%20run%20custom%20script&In-Reply-To=%3C4AA0F23B.5080509%40novell.com%3E"
+       TITLE="[Kiwi-users] Using firstboot to run custom script">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Sep  4 12:55:55 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001432.html">[Kiwi-users] Using firstboot to run custom script
+</A></li>
+        <LI>Next message: <A HREF="001434.html">[Kiwi-users] Using firstboot to run custom script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1433">[ date ]</a>
+              <a href="thread.html#1433">[ thread ]</a>
+              <a href="subject.html#1433">[ subject ]</a>
+              <a href="author.html#1433">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Peter Schinagl wrote:
+&gt;<i> Hi Robert,
+</I>&gt;<i>
+</I>&gt;<i> please have a look at the kiwi cookbook
+</I>&gt;<i>  <A HREF="http://en.opensuse.org/Build_Service/KIWI/Cookbook">http://en.opensuse.org/Build_Service/KIWI/Cookbook</A>
+</I>&gt;<i>   -&gt; Pimp your USB stick - our fourth recipe 
+</I>&gt;<i>
+</I>&gt;<i>  <A HREF="http://en.opensuse.org/Build_Service/KIWI/Cookbook/FAQ">http://en.opensuse.org/Build_Service/KIWI/Cookbook/FAQ</A>
+</I>&gt;<i>   -&gt; Q: How to build a JeOS with a graphical firstboot 
+</I>&gt;<i>   
+</I>Peter,
+
+Thanks for the pointers. Still leaves me with the question, once I put 
+my Python script into /usr/share/firstboot/scripts how do I actually get 
+it to be executed. The mere presence of the file in the directory is not 
+sufficient.
+
+However, I did find a solution to my problem in copying the mechanism 
+that SUSE Studio uses for customized first boot configuration by adding 
+things to boot.local
+
+Robert
+**
+&gt;<i> Greetings
+</I>&gt;<i>  Peter
+</I>&gt;<i>
+</I>&gt;<i> On Thu, Sep 03, 2009 at 02:44:32PM -0400, Robert Schweikert wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've written a python script that I would like to execute on firstboot. 
+</I>&gt;&gt;<i> I've placed the script  in |/usr/share/firstboot/scripts but I cannot 
+</I>&gt;&gt;<i> find any docs on how to set things up to get the script executed.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Any help is appreciated.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks,
+</I>&gt;&gt;<i> Robert
+</I>&gt;&gt;<i> |
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -- 
+</I>&gt;&gt;<i> Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;<i> Software Engineer Consultant                          LINUX
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+</I>&gt;&gt;<i> 781-464-8147
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Novell
+</I>&gt;&gt;<i> Making IT Work As One
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001432.html">[Kiwi-users] Using firstboot to run custom script
+</A></li>
+	<LI>Next message: <A HREF="001434.html">[Kiwi-users] Using firstboot to run custom script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1433">[ date ]</a>
+              <a href="thread.html#1433">[ thread ]</a>
+              <a href="subject.html#1433">[ subject ]</a>
+              <a href="author.html#1433">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

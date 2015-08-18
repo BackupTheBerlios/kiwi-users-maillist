@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] oem boot lost usb keyboard when have to seect	the	hard drive
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20boot%20lost%20usb%20keyboard%20when%20have%20to%20seect%0A%09the%09hard%20drive&In-Reply-To=%3C20090518171328.GA4519%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001126.html">
+   <LINK REL="Next"  HREF="001131.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] oem boot lost usb keyboard when have to seect	the	hard drive</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20oem%20boot%20lost%20usb%20keyboard%20when%20have%20to%20seect%0A%09the%09hard%20drive&In-Reply-To=%3C20090518171328.GA4519%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] oem boot lost usb keyboard when have to seect	the	hard drive">ms at novell.com
+       </A><BR>
+    <I>Mon May 18 19:13:28 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001126.html">[Kiwi-users] oem boot lost usb keyboard when have to seect the hard	drive
+</A></li>
+        <LI>Next message: <A HREF="001131.html">[Kiwi-users] oem boot lost usb keyboard when have to seect the	hard drive
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1129">[ date ]</a>
+              <a href="thread.html#1129">[ thread ]</a>
+              <a href="subject.html#1129">[ subject ]</a>
+              <a href="author.html#1129">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'am facing a very strange behavior from kiwi. I create my image on laptop a
+</I>&gt;<i> dell E4200 and everything work perfectly I can deploy my image on every pc
+</I>&gt;<i> without problem.
+</I>&gt;<i> Currently i have to migrate my imaging machine from the Dell E4200 to a
+</I>&gt;<i> Optiplex 755. I installed the same distribution and the same version of
+</I>&gt;<i> kiwi, the creation process is not a problem everything work well then I burn
+</I>&gt;<i> my iso and I try to deploy it on a machine (the same than previously) and at
+</I>&gt;<i> the first stage when I must selecting the hard drive the keyboard doesn't
+</I>&gt;<i> respond.
+</I>
+Hmm, what type of keyboard is this, usb ? It's hard to debug
+something like this. What you can do is connect a standard usb
+keyboard to the laptop and try again. kiwi loads the usbhid
+module and therefore each usb keyboard should work
+
+if you have a working setup you can pass the
+kernel parameter kiwidebug=1 when the question comes up
+you will have a shell at Alt-F2 and you can do some
+debugging why the internal keyboard doesn't work 
+
+sorry not really a helpful answer I guess
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001126.html">[Kiwi-users] oem boot lost usb keyboard when have to seect the hard	drive
+</A></li>
+	<LI>Next message: <A HREF="001131.html">[Kiwi-users] oem boot lost usb keyboard when have to seect the	hard drive
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1129">[ date ]</a>
+              <a href="thread.html#1129">[ thread ]</a>
+              <a href="subject.html#1129">[ subject ]</a>
+              <a href="author.html#1129">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

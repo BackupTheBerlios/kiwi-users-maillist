@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C20080707080936.GA6538%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000752.html">
+   <LINK REL="Next"  HREF="000755.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C20080707080936.GA6538%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD">ms at novell.com
+       </A><BR>
+    <I>Mon Jul  7 10:09:37 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000752.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+        <LI>Next message: <A HREF="000755.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#753">[ date ]</a>
+              <a href="thread.html#753">[ thread ]</a>
+              <a href="subject.html#753">[ subject ]</a>
+              <a href="author.html#753">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I need help for build a minimal opensuse system with Kiwi.
+</I>&gt;<i> So, I use the example &quot;suse-live-iso&quot; from the buildservice (v 2.49)
+</I>&gt;<i> and modify the example without kde or gnome. Kiwi build the
+</I>&gt;<i> live cd without problems.
+</I>&gt;<i> 
+</I>&gt;<i> But I start the live cd in virtualbox. So I can't login, the error message:
+</I>&gt;<i> &quot;Some modules error&quot;. But I don't know, which packages are important
+</I>&gt;<i> for a minimal live cd.
+</I>
+I also had that problem in the past and figured out that the
+package &quot;resmgr&quot; which is not required but only recommended is not
+installed. Without resmgr you can't login.
+
+&gt;<i> If anyone have create a example of minimal live cd, this can
+</I>
+I have an example for you just check this out:
+
+11.0:
+
+	<A HREF="https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/ctso-minimal-suse-11.0">https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/ctso-minimal-suse-11.0</A>
+
+10.3:
+
+	<A HREF="https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/ctso-minimal-suse-10.3">https://forgesvn1.novell.com/svn/opensuse/trunk/distribution/images/ctso-minimal-suse-10.3</A>
+
+I like to use the base pattern. You also can remove some stuff later
+on but be careful to not break the system
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000752.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+	<LI>Next message: <A HREF="000755.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#753">[ date ]</a>
+              <a href="thread.html#753">[ thread ]</a>
+              <a href="subject.html#753">[ subject ]</a>
+              <a href="author.html#753">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi Build Question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Build%20Question&In-Reply-To=%3C4DB1B638.4080904%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002682.html">
+   <LINK REL="Next"  HREF="002687.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi Build Question</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Build%20Question&In-Reply-To=%3C4DB1B638.4080904%40novell.com%3E"
+       TITLE="[Kiwi-users] Kiwi Build Question">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Apr 22 19:09:12 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002682.html">[Kiwi-users] Kiwi Build Question
+</A></li>
+        <LI>Next message: <A HREF="002687.html">[Kiwi-users] Kiwi Build Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2685">[ date ]</a>
+              <a href="thread.html#2685">[ thread ]</a>
+              <a href="subject.html#2685">[ subject ]</a>
+              <a href="author.html#2685">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Josh,
+
+On 04/22/2011 09:07 AM, Josh Duvall wrote:
+&gt;<i> Robert- (or anyone else)
+</I>&gt;<i>
+</I>&gt;<i> Thank you. I am still having trouble with setting this up. I cannot
+</I>&gt;<i> figure out why when I build the appliance and install into a VM (for
+</I>&gt;<i> testing) it does not register the LVM.
+</I>
+Do you have the lvm2 package in your image description?
+
+&lt;package name=&quot;lvm2&quot;/&gt;
+
+&gt;<i>
+</I>&gt;<i> My goal is to have the appliance with
+</I>&gt;<i>
+</I>&gt;<i> /var 100G
+</I>&gt;<i> /tmp 4G
+</I>&gt;<i> /   ** (rest of the HDD)
+</I>&gt;<i> Swap 16 G
+</I>&gt;<i>
+</I>&gt;<i> Can the &lt;type&gt; section with the child &lt;systemdisk&gt; be an additional
+</I>&gt;<i> section in the config.xml? Or do I just use the &lt;type&gt; section that I
+</I>&gt;<i> already have with the parameters of the applaince?
+</I>
+Not sure I follow you. Something like this should work:
+
+         &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.3&quot; 
+installiso=&quot;true&quot;&gt;
+             &lt;oemconfig&gt;
+                 &lt;oem-swap&gt;true&lt;/oem-swap&gt;
+                 &lt;oem-swapsize&gt;1024&lt;/oem-swapsize&gt;
+             &lt;/oemconfig&gt;
+             &lt;systemdisk name=&quot;sysVG&quot;&gt;
+                 &lt;volume name=&quot;/var&quot; size=&quot;100G&quot;/&gt;
+                 &lt;volume name=&quot;/tmp&quot; size=&quot;4G&quot;/&gt;
+             &lt;/systemdisk&gt;
+         &lt;/type&gt;
+
+This creates an OEM image as an ISO file, i.e. self installing image. 
+The swap partition is not part of the LVM. If you want the root 
+filesystem to be part of the volume group you'd need to add
+
+&lt;volume name=&quot;/&quot;/&gt;
+
+I believe, but I haven't tested this.
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002682.html">[Kiwi-users] Kiwi Build Question
+</A></li>
+	<LI>Next message: <A HREF="002687.html">[Kiwi-users] Kiwi Build Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2685">[ date ]</a>
+              <a href="thread.html#2685">[ thread ]</a>
+              <a href="subject.html#2685">[ subject ]</a>
+              <a href="author.html#2685">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

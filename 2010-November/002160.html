@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011241533.19570.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002159.html">
+   <LINK REL="Next"  HREF="002145.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011241533.19570.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory">javier at opensuse.org
+       </A><BR>
+    <I>Wed Nov 24 15:33:10 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002159.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+        <LI>Next message: <A HREF="002145.html">[Kiwi-users] obs kiwi build: nothing provides ciutils
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2160">[ date ]</a>
+              <a href="thread.html#2160">[ thread ]</a>
+              <a href="subject.html#2160">[ subject ]</a>
+              <a href="author.html#2160">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>El Mi&#233;rcoles, 24 de Noviembre de 2010 14:28:56 Marcus Sch&#228;fer escribi&#243;:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Same thing as before. I still get ~1 GB of unassigned free space,
+</I>&gt;<i> &gt; which can be assigned to LVRoot.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks according to the log you gave it a &lt;oem-systemsize&gt; now which
+</I>&gt;<i> results in:
+</I>&gt;<i> 
+</I>&gt;<i>   lvextend --size 2048M /dev/KiwiVG/LVRoot
+</I>&gt;<i> 
+</I>&gt;<i> and:
+</I>&gt;<i> 
+</I>&gt;<i>   New size given (512 extents) not larger than existing size (1294 extents)
+</I>&gt;<i> 
+</I>&gt;<i> so it looks like LVroot before is already bigger than the 2G you
+</I>&gt;<i> requested. I'm even more confused now ;)
+</I>
+My LVRoot is using 3.5 GB, maybe it's because of that. Even so all the space 
+should've been assigned?
+ 
+&gt;<i> &gt; BTW, I forgot to tell you that I get Activating remaining swap-devices in
+</I>&gt;<i> &gt; /etc/fstab... failed.
+</I>&gt;<i> 
+</I>&gt;<i> yes I saw this too but couldn't figure out why &quot;swapon -a&quot; complained
+</I>&gt;<i> about it. Maybe it's because swap is a lvm volume. I saw the same failed
+</I>&gt;<i> message in a normal suse installation with LVM (not kiwi). It doesn't
+</I>&gt;<i> have any major impact so I gave up to research that more
+</I>
+OK.
+
+Greetings,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101124/7dfb28d7/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101124/7dfb28d7/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002159.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+	<LI>Next message: <A HREF="002145.html">[Kiwi-users] obs kiwi build: nothing provides ciutils
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2160">[ date ]</a>
+              <a href="thread.html#2160">[ thread ]</a>
+              <a href="subject.html#2160">[ subject ]</a>
+              <a href="author.html#2160">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

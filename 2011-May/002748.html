@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] 4.89 failing when archive packages are set to bootinclude=&quot;true&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%204.89%20failing%20when%20archive%20packages%20are%20set%20to%0A%20bootinclude%3D%22true%22&In-Reply-To=%3C20110522192016.GA3297%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002745.html">
+   <LINK REL="Next"  HREF="002746.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] 4.89 failing when archive packages are set to bootinclude=&quot;true&quot;</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%204.89%20failing%20when%20archive%20packages%20are%20set%20to%0A%20bootinclude%3D%22true%22&In-Reply-To=%3C20110522192016.GA3297%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] 4.89 failing when archive packages are set to bootinclude=&quot;true&quot;">ms at suse.de
+       </A><BR>
+    <I>Sun May 22 21:20:16 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002745.html">[Kiwi-users] 4.89 failing when archive packages are set to	bootinclude=&quot;true&quot;
+</A></li>
+        <LI>Next message: <A HREF="002746.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end	off booting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2748">[ date ]</a>
+              <a href="thread.html#2748">[ thread ]</a>
+              <a href="subject.html#2748">[ subject ]</a>
+              <a href="author.html#2748">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+&gt;<i> It looks like 4.89 has an issue when building with bootincluded archive files.  The prepare seems to be ok, but the build fails with an error saying it &quot;Can't find&quot; the archive file in the image-root directory that kiwi is currently using.
+</I>&gt;<i> This can quickly be reproduced by adding a license.txt file (tarred and then gzipped) in a license.tar.gz to the suse-SLE11-JeOS sample directory and adding a kiwi hook script in a kiwi-hooks.tgz, then adding the following lines top of the packages list in the config.xml:
+</I>&gt;<i>                 &lt;archive name=&quot;EMCLicense.tar.gz&quot; bootinclude=&quot;true&quot;/&gt;
+</I>&gt;<i>                 &lt;archive name=&quot;kiwi-hooks.tgz&quot; bootinclude=&quot;true&quot;/&gt;
+</I>&gt;<i> Building the suse-SLE11-JeOS sample will now fail with the following error:
+</I>&gt;<i> May-20 15:00:38 &lt;3&gt; : Can't find /tmp/kiwitmp/build/image-root/EMCLicense.tgz
+</I>&gt;<i> May-20 15:00:38 &lt;3&gt; : Archive installation failed   failed
+</I>&gt;<i> 
+</I>&gt;<i> For now I think we can work around this by copying the archives into the prepared image-root directory manually in between the prepare and build steps.
+</I>
+Thanks for reporting this. Attached is a fix for this bug
+(the fix is in the git master tree too)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.patch
+Type: text/x-patch
+Size: 5006 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110522/8fa737db/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110522/8fa737db/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002745.html">[Kiwi-users] 4.89 failing when archive packages are set to	bootinclude=&quot;true&quot;
+</A></li>
+	<LI>Next message: <A HREF="002746.html">[Kiwi-users] Preload OEM image not Shutdown or halt problem at end	off booting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2748">[ date ]</a>
+              <a href="thread.html#2748">[ thread ]</a>
+              <a href="subject.html#2748">[ subject ]</a>
+              <a href="author.html#2748">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

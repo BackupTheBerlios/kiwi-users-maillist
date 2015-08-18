@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi Build Question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Build%20Question&In-Reply-To=%3CBANLkTinW%3D7rqdp2Q7a9P%2BBpc2aJfGjQqQQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002702.html">
+   <LINK REL="Next"  HREF="002677.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi Build Question</H1>
+    <B>Josh Duvall</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20Build%20Question&In-Reply-To=%3CBANLkTinW%3D7rqdp2Q7a9P%2BBpc2aJfGjQqQQ%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Kiwi Build Question">josh.duvall at endeavorsystems.com
+       </A><BR>
+    <I>Thu Apr 21 22:35:44 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002702.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+        <LI>Next message: <A HREF="002677.html">[Kiwi-users] Kiwi Build Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2676">[ date ]</a>
+              <a href="thread.html#2676">[ thread ]</a>
+              <a href="subject.html#2676">[ subject ]</a>
+              <a href="author.html#2676">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>My name is Josh and I am building an appliance with KIWI. I cannot seem to
+figure out how to incorporate LVM group.
+
+When I add:
+{code}
+
+&lt;systemdisk name=&quot;fismaVG&quot;&gt;
+&lt;volume name=&quot;var&quot; size=&quot;4000M&quot;/&gt;
+&lt;/systmedisk&gt;
+
+{code}
+
+... To the preferences section, I keep getting this error:
+
+Element preferences has extra content: systemdisk
+Relaz-NG validity error: extra element preferences in interleave
+
+.....failed to validate ect.........
+
+In the CookBook on pg. 15 it says that the system disk goes in the
+preferences element.
+
+I have used lvm=&quot;true&quot; in the  &lt;type&gt; line.  do i also add lvmgroup=??????
+
+I am trying to create an appliance for OpenFISMA and am very close to
+completion! Please help.
+
+Best
+
+-- 
+Josh Duvall
+Jr. Systems Administrator
+Endeavor Systems, Inc. - *Securing the Business of Government*
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">josh.duvall at endeavorsystems.com</A> | (w) 571.730.1992 x111  | (c) 301.802.8083
+www.endeavorsystems.com
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110421/933c026f/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110421/933c026f/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002702.html">[Kiwi-users] Stick-Image wouldn't boot
+</A></li>
+	<LI>Next message: <A HREF="002677.html">[Kiwi-users] Kiwi Build Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2676">[ date ]</a>
+              <a href="thread.html#2676">[ thread ]</a>
+              <a href="subject.html#2676">[ subject ]</a>
+              <a href="author.html#2676">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

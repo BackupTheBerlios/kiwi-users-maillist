@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Howto add your custom boot menu branding...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C4A54F2C2.3010205%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001260.html">
+   <LINK REL="Next"  HREF="001266.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Howto add your custom boot menu branding...</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20add%20your%20custom%20boot%20menu%20branding...&In-Reply-To=%3C4A54F2C2.3010205%40novell.com%3E"
+       TITLE="[Kiwi-users] Howto add your custom boot menu branding...">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Jul  8 21:25:54 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001260.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+        <LI>Next message: <A HREF="001266.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1264">[ date ]</a>
+              <a href="thread.html#1264">[ thread ]</a>
+              <a href="subject.html#1264">[ subject ]</a>
+              <a href="author.html#1264">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Couldn't find a &quot;boot-theme&quot; element in 
+</I>&gt;&gt;<i> /usr/share/doc/packages/kiwi/schema/kiwi.xsd.html?
+</I>&gt;<i> 
+</I>&gt;<i> yes the update of the auto generated xml docu follows soon
+</I>&gt;<i> but this element exists
+</I>&gt;<i> 
+</I>
+
+Sorry for being dense, but schema validation appears to dislike the
+&lt;boot-theme&gt; element as I get the folowing error:
+
+kiwi --prepare ./suse-live-iso -root /tmp/myBrand-iso
+Jul-08 15:15:08 &lt;1&gt; : Reading image description [Prepare]...
+Jul-08 15:15:08 &lt;3&gt; : Schema validation failed                       failed
+Jul-08 15:15:08 &lt;3&gt; : ./suse-live-iso/config.xml:38: Relax-NG validity
+error : Element image has extra content: boot-theme
+
+Jul-08 15:15:08 &lt;3&gt; : KIWI exited with error(s)
+
+I tried &lt;boot-theme&gt; within &lt;image&gt; and within &lt;packages&gt; and got a
+validation error in both cases?
+
+Thanks,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: config.xml
+Type: text/xml
+Size: 1378 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090708/75faf5bd/attachment.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090708/75faf5bd/attachment.xml</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001260.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+	<LI>Next message: <A HREF="001266.html">[Kiwi-users] Howto add your custom boot menu branding...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1264">[ date ]</a>
+              <a href="thread.html#1264">[ thread ]</a>
+              <a href="subject.html#1264">[ subject ]</a>
+              <a href="author.html#1264">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

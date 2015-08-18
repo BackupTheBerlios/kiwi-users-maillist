@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi or package issue?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3CAANLkTinCCg9PVw0vUKcZvuxAO3LQ-U8mbr1zFRnRU6wy%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002547.html">
+   <LINK REL="Next"  HREF="002552.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi or package issue?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3CAANLkTinCCg9PVw0vUKcZvuxAO3LQ-U8mbr1zFRnRU6wy%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Kiwi or package issue?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Mar 25 15:09:37 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002547.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+        <LI>Next message: <A HREF="002552.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2549">[ date ]</a>
+              <a href="thread.html#2549">[ thread ]</a>
+              <a href="subject.html#2549">[ subject ]</a>
+              <a href="author.html#2549">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Mar 24, 2011 at 4:15 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi Robert. &#160;I need a systematic (Step 1....Step 2) to understand and
+</I>&gt;&gt;<i> learn more about rpm building. &#160;Is there a good tutorial from SUSE or
+</I>&gt;&gt;<i> maybe tips or something that may have worked for you guys to learn
+</I>&gt;&gt;<i> this stuff better?
+</I>&gt;<i>
+</I>&gt;<i> Check out the the build service tutorial
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://en.opensuse.org/openSUSE:Build_Service_Tutorial">http://en.opensuse.org/openSUSE:Build_Service_Tutorial</A>
+</I>&gt;<i>
+</I>&gt;<i> it has a lot of links to relevant information. Read the packaging guidelines
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://en.opensuse.org/openSUSE:Packaging_guidelines">http://en.opensuse.org/openSUSE:Packaging_guidelines</A>
+</I>&gt;<i>
+</I>&gt;<i> Tips and tricks:
+</I>&gt;<i> <A HREF="http://en.opensuse.org/openSUSE:Build_Service_Tips_and_Tricks">http://en.opensuse.org/openSUSE:Build_Service_Tips_and_Tricks</A>
+</I>&gt;<i>
+</I>&gt;<i> The RPM book, a bit dated but still useful IMHO
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://www.rpm.org/max-rpm/">http://www.rpm.org/max-rpm/</A>
+</I>&gt;<i>
+</I>&gt;<i> Also check out the packaging portal:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://en.opensuse.org/Portal:Packaging">http://en.opensuse.org/Portal:Packaging</A>
+</I>&gt;<i>
+</I>&gt;&gt;<i> This is waaay too stressful doing this by the seat
+</I>&gt;&gt;<i> of my pants.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In this last build had only these repos enabled.
+</I>&gt;&gt;<i> &lt;repository type=&quot;rpm-md&quot;&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&lt;source
+</I>&gt;&gt;<i> path=&quot;<A HREF="http://download.opensuse.org/repositories/home:/eportel6607:/SOS/openSUSE_11.3">http://download.opensuse.org/repositories/home:/eportel6607:/SOS/openSUSE_11.3</A>&quot;/&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;/repository&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;repository type=&quot;rpm-md&quot;&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&lt;source
+</I>&gt;&gt;<i> path=&quot;<A HREF="http://download.opensuse.org/repositories/X11:/lxde/openSUSE_11.3/">http://download.opensuse.org/repositories/X11:/lxde/openSUSE_11.3/</A>&quot;/&gt;
+</I>&gt;<i>
+</I>&gt;<i> This is your culprit, right here. This is the LXDE project development
+</I>&gt;<i> repository, i.e. living on the bleeding edge. The LXDE developers will throw
+</I>&gt;<i> whatever they consider the latest and greates stable stuff into this repo,
+</I>&gt;<i> such that people who want to be as close to bleeding edge without being
+</I>&gt;<i> broken can follow this repo.
+</I>&gt;<i>
+</I>&gt;<i> This is what I mean by &quot;understanding the moving parts&quot;. If you need stable
+</I>&gt;<i> you'll have to pull your LXDE packages from the standard repository and not
+</I>&gt;<i> configure X11:/lxde.
+</I>&gt;<i>
+</I>&gt;<i> You can always use <A HREF="http://software.opensuse.org/search">http://software.opensuse.org/search</A> to serach for a
+</I>&gt;<i> specific package and find all the repositories (spare home projects by
+</I>&gt;<i> default) that contain the specific package. Anything .../standard will be
+</I>&gt;<i> stable, i.e. no major changes. The standard repo is controlled by Coolo and
+</I>&gt;<i> other and adheres to the openSUSE maintenance policy:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://en.opensuse.org/Portal:Maintenance">http://en.opensuse.org/Portal:Maintenance</A>
+</I>&gt;<i>
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;/repository&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;repository type=&quot;yast2&quot;&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&lt;source path=&quot;<A HREF="opensuse://11.3/repo/non-oss/">opensuse://11.3/repo/non-oss/</A>&quot;/&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;/repository&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;repository type=&quot;rpm-md&quot;&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&lt;source
+</I>&gt;&gt;<i> path=&quot;<A HREF="http://ftp.uni-erlangen.de/pub/mirrors/packman/suse/11.3/">http://ftp.uni-erlangen.de/pub/mirrors/packman/suse/11.3/</A>&quot;/&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;/repository&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;repository type=&quot;yast2&quot;&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&lt;source path=&quot;<A HREF="opensuse://11.3/repo/oss/">opensuse://11.3/repo/oss/</A>&quot;/&gt;
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;/repository&gt;
+</I>&gt;&gt;<i> I did have an update repo enabled but that was for some Broadcom
+</I>&gt;&gt;<i> drivers...which didn't work anyway.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In this last kiwi build of this image &#160;the SUSE graphics that where
+</I>&gt;&gt;<i> being used for this package (lxde-common-branding-openSUSE) has
+</I>&gt;&gt;<i> definitly changed...so I guess it's safe to say that this package has
+</I>&gt;&gt;<i> been update. &#160;Although when I checked the package on OBS there is no
+</I>&gt;&gt;<i> changes to it in the last 6 months.
+</I>&gt;<i>
+</I>&gt;<i> Nope, you looked in the wrong place. The package probably hasn't changed in
+</I>&gt;<i> the standard repo. But you are getting your package from X11:/lxde and there
+</I>&gt;<i> the package changed yesterday:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://download.opensuse.org/repositories/X11:/lxde/openSUSE_11.3/noarch/">http://download.opensuse.org/repositories/X11:/lxde/openSUSE_11.3/noarch/</A>
+</I>&gt;<i>
+</I>&gt;<i> So another thing to understand is the behavior of zypper
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://en.opensuse.org/Portal:Zypper">http://en.opensuse.org/Portal:Zypper</A>
+</I>&gt;<i>
+</I>&gt;<i> when a package exists in multiple places, and how priorities for
+</I>&gt;<i> repositories come into play.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> After the OS from this image is up and running I open a terminal and
+</I>&gt;&gt;<i> mimiced what the config.sh script would do.
+</I>&gt;&gt;<i> Which is:
+</I>&gt;&gt;<i> &#160;rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch
+</I>&gt;&gt;<i> rpm -i /opt/SOS/lxde-common-branding-SOS-11.3-32.1.noarch.rpm
+</I>&gt;&gt;<i> rpm -e --nodeps desktop-data-openSUSE-11.3-1.3.noarch
+</I>&gt;&gt;<i> rpm -i /opt/SOS/desktop-data-SOS-11.3-15.1.noarch.rpm
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When I run the first command it indicates that the package isn't
+</I>&gt;&gt;<i> installed...which means that the config.sh script did in fact
+</I>&gt;&gt;<i> uninstall it.
+</I>&gt;&gt;<i> When I run the second command it get an error that reads &quot;failed
+</I>&gt;&gt;<i> dependencies:desktop-data-openSUSE is needed by lxde-commond
+</I>&gt;&gt;<i> branding-SOS.
+</I>&gt;&gt;<i> When I try to install the desktop-data-openSUSE package I get &quot;failed
+</I>&gt;&gt;<i> Subprocess failed. Error: rpm failed: warning:
+</I>&gt;&gt;<i> /etc/kde4/kdm/backgroundrc saved as /etc/kde4/kdm/backgrounds.rpmsave
+</I>&gt;&gt;<i> &#160;Error: unpacking of archive failed on file/usr/share/icons/default:
+</I>&gt;&gt;<i> cpio rename failed&quot;......and it goes on and on.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> So installing this package isn't possible.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'm doing a rebuild right now. &#160;I noticed that in the spec file of my
+</I>&gt;&gt;<i> lxde-common-branding-sos package there was a line that read &quot;Requires:
+</I>&gt;&gt;<i> &#160; &#160; &#160; desktop-data-openSUSE&quot;
+</I>&gt;<i>
+</I>&gt;<i> The &quot;Requires:&quot; in the spec file specifies your dependency and RPM will not
+</I>&gt;<i> install your package when a dependency cannot be met.
+</I>&gt;<i>
+</I>&gt;&gt;<i> I just changed that to
+</I>&gt;&gt;<i> &quot;desktop-data-SOS&quot;.
+</I>&gt;<i>
+</I>&gt;<i> That'll do the trick.
+</I>&gt;<i>
+</I>&gt;<i> One more thing, obviously your config.sh exists successfully when it should
+</I>&gt;<i> be failing. Your build should have never succeeded.
+</I>&gt;<i>
+</I>&gt;<i> You need to check the exit status of your rpm commands and when they fail
+</I>&gt;<i> exit config.sh with a non zero status and kiwi will indicate a failure.
+</I>&gt;<i>
+</I>&gt;&gt;<i> Yeah I'm in over my head but would really like to
+</I>&gt;&gt;<i> understand this more.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Robert where do I find the original (SUSE) &#160;versions of these package
+</I>&gt;&gt;<i> that I was using?
+</I>&gt;<i>
+</I>&gt;<i> The &quot;original&quot; would be in the standard repo, just get rid of X11:/lxde in
+</I>&gt;<i> config.xml and you'll save yourself some headaches.
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>Thanks Robert for the efforts here.  The links are going to be very helpful.
+I had no idea that one of the repos that I was using was a devel repo.
+ It didn't indicate anything about a that in the URL.
+
+I did what you said and remove the &quot;X11:/lxde&quot; which leaves me with
+&quot;<A HREF="http://download.opensuse.org/repositories/openSUSE_11.3/">http://download.opensuse.org/repositories/openSUSE_11.3/</A>&quot;  This URL
+destination doesn't exist.  I used the suse search feature and found
+this URL contains the lxde-common-branding-openSUSE package:
+<A HREF="http://download.opensuse.org/distribution/11.3/repo/oss/suse/">http://download.opensuse.org/distribution/11.3/repo/oss/suse/</A>
+However isn't that URL already in my config.xml file in another form?
+As this:  <A HREF="opensuse://11.3/repo/non-oss/">opensuse://11.3/repo/non-oss/</A>
+
+Thanks Robert
+I'll read up on the links you sent me.  The only one in that list that
+I did do already is the Kiwi tutorials.
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002547.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+	<LI>Next message: <A HREF="002552.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2549">[ date ]</a>
+              <a href="thread.html#2549">[ thread ]</a>
+              <a href="subject.html#2549">[ subject ]</a>
+              <a href="author.html#2549">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

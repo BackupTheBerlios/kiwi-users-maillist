@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-08-22 - 2010-08-27...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-08-22%20-%202010-08-27...&In-Reply-To=%3C20100827135728.GA10514%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001992.html">
+   <LINK REL="Next"  HREF="001996.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-08-22 - 2010-08-27...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-08-22%20-%202010-08-27...&In-Reply-To=%3C20100827135728.GA10514%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-08-22 - 2010-08-27...">ms at novell.com
+       </A><BR>
+    <I>Fri Aug 27 15:57:28 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001992.html">[Kiwi-users] repo trouble
+</A></li>
+        <LI>Next message: <A HREF="001996.html">[Kiwi-users] KIWI hangs in umount during image build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1995">[ date ]</a>
+              <a href="thread.html#1995">[ thread ]</a>
+              <a href="subject.html#1995">[ subject ]</a>
+              <a href="author.html#1995">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.58 2010-08-22 - 2010-08-27
+--------------------------------------------------
+most important changes for this weeks release...
+
+commit 72010bb6fd4b5cf4c0402e4b042b2c80dfeecffb
+commit f692f6bb1feb1b1731f4c51b1f45406eae648ec5
+
+    - added package/group check before yum is called to install
+      packages/groups. This is done because there are yum versions
+      which silently ignore missing items and proceed installing
+      the rest.
+
+commit 88d1939d1a9a13b86daf0bf4f910a0894d718143
+commit 6aaec94178eda67078cfd455cc9fe07bfaa61c9b
+
+    - added clicfs for RHEL 5.4 to kiwi rhel repo
+    - changed iso image type for RHEL template to use clicfs
+      instead of squashfs
+
+commit c451f091a0a60e114c2c224bf516d28d092ee4d6
+
+    - fixed clicfs mount by not using losetup on the clicfs file
+      before mounting it via the clicfs command. The clicfs command
+      now get the clicfs file directly. Problem here was that with
+      a loop clicfs is no longer able to read the size of the clicfs
+      file which results in unexpected behavior (bnc #629543)
+
+    - Related to that fix clicfs based caching now works stable
+      This means you can call the kiwi prepare step with the
+      option:
+
+          --cache /some/directory
+
+      If there is a cache file representing a part of the image
+      it will be used and the packagemanager only has to install
+      the rest. The cache itself is a clicfs file which is mounted
+      as an overlay filesystem with a cow file. This speeds up
+      the prepare step a lot and the caches are re-usable for other
+      images too. If no cache was found kiwi creates one
+
+commit 067df34571c31dc4cf219542fff45167b7eada93
+commit 448c478f095f1f0907e4779c349081d601ea4c7c
+
+    - call dhcpcd with the option --noipv4ll to be able to check the
+      return code of dhcpcd and to prevent the interface from an ip address
+      if there was a DHCP timeout (bnc #634057)
+
+commit e3a28e42cae74b54f8bfd870a2df2dde5ee57278
+commit ef75108a99a9df741aad4e5ba554b4c2d6f285fd
+
+    - added &lt;hwclock&gt; setup to templates. Use utc by default
+      This allows to set the hardware clock to either UTC or
+      localtime:
+
+      &lt;preferences&gt;
+           ...
+           &lt;hwclock&gt;utc&lt;/hwclock&gt;
+      &lt;/preferences&gt;
+
+Remember to have fun :-)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001992.html">[Kiwi-users] repo trouble
+</A></li>
+	<LI>Next message: <A HREF="001996.html">[Kiwi-users] KIWI hangs in umount during image build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1995">[ date ]</a>
+              <a href="thread.html#1995">[ thread ]</a>
+              <a href="subject.html#1995">[ subject ]</a>
+              <a href="author.html#1995">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

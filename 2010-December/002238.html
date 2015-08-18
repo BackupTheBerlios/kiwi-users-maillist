@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] unknown filesystem type 'unknown'
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20unknown%20filesystem%20type%20%27unknown%27&In-Reply-To=%3C20101228201856.GB2765%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002235.html">
+   <LINK REL="Next"  HREF="002236.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] unknown filesystem type 'unknown'</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20unknown%20filesystem%20type%20%27unknown%27&In-Reply-To=%3C20101228201856.GB2765%40localhost%3E"
+       TITLE="[Kiwi-users] unknown filesystem type 'unknown'">ms at suse.de
+       </A><BR>
+    <I>Tue Dec 28 21:18:56 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002235.html">[Kiwi-users] unknown filesystem type 'unknown'
+</A></li>
+        <LI>Next message: <A HREF="002236.html">[Kiwi-users] Is kiwi capable to destroy data on partition (except	image partition)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2238">[ date ]</a>
+              <a href="thread.html#2238">[ thread ]</a>
+              <a href="subject.html#2238">[ subject ]</a>
+              <a href="author.html#2238">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> 1. Disk must be prepartitioned and formatted to known filesystem, so there
+</I>&gt;<i> is enough space for each partition in config.&lt;MAC&gt;
+</I>
+This is weird because before the new partition table is created
+kiwi wipes the old one as follows:
+
+  dd if=/dev/zero of=$DISK bs=512 count=1 &gt;/dev/null &amp;&amp; \
+      parted -s $DISK mklabel msdos
+
+so it really doesn't matter what data the table contains before.
+Are you using the latest version of kiwi ? parted is part of the
+11.2 netboot code there
+
+&gt;<i> 2. No &quot;x&quot; in size field of config.&lt;MAC&gt;: only precise numbers that are
+</I>&gt;<i> slightly more than enough to contain the image.
+</I>
+'x' means use the entire rest space available, so it must be set
+only once and that worked for me too... strange
+
+&gt;<i> 3. Mount point should exist (just mkdir /tmp/mypxe/mountpoint after
+</I>&gt;<i> &quot;prepare&quot; kiwi step but befote &quot;create&quot; kiwi step)
+</I>
+this is correct yes
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002235.html">[Kiwi-users] unknown filesystem type 'unknown'
+</A></li>
+	<LI>Next message: <A HREF="002236.html">[Kiwi-users] Is kiwi capable to destroy data on partition (except	image partition)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2238">[ date ]</a>
+              <a href="thread.html#2238">[ thread ]</a>
+              <a href="subject.html#2238">[ subject ]</a>
+              <a href="author.html#2238">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

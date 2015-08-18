@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Howto use custom gfxboot branding package?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20use%20custom%20gfxboot%20branding%20package%3F&In-Reply-To=%3C20090811112808.GA16258%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001360.html">
+   <LINK REL="Next"  HREF="001362.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Howto use custom gfxboot branding package?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Howto%20use%20custom%20gfxboot%20branding%20package%3F&In-Reply-To=%3C20090811112808.GA16258%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Howto use custom gfxboot branding package?">ms at novell.com
+       </A><BR>
+    <I>Tue Aug 11 13:28:08 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001360.html">[Kiwi-users] Howto use custom gfxboot branding package?
+</A></li>
+        <LI>Next message: <A HREF="001362.html">[Kiwi-users] Howto use custom gfxboot branding package?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1361">[ date ]</a>
+              <a href="thread.html#1361">[ thread ]</a>
+              <a href="subject.html#1361">[ subject ]</a>
+              <a href="author.html#1361">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> my custom gfxboot-branding is now ready and installs it's files into
+</I>&gt;<i> /etc/bootsplash/themes/OX.
+</I>
+This is wrong, your custom gfxboot branding has to follow the
+guidelines of the _gfxboot-branding_ packages and not the
+bootsplash-branding package
+
+gfxboot     -&gt; graphics screen in grub and isolinux
+               Follow the rules of the gfxboot-branding packages
+
+bootsplash  -&gt; graphics background of the framebuffer console
+               Follow the rules of the bootsplash-branding packages
+
+&gt;<i> I also created an own version of the boot stuff suse-11.1 and changed
+</I>&gt;<i> images.sh to call
+</I>&gt;<i>
+</I>&gt;<i> suseGFXBoot OX isolinux
+</I>&gt;<i>
+</I>&gt;<i> instead of openSUSE.
+</I>
+That's also evil: Don't create your own copy of the boot image if you
+want me to help with problems. You need to use the boot-theme
+attribute in your system image config.xml
+
+&lt;preferences&gt;
+     ...
+     &lt;boot-theme&gt;OX&lt;/boot-theme&gt;
+&lt;/preferences&gt;
+
+&gt;<i> Unfortunately that does try to compile the gfxboot stuff again in
+</I>&gt;<i> /usr/share/gfxboot (from gfxboot-devel), where my branding package does not
+</I>&gt;<i> put any stuff, because it is in /etc/bootsplash/themes/OX.
+</I>
+If you have branding packages you are not allowed to have gfxboot-devel
+installed. The branding packages has to provide all that what would
+be the result of the gfxboot-devel compile code. If you install branding
+and devel packages kiwi prefers the devel data and thus your branding
+packages have no effect
+
+&gt;<i> How is that designed to work? Do I have to create a package which puts that
+</I>&gt;<i> stuff also to /usr/share/gfxboot/themes? Or is there some other way?
+</I>
+* use boot-theme
+* don't copy any boot image code !
+* follow the rules of the existing gfxboot-branding and/or bootsplash-branding
+  packages. Best way is to install the src rpm, exchange the pictures,
+  spec file etc.. and rebuild
+* don't add gfxboot-devel if you have branding packages
+
+Have fun :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001360.html">[Kiwi-users] Howto use custom gfxboot branding package?
+</A></li>
+	<LI>Next message: <A HREF="001362.html">[Kiwi-users] Howto use custom gfxboot branding package?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1361">[ date ]</a>
+              <a href="thread.html#1361">[ thread ]</a>
+              <a href="subject.html#1361">[ subject ]</a>
+              <a href="author.html#1361">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

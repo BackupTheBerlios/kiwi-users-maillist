@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem booting image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20booting%20image&In-Reply-To=%3C1243327029.6269.66.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001115.html">
+   <LINK REL="Next"  HREF="001117.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem booting image</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20booting%20image&In-Reply-To=%3C1243327029.6269.66.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] Problem booting image">roger at opq.se
+       </A><BR>
+    <I>Tue May 26 10:37:09 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001115.html">[Kiwi-users] Problem booting image
+</A></li>
+        <LI>Next message: <A HREF="001117.html">[Kiwi-users] Enhancement idea
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1139">[ date ]</a>
+              <a href="thread.html#1139">[ thread ]</a>
+              <a href="subject.html#1139">[ subject ]</a>
+              <a href="author.html#1139">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2009-05-12 at 16:13 +0200, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; On Mon, May 11, 2009 at 10:08 PM, Roger Oberholtzer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger at opq.se</A>&gt; wrote:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt;        Checking Server name: tftp
+</I>&gt;<i> &gt; &gt;        Server: tftp. not found
+</I>&gt;<i> &gt; &gt;        Can't assign SERVER IP/name .. fatal!
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Add kiwiserver=serverIP kiwiservertype=tftp at the end of kernel
+</I>&gt;<i> &gt; parameter in /srv/tftpboot/pxelinux.cfg/default
+</I>
+I added this:
+
+	kiwiserver=10.1.6.240 kiwiservertype=tftp
+	
+and the error persists. But the message is slightly different:
+
+	Checking Server name: 10.1.6.240
+	Server: 10.1.6.240 not found
+	Can't assign SERVER IP/name .. fatal!
+
+&gt;<i> &gt; Check if you have another DHCP server running in the network.
+</I>
+There is no other DHCP server on the network.
+
+If I leave the kiwiserver=serverIP kiwiservertype=tftp lines and boot
+with the image made with an older kiwi, I see that the difference is
+that it uses this address instead of the one from dhcp. For the heck of
+it, if I put a bad address here, the older image first complains about
+it, and then uses the address it got from dhcp. The image made with a
+current kiwi fails no matter what. Surely my dhcp server that has always
+worked and is not modified cannot detect an image made with a new or an
+old kiwi, and treat them differently.
+
+&gt;<i> This is surely a problem with your DHCP server, either you have
+</I>&gt;<i> another one running in your network or the same client address
+</I>&gt;<i> has been assigned to a newer dhcp client and can't be assigned
+</I>&gt;<i> back to an older client (maybe experiments with newer and older
+</I>&gt;<i> suse distributions)
+</I>&gt;<i> 
+</I>&gt;<i> check the lease files with nsupdate
+</I>&gt;<i> 
+</I>&gt;<i> this is not a kiwi problem
+</I>
+I have made no changes to the system files that come with kiwi. I have
+installed:
+
+kiwi-instsource-plugins-openSUSE-11-1-2.1-1.5
+kiwi-templates-3.52-80.1
+kiwi-doc-3.52-80.1
+kiwi-instsource-3.52-80.1
+kiwi-desc-xenboot-3.52-80.1
+kiwi-tools-imagewriter-3.52-80.1
+kiwi-desc-oemboot-3.52-80.1
+kiwi-desc-netboot-3.52-80.1
+kiwi-pxeboot-prebuild-3.52-80.1
+kiwi-desc-usbboot-3.52-80.1
+kiwi-pxeboot-3.52-80.1
+kiwi-desc-isoboot-3.52-80.1
+kiwi-instsource-plugins-openSUSE-11-0-1.20-3.9
+kiwi-3.52-80.1
+kiwi-tools-3.52-80.1
+kiwi-desc-vmxboot-3.52-80.1
+
+
+Perhaps there is a change needed in my config.xml? Some new flag I
+missed reading about? My config.xml is attached. Nothing unusual there.
+Is there?
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: config.xml
+Type: application/xml
+Size: 3241 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090526/c574f07e/attachment.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090526/c574f07e/attachment.xml</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001115.html">[Kiwi-users] Problem booting image
+</A></li>
+	<LI>Next message: <A HREF="001117.html">[Kiwi-users] Enhancement idea
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1139">[ date ]</a>
+              <a href="thread.html#1139">[ thread ]</a>
+              <a href="subject.html#1139">[ subject ]</a>
+              <a href="author.html#1139">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

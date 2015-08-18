@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Keyboard and KDE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Keyboard%20and%20KDE&In-Reply-To=%3C20110126172504.GA15883%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002280.html">
+   <LINK REL="Next"  HREF="002285.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Keyboard and KDE</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Keyboard%20and%20KDE&In-Reply-To=%3C20110126172504.GA15883%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Keyboard and KDE">ms at suse.de
+       </A><BR>
+    <I>Wed Jan 26 18:25:04 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002280.html">[Kiwi-users] Keyboard and KDE
+</A></li>
+        <LI>Next message: <A HREF="002285.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2281">[ date ]</a>
+              <a href="thread.html#2281">[ thread ]</a>
+              <a href="subject.html#2281">[ subject ]</a>
+              <a href="author.html#2281">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am making an OEM image that I 'dd' to a USB stick, I is a slice setup
+</I>&gt;<i> with some permanent folders. It really does work nice!
+</I>&gt;<i> 
+</I>&gt;<i> On first boot, I get a GUI to select the keyboard. I do so and it seems
+</I>&gt;<i> to be set. After reboot it is still set. The thing is, it only has the
+</I>&gt;<i> correct keyboard at the character login. KDE, for example, has the
+</I>&gt;<i> default US keyboard both in the login and all apps.
+</I>&gt;<i> 
+</I>&gt;<i> I understand that this is happening in Yast firstboot after kiwi is
+</I>&gt;<i> effectively finished. I am just curious if there is anything I can do in
+</I>&gt;<i> kiwi do ensure that the keyboard definition is in KDE as well.
+</I>&gt;<i> 
+</I>&gt;<i> This is on an 11.2 system with the latest kiwi. In a standard DVD-based
+</I>&gt;<i> 11.2 install, the keyboard set in Yast during install is used by KDE. In
+</I>&gt;<i> a kiwi install, it seems something else is happening. Any pointers for
+</I>&gt;<i> what to look at?
+</I>
+Under Linux there are two keyboards, the console keyboard which is
+the one you have setup with firstboot and the X11 keyboard which is
+setup by the /etc/X11/xorg.conf file.
+
+As this is a 11.2 image X still needs the xorg.conf file. So you need
+to check the contents of that file and adapt the InputDevice section
+pointing to the keyboard. You can use sax2 to do that easily
+
+Alternatively you can call the following command if your X-Server
+runs to switch to a german keyboard:
+
+   setxkbmap -model pc105 de nodeadkeys
+
+Please note this is for a standard 105 key keyboard. It might be
+a different call on special internet keyboards. You can put that
+call into the $HOME/.xinitrc file and put it as overlay file in your
+image description root/$HOME/ directory
+
+On 11.3 and later the X keyboard layout can be detected automatically
+if you are using a detectable device like a USB keyboard. If the
+layout can't be detected the default applies. For details how to
+setup it there you can ask a colleague from my former team
+Stefan Dirsch &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sndirsch at suse.de</A>&gt;
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002280.html">[Kiwi-users] Keyboard and KDE
+</A></li>
+	<LI>Next message: <A HREF="002285.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2281">[ date ]</a>
+              <a href="thread.html#2281">[ thread ]</a>
+              <a href="subject.html#2281">[ subject ]</a>
+              <a href="author.html#2281">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

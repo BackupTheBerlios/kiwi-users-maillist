@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110403193838.GA10859%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002597.html">
+   <LINK REL="Next"  HREF="002599.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110403193838.GA10859%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">ms at suse.de
+       </A><BR>
+    <I>Sun Apr  3 21:38:39 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002597.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002599.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2598">[ date ]</a>
+              <a href="thread.html#2598">[ thread ]</a>
+              <a href="subject.html#2598">[ subject ]</a>
+              <a href="author.html#2598">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm not confused. :)  I'm just stating that the &quot;ramonly&quot; element was
+</I>&gt;<i> removed from the config.xml file and I have almost exactly the same
+</I>&gt;<i> issues with streaming video.
+</I>
+Does the system swap ?
+
+&gt;<i> When using a live image on CD it still uses the host system's ram so
+</I>&gt;<i> what makes this so different than the same image on a CD?  The USB
+</I>&gt;<i> transfer rates are higher than an optical drives..I'm pretty sure.  I
+</I>&gt;<i> can live with the read/write image but this issues still exists.
+</I>&gt;<i> I would imaging that the size of the USB drive would matter somewhat
+</I>&gt;<i> because that is where the system swaps to once ram is full...no?
+</I>
+I don't understand what you are saying, sorry.
+
+The USB stick image you created uses two techniques which
+are different compared to a &quot;normal&quot; linux system:
+
+ 1) root overlay
+ 2) root compression
+
+root is an overlay filesystem based on clicfs. Overlay
+means the root filesystem is a compressed read-only
+root tree which is mounted in a way that all write
+actions are directed to either the RAM (ramonly) or
+to a write space on the stick. If you choose the USB
+stick as target to write you have more space left
+on the RAM side. If you choose to write to RAM you
+have less RAM space but writing is faster
+
+It depends on the applications you are running if they
+perform well on that system. If you think it doesn't
+work well you can try the following:
+
+a) remove ramonly and rebuild, you did that already
+   you said there were no change in the performance
+   I think that means there was no RAM space issue
+
+b) change from clicfs to another filesystem type
+   for example ext3. But that means you will loose
+   root compression and will at least double size your
+   image.
+ 
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002597.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002599.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2598">[ date ]</a>
+              <a href="thread.html#2598">[ thread ]</a>
+              <a href="subject.html#2598">[ subject ]</a>
+              <a href="author.html#2598">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

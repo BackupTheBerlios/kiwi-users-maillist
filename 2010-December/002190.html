@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Additional packages needed in OEM (DVD) boot image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Additional%20packages%20needed%20in%20OEM%20%28DVD%29%20boot%20image&In-Reply-To=%3C20101209090637.GC5382%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002186.html">
+   <LINK REL="Next"  HREF="002196.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Additional packages needed in OEM (DVD) boot image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Additional%20packages%20needed%20in%20OEM%20%28DVD%29%20boot%20image&In-Reply-To=%3C20101209090637.GC5382%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Additional packages needed in OEM (DVD) boot image">ms at novell.com
+       </A><BR>
+    <I>Thu Dec  9 10:06:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002186.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+        <LI>Next message: <A HREF="002196.html">[Kiwi-users] 4.67 problems with kiwi-hooks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2190">[ date ]</a>
+              <a href="thread.html#2190">[ thread ]</a>
+              <a href="subject.html#2190">[ subject ]</a>
+              <a href="author.html#2190">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi J,
+
+&gt;<i> We run our own install script  in the boot image of our OEM build,  We 
+</I>&gt;<i> need to run a binary executable that requires libstdc++.so.6 while running 
+</I>&gt;<i> in the boot image. 
+</I>
+Uhm, *urgl* why do you want to that in the boot image ?
+
+&gt;<i> (i.e. our of the DVD's initrd )  I attempted to 
+</I>&gt;<i> request that the libstdc++43 package be included in the boot image with 
+</I>&gt;<i> the following line in the config.xml:
+</I>&gt;<i> 
+</I>&gt;<i> &lt;package name=&quot;libstdc++43&quot; bootinclude=&quot;true&quot;/&gt;
+</I>
+Well the initrd is kept as small as possible therefore all not directly
+linked libraries are ripped out. A small subset of dl loaded libraries
+are excluded from that process though.
+
+&gt;<i> The library was not included in the boot image initrd.  Is there an 
+</I>&gt;<i> architected way to include extra simple software packages in the boot 
+</I>&gt;<i> image initrd?  (The bootinclude=&quot;true&quot; for the megaraid_sas driver package 
+</I>&gt;<i> worked great!)
+</I>
+bootincluding of drivers, configurations and friends was the intention
+behind the feature. Installing additional software into the bootimage by
+a bootinclude has always the same problem that the code which makes the
+initrd small will rip out all the stuff which is not required to the
+job this initrd code was made for.
+
+Let me suggest another way:
+
+1) install the software in your system image without bootinclude !
+
+2) decide whether the code you want to run really needs to run
+   inside the initrd or not:
+
+   a) Assuming it doesn't have to run in the initrd
+   =================================================
+
+   - write a runlevel script which calls your software and place the
+     script in etc/init.d/ in your root/ overlay files tree of the
+     system image description
+ 
+   - activate the service to run on boot by adding the following
+     in your config.sh script of the system image description
+
+     suseInsertService name
+
+   b) Assuming it has to run in the initrd for whatever reason
+   ============================================================
+
+   - write a script called 'preCallInit.sh' which calls your software
+   - place that script in a tarball so that it is listed with the
+     following path and name
+
+     /kiwi-hooks/preCallInit.sh
+
+   - assuming the tarballs name is preCallInit.tgz then put that
+     file in your system image description directory at the same
+     level were your config.xml lives
+
+   - add the following line in your system image config.xml:
+
+     &lt;archive name=&quot;preCallInit.tgz&quot; bootinclude=&quot;true&quot;/&gt;
+ 
+     This will install the script in the initrd too and it
+     will not be removed as it could happen with add-on libs
+     The preCallInit hook runs inside the initrd exactly before
+     calling the system init prozess. At that stage the root
+     mount point has already moved into the system image which
+     means you can access all software installed in the system
+     image and that also includes your installer or whatever you
+     would like to call
+
+I hope that solves your problem. Any other place in the initrd
+would require a code change imho and that also means you need to
+maintain the code yourself ;)
+
+Regards,
+Marcus     
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002186.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+	<LI>Next message: <A HREF="002196.html">[Kiwi-users] 4.67 problems with kiwi-hooks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2190">[ date ]</a>
+              <a href="thread.html#2190">[ thread ]</a>
+              <a href="subject.html#2190">[ subject ]</a>
+              <a href="author.html#2190">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

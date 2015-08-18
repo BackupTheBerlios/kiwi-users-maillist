@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Using kiwi to build SLED 11 image	-	Cracklib-dict-full question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20kiwi%20to%20build%20SLED%2011%20image%0A%09-%09Cracklib-dict-full%20question&In-Reply-To=%3C20090527192540.GA7646%40idefix.dms.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001143.html">
+   <LINK REL="Next"  HREF="001145.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Using kiwi to build SLED 11 image	-	Cracklib-dict-full question</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20kiwi%20to%20build%20SLED%2011%20image%0A%09-%09Cracklib-dict-full%20question&In-Reply-To=%3C20090527192540.GA7646%40idefix.dms.net%3E"
+       TITLE="[Kiwi-users] Using kiwi to build SLED 11 image	-	Cracklib-dict-full question">ms at novell.com
+       </A><BR>
+    <I>Wed May 27 21:25:40 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001143.html">[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full question
+</A></li>
+        <LI>Next message: <A HREF="001145.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1144">[ date ]</a>
+              <a href="thread.html#1144">[ thread ]</a>
+              <a href="subject.html#1144">[ subject ]</a>
+              <a href="author.html#1144">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jose,
+
+&gt;<i> I'm using Kiwi to build a VMware-based image with SLED 11 instead of OpenSUSE.
+</I>&gt;<i> I've borrowed the config.xml provided under /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-vm-guest and I was able to run the first stage (kiwi -p) with no issues (after making the necessary changes to the names of the pattern and bootsplash).
+</I>
+I think the easiest way to get you started is if you install/update
+your kiwi to the latest version from here first:
+
+ <A HREF="http://ftp5.gwdg.de/pub/opensuse/repositories/Virtualization:/Appliances/SLE_11/">http://ftp5.gwdg.de/pub/opensuse/repositories/Virtualization:/Appliances/SLE_11/</A>
+
+after that make sure you have installed the kiwi-templates package
+This package provides SLE11 examples which you can see by typing
+
+   kiwi -l
+
+To build and create the template in one step call
+
+   mkdir -p /tmp/myimage
+   kiwi --build suse-SLE11-JeOS -d /tmp/myimage \
+        --set-repo /path/to/sle11/repo
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001143.html">[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full question
+</A></li>
+	<LI>Next message: <A HREF="001145.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1144">[ date ]</a>
+              <a href="thread.html#1144">[ thread ]</a>
+              <a href="subject.html#1144">[ subject ]</a>
+              <a href="author.html#1144">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

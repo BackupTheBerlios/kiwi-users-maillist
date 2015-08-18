@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C486E896A.4020301%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000749.html">
+   <LINK REL="Next"  HREF="000752.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD</H1>
+    <B>Sebastian Siebert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C486E896A.4020301%40gmx.de%3E"
+       TITLE="[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD">freespacer at gmx.de
+       </A><BR>
+    <I>Fri Jul  4 22:34:50 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000749.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+        <LI>Next message: <A HREF="000752.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#751">[ date ]</a>
+              <a href="thread.html#751">[ thread ]</a>
+              <a href="subject.html#751">[ subject ]</a>
+              <a href="author.html#751">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Jan,
+
+Yes, I want build a Live CD without X.
+The virtualbox runs good with the original &quot;suse-live-cd&quot;-example.
+So, virtualbox isn't the problem.
+
+here are my modified config.xml:
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;image schemeversion=&quot;2.4&quot; name=&quot;suse-10.3-minimal-live-iso&quot;&gt;
+  &lt;description type=&quot;system&quot;&gt;
+    &lt;author&gt;Sebastian Siebert&lt;/author&gt;
+    &lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">freespacer at gmx.de</A>&lt;/contact&gt;
+    &lt;specification&gt;openSUSE 10.3 minimal Live system&lt;/specification&gt;
+  &lt;/description&gt;
+  &lt;preferences&gt;
+    &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-10.3&quot; flags=&quot;unified&quot;&gt;iso&lt;/type&gt;
+    &lt;version&gt;0.0.1&lt;/version&gt;
+    &lt;size unit=&quot;M&quot;&gt;2000&lt;/size&gt;
+    &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+    &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+    &lt;rpm-force&gt;False&lt;/rpm-force&gt;
+    &lt;locale&gt;de_DE.UTF-8&lt;/locale&gt;
+    &lt;keytable&gt;de.map.gz&lt;/keytable&gt;
+  &lt;/preferences&gt;
+  &lt;users group=&quot;users&quot;&gt;
+    &lt;user name=&quot;linux&quot; pwd=&quot;&quot; home=&quot;/home/linux&quot; realname=&quot;Live-CD User&quot;/&gt;
+  &lt;/users&gt;
+  &lt;users group=&quot;root&quot;&gt;
+    &lt;user name=&quot;root&quot; pwd=&quot;&quot; home=&quot;/root&quot;/&gt;
+  &lt;/users&gt;
+  &lt;repository type=&quot;yast2&quot;&gt;
+    &lt;source 
+path=&quot;<A HREF="ftp://ftp5.gwdg.de/pub/opensuse/distribution/10.3/repo/oss">ftp://ftp5.gwdg.de/pub/opensuse/distribution/10.3/repo/oss</A>&quot;/&gt;
+  &lt;/repository&gt;
+  &lt;repository type=&quot;yast2&quot;&gt;
+    &lt;source 
+path=&quot;<A HREF="ftp://ftp5.gwdg.de/pub/opensuse/distribution/10.3/repo/non-oss">ftp://ftp5.gwdg.de/pub/opensuse/distribution/10.3/repo/non-oss</A>&quot;/&gt;
+  &lt;/repository&gt;
+  &lt;packages type=&quot;image&quot;&gt;
+    &lt;package name=&quot;yast2-live-installer&quot;/&gt;
+    &lt;package name=&quot;pam&quot;/&gt;
+    &lt;package name=&quot;pam-config&quot;/&gt;
+    &lt;package name=&quot;pam-modules&quot;/&gt;
+    &lt;package name=&quot;udev&quot;/&gt;
+    &lt;package name=&quot;aaa_base&quot;/&gt;
+    &lt;package name=&quot;tar&quot;/&gt;
+    &lt;package name=&quot;patch&quot;/&gt;
+    &lt;package name=&quot;zypper&quot;/&gt;
+    &lt;package name=&quot;bash&quot;/&gt;
+  &lt;/packages&gt;
+  &lt;packages type=&quot;bootstrap&quot;&gt;
+    &lt;package name=&quot;filesystem&quot;/&gt;
+    &lt;package name=&quot;glibc-locale&quot;/&gt;
+    &lt;package name=&quot;kernel-default&quot;/&gt;
+    &lt;package name=&quot;udev&quot;/&gt;
+    &lt;package name=&quot;bundle-lang-common-en&quot;/&gt;
+  &lt;/packages&gt;
+&lt;/image&gt;
+
+
+But my modified version said while login:
+The module are unknown =&gt; in german: Modul ist nicht bekannt.
+So, I can't login with root or linux.
+
+I hope you find the mistake. ;-)
+Thanks.
+
+Sebastian
+
+
+Jan-Christoph Bornschlegel schrieb:
+&gt;<i> Hei Sebastian,
+</I>&gt;<i>
+</I>&gt;<i> Am Freitag, 4. Juli 2008 schrieb Sebastian Siebert:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> I need help for build a minimal opensuse system with Kiwi.
+</I>&gt;&gt;<i> So, I use the example &quot;suse-live-iso&quot; from the buildservice (v 2.49)
+</I>&gt;&gt;<i> and modify the example without kde or gnome. Kiwi build the
+</I>&gt;&gt;<i> live cd without problems.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I think there is a minimal system without X among the examples, right?
+</I>&gt;<i>
+</I>&gt;<i> Does the CD work with qemu for example? Or on real hardware?
+</I>&gt;<i> (in other words, is it a Virtual Box problem?)
+</I>&gt;<i> You could post your config.xml and we could take a look.
+</I>&gt;<i>
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Jan
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000749.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+	<LI>Next message: <A HREF="000752.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#751">[ date ]</a>
+              <a href="thread.html#751">[ thread ]</a>
+              <a href="subject.html#751">[ subject ]</a>
+              <a href="author.html#751">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

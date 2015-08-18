@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] configuring gdm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20configuring%20gdm&In-Reply-To=%3C4A5730BC.5080401%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001272.html">
+   <LINK REL="Next"  HREF="001275.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] configuring gdm</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20configuring%20gdm&In-Reply-To=%3C4A5730BC.5080401%40novell.com%3E"
+       TITLE="[Kiwi-users] configuring gdm">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Jul 10 14:14:52 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001272.html">[Kiwi-users] configuring gdm
+</A></li>
+        <LI>Next message: <A HREF="001275.html">[Kiwi-users] configuring gdm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1274">[ date ]</a>
+              <a href="thread.html#1274">[ thread ]</a>
+              <a href="subject.html#1274">[ subject ]</a>
+              <a href="author.html#1274">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;&gt;<i>
+</I>&gt;&gt;<i> I guess that is part of the problem. How do you configure X in an appliance 
+</I>&gt;&gt;<i> that needs X but you do not know what the display is at the time the 
+</I>&gt;&gt;<i> appliance is created?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Does one have to run sax2 every time?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I suppose for a system on a USB stick it would make sense to run sax2, but 
+</I>&gt;&gt;<i> what about an appliance that gets installed on a dedicated machine to 
+</I>&gt;&gt;<i> become part of a hardware appliance?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Basically this problem will go away as soon as X doesn't require
+</I>&gt;<i> a configuration anymore. I have CC'ed Stefan Dirsch maybe he can
+</I>&gt;<i> say some words about that. It looks like 11.2 will be the first
+</I>&gt;<i> distro without sax2
+</I>&gt;<i>
+</I>&gt;<i> for the older distributions you always have to run sax2
+</I>&gt;<i> if the machine changes (basically also if the graphics card changes)
+</I>&gt;<i> You can think of a system which creates an md5sum from the output
+</I>&gt;<i> of
+</I>&gt;<i>
+</I>&gt;<i>   1) the output of dmidecode
+</I>&gt;<i>   2) the output of sax2 -p 
+</I>&gt;<i>
+</I>&gt;<i> if the md5sum doesn't match on boot something has changed which
+</I>&gt;<i> surely requires a new X configuration. sax2 -r -a should be
+</I>&gt;<i> able to create a new default setup then. You also can try to
+</I>&gt;<i> work with X -configure but that will not work for binary
+</I>&gt;<i> drivers
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Marcus thanks. From a control of flow perspective one would then start 
+the system in run level 3, autologin, run sax2 and then start X?
+
+Thanks,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001272.html">[Kiwi-users] configuring gdm
+</A></li>
+	<LI>Next message: <A HREF="001275.html">[Kiwi-users] configuring gdm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1274">[ date ]</a>
+              <a href="thread.html#1274">[ thread ]</a>
+              <a href="subject.html#1274">[ subject ]</a>
+              <a href="author.html#1274">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

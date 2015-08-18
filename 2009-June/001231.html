@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] pattern question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pattern%20question&In-Reply-To=%3C4A4906C8.2040200%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001234.html">
+   <LINK REL="Next"  HREF="001232.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] pattern question</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pattern%20question&In-Reply-To=%3C4A4906C8.2040200%40novell.com%3E"
+       TITLE="[Kiwi-users] pattern question">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Jun 29 20:24:08 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001234.html">[Kiwi-users] bash prompt
+</A></li>
+        <LI>Next message: <A HREF="001232.html">[Kiwi-users] pattern question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1231">[ date ]</a>
+              <a href="thread.html#1231">[ thread ]</a>
+              <a href="subject.html#1231">[ subject ]</a>
+              <a href="author.html#1231">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+There is an &quot;opensusePattern&quot; element, but I fail to see one for 
+SLE{S,D}. AFAIK patterns are supported on SLE{S,D} and it would be nice 
+to be able to use them for images created by Kiwi based on SLE{S,D}.
+
+An example where the use of the &quot;opensusePattern&quot; pattern breaks down 
+when using it with SLES10 SP2 is &quot;gnome&quot;. The &quot;gnome&quot; pattern in 
+openSUSE pulls in Evolution. For SLES Evolution is not part of the 
+distribution, thus I presume the SLES &quot;gnome&quot; pattern does not have this 
+dependency.
+
+Thus I either have to specify all the packages I would want from GNOME 
+in config.xml or I have to use the &quot;opensusePattern&quot; and use both the 
+SLES and SLED ISOs to use &quot;gnome&quot; as a pattern.
+
+It would be nice if this would be more generic with a type specifier, 
+something like this maybe:
+
+&lt;pattern name=&quot;gnome&quot; type=&quot;SLES&quot;/&gt;
+
+supported values for the type attribute could be SLES, SLED, openSUSE.
+
+Unless this is an underlying issue with the pattern definition in the 
+various flavors. However, even if this is the case using 
+&quot;opensusePattern&quot; as an element type is probably a bit to specific for a 
+tool striving in some ways for distribution independence.
+
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001234.html">[Kiwi-users] bash prompt
+</A></li>
+	<LI>Next message: <A HREF="001232.html">[Kiwi-users] pattern question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1231">[ date ]</a>
+              <a href="thread.html#1231">[ thread ]</a>
+              <a href="subject.html#1231">[ subject ]</a>
+              <a href="author.html#1231">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

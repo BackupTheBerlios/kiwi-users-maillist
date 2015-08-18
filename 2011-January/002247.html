@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kernelcmdline for iso image -&gt; bug?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kernelcmdline%20for%20iso%20image%20-%3E%20bug%3F&In-Reply-To=%3C20110107130719.GA12942%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002255.html">
+   <LINK REL="Next"  HREF="002249.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kernelcmdline for iso image -&gt; bug?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kernelcmdline%20for%20iso%20image%20-%3E%20bug%3F&In-Reply-To=%3C20110107130719.GA12942%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kernelcmdline for iso image -&gt; bug?">ms at suse.de
+       </A><BR>
+    <I>Fri Jan  7 14:07:19 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002255.html">[Kiwi-users] switching off gfxboot
+</A></li>
+        <LI>Next message: <A HREF="002249.html">[Kiwi-users] kernelcmdline for iso image -&gt; bug?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2247">[ date ]</a>
+              <a href="thread.html#2247">[ thread ]</a>
+              <a href="subject.html#2247">[ subject ]</a>
+              <a href="author.html#2247">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Dear Marcus and kiwi-users,
+</I>&gt;<i> 
+</I>&gt;<i> if I try to set a kernel boot argument when preparing an iso image ala
+</I>&gt;<i> 
+</I>&gt;<i> &lt;type image=&quot;iso&quot; boot=&quot;isoboot/suse-11.3&quot; ... kernelcmdline=&quot;vga=0x317&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i> then it does not get passed. I guess the problem is in
+</I>
+vga is special. There is an own option for it. Just use
+
+   &lt;type image=&quot;iso&quot; boot=&quot;isoboot/suse-11.3&quot; ... vga=&quot;0x317&quot;/&gt;
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002255.html">[Kiwi-users] switching off gfxboot
+</A></li>
+	<LI>Next message: <A HREF="002249.html">[Kiwi-users] kernelcmdline for iso image -&gt; bug?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2247">[ date ]</a>
+              <a href="thread.html#2247">[ thread ]</a>
+              <a href="subject.html#2247">[ subject ]</a>
+              <a href="author.html#2247">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

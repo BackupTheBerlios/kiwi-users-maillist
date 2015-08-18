@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB live stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20live%20stick&In-Reply-To=%3C4C8E77FC.3090204%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002035.html">
+   <LINK REL="Next"  HREF="002031.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB live stick</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20live%20stick&In-Reply-To=%3C4C8E77FC.3090204%40novell.com%3E"
+       TITLE="[Kiwi-users] USB live stick">rschweikert at novell.com
+       </A><BR>
+    <I>Mon Sep 13 21:14:04 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002035.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+        <LI>Next message: <A HREF="002031.html">[Kiwi-users] USB live stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2029">[ date ]</a>
+              <a href="thread.html#2029">[ thread ]</a>
+              <a href="subject.html#2029">[ subject ]</a>
+              <a href="author.html#2029">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I am a bit confused about the type specification to create a live stick.
+I used:
+
+&lt;type image=&quot;usb&quot; filesystem=&quot;ext3&quot; boot=&quot;usbboot/suse-SLED11&quot;/&gt;
+
+As the only type specification. After build and create I tried to use
+--bootstick but that failed.
+
+linux32 kiwi --bootstick
+/tmp/testLive_image/initrd-usbboot-suse-SLED11.i686-2.1.1.gz
+--bootstick-system /tmp/testLive_image/sled-11-sp1-live-stick.i686-1.1.2
+--bootstick-device /dev/sdc
+Sep-13 05:33:11 &lt;1&gt; : Creating boot USB stick from:
+/tmp/testLive_image/initrd-usbboot-suse-SLED11.i686-2.1.1.gz...
+Sep-13 05:33:12 &lt;1&gt; : Found following removable USB devices:
+Sep-13 05:33:12 &lt;1&gt; : ---&gt; 001D92A85EC3B951433702EA at /dev/sdc
+Sep-13 05:33:12 &lt;3&gt; : Boot type: vmx not specified in xml            failed
+Sep-13 05:33:12 &lt;3&gt; : KIWI exited with error(s)                      done
+
+So why would be be looking for a &quot;vmx&quot; type specification?
+This appears to imply that we need two &lt;type/&gt; specifications for a USB
+live image?
+
+I'm confused.
+
+Thanks,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002035.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+	<LI>Next message: <A HREF="002031.html">[Kiwi-users] USB live stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2029">[ date ]</a>
+              <a href="thread.html#2029">[ thread ]</a>
+              <a href="subject.html#2029">[ subject ]</a>
+              <a href="author.html#2029">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

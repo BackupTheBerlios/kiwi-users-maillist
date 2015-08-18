@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-10-31 - 2010-11-05...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-10-31%20-%202010-11-05...&In-Reply-To=%3C20101107210754.GA2893%40idefix.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002104.html">
+   <LINK REL="Next"  HREF="002106.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-10-31 - 2010-11-05...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-10-31%20-%202010-11-05...&In-Reply-To=%3C20101107210754.GA2893%40idefix.fritz.box%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-10-31 - 2010-11-05...">ms at novell.com
+       </A><BR>
+    <I>Sun Nov  7 22:07:54 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002104.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+        <LI>Next message: <A HREF="002106.html">[Kiwi-users] kiwi:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2105">[ date ]</a>
+              <a href="thread.html#2105">[ thread ]</a>
+              <a href="subject.html#2105">[ subject ]</a>
+              <a href="author.html#2105">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.64 2010-10-31 - 2010-11-05
+--------------------------------------------------
+Most important changes for last weeks release...
+
+commit 5df5345399c7dadaffe70a2a26720564712e7df6
+
+    - changed partition layout of LVM based vmx/oem images. The boot
+      partition is now the first partition and we will use only one
+      partition for the entire LVM as second partition (bnc #651331)
+
+commit e6c86cfc9b15e845860f3830322d2f4b39bce200
+
+    - support multiple vmnic elements for VMware
+
+commit f4f99bf4b0fc748ed45a22c8f59edf4927f3d270
+
+    - added support for the XFS filesystem
+
+commit fd9d7ed8e1e05d6dbbe1b6da578f330f572fc55a
+
+    - changed the lvmvolumes section into systemdisk like the
+      following example shows:
+    
+       &lt;systemdisk name=&quot;system&quot;&gt;
+           &lt;volume name=&quot;/home&quot; freespace=&quot;1G&quot;/&gt;
+           ...
+       &lt;/systemdisk&gt;
+    
+    - update to new schema version 4.8 due to the systemdisk change
+    
+    - if systemdisk is specified a lvm setup is implicitly requested.
+      Therefore also the attribute 'lvm' from the type section was removed
+    
+    - Also the oem-home element was removed with this change. A volume
+      instead of a single partition should be used.
+    
+    - wrote a xslt stylesheet for the following conversions:
+      * remove lvm attribute
+      * move lvmvolumes element into systemdisk
+      * move lvmgroup attribute into name
+      * if oem-home is set create a systemdisk setup with a home volume
+    
+    - update documentation due to the systemdisk change
+
+Have fun :-)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002104.html">[Kiwi-users] LVM configurations with oem type
+</A></li>
+	<LI>Next message: <A HREF="002106.html">[Kiwi-users] kiwi:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2105">[ date ]</a>
+              <a href="thread.html#2105">[ thread ]</a>
+              <a href="subject.html#2105">[ subject ]</a>
+              <a href="author.html#2105">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

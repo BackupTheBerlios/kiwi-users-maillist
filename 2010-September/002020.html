@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-09-05 - 2010-09-10...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-09-05%20-%202010-09-10...&In-Reply-To=%3C20100910131513.GA1117%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002019.html">
+   <LINK REL="Next"  HREF="002024.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-09-05 - 2010-09-10...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-09-05%20-%202010-09-10...&In-Reply-To=%3C20100910131513.GA1117%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-09-05 - 2010-09-10...">ms at novell.com
+       </A><BR>
+    <I>Fri Sep 10 15:15:13 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002019.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+        <LI>Next message: <A HREF="002024.html">[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2020">[ date ]</a>
+              <a href="thread.html#2020">[ thread ]</a>
+              <a href="subject.html#2020">[ subject ]</a>
+              <a href="author.html#2020">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report &lt;kiwi 4.59&gt; 2010-09-05 - 2010-09-10
+--------------------------------------------------
+The last two weeks we had lots of changes and commits,
+therefore I will not reference to the ID's but write
+about the changes in a short description. Don't hesitate
+to ask for details if one or the other change falls into
+your playground. 
+
+most important changes for this release are:
+
+- The documentation has been moved from LaTeX to DocBook_4
+  along with this change several doc fixes were also made
+  We now provide a PDF and a HTML documentation for kiwi
+  with the kiwi-doc package. Of course the manual pages
+  are also created as extra man pages. Special Thanks
+  to Thomas Schraitle who is really the DocBook master :-)
+
+- kiwi now supports the s390 target with the image types
+  vmx and oem. It's possible to create images for the
+  DASD and Virtio (KVM) disks. The SCSI disk (zFCP) will
+  follow soon. The repartition code for DASD devices is
+  still work in progress and is planned for the next week
+  release
+
+- Special thanks to Chris Bowlby who added the PXE MAC
+  grouping feature. There is also a documentation section in the
+  PXE chapter if you are interested in more information
+
+- Along with the s390 support the kiwi code received some
+  cleanup. Especially in KIWIBoot.pm some code parts moved
+  into functions and many duplicate code parts were
+  removed
+  
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002019.html">[Kiwi-users] Problem using SLES ISOs as repository
+</A></li>
+	<LI>Next message: <A HREF="002024.html">[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2020">[ date ]</a>
+              <a href="thread.html#2020">[ thread ]</a>
+              <a href="subject.html#2020">[ subject ]</a>
+              <a href="author.html#2020">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

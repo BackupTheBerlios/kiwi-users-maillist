@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Tuning ext2/3 filesystem options
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Tuning%20ext2/3%20filesystem%20options&In-Reply-To=%3C20080829105228.GA29438%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000825.html">
+   <LINK REL="Next"  HREF="000827.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Tuning ext2/3 filesystem options</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Tuning%20ext2/3%20filesystem%20options&In-Reply-To=%3C20080829105228.GA29438%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Tuning ext2/3 filesystem options">ms at novell.com
+       </A><BR>
+    <I>Fri Aug 29 12:52:29 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000825.html">[Kiwi-users] Tuning ext2/3 filesystem options
+</A></li>
+        <LI>Next message: <A HREF="000827.html">[Kiwi-users] Enhancement Request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#826">[ date ]</a>
+              <a href="thread.html#826">[ thread ]</a>
+              <a href="subject.html#826">[ subject ]</a>
+              <a href="author.html#826">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> On Fri, 2008-08-29 at 11:53 +0200, Marcus Sch&#228;fer wrote:
+</I>&gt;<i> &gt; &gt; I am working on building an image that uses ext3.  I would like to
+</I>&gt;<i> &gt; &gt; change the Maximum mount count to -1 and Check interval to 0 to disable
+</I>&gt;<i> &gt; &gt; automatic filesystem checks.  This requires running:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; tune2fs -i 0 -c -1 /path/to/device
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; I cannot find a way to do this with kiwi.  Is there a way, or do I need
+</I>&gt;<i> &gt; &gt; to do it by hand?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; the short answer is, no there is no built in functionality in kiwi
+</I>&gt;<i> &gt; to do this 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; a) the boot code (linuxrc) calls a function named setupDefaultFstab().
+</I>&gt;<i> &gt; b) another solution for you would be to write a service script which
+</I>&gt;<i> &gt; c) another solution is to clone the boot image description you are
+</I>&gt;<i> &gt;    using and patch the linuxrc code directly
+</I>&gt;<i> 
+</I>&gt;<i> I don't think any of these is right.  I don't think I was clear on what
+</I>&gt;<i> I was asking, especially after reading the code more.
+</I>&gt;<i> 
+</I>&gt;<i> In KIWIImage.pm, setupEXT2 calls mke2fs with a number of hard coded
+</I>&gt;<i> options.  A number of these are non-idea for various use cases.
+</I>&gt;<i> Unfortunately a number of these can only be set at filesystem creation
+</I>&gt;<i> time.  Even for those that are modifiable, when building LiveCDs and EC2
+</I>&gt;<i> AMIs, there is no way to modify them before kiwi uses the filesystem.
+</I>&gt;<i> It calls setupEXT2, fills it, then proceeds to bundle it into another
+</I>&gt;<i> container (ISO filesystem or AMI).
+</I>&gt;<i> 
+</I>&gt;<i> Other than locally hacking my copy of KIWIImage.pm, how can I modify the
+</I>&gt;<i> filesystem kiwi creates and then embeds in the ISO or AMI?
+</I>
+you can't. As you already found out the KIWIImage.pm needs to be adapted
+to allow that, maybe some options to control filesystem creation might
+be useful
+
+On the other hand I thought I picked up a good set of options for
+filesystem creation especially for the needs of the different image
+types (inode size, in-place journal, etc...)
+
+At least the maximum mount count check is an option which can be
+controlled outside of the filesystem because it is modified at
+mount time anyway. So if your fstab tells the system to mount 
+without checking the current fs header information is not evaluated.
+It's the same like &quot;mount -o check=none&quot;
+
+I don't have any objections to include useful filesystem creation
+options but I don't think the mount count check should be one of
+it as it is controlled at mount time
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000825.html">[Kiwi-users] Tuning ext2/3 filesystem options
+</A></li>
+	<LI>Next message: <A HREF="000827.html">[Kiwi-users] Enhancement Request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#826">[ date ]</a>
+              <a href="thread.html#826">[ thread ]</a>
+              <a href="subject.html#826">[ subject ]</a>
+              <a href="author.html#826">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

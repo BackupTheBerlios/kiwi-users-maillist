@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] default vs pae kernel in diskless builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C1237209213.13273.63.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001011.html">
+   <LINK REL="Next"  HREF="001015.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] default vs pae kernel in diskless builds</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20default%20vs%20pae%20kernel%20in%20diskless%20builds&In-Reply-To=%3C1237209213.13273.63.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] default vs pae kernel in diskless builds">roger at opq.se
+       </A><BR>
+    <I>Mon Mar 16 14:13:33 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001011.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+        <LI>Next message: <A HREF="001015.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1014">[ date ]</a>
+              <a href="thread.html#1014">[ thread ]</a>
+              <a href="subject.html#1014">[ subject ]</a>
+              <a href="author.html#1014">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2009-03-16 at 14:56 +0200, Vladimir V. Kolpakov wrote: 
+&gt;<i> Roger Oberholtzer wrote:
+</I>&gt;<i> &gt; Perhaps I have been unclear. I don't want two kernels. It is just that
+</I>&gt;<i> &gt; this is what I get. What I want is to be able to specify a different
+</I>&gt;<i> &gt; kernel than the -default one. Like the -pae kernel.
+</I>&gt;<i> 
+</I>&gt;<i> Anyway,
+</I>&gt;<i> question was useful.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; So you do get one with the -pae kernel? Which change to my config made
+</I>&gt;<i> &gt; that work?
+</I>&gt;<i> 
+</I>&gt;<i> This should be sufficient:
+</I>&gt;<i>  ... bootprofile=&quot;smp&quot; ...
+</I>&gt;<i> and
+</I>&gt;<i>  &lt;package name=&quot;kernel-pae&quot;/&gt;
+</I>&gt;<i>  &lt;package name=&quot;aufs-kmp-pae&quot;/&gt;
+</I>
+This I have (as you could see in the config.xml file that I posted). But
+what I get is a -default kernel running, and loadable kernel modules for
+-pae.
+
+&gt;<i> &gt;&gt; Regards to config.xml,
+</I>&gt;<i> &gt;&gt; bootprofile=&quot;smp,default&quot; is more appropriate there
+</I>&gt;<i> &gt;&gt; then &quot;smp,diskless&quot;, as long as /dev/sda* are involved.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I cannot see any reasonable reason choice of kernel has any relationship
+</I>&gt;<i> &gt; to the diskless flag. Am I missing something?
+</I>&gt;<i> 
+</I>&gt;<i> As I see the difference between &quot;default&quot; and &quot;diskless&quot;,
+</I>&gt;<i> e2fs utils won't be included into diskless netboot image,
+</I>&gt;<i> some other stuff perhaps too.
+</I>&gt;<i> As soon as you run into sda re-format, boot will fail.
+</I>
+I do want diskless. There are no physical disks. Only RAM and whatever
+gets mounted over the network. All this works fine with the -default
+kernel.
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001011.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+	<LI>Next message: <A HREF="001015.html">[Kiwi-users] default vs pae kernel in diskless builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1014">[ date ]</a>
+              <a href="thread.html#1014">[ thread ]</a>
+              <a href="subject.html#1014">[ subject ]</a>
+              <a href="author.html#1014">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

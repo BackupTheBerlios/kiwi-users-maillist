@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011241252.40310.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002157.html">
+   <LINK REL="Next"  HREF="002159.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011241252.40310.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory">javier at opensuse.org
+       </A><BR>
+    <I>Wed Nov 24 12:52:35 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002157.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+        <LI>Next message: <A HREF="002159.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2158">[ date ]</a>
+              <a href="thread.html#2158">[ thread ]</a>
+              <a href="subject.html#2158">[ subject ]</a>
+              <a href="author.html#2158">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+El Martes, 23 de Noviembre de 2010 18:06:33 Javier Llorente escribi&#243;:
+&gt;<i> El Martes, 23 de Noviembre de 2010 17:42:42 usted escribi&#243;:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; dd if=/path/Open-PC_image.raw of=/dev/sdc bs=32k
+</I>&gt;<i> &gt; &gt; sdc is another disk attached to a VirtualBox machine, where I always
+</I>&gt;<i> &gt; &gt; put my kiwi images for testing. So before, sdc contained an
+</I>&gt;<i> &gt; &gt; openSUSE-based OS. This is the first time that I have the busy /home
+</I>&gt;<i> &gt; &gt; partition issue.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; ok got it
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; Image with patch tested! :-)
+</I>&gt;<i> &gt; &gt; I don't get the unlink or busy messages anymore. Regarding sizes:
+</I>&gt;<i> &gt; &gt; LVRoot: 5.02 GB, LVSwap: 1.00 GB, LVhome: 1.03 GB and 904 MB unassigned
+</I>&gt;<i> &gt; &gt; free space. /dev/sda1 uses 60.05 MB (/lvmboot) and /dev/sda2 uses 7.94
+</I>&gt;<i> &gt; &gt; GB (LVM). I have just realized that I forgot to change one thing. I
+</I>&gt;<i> &gt; &gt; have &lt;volume name=&quot;/home&quot; freespace=&quot;1024M&quot;/&gt;
+</I>&gt;<i> &gt; &gt; instead of
+</I>&gt;<i> &gt; &gt; &lt;volume name=&quot;/home&quot; size=&quot;1024M&quot;/&gt;
+</I>&gt;<i> &gt; &gt; I am going to rebuild the image &quot;with size&quot;. More info later :-)
+</I>&gt;<i> &gt; 
+</I>
+Tested a new image. Here's the news.
+
+Same thing as before. I still get ~1 GB of unassigned free space, which can be 
+assigned to LVRoot.
+boot.kiwi:
+<A HREF="http://paste.opensuse.org/47516584">http://paste.opensuse.org/47516584</A>
+
+BTW, I forgot to tell you that I get Activating remaining swap-devices in 
+/etc/fstab... failed. Perhaps it complains because I only have one swap which 
+is already active. The OEM image works OK despite this error message, so I 
+don't think it's a very important one in my case.
+
+Thanks,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101124/d58c6dfc/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101124/d58c6dfc/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002157.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+	<LI>Next message: <A HREF="002159.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2158">[ date ]</a>
+              <a href="thread.html#2158">[ thread ]</a>
+              <a href="subject.html#2158">[ subject ]</a>
+              <a href="author.html#2158">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

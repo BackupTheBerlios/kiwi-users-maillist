@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20when%20using%20-add-profile%2C%0A%20boot-include%20doesn%27t%20seem%20to%20work...&In-Reply-To=%3C20101215133840.GA1165%40localhost.fritz.box%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002216.html">
+   <LINK REL="Next"  HREF="002218.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20when%20using%20-add-profile%2C%0A%20boot-include%20doesn%27t%20seem%20to%20work...&In-Reply-To=%3C20101215133840.GA1165%40localhost.fritz.box%3E"
+       TITLE="[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...">ms at suse.de
+       </A><BR>
+    <I>Wed Dec 15 14:38:40 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002216.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+        <LI>Next message: <A HREF="002218.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2217">[ date ]</a>
+              <a href="thread.html#2217">[ thread ]</a>
+              <a href="subject.html#2217">[ subject ]</a>
+              <a href="author.html#2217">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; &gt; I have been using multiple profiles and have been using --add-profile
+</I>&gt;<i> &gt; &gt; to do so.  (or just using import=&quot;true&quot; on several profiles)
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; I notice that when using --add-profile the bootinclude option for a
+</I>&gt;<i> &gt; &gt; package/archive in the packages section doesn't seem to work.
+</I>&gt;<i> &gt; &gt; Is this by design?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; no that's not by design. You should see messages like
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;     using profile(s) ...
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; in the kiwi log file. This tells you which profiles kiwi is using
+</I>&gt;<i> &gt; Maybe one pitfall to mention is the profiles in the import=&quot;true&quot;
+</I>&gt;<i> &gt; are only imported if you don't have --add-profile set on the
+</I>&gt;<i> &gt; commandline. In other words if you want them to be still imported
+</I>&gt;<i> &gt; you need to add them with a --add-import too
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; if you see all your profiles to be used and according to this
+</I>&gt;<i> &gt; a bootinclude should be handled but isn't this is a bug then
+</I>&gt;<i> &gt; which needs a fix
+</I>&gt;<i> 
+</I>&gt;<i> [Lund, John] 
+</I>&gt;<i> I have tried with the basic suse-SLE11-JeOS.  I move the import=&quot;true&quot; to the xenFlavour profile, and ran the kiwi build with &quot;--add-profile vmxFlavour&quot; and the bootsplash-branding-SLES, and gfx-branding-SLES packages are not installed to the boot iso.  This is easily noticed as the nice graphix at boot are not seen.
+</I>&gt;<i> 
+</I>
+I can reproduce this one. Will come up with a fix by Friday latest
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002216.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+	<LI>Next message: <A HREF="002218.html">[Kiwi-users] when using -add-profile, boot-include doesn't seem to work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2217">[ date ]</a>
+              <a href="thread.html#2217">[ thread ]</a>
+              <a href="subject.html#2217">[ subject ]</a>
+              <a href="author.html#2217">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

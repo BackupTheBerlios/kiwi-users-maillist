@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi's pattern module...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%27s%20pattern%20module...&In-Reply-To=%3C20100423095619.GA9239%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001784.html">
+   <LINK REL="Next"  HREF="001786.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi's pattern module...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%27s%20pattern%20module...&In-Reply-To=%3C20100423095619.GA9239%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi's pattern module...">ms at novell.com
+       </A><BR>
+    <I>Fri Apr 23 11:56:19 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001784.html">[Kiwi-users] kiwi's pattern module...
+</A></li>
+        <LI>Next message: <A HREF="001786.html">[Kiwi-users] Weekly report 2010-04-18 - 2010-04-23...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1785">[ date ]</a>
+              <a href="thread.html#1785">[ thread ]</a>
+              <a href="subject.html#1785">[ subject ]</a>
+              <a href="author.html#1785">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; &gt; With the next release of kiwi (4.32) I plan to remove the
+</I>&gt;<i> &gt; &gt; kiwi pattern module (KIWIPattern.pm). This module was used to solve
+</I>&gt;<i> &gt; &gt; the contents of the pattern files provided with the SuSE distribution.
+</I>
+To clarify it more detailed. If we use zypper, zypper does the
+pattern solving for us. If we use another packagemanager (smart)
+the kiwi satsolver module does the pattern solving for us and only
+if we don't have libsatsolver and don't use zypper, kiwi's old
+pattern module is used to parse the pattern files.
+
+The support for kiwi starts with 10.1 if you use an older distro
+I can't guarantee that something works and we also won't fix it
+So there is only a very small time slot between 10.1 and 10.2
+where people doesn't have access to libsatsolver because it doesn't
+exist and they had problems using zypper together with kiwi which
+was the reason why they sometimes choose smart. Beginning with 10.2
+there was libsatsolver and also the SLES10 (base 10.1) service
+packs provided zypper versions which where usable with kiwi
+directly.
+
+The pattern solving code was done to allow those people who use
+smart and can't use libsatsolver to use the patterns.
+But from a today's perspective I think this code is no longer required.
+The module additionally will not work on newer (satsolver based)
+distributions because the metadata exists in solv files or repodata
+information only which are not handled by the KIWIPattern.pm module
+which can only parse that strange .pat format. In fact it's really
+more or less useless code which I'd like to remove
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001784.html">[Kiwi-users] kiwi's pattern module...
+</A></li>
+	<LI>Next message: <A HREF="001786.html">[Kiwi-users] Weekly report 2010-04-18 - 2010-04-23...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1785">[ date ]</a>
+              <a href="thread.html#1785">[ thread ]</a>
+              <a href="subject.html#1785">[ subject ]</a>
+              <a href="author.html#1785">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

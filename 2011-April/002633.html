@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110408082455.GB20663%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002631.html">
+   <LINK REL="Next"  HREF="002634.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3C20110408082455.GB20663%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">ms at suse.de
+       </A><BR>
+    <I>Fri Apr  8 10:24:55 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002631.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002634.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2633">[ date ]</a>
+              <a href="thread.html#2633">[ thread ]</a>
+              <a href="subject.html#2633">[ subject ]</a>
+              <a href="author.html#2633">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> On first boot about 3/4 of the way through it switches to verbose mode
+</I>&gt;<i> and displays &quot;repartition the disk according to real geometry [parted]
+</I>&gt;<i> Flag to Invert?&quot;  It's waiting for a response.  This didn't show up
+</I>&gt;<i> when I had the swap file set to 1500 or 2000mb or when the fat
+</I>&gt;<i> partition was set to 4gb.  I'm not sure what to do here but I ended up
+</I>&gt;<i> typing &quot;boot&quot; and and it prompted me with &quot;New State? [on]/off&quot; I
+</I>&gt;<i> choose &quot;off&quot;.  Last time I choose &quot;on&quot; and when I rebooted it
+</I>&gt;<i> indicated that it could find the operating system.
+</I>
+Hmm, never had that problem. might be related to a parted
+bug: <A HREF="https://bugzilla.redhat.com/show_bug.cgi?id=453799">https://bugzilla.redhat.com/show_bug.cgi?id=453799</A>
+
+&gt;<i> Testing the Firefox profile I tried this:
+</I>&gt;<i> 1) Booted from a fresh OEM image from the flash drive
+</I>&gt;<i> 2) went to YouTube and tested the streaming of a video.  As always on
+</I>&gt;<i> the first, the video played fine.  It preloaded the entire video
+</I>&gt;<i> within a minute and never paused or hiccuped at all.
+</I>&gt;<i> 3) I copied the ~/.mozilla user profile to the 4GB fat partition on
+</I>&gt;<i> the flash drive
+</I>
+ok
+
+&gt;<i> 4) I rebooted the OS off the flash drive for the second time.
+</I>&gt;<i> 5) I opened Firefox and navigated back to YouTube (same video as
+</I>&gt;<i> before) it played for about 30-40 seconds and then stopped.   As
+</I>&gt;<i> before I could see that the preloading/buffering of the video would
+</I>&gt;<i> start but would only get about a quarter of the way and then it would
+</I>&gt;<i> actually stop and go backwards towards the play indicator.  That's
+</I>&gt;<i> when the video would stop.
+</I>&gt;<i> 6) I close Firefox and navigate to the fat partition on the flash
+</I>&gt;<i> drive where I saved the .mozilla profile folder from my first boot.
+</I>&gt;<i> 7) I then copy that folder and attempt to overwrite the existing .mozilla in ~/.
+</I>&gt;<i> 8) I get a bunch of errors with some of the files within that folder
+</I>&gt;<i> that read &quot;Error splicing file: No space left on device&quot;
+</I>
+so you ran out of ram space if this is a ramonly=&quot;true&quot; image
+strange because I don't understand why it happens after the first
+boot only. The information from my former mail would help here
+
+&gt;<i> Here is the partition table for the USB drive only.
+</I>&gt;<i> 
+</I>&gt;<i> dev/sdb1               2.55GB          Linux native        FAT
+</I>&gt;<i> dev/sdb2               5.02GB          Linux native
+</I>&gt;<i> dev/KiwiVG             5.02GB          LVM2 KiwiVG
+</I>&gt;<i> dev/KiwiVG/LVComp      560.00mb        LV
+</I>&gt;<i> dev/KiwiVG/LVRoot      3.49GB          LV
+</I>&gt;<i> dev/KiwiVG/LVSwap      1000.00mb       LV                  SWAP
+</I>&gt;<i> 
+</I>&gt;<i> Which of these paritions is taking up actual space on the drive?
+</I>
+sdb1 and sdb2. The partition table is ok
+
+&gt;<i> FYI:  I'm having the kiwi.xml file create a users profile however all
+</I>&gt;<i> of this testing is being done as the Root user in the image.  It
+</I>&gt;<i> shouldn't matter anyway I would think because the user's profile is
+</I>&gt;<i> not on a separate partition.
+</I>
+correct. And I recommend to postpone this change until we know
+why you ran out of space on second boot
+
+&gt;<i> On the second boot I checked this partition table again and nothing
+</I>&gt;<i> changed
+</I>
+That's ok and is intended
+
+&gt;<i> I rebuilt the image again but this time did:
+</I>&gt;<i> 2000mb as the swap
+</I>&gt;<i> 4000mb as the Fat partition
+</I>&gt;<i> total image size is 6020mb
+</I>&gt;<i> Total drive space is still 7646mb
+</I>&gt;<i> 
+</I>&gt;<i> The first boot went without any issues like before. I did NOT see the
+</I>&gt;<i> &quot;repartition the disk according to real geometry [parted]
+</I>&gt;<i> Flag to Invert?&quot; It just autologin as it was suppose to.
+</I>
+This is because the re-partition step was skipped now because there
+is not enough space left for a persistent read-write partition.
+Even though you told the image to be ramonly kiwi prepares the stick
+for persistent writing if one wants to switch off ramonly at a later
+point in time. For that read-write part it needs some space. The
+size can be set by the paramater oem-systemsize. In your case this
+value plus your swap and fat setup exceeds the size of the USB stick
+which results in the repart step to be skipped and as consequence
+no swap partition will be created... normally not a big problem
+except you ran out of space
+
+&gt;<i> I checked the parition table shows
+</I>&gt;<i>
+</I>&gt;<i> dev/sdb1                 3.91GB    linux native      FAT
+</I>&gt;<i> dev/sdb2                 1.97GB    linux native
+</I>&gt;<i> dev/kiwiVG               1.97GB    LVM2 KiwiVG
+</I>&gt;<i> dev/kiwiVG/LVComp        560.00MB  LV
+</I>&gt;<i> dev/kiwiVG/LVRoot        1.42GB    LV
+</I>&gt;<i> 
+</I>&gt;<i> What happen to the Swap partition?
+</I>
+This is ok according to the new setup
+
+&gt;<i> Despite that lack of a Swap partition the result are the same on the
+</I>&gt;<i> first boot vs any boot after the first boot.
+</I>
+Ok, this means the system never is in the swap condition.
+It looks like you simply ran out of space. But that should have
+happened on first boot too. I'm really wondering. As you said
+this is a ramonly image there is (beside the partition table change)
+no persistent data written. So you should have the same root
+filesystem size on first boot and after first boot (except your RAM
+size has changed). What does
+
+  df -h
+
+tell you on the system where you have a swap partition
+
+I recommend to not change the swap and fat parameters all the
+time. Use one setup which does the repart on first boot and which
+allows us to safely reproduce the problem. Maybe we will find
+the cause of the problem then 
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002631.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002634.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2633">[ date ]</a>
+              <a href="thread.html#2633">[ thread ]</a>
+              <a href="subject.html#2633">[ subject ]</a>
+              <a href="author.html#2633">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

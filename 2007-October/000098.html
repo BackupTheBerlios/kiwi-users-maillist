@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help&In-Reply-To=%3Cb317ae5c0710170903m46fa66a7u591f85d5fbc4d2aa%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000097.html">
+   <LINK REL="Next"  HREF="000104.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi help</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20help&In-Reply-To=%3Cb317ae5c0710170903m46fa66a7u591f85d5fbc4d2aa%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] kiwi help">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Wed Oct 17 18:03:59 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000097.html">[Kiwi-users] kiwi help
+</A></li>
+        <LI>Next message: <A HREF="000104.html">[Kiwi-users] kiwi help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#98">[ date ]</a>
+              <a href="thread.html#98">[ thread ]</a>
+              <a href="subject.html#98">[ subject ]</a>
+              <a href="author.html#98">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 10/17/07, Jonty Pearson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jpearson at bycast.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I'm attempting to create a LiveCD using Kiwi, but I am having a few
+</I>&gt;<i> problems.  My intention is to create a LiveCD (by generating an iso with
+</I>&gt;<i> kiwi, which can then be burnt to CD/DVD) to be used for booting and
+</I>&gt;<i> running some scripts from, without installing any other software.
+</I>&gt;<i>
+</I>&gt;<i> So far, this is what I've done:
+</I>&gt;<i> o  Installed openSUSE 10.3 from a downloaded DVD
+</I>&gt;<i> o  Copied contents of DVD to /images/DVD for quicker access
+</I>
+install kiwi-desc-livesystem
+
+&gt;<i> o  Edited /usr/share/kiwi/image/isoboot/suse-10.3/config.xml
+</I>&gt;<i>  - Changed:
+</I>&gt;<i>    &lt;type&gt;cpio&lt;/type&gt; to &lt;type boot=&quot;isoboot/suse-10.3&quot;&gt;iso&lt;/type&gt;
+</I>&gt;<i>  - Changed:
+</I>&gt;<i>    &lt;source path=&quot;/image/CDs/full-i386&quot;/&gt; to &lt;source path=&quot;/images/DVD&quot;/&gt;
+</I>
+change image/kwliveCD-suse-10.3/config.xml too
+
+&gt;<i> o  Run kiwi --prepare /usr/share/kiwi/image/isoboot/suse-10.3
+</I>&gt;<i> --root /tmp/kiwip --logfile terminal - this runs successfully
+</I>&gt;<i> o  Run kiwi --create /tmp/kiwip -d /tmp/kiwic --logfile terminal
+</I>
+Do not run that, run:
+
+kiwi --prepare kwliveCD-suse-10.3 --add-profile kde --root
+/tmp/kiwi-tmp --logfile terminal
+
+and if that complete's successfully:
+
+kiwi --create /tmp/kiwi-tmp  -d /tmp/kiwi-image --logfile terminal
+
+
+&gt;<i>
+</I>&gt;<i> I'm not sure what I'm doing wrong, any help would be greatly
+</I>&gt;<i> appreciated.
+</I>&gt;<i>
+</I>
+See all the links here: <A HREF="http://en.opensuse.org/KIWI">http://en.opensuse.org/KIWI</A>
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000097.html">[Kiwi-users] kiwi help
+</A></li>
+	<LI>Next message: <A HREF="000104.html">[Kiwi-users] kiwi help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#98">[ date ]</a>
+              <a href="thread.html#98">[ thread ]</a>
+              <a href="subject.html#98">[ subject ]</a>
+              <a href="author.html#98">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] pxeboot client image failing on downloading md5 sum
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxeboot%20client%20image%20failing%20on%20downloading%20md5%20sum&In-Reply-To=%3CAANLkTinKIlsK5TpiNHBxFsosUmJOG3vOOmgq8UPtX7li%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001895.html">
+   <LINK REL="Next"  HREF="001899.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] pxeboot client image failing on downloading md5 sum</H1>
+    <B>Irina Delidjakova</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxeboot%20client%20image%20failing%20on%20downloading%20md5%20sum&In-Reply-To=%3CAANLkTinKIlsK5TpiNHBxFsosUmJOG3vOOmgq8UPtX7li%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] pxeboot client image failing on downloading md5 sum">irina.delidjakova at gmail.com
+       </A><BR>
+    <I>Tue Jul 13 22:00:20 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001895.html">[Kiwi-users] kiwi: Weekly report 2010-07-04 - 2010-07-09...
+</A></li>
+        <LI>Next message: <A HREF="001899.html">[Kiwi-users] pxeboot client image failing on downloading md5	sum
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1896">[ date ]</a>
+              <a href="thread.html#1896">[ thread ]</a>
+              <a href="subject.html#1896">[ subject ]</a>
+              <a href="author.html#1896">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I am using one of the examples
+(/usr/share/doc/packages/kiwi/examples/suse-11.1/suse-pxe-client) in order
+to create a pxe client image with kiwi and image a client with the created
+image.
+I am using the instructions in
+the /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-pxe-client.readme
+in order to create the client image and setup the DHCP/ATFTP server.
+
+The DHCP kicks in and the client successfully retrieves the initrd and boot
+files to begin the imaging process, however after attempting to partition
+the disk the following occurs:
+
+&quot;
+Download of image/suse-11.1-pxe-client.x86_64-1.2.8.md5 failed: Option
+multicast disabled
+Option blksize=4096
+timeout: retrying...
+timeout: retrying...
+timeout: retrying...
+timeout: retrying...
+timeout: retrying...
+timeout: retrying...
+tftp: aborting
+&quot;
+
+At this point, a reboot occurs and the screen is blank.
+
+I have modified the /etc/sysconfig/atftpd to add the following option and I
+have also tried without it:
+ATFTPD_OPTIONS=&quot;--daemon --no-multicast&quot;
+
+I have checked the size of this created example and it is approximately 64MB
+(it seems a little small) so not sure if this is the problem.
+
+Have you seen this before?
+
+Thanks,
+Irina
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100713/cd286bc3/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100713/cd286bc3/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001895.html">[Kiwi-users] kiwi: Weekly report 2010-07-04 - 2010-07-09...
+</A></li>
+	<LI>Next message: <A HREF="001899.html">[Kiwi-users] pxeboot client image failing on downloading md5	sum
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1896">[ date ]</a>
+              <a href="thread.html#1896">[ thread ]</a>
+              <a href="subject.html#1896">[ subject ]</a>
+              <a href="author.html#1896">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

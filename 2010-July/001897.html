@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Squashfs in RAM
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Squashfs%20in%20RAM&In-Reply-To=%3CAANLkTik6MjK6pirvSH4ryw0rL4dGd9WAh0I-PU_xikWb%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001901.html">
+   <LINK REL="Next"  HREF="001898.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Squashfs in RAM</H1>
+    <B>Denis Kozlov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Squashfs%20in%20RAM&In-Reply-To=%3CAANLkTik6MjK6pirvSH4ryw0rL4dGd9WAh0I-PU_xikWb%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Squashfs in RAM">dendexter51 at gmail.com
+       </A><BR>
+    <I>Wed Jul 14 10:27:50 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001901.html">[Kiwi-users] pxeboot client image failing on downloading md5 sum
+</A></li>
+        <LI>Next message: <A HREF="001898.html">[Kiwi-users] Squashfs in RAM
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1897">[ date ]</a>
+              <a href="thread.html#1897">[ thread ]</a>
+              <a href="subject.html#1897">[ subject ]</a>
+              <a href="author.html#1897">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi. I want to deploy all my system in squashfs in RAM.
+I use split image function, make to images.
+read-only part - 150 mb
+reaw-write part - 20 mb
+
+In config.XXXXXX:
+IMAGE=/dev/ram1;Myos.i686;1.0.1;192.168.1.2;8192,/dev/ram;Myos.i686;1.0.1;102.168.1.2;4096
+COMBINED_IMAGE=yes
+.....
+
+I tried with harddisk , and everything is ok, but can I  use this method
+when deploying it to RAM.
+
+Maybe anybody know best way to accomplish this task?
+
+The Task is :
+I have image in ext3, but its very big 500 mb, when i boot my thin client,
+every time I need to wait a lot of time(downloading image, deploying it ti
+RAM and so on). How I can minimize this time?
+I compress my image by using squashfs to 150 mb. When I am trying to boot
+this image, I have - Preinit fail....
+
+Thanks for help=)
+Sorry for my English =)
+----------------------------------
+Kozlov Denis
+Kyiv, Ukraine
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100714/5592d309/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100714/5592d309/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001901.html">[Kiwi-users] pxeboot client image failing on downloading md5 sum
+</A></li>
+	<LI>Next message: <A HREF="001898.html">[Kiwi-users] Squashfs in RAM
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1897">[ date ]</a>
+              <a href="thread.html#1897">[ thread ]</a>
+              <a href="subject.html#1897">[ subject ]</a>
+              <a href="author.html#1897">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

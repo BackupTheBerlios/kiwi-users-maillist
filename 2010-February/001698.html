@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Boot problem live USB 11.2
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20problem%20live%20USB%2011.2&In-Reply-To=%3C735339.43047.qm%40web56508.mail.re3.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001703.html">
+   <LINK REL="Next"  HREF="001699.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Boot problem live USB 11.2</H1>
+    <B>Zdravko Angelov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20problem%20live%20USB%2011.2&In-Reply-To=%3C735339.43047.qm%40web56508.mail.re3.yahoo.com%3E"
+       TITLE="[Kiwi-users] Boot problem live USB 11.2">zdravko_angelov at yahoo.com
+       </A><BR>
+    <I>Wed Feb 24 17:28:15 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001703.html">[Kiwi-users] Feature for OEM image
+</A></li>
+        <LI>Next message: <A HREF="001699.html">[Kiwi-users] Boot problem live USB 11.2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1698">[ date ]</a>
+              <a href="thread.html#1698">[ thread ]</a>
+              <a href="subject.html#1698">[ subject ]</a>
+              <a href="author.html#1698">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I built the 11.2 USB stick example from /usr/share/doc/packages/kiwi/examples/suse-11.2/suse-live-stick, but the image freezes at boot time after loading initrd.vmx. 
+
+The system used:
+OS: openSUSE 11.2
+kernel: 2.6.31.5-0.1-default
+kiwi: v3.74
+doc: version 4.17 from February 18, 2010
+
+Process followed:
+&gt;<i> kiwi --prepare ./suse-live-stick --root /tmp/kiwi/image_fs_usb
+</I>   [no errors]
+&gt;<i> kiwi --create /tmp/kiwi/image_fs_usb --type usb -d /tmp/kiwi/image_usb
+</I>   [no errors]
+
+The image files created are:
+-rw-r--r-- 1 root root  19630066 2010-02-24 14:13 initrd-usbboot-suse-11.2.i686-2.1.1.gz
+lrwxrwxrwx 1 root root        63 2010-02-24 14:12 initrd-usbboot-suse-11.2.i686-2.1.1.kernel -&gt; initrd-usbboot-suse-11.2.i686-2.1.1.kernel.2.6.31.5-0.1-default
+-rw-r--r-- 1 root root   3672800 2010-02-24 14:12 initrd-usbboot-suse-11.2.i686-2.1.1.kernel.2.6.31.5-0.1-default
+-rw-r--r-- 1 root root        45 2010-02-24 14:13 initrd-usbboot-suse-11.2.i686-2.1.1.md5
+-rw-r--r-- 1 root root  19623777 2010-02-24 14:14 initrd-usbboot-suse-11.2.i686-2.1.1.splash.gz
+-rw-r--r-- 1 root root 744679645 2010-02-24 14:04 suse-11.2-live-stick.i686-1.1.2
+lrwxrwxrwx 1 root root        31 2010-02-24 13:24 suse-11.2-live-stick.i686-1.1.2.clicfs -&gt; suse-11.2-live-stick.i686-1.1.2
+-rw-r--r-- 1 root root        47 2010-02-24 13:36 suse-11.2-live-stick.i686-1.1.2.md5
+
+
+&gt;<i> kiwi --bootstick image_usb/initrd-usbboot-suse-11.2.i686-2.1.1.splash.gz --bootstick-system
+</I>image_usb/suse-11.2-live-stick.i686-1.1.2 --bootstick-device /dev/sdb
+   [no errors]
+
+The stick gets partitioned as follows:
+Model: USB DISK 2.0 (scsi)
+Disk /dev/sdb: 8020MB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Number  Start   End     Size    Type     File system  Flags
+ 1      31.7kB  753MB   753MB   primary               type=83
+ 2      753MB   7974MB  7221MB  primary               type=83
+ 3      7974MB  8013MB  39.2MB  primary  ext2         boot, type=83
+
+
+the content of the boot partition (#3) is:
+/lost+found
+/boot
+drwxr-xr-x 2 root root     4096 2010-02-24 15:52 grub
+-rw-r--r-- 1 root root 19623777 2010-02-24 15:52 initrd.vmx
+-rw-r--r-- 1 root root  3672800 2010-02-24 15:52 linux.vmx
+-rw-r--r-- 1 root root   415232 2010-02-24 15:52 message
+/boot/grub
+-rw-r--r-- 1 root root  10084 2010-02-24 15:52 e2fs_stage1_5
+-rw-r--r-- 1 root root   9248 2010-02-24 15:52 fat_stage1_5
+-rw-r--r-- 1 root root   8556 2010-02-24 15:52 ffs_stage1_5
+-rw-r--r-- 1 root root   8552 2010-02-24 15:52 iso9660_stage1_5
+-rw-r--r-- 1 root root  10140 2010-02-24 15:52 jfs_stage1_5
+-rw-r--r-- 1 root root     10 2010-02-24 15:52 mbrid
+-rw-r--r-- 1 root root    455 2010-02-24 15:52 menu.lst
+-rw-r--r-- 1 root root   8700 2010-02-24 15:52 minix_stage1_5
+-rw-r--r-- 1 root root 200776 2010-02-24 15:52 nbgrub
+-rw-r--r-- 1 root root 201800 2010-02-24 15:52 pxegrub
+-rw-r--r-- 1 root root  11336 2010-02-24 15:52 reiserfs_stage1_5
+-rw-r--r-- 1 root root    512 2010-02-24 15:52 stage1
+-rw-r--r-- 1 root root 114518 2010-02-24 15:52 stage2
+-rw-r--r-- 1 root root 114518 2010-02-24 15:52 stage2_eltorito
+-rw-r--r-- 1 root root 201560 2010-02-24 15:52 stage2.netboot
+-rw-r--r-- 1 root root   8828 2010-02-24 15:52 ufs2_stage1_5
+-rw-r--r-- 1 root root   8136 2010-02-24 15:52 vstafs_stage1_5
+-rw-r--r-- 1 root root  11072 2010-02-24 15:52 xfs_stage1_5
+
+Other partitions (1, 2) seem to have no filesystems on them. At least I can't mount them with any type. 
+
+The GRUB menu is:
+color cyan/blue white/blue
+default 0
+timeout 10
+gfxmenu (hd0,2)/boot/message
+title suse-11.2-live-stick_[_USB_]
+ root (hd0,2)
+ kernel /boot/linux.vmx vga=0x314 loader=grub splash=silent  showopts
+ initrd /boot/initrd.vmx
+title Failsafe_--_suse-11.2-live-stick_[_USB_]
+ root (hd0,2)
+ kernel /boot/linux.vmx vga=0x314 loader=grub splash=silent ide=nodma apm=off acpi=off noresume selinux=0 nosmp noapic maxcpus=0 edd=off
+ showopts
+ initrd /boot/initrd.vmx
+
+GRUB freezes at boot time after loading initrd. I have tried booting manually through the GRUB prompt, using the parameters from the generated menu.lst file and:
+- kernel loads fine
+- initrd loads fine
+- when I issue &quot;boot&quot; it freezes. Doesn't proceed to kernel extraction, no output, no usb access, nothing.
+
+I have tried the oem approach with the same problem. Any suggestions how to fix this or trace it in more detail? Any help is appreciated.
+
+Cheers,
+Zdravko
+
+PS: Marcus, this is without the patch you sent for the CD problem. But since it only modifies the sub createImageLiveCD, that shouldn't matter. I will try it again though after the patch.
+
+
+      
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001703.html">[Kiwi-users] Feature for OEM image
+</A></li>
+	<LI>Next message: <A HREF="001699.html">[Kiwi-users] Boot problem live USB 11.2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1698">[ date ]</a>
+              <a href="thread.html#1698">[ thread ]</a>
+              <a href="subject.html#1698">[ subject ]</a>
+              <a href="author.html#1698">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

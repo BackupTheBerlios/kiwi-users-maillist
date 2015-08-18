@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] RAID configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3CD9D46BBA-63CD-4AC7-AB8D-F8530BA4A444%40danl.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002858.html">
+   <LINK REL="Next"  HREF="002862.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] RAID configuration</H1>
+    <B>Daniel Little</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20RAID%20configuration&In-Reply-To=%3CD9D46BBA-63CD-4AC7-AB8D-F8530BA4A444%40danl.org%3E"
+       TITLE="[Kiwi-users] RAID configuration">me at danl.org
+       </A><BR>
+    <I>Mon Jul 25 17:21:11 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002858.html">[Kiwi-users] RAID configuration
+</A></li>
+        <LI>Next message: <A HREF="002862.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2861">[ date ]</a>
+              <a href="thread.html#2861">[ thread ]</a>
+              <a href="subject.html#2861">[ subject ]</a>
+              <a href="author.html#2861">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+I managed to get this working, but had to modify the initrd of the boot image to get it to do so. I'll post more details later today as it was a fairly long process to get it resolved. There are some portions of the way Kiwi works that would not work with the configuration and some portions that I'm trying to understand whether I have something missing in my config.xml. I didn't know about the kiwidebug=1 so that will help resolve where the issues are in the config, I think. But thank you - the questions you had helped point me in the right path to finding the solution. Now I just want to make it repeatable! :)
+
+Daniel.
+
+On 2011-07-25, at 4:25 AM, Marcus Sch&#228;fer wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;&gt;<i> /dev/disk/by-id/raid-lsi_chedfhiceaa-part2 swap 
+</I>&gt;&gt;&gt;&gt;<i> /dev/disk/by-id/raid-lsi_chedfhiceaa-part3 / 
+</I>&gt;&gt;&gt;&gt;<i> /dev/disk/by-id/raid-lsi_chedfhiceaa-part1 /boot
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> Well if I go with the by-id device names I would say there is a
+</I>&gt;&gt;&gt;<i> hardware raid controller in your machine and it was detected by the
+</I>&gt;&gt;&gt;<i> linux kernel as well as there are storage device populated by the
+</I>&gt;&gt;&gt;<i> raid controller setup. So I would say everything is fine here ? :)
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Yes, but again, this was from a standard 11.4 dist installation.
+</I>&gt;<i> 
+</I>&gt;<i> ok, that at least means 11.4 has everything to make the device work
+</I>&gt;<i> 
+</I>&gt;&gt;<i> It is a hardware raid controller, but if we have to do this with
+</I>&gt;&gt;<i> software raid, I don't have a problem with that either. Note that even
+</I>&gt;&gt;<i> though /dev/sda is used in the OEM boot that I've created,
+</I>&gt;&gt;<i> 'dmraid -s' tells me that the raid controller is there.
+</I>&gt;<i> 
+</I>&gt;<i> That means all basic drivers are part of the initrd created by kiwi
+</I>&gt;<i> 
+</I>&gt;&gt;<i> However, it's not in use as I'm able to mount /dev/sdb and nothing is
+</I>&gt;&gt;<i> on that drive. When I attempt to mount /dev/sdb under a standard 11.4
+</I>&gt;&gt;<i> install, it tells me that the device is busy and can't be mounted
+</I>&gt;&gt;<i> (which is the expected behaviour).
+</I>&gt;<i> 
+</I>&gt;<i> That's the part which confuses me. So normally you setup the raid in
+</I>&gt;<i> the management software which comes with the controller. The OS later on
+</I>&gt;<i> just see the devices but the OS does not control or initialize the raid
+</I>&gt;<i> behavior. In your case I would expect two devices /dev/sda and /dev/sdb
+</I>&gt;<i> and you can choose one of them to install the system on, the other device
+</I>&gt;<i> is automatically a mirror of the origin controlled by the hardware
+</I>&gt;<i> raid controller. Is that correct so far ?
+</I>&gt;<i> 
+</I>&gt;<i> What confuses me is that you have the devices which means the raid
+</I>&gt;<i> controller driver must be active and working but they don't behave
+</I>&gt;<i> as a raid1 setup. I'm not familiar with that type of controller but
+</I>&gt;<i> could it be that:
+</I>&gt;<i> 
+</I>&gt;<i> a) you need additional firmware inside the initrd. You can check
+</I>&gt;<i>   from your standard installation if there are hardware dependant
+</I>&gt;<i>   packages installed:
+</I>&gt;<i> 
+</I>&gt;<i>   rpm -qa --qf '\n&lt;%{name}&gt;\n' --supplements | grep -B1 ^modalias | grep '^&lt;'
+</I>&gt;<i> 
+</I>&gt;<i> b) the raid1 setup is not as you expected it
+</I>&gt;<i> 
+</I>&gt;<i>   you can check this in the raid controller management console on boot
+</I>&gt;<i>   of the target device
+</I>&gt;<i> 
+</I>&gt;<i> c) are the devices controlled by multipath ?
+</I>&gt;<i> 
+</I>&gt;<i>   if 'multipath -l' on your standard installation shows something
+</I>&gt;<i>   this might be the missing part in kiwi, but it would be an odd
+</I>&gt;<i>   setup.
+</I>&gt;<i> 
+</I>&gt;<i> Other than that you can repeat the oem installation process with
+</I>&gt;<i> the boot parameter:
+</I>&gt;<i> 
+</I>&gt;<i>   kiwidebug=1
+</I>&gt;<i> 
+</I>&gt;<i> If it comes to the point where you have to select &quot;yes&quot; to install
+</I>&gt;<i> the image on the target, you can switch to the debugging console Alt-F2
+</I>&gt;<i> and check the status of the devices while still inside the initrd.
+</I>&gt;<i> There is only a limited set of commands though. I'm mostly interested
+</I>&gt;<i> if there are the udev device names /dev/disk/by-id/raid-lsi_....
+</I>&gt;<i> 
+</I>&gt;<i> I think if there is a hardware raid controller in the system it would
+</I>&gt;<i> be best to use it instead of software raid.
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> -- 
+</I>&gt;<i> Public Key available
+</I>&gt;<i> gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> -------------------------------------------------------
+</I>&gt;<i> Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i> Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i> FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i> GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+</I>&gt;<i> HRB: 21284 (AG N&#252;rnberg)       Germany
+</I>&gt;<i> <A HREF="http://www.suse.de">http://www.suse.de</A>
+</I>&gt;<i> -------------------------------------------------------
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002858.html">[Kiwi-users] RAID configuration
+</A></li>
+	<LI>Next message: <A HREF="002862.html">[Kiwi-users] RAID configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2861">[ date ]</a>
+              <a href="thread.html#2861">[ thread ]</a>
+              <a href="subject.html#2861">[ subject ]</a>
+              <a href="author.html#2861">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

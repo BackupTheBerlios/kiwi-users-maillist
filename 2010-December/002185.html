@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problems when using lvm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20when%20using%20lvm&In-Reply-To=%3C4CFFC9ED.80106%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002184.html">
+   <LINK REL="Next"  HREF="002189.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problems when using lvm</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problems%20when%20using%20lvm&In-Reply-To=%3C4CFFC9ED.80106%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] problems when using lvm">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Wed Dec  8 19:09:49 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002184.html">[Kiwi-users] problems when using lvm
+</A></li>
+        <LI>Next message: <A HREF="002189.html">[Kiwi-users] problems when using lvm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2185">[ date ]</a>
+              <a href="thread.html#2185">[ thread ]</a>
+              <a href="subject.html#2185">[ subject ]</a>
+              <a href="author.html#2185">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+ Is your disk configuration putting all of the partitions within the
+LVM, or are you leaving a boot partition outside the LVM configuration?
+
+On 12/08/2010 01:48 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">john.lund at emc.com</A> wrote:
+&gt;<i> When I try to use lvm I'm getting a problem, it seems that grub does not install correctly and I cannot reboot the system (excerpt from /var/log/boot.kiwi follows):
+</I>&gt;<i>
+</I>&gt;<i> + echo '===&gt; Installing boot loader...'
+</I>&gt;<i> + '[' 0 = 0 ']'
+</I>&gt;<i> + set +x
+</I>&gt;<i> + /usr/sbin/grub --batch --no-floppy
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     GNU GRUB  version 0.97  (640K lower / 3072K upper memory)
+</I>&gt;<i>
+</I>&gt;<i>  [ Minimal BASH-like line editing is supported.  For the first word, TAB
+</I>&gt;<i>    lists possible command completions.  Anywhere else TAB lists the possible
+</I>&gt;<i>    completions of a device/filename. ]
+</I>&gt;<i> grub&gt; root (hd0,0)
+</I>&gt;<i>  Filesystem type is ext2fs, partition type 0x83
+</I>&gt;<i> grub&gt; setup --stage2=/boot/grub/stage2 (hd0)
+</I>&gt;<i>  Checking if &quot;/boot/grub/stage1&quot; exists... no
+</I>&gt;<i>  Checking if &quot;/grub/stage1&quot; exists... no
+</I>&gt;<i>
+</I>&gt;<i> Error 15: File not found
+</I>&gt;<i> grub&gt; quit
+</I>&gt;<i> + '[' '!' 0 = 0 ']'
+</I>&gt;<i> + '[' '!' -z '' ']'
+</I>&gt;<i> + '[' no = no ']'
+</I>&gt;<i> + '[' '!' -z '' ']'
+</I>&gt;<i> + '[' no = no ']'
+</I>&gt;<i> + '[' -x /bin/rpm ']'
+</I>&gt;<i>
+</I>&gt;<i> I can build a non-lvm system that can reboot just fine by commenting out the following in my config.xml file, and not using the --lvm on the build line.
+</I>&gt;<i> &lt;systemdisk name=&quot;AtmosVG&quot;&gt;
+</I>&gt;<i> &lt;volume name=&quot;root2&quot; size=&quot;8G&quot; /&gt;
+</I>&gt;<i> &lt;volume name=&quot;var&quot; freespace=&quot;2G&quot; /&gt;
+</I>&gt;<i> &lt;/systemdisk&gt;
+</I>&gt;<i>
+</I>&gt;<i> What more can I do to track down why grub isn't being installed/set up correctly.  Thank you.
+</I>&gt;<i>
+</I>&gt;<i> John Lund
+</I>&gt;<i> EMC Centera Development
+</I>&gt;<i> (508) 249-5473
+</I>&gt;<i> (571) 484-0139 Mobile
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002184.html">[Kiwi-users] problems when using lvm
+</A></li>
+	<LI>Next message: <A HREF="002189.html">[Kiwi-users] problems when using lvm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2185">[ date ]</a>
+              <a href="thread.html#2185">[ thread ]</a>
+              <a href="subject.html#2185">[ subject ]</a>
+              <a href="author.html#2185">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

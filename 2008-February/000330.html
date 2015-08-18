@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problem with using &lt;split&gt;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%20with%20using%20%3Csplit%3E&In-Reply-To=%3C20080220080242.GA26894%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000327.html">
+   <LINK REL="Next"  HREF="000340.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problem with using &lt;split&gt;</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%20with%20using%20%3Csplit%3E&In-Reply-To=%3C20080220080242.GA26894%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] problem with using &lt;split&gt;">ms at suse.de
+       </A><BR>
+    <I>Wed Feb 20 09:02:42 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000327.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+        <LI>Next message: <A HREF="000340.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#330">[ date ]</a>
+              <a href="thread.html#330">[ thread ]</a>
+              <a href="subject.html#330">[ subject ]</a>
+              <a href="author.html#330">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I'm trying to develop a diskful split image so that there are no writes
+</I>&gt;<i> to disk during normal operation.  I'm using the &lt;split&gt; element to
+</I>&gt;<i> specify read-only and read-write (linked into tmpfs) files in the image.
+</I>&gt;<i> When I try to deploy the image with PXE, linuxrc gets hung up on the
+</I>&gt;<i> 'validateRootTree' function, checking for /mnt/sbin/init.  What exists
+</I>&gt;<i> in /mnt is:
+</I>&gt;<i> /mnt/read-only
+</I>&gt;<i> /mnt/read-write
+</I>&gt;<i> 
+</I>&gt;<i> /mnt/read-only/sbin/init exists.
+</I>&gt;<i> 
+</I>&gt;<i> What is the recommended approach here to make this work?  Modify
+</I>&gt;<i> KIWILinuxRC.sh?
+</I>
+I guess something before has failed. maybe you stumbled over the
+problem that the &quot;tar&quot; program is missing within the initrd. To be
+more specific the information on the error console Alt-F3 would
+be useful
+
+&gt;<i> BTW, I'm using kiwi-2.20-29.1
+</I>
+you should consider an upgrade to the latest version 2.27 we have
+fixed at least the tar problem there
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000327.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+	<LI>Next message: <A HREF="000340.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#330">[ date ]</a>
+              <a href="thread.html#330">[ thread ]</a>
+              <a href="subject.html#330">[ subject ]</a>
+              <a href="author.html#330">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

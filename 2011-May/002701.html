@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Misleading documentation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Misleading%20documentation&In-Reply-To=%3C4DBEBAD0.9040502%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002703.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Misleading documentation</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Misleading%20documentation&In-Reply-To=%3C4DBEBAD0.9040502%40novell.com%3E"
+       TITLE="[Kiwi-users] Misleading documentation">rschweikert at novell.com
+       </A><BR>
+    <I>Mon May  2 16:08:16 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002703.html">[Kiwi-users] kiwi: Weekly report 2011-05-01 - 2011-05-06...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2701">[ date ]</a>
+              <a href="thread.html#2701">[ thread ]</a>
+              <a href="subject.html#2701">[ subject ]</a>
+              <a href="author.html#2701">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>All,
+
+Please be aware that our documentation for the &lt;preferences&gt; element is 
+currently misleading. :( sorry about this.
+
+I'd like to illustrate this using the &lt;size&gt; element as an example. At 
+the beginning of section 2.1.4 the &lt;size&gt; element is shown to be a child 
+of &lt;type&gt;. Yet, as all child elements of the &lt;preferences&gt; element are 
+discussed in section 2.1.4 the distinction between child elements of 
+&lt;type&gt; and chile elements of &lt;preferences&gt; is somewhat lost leading to 
+confusion whether &lt;size&gt; should be a child of &lt;preferences&gt; or &lt;type&gt;.
+
+Ordinarily this would not necessarily be all that big of a deal. 
+However, the problem is that there exists a parser bug (at least for 
+libxml2 and the Perl interface on openSUSE 11.3 and most likely openSUSE 
+11.2, and SLES 11 SP1) that passes a config.xml file that has &lt;size&gt; 
+specified as a child of &lt;preferences&gt; as valid :(
+
+Just thought everyone should be aware of this. Other child elements of 
+&lt;type&gt; may be effected by this parser bug. A way to verify you XML 
+outside the Kiwi process is to install jing and use as follows:
+
+-&gt; jing /usr/share/kiwi/modules/KIWISchema.rng PATH_TO_YOUR_CONFIG.XML_FILE
+
+jing catches the previously mentioned structural error for the &lt;size&gt; 
+element.
+
+Later,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002703.html">[Kiwi-users] kiwi: Weekly report 2011-05-01 - 2011-05-06...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2701">[ date ]</a>
+              <a href="thread.html#2701">[ thread ]</a>
+              <a href="subject.html#2701">[ subject ]</a>
+              <a href="author.html#2701">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

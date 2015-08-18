@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] An approach to create oem-split image	with	encrypted /home partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20An%20approach%20to%20create%20oem-split%20image%0A%09with%09encrypted%20/home%20partition&In-Reply-To=%3C20090428200809.GA5203%40idefix.dms.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001082.html">
+   <LINK REL="Next"  HREF="001086.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] An approach to create oem-split image	with	encrypted /home partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20An%20approach%20to%20create%20oem-split%20image%0A%09with%09encrypted%20/home%20partition&In-Reply-To=%3C20090428200809.GA5203%40idefix.dms.net%3E"
+       TITLE="[Kiwi-users] An approach to create oem-split image	with	encrypted /home partition">ms at novell.com
+       </A><BR>
+    <I>Tue Apr 28 22:08:09 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001082.html">[Kiwi-users] An approach to create oem-split image with encrypted	/home partition
+</A></li>
+        <LI>Next message: <A HREF="001086.html">[Kiwi-users] kiwi 3.44 disappeared?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1084">[ date ]</a>
+              <a href="thread.html#1084">[ thread ]</a>
+              <a href="subject.html#1084">[ subject ]</a>
+              <a href="author.html#1084">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have succeeded in creating a split live usb image with luks
+</I>&gt;<i> formatted /home partition. Thanks to MS's advices. Hope the following
+</I>&gt;<i> steps help someone who want to do the same thing. Some stuff are
+</I>&gt;<i> omitted. Thanks in advance for any idea to improve it.
+</I>&gt;<i> 
+</I>&gt;<i> 1) To support a separate /home device, create a separate home file in
+</I>&gt;<i> createImageSplit() in KIWIImage.pm. Now you have system image file,
+</I>&gt;<i> split file, and home file.
+</I>&gt;<i> 2) Call losetup, cryptsetup, mke2fs on this home file, and call
+</I>&gt;<i> installLogicalExtend() (with some modifications)
+</I>&gt;<i> 3) In setupBootDisk() in KIWIBoot.pm, carefully create and partition
+</I>&gt;<i> the raw file containing 3 partitions: squash, rw and home. My
+</I>&gt;<i> suggestion is fdisk n p 1 n p 3 n p 2,
+</I>&gt;<i>     partition 2 is for rw, partition 3 is for /home, for the
+</I>&gt;<i> convenience of expanding rw partition
+</I>&gt;<i> 4) dd the 3 files to each of the partition of the raw file
+</I>&gt;<i> respectively, say loop0p1/p3/p2
+</I>&gt;<i> 5) Now do some minor modification in suse-repart to make some image
+</I>&gt;<i> size related stuff correct, but note that there is no need to change
+</I>&gt;<i> the fdisk commands.
+</I>&gt;<i> 
+</I>&gt;<i> After the first deployment the rw partition will expand to fulfil the
+</I>&gt;<i> disk size. The /home partition size is fixed.
+</I>
+thanks for this information and your effort. Do you have patches you
+would like to send on the list :)
+
+Thanks
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001082.html">[Kiwi-users] An approach to create oem-split image with encrypted	/home partition
+</A></li>
+	<LI>Next message: <A HREF="001086.html">[Kiwi-users] kiwi 3.44 disappeared?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1084">[ date ]</a>
+              <a href="thread.html#1084">[ thread ]</a>
+              <a href="subject.html#1084">[ subject ]</a>
+              <a href="author.html#1084">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

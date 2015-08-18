@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] creating 11.2 ISO image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20creating%2011.2%20ISO%20image&In-Reply-To=%3C585846.6248.qm%40web56505.mail.re3.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001694.html">
+   <LINK REL="Next"  HREF="001695.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] creating 11.2 ISO image</H1>
+    <B>Zdravko Angelov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20creating%2011.2%20ISO%20image&In-Reply-To=%3C585846.6248.qm%40web56505.mail.re3.yahoo.com%3E"
+       TITLE="[Kiwi-users] creating 11.2 ISO image">zdravko_angelov at yahoo.com
+       </A><BR>
+    <I>Wed Feb 24 12:40:59 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001694.html">[Kiwi-users] ISO example from documentation
+</A></li>
+        <LI>Next message: <A HREF="001695.html">[Kiwi-users] creating 11.2 ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1693">[ date ]</a>
+              <a href="thread.html#1693">[ thread ]</a>
+              <a href="subject.html#1693">[ subject ]</a>
+              <a href="author.html#1693">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I built the example template from /usr/share/doc/packages/kiwi/examples/suse-11.2/suse-live-iso on this system:
+OS: openSUSE 11.2
+kernel: 2.6.31.5-0.1-default
+kiwi: v3.74
+doc: version 4.17 from February 18, 2010
+
+but I get an .iso image that does not include the read-only file system. This is the result:
+-rw-r--r-- 1 root root  23M 2010-02-24 11:47 suse-11.2-live-iso.i686-2.5.1.iso
+-rw-r--r-- 1 root root 922M 2010-02-24 11:39 suse-11.2-live-iso-read-only.i686-2.5.1
+lrwxrwxrwx1 root root   39 2010-02-24 10:50 suse-11.2-live-iso-read-only.i686-2.5.1.clicfs -&gt; suse-11.2-live-iso-read-only.i686-2.5.1
+-rw-r--r-- 1 root root   48 2010-02-24 11:05 suse-11.2-live-iso-read-only.i686-2.5.1.md5
+
+Of course when I boot the iso it goes well up to the point of mounting root, which fails. 
+Does anybody have an idea what I am doing wrong?
+
+Thanks,
+Zdravko
+
+
+
+      
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001694.html">[Kiwi-users] ISO example from documentation
+</A></li>
+	<LI>Next message: <A HREF="001695.html">[Kiwi-users] creating 11.2 ISO image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1693">[ date ]</a>
+              <a href="thread.html#1693">[ thread ]</a>
+              <a href="subject.html#1693">[ subject ]</a>
+              <a href="author.html#1693">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

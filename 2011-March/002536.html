@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi or package issue?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3C4D8A386F.6020204%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002535.html">
+   <LINK REL="Next"  HREF="002537.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi or package issue?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3C4D8A386F.6020204%40novell.com%3E"
+       TITLE="[Kiwi-users] Kiwi or package issue?">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Mar 23 19:14:07 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002535.html">[Kiwi-users] Fwd: Kiwi or package issue?
+</A></li>
+        <LI>Next message: <A HREF="002537.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2536">[ date ]</a>
+              <a href="thread.html#2536">[ thread ]</a>
+              <a href="subject.html#2536">[ subject ]</a>
+              <a href="author.html#2536">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 03/23/2011 12:37 PM, Chris Cunha wrote:
+&gt;<i> Hi,
+</I>&gt;<i> I had a bit of a mishap the other day where my config.xml file had
+</I>&gt;<i> been deleted to the trash bin while deleting other files.  I restored
+</I>&gt;<i> the config.xml file by confirming the time/date to make sure I had the
+</I>&gt;<i> correct version of this file.  As far as I could tell it was the
+</I>&gt;<i> correct one.
+</I>&gt;<i> However after running kiwi to create a new image and testing that
+</I>&gt;<i> image I notice an issue with two package that were previously resolved
+</I>&gt;<i> before this &quot;delete/restore&quot; issue.
+</I>&gt;<i>
+</I>&gt;<i> If you guys remember I had an issue with the package
+</I>&gt;<i> lxde-common-branding-openSUSE conflicting with my version of this
+</I>&gt;<i> package.  The issue was related to a conflict string in the spec file.
+</I>&gt;<i>   I was unsuccessful in getting the maintainer of this package to
+</I>&gt;<i> remove this string so Marcus recommended a few options.  Based on
+</I>&gt;<i> these options I choose to have my package(s) stored locally in the
+</I>&gt;<i> image (within the overlay file tree) and using the config.sh file to
+</I>&gt;<i> remove the SUSE version and install my branded version of this file.
+</I>&gt;<i> Up until now this worked great.  However it isnt' working now and I'm
+</I>&gt;<i> out of things to look at to find the source of the problem.
+</I>&gt;<i>
+</I>&gt;<i> The lxde-common-branding-openSUSE package provides some images for
+</I>&gt;<i> logout, menus and script to logout and login.  My package provides the
+</I>&gt;<i> same exact items and deps.  The config.sh  script has:
+</I>&gt;<i>
+</I>&gt;<i> # Activate services
+</I>&gt;<i> #--------------------------------------
+</I>&gt;<i> suseActivateDefaultServices
+</I>&gt;<i> suseInsertService boot.device-mapper
+</I>&gt;<i>
+</I>&gt;<i> #unistallation of the Suse branding package leaving the deps behind
+</I>&gt;<i> and installing SOS branding in it's place.
+</I>&gt;<i> rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch
+</I>&gt;<i> rpm -i /opt/SOS/lxde-common-branding-SOS-11.3-32.1.noarch.rpm
+</I>&gt;<i> rpm -e --nodeps desktop-data-openSUSE-11.3-1.3.noarch
+</I>&gt;<i> rpm -i /opt/SOS/desktop-data-SOS-11.3-15.1.noarch.rpm
+</I>&gt;<i> rm -rf /opt/SOS
+</I>&gt;<i>
+</I>&gt;<i> which uninstalls the SUSE version and installs my branded version of
+</I>&gt;<i> theses package.  It always worked before.   Now when I an working in
+</I>&gt;<i> this image I can see that the menu and logout images are not correct.
+</I>&gt;<i> I CD over to /usr/share/lxde/images (in this recently built image) and
+</I>&gt;<i> sure enough the SUSE image are still there.  So by the looks of it the
+</I>&gt;<i> config.sh script isn't running
+</I>
+Did you check the log file? I'll bet you'll find a line that states that 
+config.sh is being executed. Otherwise there is most likely some other 
+problem during package installation. Maybe your restore of config.xml 
+isn't quite as good as you had hoped.
+
+&gt;<i> because when I do a &quot;rpm -e --nodeps
+</I>&gt;<i> lxde-common-branding-openSUSE-11.3-54.2.noarch&quot; manually in a terminal
+</I>&gt;<i> it removes all the image and scripts on the system related to the SUSE
+</I>&gt;<i> version of this package.  I then tried to install my version of the
+</I>&gt;<i> package which is in /opt/SOS with the same command that the config.sh
+</I>&gt;<i> script is running which is &quot;rpm -i
+</I>&gt;<i> /opt/SOS/lxde-common-branding-SOS-11.3-32.1.noarch.rpm&quot; and it's
+</I>&gt;<i> indicating &quot;failed dependencies: desktop-data-openSUSE is need by
+</I>&gt;<i> lxde-common-branding-SOS&quot;   Since when?!
+</I>
+Well, you create the package and control the dependencies, how is anyone 
+here supposed to know?
+
+&gt;<i> I'm guessing maybe this isn't an issue at all with the package as this
+</I>&gt;<i> all worked fine up until the deletion and restore of my config.xml
+</I>&gt;<i> file.
+</I>&gt;<i> I've been trying to figure out what happened to cause this for over a
+</I>&gt;<i> day now and can't seem to figure out what happend.  Here is the
+</I>&gt;<i> config.xml file <A HREF="http://paste.opensuse.org/79011903">http://paste.opensuse.org/79011903</A>
+</I>
+The log from your prepare step would be more helpful. Also you pasted 
+your config.xml file just a couple of days ago because of a validation 
+error. If you look back in the log fo the mailing list you probably will 
+find the appropriate post.
+
+Later,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002535.html">[Kiwi-users] Fwd: Kiwi or package issue?
+</A></li>
+	<LI>Next message: <A HREF="002537.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2536">[ date ]</a>
+              <a href="thread.html#2536">[ thread ]</a>
+              <a href="subject.html#2536">[ subject ]</a>
+              <a href="author.html#2536">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

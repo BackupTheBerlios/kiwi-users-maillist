@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Creating an USB readonly system?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Creating%20an%20USB%20readonly%20system%3F&In-Reply-To=%3C20090914150251.GF5708%40open-xchange.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001445.html">
+   <LINK REL="Next"  HREF="001447.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Creating an USB readonly system?</H1>
+    <B>Carsten Hoeger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Creating%20an%20USB%20readonly%20system%3F&In-Reply-To=%3C20090914150251.GF5708%40open-xchange.com%3E"
+       TITLE="[Kiwi-users] Creating an USB readonly system?">choeger at open-xchange.com
+       </A><BR>
+    <I>Mon Sep 14 17:02:51 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001445.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+        <LI>Next message: <A HREF="001447.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1446">[ date ]</a>
+              <a href="thread.html#1446">[ thread ]</a>
+              <a href="subject.html#1446">[ subject ]</a>
+              <a href="author.html#1446">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Sep 14, Marcus Sch&#228;fer wrote:
+
+&gt;<i> &gt; is it also possible to create an USB (squashfs) image similar to an ISO image
+</I>&gt;<i> &gt; readonly?
+</I>&gt;<i> &gt; I do not want the stick to be changed when booting in one system, because a
+</I>&gt;<i> &gt; different one could have a different hardware.
+</I>&gt;<i> &gt; I was not able to find any information in the manual.
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, I haven't implemented such a use case. By default a compressed
+</I>&gt;<i> stick with squashfs uses either aufs or clicfs as overlay filesystem
+</I>&gt;<i> and therefore intentionally allow write actions on the stick.
+</I>&gt;<i> 
+</I>&gt;<i> What you are asking for sounds like a hybrid live system. As I wrote
+</I>&gt;<i> earlier you can create an ISO as hybrid (including a partition table)
+</I>&gt;<i> and dump that image on the stick. If you boot from the stick the
+</I>
+I wasn't successfull to create a hybrid image with any 11.2 milestone up to
+now, but I'll try again from time to time.
+
+&gt;<i> device appears as a disk to the system. kiwi only activates a copy
+</I>&gt;<i> on write device if there is a single type 0x83 (linux) partition
+</I>&gt;<i> on the stick too. If you don't create such a partition on your stick
+</I>&gt;<i> all writes will go into RAM and are therefore not persistent. If
+</I>&gt;<i> you boot that stick again the same situation compared to the
+</I>&gt;<i> initial deployment applies.
+</I>&gt;<i> 
+</I>&gt;<i> There is also the image type split which allows you to divide
+</I>&gt;<i> your system into two portions. One is the compressed read-only part
+</I>&gt;<i> and the other is the read-write part which appears as a seperate
+</I>&gt;<i> partition on the stick. If you design your &lt;split&gt; section in a
+</I>&gt;<i> way that for example only /home , /var and /boot are
+</I>&gt;<i> persistently writable and /etc as temporarly writable you can
+</I>&gt;<i> create an image which allows you to store your user data
+</I>&gt;<i> persistently and any configuration below /etc temporarly. All
+</I>&gt;<i> the rest will be read-only and can't be changed. The downside
+</I>&gt;<i> of this type is that you need to know before where you need
+</I>&gt;<i> what kind of access type.
+</I>&gt;<i> 
+</I>&gt;<i>      &lt;split&gt;
+</I>&gt;<i>         &lt;persistent&gt;
+</I>&gt;<i> 			&lt;file name=&quot;/var&quot;/&gt;
+</I>&gt;<i> 			&lt;file name=&quot;/var/*&quot;/&gt;
+</I>&gt;<i> 			&lt;file name=&quot;/boot&quot;/&gt;
+</I>&gt;<i> 			&lt;file name=&quot;/boot/*&quot;/&gt;
+</I>&gt;<i> 			&lt;file name=&quot;/home&quot;/&gt;
+</I>&gt;<i> 			&lt;file name=&quot;/home/*&quot;/&gt;
+</I>&gt;<i>         &lt;/persistent&gt;
+</I>&gt;<i>         &lt;temporary&gt;
+</I>&gt;<i> 			&lt;file name=&quot;/etc&quot;/&gt;
+</I>&gt;<i> 			&lt;file name=&quot;/etc/*&quot;/&gt;
+</I>&gt;<i> 		&lt;/temporary&gt;
+</I>&gt;<i>      &lt;/split&gt;
+</I>
+Ah, that's a good tip, thanks!
+
+During my testing I found bug in KIWIImage.pm, though. The number of inodes is
+not an integer and mkisofs is complaining:
+
+ Sep-14 16:15:27 &lt;1&gt; : EXEC [/sbin/mke2fs -i 16384 -O resize_inode -T ext3 -j
+-F -N 4312.75 oxlive-result/ox-live-desktop-read-write.i686-0.0.1 2&gt;&amp;1]
+ Sep-14 16:15:27 &lt;3&gt; : Couldn't create EXT2 filesystem   failed
+ Sep-14 16:15:27 &lt;3&gt; : mke2fs: bad num inodes - 4312.75                        
+
+
+Fix is simple: 
+
+
+--- KIWIImage.pm.orig   2009-09-14 16:59:30.000000000 +0200
++++ KIWIImage.pm        2009-09-14 16:59:36.000000000 +0200
+@@ -4159,7 +4159,7 @@
+        # Inode count for this filesystem
+        #------------------------------------------
+        $this-&gt;{inodes} =
+-               $mini &gt; $needi ? $mini : $needi;
++               int($mini &gt; $needi ? $mini : $needi);
+        #==========================================
+        # Minimum size calculated in MB
+        #------------------------------------------
+
+
+Should I open a bug or is it enough to report it here?
+
+-- 
+With best regards,
+
+Carsten Hoeger
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090914/7f793cd3/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090914/7f793cd3/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001445.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+	<LI>Next message: <A HREF="001447.html">[Kiwi-users] Creating an USB readonly system?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1446">[ date ]</a>
+              <a href="thread.html#1446">[ thread ]</a>
+              <a href="subject.html#1446">[ subject ]</a>
+              <a href="author.html#1446">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

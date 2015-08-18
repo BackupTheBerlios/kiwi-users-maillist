@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-06-27 - 2010-07-02...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-06-27%20-%202010-07-02...&In-Reply-To=%3C20100703204442.GA6385%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001894.html">
+   <LINK REL="Next"  HREF="001895.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-06-27 - 2010-07-02...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-06-27%20-%202010-07-02...&In-Reply-To=%3C20100703204442.GA6385%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-06-27 - 2010-07-02...">ms at novell.com
+       </A><BR>
+    <I>Sat Jul  3 22:44:42 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001894.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+        <LI>Next message: <A HREF="001895.html">[Kiwi-users] kiwi: Weekly report 2010-07-04 - 2010-07-09...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1881">[ date ]</a>
+              <a href="thread.html#1881">[ thread ]</a>
+              <a href="subject.html#1881">[ subject ]</a>
+              <a href="author.html#1881">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.44 2010-06-27 - 2010-07-02
+--------------------------------------------------
+most important changes for this weeks release...
+
+Special thanks to Robert who spent some time to improve
+the code quality and sent many good patches. Your work
+is really very much appreciated
+
+==
+
+GIT: fixed repartition problem with new and old parted. The
+     code has been changed in a way that it uses a sector
+     based start value and a cylinder based end value
+
+when creating images with new parted v2.2 the first partition
+starts at sector 2048 whereas an older version of parted (1.8)
+uses sector 63 for the start the first partition. This causes
+problems when re-partitioning a disk created by another
+parted version compared to the one which does the actual
+repartition of the disk. SUSE 11.3 will come with new parted
+and therefore we had to find a fix for this problem.
+
+
+GIT: added volume label for recovery partition (bnc #618276)
+
+if you use oem-recovery in your oem image it's now possible
+to mount the recovery partition by the label named &quot;recovery&quot;
+
+  mount -L recovery /mount/point
+
+GIT: added xslt stylesheet to convert from schema v4.6 to v4.7
+     the conversion moves the vmwareconfig and xenconfig sections
+     into the common machine sections and also changes
+     format=&quot;iso&quot; into installiso=&quot;true&quot; and format=&quot;usb&quot; into
+     installstick=&quot;true&quot;
+
+the git comment says all I guess :-)
+
+GIT: Cleanup formats in kiwi:
+      * create new KIWIImageFormat.pm module for the conversion
+        into different image formats like vmdk,ovf and friends.
+        Also added function for creating the machine configuration
+        into this new module
+      * create common XML specification for vmware|xen config
+        starting with &lt;machine&gt;
+      * added new option --convert to kiwi.
+      * recursively call kiwi with $main::Convert set to convert
+        into the specified format and/or configuration
+      * added bool attributes installcd and installstick replacing
+        the old format=&quot;iso&quot; and format=&quot;usb&quot; setup
+
+There were some confusion about the image formats in kiwi.
+Basically an image format is the format of a disk image. We
+currently support raw,vmdk,ovf,qcow2. raw is always the base
+for a disk format and therefore not an option. vmdk,ovf and qcow2
+can now be specified as format=&quot;...&quot; in the &lt;type&gt; section.
+The confusion about format=&quot;iso&quot; and format=&quot;usb&quot; which are
+creating an additional installation media for the image has
+been solved by the new attributes installiso=&quot;true&quot; and
+installstick=&quot;true&quot;
+
+Have fun and a great (rest)weekend :-)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001894.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+	<LI>Next message: <A HREF="001895.html">[Kiwi-users] kiwi: Weekly report 2010-07-04 - 2010-07-09...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1881">[ date ]</a>
+              <a href="thread.html#1881">[ thread ]</a>
+              <a href="subject.html#1881">[ subject ]</a>
+              <a href="author.html#1881">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

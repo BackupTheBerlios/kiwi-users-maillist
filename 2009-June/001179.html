@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20find%20/usr/bin/mkclicfs%20tool%20for%3A%20clic&In-Reply-To=%3Cb317ae5c0906120313j41ba108fq42a8f8e4c0fda326%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001178.html">
+   <LINK REL="Next"  HREF="001177.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Can%27t%20find%20/usr/bin/mkclicfs%20tool%20for%3A%20clic&In-Reply-To=%3Cb317ae5c0906120313j41ba108fq42a8f8e4c0fda326%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Fri Jun 12 12:13:21 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001178.html">[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic
+</A></li>
+        <LI>Next message: <A HREF="001177.html">[Kiwi-users] --migrate option on SLED11
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1179">[ date ]</a>
+              <a href="thread.html#1179">[ thread ]</a>
+              <a href="subject.html#1179">[ subject ]</a>
+              <a href="author.html#1179">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Jun 12, 2009 at 3:35 PM, Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> Trying to create an OpenSUSE 11.2 32-bit image from my OpenSUSE 11.1
+</I>&gt;&gt;<i> 64 bit system using kiwi v3.56 yields this error. &#160;I haven't let it
+</I>&gt;&gt;<i> run through to the end, but I think the 11.1 32-bit image creation is
+</I>&gt;&gt;<i> still working with v3.56.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; linux32 sudo /usr/sbin/kiwi --create /home/mkienenb/temp/kiwi/suse-live-iso-dvd-11.2.0.0.1 --destdir /home/mkienenb/temp/kiwi
+</I>&gt;&gt;<i> Jun-10 10:59:34 &lt;1&gt; : Reading image description [Create]...
+</I>&gt;&gt;<i> Jun-10 10:59:34 &lt;1&gt; : Updating type in .profile environment
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; done
+</I>&gt;&gt;<i> Jun-10 10:59:34 &lt;1&gt; : Checking for default baseroot in XML data...
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; notset
+</I>&gt;&gt;<i> Jun-10 10:59:34 &lt;3&gt; : Can't find /usr/bin/mkclicfs tool for: clic
+</I>&gt;&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; failed
+</I>&gt;&gt;<i> Jun-10 10:59:34 &lt;3&gt; : KIWI exited with error(s)
+</I>&gt;<i>
+</I>&gt;<i> yeah clicfs is the brandnew toy developed by Stephan Kulow &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">coolo at novell.com</A>&gt;
+</I>&gt;<i> I CC'ed him and maybe he is willing to create an OBS Project building
+</I>&gt;<i> clicfs for older versions too so that you can build 11.2 images on oder
+</I>&gt;<i> build machines. For the moment I just have installed clicfs from the
+</I>&gt;<i> Factory project on my 11.0 build machine.
+</I>&gt;<i>
+</I>In the mean time you can use packages for 11.1 from server:ltsp repo.
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001178.html">[Kiwi-users] Can't find /usr/bin/mkclicfs tool for: clic
+</A></li>
+	<LI>Next message: <A HREF="001177.html">[Kiwi-users] --migrate option on SLED11
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1179">[ date ]</a>
+              <a href="thread.html#1179">[ thread ]</a>
+              <a href="subject.html#1179">[ subject ]</a>
+              <a href="author.html#1179">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

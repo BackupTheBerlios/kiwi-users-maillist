@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Starting X Font Server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Starting%20X%20Font%20Server&In-Reply-To=%3Cb317ae5c0712032149odf2077dgca393841a2924703%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000159.html">
+   <LINK REL="Next"  HREF="000161.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Starting X Font Server</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Starting%20X%20Font%20Server&In-Reply-To=%3Cb317ae5c0712032149odf2077dgca393841a2924703%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Starting X Font Server">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Tue Dec  4 06:49:49 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000159.html">[Kiwi-users] Starting X Font Server
+</A></li>
+        <LI>Next message: <A HREF="000161.html">[Kiwi-users] v2.00 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#160">[ date ]</a>
+              <a href="thread.html#160">[ thread ]</a>
+              <a href="subject.html#160">[ subject ]</a>
+              <a href="author.html#160">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Dec 4, 2007 1:34 AM, Anton Kaser &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">antonkaser at gmx.net</A>&gt; wrote:
+&gt;<i> hi, its me again,
+</I>&gt;<i>
+</I>&gt;<i> i made a KIWI setup again, and there seemed to be some problems.
+</I>&gt;<i> I send the Logfile and the Terminal-answers. Maybe you find out whats going
+</I>&gt;<i> on:
+</I>&gt;<i>
+</I>
+This log looks OK to me, you can turn on DEBUG in
+/etc/sysconfig/kiwi-ltsp for more details.
+
+Are you able to pxeboot the clients after completing this setup?
+
+What stage doest the boot stop.
+
+If it stops at ltsp_screen, ssh into the client and send me
+/var/log/ldm.log and /etc/X11/xorg.conf
+
+You can also try SCREEN_07=startx (instead of ldm)
+
+Cheers
+
+-J
+
+&gt;<i> Dec-03 17:56:34 &lt;1&gt; : Setting log file to:
+</I>&gt;<i> /usr/share/kiwi/image/ltsp/suse-10.3/kiwi-ltsp-build-0712031736.log
+</I>&gt;<i> Dec-03 17:56:34 &lt;1&gt; : Reading image description...   done
+</I>&gt;<i> Dec-03 17:56:34 &lt;1&gt; : Checking for default baseroot in XML data...   notset
+</I>&gt;<i> Dec-03 17:56:34 &lt;1&gt; : Calculating kernel module dependencies...   done
+</I>&gt;<i> Dec-03 17:56:35 &lt;1&gt; : Image requires 546 MB, got 2700M MB   done
+</I>&gt;<i> Dec-03 17:56:35 &lt;1&gt; : Suggested Image size: 710 MB   done
+</I>&gt;<i> Dec-03 17:59:50 &lt;1&gt; : Creating image MD5 sum...   done
+</I>&gt;<i> Dec-03 17:59:55 &lt;1&gt; : Creating boot configuration...   skipped
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> SUSE10:~ # kiwi-ltsp-setup -s
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:36:49: ====== Starting ======
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:36:49: Setting up the destination path
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:36:50: /srv/kiwi-ltsp exists. Moving to
+</I>&gt;<i> &quot;/srv/kiwi-ltsp.0712031736&quot;
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:36:50: Setting up the hosts file and lts.conf
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:36:50: Running the KIWI LTSP creation.
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:36:50: /srv/kiwi-ltsp-nfs exists. Moving to
+</I>&gt;<i> &quot;/srv/kiwi-ltsp-nfs.0712031736&quot;
+</I>&gt;<i> Dec-03 17:36:54 &lt;1&gt; : Setting log file to:
+</I>&gt;<i> /usr/share/kiwi/image/ltsp/suse-10.3/kiwi-ltsp-build-0712031736.log
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:56:31: Setting up the SSH keys
+</I>&gt;<i> Setting up ssh_known_hosts in:
+</I>&gt;<i>   /srv/kiwi-ltsp-nfs
+</I>&gt;<i>   /srv/kiwi-ltsp-nfs.0712031736
+</I>&gt;<i>   /srv/www
+</I>&gt;<i> WARNING: /srv/www/etc/ssh not found. skipping...
+</I>&gt;<i>   /srv/ftp
+</I>&gt;<i> WARNING: /srv/ftp/etc/ssh not found. skipping...
+</I>&gt;<i>   /srv/tftpboot
+</I>&gt;<i> WARNING: /srv/tftpboot/etc/ssh not found. skipping...
+</I>&gt;<i>   /srv/kiwi-ltsp.0712031736
+</I>&gt;<i> WARNING: /srv/kiwi-ltsp.0712031736/etc/ssh not found. skipping...
+</I>&gt;<i> Dec-03 17:56:34 &lt;1&gt; : Setting log file to:
+</I>&gt;<i> /usr/share/kiwi/image/ltsp/suse-10.3/kiwi-ltsp-build-0712031736.log
+</I>&gt;<i> Dec-03 17:59:55 &lt;1&gt; : KIWI exited successfully   done
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:59:55: Modifying /etc/exports
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:59:55: Setting up a sample DHCP configuration file
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:59:55: Setting up KIWI PXE support.
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:59:55: Running the KIWI netboot preparation.
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 17:59:55: /tmp/kiwi-netboot exists. Moving to
+</I>&gt;<i> &quot;/tmp/kiwi-netboot.0712031759&quot;
+</I>&gt;<i> Dec-03 17:59:56 &lt;1&gt; : Setting log file to:
+</I>&gt;<i> /usr/share/kiwi/image/ltsp/suse-10.3/kiwi-netboot-build-0712031759.log
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 18:12:57: Running the KIWI netboot creation.
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 18:12:57: /srv/tftpboot/boot exists. Moving to
+</I>&gt;<i> &quot;/srv/tftpboot/boot.0712031812&quot;
+</I>&gt;<i> Dec-03 18:12:58 &lt;1&gt; : Setting log file to:
+</I>&gt;<i> /usr/share/kiwi/image/ltsp/suse-10.3/kiwi-netboot-build-0712031812.log
+</I>&gt;<i> Dec-03 18:13:37 &lt;1&gt; : KIWI exited successfully   done
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 18:13:37: Fixing up the netboot initrd and kernel
+</I>&gt;<i> filenames
+</I>&gt;<i> The following tasks need to be done manually:
+</I>&gt;<i>  ===&gt; Review /etc/dhcpd.conf.ltsp and modify /etc/dhcpd.conf to suit.
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 18:13:37: Making changes to misc configuration files.
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 18:13:37: Setting dhcpd to start automatically.
+</I>&gt;<i> Shutting down DHCP server                                            done
+</I>&gt;<i> Starting DHCP server [chroot]                                        done
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 18:13:42: Setting xinetd to start automatically.
+</I>&gt;<i> Shutting down xinetd:                                                done
+</I>&gt;<i> Starting INET services. (xinetd)                                     done
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 18:13:44: Setting nbd-server to start automatically.
+</I>&gt;<i> Shutting down nbd-server                                             done
+</I>&gt;<i> Starting nbd-server                                                  done
+</I>&gt;<i> KIWI-LTSP: 2007-12-03 18:13:44: ====== Setup completed ======
+</I>&gt;<i> SUSE10:~ #
+</I>&gt;<i>
+</I>&gt;<i> many thanks
+</I>&gt;<i>
+</I>&gt;<i> toni
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> -----Urspr&#252;ngliche Nachricht-----
+</I>&gt;<i> Von: CyberOrg [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jigish.gohil at gmail.com</A>]
+</I>&gt;<i> Gesendet: Sonntag, 2. Dezember 2007 08:12
+</I>&gt;<i> An: Anton Kaser
+</I>&gt;<i> Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> Betreff: Re: Starting X Font Server
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Dec 2, 2007 12:55 AM, Anton Kaser &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">antonkaser at gmx.net</A>&gt; wrote:
+</I>&gt;<i> &gt; Servus Kiwi experts,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; after working with Edubuntu for a Year I would like to switch to
+</I>&gt;<i> SUSE-KIWI.
+</I>&gt;<i> &gt; I really like the way to configure ltsp here!
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; BUT: It doesnot work jet :-(
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I could install the system as described in the Kiwi Homepage.
+</I>&gt;<i> &gt; When I start a Client it stops booting at:
+</I>&gt;<i>
+</I>&gt;<i> What is the client specification? kiwi-ltsp is tested on very few
+</I>&gt;<i> hardware, minimum RAM requirement is 128MB, but ideally it requires
+</I>&gt;<i> 256MB. Try booting few different  clients (even pxe booting laptop
+</I>&gt;<i> will do), and see if the setup is working on at least one of them.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  Starting X Font Server
+</I>&gt;<i> &gt;     /usr/lib/ltsp/screen_session
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; the path /usr/lib/ltsp  does not exist in my system
+</I>&gt;<i>
+</I>&gt;<i> It exists in the chroot image. However X font server is not your
+</I>&gt;<i> issue, screen_session runs LDM (LTSP Display Manager). To find out
+</I>&gt;<i> what is going on in the client at that time, ssh into the client as
+</I>&gt;<i> root, password is linux.
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I tried to work  lts.conf  with:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; USE_XFS            = Y  und  N
+</I>&gt;<i>
+</I>&gt;<i> You need to change /srv/kiwi-ltsp-nfs/etc/lts.conf and run the
+</I>&gt;<i> following every time you change lts.conf:
+</I>&gt;<i>
+</I>&gt;<i> rm /srv/kiwi-ltsp/ltsp-suse-10.3.i686-0.0.2
+</I>&gt;<i> mksquashfs /srv/kiwi-ltsp-nfs /srv/kiwi-ltsp/ltsp-suse-10.3.i686-0.0.2
+</I>&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i>
+</I>&gt;<i> -J
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+
+-- 
+CyberOrg Info
+Novell &amp; IBM Partner
+7 FF Unad Deep, Tower A
+Susen Tarsali Road
+Vadodara 390 009
+T. +91 265 3042956 M +91 9898092956
+Web. <A HREF="http://www.cyberorg.info">http://www.cyberorg.info</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000159.html">[Kiwi-users] Starting X Font Server
+</A></li>
+	<LI>Next message: <A HREF="000161.html">[Kiwi-users] v2.00 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#160">[ date ]</a>
+              <a href="thread.html#160">[ thread ]</a>
+              <a href="subject.html#160">[ subject ]</a>
+              <a href="author.html#160">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

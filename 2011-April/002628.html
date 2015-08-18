@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTim7bK4Km7PDCWfREY5Kir43BSn6XA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002627.html">
+   <LINK REL="Next"  HREF="002629.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTim7bK4Km7PDCWfREY5Kir43BSn6XA%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Thu Apr  7 14:18:52 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002627.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002629.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2628">[ date ]</a>
+              <a href="thread.html#2628">[ thread ]</a>
+              <a href="subject.html#2628">[ subject ]</a>
+              <a href="author.html#2628">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Apr 7, 2011 at 9:32 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> I understand on an OEM first boot the image expands to the drive it's
+</I>&gt;&gt;<i> on. &#160;I thought after this expansion that the actual desktop session
+</I>&gt;&gt;<i> loading was the same as any other boot. &#160;Can anybody point me in the
+</I>&gt;&gt;<i> right direction as to what might be causing the streaming video to
+</I>&gt;&gt;<i> work so well on first boot of a fresh OEM image and not work anytime
+</I>&gt;&gt;<i> after the first boot?
+</I>&gt;<i>
+</I>&gt;<i> Hmm, this is really odd. Without a hint into the right direction
+</I>&gt;<i> I fear we won't be able to fix that. So is there anything you
+</I>&gt;<i> have noticed which is different compared to the first boot ?
+</I>&gt;<i>
+</I>&gt;<i> * I mean how about the amount of ram space ?
+</I>&gt;<i> * does the system swap ?
+</I>&gt;<i> * is the behavior different compared to the 1.3 clicfs
+</I>&gt;<i> &#160;I mean is the system just not performant anymore or does
+</I>&gt;<i> &#160;it crash ?
+</I>&gt;<i>
+</I>&gt;<i> just let the &quot;top&quot; command run and then start your tasks
+</I>&gt;<i> is there any difference compared to the first boot of the
+</I>&gt;<i> system ?
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>Marcus
+I'm on my way to the shop and will test and look very closely at any
+differences.
+Is there maybe a script that may cause this issue?  Something that may
+run after the first boot?  I disabled my Firefox scripts that will
+save/export user data to the fat partition.  I was hoping that this
+might resolve issue..but nothing changed.
+
+&gt;<i> * I mean how about the amount of ram space ?
+</I>&gt;<i> * does the system swap ?
+</I>&gt;<i> * is the behavior different compared to the 1.3 clicfs
+</I>&gt;<i>  I mean is the system just not performant anymore or does
+</I>&gt;<i>  it crash ?
+</I>I will check the amout of RAM being used in both the first boot and
+any other boot.  The system appears to swap fine...although what do
+you think I should use to confirms that it actually is swapping?
+The system actually seems to preform pretty well and it doesn't
+crash...it just doesn't stream the video. Like I said I'm sure that
+the streaming video issue isn't the only problem it's the only thing
+that is obvious right now.
+I'll test this in about an hour and repost the results.
+c
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002627.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002629.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2628">[ date ]</a>
+              <a href="thread.html#2628">[ thread ]</a>
+              <a href="subject.html#2628">[ subject ]</a>
+              <a href="author.html#2628">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

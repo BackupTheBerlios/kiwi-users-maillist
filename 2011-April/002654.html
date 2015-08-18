@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] PXE booting an OEM build
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20booting%20an%20OEM%20build&In-Reply-To=%3C291A23B717F9104985651112DB6C365F27C0A4EF42%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002652.html">
+   <LINK REL="Next"  HREF="002656.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] PXE booting an OEM build</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20booting%20an%20OEM%20build&In-Reply-To=%3C291A23B717F9104985651112DB6C365F27C0A4EF42%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] PXE booting an OEM build">john.lund at emc.com
+       </A><BR>
+    <I>Thu Apr 14 21:46:23 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002652.html">[Kiwi-users] PXE booting an OEM build
+</A></li>
+        <LI>Next message: <A HREF="002656.html">[Kiwi-users] PXE booting an OEM build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2654">[ date ]</a>
+              <a href="thread.html#2654">[ thread ]</a>
+              <a href="subject.html#2654">[ subject ]</a>
+              <a href="author.html#2654">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thank you Marcus.
+
+I've tried again using the 4.71 version and that procedure doesn't seem to work.
+
+We have the following configuration in the pxelinux.cfg file:
+kernel boot/linux
+        append initrd=boot/initrd vga=0x314 splash=silent ramdisk_size=512000 ramdisk_blocksize=4096 kiwiserver=192.168.12.11 kiwiservertype=http pxe=1 kiwidebug=1 pci=bfsort
+
+These settings worked previously (prior to us switching to 4.71)
+
+&gt;<i> -----Original Message-----
+</I>&gt;<i> 
+</I>&gt;<i> Do you have error messages ?
+</I>
+[Lund, John] 
+[Lund, John] 
+Whether I'm using the kiwi-pxeboot initrd and linux, or the initrd and linux built with the ISO I get the following:
+[   12.9490775] Download of  /image/AtmosSLES-2.0.0.61092.x86_64-1.5.0.md5 failed: Option multicast disabled
+Option blksize=8192
+tftp: error received from server &lt;File not found&gt;
+tftp: aborting
+
+
+I checked the env, and found: 
+kiwiservertype=http
+kiwiserver=192.168.12.11
+
+It looks like it isn't picking up the append settings in these boot images.  Our images are large enough that we really want/need to use http for transfer, we can't use tftp (as it usually fails).
+
+I've tested that we are actually serving up the image files at &quot;<A HREF="http://192.168.12.11/image/">http://192.168.12.11/image/</A>&quot; in our lab.
+
+Is there a way to get the boot images to recognize that server type setting like it did before?
+
+&gt;<i> 
+</I>&gt;<i> I think if you create the gzip version out of the raw image from the
+</I>&gt;<i> squashfs file as it is now stored on the iso and described in the
+</I>&gt;<i> article
+</I>&gt;<i> above it should still work with the 4.71 version. But I admit that
+</I>&gt;<i> I didn't have tested this.
+</I>&gt;<i> 
+</I>&gt;<i> The 4.8 kiwi code stream was broken after the change to squashfs
+</I>&gt;<i> compressed images. I fixed this with &gt;= 4.82 and also added
+</I>&gt;<i> the docs above. So oem pxe based installation worked again.
+</I>&gt;<i> I suggest to give it a try with the latest version but I still
+</I>&gt;<i> think if 4.71 worked for you before it will also work if you
+</I>&gt;<i> create the gzip raw image from the new squashfs based image.
+</I>&gt;<i> That's because only the non pxe deployment part has changed
+</I>&gt;<i> in the code
+</I>[Lund, John] 
+
+I will also try the 4.8 code (4.85).  I checked the config.xml file with jing and it reports no errors, but could not build with kiwi until I removed the patternType=&quot;plusRecommended&quot; that was on one of the &lt;packages&gt; entries in my config.xml.  This config.xml still works with 4.71.  Are there any specific rules around using the patternType attribute when there is more than one &lt;packages&gt; entry in the config file that is used by a profile?
+
+Examples:
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">autobuild at slesDev57889</A>:~/trunk/kiwi/AtmosISO&gt; jing /usr/share/kiwi/modules/KIWISchema.rng source/config.xml 
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">autobuild at slesDev57889</A>:~/trunk/kiwi/AtmosISO&gt; sudo /usr/sbin/kiwi --info source --select packages
+Apr-14 13:01:27 &lt;1&gt; : Reading image description [ListXMLInfo]...
+Apr-14 13:01:27 &lt;3&gt; : Conflicting patternType attribute values for &quot;AtmosDevelop&quot; profile found.                                                                            failed
+Can't call method &quot;getInstallSize&quot; on an undefined value at /usr/share/kiwi/modules/KIWIXMLInfo.pm line 390.
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">autobuild at slesDev57889</A>:~/trunk/kiwi/AtmosISO&gt; sudo /usr/sbin/kiwi -p source -r image-root --force-new-root
+Apr-14 13:07:28 &lt;1&gt; : Reading image description [Prepare]...
+Apr-14 13:07:28 &lt;2&gt; : Description provides no MD5 hash, check                                                       skipped
+Apr-14 13:07:28 &lt;3&gt; : Conflicting patternType attribute values for &quot;AtmosDevelop&quot; profile found.                    failed
+Apr-14 13:07:28 &lt;3&gt; : KIWI exited with error(s)                                                 
+
+No matter what I try I get that &quot;Conflicting patternType attribute values&quot; error, so I'm removing the patternType for now, as I'm not trying to build that specific profile at the moment.
+
+I think it's building now, I'll know more in an hour or so.  Then I'll try the PXE install of the OEM with the current (4.85) kiwi version.
+
+Thank you,
+John Lund 
+EMC Atmos - Access &amp; Platform Team
+(508) 249-5473 
+(571) 484-0139 Mobile 
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002652.html">[Kiwi-users] PXE booting an OEM build
+</A></li>
+	<LI>Next message: <A HREF="002656.html">[Kiwi-users] PXE booting an OEM build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2654">[ date ]</a>
+              <a href="thread.html#2654">[ thread ]</a>
+              <a href="subject.html#2654">[ subject ]</a>
+              <a href="author.html#2654">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] 4.67 problems with kiwi-hooks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%204.67%20problems%20with%20kiwi-hooks&In-Reply-To=%3C48C6994CC0DA654F9D88791EE588981C3ABECB1E%40MX01A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002190.html">
+   <LINK REL="Next"  HREF="002197.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] 4.67 problems with kiwi-hooks</H1>
+    <B>john.lund at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%204.67%20problems%20with%20kiwi-hooks&In-Reply-To=%3C48C6994CC0DA654F9D88791EE588981C3ABECB1E%40MX01A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] 4.67 problems with kiwi-hooks">john.lund at emc.com
+       </A><BR>
+    <I>Fri Dec 10 07:32:56 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002190.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+        <LI>Next message: <A HREF="002197.html">[Kiwi-users] 4.67 problems with kiwi-hooks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2196">[ date ]</a>
+              <a href="thread.html#2196">[ thread ]</a>
+              <a href="subject.html#2196">[ subject ]</a>
+              <a href="author.html#2196">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I cannot seem to get the all the kiwi-hooks files working.  I am using the preHWdetect.sh, postImageDump.sh, and preCAllInit.sh scripts.
+I have all the files in my &lt;source&gt;/root/kiwi-hooks directory.  All the scripts are not picked up by kiwi.
+I have also tried archiving the scripts in the kiwi-hooks directory, and including the archive as follows in my config.xml:
+&lt;archive name=&quot;emc-kiwi-hooks.tar.gz&quot; bootinclude=&quot;true&quot;/&gt;
+Where the archive is placed in the &lt;source&gt; directory.
+Again I believe the preHWdetect.sh and postImageDump.sh scripts are not being picked up.  (I think the preCallInit script is still being pulled from the &lt;source&gt;/root/kiwi-hooks directory.
+
+How should I be setting up the kiwi-hooks files in my kiwi &lt;source&gt; directory?  Do the kiwi-hooks files need to be copied manually into the boot &#8220;root&#8221; to make this work?
+
+In looking at the prepared image-root, I do not see any of the files from my &lt;source&gt;/root overlay directory in the &lt;image-root&gt;/root directory, and I'm pretty sure they had been there prior to using 4.67.  Has this functionality changed?
+
+Thank you,
+John Lund
+EMC Centera Development
+(508) 249-5473
+(571) 484-0139 Mobile
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">lund_john at emc.com</A>
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002190.html">[Kiwi-users] Additional packages needed in OEM (DVD) boot image
+</A></li>
+	<LI>Next message: <A HREF="002197.html">[Kiwi-users] 4.67 problems with kiwi-hooks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2196">[ date ]</a>
+              <a href="thread.html#2196">[ thread ]</a>
+              <a href="subject.html#2196">[ subject ]</a>
+              <a href="author.html#2196">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

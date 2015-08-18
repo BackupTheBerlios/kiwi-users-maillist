@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] why dereference symlinks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20why%20dereference%20symlinks&In-Reply-To=%3C20090206123559.GA27632%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000965.html">
+   <LINK REL="Next"  HREF="000967.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] why dereference symlinks</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20why%20dereference%20symlinks&In-Reply-To=%3C20090206123559.GA27632%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] why dereference symlinks">ms at novell.com
+       </A><BR>
+    <I>Fri Feb  6 13:35:59 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000965.html">[Kiwi-users] why dereference symlinks
+</A></li>
+        <LI>Next message: <A HREF="000967.html">[Kiwi-users] why dereference symlinks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#966">[ date ]</a>
+              <a href="thread.html#966">[ thread ]</a>
+              <a href="subject.html#966">[ subject ]</a>
+              <a href="author.html#966">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Vladimir,
+
+&gt;<i> Your fruit is absolutely great,
+</I>&gt;<i> I enjoy it last few months,
+</I>&gt;<i> and ... become addict of it ;)
+</I>
+that brings a smile on my face :) Thanks for using kiwi
+
+&gt;<i> I got collected few features suggestions,
+</I>&gt;<i> however afraid to throw them all at once;
+</I>&gt;<i> let's go step by step.
+</I>
+Feel free to post any idea or bug you found on the list
+but if you don't mind it would be great if you can report
+them in the Novell bugzilla system as I use that to track
+bugs and features. If you have an account just use
+
+  Product:   openSUSE.org
+  Component: System_Imaging
+
+and they will appear on my list :)
+
+&gt;<i> What is the reason to derefence symlinks at copying
+</I>&gt;<i> custom stuff from root/ subdirectory during --prepare?
+</I>&gt;<i> 
+</I>&gt;<i> ----kiwi.log----
+</I>&gt;<i> Feb-05 03:48:01 &lt;1&gt; : EXEC [cp -LR --remove-destination
+</I>&gt;<i> /root/kiwi/image/sysimage/suse-11.1/root/* /tmp/kiwi-sysimage/build/tmp
+</I>&gt;<i> root 2&gt;&amp;1]
+</I>&gt;<i> ----------------
+</I>
+Hmm, good question and I don't have a good answer for it. I agree
+a symbolic link in the overlay files should stay a symbolic but
+somehow I think there was a reason for it. Anyway I would change
+it to:
+
+Index: KIWIRoot.pm
+===================================================================
+--- KIWIRoot.pm (revision 1895)
++++ KIWIRoot.pm (working copy)
+@@ -721,7 +721,7 @@
+        if (-d &quot;$imageDesc/root&quot;) {
+                $kiwi -&gt; info (&quot;Copying user defined files to image tree&quot;);
+                mkdir $root.&quot;/tmproot&quot;;
+-               my $copy = &quot;cp -LR --remove-destination&quot;;
++               my $copy = &quot;cp -dR --remove-destination&quot;;
+                my $data = qxx (&quot;$copy $imageDesc/root/* $root/tmproot 2&gt;&amp;1&quot;);
+                my $code = $? &gt;&gt; 8;
+                if ($code != 0) {
+
+
+&gt;<i> To get around artificial limitation of cp -L,
+</I>&gt;<i> I create ro/ and rw/ directories and use them in build.sh wrapper.
+</I>&gt;<i> ro/ is using like the root/, but with cp -a.
+</I>&gt;<i> rw/ is using with split-type images for the part of root/ going
+</I>&gt;<i> to become read/write part of image (skeleton, mostly).
+</I>&gt;<i> 
+</I>&gt;<i> Could you please explain motivation of using cp -L,
+</I>&gt;<i> and possible offer another way around
+</I>&gt;<i> to avoid accidental transfer of terabytes of symlinked content
+</I>&gt;<i> into the image?
+</I>
+I see that's really a hard workaround. The change above would
+almost do &quot;cp -a&quot; the only difference is that I don't want to
+preserve the ownership because the system files has to belong to
+root. The user data is automatically changed to belong to the
+correct user by kiwi. So what remains is for example overlay
+files which should belong to &quot;www&quot; or a daemon user. But I guess
+it would be acceptable to have a chown/chgrp call in config.sh
+for that data
+
+What do you think ? If ok with you and no complains by other
+we can change that as suggested above
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000965.html">[Kiwi-users] why dereference symlinks
+</A></li>
+	<LI>Next message: <A HREF="000967.html">[Kiwi-users] why dereference symlinks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#966">[ date ]</a>
+              <a href="thread.html#966">[ thread ]</a>
+              <a href="subject.html#966">[ subject ]</a>
+              <a href="author.html#966">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

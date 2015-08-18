@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] several question on kiwi
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20several%20question%20on%20kiwi&In-Reply-To=%3Cacbb082e0810310725m24d250c3gb3ea7a85eb759ab1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000863.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] several question on kiwi</H1>
+    <B>Julien VIELLE</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20several%20question%20on%20kiwi&In-Reply-To=%3Cacbb082e0810310725m24d250c3gb3ea7a85eb759ab1%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] several question on kiwi">jvielle at gmail.com
+       </A><BR>
+    <I>Fri Oct 31 15:25:06 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000863.html">[Kiwi-users] several question on kiwi
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#864">[ date ]</a>
+              <a href="thread.html#864">[ thread ]</a>
+              <a href="subject.html#864">[ subject ]</a>
+              <a href="author.html#864">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Thanks for all those precisions they will be usefull
+
+Best regards
+
+Julien
+
+On Fri, Oct 31, 2008 at 12:04 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; wrote:
+
+&gt;<i> Hi Julien,
+</I>&gt;<i>
+</I>&gt;<i> &gt; i have several question on kiwi
+</I>&gt;<i> &gt; I'm trying to build a master with SLED SP2 and currently i am using
+</I>&gt;<i> autoyast
+</I>&gt;<i> &gt; with some scripts of post an pre installation I use autoyast because i
+</I>&gt;<i> have
+</I>&gt;<i> &gt; different type of hardware on my IT park and I would like to know if kiwi
+</I>&gt;<i> &gt; can do the same thing or if it will be more convenient
+</I>&gt;<i> &gt; If i well understand kiwi does a image so if I think good an image will
+</I>&gt;<i> &gt; match only for a specific hardware ?
+</I>&gt;<i>
+</I>&gt;<i> images created with kiwi can be used on any hardware which
+</I>&gt;<i> corresponds with the OS image architecture. BUT the initial
+</I>&gt;<i> deployment phase of the kiwi bootsystem (initrd) does a hardware
+</I>&gt;<i> detection only for the hardware which is required in order to
+</I>&gt;<i> bring the system up. This includes the following:
+</I>&gt;<i>
+</I>&gt;<i>  a) storage device detection, harddisks, USB sticks, etc...
+</I>&gt;<i>  b) boot device detection, CD, DVD, fixed disk
+</I>&gt;<i>  b) network device detection
+</I>&gt;<i>
+</I>&gt;<i> When booting into the system the creator of the kiwi image description
+</I>&gt;<i> this is you :-) decides for further hardware detection and configuration
+</I>&gt;<i> steps. At that point many people combine the yast functionality with
+</I>&gt;<i> kiwi and run autoyast with a pre-created xml definition. kiwi supports
+</I>&gt;<i> you integrating the yast XML definition in a way that it is started
+</I>&gt;<i> automatically on first boot. For details you can read the kiwi.pdf
+</I>&gt;<i> from the kiwi-doc packages, search for config-yast-firstboot.xml
+</I>&gt;<i>
+</I>&gt;<i> All in all you can influence the level of automatism yourself by
+</I>&gt;<i> providing init scripts which does the magic. A very common approach
+</I>&gt;<i> is the automatic X11 configuration which can be done by calling
+</I>&gt;<i> sax2 -a. If you are interested in that just have a look at the
+</I>&gt;<i> /usr/share/doc/kiwi/examples/suse-11.1/suse-live-stick/root/etc/init.d/
+</I>&gt;<i> directory (package kiwi-doc)
+</I>&gt;<i>
+</I>&gt;<i> kiwi is in the first place an image creation tool which imho has
+</I>&gt;<i> advantages when deploying many machines compared to more or less
+</I>&gt;<i> the same installation procedure with all the rpm calls in it. kiwi
+</I>&gt;<i> does not take over the process of a global (for all pieces of the system)
+</I>&gt;<i> hardware detection/configuration. But the OS itself provides enough
+</I>&gt;<i> tools which you can integrate into your image description relatively
+</I>&gt;<i> easy to achieve that goal
+</I>&gt;<i>
+</I>&gt;<i> There is the project called SUSE Studio which is based on kiwi and
+</I>&gt;<i> also adds some pre-configuration tasks, like X setup, windowmanager setup
+</I>&gt;<i> and more. Within the project we always try to implement such kind of
+</I>&gt;<i> configuration in a hardware independent way. If you want to have a look
+</I>&gt;<i> at it just check this out: <A HREF="http://www.susestudio.com.">http://www.susestudio.com.</A> If you are
+</I>&gt;<i> interested
+</I>&gt;<i> in this project tell me and I sent you an invitation. This is currently
+</I>&gt;<i> in an alpha phase
+</I>&gt;<i>
+</I>&gt;<i> Hope that helps
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20081031/1603863c/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20081031/1603863c/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000863.html">[Kiwi-users] several question on kiwi
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#864">[ date ]</a>
+              <a href="thread.html#864">[ thread ]</a>
+              <a href="subject.html#864">[ subject ]</a>
+              <a href="author.html#864">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

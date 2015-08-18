@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Handling languages in KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Handling%20languages%20in%20KIWI&In-Reply-To=%3C201103071959.45132.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002403.html">
+   <LINK REL="Next"  HREF="002399.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Handling languages in KIWI</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Handling%20languages%20in%20KIWI&In-Reply-To=%3C201103071959.45132.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] Handling languages in KIWI">javier at opensuse.org
+       </A><BR>
+    <I>Mon Mar  7 19:59:41 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002403.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+        <LI>Next message: <A HREF="002399.html">[Kiwi-users] Network auto detection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2430">[ date ]</a>
+              <a href="thread.html#2430">[ thread ]</a>
+              <a href="subject.html#2430">[ subject ]</a>
+              <a href="author.html#2430">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Moin,
+
+El Martes, 1 de Marzo de 2011 09:02:28 Marcus Sch&#228;fer escribi&#243;:
+&gt;<i> Hi,
+</I>[...]
+&gt;<i> ----snip--------
+</I>&gt;<i> Some time ago I asked the same questions and got the following:
+</I>&gt;<i> 
+</I>&gt;<i>   Q: How to find all langauge specific packages.
+</I>&gt;<i> 
+</I>&gt;<i>   A: All packages providing 'locale(.*)'
+</I>&gt;<i> 
+</I>&gt;<i>   '.*' actually is '[PACKAGE:]LANG{;LANG}'
+</I>&gt;<i> 
+</I>&gt;<i> So you'd need &quot;zypper what-provides 'locale(*)'&quot; but AFAIK what-provides
+</I>&gt;<i> does not support any globing or regex.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Thanks and in '[PACKAGE:]LANG{;LANG}' LANG is always the two letter
+</I>&gt;<i> &gt; language code like &quot;de&quot; or also de_DE or a mixture of both ?
+</I>&gt;<i> 
+</I>&gt;<i> Complete locale code, so it may even include '@' forms. E.g.:
+</I>&gt;<i> 
+</I>&gt;<i>   locale(sr;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sr at Latn</A>;sv;ta;tr;uk;vi;wa;xh;zh_CN;zh_TW;zu)
+</I>&gt;<i> ----snap--------
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Does it make sense?
+</I>&gt;<i> &gt; Handling languages instead of packages in this case would facilitate this
+</I>&gt;<i> &gt; a lot.
+</I>&gt;<i> 
+</I>&gt;<i> I agree it makes sense but kiwi doesn't have direct support for
+</I>&gt;<i> it. Let me know if the above helps you. If so we could check if we
+</I>&gt;<i> can add it to kiwi
+</I>
+I have talked with Michael Andres on IRC and he told me the following:
+
+[16:38] &lt;mlandres&gt; javier: if it's urgent and you need some workaround, you 
+can try to directly parse it from the repositoies solv files. Something like:
+[16:38] &lt;mlandres&gt; dumpsolv /var/cache/zypp/solv/\@System/solv | grep ':
+\(name\|provides\):\|locale(.*\&lt;es\&gt;' | grep -B 2 'locale('
+[16:39] &lt;mlandres&gt; Instead of \@System (installed packages) you may use the 
+alias of any other enabled and refrshed repo.
+
+The following command shows a cleaned up output (only the package names for 
+es).
+dumpsolv /var/cache/zypp/solv/\@System/solv | grep ':\(name\|provides\):\|
+locale(.*\&lt;es\&gt;' | grep -B 2 'locale(' |grep name |perl -nle 'print $1 if 
+/solvable:.*\s(\S+)/;'
+
+I don't know if using this output as language package list would mean pulling 
+other packages not chosen in kiwi (ie: OpenOffice.org).
+Is it worth implementing the language feature on KIWI?
+Ideally, zypper would have a language feature and KIWI would allow us to 
+choose languages using a specific tag.
+
+Cheers,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20110307/46f28fdb/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20110307/46f28fdb/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002403.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+	<LI>Next message: <A HREF="002399.html">[Kiwi-users] Network auto detection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2430">[ date ]</a>
+              <a href="thread.html#2430">[ thread ]</a>
+              <a href="subject.html#2430">[ subject ]</a>
+              <a href="author.html#2430">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

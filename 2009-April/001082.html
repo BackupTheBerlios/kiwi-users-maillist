@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] An approach to create oem-split image with encrypted	/home partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20An%20approach%20to%20create%20oem-split%20image%20with%20encrypted%0A%09/home%20partition&In-Reply-To=%3Ce915a2a90904280503g1ff7d9c5g61e1128d4bc95083%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001096.html">
+   <LINK REL="Next"  HREF="001084.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] An approach to create oem-split image with encrypted	/home partition</H1>
+    <B>Qian Feng</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20An%20approach%20to%20create%20oem-split%20image%20with%20encrypted%0A%09/home%20partition&In-Reply-To=%3Ce915a2a90904280503g1ff7d9c5g61e1128d4bc95083%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] An approach to create oem-split image with encrypted	/home partition">fengqian83 at gmail.com
+       </A><BR>
+    <I>Tue Apr 28 14:03:09 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001096.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+        <LI>Next message: <A HREF="001084.html">[Kiwi-users] An approach to create oem-split image	with	encrypted /home partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1082">[ date ]</a>
+              <a href="thread.html#1082">[ thread ]</a>
+              <a href="subject.html#1082">[ subject ]</a>
+              <a href="author.html#1082">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi ms and all,
+
+I have succeeded in creating a split live usb image with luks
+formatted /home partition. Thanks to MS's advices. Hope the following
+steps help someone who want to do the same thing. Some stuff are
+omitted. Thanks in advance for any idea to improve it.
+
+1) To support a separate /home device, create a separate home file in
+createImageSplit() in KIWIImage.pm. Now you have system image file,
+split file, and home file.
+2) Call losetup, cryptsetup, mke2fs on this home file, and call
+installLogicalExtend() (with some modifications)
+3) In setupBootDisk() in KIWIBoot.pm, carefully create and partition
+the raw file containing 3 partitions: squash, rw and home. My
+suggestion is fdisk n p 1 n p 3 n p 2,
+    partition 2 is for rw, partition 3 is for /home, for the
+convenience of expanding rw partition
+4) dd the 3 files to each of the partition of the raw file
+respectively, say loop0p1/p3/p2
+5) Now do some minor modification in suse-repart to make some image
+size related stuff correct, but note that there is no need to change
+the fdisk commands.
+
+After the first deployment the rw partition will expand to fulfil the
+disk size. The /home partition size is fixed.
+
+Regards,
+Fred
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001096.html">[Kiwi-users] 32 bit vs. 64 bit
+</A></li>
+	<LI>Next message: <A HREF="001084.html">[Kiwi-users] An approach to create oem-split image	with	encrypted /home partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1082">[ date ]</a>
+              <a href="thread.html#1082">[ thread ]</a>
+              <a href="subject.html#1082">[ subject ]</a>
+              <a href="author.html#1082">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

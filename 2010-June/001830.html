@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] ssh -X into a KIWI system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20ssh%20-X%20into%20a%20KIWI%20system&In-Reply-To=%3C20100614085651.GA4866%40idefix.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001839.html">
+   <LINK REL="Next"  HREF="001840.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] ssh -X into a KIWI system</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20ssh%20-X%20into%20a%20KIWI%20system&In-Reply-To=%3C20100614085651.GA4866%40idefix.suse.de%3E"
+       TITLE="[Kiwi-users] ssh -X into a KIWI system">ms at novell.com
+       </A><BR>
+    <I>Mon Jun 14 10:56:51 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001839.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+        <LI>Next message: <A HREF="001840.html">[Kiwi-users] MBR issues with qemu-kvm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1830">[ date ]</a>
+              <a href="thread.html#1830">[ thread ]</a>
+              <a href="subject.html#1830">[ subject ]</a>
+              <a href="author.html#1830">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am running a very minimal KIWI diskless system. It does not run X. The
+</I>&gt;<i> only X libraries present are the ones some apps have linked with, even
+</I>&gt;<i> if they will not use X in this context.
+</I>&gt;<i> 
+</I>&gt;<i> I now want to ssh into my KIWI system and start an X application that
+</I>&gt;<i> should display where I have ssh'd from.  The problem is that ssh is not
+</I>&gt;<i> setting up the DISPLAY variable on the KIWI system, and the socket for X
+</I>&gt;<i> is not started on the system I ssh from. The system I ssh from is
+</I>&gt;<i> configured properly for this. It works against 'regular' openSUSE
+</I>&gt;<i> systems. It only fails against the KIWI system. 
+</I>&gt;<i> 
+</I>&gt;<i> The problem is most likely that I am missing some components on the KIWI
+</I>&gt;<i> system, so the X stuff does not get set up. I have asked on the general
+</I>&gt;<i> openSUSE list, and all we could agree on was that something is probably
+</I>&gt;<i> missing. But what?
+</I>&gt;<i> 
+</I>&gt;<i> I know this is perhaps not really a KIWI question, as KIWI is most
+</I>&gt;<i> likely not doing anything other than I have told it to do. But I ask
+</I>&gt;<i> here because other KIWI users may have experienced similar problems and
+</I>&gt;<i> know of a solution. At least I hope so!
+</I>
+I think installing the x11 pattern will solve that problem.
+
+  &lt;opensusePattern name=&quot;x11&quot;/&gt;
+
+I CC'ed Stefan Dirsch he can give you an exact answer what X libs
+are required to start a remote X-App
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001839.html">[Kiwi-users] ssh -X into a KIWI system
+</A></li>
+	<LI>Next message: <A HREF="001840.html">[Kiwi-users] MBR issues with qemu-kvm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1830">[ date ]</a>
+              <a href="thread.html#1830">[ thread ]</a>
+              <a href="subject.html#1830">[ subject ]</a>
+              <a href="author.html#1830">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

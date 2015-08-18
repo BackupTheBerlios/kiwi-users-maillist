@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Optimizing turnaround time
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804091147i7e7de6e1y9048038950ac8091%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000559.html">
+   <LINK REL="Next"  HREF="000562.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Optimizing turnaround time</H1>
+    <B>Luis Garrido</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804091147i7e7de6e1y9048038950ac8091%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Optimizing turnaround time">luisgarrido at users.sourceforge.net
+       </A><BR>
+    <I>Wed Apr  9 20:47:21 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000559.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+        <LI>Next message: <A HREF="000562.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#560">[ date ]</a>
+              <a href="thread.html#560">[ thread ]</a>
+              <a href="subject.html#560">[ subject ]</a>
+              <a href="author.html#560">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt; I agree so in principal it always works like this:
+</I>&gt;<i>  &gt;
+</I>
+OK, now we have a worthy skeleton :-)
+
+I think this could be the basis of a better user manual. For instance,
+it would useful to know when kiwi is acting chrooted, what options
+affect each phase, further elaboration on point b) of the CREATE phase
+for every type of image, which kiwi built-in functions are available
+for the user scripts...
+
+Let's flesh it out a bit:
+
+1. PREPARE
+
+1.1 Building of a new root tree or, in kiwi-speak, a new physical extend.
+
+The building of a new root tree consists of the creation of the
+directory specified to hold it and the installation of the selected
+packages on it.
+
+1.1.1 Directory creation.
+
+To prevent accidental deletion of an existing root tree, kiwi will
+stop with an error message if this folder already exists, unless the
+option --force-new-root is used in which case the existing root will
+be deleted.
+
+1.1.2 Package installation.
+
+First the selected package manager (smart by default) is instructed to
+use the repositories specified in the image definition file.
+
+Then the packages specified in the 'bootstrap' section are installed.
+These packages are installed externally to the target root system
+(i.e. not chroot'ed) and establish the initial environment so the rest
+of  the process may run chroot'ed. Essential packages in this section
+are xxx, yyy and zzz. In practice you only need to specify xxx here,
+since the rest of the packages will be pulled because of the
+dependency system. To save space in your image you could schedule the
+packages yyy and zzz for deletion after the phase ppp is over by
+listing them in the 'delete' section.
+
+...
+
+(other &lt;packages&gt; sections explained)
+...
+
+1.1.2 Optimizations I: using a baseroot tree.
+
+In case you want to make an image based on a previously existing one
+(i.e., the old image's package selection is a subset of the new one's
+and the changes made by the customization scripts are compatible) you
+can save a lot of time in the creation of a new root tree by using the
+old one as a base for the new one.
+
+There are three ways of specifying a what we term 'baseroot' tree:
+
+- Using the 'baseroot=&quot;&quot;' attribute of the &lt;type&gt; element.
+- Using the optional &lt;defaultbaseroot&gt; element.
+- Using the command-line option --base-root.
+
+Provided you have an existing root tree which is based on the same
+there are three ways of incorporating the old tree as a basis for the
+new one, selectable with the --base-root-mode option:
+
+- --base-root-mode copy. This mode will make a full copy of the old
+tree. Copying a tree is faster than reinstalling the old packages.
+After that the new packages that weren't selected in the old image
+will be installed.
+- --base-root-mode recycle. This mode will make the modifications
+directly into the old tree (question: are the --root option or the
+&lt;defaultroot&gt; element then disregarded if they are specified?) This
+means that you cannot use the old root tree for your old image anymore
+(unless you backup it, but what its the advantage then?), but it is
+faster since it doesn't have even to duplicate it.
+- --base-root-mode union. This mode takes advantage of overlay
+filesystems (elaborate) so in fact what you create is an incremental
+filesystem which holds only the changes to the base one. You must make
+sure the old root tree is still available and unmodified when you
+perform the 'create' phase for the new one.
+
+
+1.1.3 Optimization II: using a package cache.
+
+....
+
+1.2 Copy user files.
+
+...
+
+1.3 ...
+
+1.x Tips and tricks
+
+You could use config.sh to save space in your image by:
+- deleting packages' documentation (/usr/share/doc)
+- deleting locales you won't plan on using.
+...
+
+You could have a set of basic images and build on them using the
+methods mentioned at 1.1.2. For instance you could have a barebones
+image with the minimal packages to boot and allow an user to login.
+Based on that, you could create a minimal X window system. Those two
+could be the base for more specific applications.
+
+...
+
+2. ROOT TREE TWEAKING.
+
+At this point you can make changes on your physical extend so it fits
+your purpose better. Bear in mind that changes at this point will be
+discarded and not repeated automatically if you rerun the 'prepare'
+phase unless you include them in your original config.xml and
+config.sh script.
+
+2.1 Adding new packages.
+
+2.2 Upgrading packages.
+
+...
+
+3. CREATE
+
+3.1 User script image.sh
+...
+
+3.2 Image type specific operations.
+
+3.2.1 ISOboot
+
+3.2.2 USBboot
+
+3.2.3 ...
+
+What's this sound like?
+
+Luis
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000559.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+	<LI>Next message: <A HREF="000562.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#560">[ date ]</a>
+              <a href="thread.html#560">[ thread ]</a>
+              <a href="subject.html#560">[ subject ]</a>
+              <a href="author.html#560">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

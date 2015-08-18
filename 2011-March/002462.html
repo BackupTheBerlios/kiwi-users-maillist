@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D7A9119.1080708%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002461.html">
+   <LINK REL="Next"  HREF="002463.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C4D7A9119.1080708%40novell.com%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Mar 11 22:16:09 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002461.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002463.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2462">[ date ]</a>
+              <a href="thread.html#2462">[ thread ]</a>
+              <a href="subject.html#2462">[ subject ]</a>
+              <a href="author.html#2462">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 03/11/2011 03:27 PM, Chris Cunha wrote:
+&gt;<i> On Fri, Mar 11, 2011 at 2:32 PM, Robert Schweikert
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt;  wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On 03/11/2011 01:57 PM, Chris Cunha wrote:
+</I>&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> ok thanks Robert,
+</I>&gt;&gt;&gt;<i> It's installed and ready to go.
+</I>&gt;&gt;&gt;<i> I just made the changes to the config.xml file which looks like this:
+</I>&gt;&gt;&gt;<i> <A HREF="http://paste.opensuse.org/53332192">http://paste.opensuse.org/53332192</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You should set up swap space:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;type....&gt;
+</I>&gt;&gt;<i>     &lt;oemconfig&gt;
+</I>&gt;&gt;<i>         &lt;oem-swap&gt;true&lt;/oem-swap&gt;
+</I>&gt;&gt;<i>         &lt;oem-swapsize&gt;AN_INT_FOR_SWAP_IN_MB&lt;/oem-swapsize&gt;
+</I>&gt;&gt;<i>     &lt;/oemconfig&gt;
+</I>&gt;&gt;<i> &lt;/type&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I'm not familiar with the OEM type image as I've only worked with the
+</I>&gt;&gt;&gt;<i> ISO type and I'm getting quite a few (15) errors that read
+</I>&gt;&gt;&gt;<i>   &quot;No update candidate for 'lxtask-0.1.3-20.1.i586'. The highest
+</I>&gt;&gt;&gt;<i> available version is already installed.&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> That is not an error, the package manager is just telling you that the
+</I>&gt;&gt;<i> latest version of the package is already installed and you're trying to
+</I>&gt;&gt;<i> install it again.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Usually you would not see these messages, thus there is probably a real
+</I>&gt;&gt;<i> error in your log file, most likely for a package that cannot be found.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You will have to post the proper error message to get help.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Robert
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;<i> Novell-IBM Software Integration Center                LINUX
+</I>&gt;&gt;<i> Tech Lead
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;&gt;<i> 781-464-8147
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Novell
+</I>&gt;&gt;<i> Making IT Work As One
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Ahh  I'm not sure what the heck is going on here but it won't get
+</I>&gt;<i> through the &quot;prepare&quot; stage.  I thought I was going to be able to
+</I>&gt;<i> change the image type and it would build.  I would like to understand
+</I>&gt;<i> what's going on here better.
+</I>&gt;<i> Here is the log file.
+</I>&gt;<i> <A HREF="http://paste.opensuse.org/4048856">http://paste.opensuse.org/4048856</A>
+</I>
+Searching for the strong &quot;error&quot; turns up the following message:
+
+#
+/usr/bin/gio-querymodules: error while loading shared libraries: 
+libgobject-2.0.so.0: cannot open shared object file: No such file or 
+directory
+
+This in turn indicates that glib2-2.24.1-2.5 does not specify it's 
+dependencies correctly. You can file a bug for that.
+
+However, this is not the reason for the Kiwi failure ;)
+
+The reason for the failure is the following message in the log file:
+
+Package 'swfdec' not found.
+
+This is directly above the first &quot;No update candidate ...&quot; message and 
+indicates that the specified 'swfdec' package could not be found by zypper.
+
+I searched OBS and according to the search, one should expect the swfdec 
+package to be in the standard repository; which you have configured:
+
+&lt;repository type=&quot;yast2&quot;&gt;
+     &lt;source path=&quot;<A HREF="opensuse://11.3/repo/oss/">opensuse://11.3/repo/oss/</A>&quot;/&gt;
+&lt;/repository&gt;
+
+However, when I pulled the repo up in the browser I couldn't find the 
+package. There appears to be a problem with the repo. Please 
+report/check on the opensuse mailing list.
+
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002461.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002463.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2462">[ date ]</a>
+              <a href="thread.html#2462">[ thread ]</a>
+              <a href="subject.html#2462">[ subject ]</a>
+              <a href="author.html#2462">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

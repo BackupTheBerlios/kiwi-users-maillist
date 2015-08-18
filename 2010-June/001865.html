@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] suse-oem-preload not working
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C20100630101956.GA13366%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001864.html">
+   <LINK REL="Next"  HREF="001867.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] suse-oem-preload not working</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C20100630101956.GA13366%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] suse-oem-preload not working">ms at novell.com
+       </A><BR>
+    <I>Wed Jun 30 12:19:56 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001864.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+        <LI>Next message: <A HREF="001867.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1865">[ date ]</a>
+              <a href="thread.html#1865">[ thread ]</a>
+              <a href="subject.html#1865">[ subject ]</a>
+              <a href="author.html#1865">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I have successfully built a suse-oem-preload/11.2-based image and the 
+</I>&gt;<i> suse-oem-preload/11.3 example using kiwi 4.42 on openSUSE 11.3 RC1, 
+</I>
+it might be related to the parted change between 11.2 and 11.3.
+I wrote about that problem in the weekly report.
+
+&gt;<i> dd'ed a VirtualBox hard disk, turned on the virtual machine and plaff! They 
+</I>&gt;<i> don't finish loading the KIWI OEM Boot-System. I got: 
+</I>&gt;<i> Creating boot loader configuration
+</I>&gt;<i> Can't find kernel sysconfig template in system image!
+</I>&gt;<i> rebootException: error consoles at Alt-F3/F4
+</I>&gt;<i> rebootException: reboot in 120 sec...
+</I>
+That's not enough information. Can you repeat that with
+
+  kiwidebug=1
+
+typed in at the boot prompt. You will get a shell when the exception
+happens. Store the file /var/log/boot.kiwi and send it to the list
+That would be great
+
+&gt;<i> /var/adm/fillup-templates/sysconfig.kernel belongs to aaa_base, package 
+</I>&gt;<i> which is in the first case's config.xml And in the second case, I suppose it's 
+</I>&gt;<i> has been installed since it's such an important package.
+</I>
+It's surely installed but can't be found due to another problem happend
+before most likely
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001864.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+	<LI>Next message: <A HREF="001867.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1865">[ date ]</a>
+              <a href="thread.html#1865">[ thread ]</a>
+              <a href="subject.html#1865">[ subject ]</a>
+              <a href="author.html#1865">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Issues building the oem example
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20building%20the%20oem%20example&In-Reply-To=%3C4A8433130200003200051629%40sinclair.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001380.html">
+   <LINK REL="Next"  HREF="001382.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Issues building the oem example</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Issues%20building%20the%20oem%20example&In-Reply-To=%3C4A8433130200003200051629%40sinclair.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Issues building the oem example">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Aug 13 21:36:51 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001380.html">[Kiwi-users] Typo in config-yast-firstboot.xml
+</A></li>
+        <LI>Next message: <A HREF="001382.html">[Kiwi-users] Issues building the oem example
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1381">[ date ]</a>
+              <a href="thread.html#1381">[ thread ]</a>
+              <a href="subject.html#1381">[ subject ]</a>
+              <a href="author.html#1381">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+Any news on this. I am still having trouble building the OEM image example, and now I need to build an OEM image for a project and am running into the same issue.
+
+Help is much appreciated.
+
+Thanks,
+Robert
+
+Robert Schweikert           
+Software Engineer Consultant
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; 08/05/09 5:18 AM &gt;&gt;&gt;
+</I>Hi,
+
+I think I have found a problem with kpartx and replaced that by
+dmsetup remove. So it would be good if you try again with kiwi v3.68
+will submit it soon
+
+&gt;&gt;&gt;<i> rm: cannot remove 
+</I>&gt;&gt;&gt;<i> `/tmp/kiwiboot.8Y3gCI/usr/x86_64-suse-linux/bin/ranlib': Too many levels 
+</I>&gt;&gt;&gt;<i> of symbolic links
+</I>&gt;&gt;&gt;<i> rm: cannot remove `/tmp/kiwiboot.8Y3gCI/usr/x86_64-suse-linux/bin/strip': 
+</I>&gt;&gt;&gt;<i> Too many levels of symbolic links
+</I>&gt;&gt;&gt;<i> rm: cannot remove directory 
+</I>&gt;&gt;&gt;<i> `/tmp/kiwiboot.8Y3gCI/usr/x86_64-suse-linux/include': Read-only file 
+</I>&gt;&gt;&gt;<i> system
+</I>&gt;&gt;&gt;<i> rm: cannot remove 
+</I>&gt;&gt;&gt;<i> `/tmp/kiwiboot.8Y3gCI/usr/x86_64-suse-linux/lib/ldscripts': Too many 
+</I>&gt;&gt;&gt;<i> levels of symbolic links
+</I>&gt;&gt;&gt;<i> rm: cannot remove directory `/tmp/kiwiboot.8Y3gCI/var': Read-only file 
+</I>&gt;&gt;&gt;<i> system
+</I>&gt;&gt;&gt;<i>     
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Well it looks like your build system is somehow messed up.
+</I>&gt;&gt;<i>   
+</I>&gt;<i> Tried on a different machine with the same result (kiwi 3.67)
+</I>&gt;&gt;<i> Check if there is still enough space left on your system.
+</I>&gt;<i> Plenty of space, have a 1 TB drive, 10% used.
+</I>&gt;&gt;<i>  Furthermore
+</I>&gt;&gt;<i> check cat /proc/mounts and umount anything which doesn't make sense.
+</I>&gt;&gt;<i>   
+</I>&gt;<i> Did that, didn't help.
+</I>&gt;&gt;<i> Also check if losetup -a shows some loop mounts which are related
+</I>&gt;&gt;<i> to kiwi
+</I>&gt;&gt;<i>   
+</I>&gt;<i> # losetup -a
+</I>&gt;<i> /dev/loop0: [0833]:3232130006 (/opt/isos/openSUSE-11.1-x86-64-DVD.iso)
+</I>&gt;<i> /dev/loop1: [0833]:2157753263 
+</I>&gt;<i> (/tmp/oemTest-img/suse-11.1-oem-preload.x86_64-1.1.2)
+</I>&gt;<i> /dev/loop2: [0833]:3232130007 (/opt/isos/SLES-10-SP2-DVD-x86_64-GM-DVD1.iso)
+</I>&gt;<i>
+</I>&gt;<i> loop1 points to what I am trying to create. Further from /proc/mounts I get 
+</I>&gt;<i> this:
+</I>&gt;<i>
+</I>&gt;<i> /dev/loop1 /tmp/kiwiboot.7DclUm squashfs ro 0 0
+</I>&gt;<i>
+</I>&gt;<i> Interesting is that loop1 points to 2 different places. The 
+</I>&gt;<i> /tmp/kiwiboot.7DclUm is the reason for the complaints:
+</I>&gt;<i>
+</I>&gt;<i> rm: cannot remove `/tmp/kiwiboot.7DclUm/usr/x86_64-suse-linux/bin/strip': 
+</I>&gt;<i> Too many levels of symbolic links
+</I>&gt;<i> rm: cannot remove directory 
+</I>&gt;<i> `/tmp/kiwiboot.7DclUm/usr/x86_64-suse-linux/include': Read-only file system
+</I>&gt;<i> rm: cannot remove 
+</I>&gt;<i> `/tmp/kiwiboot.7DclUm/usr/x86_64-suse-linux/lib/ldscripts': Too many levels 
+</I>&gt;<i> of symbolic links
+</I>&gt;<i> rm: cannot remove directory `/tmp/kiwiboot.7DclUm/var': Read-only file 
+</I>&gt;<i> system
+</I>&gt;<i> [*** log excerpt follows, last 1 Kbyte ***]
+</I>&gt;<i> preload.x86_64-1.1.2: umount: 
+</I>&gt;<i> /tmp/oemTest-img/suse-11.1-oem-preload.x86_64-1.1.2: not mounted
+</I>&gt;<i>
+</I>&gt;<i> Aug-04 14:05:53  : EXEC [uname -m]
+</I>&gt;<i> Aug-04 14:05:53  : EXEC [dd 
+</I>&gt;<i> if=/tmp/oemTest-img/suse-11.1-oem-preload.x86_64-1.1.2 bs=128k count=1 
+</I>&gt;<i> 2&gt;/dev/null | file -]
+</I>&gt;<i> Aug-04 14:05:53  : EXEC [mount -o loop 
+</I>&gt;<i> /tmp/oemTest-img/suse-11.1-oem-preload.x86_64-1.1.2 /tmp/kiwiboot.7DclUm 
+</I>&gt;<i> 2&gt;&amp;1]
+</I>&gt;<i> Aug-04 14:05:53  : Failed to loop mount 
+</I>&gt;<i> /tmp/oemTest-img/suse-11.1-oem-preload.x86_64-1.1.2 to: 
+</I>&gt;<i> /tmp/kiwiboot.7DclUm: mount: according to mtab 
+</I>&gt;<i> /tmp/oemTest-img/suse-11.1-oem-preload.x86_64-1.1.2 is already mounted on 
+</I>&gt;<i> /tmp/kiwiboot.7DclUm as loop
+</I>&gt;<i>    failed
+</I>&gt;<i> Aug-04 14:05:53  : EXEC [rm -rf /tmp/kiwiboot.7DclUm]
+</I>&gt;<i> Aug-04 14:06:20  : EXEC [rm -rf /tmp/kiwiloop.Prh0QN]
+</I>&gt;<i> Aug-04 14:06:20  : EXEC [rm -rf /tmp/kiwiboot.7DclUm]
+</I>&gt;<i> Aug-04 14:06:43  : EXEC [rm -rf /tmp/kiwiloop.Prh0QN]
+</I>&gt;<i> Aug-04 14:06:46  : EXEC [cp /tmp/oemTest-unpacked.22637.screenrc.log 
+</I>&gt;<i> /tmp/kiwi-splitboot.ZzGWps/kiwi-splitboot-22637/.broken 2&gt;&amp;1]
+</I>&gt;<i> [*** end ***]
+</I>&gt;<i> Aug-04 14:06:47  : KIWI exited with error(s)                      done
+</I>&gt;<i> Aug-04 14:06:47  : Used XML file at: /tmp/oemTest-unpacked.xml    done
+</I>&gt;<i> Aug-04 14:06:47  : Complete logfile at: /tmp/oemTest-unpacked.log done
+</I>&gt;<i>
+</I>&gt;<i> Maybe the &quot;umount&quot; of  /tmp/kiwiboot.7DclUm failed, then when the &quot;rm&quot; 
+</I>&gt;<i> command is issued the complaints about &quot;readonly&quot; access start. The rm is 
+</I>&gt;<i> of course issued with the assumption that the &quot;umount&quot; succeeded.
+</I>&gt;<i>
+</I>&gt;<i> I can umount /tmp/kiwiboot.7DclUm manually without any problems.
+</I>&gt;<i>
+</I>&gt;<i> Very weird.
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i> -- 
+</I>&gt;<i> Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Software Engineer Consultant                          LINUX
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i>
+</I>
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090813/11c8ff0d/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090813/11c8ff0d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001380.html">[Kiwi-users] Typo in config-yast-firstboot.xml
+</A></li>
+	<LI>Next message: <A HREF="001382.html">[Kiwi-users] Issues building the oem example
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1381">[ date ]</a>
+              <a href="thread.html#1381">[ thread ]</a>
+              <a href="subject.html#1381">[ subject ]</a>
+              <a href="author.html#1381">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

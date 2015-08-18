@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bootinclude%2C%20Bootdelete%2C%20and%20boot-theme&In-Reply-To=%3C4D927EBC.30604%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002570.html">
+   <LINK REL="Next"  HREF="002574.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Bootinclude, Bootdelete, and boot-theme</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bootinclude%2C%20Bootdelete%2C%20and%20boot-theme&In-Reply-To=%3C4D927EBC.30604%40novell.com%3E"
+       TITLE="[Kiwi-users] Bootinclude, Bootdelete, and boot-theme">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Mar 30 02:52:12 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002570.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+        <LI>Next message: <A HREF="002574.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2571">[ date ]</a>
+              <a href="thread.html#2571">[ thread ]</a>
+              <a href="subject.html#2571">[ subject ]</a>
+              <a href="author.html#2571">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 03/29/2011 06:35 PM, Mark Haase wrote:
+&gt;<i> I have been reading a lot of docs and source code... slowly Kiwi is making sense to me, but there are a few mental hurdles I just can't get over on my own.
+</I>&gt;<i>
+</I>&gt;<i> (I am running Kiwi 2.82 and OpenSUSE 11.4.)
+</I>&gt;<i>
+</I>&gt;<i> 1. Bootinclude attribute: Does this mean that kiwi will modify the raw boot image and installs new packages into it?
+</I>
+No.
+
+&gt;<i> Or does it mean that when kiwi builds the boot image (as a subroutine while building the system image) that it will add those packages at that time?
+</I>
+Yes, building the initrd (boot image) currently happens via recursive 
+call of kiwi onto itself with the parameter set such the control file of 
+the specified boot image is found. With this a prepare and create step 
+is run to create the initrd. packages and archives marked as 
+&quot;bootinclude&quot; get bundled up in the initrd.
+
+&gt;<i>
+</I>&gt;<i> To put another way, if I prebuild my boot image, will setting the &quot;bootinclulde&quot; attribute in my system image config.xml have any effect?
+</I>
+Marcus will need to answer that one.
+
+&gt;<i>
+</I>&gt;<i> 2. Bootdelete attribute: The function of this is [mostly] clear to me, but I don't understand the use case. For example, branding packages are marked as bootdelete=&quot;true&quot;, but why?
+</I>
+Because we do not want the package itself, we want the installed 
+content. bootdelete=true gets rid of the package, i.e. the rpm file, 
+also applies to archives.
+
+&gt;<i> Aren't they needed in the final boot image?
+</I>
+Yes, tey are, but we are interested in the installed content, not the 
+package itself.
+
+&gt;<i>
+</I>&gt;<i> 3. I am trying to set up branding by putting my artwork and configurations in the overlay (bootsplash in etc/bootsplash... and gfxboot in usr/share/gfxboot...). Is that a mistake?
+</I>
+No, this is possible. You can find an example here:
+
+<A HREF="http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen">http://en.opensuse.org/SDB:KIWI_Cookbook_Splash_Screen</A>
+
+The example uses an archive, but you can create the setup directly in 
+the overlay tree.
+
+&gt;<i> Does branding need to be deployed as an RPM in order to work?
+</I>
+No, it does not, see example above.
+
+&gt;<i> (I am including gfxboot and bootsplash in my system image, but not including any gfxboot-branding-* or bootsplash-branding-*).
+</I>
+Don't forget to set &lt;boot-theme&gt; in config.xml and make sure you use a 
+directory other than the default.
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002570.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+	<LI>Next message: <A HREF="002574.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2571">[ date ]</a>
+              <a href="thread.html#2571">[ thread ]</a>
+              <a href="subject.html#2571">[ subject ]</a>
+              <a href="author.html#2571">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

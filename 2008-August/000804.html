@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] No repositories defined (x86_64 specific)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20No%20repositories%20defined%20%28x86_64%20specific%29&In-Reply-To=%3C200808210056.00542.cgoncalves%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000803.html">
+   <LINK REL="Next"  HREF="000805.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] No repositories defined (x86_64 specific)</H1>
+    <B>Carlos Goncalves</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20No%20repositories%20defined%20%28x86_64%20specific%29&In-Reply-To=%3C200808210056.00542.cgoncalves%40opensuse.org%3E"
+       TITLE="[Kiwi-users] No repositories defined (x86_64 specific)">cgoncalves at opensuse.org
+       </A><BR>
+    <I>Thu Aug 21 01:56:00 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000803.html">[Kiwi-users] No repositories defined (x86_64 specific)
+</A></li>
+        <LI>Next message: <A HREF="000805.html">[Kiwi-users] No repositories defined (x86_64 specific)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#804">[ date ]</a>
+              <a href="thread.html#804">[ thread ]</a>
+              <a href="subject.html#804">[ subject ]</a>
+              <a href="author.html#804">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Em Segunda 18 Agosto 2008, o Marcus Sch&#228;fer escreveu:
+&gt;<i> &gt; I'm creating openSUSE 11.1 KDE3 LiveCDs same way I did with the ones for
+</I>&gt;<i> &gt; openSUSE 11.0, but I'm stuck with which seems to be a kiwi bug when
+</I>&gt;<i> &gt; preparing root for a x86_64 system. For an i686 system (using linux32) I
+</I>&gt;<i> &gt; can --prepare and --create with no problem at all.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Looking at the log[1] I highlight the following:
+</I>&gt;<i> &gt; &gt; Aug-17 00:22:46 &lt;1&gt; : Adding image zypper service: kiwi2-11023
+</I>&gt;<i> &gt; &gt; Aug-17 00:22:46 &lt;1&gt; : EXEC [chroot &quot;/home/carlos/Downloads/11.1-64bit&quot;
+</I>&gt;<i> &gt; &gt; zypper --non-interactive --no-gpg-checks service-add --type YaST
+</I>&gt;<i> &gt; &gt; '<A HREF="file:///base-system//mirrors/SL-Factory-non-oss">file:///base-system//mirrors/SL-Factory-non-oss</A>' kiwi2-11023 2&gt;&amp;1]
+</I>&gt;<i> &gt; &gt; done Aug-17 00:22:46 &lt;1&gt; : Adding image zypper service: kiwi1-11023
+</I>&gt;<i> &gt; &gt; Aug-17 00:22:46 &lt;1&gt; : EXEC [chroot &quot;/home/carlos/Downloads/11.1-64bit&quot;
+</I>&gt;<i> &gt; &gt; zypper --non-interactive --no-gpg-checks service-add --type YaST
+</I>&gt;<i> &gt; &gt; '<A HREF="file:///base-system//mirrors/SL-OSS-factory">file:///base-system//mirrors/SL-OSS-factory</A>' kiwi1-11023 2&gt;&amp;1] done
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; ... so repos were added but then...
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &gt; Warning: No repositories defined. Operating only with the installed
+</I>&gt;<i> &gt; &gt; resolvables. Nothing can be installed.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Could someone please check if this is really a kiwi bug, or if I have
+</I>&gt;<i> &gt; something wrong on my config[2]?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Currently using kiwi v2.65, and also did try with v2.64.
+</I>&gt;<i>
+</I>&gt;<i> Hmm, sounds like a zypper problem to me or the repositories are
+</I>&gt;<i> currently not valid. Adrian, Jan could you have a look at this one
+</I>&gt;<i> too ?
+</I>
+It seems I was right when I said it was a kiwi bug, though it can be 
+considered a zypper bug instead depending on how it is now 
+handling 'service-add' (vs 'addrepo').
+
+<A HREF="https://bugzilla.novell.com/attachment.cgi?id=234580">https://bugzilla.novell.com/attachment.cgi?id=234580</A> does the trick and also 
+fixes bug #418994.
+
+-- 
+Regards,
+Carlos Goncalves
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000803.html">[Kiwi-users] No repositories defined (x86_64 specific)
+</A></li>
+	<LI>Next message: <A HREF="000805.html">[Kiwi-users] No repositories defined (x86_64 specific)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#804">[ date ]</a>
+              <a href="thread.html#804">[ thread ]</a>
+              <a href="subject.html#804">[ subject ]</a>
+              <a href="author.html#804">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

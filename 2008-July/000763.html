@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Diskless PXE client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Diskless%20PXE%20client&In-Reply-To=%3COF97CAA99A.9B6C6E77-ON86257482.004A88EB-86257482.004B2E37%40academy.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000762.html">
+   <LINK REL="Next"  HREF="000764.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Diskless PXE client</H1>
+    <B>justin.kinney at academy.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Diskless%20PXE%20client&In-Reply-To=%3COF97CAA99A.9B6C6E77-ON86257482.004A88EB-86257482.004B2E37%40academy.com%3E"
+       TITLE="[Kiwi-users] Diskless PXE client">justin.kinney at academy.com
+       </A><BR>
+    <I>Thu Jul 10 15:41:10 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000762.html">[Kiwi-users] oem dvd creation
+</A></li>
+        <LI>Next message: <A HREF="000764.html">[Kiwi-users] Diskless PXE client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#763">[ date ]</a>
+              <a href="thread.html#763">[ thread ]</a>
+              <a href="subject.html#763">[ subject ]</a>
+              <a href="author.html#763">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello everybody,
+
+I have a question concerning the second DHCP request of a netboot client.
+
+I've got my DHCP server configured with fixed-address leases for my 
+wireless clients.  This is working well for me, but I had an issue with a 
+rogue DHCP device on the network the other day that got me thinking.
+
+Here's what I'd like to have happen:
+
+1. Only my DHCP server respond to PXE DHCP requests.  It assigns the 
+address, and the pxelinux.cfg entry for that device uses IPAPPEND 1 to get 
+the ip address to the kernel.
+2. I realize this is not ideal, but since the addresses are static per 
+device, I think it will work for my purposes.
+3. This way, my PXE server only responds to my devices (thanks to the 
+other standard DHCP servers ignoring PXE DHCP requests), and if another 
+DHCP server is place on the network, it _should_ not interfere with my 
+environment.
+
+Currently, during the boot process the client sends a second DHCP request 
+when dhcpcd starts with networking.  Does anyone have any opinions on the 
+best way to approach disabling the second DHCP request?
+
+Thanks in advance,
+
+Justin Kinney
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000762.html">[Kiwi-users] oem dvd creation
+</A></li>
+	<LI>Next message: <A HREF="000764.html">[Kiwi-users] Diskless PXE client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#763">[ date ]</a>
+              <a href="thread.html#763">[ thread ]</a>
+              <a href="subject.html#763">[ subject ]</a>
+              <a href="author.html#763">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

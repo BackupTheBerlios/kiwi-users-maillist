@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTi%3DXJ%3DxM-Vdx7O0VJ33%3D43iLKWArpw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002598.html">
+   <LINK REL="Next"  HREF="002601.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTi%3DXJ%3DxM-Vdx7O0VJ33%3D43iLKWArpw%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Sun Apr  3 23:22:25 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002598.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002601.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2599">[ date ]</a>
+              <a href="thread.html#2599">[ thread ]</a>
+              <a href="subject.html#2599">[ subject ]</a>
+              <a href="author.html#2599">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Apr 3, 2011 at 3:38 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> I'm not confused. :) &#160;I'm just stating that the &quot;ramonly&quot; element was
+</I>&gt;&gt;<i> removed from the config.xml file and I have almost exactly the same
+</I>&gt;&gt;<i> issues with streaming video.
+</I>&gt;<i>
+</I>&gt;<i> Does the system swap ?
+</I>&gt;<i>
+</I>&gt;&gt;<i> When using a live image on CD it still uses the host system's ram so
+</I>&gt;&gt;<i> what makes this so different than the same image on a CD? &#160;The USB
+</I>&gt;&gt;<i> transfer rates are higher than an optical drives..I'm pretty sure. &#160;I
+</I>&gt;&gt;<i> can live with the read/write image but this issues still exists.
+</I>&gt;&gt;<i> I would imaging that the size of the USB drive would matter somewhat
+</I>&gt;&gt;<i> because that is where the system swaps to once ram is full...no?
+</I>&gt;<i>
+</I>&gt;<i> I don't understand what you are saying, sorry.
+</I>&gt;<i>
+</I>&gt;<i> The USB stick image you created uses two techniques which
+</I>&gt;<i> are different compared to a &quot;normal&quot; linux system:
+</I>&gt;<i>
+</I>&gt;<i> &#160;1) root overlay
+</I>&gt;<i> &#160;2) root compression
+</I>&gt;<i>
+</I>&gt;<i> root is an overlay filesystem based on clicfs. Overlay
+</I>&gt;<i> means the root filesystem is a compressed read-only
+</I>&gt;<i> root tree which is mounted in a way that all write
+</I>&gt;<i> actions are directed to either the RAM (ramonly) or
+</I>&gt;<i> to a write space on the stick. If you choose the USB
+</I>&gt;<i> stick as target to write you have more space left
+</I>&gt;<i> on the RAM side. If you choose to write to RAM you
+</I>&gt;<i> have less RAM space but writing is faster
+</I>&gt;<i>
+</I>&gt;<i> It depends on the applications you are running if they
+</I>&gt;<i> perform well on that system. If you think it doesn't
+</I>&gt;<i> work well you can try the following:
+</I>&gt;<i>
+</I>&gt;<i> a) remove ramonly and rebuild, you did that already
+</I>&gt;<i> &#160; you said there were no change in the performance
+</I>&gt;<i> &#160; I think that means there was no RAM space issue
+</I>&gt;<i>
+</I>&gt;<i> b) change from clicfs to another filesystem type
+</I>&gt;<i> &#160; for example ext3. But that means you will loose
+</I>&gt;<i> &#160; root compression and will at least double size your
+</I>&gt;<i> &#160; image.
+</I>&gt;<i>
+</I>&gt;<i> Hope that helps
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+hi Marcus,
+
+Ok let me regroup here a bit.
+I have an 8GB flash drive that I'm now testing with.
+
+In my config.xml file I removed the &quot;ramonly&quot; setting to allow
+swap/save to the drive.
+&lt;type image=&quot;oem&quot; boottimeout=&quot;2&quot; filesystem=&quot;clicfs&quot; boot=&quot;oemboot/suse-11.3&quot;&gt;
+
+You wrote:  &gt; a) remove ramonly and rebuild, you did that already
+&gt;<i>   you said there were no change in the performance
+</I>&gt;<i>   I think that means there was no RAM space issue
+</I>
+Since I removed the &quot;ramonly&quot; element from my config.xml file do I
+have to add a ram space element?
+
+My config.xml file has my oem swap space set to 4000.  I did this as
+an extreme test to see if the behavior changes.
+When I ran kiwi --create I set my fat storage to 3500mb..as I
+understand that fat16 can have a max of 4000mb.
+I booted from this image off the usb drive.  The boot time was a bit
+slower.   I open a task manager to monitor RAM and CPU usage.
+I then opened Firefox went to stream some video.  The video streaming
+went very well for about 4 to 5 mins.  The RAM usage never made it
+past 384mb (I'm assuming because I didn't set the &quot;RAM space&quot; as you
+said?   The CPU usage after 4 to 5 minutes went to 100 percent and the
+machine was useless. Nothing functioned.   Doing a ctrl+alt+backspace
+took me out of the gui but didn't take me to the usual login/LXDM
+screen.   It took me instead to a black screen with a flashing
+cursor...and that was it.
+
+All of the above was test on the first boot of the image after kiwi
+--create.   The second time I was opened Firefox and browsed Ebay and
+some other basic sites and again the CPU maxed out and locked up the
+machine...and the ram never made it past about 350mb.
+
+When you mentioned &quot;ram space&quot; are you referring to the &quot;oem swap
+space&quot; in my config.xml file?
+
+The primary purpose of this live image is to run an Internet browser
+on a variety of sites. That would be it's primary function.
+Thanks Marcus
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002598.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002601.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2599">[ date ]</a>
+              <a href="thread.html#2599">[ thread ]</a>
+              <a href="subject.html#2599">[ subject ]</a>
+              <a href="author.html#2599">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

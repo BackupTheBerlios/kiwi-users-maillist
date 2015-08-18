@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Custom bootlogo / isolinux
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Custom%20bootlogo%20/%20isolinux&In-Reply-To=%3C20090810100047.GD5226%40open-xchange.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001353.html">
+   <LINK REL="Next"  HREF="001352.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Custom bootlogo / isolinux</H1>
+    <B>Carsten Hoeger</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Custom%20bootlogo%20/%20isolinux&In-Reply-To=%3C20090810100047.GD5226%40open-xchange.com%3E"
+       TITLE="[Kiwi-users] Custom bootlogo / isolinux">choeger at open-xchange.com
+       </A><BR>
+    <I>Mon Aug 10 12:00:47 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001353.html">[Kiwi-users] Custom bootlogo / isolinux
+</A></li>
+        <LI>Next message: <A HREF="001352.html">[Kiwi-users] String format conversion
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1355">[ date ]</a>
+              <a href="thread.html#1355">[ thread ]</a>
+              <a href="subject.html#1355">[ subject ]</a>
+              <a href="author.html#1355">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Aug 10, Marcus Sch&#228;fer wrote:
+
+&gt;<i> Hi choeger :)
+</I>
+Hi Marcus,
+ 
+&gt;<i> &gt; did you tried it with the new version marcus had implemented?
+</I>
+Peter, Marcus, thanks for the hints.
+I'll create an adapted *-branding package because I do not have kiwi &gt;= 3.6
+available.
+
+Thanks for your help!
+
+&gt;<i> &gt; -------8&lt;------------------snip--------------8&lt;----------------
+</I>&gt;<i> &gt; Date: Fri, 26 Jun 2009 12:22:42 +0200
+</I>&gt;<i> &gt; From: Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt;
+</I>&gt;<i> &gt; To: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> &gt; Subject: [Kiwi-users] Howto add your custom boot menu branding...
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; [-- Anhang #1 --]
+</I>&gt;<i> &gt; [-- Typ: text/plain, Kodierung: quoted-printable, Gr&#246;&#223;e: 1,5K --]
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; with the gfxboot-branding and bootsplash-branding packages
+</I>&gt;<i> &gt; SuSE provides the possibility to have custom brandings. But
+</I>&gt;<i> &gt; many people just don't want to create a package from their
+</I>&gt;<i> &gt; data. According to this kiwi now allows you to pack your
+</I>&gt;<i> &gt; branding data into a tarball and include that which makes
+</I>&gt;<i> &gt; your branding tasks a bit easier.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Well you still need to know where to place the branded
+</I>&gt;<i> &gt; files inside the archive.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Example:
+</I>&gt;<i> &gt; * The following example shows how to use my custom grub boot
+</I>&gt;<i> &gt;   screen (see attachment *don't laugh I'm a bad designer* :)
+</I>&gt;<i> &gt;   based on the suse-11.1-JeOS template
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 1) cp brand.tgz /usr/share/kiwi/image/suse-11.1-JeOS
+</I>&gt;<i> &gt; 2) edit /usr/share/kiwi/image/suse-11.1-JeOS/config.xml
+</I>&gt;<i> &gt;    * remove standard branding gfxboot-branding-openSUSE
+</I>&gt;<i> &gt;    * add my branding requires gfxboot-devel
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;      &lt;archive name=&quot;brand.tgz&quot; bootinclude=&quot;true&quot;/&gt;
+</I>&gt;<i> &gt;      &lt;package name=&quot;gfxboot-devel&quot; bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; That's it, build the JeOS and see my great grub boot background :-))
+</I>&gt;<i> &gt; All this with kiwi &gt;= v3.60
+</I>&gt;<i> 
+</I>&gt;<i> either that way or you can create your own branding package as
+</I>&gt;<i> they exist in the distribution:
+</I>&gt;<i> 
+</I>&gt;<i>    gfxboot-branding-...     =&gt; graphics boot screen (grub and isolinux)
+</I>&gt;<i>    bootsplash-branding-...  =&gt; bootsplash background on boot
+</I>&gt;<i> 
+</I>&gt;<i> Please note if you use a simple tarball with branding data you
+</I>&gt;<i> have to take care that the files you store are at the correct place
+</I>&gt;<i> according to the used gfxboot version. The example I made works for
+</I>&gt;<i> the new style gfxboot which we have with suse 11.0 and later but
+</I>&gt;<i> for older distro versions the structure of the gfxboot
+</I>&gt;<i> and bootsplash data is different
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> -- 
+</I>&gt;<i>  Public Key available
+</I>&gt;<i>  gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i>  Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+</I>&gt;<i>  Tel: 0911-740 53 0             Maxfeldstrasse 5
+</I>&gt;<i>  FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+</I>&gt;<i>  GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i>  <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+</I>&gt;<i>  -------------------------------------------------------
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>
+-- 
+With best regards,
+
+Carsten Hoeger
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090810/64127dfa/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090810/64127dfa/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001353.html">[Kiwi-users] Custom bootlogo / isolinux
+</A></li>
+	<LI>Next message: <A HREF="001352.html">[Kiwi-users] String format conversion
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1355">[ date ]</a>
+              <a href="thread.html#1355">[ thread ]</a>
+              <a href="subject.html#1355">[ subject ]</a>
+              <a href="author.html#1355">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

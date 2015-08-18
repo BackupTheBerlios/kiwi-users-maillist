@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] suse-oem-preload not working
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201007060119.22543.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001888.html">
+   <LINK REL="Next"  HREF="001890.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] suse-oem-preload not working</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20suse-oem-preload%20not%20working&In-Reply-To=%3C201007060119.22543.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] suse-oem-preload not working">javier at opensuse.org
+       </A><BR>
+    <I>Tue Jul  6 01:19:22 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001888.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+        <LI>Next message: <A HREF="001890.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1891">[ date ]</a>
+              <a href="thread.html#1891">[ thread ]</a>
+              <a href="subject.html#1891">[ subject ]</a>
+              <a href="author.html#1891">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Lunes, 5 de Julio de 2010 13:51:20 Uwe Gansert escribi&#243;:
+&gt;<i> on Monday 05 July 2010 Marcus Schaefer wrote:
+</I>&gt;<i> &gt; &gt; 1) I have a config-yast-firstboot.xml on my kiwi directory (and yast2-
+</I>&gt;<i> &gt; &gt; firstboot is installed), nevertheless kiwi doesn't enable the firstboot
+</I>&gt;<i> &gt; &gt; service.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; kiwi at least processes your request:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Jul-02 23:30:06 &lt;1&gt; : Setting up YaST firstboot service...
+</I>&gt;<i> &gt; Jul-02 23:30:06 &lt;1&gt; : EXEC [cp
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;  /home/javier/openpc-newkiwi/suse-oem-preload/config-yast-
+</I>firstboot.xml
+&gt;<i> &gt;  /home/javier/openpc-newkiwi/suse-oem-preload-
+</I>tmp/etc/YaST2/firstboot.xml
+&gt;<i> &gt;  2&gt;&amp;1] Jul-02 23:30:06 &lt;1&gt; : EXEC [touch
+</I>&gt;<i> &gt;  /home/javier/openpc-newkiwi/suse-oem-preload-
+</I>tmp/var/lib/YaST2/reconfig_
+&gt;<i> &gt;  sy
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; stem 2&gt;&amp;1] done
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Please contact Uwe Gansert (CC'ed) about this problem. It's either
+</I>&gt;<i> &gt; a setup problem by kiwi or the firstboot xml is wrong. Alternative you
+</I>&gt;<i> &gt; can use config-yast-autoyast. But Uwe can tell you more
+</I>&gt;<i> 
+</I>&gt;<i> would be helpful to see the /var/log/YaST2/y2log file from a failed
+</I>&gt;<i> firstboot.
+</I>
+I checked /var/log/YaST2/ and there was no y2log. It seems to me that 
+there's no such a firstboot service so nothing is started.
+I have tried enabling firstboot the &quot;classic&quot; way without any luck;
+chkconfig firstboot on
+touch /var/lib/YaST2/reconfig_system
+
+It says that there's no firstboot service, having yast2-firstboot installed. 
+Has this procedure of enabling firstboot changed?
+
+Thanks,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100706/50c8a497/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100706/50c8a497/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001888.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+	<LI>Next message: <A HREF="001890.html">[Kiwi-users] suse-oem-preload not working
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1891">[ date ]</a>
+              <a href="thread.html#1891">[ thread ]</a>
+              <a href="subject.html#1891">[ subject ]</a>
+              <a href="author.html#1891">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

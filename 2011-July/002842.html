@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] openSUSE 11.4 64-bit OEM image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20openSUSE%2011.4%2064-bit%20OEM%20image&In-Reply-To=%3C1311250169.21018.5.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002843.html">
+   <LINK REL="Next"  HREF="002844.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] openSUSE 11.4 64-bit OEM image</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20openSUSE%2011.4%2064-bit%20OEM%20image&In-Reply-To=%3C1311250169.21018.5.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] openSUSE 11.4 64-bit OEM image">roger at opq.se
+       </A><BR>
+    <I>Thu Jul 21 14:09:29 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002843.html">[Kiwi-users] Unbiassed suggestion
+</A></li>
+        <LI>Next message: <A HREF="002844.html">[Kiwi-users] openSUSE 11.4 64-bit OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2842">[ date ]</a>
+              <a href="thread.html#2842">[ thread ]</a>
+              <a href="subject.html#2842">[ subject ]</a>
+              <a href="author.html#2842">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hello,
+
+I want to build an OEM preload image for openSUSE 11.4 64-bit. The
+changes I made to an existing build is that I use the x86_64 DVD for the
+install source in the kiwi build. I left the 'type' spec as follows: 
+
+&lt;type image=&quot;oem&quot; filesystem=&quot;ext4&quot; boot=&quot;oemboot/suse-11.4&quot; installstick=&quot;true&quot;&gt;
+
+The system built just fine. Did I miss something? I checked the install
+source image, and it is indeed the x86_64 version.
+
+I see in the logs that it is adding repos as follows:
+
+Automatically trusting the following key:
+Key ID: B88B2FD43DBDC284
+Key Name: openSUSE Project Signing Key &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">opensuse at opensuse.org</A>&gt;
+Key Fingerprint: 22C07BA534178CD02EFE22AAB88B2FD43DBDC284
+Repository: home_roger_source.18.00_Tools_Diskless_openSUSE-11.4-DVD-x86_64
+
+Automatically trusting the following key:
+Key ID: B88B2FD43DBDC284
+Key Name: openSUSE Project Signing Key &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">opensuse at opensuse.org</A>&gt;
+Key Fingerprint: 22C07BA534178CD02EFE22AAB88B2FD43DBDC284
+Repository: http:__download.opensuse.org_distribution_11.4_repo_non-oss
+
+Automatically trusting the following key:
+Key ID: B88B2FD43DBDC284
+Key Name: openSUSE Project Signing Key &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">opensuse at opensuse.org</A>&gt;
+Key Fingerprint: 22C07BA534178CD02EFE22AAB88B2FD43DBDC284
+Repository: http:__download.opensuse.org_distribution_11.4_repo_oss
+
+etc...
+
+However, as an example where it gets a package, I see this:
+
+/wherever/image/boot-VMX.2B7ICs/kiwi-VMXboot-6678/var/cache/zypp/packages/http:__download.opensuse.org_distribution_11.4_repo_oss/suse/i586/openSUSE-release-ftp-11.4-1.9.i586.rpm
+
+Why i686? Could it be because that is where I am running kiwi? Should I
+specify x86_64 as an override somewhere?
+
+
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002843.html">[Kiwi-users] Unbiassed suggestion
+</A></li>
+	<LI>Next message: <A HREF="002844.html">[Kiwi-users] openSUSE 11.4 64-bit OEM image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2842">[ date ]</a>
+              <a href="thread.html#2842">[ thread ]</a>
+              <a href="subject.html#2842">[ subject ]</a>
+              <a href="author.html#2842">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

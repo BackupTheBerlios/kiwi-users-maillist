@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C486F8B5F.20006%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000751.html">
+   <LINK REL="Next"  HREF="000753.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD</H1>
+    <B>Jan-Christoph Bornschlegel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20-%20Minimal%20openSUSE%20LIVE%20CD&In-Reply-To=%3C486F8B5F.20006%40suse.de%3E"
+       TITLE="[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD">jcborn at suse.de
+       </A><BR>
+    <I>Sat Jul  5 16:55:27 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000751.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+        <LI>Next message: <A HREF="000753.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#752">[ date ]</a>
+              <a href="thread.html#752">[ thread ]</a>
+              <a href="subject.html#752">[ subject ]</a>
+              <a href="author.html#752">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Sebastian,
+
+Sebastian Siebert schrieb:
+&gt;<i> Hello Jan,
+</I>&gt;<i>
+</I>&gt;<i> Yes, I want build a Live CD without X.
+</I>&gt;<i> The virtualbox runs good with the original &quot;suse-live-cd&quot;-example.
+</I>&gt;<i> So, virtualbox isn't the problem.
+</I>&gt;<i>
+</I>&gt;<i> here are my modified config.xml:
+</I>&gt;<i> [...]
+</I>&gt;<i>   &lt;packages type=&quot;image&quot;&gt;
+</I>&gt;<i>     &lt;package name=&quot;yast2-live-installer&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;pam&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;pam-config&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;pam-modules&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;udev&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;aaa_base&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;tar&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;patch&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;zypper&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;bash&quot;/&gt;
+</I>&gt;<i>   &lt;/packages&gt;
+</I>&gt;<i>   &lt;packages type=&quot;bootstrap&quot;&gt;
+</I>&gt;<i>     &lt;package name=&quot;filesystem&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;glibc-locale&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;kernel-default&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;udev&quot;/&gt;
+</I>&gt;<i>     &lt;package name=&quot;bundle-lang-common-en&quot;/&gt;
+</I>&gt;<i>   &lt;/packages&gt;
+</I>&gt;<i> &lt;/image&gt;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> But my modified version said while login:
+</I>&gt;<i> The module are unknown =&gt; in german: Modul ist nicht bekannt.
+</I>&gt;<i> So, I can't login with root or linux.
+</I>&gt;<i>
+</I>&gt;<i> I hope you find the mistake. ;-)
+</I>&gt;<i> Thanks.
+</I>&gt;<i>
+</I>&gt;<i> Sebastian
+</I>&gt;<i>   
+</I>
+This image looks a little too minimal. No kernel, no bootloader, no rpm 
+and the like.
+Have you got the package kiwi-desc-misc installed? If so, please take a 
+look at the image description 
+/usr/share/kiwi//image/ctso-minimal-suse-10.3/config.xml
+
+
+If you for instance include the pattern base-10.3, you'll get all 
+packages the pattern requires. You can influence if the patterns 
+Requirements (Prq), Recommendations (Prc) or even the Suggestions (Sug) 
+shall be included.
+Just add to the &lt;packages&gt; tag:
+ &lt;packages type=&quot;image&quot; patternType=&quot;onlyRequired&quot;&gt;
+to avoid excess fat.
+
+Then you could use the pattern like this:
+&lt;opensusePattern name=&quot;base-10.3&quot;/&gt;
+
+
+This makes the package handling more convenient for you.
+If you omit the &quot;onlyRequired&quot; then the required + recommended packages 
+are installed IIRC.
+
+I hope this helps solve your issues.
+
+Cheers,
+Jan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000751.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+	<LI>Next message: <A HREF="000753.html">[Kiwi-users] Kiwi - Minimal openSUSE LIVE CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#752">[ date ]</a>
+              <a href="thread.html#752">[ thread ]</a>
+              <a href="subject.html#752">[ subject ]</a>
+              <a href="author.html#752">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

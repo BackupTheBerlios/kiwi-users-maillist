@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Optimizing turnaround time
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804070543r8652e2w33a6d49fd123efc5%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000545.html">
+   <LINK REL="Next"  HREF="000542.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Optimizing turnaround time</H1>
+    <B>Luis Garrido</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804070543r8652e2w33a6d49fd123efc5%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Optimizing turnaround time">luisgarrido at users.sourceforge.net
+       </A><BR>
+    <I>Mon Apr  7 14:43:18 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000545.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+        <LI>Next message: <A HREF="000542.html">[Kiwi-users] migrate runnig system into live-cd?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#546">[ date ]</a>
+              <a href="thread.html#546">[ thread ]</a>
+              <a href="subject.html#546">[ subject ]</a>
+              <a href="author.html#546">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>  yeah definitly right. Unfortunately I don't find much time
+</I>&gt;<i>  to make the documentation better. We are currently searching for
+</I>&gt;<i>  help here.
+</I>
+Understandable. When I am trying to master a new tool I usually make
+some cryptic step-by-step guides for myself, I' ll see if I can make
+something readable out of my kiwi one and send it to the list so it
+serves as a sample of usage case. If I already understand the theory
+behind a tool a usage case is usually the only thing I need to get
+going.
+
+&gt;<i>  This means that all caches created by the packagemanager (in your case smart)
+</I>&gt;<i>  are created inside the chroot tree. when kiwi switches into the chroot
+</I>&gt;<i>  (to finish the image installation) the caches are already there and the
+</I>&gt;<i>  process of updating it is much faster.
+</I>&gt;<i>
+</I>
+Then I must be missing something very basic. After kiwi prepares an
+image the chroot smart caches are utterly wiped out, probably in the
+removing smart channel step. Could this be because I don't add smart
+as a package to the image?
+
+# kiwi --version
+Apr-07 10:25:45 &lt;1&gt; : kiwi version v2.38 SVN: Revision: 1122
+
+# kiwi -p image -r root
+
+# ll root/var/lib/smart
+ls: cannot access root/var/lib/smart: No such file or directory
+
+A excerpt of root.log:
+
+--------------------------------------------
+
+ 59:Installing yast2           ######################################## [ 98%]
+ 60:Installing yast2-live-in.. ######################################## [100%]
+
+
++ echo 0
+Apr-07 10:09:54 &lt;1&gt; : EXEC [rm -f /root/livemux/kiwi/root/screenrc.smart*]
+Apr-07 10:09:54 &lt;1&gt; : EXEC [rm -f /root/livemux/kiwi/root/screenrc.ctrls]
+  done
+Apr-07 10:09:54 &lt;1&gt; : Removing smart channel(s): kiwi1-3685
+Apr-07 10:09:54 &lt;1&gt; : EXEC [chroot /root/livemux/kiwi/root smart channel --remov
+e kiwi1-3685 -y 2&gt;&amp;1]
+  done
+
+--------------------------------------------
+
+&gt;<i>  If I understand you correctly you copied the cache into the chroot which
+</I>&gt;<i>  shouldn't be necessary as it already lives there. It saves us one
+</I>&gt;<i>  &quot;smart update&quot; call which is an expensive call. The same applies to zypper
+</I>&gt;<i>  of course (which is the other packagemanager one can use)
+</I>&gt;<i>
+</I>
+I launch the first --prepare iteration with --logfile terminal. After
+I see that smart has finished downloading the packages but before it
+ends installing them I pause the kiwi process (Ctrl+Z). Then I make a
+copy of the chroot var/lib/smart/packages to an external directory and
+let kiwi continue. For further iterations I add that external
+directory to config.xml as a rpm-dir repo.
+
+I think a rpm cache dir that could even be shared by different kiwi
+images would be a very convenient  addition to the tool.
+
+Luis
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000545.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+	<LI>Next message: <A HREF="000542.html">[Kiwi-users] migrate runnig system into live-cd?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#546">[ date ]</a>
+              <a href="thread.html#546">[ thread ]</a>
+              <a href="subject.html#546">[ subject ]</a>
+              <a href="author.html#546">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

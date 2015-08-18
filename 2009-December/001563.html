@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] pxe diskless boot issues + serial port console?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe%20diskless%20boot%20issues%20%2B%20serial%20port%20console%3F&In-Reply-To=%3C4B23D9B2.7000702%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001561.html">
+   <LINK REL="Next"  HREF="001564.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] pxe diskless boot issues + serial port console?</H1>
+    <B>Vladimir V. Kolpakov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe%20diskless%20boot%20issues%20%2B%20serial%20port%20console%3F&In-Reply-To=%3C4B23D9B2.7000702%40gmail.com%3E"
+       TITLE="[Kiwi-users] pxe diskless boot issues + serial port console?">vova.kolpakov at gmail.com
+       </A><BR>
+    <I>Sat Dec 12 18:58:10 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001561.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+        <LI>Next message: <A HREF="001564.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1563">[ date ]</a>
+              <a href="thread.html#1563">[ thread ]</a>
+              <a href="subject.html#1563">[ subject ]</a>
+              <a href="author.html#1563">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Roger, --
+
+One reason I could guess is network interface renaming:
+part of linuxrc depends on it's stability,
+whilst something tells me renaming happens in your case.
+
+Second step,
+having serial console accessible,
+you could look into in /var/log/,
+if getty is enabled to start in inittab, doesn't it?
+If not, I would add kiwidebug=1 to kernel &quot;command line&quot;,
+that would give more details and shell on console.
+Then, adding extra diagnostics to linuxrc
+could narrow problem source down.
+
+--w
+
+On 12/11/2009 05:47 PM, Roger Oberholtzer wrote:
+&gt;<i> &gt; I have started with the pxe example that comes with kiwi. I see that if
+</I>&gt;<i> &gt; I do either of these things, the boot dies as I originally posted:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 1) remove the alsa package
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 2) change the default run level to 3
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I cannot fathom how this can be the problem. But it is reproducible. I
+</I>&gt;<i> &gt; have removed some unused packages (firefox, icewm, and other things I do
+</I>&gt;<i> &gt; not expect to be using in level 3). Even though I am running in level 5,
+</I>&gt;<i> &gt; the X server does not start as the display driver is not present. That
+</I>&gt;<i> &gt; is fine, as I do not want X anyway. Which is why I wanted run level 3.
+</I>&gt;<i> &gt; But run level 3 causes the boot problem.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I do have a working image, and I think I can get what I want set up. The
+</I>&gt;<i> &gt; two limitations are not a real problem. But they are a mystery.
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001561.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+	<LI>Next message: <A HREF="001564.html">[Kiwi-users] pxe diskless boot issues + serial port console?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1563">[ date ]</a>
+              <a href="thread.html#1563">[ thread ]</a>
+              <a href="subject.html#1563">[ subject ]</a>
+              <a href="author.html#1563">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

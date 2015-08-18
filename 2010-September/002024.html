@@ -1,0 +1,570 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi-users%20Digest%2C%20Vol%2044%2C%20Issue%209&In-Reply-To=%3C4C8E3B7B.9000005%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002020.html">
+   <LINK REL="Next"  HREF="002027.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9</H1>
+    <B>caoshouying</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi-users%20Digest%2C%20Vol%2044%2C%20Issue%209&In-Reply-To=%3C4C8E3B7B.9000005%40gmail.com%3E"
+       TITLE="[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9">caoshouying at gmail.com
+       </A><BR>
+    <I>Mon Sep 13 16:55:55 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002020.html">[Kiwi-users] kiwi: Weekly report 2010-09-05 - 2010-09-10...
+</A></li>
+        <LI>Next message: <A HREF="002027.html">[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2024">[ date ]</a>
+              <a href="thread.html#2024">[ thread ]</a>
+              <a href="subject.html#2024">[ subject ]</a>
+              <a href="author.html#2024">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&#20110; 2010&#24180;09&#26376;11&#26085; 06:00, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-request at lists.berlios.de</A> &#20889;&#36947;:
+&gt;<i> Hi Kevin, On Viernes, 10 de Septiembre de 2010 10:03:52 kevin cao 
+</I>&gt;<i> escribi?:
+</I>&gt;&gt;<i> &gt;  Hi, all
+</I>&gt;&gt;<i> &gt;      On build.opensuse.org, I made a project named &quot;
+</I>&gt;&gt;<i> &gt;  
+</I>&gt;&gt;<i>      
+</I>&gt;<i> home:kevincao&lt;<A HREF="https://build.opensuse.org/project/show?project=home%3Akevinc">https://build.opensuse.org/project/show?project=home%3Akevinc</A>
+</I>&gt;<i>    
+</I>&gt;&gt;<i> &gt;  ao&gt;&quot; and a package &quot;kiwitest&quot;. I want to make a images like &quot;KDE Four
+</I>&gt;&gt;<i> &gt;  Live&lt;<A HREF="http://home.kde.org/%7Ebinner/kde-four-live/">http://home.kde.org/%7Ebinner/kde-four-live/</A>&gt;&quot;,
+</I>&gt;&gt;<i> &gt;  so I down all files and upload to my package. I also changed the &quot;Raw
+</I>&gt;&gt;<i> &gt;  config&quot; and added the following lines:
+</I>&gt;&gt;<i> &gt;  &lt;build&gt;
+</I>&gt;&gt;<i> &gt;       &lt;enable repository=&quot;images&quot;/&gt;
+</I>&gt;&gt;<i> &gt;      &lt;disable/&gt;
+</I>&gt;&gt;<i> &gt;  &lt;/build&gt;
+</I>&gt;&gt;<i> &gt;  
+</I>&gt;&gt;<i> &gt;  But I got the result &quot;broken&quot;.
+</I>&gt;&gt;<i> &gt;  How can I build a image on build.opensuse.org, Please help me.
+</I>&gt;&gt;<i>      
+</I>&gt;<i> AFAIK, KIWI image building is not enabled on the Build Service's home projects
+</I>&gt;<i> by default (requires lots of resources). It can be enabled on a user's home
+</I>&gt;<i> project if there is a good reason for it. Nevertheless, you may branch kde-
+</I>&gt;<i> four-live, build it locally with your own modifications and even submit your
+</I>&gt;<i> enhancements as well;-)
+</I>&gt;<i>
+</I>&gt;<i> The relevant commands are:
+</I>&gt;<i> osc branch KDE:Medias kde-four-live
+</I>&gt;<i> osc co home:yourusername:branches:KDE:Medias/kde-four-live
+</I>&gt;<i> cd home\:yourusername\:branches\:KDE\:Medias/kde-four-live/
+</I>&gt;<i> osc build
+</I>&gt;<i>    
+</I>when I did &quot;osc build&quot; as follow, I got the following result:
+linux-hsls:~/home:kevincao:branches:KDE:Medias/kde-four-live # osc build
+Building kde-four-live.kiwi for images/x86_64
+Getting buildinfo from server and store to 
+/root/home:kevincao:branches:KDE:Medias/kde-four-live/.osc/_buildinfo-images-x86_64.xml
+Getting buildconfig from server and store to 
+/root/home:kevincao:branches:KDE:Medias/kde-four-live/.osc/_buildconfig-images-x86_64
+buildinfo is broken... it says:
+unresolvable: nothing provides kiwi-desc-isoboot, nothing provides 
+module-init-tools, nothing provides elfutils, nothing provides squashfs, 
+nothing provides clicfs, nothing provides e2fsprogs, nothing provides 
+fribidi, nothing provides gfxboot-devel, nothing provides gawk, nothing 
+provides gfxboot, nothing provides grub, nothing provides hdparm, 
+nothing provides hwinfo, nothing provides iproute2, nothing provides 
+kiwi-tools, nothing provides lvm2, nothing provides make, nothing 
+provides memtest86+, nothing provides netcfg, nothing provides psmisc, 
+nothing provides bootsplash-branding-KDE, nothing provides 
+gfxboot-branding-KDE, nothing provides yast2-live-installer, nothing 
+provides pam, nothing provides pam-config, nothing provides pam-modules, 
+nothing provides udev, nothing provides aaa_base, nothing provides tar, 
+nothing provides patch, nothing provides zypper, nothing provides 
+ConsoleKit, nothing provides ConsoleKit-x11, nothing provides DirectFB, 
+nothing provides IlmBase, nothing provides LibVNCServer, nothing 
+provides Mesa, nothing provides ModemManager, nothing provides 
+NetworkManager, nothing provides NetworkManager-glib, nothing provides 
+plasmoid-networkmanagement, nothing provides NetworkManager-kde4-libs, 
+nothing provides NetworkManager-kde4-libs-lang, nothing provides 
+NetworkManager-openvpn, nothing provides NetworkManager-openvpn-kde4, 
+nothing provides OpenEXR, nothing provides PackageKit, nothing provides 
+PackageKit-branding-upstream, nothing provides 
+PackageKit-gstreamer-plugin, nothing provides PackageKit-gtk-module, 
+nothing provides PolicyKit, nothing provides PolicyKit-doc, nothing 
+provides SuSEfirewall2, nothing provides a2ps, nothing provides acl, 
+nothing provides acpica, nothing provides acpid, nothing provides 
+adaptec-firmware, nothing provides akonadi-runtime, nothing provides 
+akregator, nothing provides alsa, nothing provides alsa-firmware, 
+nothing provides alsa-oss, nothing provides alsa-plugins, nothing 
+provides alsa-utils, nothing provides amarok, nothing provides 
+apparmor-parser, nothing provides apparmor-profiles, nothing provides 
+apparmor-utils, nothing provides aria2, nothing provides ark, nothing 
+provides aspell, nothing provides aspell-en, nothing provides 
+atmel-firmware, nothing provides attr, nothing provides audiofile, 
+nothing provides audit, nothing provides augeas-lenses, nothing provides 
+autofs, nothing provides autoyast2-installation, nothing provides avahi, 
+nothing provides awesfx, nothing provides b43-fwcutter, nothing provides 
+bash, nothing provides bc, nothing provides bind-libs, nothing provides 
+bind-utils, nothing provides blinken, nothing provides bluedevil, 
+nothing provides bluez, nothing provides bluez-firmware, nothing 
+provides boost-license1_42_0, nothing provides bootsplash, nothing 
+provides bootsplash-branding-upstream, nothing provides 
+branding-upstream, nothing provides btrfsprogs, nothing provides 
+bundle-lang-common-en, nothing provides bzip2, nothing provides 
+ca-certificates, nothing provides ca-certificates-mozilla, nothing 
+provides cabextract, nothing provides cairo, nothing provides cairomm, 
+nothing provides cantor, nothing provides cdrdao, nothing provides 
+cdrkit-cdrtools-compat, nothing provides checkmedia, nothing provides 
+chmlib, nothing provides choqok, nothing provides cifs-utils, nothing 
+provides clucene-core, nothing provides command-not-found, nothing 
+provides coreutils, nothing provides cpio, nothing provides cpp, nothing 
+provides cpp45, nothing provides cracklib, nothing provides 
+cracklib-dict-full, nothing provides crda, nothing provides cron, 
+nothing provides cryptsetup, nothing provides cups, nothing provides 
+cups-client, nothing provides cups-drivers, nothing provides cups-libs, 
+nothing provides curl, nothing provides cyrus-sasl, nothing provides 
+cyrus-sasl-crammd5, nothing provides cyrus-sasl-digestmd5, nothing 
+provides cyrus-sasl-gssapi, nothing provides cyrus-sasl-plain, nothing 
+provides db-utils, nothing provides dbus-1, nothing provides 
+dbus-1-glib, nothing provides dbus-1-python, nothing provides 
+dbus-1-x11, nothing provides dcraw, nothing provides ddrescue, nothing 
+provides dejavu, nothing provides deltarpm, nothing provides 
+desktop-data-openSUSE, nothing provides device-mapper, nothing provides 
+dhcp, nothing provides dhcp-client, nothing provides dhcpcd, nothing 
+provides dialog, nothing provides diffutils, nothing provides dirmngr, 
+nothing provides dmidecode, nothing provides dmraid, nothing provides 
+dnsmasq, nothing provides dolphin, nothing provides dosfstools, nothing 
+provides droid-fonts, nothing provides dvb, nothing provides 
+dvd+rw-tools, nothing provides eject, nothing provides enchant, nothing 
+provides esound-daemon, nothing provides espeak, nothing provides 
+ethtool, nothing provides fam, nothing provides fbset, nothing provides 
+fftw3, nothing provides file, nothing provides filesystem, nothing 
+provides fillup, nothing provides findutils, nothing provides 
+fontconfig, nothing provides fonts-config, nothing provides 
+foomatic-filters, nothing provides freeglut, nothing provides 
+gconf-polkit, nothing provides gconf2, nothing provides gd, nothing 
+provides gdb, nothing provides gdbm, nothing provides genisoimage, 
+nothing provides gettext-runtime, nothing provides 
+gfxboot-branding-upstream, nothing provides ggz, nothing provides 
+ggz-client-libs, nothing provides ghostscript-fonts-std, nothing 
+provides ghostscript-library, nothing provides ghostscript-x11, nothing 
+provides giflib, nothing provides glib2, nothing provides 
+glib2-branding-upstream, nothing provides glibc, nothing provides 
+glibc-locale, nothing provides glibmm2, nothing provides gnome-keyring, 
+nothing provides gnome-keyring-pam, nothing provides gnugo, nothing 
+provides gnutls, nothing provides gpart, nothing provides gpg2, nothing 
+provides gpg2-lang, nothing provides gpgme, nothing provides gpm, 
+nothing provides grep, nothing provides groff, nothing provides 
+gstreamer-0_10, nothing provides gstreamer-0_10-plugins-base, nothing 
+provides gtk2, nothing provides gtk2-branding-upstream, nothing provides 
+gtkmm2, nothing provides gwenview, nothing provides gzip, nothing 
+provides hal, nothing provides hicolor-icon-theme, nothing provides 
+htdig, nothing provides hunspell, nothing provides hunspell-tools, 
+nothing provides icedax, nothing provides icewm, nothing provides 
+icewm-lite, nothing provides ifnteuro, nothing provides ifplugd, nothing 
+provides info, nothing provides info2html, nothing provides initviocons, 
+nothing provides input-utils, nothing provides insserv, nothing provides 
+iptables, nothing provides iputils, nothing provides ipw-firmware, 
+nothing provides irda, nothing provides iw, nothing provides jfsutils, 
+nothing provides jpeg, nothing provides k3b, nothing provides k3b-lang, 
+nothing provides kaddressbook, nothing provides kaffeine, nothing 
+provides kalgebra, nothing provides kalzium, nothing provides kanagram, 
+nothing provides kapman, nothing provides kate, nothing provides kbd, 
+nothing provides kbruch, nothing provides kcalc, nothing provides 
+kcharselect, nothing provides kcm_gtk, nothing provides kcolorchooser, 
+nothing provides kde4-filesystem, nothing provides 
+kde4-kgreeter-plugins, nothing provides kdeartwork4-screensaver, nothing 
+provides kdeartwork4-weatherwallpapers, nothing provides kdebase4, 
+nothing provides kdebase4-libkonq, nothing provides kdebase4-nsplugin, 
+nothing provides kdebase4-openSUSE, nothing provides 
+kdebase4-openSUSE-lang, nothing provides kdebase4-runtime, nothing 
+provides kdebase4-runtime-branding-upstream, nothing provides 
+kdebase4-runtime-xine, nothing provides kdebase4-session, nothing 
+provides kdebase4-workspace, nothing provides 
+kdebase4-workspace-branding-upstream, nothing provides 
+kdebase4-workspace-branding-upstream-live, nothing provides 
+kdebase4-workspace-ksysguardd, nothing provides kdeedu4, nothing 
+provides kdeedu4-noarch, nothing provides kdegames4, nothing provides 
+kdegames4-carddecks-default, nothing provides kdelibs4, nothing provides 
+kdelibs4-branding-upstream, nothing provides kdelibs4-core, nothing 
+provides kdemultimedia4, nothing provides kdenetwork4-filesharing, 
+nothing provides kdepasswd, nothing provides kdepim4, nothing provides 
+kdepim4-runtime, nothing provides kdepim4-wizards, nothing provides 
+kdepimlibs4, nothing provides kdialog, nothing provides kdm, nothing 
+provides kdm-branding-upstream, nothing provides kdnssd, nothing 
+provides keditbookmarks, nothing provides kernel-default, nothing 
+provides kernel-firmware, nothing provides keyutils, nothing provides 
+keyutils-libs, nothing provides kfind, nothing provides kgamma, nothing 
+provides kgeography, nothing provides kget, nothing provides kgpg, 
+nothing provides khangman, nothing provides kig, nothing provides kigo, 
+nothing provides kio_audiocd, nothing provides kio_iso, nothing provides 
+kio_kamera, nothing provides kio_sysinfo, nothing provides 
+kio_sysinfo-branding-upstream, nothing provides kipi-plugins, nothing 
+provides kipi-plugins-lang, nothing provides klettres, nothing provides 
+klogd, nothing provides kmag, nothing provides kmahjongg, nothing 
+provides kmail, nothing provides kmines, nothing provides kmix, nothing 
+provides kmousetool, nothing provides kmplot, nothing provides knotes, 
+nothing provides koffice2, nothing provides koffice2-karbon, nothing 
+provides koffice2-kchart, nothing provides koffice2-kplato, nothing 
+provides koffice2-kpresenter, nothing provides koffice2-krita, nothing 
+provides koffice2-kspread, nothing provides koffice2-kthesaurus, nothing 
+provides koffice2-kword, nothing provides konqueror, nothing provides 
+konqueror-plugins, nothing provides konqueror-plugins-lang, nothing 
+provides konquest, nothing provides konsole, nothing provides kontact, 
+nothing provides konversation, nothing provides konversation-lang, 
+nothing provides kopete, nothing provides korganizer, nothing provides 
+kpartx, nothing provides kpat, nothing provides krb5, nothing provides 
+krb5-client, nothing provides krdc, nothing provides kreversi, nothing 
+provides krfb, nothing provides kruler, nothing provides kscd, nothing 
+provides ksmolt, nothing provides ksnapshot, nothing provides 
+ksshaskpass, nothing provides kstars, nothing provides ksudoku, nothing 
+provides ktorrent, nothing provides ktorrent-lang, nothing provides 
+ktouch, nothing provides kturtle, nothing provides kupdateapplet, 
+nothing provides kupdateapplet-packagekit, nothing provides kvkbd, 
+nothing provides kwalletmanager, nothing provides kwebkitpart, nothing 
+provides kwin, nothing provides kwordquiz, nothing provides kwrite, 
+nothing provides lcms, nothing provides less, nothing provides 
+libFLAC++6, nothing provides libFLAC8, nothing provides libHX22, nothing 
+provides libMagickCore3, nothing provides libMagickWand3, nothing 
+provides libQtWebKit4, nothing provides libSDL-1_2-0, nothing provides 
+libXi6, nothing provides libacl, nothing provides libadns1, nothing 
+provides libaio, nothing provides libakonadi4, nothing provides 
+libakonadiprotocolinternals1, nothing provides libao, nothing provides 
+libapparmor1, nothing provides libarchive2, nothing provides libasm1, 
+nothing provides libasound2, nothing provides libassuan0, nothing 
+provides libatasmart4, nothing provides libatk-1_0-0, nothing provides 
+libattica0, nothing provides libattr, nothing provides libaudit1, 
+nothing provides libaugeas0, nothing provides libauparse0, nothing 
+provides libavahi-common3, nothing provides libavahi-core6, nothing 
+provides libblkid1, nothing provides libblocxx6, nothing provides 
+libbluedevil1, nothing provides libbluetooth3, nothing provides 
+libboost_program_options1_42_0, nothing provides libbz2-1, nothing 
+provides libcap2, nothing provides libcdda_interface0, nothing provides 
+libcdda_paranoia0, nothing provides libcloog0, nothing provides 
+libcom_err2, nothing provides libcrack2, nothing provides 
+libcryptsetup1, nothing provides libcurl4, nothing provides libdaemon0, 
+nothing provides libdb-4_5, nothing provides libdbusmenu-qt2, nothing 
+provides libdc1394-22, nothing provides libdjvulibre21, nothing provides 
+libdnet1, nothing provides libdrm, nothing provides libdvdread4, nothing 
+provides libdw1, nothing provides libeggdbus-1-0, nothing provides 
+libelf1, nothing provides libenca0, nothing provides libenchant1, 
+nothing provides libepub0, nothing provides liberation-fonts, nothing 
+provides libesd0, nothing provides libevent-1_4-2, nothing provides 
+libexif, nothing provides libexiv2-6, nothing provides libexpat1, 
+nothing provides libext2fs2, nothing provides libfprint0, nothing 
+provides libfreebl3, nothing provides libfreetype6, nothing provides 
+libgadu3, nothing provides libgcc45, nothing provides libgcr0, nothing 
+provides libgcrypt11, nothing provides libggz2, nothing provides 
+libgimpprint, nothing provides libgio-2_0-0, nothing provides 
+libgio-fam, nothing provides libglib-2_0-0, nothing provides 
+libgmodule-2_0-0, nothing provides libgmp3, nothing provides libgmpxx4, 
+nothing provides libgnutls-extra26, nothing provides libgnutls26, 
+nothing provides libgobject-2_0-0, nothing provides libgomp45, nothing 
+provides libgp11-0, nothing provides libgp11-modules, nothing provides 
+libgpg-error0, nothing provides libgpgme11, nothing provides libgphoto2, 
+nothing provides libgpod-tools, nothing provides libgpod4, nothing 
+provides libgpod4-lang, nothing provides libgps19, nothing provides 
+libgssglue1, nothing provides libgstapp-0_10-0, nothing provides 
+libgstinterfaces-0_10-0, nothing provides libgstreamer-0_10-0, nothing 
+provides libgthread-2_0-0, nothing provides libgudev-1_0-0, nothing 
+provides libical0, nothing provides libicu, nothing provides libidl, 
+nothing provides libidn, nothing provides libimobiledevice1, nothing 
+provides libiodbc3, nothing provides libiw30, nothing provides libjack0, 
+nothing provides libjasper, nothing provides libjpeg8, nothing provides 
+libkcddb4, nothing provides libkcompactdisc4, nothing provides 
+libkdcraw8, nothing provides libkde4, nothing provides libkdecore4, 
+nothing provides libkdeedu4, nothing provides libkdegames4, nothing 
+provides libkdepim4, nothing provides libkdepimlibs4, nothing provides 
+libkexiv2-8, nothing provides libkipi7, nothing provides libkonq5, 
+nothing provides libksba, nothing provides libksuseinstall1, nothing 
+provides libktorrent2, nothing provides libktorrent2-lang, nothing 
+provides liblastfm0, nothing provides liblazy1, nothing provides 
+liblcms1, nothing provides libldap-2_4-2, nothing provides libldapcpp1, 
+nothing provides libldb0, nothing provides liblockdev1, nothing provides 
+libloudmouth-1-0, nothing provides libltdl7, nothing provides liblua5_1, 
+nothing provides liblzma0, nothing provides liblzo2-2, nothing provides 
+libmng, nothing provides libmodplug0, nothing provides libmpc2, nothing 
+provides libmpcdec5, nothing provides libmpfr1, nothing provides 
+libmsn0_3, nothing provides libmtp8, nothing provides libmusicbrainz4, 
+nothing provides libmysqlclient16, nothing provides libmysqlclient_r16, 
+nothing provides libmysqld0, nothing provides libncurses5, nothing 
+provides libncurses6, nothing provides libnl, nothing provides libnscd, 
+nothing provides libogg0, nothing provides liboil, nothing provides 
+libopencv2, nothing provides libopenobex1, nothing provides 
+libopenssl1_0_0, nothing provides libotr2, nothing provides 
+libpackagekit-glib2-14, nothing provides libpangomm-1_4-1, nothing 
+provides libpcap1, nothing provides libpciaccess0, nothing provides 
+libpcre0, nothing provides libphonon4, nothing provides libpixman-1-0, 
+nothing provides libpkcs11-helper1, nothing provides libplist1, nothing 
+provides libpng14-14, nothing provides libpolkit-qt-1-0, nothing 
+provides libpolkit0, nothing provides libpoppler-qt4-3, nothing provides 
+libpoppler5, nothing provides libpopt0, nothing provides libppl7, 
+nothing provides libppl_c2, nothing provides libpth20, nothing provides 
+libpulse-mainloop-glib0, nothing provides libpulse0, nothing provides 
+libpython2_6-1_0, nothing provides libqca2, nothing provides 
+libqimageblitz4, nothing provides libqt4, nothing provides 
+libqt4-qt3support, nothing provides libqt4-sql, nothing provides 
+libqt4-sql-mysql, nothing provides libqt4-sql-sqlite, nothing provides 
+libqt4-x11, nothing provides libraptor1, nothing provides librasqal2, 
+nothing provides libraw1394-8, nothing provides librcc0, nothing 
+provides librcd0, nothing provides libreadline6, nothing provides 
+libredland0, nothing provides libreiserfs, nothing provides 
+libsamplerate, nothing provides libselinux1, nothing provides 
+libsensors4, nothing provides libsepol1, nothing provides libsigc++2, 
+nothing provides libsmbclient0, nothing provides libsmbios-bin, nothing 
+provides libsmbios2, nothing provides libsndfile, nothing provides 
+libsoftokn3, nothing provides libsoprano4, nothing provides libspectre1, 
+nothing provides libspeex1, nothing provides libsqlite3-0, nothing 
+provides libssh2-1, nothing provides libssh4, nothing provides 
+libstdc++45, nothing provides libstorage, nothing provides libstrigi0, 
+nothing provides libtag-extras1, nothing provides libtalloc2, nothing 
+provides libtasn1, nothing provides libtasn1-3, nothing provides 
+libtdb1, nothing provides libtevent0, nothing provides libtheora0, 
+nothing provides libtidy-0_99-0, nothing provides libtiff3, nothing 
+provides libtirpc1, nothing provides libudev0, nothing provides 
+libupower-glib1, nothing provides liburiparser1, nothing provides 
+libusb-0_1-4, nothing provides libusb-1_0-0, nothing provides 
+libusbmuxd1, nothing provides libuuid1, nothing provides libv4l, nothing 
+provides libv4l1-0, nothing provides libv4l2-0, nothing provides 
+libv4lconvert0, nothing provides libvisual, nothing provides 
+libvmtools0, nothing provides libvorbis, nothing provides libwbclient0, 
+nothing provides libx86, nothing provides libx86emu1, nothing provides 
+libxcrypt, nothing provides libxine1, nothing provides libxine1-pulse, 
+nothing provides libxml2, nothing provides libxml2-python, nothing 
+provides libxslt, nothing provides libzio, nothing provides libzip1, 
+nothing provides libzypp, nothing provides licenses, nothing provides 
+limal, nothing provides limal-ca-mgm, nothing provides 
+limal-ca-mgm-perl, nothing provides limal-nfs-server, nothing provides 
+limal-nfs-server-perl, nothing provides limal-perl, nothing provides 
+linux-atm-lib, nothing provides lockdev, nothing provides login, nothing 
+provides logrotate, nothing provides lokalize, nothing provides lomoco, 
+nothing provides lsb-release, nothing provides lsof, nothing provides 
+lsscsi, nothing provides lukemftp, nothing provides mailx, nothing 
+provides man, nothing provides manufacturer-PPDs, nothing provides 
+marble, nothing provides master-boot-code, nothing provides mc, nothing 
+provides mdadm, nothing provides meanwhile, nothing provides 
+microcode_ctl, nothing provides mingetty, nothing provides mkinitrd, 
+nothing provides mozilla-nspr, nothing provides mozilla-nss, nothing 
+provides mozilla-nss-certs, nothing provides mpt-firmware, nothing 
+provides mtools, nothing provides multipath-tools, nothing provides 
+mysql-community-server, nothing provides mysql-community-server-client, 
+nothing provides nano, nothing provides ncurses-utils, nothing provides 
+ndiswrapper, nothing provides ndiswrapper-kmp-default, nothing provides 
+net-tools, nothing provides netcat, nothing provides nfs-client, nothing 
+provides nfsidmap, nothing provides nss-mdns, nothing provides nss_ldap, 
+nothing provides ntfs-3g, nothing provides ntfsprogs, nothing provides 
+ntp, nothing provides numlockx, nothing provides obex-data-server, 
+nothing provides okular, nothing provides open-vm-tools, nothing 
+provides open-vm-tools-gui, nothing provides openSUSE-build-key, nothing 
+provides openSUSE-release, nothing provides openSUSE-release-livecd-kde, 
+nothing provides openldap2-client, nothing provides openslp, nothing 
+provides openssh, nothing provides openssh-askpass, nothing provides 
+openssl, nothing provides opensuse-codecs-installer, nothing provides 
+openvpn, nothing provides orbit2, nothing provides oxygen-icon-theme, 
+nothing provides oxygen-molecule, nothing provides palapeli, nothing 
+provides palapeli-data, nothing provides pam_apparmor, nothing provides 
+pam_fp, nothing provides pam_krb5, nothing provides pam_ldap, nothing 
+provides pam_mount, nothing provides pango, nothing provides parley, 
+nothing provides parted, nothing provides patterns-openSUSE-apparmor, 
+nothing provides patterns-openSUSE-base, nothing provides 
+patterns-openSUSE-enhanced_base, nothing provides 
+patterns-openSUSE-fonts, nothing provides patterns-openSUSE-games, 
+nothing provides patterns-openSUSE-imaging, nothing provides 
+patterns-openSUSE-kde4, nothing provides patterns-openSUSE-kde4_basis, 
+nothing provides patterns-openSUSE-kde4_games, nothing provides 
+patterns-openSUSE-kde4_imaging, nothing provides 
+patterns-openSUSE-kde4_internet, nothing provides 
+patterns-openSUSE-kde4_multimedia, nothing provides 
+patterns-openSUSE-kde4_pure, nothing provides 
+patterns-openSUSE-kde4_utilities, nothing provides 
+patterns-openSUSE-kde4_yast, nothing provides 
+patterns-openSUSE-multimedia, nothing provides 
+patterns-openSUSE-non_oss, nothing provides 
+patterns-openSUSE-sw_management, nothing provides 
+patterns-openSUSE-sw_management_kde4, nothing provides 
+patterns-openSUSE-x11, nothing provides patterns-openSUSE-yast2_basis, 
+nothing provides patterns-openSUSE-yast2_install_wf, nothing provides 
+pciutils, nothing provides pciutils-ids, nothing provides pcmciautils, 
+nothing provides pcre, nothing provides perl, nothing provides 
+perl-Bootloader, nothing provides perl-Clone, nothing provides 
+perl-Config-Crontab, nothing provides perl-Crypt-SSLeay, nothing 
+provides perl-Crypt-SmbHash, nothing provides perl-DBD-CSV, nothing 
+provides perl-DBD-SQLite, nothing provides perl-DBI, nothing provides 
+perl-Digest-HMAC, nothing provides perl-Digest-MD4, nothing provides 
+perl-Digest-SHA1, nothing provides perl-File-Tail, nothing provides 
+perl-HTML-Parser, nothing provides perl-HTML-Tagset, nothing provides 
+perl-MLDBM, nothing provides perl-Net-Daemon, nothing provides 
+perl-NetxAP, nothing provides perl-Params-Util, nothing provides 
+perl-Parse-RecDescent, nothing provides perl-PlRPC, nothing provides 
+perl-RPC-XML, nothing provides perl-SQL-Statement, nothing provides 
+perl-TermReadKey, nothing provides perl-Text-CSV_XS, nothing provides 
+perl-TimeDate, nothing provides perl-URI, nothing provides 
+perl-WWW-Curl, nothing provides perl-X500-DN, nothing provides 
+perl-XML-LibXML, nothing provides perl-XML-NamespaceSupport, nothing 
+provides perl-XML-Parser, nothing provides perl-XML-SAX, nothing 
+provides perl-XML-Simple, nothing provides perl-XML-Writer, nothing 
+provides perl-XML-XPath, nothing provides perl-base, nothing provides 
+perl-gettext, nothing provides perl-libapparmor, nothing provides 
+perl-libwww-perl, nothing provides permissions, nothing provides phonon, 
+nothing provides phonon-backend-xine, nothing provides pinentry, nothing 
+provides pinentry-qt4, nothing provides pkcs11-helper, nothing provides 
+pkg-config, nothing provides plasma-addons, nothing provides 
+plasma-addons-marble, nothing provides plasma-theme-aya, nothing 
+provides plasmoid-quickaccess, nothing provides pm-profiler, nothing 
+provides pm-utils, nothing provides pm-utils-ndiswrapper, nothing 
+provides polkit, nothing provides polkit-default-privs, nothing provides 
+polkit-gnome, nothing provides polkit-kde-1, nothing provides 
+poppler-tools, nothing provides portaudio, nothing provides postfix, 
+nothing provides ppp, nothing provides pptp, nothing provides preload, 
+nothing provides preload-kmp-default, nothing provides procps, nothing 
+provides ptools, nothing provides pullin-flash-player, nothing provides 
+pullin-msttf-fonts, nothing provides pwdutils, nothing provides python, 
+nothing provides python-base, nothing provides python-kde4, nothing 
+provides python-kdebase4, nothing provides python-qt4, nothing provides 
+python-satsolver, nothing provides python-simplejson, nothing provides 
+python-sip, nothing provides python-urlgrabber, nothing provides 
+python-xml, nothing provides qt4-qtscript, nothing provides quota, 
+nothing provides rcc-runtime, nothing provides recode, nothing provides 
+redland, nothing provides reiserfs, nothing provides 
+release-notes-openSUSE, nothing provides rocs, nothing provides rpcbind, 
+nothing provides rpm, nothing provides rpm-python, nothing provides 
+rsync, nothing provides rsyslog, nothing provides samba-client, nothing 
+provides satsolver-tools, nothing provides sax2-tools, nothing provides 
+sbl, nothing provides scout, nothing provides sed, nothing provides 
+setserial, nothing provides sg3_utils, nothing provides 
+shared-desktop-ontologies, nothing provides shared-mime-info, nothing 
+provides slang, nothing provides smartmontools, nothing provides smolt, 
+nothing provides smolt-gui, nothing provides smp_utils, nothing provides 
+smpppd, nothing provides soprano, nothing provides 
+soprano-backend-virtuoso, nothing provides splashy, nothing provides 
+step, nothing provides strace, nothing provides strigi, nothing provides 
+sudo, nothing provides suseRegister, nothing provides susehelp, nothing 
+provides susehelp_en, nothing provides suspend, nothing provides 
+sweeper, nothing provides synaptiks, nothing provides sysconfig, nothing 
+provides sysfsutils, nothing provides systemtap-runtime, nothing 
+provides sysvinit, nothing provides sysvinit-tools, nothing provides 
+taglib, nothing provides tcpd, nothing provides terminfo-base, nothing 
+provides tightvnc, nothing provides timezone, nothing provides 
+translation-update, nothing provides udisks, nothing provides ulimit, 
+nothing provides unrar, nothing provides unscd, nothing provides unzip, 
+nothing provides update-alternatives, nothing provides upower, nothing 
+provides upower-lang, nothing provides usbmuxd, nothing provides 
+usbutils, nothing provides utempter, nothing provides util-linux, 
+nothing provides vim, nothing provides vim-base, nothing provides 
+virtualbox-ose-guest-kmp-default, nothing provides 
+virtualbox-ose-guest-tools, nothing provides virtuoso-drivers, nothing 
+provides virtuoso-server, nothing provides vmware-guest-kmp-default, 
+nothing provides vorbis-tools, nothing provides vpnc, nothing provides 
+w3m, nothing provides wdiff, nothing provides wget, nothing provides 
+wireless-regdb, nothing provides wireless-tools, nothing provides wodim, 
+nothing provides wpa_supplicant, nothing provides wvdial, nothing 
+provides wvstreams, nothing provides x11-input-fujitsu, nothing provides 
+x11-tools, nothing provides xdg-menu, nothing provides xdg-user-dirs, 
+nothing provides xdg-utils, nothing provides xfsdump, nothing provides 
+xfsprogs, nothing provides xinetd, nothing provides xkeyboard-config, 
+nothing provides xorg-x11, nothing provides xorg-x11-Xvnc, nothing 
+provides xorg-x11-driver-input, nothing provides xorg-x11-driver-video, 
+nothing provides xorg-x11-driver-video-intel-legacy, nothing provides 
+xorg-x11-driver-video-nouveau, nothing provides 
+xorg-x11-driver-video-radeonhd, nothing provides 
+xorg-x11-driver-virtualbox-ose, nothing provides xorg-x11-fonts-core, 
+nothing provides xorg-x11-libICE, nothing provides xorg-x11-libSM, 
+nothing provides xorg-x11-libX11, nothing provides 
+xorg-x11-libX11-ccache, nothing provides xorg-x11-libXau, nothing 
+provides xorg-x11-libXdmcp, nothing provides xorg-x11-libXext, nothing 
+provides xorg-x11-libXfixes, nothing provides xorg-x11-libXmu, nothing 
+provides xorg-x11-libXp, nothing provides xorg-x11-libXpm, nothing 
+provides xorg-x11-libXprintUtil, nothing provides xorg-x11-libXrender, 
+nothing provides xorg-x11-libXt, nothing provides xorg-x11-libXv, 
+nothing provides xorg-x11-libfontenc, nothing provides xorg-x11-libs, 
+nothing provides xorg-x11-libxcb, nothing provides xorg-x11-libxkbfile, 
+nothing provides xorg-x11-server, nothing provides xorg-x11-xauth, 
+nothing provides xstroke, nothing provides xterm, nothing provides xz, 
+nothing provides yast2, nothing provides yast2-add-on, nothing provides 
+yast2-apparmor, nothing provides yast2-backup, nothing provides 
+yast2-bootloader, nothing provides yast2-branding-openSUSE, nothing 
+provides yast2-control-center, nothing provides yast2-control-center-qt, 
+nothing provides yast2-core, nothing provides yast2-country, nothing 
+provides yast2-country-data, nothing provides yast2-dbus-client, nothing 
+provides yast2-fingerprint-reader, nothing provides yast2-firewall, 
+nothing provides yast2-hardware-detection, nothing provides yast2-inetd, 
+nothing provides yast2-installation, nothing provides yast2-irda, 
+nothing provides yast2-iscsi-client, nothing provides 
+yast2-kerberos-client, nothing provides yast2-ldap, nothing provides 
+yast2-ldap-client, nothing provides yast2-libyui, nothing provides 
+yast2-mail, nothing provides yast2-metapackage-handler, nothing provides 
+yast2-mouse, nothing provides yast2-ncurses, nothing provides 
+yast2-ncurses-pkg, nothing provides yast2-network, nothing provides 
+yast2-nfs-client, nothing provides yast2-nfs-common, nothing provides 
+yast2-nis-client, nothing provides yast2-ntp-client, nothing provides 
+yast2-online-update, nothing provides yast2-online-update-frontend, 
+nothing provides yast2-packager, nothing provides yast2-packager-webpin, 
+nothing provides yast2-pam, nothing provides yast2-perl-bindings, 
+nothing provides yast2-pkg-bindings, nothing provides yast2-printer, 
+nothing provides yast2-qt, nothing provides yast2-qt-pkg, nothing 
+provides yast2-registration, nothing provides 
+yast2-registration-branding-openSUSE, nothing provides yast2-restore, 
+nothing provides yast2-runlevel, nothing provides yast2-samba-client, 
+nothing provides yast2-samba-server, nothing provides yast2-scanner, 
+nothing provides yast2-security, nothing provides yast2-slp, nothing 
+provides yast2-sound, nothing provides yast2-storage, nothing provides 
+yast2-sudo, nothing provides yast2-sysconfig, nothing provides 
+yast2-theme-openSUSE, nothing provides yast2-theme-openSUSE-Oxygen, 
+nothing provides yast2-trans-en_US, nothing provides yast2-trans-stats, 
+nothing provides yast2-transfer, nothing provides yast2-tune, nothing 
+provides yast2-tv, nothing provides yast2-update, nothing provides 
+yast2-users, nothing provides yast2-vm, nothing provides yast2-xml, 
+nothing provides yast2-ycp-ui-bindings, nothing provides yp-tools, 
+nothing provides ypbind, nothing provides zd1211-firmware, nothing 
+provides zip, nothing provides zisofs-tools, nothing provides zlib, 
+nothing provides autoconf, nothing provides automake, nothing provides 
+binutils, nothing provides gcc, nothing provides gcc45, nothing provides 
+libtool
+
+what's wrong with that? How can I get the image?
+Help me please.
+
+Thanks.
+kevin
+&gt;<i>
+</I>&gt;<i> Greetings,
+</I>&gt;<i> -- Javier Llorente -------------- next part -------------- A non-text 
+</I>&gt;<i> attachment was scrubbed... Name: not available Type: 
+</I>&gt;<i> application/pgp-signature Size: 198 bytes Desc: This is a digitally 
+</I>&gt;<i> signed message part. URL: 
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20100910/ee4c5884/attachment-0001.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20100910/ee4c5884/attachment-0001.pgp</A>&gt; 
+</I>&gt;<i> ------------------------------
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002020.html">[Kiwi-users] kiwi: Weekly report 2010-09-05 - 2010-09-10...
+</A></li>
+	<LI>Next message: <A HREF="002027.html">[Kiwi-users] Kiwi-users Digest, Vol 44, Issue 9
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2024">[ date ]</a>
+              <a href="thread.html#2024">[ thread ]</a>
+              <a href="subject.html#2024">[ subject ]</a>
+              <a href="author.html#2024">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

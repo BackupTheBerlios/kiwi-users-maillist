@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Resolving opensuse://&lt;project name&gt; broken
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Resolving%20opensuse%3A//%3Cproject%20name%3E%20broken&In-Reply-To=%3C200711061803.00277.jcbornschlegel%40suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000130.html">
+   <LINK REL="Next"  HREF="000132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Resolving opensuse://&lt;project name&gt; broken</H1>
+    <B>Jan-Christoph Bornschlegel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Resolving%20opensuse%3A//%3Cproject%20name%3E%20broken&In-Reply-To=%3C200711061803.00277.jcbornschlegel%40suse.de%3E"
+       TITLE="[Kiwi-users] Resolving opensuse://&lt;project name&gt; broken">jcbornschlegel at suse.de
+       </A><BR>
+    <I>Tue Nov  6 18:02:59 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000130.html">[Kiwi-users] Waiting for mandatory network device
+</A></li>
+        <LI>Next message: <A HREF="000132.html">[Kiwi-users] Resolving opensuse://&lt;project name&gt; broken
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi folks,
+
+I ran into trouble today trying to resolve &quot;<A HREF="opensuse://&lt;project">opensuse://&lt;project</A>&gt; paths.
+According to Adrian the path must be set differently.
+
+I prepared a patch that fixes this; it's just one variable in kiwi.pl pointing 
+to the wrong server. It is accessed in modules/KIWIURL.pm in the method 
+openSUSEpath.
+
+Another small thing in the patch is the problem with forking the Perl 
+debugger, which fails to get a TTY when the KIWILog forks.
+The small hack in the beginning ($DB::...) fixes that, so for those who use 
+the debugger (I know, debugging is for losers *g*)
+
+Marcus, I can create a different patch without the -d if you wish.
+
+The other patch fixes my KIWIXML::splitPathHTTP method which fails if the base 
+URL doesn't return a dir listing but something different.
+
+So long,
+Jan
+-- 
+Jan-Christoph Bornschlegel (Build Service Team)
+SUSE LINUX Products GmbH, GF: Markus Rex, HRB 16746 (AG N&#252;rnberg)
+-----------------------------------------------------------------
+No music playing at present.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.pl.patch
+Type: text/x-diff
+Size: 648 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20071106/d279d2b8/attachment.patch">https://lists.berlios.de/pipermail/kiwi-users/attachments/20071106/d279d2b8/attachment.patch</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: KIWIXML-splitPathHTTP.patch
+Type: text/x-diff
+Size: 2109 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20071106/d279d2b8/attachment-0001.patch">https://lists.berlios.de/pipermail/kiwi-users/attachments/20071106/d279d2b8/attachment-0001.patch</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000130.html">[Kiwi-users] Waiting for mandatory network device
+</A></li>
+	<LI>Next message: <A HREF="000132.html">[Kiwi-users] Resolving opensuse://&lt;project name&gt; broken
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

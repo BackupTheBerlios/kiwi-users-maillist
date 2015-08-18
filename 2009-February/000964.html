@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] SuSE-NLD splash screen
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SuSE-NLD%20splash%20screen&In-Reply-To=%3C20090204103046.GA10392%40idefix.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000960.html">
+   <LINK REL="Next"  HREF="000965.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] SuSE-NLD splash screen</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20SuSE-NLD%20splash%20screen&In-Reply-To=%3C20090204103046.GA10392%40idefix.suse.de%3E"
+       TITLE="[Kiwi-users] SuSE-NLD splash screen">ms at novell.com
+       </A><BR>
+    <I>Wed Feb  4 11:30:46 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000960.html">[Kiwi-users] SuSE-NLD splash screen
+</A></li>
+        <LI>Next message: <A HREF="000965.html">[Kiwi-users] why dereference symlinks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#964">[ date ]</a>
+              <a href="thread.html#964">[ thread ]</a>
+              <a href="subject.html#964">[ subject ]</a>
+              <a href="author.html#964">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I use OEM DESCR profile in order to preload SLED10 on workstations
+</I>&gt;<i> Just a comment on splashscreen for SLED10.
+</I>&gt;<i> I manualy create all the directory below /etc with the themes SuSE-NLD. 
+</I>&gt;<i> Some steps are missing, you should make a new initrd to setup the 
+</I>&gt;<i> splashscreen initrd -s 800x600.
+</I>&gt;<i> I also modify the /etc/sysconfig/bootsplash to point to the right scheme 
+</I>&gt;<i> SuSE-NLD.
+</I>&gt;<i>
+</I>&gt;<i> How can I manage that with kiwi ?. just for the mkinitrd -s
+</I>
+I already sent you an e-mail about custom branding for grub and
+the splash screen: You need your own copy of the kiwi boot image
+
+---snip---
+
+cp -a /usr/share/kiwi/image/oemboot/suse-SLED10 \
+   /usr/share/kiwi/image/oemboot/suse-SLED10-Thierry
+
+cd /usr/share/kiwi/image/oemboot/suse-SLED10-Thierry
+rm .checksum.md5
+mkdir -p root/etc/bootsplash/themes/SuSE-NLD/images
+
+Now check the contents of the package bootsplash-theme-SuSE-NLD with rpm
+you can do that by calling &quot;rpm -qpl
+/path/to/your/SLED/repo/suse/i586/bootsplash-theme-SuSE-NLD&quot;. You will see many
+picture and logo files in the SuSE-NLD/images directory. If you replace by exact
+names the one you want to adapt
+according to your needs and copy it to the directory created above you will
+get your own branding in grub and as part of the bootsplash
+
+in your config.xml file you need to change the boot attribute to point
+to your 
+
+   boot=&quot;oemboot/suse-SLED10-Thierry&quot;
+
+boot image description and after you
+call the create step again you should see your own branded version
+
+---snap---
+
+kiwi re-creates the initrd from your version of the boot image and
+therefore includes the branded files
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000960.html">[Kiwi-users] SuSE-NLD splash screen
+</A></li>
+	<LI>Next message: <A HREF="000965.html">[Kiwi-users] why dereference symlinks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#964">[ date ]</a>
+              <a href="thread.html#964">[ thread ]</a>
+              <a href="subject.html#964">[ subject ]</a>
+              <a href="author.html#964">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

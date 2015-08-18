@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%20directory&In-Reply-To=%3C20101123164242.GA19928%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002155.html">
+   <LINK REL="Next"  HREF="002157.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%20directory&In-Reply-To=%3C20101123164242.GA19928%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory">ms at novell.com
+       </A><BR>
+    <I>Tue Nov 23 17:42:42 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002155.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+        <LI>Next message: <A HREF="002157.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2156">[ date ]</a>
+              <a href="thread.html#2156">[ thread ]</a>
+              <a href="subject.html#2156">[ subject ]</a>
+              <a href="author.html#2156">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> dd if=/path/Open-PC_image.raw of=/dev/sdc bs=32k
+</I>&gt;<i> sdc is another disk attached to a VirtualBox machine, where I always put my 
+</I>&gt;<i> kiwi images for testing. So before, sdc contained an openSUSE-based OS.
+</I>&gt;<i> This is the first time that I have the busy /home partition issue.
+</I>
+ok got it
+
+&gt;<i> Image with patch tested! :-)
+</I>&gt;<i> I don't get the unlink or busy messages anymore. Regarding sizes:
+</I>&gt;<i> LVRoot: 5.02 GB, LVSwap: 1.00 GB, LVhome: 1.03 GB and 904 MB unassigned free 
+</I>&gt;<i> space. /dev/sda1 uses 60.05 MB (/lvmboot) and /dev/sda2 uses 7.94 GB (LVM). 
+</I>&gt;<i> I have just realized that I forgot to change one thing. I have
+</I>&gt;<i> &lt;volume name=&quot;/home&quot; freespace=&quot;1024M&quot;/&gt;
+</I>&gt;<i> instead of
+</I>&gt;<i> &lt;volume name=&quot;/home&quot; size=&quot;1024M&quot;/&gt;
+</I>&gt;<i> I am going to rebuild the image &quot;with size&quot;. More info later :-)
+</I>
+That looks better now, so the disk is ~8G ? Could you attach the
+/var/log/boot.kiwi file ? Don't understand why there is still ~1G
+unassigned free after kiwi called &quot;lvextend -l 100%FREE&quot;. Is it
+possible to assign the free ~1G to LVRoot ?
+
+&gt;<i> One small detail: kiwi names the lvs LVRoot and LVhome. Is it possible
+</I>&gt;<i> to call it LVHome (with the H in uppercase so that it matches the
+</I>&gt;<i> naming style)?
+</I>
+unfortunately not because the name is created by the name of the directory
+in the filesystem. So if your /home directory is not named /Home the name
+will stay LVhome
+
+&gt;<i> (Offtopic). Do you happen to know any app that converts raw to
+</I>&gt;<i> Acronis' and/or Norton Ghost's format?
+</I>
+They are proprietary like hyperV so I'm afraid I don't have a tool at hand
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002155.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+	<LI>Next message: <A HREF="002157.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2156">[ date ]</a>
+              <a href="thread.html#2156">[ thread ]</a>
+              <a href="subject.html#2156">[ subject ]</a>
+              <a href="author.html#2156">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

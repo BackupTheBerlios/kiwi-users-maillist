@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimnUrMu3w2R2x_1jLGoQeK%3DLDh34t9nLXsTf3RL%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002462.html">
+   <LINK REL="Next"  HREF="002464.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimnUrMu3w2R2x_1jLGoQeK%3DLDh34t9nLXsTf3RL%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Sat Mar 12 02:40:53 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002462.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002464.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2463">[ date ]</a>
+              <a href="thread.html#2463">[ thread ]</a>
+              <a href="subject.html#2463">[ subject ]</a>
+              <a href="author.html#2463">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Mar 11, 2011 at 4:16 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 03/11/2011 03:27 PM, Chris Cunha wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Fri, Mar 11, 2011 at 2:32 PM, Robert Schweikert
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; &#160;wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> On 03/11/2011 01:57 PM, Chris Cunha wrote:
+</I>&gt;&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> ok thanks Robert,
+</I>&gt;&gt;&gt;&gt;<i> It's installed and ready to go.
+</I>&gt;&gt;&gt;&gt;<i> I just made the changes to the config.xml file which looks like this:
+</I>&gt;&gt;&gt;&gt;<i> <A HREF="http://paste.opensuse.org/53332192">http://paste.opensuse.org/53332192</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> You should set up swap space:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &lt;type....&gt;
+</I>&gt;&gt;&gt;<i> &#160; &#160;&lt;oemconfig&gt;
+</I>&gt;&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;oem-swap&gt;true&lt;/oem-swap&gt;
+</I>&gt;&gt;&gt;<i> &#160; &#160; &#160; &#160;&lt;oem-swapsize&gt;AN_INT_FOR_SWAP_IN_MB&lt;/oem-swapsize&gt;
+</I>&gt;&gt;&gt;<i> &#160; &#160;&lt;/oemconfig&gt;
+</I>&gt;&gt;&gt;<i> &lt;/type&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> I'm not familiar with the OEM type image as I've only worked with the
+</I>&gt;&gt;&gt;&gt;<i> ISO type and I'm getting quite a few (15) errors that read
+</I>&gt;&gt;&gt;&gt;<i> &#160;&quot;No update candidate for 'lxtask-0.1.3-20.1.i586'. The highest
+</I>&gt;&gt;&gt;&gt;<i> available version is already installed.&quot;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> That is not an error, the package manager is just telling you that the
+</I>&gt;&gt;&gt;<i> latest version of the package is already installed and you're trying to
+</I>&gt;&gt;&gt;<i> install it again.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Usually you would not see these messages, thus there is probably a real
+</I>&gt;&gt;&gt;<i> error in your log file, most likely for a package that cannot be found.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> You will have to post the proper error message to get help.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Robert
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> --
+</I>&gt;&gt;&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;&gt;&gt;<i> Tech Lead
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;&gt;&gt;<i> 781-464-8147
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Novell
+</I>&gt;&gt;&gt;<i> Making IT Work As One
+</I>&gt;&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Ahh &#160;I'm not sure what the heck is going on here but it won't get
+</I>&gt;&gt;<i> through the &quot;prepare&quot; stage. &#160;I thought I was going to be able to
+</I>&gt;&gt;<i> change the image type and it would build. &#160;I would like to understand
+</I>&gt;&gt;<i> what's going on here better.
+</I>&gt;&gt;<i> Here is the log file.
+</I>&gt;&gt;<i> <A HREF="http://paste.opensuse.org/4048856">http://paste.opensuse.org/4048856</A>
+</I>&gt;<i>
+</I>&gt;<i> Searching for the strong &quot;error&quot; turns up the following message:
+</I>&gt;<i>
+</I>&gt;<i> #
+</I>&gt;<i> /usr/bin/gio-querymodules: error while loading shared libraries:
+</I>&gt;<i> libgobject-2.0.so.0: cannot open shared object file: No such file or
+</I>&gt;<i> directory
+</I>&gt;<i>
+</I>&gt;<i> This in turn indicates that glib2-2.24.1-2.5 does not specify it's
+</I>&gt;<i> dependencies correctly. You can file a bug for that.
+</I>&gt;<i>
+</I>&gt;<i> However, this is not the reason for the Kiwi failure ;)
+</I>&gt;<i>
+</I>&gt;<i> The reason for the failure is the following message in the log file:
+</I>&gt;<i>
+</I>&gt;<i> Package 'swfdec' not found.
+</I>&gt;<i>
+</I>&gt;<i> This is directly above the first &quot;No update candidate ...&quot; message and
+</I>&gt;<i> indicates that the specified 'swfdec' package could not be found by zypper.
+</I>&gt;<i>
+</I>&gt;<i> I searched OBS and according to the search, one should expect the swfdec
+</I>&gt;<i> package to be in the standard repository; which you have configured:
+</I>&gt;<i>
+</I>&gt;<i> &lt;repository type=&quot;yast2&quot;&gt;
+</I>&gt;<i> &#160; &#160;&lt;source path=&quot;<A HREF="opensuse://11.3/repo/oss/">opensuse://11.3/repo/oss/</A>&quot;/&gt;
+</I>&gt;<i> &lt;/repository&gt;
+</I>&gt;<i>
+</I>&gt;<i> However, when I pulled the repo up in the browser I couldn't find the
+</I>&gt;<i> package. There appears to be a problem with the repo. Please report/check on
+</I>&gt;<i> the opensuse mailing list.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+Thanks for looking.
+To add to the weirdness I tested if Yast could install the package and
+it could.  No issues.
+Then just for the heck of it I commented out that package from my
+config.xml file and the build failed again with the same exact error!!
+I checked for duplicates of that package in the config.xml file and
+it's there only once.  It turns out that the other package that
+requires it as a dep is &lt;package name=&quot;swfdec-browser-plugin&quot;/&gt;.  For
+now I disabled both of these and kiwi was able to complete it's
+&quot;prepare&quot; stage.
+
+Now on to the &quot;create&quot; stage.
+I ran the command : &quot;kiwi --create /home/linux/SOSbuild/SOS-unpack -d
+/home/linux/SOSbuild/SOS-final --type oem --fat-storage 300&quot;
+It ran for most of the create stage however it's gave this error
+twice. &quot;Mar-11 20:23:31 &lt;1&gt; : --&gt; Creating VMX boot image:
+oemboot/suse-11.3...
+Mar-11 20:23:31 &lt;3&gt; : Couldn't locate configuration directory
+/usr/share/kiwi/image/oemboot/suse-1failed&quot;
+
+I check the local location (on my working build machine) of
+/usr/share/kiwi/image/.  The &quot;image&quot; directory is empty.  I'm assuming
+that's were kiwi is looking for this file, not in the unpacked
+directory?  What is suppose to be in this directory?   I've never seen
+kiwi look here before in my past builds.
+
+Here is the complete log of this error.
+<A HREF="http://paste.opensuse.org/67794534">http://paste.opensuse.org/67794534</A>
+
+and again here is the config.xml file that was used with kiwi.
+<A HREF="http://paste.opensuse.org/50958742">http://paste.opensuse.org/50958742</A>
+Thanks guys.  This config did work before my changes to the image type
+and some of the new kiwi changes so I'm not sure if this is my fault
+or a bug.
+
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002462.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002464.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2463">[ date ]</a>
+              <a href="thread.html#2463">[ thread ]</a>
+              <a href="subject.html#2463">[ subject ]</a>
+              <a href="author.html#2463">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

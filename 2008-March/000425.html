@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] size detection error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20size%20detection%20error&In-Reply-To=%3C20080303142947.GA19645%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000424.html">
+   <LINK REL="Next"  HREF="000417.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] size detection error</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20size%20detection%20error&In-Reply-To=%3C20080303142947.GA19645%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] size detection error">ms at suse.de
+       </A><BR>
+    <I>Mon Mar  3 15:29:47 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000424.html">[Kiwi-users] size detection error
+</A></li>
+        <LI>Next message: <A HREF="000417.html">[Kiwi-users] live usb stick error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#425">[ date ]</a>
+              <a href="thread.html#425">[ thread ]</a>
+              <a href="subject.html#425">[ subject ]</a>
+              <a href="author.html#425">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt;  &gt; I get the same error even on client with 1GB RAM. The screenshot is of
+</I>&gt;<i> &gt;  &gt; VirtualBox with 512MB RAM. Is there more deps required to be added to
+</I>&gt;<i> &gt;  &gt; diskless profile?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  Hmm yes this is because I need the gzip program to get the size of
+</I>&gt;<i> &gt;  the tarball. In the diskless profile gzip is removed. Is it acceptable
+</I>&gt;<i> &gt;  for you to have gzip in your boot image ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> OK worked after adding gzip to diskless, shall I open an enhancement bug?
+</I>
+I already fixed it in 2.34 (head)
+
+&gt;<i> However, lowest RAM I can boot with is 256MB, we need to get it down
+</I>&gt;<i> to 128 at least, 64MB if possible.
+</I>&gt;<i> 
+</I>&gt;<i> I had 10.3 image booting off 128MB using aufs, I would like to do the
+</I>&gt;<i> same with split image too.
+</I>
+I know split is bigger than aufs that's because of the rootfs tarball
+which is part of the image and can't be removed. Maybe snorp has an idea
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000424.html">[Kiwi-users] size detection error
+</A></li>
+	<LI>Next message: <A HREF="000417.html">[Kiwi-users] live usb stick error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#425">[ date ]</a>
+              <a href="thread.html#425">[ thread ]</a>
+              <a href="subject.html#425">[ subject ]</a>
+              <a href="author.html#425">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-tools version question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C4D5D3B14.3010308%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002350.html">
+   <LINK REL="Next"  HREF="002354.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-tools version question</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C4D5D3B14.3010308%40novell.com%3E"
+       TITLE="[Kiwi-users] kiwi-tools version question">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Feb 17 16:13:24 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002350.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+        <LI>Next message: <A HREF="002354.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2352">[ date ]</a>
+              <a href="thread.html#2352">[ thread ]</a>
+              <a href="subject.html#2352">[ subject ]</a>
+              <a href="author.html#2352">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 02/17/2011 07:59 AM, Roger Oberholtzer wrote:
+&gt;<i> On Thu, 2011-02-17 at 12:33 +0100, Roger Oberholtzer wrote:
+</I>&gt;&gt;<i> On Thu, 2011-02-17 at 05:26 -0500, Robert Schweikert wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> I see that if I use the following type statement, this does bot happen:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Sorry now I am confused, what is &quot;this&quot; as in &quot;this does not happen&quot;?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Sorry. I am trying to distill a number of problems into short
+</I>&gt;&gt;<i> to-the-point messages. I am not always successful...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The mysterious inclusion and use of the suse-sle11-repo happens with
+</I>&gt;&gt;<i> this statement:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;/&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> but not this one:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  &lt;type image=&quot;split&quot; fsreadwrite=&quot;ext3&quot; fsreadonly=&quot;squashfs&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;/&gt;
+</I>&gt;&gt;<i>  
+</I>&gt;&gt;<i> All else is unchanged.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>   &lt;type image=&quot;split&quot; fsreadwrite=&quot;ext3&quot; fsreadonly=&quot;squashfs&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;/&gt;
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I thought you didn't want to use a split image.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Indeed I do not. But I as my attempt at making an image that works to
+</I>&gt;&gt;<i> completion has failed, I am starting from the examples again, and trying
+</I>&gt;&gt;<i> to see where I break something as I move forward to what I am really
+</I>&gt;&gt;<i> after. So, I started with the suse-oem-preload for 11.2 example, and
+</I>&gt;&gt;<i> made only the &lt;type/&gt; change described above. That alone is enough to
+</I>&gt;&gt;<i> break things badly. And I do not know why.
+</I>&gt;<i> 
+</I>&gt;<i> I have now moved this to an 11.3 system, with an updated install (from
+</I>&gt;<i> Virtualization:Appliances:) of kiwi. The build is still of an 11.2
+</I>&gt;<i> target. But it is all running on an 11.3 system. And I get the same use
+</I>&gt;<i> of suse-sle11-repo with the modified type statement.
+</I>&gt;<i> 
+</I>&gt;<i> I am at a loss as to how to proceed. I feel like I must be an idiot and
+</I>&gt;<i> cannot see the obvious error.
+</I>&gt;<i> 
+</I>&gt;<i> My goal is to make a USB stick that will boot and then copy a preload
+</I>&gt;<i> image (openSUSE 11.2) to a target hard disk. The partition layout on the
+</I>&gt;<i> target hard disk should not be split. The target hard disk system should
+</I>&gt;<i> have file systems that are modifiable just as if I had installed the
+</I>&gt;<i> target from the openSUSE install DVD.
+</I>&gt;<i> 
+</I>&gt;<i> Perhaps part of my confusion is that all the discussions are about a
+</I>&gt;<i> single image. But isn't it the case that there is one image that boots
+</I>&gt;<i> from the USB (and has some properties) and a preload image that will
+</I>&gt;<i> boot after being copied to some hard disk? 
+</I>
+Yes, there are technically two images, one is a special live system that
+knows how to dump the image intended for installation onto the target
+device. In config.xml you configure the image intended for installation.
+The config.xml for all intend and purposes has no influence on the
+&quot;special live image&quot; (I am glossing over some details here to simplify
+things a little bit).
+
+Therefore as a creator of an OEM image you do not have to worry about
+the &quot;image&quot; that does the installation. Focus on the image that you want
+installed, as that's the image you are configuring in your config tree
+(config.xml, config.sh, images.sh, and overlay-tree).
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002350.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+	<LI>Next message: <A HREF="002354.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2352">[ date ]</a>
+              <a href="thread.html#2352">[ thread ]</a>
+              <a href="subject.html#2352">[ subject ]</a>
+              <a href="author.html#2352">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

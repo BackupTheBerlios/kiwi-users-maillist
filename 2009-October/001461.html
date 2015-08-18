@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Packages attribute explanation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Packages%20attribute%20explanation&In-Reply-To=%3C20091001145503.GA3164%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001460.html">
+   <LINK REL="Next"  HREF="001462.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Packages attribute explanation</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Packages%20attribute%20explanation&In-Reply-To=%3C20091001145503.GA3164%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Packages attribute explanation">ms at novell.com
+       </A><BR>
+    <I>Thu Oct  1 16:55:03 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001460.html">[Kiwi-users] Packages attribute explanation
+</A></li>
+        <LI>Next message: <A HREF="001462.html">[Kiwi-users] Packages attribute explanation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1461">[ date ]</a>
+              <a href="thread.html#1461">[ thread ]</a>
+              <a href="subject.html#1461">[ subject ]</a>
+              <a href="author.html#1461">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i>  From the documentation it is not clear to me what the difference is 
+</I>&gt;<i> between &quot;patternType&quot; and &quot;patternPackageType&quot;.
+</I>&gt;<i> A more detailed explanation would be appreciated.
+</I>
+kiwi has its own pattern solver which is used if another
+packagemanager than zypper is used and no satsolver binding
+is available. Only in that case both attributes patternType
+and patternPackageType needs to be specified. In any other
+case only patternType is evaluated.
+
+SuSE pattern files (.pat) as you can find them in for example
+a SLE10 repo: suse/setup/descr/*.pat distinguishes between
+req (required), rec (recommended) and sug (suggested) packages
+and patterns.
+
+* The patternType defines which patterns of the types above
+  should be included
+
+* The patternPackageType defines which packages of the types
+  above listed in the patterns should be included.
+
+Example:
+
+pattern a
+  req: pattern b
+  req: pattern c
+  sug: pattern d
+
+pattern b
+  req: package x
+  sug: package y
+
+patternType=&quot;onlyRequired&quot; patternPackageType=&quot;plusSuggested&quot;
+would include the patterns a b and c and the packages x and y
+
+This relatively old code path in kiwi is not used very
+often as the pattern solving is mostly done by zypper directly
+or with help from the satsolver binding when using another
+package manager
+
+Would you mind to add that information to the docs in surely
+better English than I can express it ? :)
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001460.html">[Kiwi-users] Packages attribute explanation
+</A></li>
+	<LI>Next message: <A HREF="001462.html">[Kiwi-users] Packages attribute explanation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1461">[ date ]</a>
+              <a href="thread.html#1461">[ thread ]</a>
+              <a href="subject.html#1461">[ subject ]</a>
+              <a href="author.html#1461">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

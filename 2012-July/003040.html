@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20use%20KIWIQX%20without%20qw%28qxx%29%20in%205.03.37-484%20and%0A%20earlier&In-Reply-To=%3C20120726141202.GA7049%40d9.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003039.html">
+   <LINK REL="Next"  HREF="003042.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20use%20KIWIQX%20without%20qw%28qxx%29%20in%205.03.37-484%20and%0A%20earlier&In-Reply-To=%3C20120726141202.GA7049%40d9.ddts.net%3E"
+       TITLE="[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier">ms at suse.de
+       </A><BR>
+    <I>Thu Jul 26 16:12:03 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003039.html">[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier
+</A></li>
+        <LI>Next message: <A HREF="003042.html">[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3040">[ date ]</a>
+              <a href="thread.html#3040">[ thread ]</a>
+              <a href="subject.html#3040">[ subject ]</a>
+              <a href="author.html#3040">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> In
+</I>&gt;<i> <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_12.1/x86_64/kiwi-5.03.37-484.1.x86_64.rpm">http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_12.1/x86_64/kiwi-5.03.37-484.1.x86_64.rpm</A>
+</I>&gt;<i> /usr/sbin/kiwi uses KIWIQX without specifiying that it intends to use
+</I>&gt;<i> qxx.
+</I>&gt;<i> 
+</I>&gt;<i> This leads to
+</I>&gt;<i> 
+</I>&gt;<i> Undefined subroutine &amp;main::qxx called at /usr/sbin/kiwi line 102.
+</I>&gt;<i> 
+</I>&gt;<i> in a separate prepare call such as
+</I>&gt;<i> 
+</I>&gt;<i> kiwi -p /tmp/build-job/kiwi-system --root /tmp/build --debug --logfile /tmp/kiwi-prepare.log
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> There are some use cases where it doesn't fail, since all of the
+</I>&gt;<i> modules in /usr/share/kiwi/modules do a qualified import of KIWIQX.
+</I>
+Even though this does not happen when I test it you are right.
+The import should be qualified in kiwi.pl in the same way as it
+is done at any other place. So the following patch should fix it
+
+diff --git a/kiwi.pl b/kiwi.pl
+index 4b7cea5..c67cb7a 100755
+--- a/kiwi.pl
++++ b/kiwi.pl
+@@ -42,7 +42,7 @@ use KIWIImage;
+ use KIWIImageCreator;
+ use KIWIBoot;
+ use KIWIMigrate;
+-use KIWIQX;
++use KIWIQX qw (qxx);
+ use KIWIRuntimeChecker;
+ use KIWIImageFormat;
+ use KIWIXMLInfo;
+
+can you confirm ?
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003039.html">[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier
+</A></li>
+	<LI>Next message: <A HREF="003042.html">[Kiwi-users] use KIWIQX without qw(qxx) in 5.03.37-484 and earlier
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3040">[ date ]</a>
+              <a href="thread.html#3040">[ thread ]</a>
+              <a href="subject.html#3040">[ subject ]</a>
+              <a href="author.html#3040">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

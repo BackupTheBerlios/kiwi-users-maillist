@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] split image type and read-only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C20080225174447.GA12668%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000370.html">
+   <LINK REL="Next"  HREF="000372.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] split image type and read-only</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20split%20image%20type%20and%20read-only&In-Reply-To=%3C20080225174447.GA12668%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] split image type and read-only">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 25 18:44:48 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000370.html">[Kiwi-users] split image type and read-only
+</A></li>
+        <LI>Next message: <A HREF="000372.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#371">[ date ]</a>
+              <a href="thread.html#371">[ thread ]</a>
+              <a href="subject.html#371">[ subject ]</a>
+              <a href="author.html#371">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Oh, yeah, that makes sense.  I guess we never considered that someone may
+</I>&gt;<i> want to use a 'normal' filesystem in the read-only split scenario.
+</I>
+right :-)
+
+&gt;<i> &gt; &gt; I'm also having a hard time understanding the logic
+</I>&gt;<i> &gt; &gt; behind the contortions in the mountSystemCombined function from
+</I>&gt;<i> &gt; &gt; KIWILinuxRC.sh:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Ha Ha yeah that's a bit magic and should be more documented. I'll
+</I>&gt;<i> &gt; try to explain:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  1) mount the read-only partition to a /read-only mount point
+</I>&gt;<i> &gt;  2) mount a tmpfs to /mnt and extract the writable but temporary
+</I>&gt;<i> &gt;    in RAM data into it (tarball) /mnt will become the later
+</I>&gt;<i> &gt;    root directory (/)
+</I>&gt;<i> &gt;  3) create a read-only mountpoint below /mnt
+</I>&gt;<i> &gt;  4) move the /read-only mount into the tmpfs (/mnt) mount
+</I>&gt;<i> &gt;    all the read-only links which have been created as part of the tarball
+</I>&gt;<i> &gt;    will become valid if /mnt becomes /
+</I>&gt;<i> &gt;  *  NOW OPTIONALLY
+</I>&gt;<i> &gt;  5) mount the read-write partition to a /mnt/read-write mount point
+</I>&gt;<i> &gt;  6) create a link named /read-write because all the links created
+</I>&gt;<i> &gt;    in the tarball are pointing to /read-write
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; ===&gt; now move /mnt to / and got the tree
+</I>&gt;<i> &gt; ===&gt; I know it's weird. Snorp would you mind to add some comments
+</I>&gt;<i> &gt;     to your magic :-) Thanks
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> You explained it perfectly :)
+</I>
+Thanks ;)
+
+Attached is a patch which includes the patch by David and some
+source code docs. David are you ok with the change ?
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: kiwi.diff
+Type: text/x-patch
+Size: 2061 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/a509c4b8/attachment.bin">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080225/a509c4b8/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000370.html">[Kiwi-users] split image type and read-only
+</A></li>
+	<LI>Next message: <A HREF="000372.html">[Kiwi-users] split image type and read-only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#371">[ date ]</a>
+              <a href="thread.html#371">[ thread ]</a>
+              <a href="subject.html#371">[ subject ]</a>
+              <a href="author.html#371">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-12-05 - 2010-12-10...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-12-05%20-%202010-12-10...&In-Reply-To=%3C20101210143821.GA3037%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002197.html">
+   <LINK REL="Next"  HREF="002203.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-12-05 - 2010-12-10...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-12-05%20-%202010-12-10...&In-Reply-To=%3C20101210143821.GA3037%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-12-05 - 2010-12-10...">ms at suse.de
+       </A><BR>
+    <I>Fri Dec 10 15:38:21 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002197.html">[Kiwi-users] 4.67 problems with kiwi-hooks
+</A></li>
+        <LI>Next message: <A HREF="002203.html">[Kiwi-users] need to call ldconfig + depmod after boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2202">[ date ]</a>
+              <a href="thread.html#2202">[ thread ]</a>
+              <a href="subject.html#2202">[ subject ]</a>
+              <a href="author.html#2202">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.68 2010-12-05 - 2010-12-10
+--------------------------------------------------
+most important changes for this weeks release...
+
+commit db045f795f9329807a301f1235547c490020867f
+
+    - fixed location of local modprobe configuration file.
+      The new place is in /etc/modprobe.d/99-local.conf. Only if this
+      doesn't exist we will use /etc/modprobe.conf.local
+
+ in order to have this fix completed I had to checkin
+ another fix which didn't make it into this release. If you urgently
+ need it before next weeks relase just drop me a note or patch
+ your local version with the commit:
+
+     cb1e3bf223394b603adef01b4b52f54981fc8c6f
+
+
+commit 3514d5d0652305762c1fa42b91b343bbc5e10e2e
+
+    - make baseSetupInPlaceGITRepository more useful
+
+ I'm working on a possibility to track changes during the lifetime
+ of an appliance before it will be updated. I'm currently playing
+ around with git as I think it's a good tool to do that. You are
+ all invited to share even the most crazy idea about this topic
+ with us :-)
+
+
+commit 6d3ab89c806a03e807f5cafd5b5aec2e6e6cb74f
+
+    - added Option --check-config which validates the XML using the
+      new KIWIXMLValidator module. Along with the new module validation
+      from KIWIXML has been moved into the KIWIXMLValidator object
+
+ You can call:
+
+    kiwi --check-config /path/to/config.xml and it will check
+    if the configuration is ok. Thanks to Robert for doing this
+
+
+commit bb6d909aff8c0dc81ba44846270363ab3fe447b1
+
+    - added updateTypeList() function in KIWIXML which is required
+      if an accessor function changes the XML tree the internal data
+      structures needs to be updated too
+
+    most important fix for this release as it caused several
+    regressions :( Hope you didn't had too many problems with it
+
+
+Remember to have fun...
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002197.html">[Kiwi-users] 4.67 problems with kiwi-hooks
+</A></li>
+	<LI>Next message: <A HREF="002203.html">[Kiwi-users] need to call ldconfig + depmod after boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2202">[ date ]</a>
+              <a href="thread.html#2202">[ thread ]</a>
+              <a href="subject.html#2202">[ subject ]</a>
+              <a href="author.html#2202">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

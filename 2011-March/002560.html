@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config.sh rpm won't install
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20rpm%20won%27t%20install&In-Reply-To=%3CAANLkTi%3DDe222AbUf5bmxJ%2Bki1W6tGfDJvcXFcScXFe97%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002559.html">
+   <LINK REL="Next"  HREF="002561.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config.sh rpm won't install</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20rpm%20won%27t%20install&In-Reply-To=%3CAANLkTi%3DDe222AbUf5bmxJ%2Bki1W6tGfDJvcXFcScXFe97%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] config.sh rpm won't install">eportel6607 at gmail.com
+       </A><BR>
+    <I>Mon Mar 28 17:14:41 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002559.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+        <LI>Next message: <A HREF="002561.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2560">[ date ]</a>
+              <a href="thread.html#2560">[ thread ]</a>
+              <a href="subject.html#2560">[ subject ]</a>
+              <a href="author.html#2560">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Mar 26, 2011 at 4:34 PM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> and by the way the following bash statement:
+</I>&gt;<i>
+</I>&gt;&gt;<i> &#160; if [ $? ];then
+</I>&gt;&gt;<i> &#160; &#160; exit 1
+</I>&gt;&gt;<i> &#160; fi
+</I>&gt;<i>
+</I>&gt;<i> is invalid. the test parameters expects an expression
+</I>&gt;<i> but this expression is true if $? has a value not matter
+</I>&gt;<i> what value it is :) as $? is the return code of the last
+</I>&gt;<i> command it always has a value.
+</I>&gt;<i>
+</I>&gt;<i> so in short your script always exits with 1 and causes
+</I>&gt;<i> kiwi to stop here. The correct syntax is
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &#160; if [ $? -ne 0 ];then
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;exit 1
+</I>&gt;<i> &#160; fi
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+Ha ha ha.
+Interesting Marcus.  ROBERT! :) what did you do?!  Robert sugested
+that I add that if/then statement and verbose mode to the rpm install
+commands to help track down an issue with one of my packages.   It
+turns out there wasn't anything wrong it's just that the combo of the
+wrong version indicated in the config.sh script AND the fact that I
+didn't move a copy of the newly repaired packages to /opt is what
+caused alot of the issues.  Well I learn a lot this time.
+Once I fixed the packages, and actually remembered that those two
+packages where actually installed by the config.sh file from a local
+source everything works fine again.  I rebuilt the packages in OBS and
+didn't remember to take the finished rpm from OBS and move it to my
+local install source which is /opt in my case.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002559.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+	<LI>Next message: <A HREF="002561.html">[Kiwi-users] config.sh rpm won't install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2560">[ date ]</a>
+              <a href="thread.html#2560">[ thread ]</a>
+              <a href="subject.html#2560">[ subject ]</a>
+              <a href="author.html#2560">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Handling languages in KIWI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Handling%20languages%20in%20KIWI&In-Reply-To=%3C4D6D6E26.7030009%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002398.html">
+   <LINK REL="Next"  HREF="002430.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Handling languages in KIWI</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Handling%20languages%20in%20KIWI&In-Reply-To=%3C4D6D6E26.7030009%40novell.com%3E"
+       TITLE="[Kiwi-users] Handling languages in KIWI">rschweikert at novell.com
+       </A><BR>
+    <I>Tue Mar  1 23:07:34 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002398.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+        <LI>Next message: <A HREF="002430.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2403">[ date ]</a>
+              <a href="thread.html#2403">[ thread ]</a>
+              <a href="subject.html#2403">[ subject ]</a>
+              <a href="author.html#2403">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 03/01/2011 03:02 AM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I would like to know how KIWI handles languages.
+</I>&gt;<i> 
+</I>&gt;<i> In principal kiwi doesn't deal with the language setup of the
+</I>&gt;<i> later system image. That's because it's a system configuration task.
+</I>&gt;<i> But kiwi supports different locales and encodings while inside
+</I>&gt;<i> the initrd. This is used for example to display messages and
+</I>&gt;<i> license text and such. In order to have all the required locale
+</I>&gt;<i> fonts and encodings installed kiwi provides the locale element
+</I>&gt;<i> 
+</I>&gt;<i>    &lt;locale&gt;en_US,de_DE&lt;/locale&gt;
+</I>&gt;<i> 
+</I>&gt;<i> kiwi only supports UTF-8 locales inside the initrd though and
+</I>&gt;<i> we are using the unicode font to display any kind of messages
+</I>&gt;<i> 
+</I>&gt;&gt;<i> YaST has a &quot;languages&quot; 
+</I>&gt;&gt;<i> feature that allows you to just choose a language which autoselects packages 
+</I>&gt;&gt;<i> for that language instead of having to choose package by package for that 
+</I>&gt;&gt;<i> language. It's in YaST &#8594; Software management &#8594; View &#8594; languages
+</I>&gt;<i> 
+</I>&gt;<i> This is correct and imho you should make use of that feature
+</I>&gt;<i> by using a autoyast profile and place it inside the kiwi image
+</I>&gt;<i> description. Only problem here is that you need an installation
+</I>&gt;<i> source registered in zypper in order to install packages later
+</I>&gt;<i> on. You also can contact Michael Andres &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ma at novell.com</A>&gt;, he can
+</I>&gt;<i> tell you how to query zypper to create a list of language
+</I>&gt;<i> dependant packages
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Things like this help removing languages when installing from a Live CD that 
+</I>&gt;&gt;<i> has multiple languages (instead of having to know all the language 
+</I>&gt;&gt;<i> packages).ie: a KDE Live CD installation always ends up with English, German 
+</I>&gt;&gt;<i> and Russian packages, no matter what language you chose.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Unfortunately, zypper dropped the languages feature and I don't know if KIWI 
+</I>&gt;&gt;<i> has something similar.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> My idea is to clean up extra language packages from 
+</I>&gt;&gt;<i> <A HREF="http://svn.opensuse.org/svn/yast/trunk/live-">http://svn.opensuse.org/svn/yast/trunk/live-</A>
+</I>&gt;&gt;<i> installer/src/inst_live_cleanup.ycp
+</I>&gt;<i> 
+</I>&gt;<i> ----snip--------
+</I>&gt;<i> Some time ago I asked the same questions and got the following:
+</I>&gt;<i> 
+</I>&gt;<i>   Q: How to find all langauge specific packages.
+</I>&gt;<i> 
+</I>&gt;<i>   A: All packages providing 'locale(.*)'
+</I>&gt;<i> 
+</I>&gt;<i>   '.*' actually is '[PACKAGE:]LANG{;LANG}'
+</I>&gt;<i> 
+</I>&gt;<i> So you'd need &quot;zypper what-provides 'locale(*)'&quot; but AFAIK what-provides does
+</I>&gt;<i> not support any globing or regex.
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Thanks and in '[PACKAGE:]LANG{;LANG}' LANG is always the two letter
+</I>&gt;&gt;<i> language code like &quot;de&quot; or also de_DE or a mixture of both ?
+</I>&gt;<i> 
+</I>&gt;<i> Complete locale code, so it may even include '@' forms. E.g.:
+</I>&gt;<i> 
+</I>&gt;<i>   locale(sr;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">sr at Latn</A>;sv;ta;tr;uk;vi;wa;xh;zh_CN;zh_TW;zu)
+</I>&gt;<i> ----snap--------
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Does it make sense?
+</I>&gt;&gt;<i> Handling languages instead of packages in this case would facilitate this a 
+</I>&gt;&gt;<i> lot.
+</I>&gt;<i> 
+</I>&gt;<i> I agree it makes sense but kiwi doesn't have direct support for
+</I>&gt;<i> it. Let me know if the above helps you. If so we could check if we
+</I>&gt;<i> can add it to kiwi  
+</I>&gt;<i> 
+</I>
+Well, I'm not sure there is really anything to do on the Kiwi end. We
+already have baseUpdateSysConfig, i.e.
+
+baseUpdateSysConfig /etc/sysconfig/language RC_LANG ko_KR.UTF-8
+
+in config.sh should do the trick to set the locale of the image to
+Korean. Yes, the image creator still has to put all the Korean language
+packages into config.xml, but I am not sure that should really be Kiwi's
+responsibility. As far as package installation is concerned Kiwi depends
+on the specified packages and patterns in the XML, I am not sure we want
+to go in the &quot;Kiwi self selects packages based on some arbitrary spec&quot;
+direction. Plus available language packages are found relatively easy
+prior to image creations
+
+find /media/os11364 -name &quot;*lang*&quot;
+
+With the openSUSE-11.3-x86-64 ISO mounted to /media/os11364
+
+My $0.02
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002398.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+	<LI>Next message: <A HREF="002430.html">[Kiwi-users] Handling languages in KIWI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2403">[ date ]</a>
+              <a href="thread.html#2403">[ thread ]</a>
+              <a href="subject.html#2403">[ subject ]</a>
+              <a href="author.html#2403">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi changes since circa openSUSE 10.3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20changes%20since%20circa%20openSUSE%2010.3&In-Reply-To=%3C1234273954.7657.370.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000973.html">
+   <LINK REL="Next"  HREF="000976.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi changes since circa openSUSE 10.3</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20changes%20since%20circa%20openSUSE%2010.3&In-Reply-To=%3C1234273954.7657.370.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] kiwi changes since circa openSUSE 10.3">roger at opq.se
+       </A><BR>
+    <I>Tue Feb 10 14:52:34 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000973.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+        <LI>Next message: <A HREF="000976.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#975">[ date ]</a>
+              <a href="thread.html#975">[ thread ]</a>
+              <a href="subject.html#975">[ subject ]</a>
+              <a href="author.html#975">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I make a copy of the config.xml file. I do no edit in the original
+files.
+
+I used your example pxe file, with a few local changes. I can now make
+images. I removed the sound, X and firefox. Still, the boot image is 20
+MB. In 10.3 it was 1.5 MB. The initrd is 2.4 MB. In 10.23 is was 18 MB.
+So it seems things have moved around. The total is not so different.
+Things are just in different parts. The root image, however, has gone
+from 28 MB to 113 MB. I need to see what is going on there. And, of
+course, I need to see that the images work!
+
+Thanks for the help. I think I see what I need to do.
+
+BTW, your post to me did no show up on the list here. Just the post you
+sent direct to me. How odd. I left your post untouched below just in
+case.
+
+On Mon, 2009-02-09 at 16:55 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi Roger,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Last time I made new KIWI-based images was for openSUSE 10.3. I have
+</I>&gt;<i> &gt; decided to try my hand at making images for openSUSE 11.1 using the
+</I>&gt;<i> &gt; latest kiwi in the repository for that release. Just so I do not get too
+</I>&gt;<i> &gt; far behind!
+</I>&gt;<i> 
+</I>&gt;<i> I'm sorry that you got stuck but I'm sure we'll bring you
+</I>&gt;<i> back on the green line :)
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I decided to start with
+</I>&gt;<i> &gt; the /usr/share/kiwi/image/netboot/suse-11.1/config.xml script,
+</I>&gt;<i> 
+</I>&gt;<i> It's better to install the kiwi-doc package and start with the
+</I>&gt;<i> examples provided per distro here:
+</I>&gt;<i> 
+</I>&gt;<i>    /usr/share/doc/packages/kiwi/examples
+</I>&gt;<i> 
+</I>&gt;<i> &gt; and then make changes as I see fit based on my previous 10.3 script.
+</I>&gt;<i> &gt; The first change was that I wanted pxe images, so I changed
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 	&lt;type bootprofile=&quot;default&quot;&gt;cpio&lt;/type&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Please do not change the boot image descriptions as they are
+</I>&gt;<i> provided by kiwi itself. The boot image descriptions are used to
+</I>&gt;<i> create the initrd which is loaded by the kernel and containing
+</I>&gt;<i> the code to boot your machine according to the desired image type.
+</I>&gt;<i> If you change data there the checksum build at build time of the
+</I>&gt;<i> kiwi-desc-* package will no longer match and you can't create
+</I>&gt;<i> images anymore.
+</I>&gt;<i> 
+</I>&gt;<i> * So first I'd like to ask you to revert your changes made in the
+</I>&gt;<i>   /usr/share/kiwi/image/netboot/suse-11.1/ directory. Easiest way is
+</I>&gt;<i>   to re-install the kiwi-desc-netboot package
+</I>&gt;<i> 
+</I>&gt;<i> * after that install the kiwi-doc package and take a look to the
+</I>&gt;<i>   following example:
+</I>&gt;<i> 
+</I>&gt;<i>      /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-pxe-client
+</I>&gt;<i> 
+</I>&gt;<i>   If you like you can copy that directory or do your changes
+</I>&gt;<i>   directly in here
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 	&lt;type filesystem=&quot;squashfs&quot; boot=&quot;netboot/suse-11.1&quot;&gt;pxe&lt;/type&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; which seems sort of the right thing to do. What I am unsure about is the
+</I>&gt;<i> &gt; bootprofile= and boot= options. I think I want to use the diskless
+</I>&gt;<i> &gt; profile defined in the config.xml file. How do I specify that I want to
+</I>&gt;<i> &gt; use that profile?
+</I>&gt;<i> 
+</I>&gt;<i> To use the diskless profile your type setup should look like this:
+</I>&gt;<i> 
+</I>&gt;<i>    &lt;type 
+</I>&gt;<i>      filesystem=&quot;squashfs&quot;
+</I>&gt;<i>      boot=&quot;netboot/suse-11.1&quot;
+</I>&gt;<i>      bootprofile=&quot;diskless&quot;
+</I>&gt;<i>    &gt;pxe&lt;/type&gt;
+</I>&gt;<i> 
+</I>&gt;<i> &gt; And, if I specify bootprofile= what is the function of
+</I>&gt;<i> &gt; the boot= option?
+</I>&gt;<i> 
+</I>&gt;<i> The boot attribute specifies which boot image (initrd) should be
+</I>&gt;<i> used to boot your pxe image. The information of &quot;netboot/suse-11.1&quot;
+</I>&gt;<i> tells kiwi to automatically build a boot image from the description
+</I>&gt;<i> provided in /usr/share/kiwi/image/netboot/suse-11.1. These boot images
+</I>&gt;<i> are provided by kiwi itself and mainly contains the instructions
+</I>&gt;<i> to boot the system. The bootprofile is a customization of the selected
+</I>&gt;<i> boot image description. it tells kiwi to apply the diskless profile
+</I>&gt;<i> to the selected netboot/suse-11.1 boot image when kiwi creates it
+</I>&gt;<i> 
+</I>&gt;<i> &gt; But the real show stopper is that kiwi no longer finds my config.sh and
+</I>&gt;<i> &gt; image.sh scripts. They are in the current directory when I start kiwi.
+</I>&gt;<i> &gt; That did work before. I get a message that it is looking
+</I>&gt;<i> &gt; for /tmp/config.sh. I think this is a chroot place. I do not specify
+</I>&gt;<i> &gt; this anywhere. Where/how is that now specified?
+</I>&gt;<i> 
+</I>&gt;<i> I guess that's because you added them in the boot image description
+</I>&gt;<i> and not in your own system image description. As I said do not change
+</I>&gt;<i> the boot image descriptions you are free to do anything with your
+</I>&gt;<i> system image description (that's the one in /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-pxe-client or wherever you copied it to) but for the
+</I>&gt;<i> moment I recommend to leave /usr/share/kiwi/image/*boot untouched
+</I>&gt;<i> 
+</I>&gt;<i> Some words about the image build process. When you call the kiwi create
+</I>&gt;<i> step after you have successfully called the prepare step kiwi _automatically_
+</I>&gt;<i> calls itself to create the specified boot image (initrd). That happens
+</I>&gt;<i> because every operating system needs to boot somehow. On the very first
+</I>&gt;<i> level the kernel is loaded which is in your case done by the pxe implementation
+</I>&gt;<i> in the BIOS of your clients. After the kernel has been loaded the initrd
+</I>&gt;<i> is loaded. The initrd is what we call the boot image in kiwi. The initrd
+</I>&gt;<i> itself can be seen as kind of a very very small linux system... an image
+</I>&gt;<i> which is the reason why kiwi doesn't distinguish between a system and a
+</I>&gt;<i> boot image description from the level of describing them. After the initrd
+</I>&gt;<i> was loaded the kernel calls the program linuxrc or init and the coding
+</I>&gt;<i> of this program controlls the boot of the system. The main task of the
+</I>&gt;<i> initrd is to activate the _real_ system. The real system is what we
+</I>&gt;<i> call the system image in kiwi. So if you understand that there is a boot
+</I>&gt;<i> image description which you don't need to touch and a system image
+</I>&gt;<i> description which is the one you need to create you will be soon an
+</I>&gt;<i> appliance expert :-)
+</I>&gt;<i> 
+</I>&gt;<i> Hope that helps
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 8-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000973.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+	<LI>Next message: <A HREF="000976.html">[Kiwi-users] kiwi changes since circa openSUSE 10.3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#975">[ date ]</a>
+              <a href="thread.html#975">[ thread ]</a>
+              <a href="subject.html#975">[ subject ]</a>
+              <a href="author.html#975">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

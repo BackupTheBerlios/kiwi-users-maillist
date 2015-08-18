@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Problem with PXE image failing to re-partition /dev/sda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%20/dev/sda&In-Reply-To=%3C4C3F3096.1020605%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001900.html">
+   <LINK REL="Next"  HREF="001903.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Problem%20with%20PXE%20image%20failing%20to%20re-partition%20/dev/sda&In-Reply-To=%3C4C3F3096.1020605%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] Problem with PXE image failing to re-partition /dev/sda">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Thu Jul 15 18:00:22 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001900.html">[Kiwi-users] Deploying image to RAM ,CONF don't work
+</A></li>
+        <LI>Next message: <A HREF="001903.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1902">[ date ]</a>
+              <a href="thread.html#1902">[ thread ]</a>
+              <a href="subject.html#1902">[ subject ]</a>
+              <a href="author.html#1902">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Guys,
+
+If I've understood the documentation, changing the major version number
+of a PXE based image &quot;should&quot; tell the client that this is a brand new
+image and that the disks should get repartitioned with what ever
+partitioning format was defined in the config.xml file, correct?
+
+If so, I'm running into an issue where a PXE install is simply trying to
+use the last 54 Mbytes of storage that never got assigned during my
+first couple of runs. However, I did make a small change to the
+partitioning system from a standard pxedeploy structure to a split
+structure and then back again.
+
+I don't need to maintain data across reboots, except for the image
+itself, can someone please advice me on what a proper pxe deployment
+type would look like, based on that requirement.
+
+Here is what I have at this time:
+
+        &lt;preferences&gt;
+                &lt;type image=&quot;pxe&quot; filesystem=&quot;clicfs&quot;
+boot=&quot;netboot/suse-11.2&quot;&gt;
+                        &lt;size unit=&quot;M&quot;&gt;512&lt;/size&gt;
+                        &lt;pxedeploy server=&quot;10.2.0.2&quot; blocksize=&quot;4096&quot;&gt;
+                                &lt;partitions device=&quot;/dev/sda&quot;&gt;
+                                        &lt;partition type=&quot;swap&quot;
+number=&quot;1&quot; size=&quot;5&quot;/&gt;
+                                        &lt;partition type=&quot;L&quot; number=&quot;2&quot;
+size=&quot;image&quot; mountpoint=&quot;/&quot; target=&quot;true&quot;/&gt;
+                                        &lt;partition type=&quot;L&quot; number=&quot;3&quot;
+target=&quot;false&quot;/&gt;
+                                &lt;/partitions&gt;
+                                &lt;union ro=&quot;/dev/sda2&quot; rw=&quot;/dev/sda3&quot;
+type=&quot;clicfs&quot;/&gt;
+                        &lt;/pxedeploy&gt;
+                &lt;/type&gt;
+                &lt;version&gt;2.0.0&lt;/version&gt;
+                &lt;packagemanager&gt;zypper&lt;/packagemanager&gt;
+                &lt;rpm-check-signatures&gt;false&lt;/rpm-check-signatures&gt;
+                &lt;rpm-force&gt;true&lt;/rpm-force&gt;
+        &lt;/preferences&gt;
+
+Any assistance would be welcomed, thank you.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001900.html">[Kiwi-users] Deploying image to RAM ,CONF don't work
+</A></li>
+	<LI>Next message: <A HREF="001903.html">[Kiwi-users] Problem with PXE image failing to	re-partition	/dev/sda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1902">[ date ]</a>
+              <a href="thread.html#1902">[ thread ]</a>
+              <a href="subject.html#1902">[ subject ]</a>
+              <a href="author.html#1902">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

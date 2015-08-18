@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20Booting%20LiveCD%20using%2011.2%20M3%20as%20base%20repos&In-Reply-To=%3C20090723081125.GA9711%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001288.html">
+   <LINK REL="Next"  HREF="001287.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Failed%20Booting%20LiveCD%20using%2011.2%20M3%20as%20base%20repos&In-Reply-To=%3C20090723081125.GA9711%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos">ms at novell.com
+       </A><BR>
+    <I>Thu Jul 23 10:11:26 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001288.html">[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos
+</A></li>
+        <LI>Next message: <A HREF="001287.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1289">[ date ]</a>
+              <a href="thread.html#1289">[ thread ]</a>
+              <a href="subject.html#1289">[ subject ]</a>
+              <a href="author.html#1289">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> but I have another problem. The live
+</I>&gt;<i> iso could not mount the live image. It seems that the iso need both CD
+</I>&gt;<i> and USB to be appeared on the system. The system also trying to mount
+</I>&gt;<i> live image from usb disk.
+</I>
+Hmm, no I think the fallback code when no CD drive was found applied
+in your case. I think there is some other bug maybe related to 11.2
+Would you mind to do the following:
+
+   - boot with: kiwidebug=1
+   - when the systemException happens you will get a shell
+   - store the file /var/log/boot.kiwi
+     ( I always do that with an USB stick which I plug in _after_
+       the exception happened to have a storage device for data )
+   - send the log
+
+&gt;<i> I could resolve the problem by attach my USB disk and run the livecd
+</I>&gt;<i> iso as CDROM (I'm using VirtualBox 3.0.2 as system test).
+</I>
+Oh wait does that mean in your first attempt the live CD was not
+used as CDROM device ? If so it's important that the virtualization
+layer uses the live iso file as cdrom source because the kiwi initrd
+for a liveCD of course expects a CD/DVD device which it also searches.
+When I test a live ISO in qemu I always call it with
+
+   qemu -cdrom /path/to/iso
+
+could you test if the iso works in that case ? you also can
+install kvm and run qemu-kvm it will speed up things a lot :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001288.html">[Kiwi-users] Failed Booting LiveCD using 11.2 M3 as base repos
+</A></li>
+	<LI>Next message: <A HREF="001287.html">[Kiwi-users] Setting the size of a VMware disk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1289">[ date ]</a>
+              <a href="thread.html#1289">[ thread ]</a>
+              <a href="subject.html#1289">[ subject ]</a>
+              <a href="author.html#1289">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /etc/init.d/.depend.* scripts attacked during firstboot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/etc/init.d/.depend.%2A%20scripts%20attacked%20during%20firstboot&In-Reply-To=%3Ce915a2a90905122357g17772acbra1b3da865db7af27%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001119.html">
+   <LINK REL="Next"  HREF="001121.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /etc/init.d/.depend.* scripts attacked during firstboot</H1>
+    <B>Qian Feng</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/etc/init.d/.depend.%2A%20scripts%20attacked%20during%20firstboot&In-Reply-To=%3Ce915a2a90905122357g17772acbra1b3da865db7af27%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] /etc/init.d/.depend.* scripts attacked during firstboot">fengqian83 at gmail.com
+       </A><BR>
+    <I>Wed May 13 08:57:14 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001119.html">[Kiwi-users] Enhancement idea
+</A></li>
+        <LI>Next message: <A HREF="001121.html">[Kiwi-users] /etc/init.d/.depend.* scripts attacked	during	firstboot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1120">[ date ]</a>
+              <a href="thread.html#1120">[ thread ]</a>
+              <a href="subject.html#1120">[ subject ]</a>
+              <a href="author.html#1120">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear all,
+
+I wonder when and how yast2-firstboot would touch the scripts in /etc/init.d/.
+
+In KIWIImage.pm I had some code inserting some stuff into
+&quot;init.d/.depend.boot&quot; and .&quot;init.d/depend.start&quot;.
+But after the firstboot, my changes were overridden.
+
+I think some certain firstboot steps will modify (or indirectly
+influnce) these scripts, because if I comment
+the network and hardware modules in config-yast-firstboot.xml
+(therefore skip these 2 steps in firstboot),
+then .depend.boot and .depend.start won't be touched, and my
+modifications reserved
+
+Thanks in advance for any explanation or advice.
+
+Regards,
+Feng Qian
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001119.html">[Kiwi-users] Enhancement idea
+</A></li>
+	<LI>Next message: <A HREF="001121.html">[Kiwi-users] /etc/init.d/.depend.* scripts attacked	during	firstboot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1120">[ date ]</a>
+              <a href="thread.html#1120">[ thread ]</a>
+              <a href="subject.html#1120">[ subject ]</a>
+              <a href="author.html#1120">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

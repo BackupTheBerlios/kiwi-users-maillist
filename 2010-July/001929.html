@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Create LiveCD-based installation CD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20LiveCD-based%20installation%20CD&In-Reply-To=%3CAANLkTimx4EfSvyA%3DLdMd3rPiF7WNgs3eUkc%3DpMFG%3Djv4%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001928.html">
+   <LINK REL="Next"  HREF="001930.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Create LiveCD-based installation CD</H1>
+    <B>Lou Arruda</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Create%20LiveCD-based%20installation%20CD&In-Reply-To=%3CAANLkTimx4EfSvyA%3DLdMd3rPiF7WNgs3eUkc%3DpMFG%3Djv4%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Create LiveCD-based installation CD">lou at tealstudios.com
+       </A><BR>
+    <I>Wed Jul 28 20:49:05 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001928.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+        <LI>Next message: <A HREF="001930.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1929">[ date ]</a>
+              <a href="thread.html#1929">[ thread ]</a>
+              <a href="subject.html#1929">[ subject ]</a>
+              <a href="author.html#1929">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I had tried something like this already (though without the
+--full-screen) argument. The problem is that it doesn't give the
+option of a text-mode install. I also got weird grub errors when I
+tried doing this the last time as well.
+
+On Wed, Jul 28, 2010 at 3:53 AM, Jordi Massaguer Pla
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jordi.massaguer at opentrends.net</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> we had a similar issue and my advice is to write a .xinitrc (/root/.xinitrc) that starts &quot;yast2 live-installer --fullscreen&quot;. This way the livecd will start the live installer. In /etc/YaST2 you can configure the wizard of the live installer as you like.
+</I>&gt;<i>
+</I>&gt;<i> I hope it helps,
+</I>&gt;<i>
+</I>&gt;<i> jordi
+</I>&gt;<i>
+</I>&gt;<i> ----- &quot;Marcus Sch&#228;fer&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>&gt; va escriure:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; I'm trying to create a LiveCD based off of SLES 11 SP1 JeOS, but I
+</I>&gt;&gt;<i> &gt; only want the CD to serve as an installation medium -- not as a
+</I>&gt;&gt;<i> trial
+</I>&gt;&gt;<i> &gt; version of the OS. As I'm required to have this CD work with
+</I>&gt;&gt;<i> arbitrary
+</I>&gt;&gt;<i> &gt; hardware as well as be the source for a VM installation, the VM
+</I>&gt;&gt;<i> &gt; installer and OEM image installer won't work -- it's LiveCD or
+</I>&gt;&gt;<i> nothing
+</I>&gt;&gt;<i> &gt; as far as I understand the Kiwi documentation.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The image type you need here is an oem plus install media like this
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;type image=&quot;oem&quot;
+</I>&gt;&gt;<i> &#160; &#160; &#160; filesystem=&quot;ext3&quot;
+</I>&gt;&gt;<i> &#160; &#160; &#160; boot=&quot;oemboot/suse-SLES11&quot;
+</I>&gt;&gt;<i> &#160; &#160; &#160; installiso=&quot;true&quot;
+</I>&gt;&gt;<i> /&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The image and the install iso works on arbitrary as well as a
+</I>&gt;&gt;<i> installation media for VM systems
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; Basically, what I want is something that works like a
+</I>&gt;&gt;<i> run-of-the-mill
+</I>&gt;&gt;<i> &gt; SuSE installation CD without the option to run a live desktop.
+</I>&gt;&gt;<i> Here's
+</I>&gt;&gt;<i> &gt; what I imagine the process should look like once the user inserts
+</I>&gt;&gt;<i> the
+</I>&gt;&gt;<i> &gt; CD and boots off of it:
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; 1) A graphical menu appears at or just after initial boot time with
+</I>&gt;&gt;<i> &gt; &quot;graphical install&quot; and &quot;text install&quot; options on it, but no option
+</I>&gt;&gt;<i> to
+</I>&gt;&gt;<i> &gt; actually start the desktop environment/etc. off the CD. It's okay
+</I>&gt;&gt;<i> for
+</I>&gt;&gt;<i> &gt; the CD to display a text-only menu and only have the &quot;text install&quot;
+</I>&gt;&gt;<i> &gt; option if it is running on hardware that is not graphics-capable.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The install iso created by kiwi drives the installation procedure
+</I>&gt;&gt;<i> in a text based environment. Dialogs are provided to you by the
+</I>&gt;&gt;<i> &quot;dialog&quot; program. So there is no graphical installer for this task.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; 2) As soon as the user selects one of the install options, it will
+</I>&gt;&gt;<i> &gt; then finish booting the OS (if necessary) and run through the
+</I>&gt;&gt;<i> &gt; installation procedure, which will have some custom AutoYaST
+</I>&gt;&gt;<i> &gt; configurations and .yac modules, as necessary, to automate parts of
+</I>&gt;&gt;<i> &gt; the installation the user is not to change while still asking the
+</I>&gt;&gt;<i> user
+</I>&gt;&gt;<i> &gt; for things such as network configuration.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> All this can be achieved by a an autoyast profile where you can
+</I>&gt;&gt;<i> do everything except for installing packages because all this is
+</I>&gt;&gt;<i> encapsulated in the image itself. For more information about how
+</I>&gt;&gt;<i> to setup autoyast please contact Uwe Gansert CC'ed
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; 3) The final installation on the device's hard drive will only
+</I>&gt;&gt;<i> contain
+</I>&gt;&gt;<i> &gt; what's necessary to run a text-mode only appliance. Even if X11 was
+</I>&gt;&gt;<i> on
+</I>&gt;&gt;<i> &gt; the CD to facilitate a graphical installation, it will not be
+</I>&gt;&gt;<i> &gt; installed on the destination appliance.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> you can influence all that yourself by defining what pattern
+</I>&gt;&gt;<i> and packages should make up the oem system image
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; Can anyone provide me with any tips or even HOWTOs/websites on how
+</I>&gt;&gt;<i> to
+</I>&gt;&gt;<i> &gt; accomplish my task? Thanks!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> you can start with the JeOS templates provided by kiwi-templates
+</I>&gt;&gt;<i> package or use one of the oem examples as they are provided by
+</I>&gt;&gt;<i> the kiwi-doc package
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Marcus
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> &#160;Public Key available
+</I>&gt;&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Jordi Massaguer Pla
+</I>&gt;<i>
+</I>&gt;<i> openTrends Solucions i Sistemes S.L.
+</I>&gt;<i> tf: +34 933208414
+</I>&gt;<i> fx: +34 933003527
+</I>&gt;<i> www.opentrends.net
+</I>&gt;<i> mailto: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jordi.massaguer at opentrends.net</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Lou at TealStudios.com</A>&#160; &#160;&#160; |&#160; &#160; &quot;Dragonmaster Lou&quot;&#160; &#160; |&#160; &#160; Tech House Alum
+&#160; &quot;Searching for a distant star, heading off to&#160; Iscandar, leaving all
+&#160;&#160; we love behind, who knows what dangers we'll find...&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001928.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+	<LI>Next message: <A HREF="001930.html">[Kiwi-users] Create LiveCD-based installation CD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1929">[ date ]</a>
+              <a href="thread.html#1929">[ thread ]</a>
+              <a href="subject.html#1929">[ subject ]</a>
+              <a href="author.html#1929">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

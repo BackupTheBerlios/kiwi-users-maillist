@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] need to call ldconfig + depmod after boot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20need%20to%20call%20ldconfig%20%2B%20depmod%20after%20boot&In-Reply-To=%3C4D027574.70803%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002203.html">
+   <LINK REL="Next"  HREF="002205.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] need to call ldconfig + depmod after boot</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20need%20to%20call%20ldconfig%20%2B%20depmod%20after%20boot&In-Reply-To=%3C4D027574.70803%40novell.com%3E"
+       TITLE="[Kiwi-users] need to call ldconfig + depmod after boot">rschweikert at novell.com
+       </A><BR>
+    <I>Fri Dec 10 19:46:12 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002203.html">[Kiwi-users] need to call ldconfig + depmod after boot
+</A></li>
+        <LI>Next message: <A HREF="002205.html">[Kiwi-users] when using -add-profile,	boot-include doesn't seem to work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2204">[ date ]</a>
+              <a href="thread.html#2204">[ thread ]</a>
+              <a href="subject.html#2204">[ subject ]</a>
+              <a href="author.html#2204">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On 12/10/2010 01:37 PM, Kalman Szabo wrote:
+&gt;<i> Dear MArcus and other kiwi-users,
+</I>&gt;<i> 
+</I>&gt;<i> what is the canonical way of adding kernel-modules/libraries/binaries to
+</I>&gt;<i> the image, which are not packed into RPM's?
+</I>
+You have two oprions:
+
+1.) Create a tarball, place the tarbal at the same level as your
+config.xml file in your configuration tree and include the tarball in
+config.xml via &lt;archive name=&quot;....&quot;/&gt;
+
+The files in the tarball need to be in their proper location starting
+from the root tree, i.e. opt/myApp/bin/myExec in the tarball will end up
+as /opt/myApp/bin/myExec in the final image.
+
+2.) Place all your file in the overlay tree (i.e. inside the directory
+named &quot;root&quot;) inside your configuration tree. No modifications need to
+be made to config.xml in this case.
+
+HTH,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002203.html">[Kiwi-users] need to call ldconfig + depmod after boot
+</A></li>
+	<LI>Next message: <A HREF="002205.html">[Kiwi-users] when using -add-profile,	boot-include doesn't seem to work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2204">[ date ]</a>
+              <a href="thread.html#2204">[ thread ]</a>
+              <a href="subject.html#2204">[ subject ]</a>
+              <a href="author.html#2204">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

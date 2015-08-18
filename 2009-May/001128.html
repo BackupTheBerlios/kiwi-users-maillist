@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] changes in use of boot branding packages...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20changes%20in%20use%20of%20boot%20branding%20packages...&In-Reply-To=%3C20090518164835.GB28881%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001131.html">
+   <LINK REL="Next"  HREF="001130.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] changes in use of boot branding packages...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20changes%20in%20use%20of%20boot%20branding%20packages...&In-Reply-To=%3C20090518164835.GB28881%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] changes in use of boot branding packages...">ms at novell.com
+       </A><BR>
+    <I>Mon May 18 18:48:36 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001131.html">[Kiwi-users] oem boot lost usb keyboard when have to seect the	hard drive
+</A></li>
+        <LI>Next message: <A HREF="001130.html">[Kiwi-users] changes in use of boot branding packages...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1128">[ date ]</a>
+              <a href="thread.html#1128">[ thread ]</a>
+              <a href="subject.html#1128">[ subject ]</a>
+              <a href="author.html#1128">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All,
+
+there is bug #497888 opened by &quot;cyberorg&quot; which suggests to
+be able to setup the graphics boot and bootsplash branding
+as part of the system image description
+
+I have implemented support for that and would like to
+share the details with you on the list:
+
+1) in openSUSE there are two kinds of branding packages
+ 
+     bootsplash-branding-&lt;distro&gt;
+     gfxboot-branding-&lt;distro&gt;
+
+2) the information in this packages is used inside the
+   boot image, the initrd. Therefore kiwi has added them
+   statically inside the boot image descriptions. The problem
+   is if a user has its own branding packages he needs to
+   clone the bootimage and change the package there and point
+   the system image description to its own copy of the boot
+   image description
+
+This is complicated and not foolproof :)
+
+So with kiwi version &gt;=3.52 (not released yet) you can add
+the branding packages as part of the system image description
+and you can tell kiwi to use this packages inside the boot
+image as follows:
+
+    &lt;package name=&quot;bootsplash-branding-openSUSE&quot;
+             bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+    &lt;package name=&quot;gfxboot-branding-openSUSE&quot;
+             bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt; 
+
+bootinclude means include that package into the selected boot
+image (initrd) too. The attribute bootdelete means that the
+package should not stay inside the boot image as the data
+is no longer needed after it has been used to setup the boot
+graphics
+
+I have adapted the kiwi provided examples to this new system
+and you should do the same with your own examples. As the boot
+images by default don't include any branding packages anymore
+you will end up with an image without bootsplash and boot
+graphics if you don't specify branding packages in your
+description
+
+As a speciality you are free to use that system for inclusion
+of any package you like into the initrd. No idea if that makes
+sense but it would work :-)
+
+Have fun
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001131.html">[Kiwi-users] oem boot lost usb keyboard when have to seect the	hard drive
+</A></li>
+	<LI>Next message: <A HREF="001130.html">[Kiwi-users] changes in use of boot branding packages...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1128">[ date ]</a>
+              <a href="thread.html#1128">[ thread ]</a>
+              <a href="subject.html#1128">[ subject ]</a>
+              <a href="author.html#1128">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

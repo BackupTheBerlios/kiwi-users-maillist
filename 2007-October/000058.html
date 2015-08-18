@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] blogd error on the nfs mounted root system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20blogd%20error%20on%20the%20nfs%20mounted%20root%20system&In-Reply-To=%3C20071004072805.GC17193%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000053.html">
+   <LINK REL="Next"  HREF="000059.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] blogd error on the nfs mounted root system</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20blogd%20error%20on%20the%20nfs%20mounted%20root%20system&In-Reply-To=%3C20071004072805.GC17193%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] blogd error on the nfs mounted root system">ms at suse.de
+       </A><BR>
+    <I>Thu Oct  4 09:28:06 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000053.html">[Kiwi-users] blogd error on the nfs mounted root system
+</A></li>
+        <LI>Next message: <A HREF="000059.html">[Kiwi-users] blogd error on the nfs mounted root system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> On OpenSuse 10.2 and a nfs mounted root system.
+</I>&gt;<i>  
+</I>&gt;<i> The client brings up the following messages while booting:
+</I>&gt;<i>  
+</I>&gt;<i> blogd: no message logging because /var file system is not accessible
+</I>&gt;<i>  
+</I>&gt;<i> Further on autoyast is complaining about not being able to write to
+</I>&gt;<i> various files like /etc/ntp.conf or /var/log/ntp and others.
+</I>&gt;<i>  
+</I>&gt;<i> When I log into the client, I am able to read and write in these
+</I>&gt;<i> directories also the created files are owned by root. 
+</I>
+I think this depends on some missing calls which should take
+place before init takes over control of the system. I'm currently
+working on this. Please be patient I have to find a clean way
+to extract that information from the mkinitrd package. Anyway
+that's a suse specific problem.
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000053.html">[Kiwi-users] blogd error on the nfs mounted root system
+</A></li>
+	<LI>Next message: <A HREF="000059.html">[Kiwi-users] blogd error on the nfs mounted root system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

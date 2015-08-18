@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Trying%20to%20build%20a%20SLED10SP1%20LiveDVD&In-Reply-To=%3C1204564135.4545.9.camel%40pesol.grn.es%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000423.html">
+   <LINK REL="Next"  HREF="000426.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Trying to build a SLED10SP1 LiveDVD</H1>
+    <B>Jordi Bruguera i Cortada</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Trying%20to%20build%20a%20SLED10SP1%20LiveDVD&In-Reply-To=%3C1204564135.4545.9.camel%40pesol.grn.es%3E"
+       TITLE="[Kiwi-users] Trying to build a SLED10SP1 LiveDVD">jordi at grn.es
+       </A><BR>
+    <I>Mon Mar  3 18:08:55 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000423.html">[Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+</A></li>
+        <LI>Next message: <A HREF="000426.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#428">[ date ]</a>
+              <a href="thread.html#428">[ thread ]</a>
+              <a href="subject.html#428">[ subject ]</a>
+              <a href="author.html#428">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>El dl 03 de 03 del 2008 a les 13:08 +0100, en/na Marcus Sch&#228;fer va
+escriure:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I've been trying to build a LiveDVD for Linkat,
+</I>&gt;<i> &gt; the educational Linux distribution which is
+</I>&gt;<i> &gt; SLED10-SP1 based.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; As far as I saw, only Opensuse 10.3 config.xml
+</I>&gt;<i> &gt; images are defined, so I've build my own which
+</I>&gt;<i> &gt; is attached below for your info.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The first blocking problem is that the kernel
+</I>&gt;<i> &gt; module named &quot;aufs&quot; doesn't seem to exist
+</I>&gt;<i> &gt; for SLE10 in the buildservice. It seems that kiwi
+</I>&gt;<i> &gt; scripts use this &quot;union fs&quot; to construct
+</I>&gt;<i> &gt; and to boot Live DVDs.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Is there any way to solve that ?
+</I>&gt;<i> 
+</I>&gt;<i> yes you have two choices:
+</I>&gt;<i> 
+</I>&gt;<i> 1) don't use aufs by removing the flags=&quot;unified&quot; attribute
+</I>
+Ok, done
+
+&gt;<i> 2) You need compression ? This requires squashfs
+</I>&gt;<i>    to be compiled for SLES which has been proven to work
+</I>&gt;<i> 
+</I>&gt;<i>    - add the squashfs package to the package list of the used
+</I>&gt;<i>      isoboot boot description and make sure it is not ripped out:
+</I>&gt;<i> 
+</I>&gt;<i>      /usr/share/kiwi/image/isoboot/suse-SLED10-SP1/config.xml
+</I>&gt;<i>     
+</I>&gt;<i>      &lt;drivers type=&quot;drivers&quot;&gt;
+</I>&gt;<i>         ...
+</I>&gt;<i>         &lt;file name=&quot;fs/squashfs/*&quot;/&gt;
+</I>&gt;<i>  
+</I>&gt;<i>      &lt;packages type=&quot;image&quot;&gt;
+</I>&gt;<i>         &lt;package name=&quot;your-squashfs-package&quot;/&gt;
+</I>&gt;<i> 
+</I>&gt;<i>    - remove the file:
+</I>&gt;<i>      /usr/share/kiwi/image/isoboot/suse-SLED10-SP1/.checksum.md5
+</I>&gt;<i> 
+</I>&gt;<i>    - change your system image config.xml flags attribute
+</I>&gt;<i>      to flags=&quot;compressed&quot;
+</I>&gt;<i> 
+</I>&gt;<i>    - add a split section to your system image config.xml
+</I>&gt;<i>   
+</I>&gt;<i>      &lt;split&gt;
+</I>&gt;<i>       &lt;temporary&gt;
+</I>&gt;<i>         &lt;!-- allow read/write access to: --&gt;
+</I>&gt;<i>         &lt;file name=&quot;/var&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/var/*&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/etc&quot;/&gt;
+</I>&gt;<i>         &lt;file name=&quot;/etc/*&quot;/&gt;
+</I>&gt;<i>       &lt;/temporary&gt;
+</I>&gt;<i>      &lt;/split&gt;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+Ok, the --prepare part went ok.
+
+The --create part fails:
+
+the log:
+...
+Mar-03 17:47:29 &lt;1&gt; : Computing disk space...
+Mar-03 17:47:29 &lt;1&gt; : EXEC [du -ks /var/kiwi/physical]
+   done
+Mar-03 17:47:29 &lt;1&gt; : Image RW part requires 229 MB of disk space
+Mar-03 17:47:29 &lt;1&gt; : EXEC [dd if=/dev/zero of=/tmp//linkat-2.i686-2.5
+bs=1 seek=240123903 count=1 2&gt;&amp;1]
+   done
+Mar-03 17:47:29 &lt;1&gt; : EXEC [find /var/kiwi/physical | wc -l]
+Mar-03 17:47:29 &lt;1&gt; : EXEC [/sbin/mke2fs -b 4096 -q -F -N
+16432 /tmp//linkat-2.i686-2.5 2&gt;&amp;1]
+Mar-03 17:47:30 &lt;1&gt; : EXEC [/sbin/losetup /dev/loop0 2&gt;&amp;1]
+Mar-03 17:47:30 &lt;1&gt; : EXEC [mount -o
+loop=/dev/loop0 /tmp//linkat-2.i686-2.5 /tmp//mnt-21574 2&gt;&amp;1]
+Mar-03 17:47:30 &lt;1&gt; : Copying physical to logical [physical]...
+Mar-03 17:47:30 &lt;1&gt; : EXEC [cp -a /var/kiwi/physical/* /tmp//mnt-21574
+2&gt;&amp;1]
+   failed
+Mar-03 17:47:31 &lt;1&gt; : No space left on device: El descriptor de fitxer
+no &#233;s v&#224;lid   failed
+Mar-03 17:47:31 &lt;1&gt; : EXEC [umount -l /tmp//mnt-21574 2&gt;&amp;1]
+Mar-03 17:47:32 &lt;1&gt; : Restoring physical extend...
+....
+
+
+Error says &quot;No space left on device...&quot;, former message about RW disk
+space required is 229 MB, which is ok: is the sum of /etc/ /home/
+and /var.
+
+I still have 18GB free on my disk, any ideas ? 
+I'm attaching config.xml and isoboot/config.xml
+
+
+Thanks !
+
+-- 
+---
+Jordi Bruguera i Cortada &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">jordi at grn.es</A>&gt;
+Consultor en Programari Lliure
+LPIC1-ID: 000001116 - Novell CLP10
+Linux User #21587
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: config.xml
+Type: application/xml
+Size: 38650 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080303/e41fad3e/attachment.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080303/e41fad3e/attachment.xml</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: isoboot-config.xml
+Type: application/xml
+Size: 3843 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080303/e41fad3e/attachment-0001.xml">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080303/e41fad3e/attachment-0001.xml</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000423.html">[Kiwi-users] Trying to build a SLED10SP1 LiveDVD
+</A></li>
+	<LI>Next message: <A HREF="000426.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#428">[ date ]</a>
+              <a href="thread.html#428">[ thread ]</a>
+              <a href="subject.html#428">[ subject ]</a>
+              <a href="author.html#428">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

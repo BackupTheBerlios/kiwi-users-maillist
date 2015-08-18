@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] recent upgrade causes core dump
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20recent%20upgrade%20causes%20core%20dump&In-Reply-To=%3C4A954BEB.7030000%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001410.html">
+   <LINK REL="Next"  HREF="001412.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] recent upgrade causes core dump</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20recent%20upgrade%20causes%20core%20dump&In-Reply-To=%3C4A954BEB.7030000%40novell.com%3E"
+       TITLE="[Kiwi-users] recent upgrade causes core dump">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Aug 26 16:51:23 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001410.html">[Kiwi-users] schema changes for oem- bool values
+</A></li>
+        <LI>Next message: <A HREF="001412.html">[Kiwi-users] recent upgrade causes core dump
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1411">[ date ]</a>
+              <a href="thread.html#1411">[ thread ]</a>
+              <a href="subject.html#1411">[ subject ]</a>
+              <a href="author.html#1411">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>With Kiwi 3.74 on on openSUSE 11.1 x86-64 system I am getting a core 
+dump due to a buffer overflow. It looks like this occurs in 
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/KIWI/SaT/SaT.so(_wrap_Solver_getInstallList+0x240)
+
+Stack trace follows:
+
+*** buffer overflow detected ***: /usr/bin/perl terminated
+======= Backtrace: =========
+/lib64/libc.so.6(__fortify_fail+0x37)[0x7f3fc03494f7]
+/lib64/libc.so.6[0x7f3fc0347270]
+/lib64/libc.so.6[0x7f3fc0346569]
+/lib64/libc.so.6(_IO_default_xsputn+0x85)[0x7f3fc02d37b5]
+/lib64/libc.so.6(_IO_vfprintf+0x1c74)[0x7f3fc02a6084]
+/lib64/libc.so.6(__vsprintf_chk+0x9d)[0x7f3fc034660d]
+/lib64/libc.so.6(__sprintf_chk+0x80)[0x7f3fc0346550]
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/KIWI/SaT/SaT.so(_wrap_Solver_getInstallList+0x240)[0x7f3fbe949d70]
+/usr/bin/perl(Perl_pp_entersub+0x5a5)[0x47ee85]
+/usr/bin/perl(Perl_runops_debug+0x133)[0x456263]
+/usr/bin/perl(perl_run+0x2b5)[0x47acf5]
+/usr/bin/perl(main+0xdc)[0x42160c]
+/lib64/libc.so.6(__libc_start_main+0xe6)[0x7f3fc027f586]
+/usr/bin/perl[0x421469]
+======= Memory map: ========
+00400000-0058e000 r-xp 00000000 fd:03 728549 
+  /usr/bin/perl
+0078d000-0078e000 r--p 0018d000 fd:03 728549 
+  /usr/bin/perl
+0078e000-00792000 rw-p 0018e000 fd:03 728549 
+  /usr/bin/perl
+00792000-023ea000 rw-p 00792000 00:00 0 
+  [heap]
+7f3fbb175000-7f3fbb1d6000 rw-p 7f3fc0ea9000 00:00 0
+7f3fbb1d6000-7f3fbb1e9000 r-xp 00000000 fd:03 1328 
+ 
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/HTML/Parser/Parser.so
+7f3fbb1e9000-7f3fbb3e8000 ---p 00013000 fd:03 1328 
+ 
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/HTML/Parser/Parser.so
+7f3fbb3e8000-7f3fbb3e9000 r--p 00012000 fd:03 1328 
+ 
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/HTML/Parser/Parser.so
+7f3fbb3e9000-7f3fbb3ea000 rw-p 00013000 fd:03 1328 
+ 
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/HTML/Parser/Parser.so
+7f3fbb3ea000-7f3fbb3f5000 r-xp 00000000 fd:03 245968 
+  /lib64/libnss_files-2.9.so
+7f3fbb3f5000-7f3fbb5f4000 ---p 0000b000 fd:03 245968 
+  /lib64/libnss_files-2.9.so
+7f3fbb5f4000-7f3fbb5f5000 r--p 0000a000 fd:03 245968 
+  /lib64/libnss_files-2.9.so
+7f3fbb5f5000-7f3fbb5f6000 rw-p 0000b000 fd:03 245968 
+  /lib64/libnss_files-2.9.so
+7f3fbb5f6000-7f3fbb600000 r-xp 00000000 fd:03 245971 
+  /lib64/libnss_nis-2.9.so
+7f3fbb600000-7f3fbb7ff000 ---p 0000a000 fd:03 245971 
+  /lib64/libnss_nis-2.9.so
+7f3fbb7ff000-7f3fbb800000 r--p 00009000 fd:03 245971 
+  /lib64/libnss_nis-2.9.so
+7f3fbb800000-7f3fbb801000 rw-p 0000a000 fd:03 245971 
+  /lib64/libnss_nis-2.9.so
+7f3fbb801000-7f3fbb816000 r-xp 00000000 fd:03 636 
+  /lib64/libnsl-2.9.so
+7f3fbb816000-7f3fbba15000 ---p 00015000 fd:03 636 
+  /lib64/libnsl-2.9.so
+7f3fbba15000-7f3fbba16000 r--p 00014000 fd:03 636 
+  /lib64/libnsl-2.9.so
+7f3fbba16000-7f3fbba17000 rw-p 00015000 fd:03 636 
+  /lib64/libnsl-2.9.so
+7f3fbba17000-7f3fbba19000 rw-p 7f3fbba17000 00:00 0
+7f3fbba19000-7f3fbba20000 r-xp 00000000 fd:03 245964 
+  /lib64/libnss_compat-2.9.so
+7f3fbba20000-7f3fbbc1f000 ---p 00007000 fd:03 245964 
+  /lib64/libnss_compat-2.9.so
+7f3fbbc1f000-7f3fbbc20000 r--p 00006000 fd:03 245964 
+  /lib64/libnss_compat-2.9.so
+7f3fbbc20000-7f3fbbc21000 rw-p 00007000 fd:03 245964 
+  /lib64/libnss_compat-2.9.so
+7f3fbbc21000-7f3fbbc2a000 r-xp 00000000 fd:03 2148008925 
+ 
+/usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/Math/BigInt/FastCalc/FastCalc.so
+7f3fbbc2a000-7f3fbbe29000 ---p 00009000 fd:03 2148008925 
+ 
+/usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/Math/BigInt/FastCalc/FastCalc.so
+7f3fbbe29000-7f3fbbe2a000 r--p 00008000 fd:03 2148008925 
+ 
+/usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/Math/BigInt/FastCalc/FastCalc.so
+7f3fbbe2a000-7f3fbbe2b000 rw-p 00009000 fd:03 2148008925 
+ 
+/usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/Math/BigInt/FastCalc/FastCalc.so
+7f3fbbe2b000-7f3fbbe36000 r-xp 00000000 fd:03 3221226048 
+  /usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/List/Util/Util.so
+7f3fbbe36000-7f3fbc035000 ---p 0000b000 fd:03 3221226048 
+  /usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/List/Util/Util.so
+7f3fbc035000-7f3fbc036000 r--p 0000a000 fd:03 3221226048 
+  /usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/List/Util/Util.so
+7f3fbc036000-7f3fbc037000 rw-p 0000b000 fd:03 3221226048 
+  /usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/List/Util/Util.so
+7f3fbc037000-7f3fbc03b000 r-xp 00000000 fd:03 3221226009 
+  /usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/Cwd/Cwd.so
+7f3fbc03b000-7f3fbc23a000 ---p 00004000 fd:03 3221226009 
+  /usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/Cwd/Cwd.so
+7f3fbc23a000-7f3fbc23b000 r--p 00003000 fd:03 3221226009 
+  /usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/Cwd/Cwd.so
+7f3fbc23b000-7f3fbc23c000 rw-p 00004000 fd:03 3221226009 
+  /usr/lib/perl5/5.10.0/x86_64-linux-thread-multi/auto/Cwd/Cwd.so
+7f3fbc23c000-7f3fbc240000 r-xp 00000000 fd:03 738 
+  /lib64/libuuid.so.1.2
+7f3fbc240000-7f3fbc43f000 ---p 00004000 fd:03 738 
+  /lib64/libuuid.so.1.2
+7f3fbc43f000-7f3fbc440000 r--p 00003000 fd:03 738 
+  /lib64/libuuid.so.1.2
+7f3fbc440000-7f3fbc441000 rw-p 00004000 fd:03 738 
+  /lib64/libuuid.so.1.2
+7f3fbc441000-7f3fbc470000 r-xp 00000000 fd:03 3221426153 
+  /usr/lib64/libpcre.so.0.0.1
+7f3fbc470000-7f3fbc66f000 ---p 0002f000 fd:03 3221426153 
+  /usr/lib64/libpcre.so.0.0.1
+7f3fbc66f000-7f3fbc670000 r--p 0002e000 fd:03 3221426153 
+  /usr/lib64/libpcre.so.0.0.1
+7f3fbc670000-7f3fbc671000 rw-p 0002f000 fd:03 3221426153 
+  /usr/lib64/libpcre.so.0.0.1
+7f3fbc671000-7f3fbc6ae000 r-xp 00000000 fd:03 246086 
+  /lib64/libdbus-1.so.3.4.0
+7f3fbc6ae000-7f3fbc8ad000 ---p 0003d000 fd:03 246086 
+  /lib64/libdbus-1.so.3.4.0
+7f3fbc8ad000-7f3fbc8ae000 r--p 0003c000 fd:03 246086 
+  /lib64/libdbus-1.so.3.4.0
+7f3fbc8ae000-7f3fbc8af000 rw-p 0003d000 fd:03 246086 
+  /lib64/libdbus-1.so.3.4.0
+7f3fbc8af000-7f3fbc8bf000 r-xp 00000000 fd:03 3222662012 
+  /usr/lib64/libhal.so.1.0.0
+7f3fbc8bf000-7f3fbcabe000 ---p 00010000 fd:03 3222662012 
+  /usr/lib64/libhal.so.1.0.0
+7f3fbcabe000-7f3fbcabf000 r--p 0000f000 fd:03 3222662012 
+  /usr/lib64/libhal.so.1.0.0
+7f3fbcabf000-7f3fbcac0000 rw-p 00010000 fd:03 3222662012 
+  /usr/lib64/libhal.so.1.0.0
+7f3fbcac0000-7f3fbcb83000 r-xp 00000000 fd:03 3221349323 
+  /usr/lib64/libglib-2.0.so.0.1800.2
+7f3fbcb83000-7f3fbcd82000 ---p 000c3000 fd:03 3221349323 
+  /usr/lib64/libglib-2.0.so.0.1800.2
+7f3fbcd82000-7f3fbcd83000 r--p 000c2000 fd:03 3221349323 
+  /usr/lib64/libglib-2.0.so.0.1800.2
+7f3fbcd83000-7f3fbcd84000 rw-p 000c3000 fd:03 3221349323 
+  /usr/lib64/libglib-2.0.so.0.1800.2
+7f3fbcd84000-7f3fbcd85000 rw-p 7f3fbcd84000 00:00 0
+7f3fbcd85000-7f3fbcd89000 r-xp 00000000 fd:03 3221349332 
+  /usr/lib64/libgthread-2.0.so.0.1800.2
+7f3fbcd89000-7f3fbcf88000 ---p 00004000 fd:03 3221349332 
+  /usr/lib64/libgthread-2.0.so.0.1800.2
+7f3fbcf88000-7f3fbcf89000 r--p 00003000 fd:03 3221349332 
+  /usr/lib64/libgthread-2.0.so.0.1800.2
+7f3fbcf89000-7f3fbcf8a000 rw-p 00004000 fd:03 3221349332 
+  /usr/lib64/libgthread-2.0.so.0.1800.2
+7f3fbcf8a000-7f3fbd1ad000 r-xp 00000000 fd:03 3222661627 
+  /usr/lib64/libQtCore.so.4.4.3
+7f3fbd1ad000-7f3fbd3ac000 ---p 00223000 fd:03 3222661627 
+  /usr/lib64/libQtCore.so.4.4.3
+7f3fbd3ac000-7f3fbd3b5000 r--p 00222000 fd:03 3222661627 
+  /usr/lib64/libQtCore.so.4.4.3
+7f3fbd3b5000-7f3fbd3b6000 rw-p 0022b000 fd:03 3222661627 
+  /usr/lib64/libQtCore.so.4.4.3
+7f3fbd3b6000-7f3fbd3b7000 rw-p 7f3fbd3b6000 00:00 0
+7f3fbd3b7000-7f3fbd3c5000 r-xp 00000000 fd:03 1033857 
+ 
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/KIWI/dbusdevice/dbusdevice.so
+7f3fbd3c5000-7f3fbd5c4000 ---p 0000e000 fd:03 1033857 
+ 
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/KIWI/dbusdevice/dbusdevice.so
+7f3fbd5c4000-7f3fbd5c5000 r--p 0000d000 fd:03 1033857 
+ 
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/KIWI/dbusdevice/dbusdevice.so
+7f3fbd5c5000-7f3fbd5c6000 rw-p 0000e000 fd:03 1033857 
+ 
+/usr/lib/perl5/vendor_perl/5.10.0/x86_64-linux-thread-multi/auto/KIWI/dbusdevice/dbusdevice.so
+7f3fbd5c6000-7f3fbd5dc000 r-xp 00000000 fd:03 741 
+  /lib64/libgcc_s.sh: line 1: 10579 Aborted                 (core 
+dumped) kiwi --prepare
+
+Help is appreciated.
+
+Thanks,
+Robert
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001410.html">[Kiwi-users] schema changes for oem- bool values
+</A></li>
+	<LI>Next message: <A HREF="001412.html">[Kiwi-users] recent upgrade causes core dump
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1411">[ date ]</a>
+              <a href="thread.html#1411">[ thread ]</a>
+              <a href="subject.html#1411">[ subject ]</a>
+              <a href="author.html#1411">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

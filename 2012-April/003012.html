@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Very basic newbie question. Please point me to the document that helps with this
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Very%20basic%20newbie%20question.%20Please%20point%20me%20to%20the%0A%20document%20that%20helps%20with%20this&In-Reply-To=%3C20120419070257.GA9040%40idefix.suse.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003011.html">
+   <LINK REL="Next"  HREF="003013.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Very basic newbie question. Please point me to the document that helps with this</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Very%20basic%20newbie%20question.%20Please%20point%20me%20to%20the%0A%20document%20that%20helps%20with%20this&In-Reply-To=%3C20120419070257.GA9040%40idefix.suse.de%3E"
+       TITLE="[Kiwi-users] Very basic newbie question. Please point me to the document that helps with this">ms at suse.de
+       </A><BR>
+    <I>Thu Apr 19 09:02:58 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003011.html">[Kiwi-users] Very basic newbie question. Please point me to the document that helps with this
+</A></li>
+        <LI>Next message: <A HREF="003013.html">[Kiwi-users] Multiple vmware harddisks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3012">[ date ]</a>
+              <a href="thread.html#3012">[ thread ]</a>
+              <a href="subject.html#3012">[ subject ]</a>
+              <a href="author.html#3012">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Eric,
+
+&gt;<i> I've been doing builds using SuSE 12.1 as a template, without
+</I>&gt;<i> problems.  (The most simple example would be
+</I>&gt;<i> 
+</I>&gt;<i>     kiwi --build suse-12.1-JeOS -d /tmp/kiwi/ -t iso
+</I>&gt;<i> 
+</I>&gt;<i> for example.)
+</I>
+yep. Apart from that I also suggest to use the latest version
+if in trouble from here:
+
+   <A HREF="http://download.opensuse.org/repositories/Virtualization:/Appliances/">http://download.opensuse.org/repositories/Virtualization:/Appliances/</A> 
+
+&gt;<i> The problems arise when I start when I want to build it against any
+</I>&gt;<i> other version, like SuSE 11.4, for example:
+</I>&gt;<i> 
+</I>&gt;<i>     kiwi --build suse-11.4-JeOS -d /tmp/kiwi -t iso
+</I>
+Hmm, shouldn't be a problem. Do you have error messages ?
+I called the command above and it builds the image, but I used
+the latest code base
+ 
+&gt;<i> My ultimate goal is to make a CentOS 6.2 template and build based on
+</I>&gt;<i> its repositories and packages.  So:
+</I>
+Basically the following has worked for me:
+
+   kiwi --build rhel-06.0-JeOS --type iso -d /tmp/kiwi \
+		--ignore-repos \
+		--add-repo &quot;<A HREF="obs://Virtualization:/Appliances:/rhel-060/RedHat_RHEL-6">obs://Virtualization:/Appliances:/rhel-060/RedHat_RHEL-6</A>&quot; \
+		--add-repotype rpm-md \
+		--add-repo &quot;<A HREF="iso:///path/to/rhel-6.2-%arch-DVD.iso">iso:///path/to/rhel-6.2-%arch-DVD.iso</A>&quot;
+		--add-repotype rpm-md
+
+I had to add a small patch for the yum support though
+So this will be in the next release or you use the code from
+git directly (make, sudo make install is enough if all required
+software is installed)
+
+&gt;<i> 1)  What is the accepted syntax for &lt;repository type=&quot;(type)&quot;&gt;
+</I>&gt;<i> &lt;source path=&quot;<A HREF="iso:///">iso:///</A> ...&quot; /&gt; &lt;/repository&gt; ?  Is it looking for a
+</I>&gt;<i> mounted CD, an ISO file, files within the ISO file?  What are the
+</I>&gt;<i> appropriate &quot;path&quot; syntaxes for &lt;source&gt;?  What are the appropriate
+</I>&gt;<i> &quot;type&quot;s for &lt;repository&gt;?
+</I>
+with the <A HREF="iso://">iso://</A> repo setup you give kiwi an iso file which it loop
+mounts to a tmpdir directory. The directory is then passed as repo
+source to the package manager backend (yum, zypper). So you simply
+setup the distribution DVD as iso file here. If you want to reference
+directly from a device it's required to mount it first and pass the
+mount point as '<A HREF="dir://mount-point">dir://mount-point</A>'
+ 
+&gt;<i> 2)  Where, specifically, is it looking for GPG keys?  Will it find
+</I>&gt;<i> them as part of the repo source and no further action needs to be
+</I>&gt;<i> taken?
+</I>
+kiwi dumps the rpm keys installed on the host system with
+'dumpsigs /usr/lib/rpm/gnupg/pubring.gpg' and stores them in the new
+root system. From there they are imported as part of a chrooted 
+command with 'rpm --import ...'. kiwi itself does not more with
+the package keys but the package managers itself might also interact
+with them
+
+&gt;<i> 3) Surely this has been done before, that is, make a CentOS
+</I>&gt;<i> template, but I've not found it yet.  Any hints?
+</I>
+The kiwi-templates package provides templates also for RHEL5 and 6
+you can use them to build CentOS too.
+ 
+&gt;<i> (I've played around with susestudio quite a bit and have made its
+</I>&gt;<i> builds into test images that are similar to what I want.  I'm open
+</I>&gt;<i> for other learning aids.)
+</I>
+I'm in the susestudio team and it's absolutely great what a web
+developer can do these days but I feel more at home on the command
+line :) Everything I wrote here is also focused on hacking in
+commands in a shell
+
+Hope this helped you ?
+
+PS: the kiwi git is on github if you consider to use the source luke
+<A HREF="http://opensuse.github.com/kiwi/">http://opensuse.github.com/kiwi/</A>
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003011.html">[Kiwi-users] Very basic newbie question. Please point me to the document that helps with this
+</A></li>
+	<LI>Next message: <A HREF="003013.html">[Kiwi-users] Multiple vmware harddisks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3012">[ date ]</a>
+              <a href="thread.html#3012">[ thread ]</a>
+              <a href="subject.html#3012">[ subject ]</a>
+              <a href="author.html#3012">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

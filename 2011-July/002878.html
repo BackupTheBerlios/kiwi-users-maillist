@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] get rid of the --prebuiltbootimage code
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20get%20rid%20of%20the%20--prebuiltbootimage%20code&In-Reply-To=%3C4E304B3F.2070009%40suse.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002877.html">
+   <LINK REL="Next"  HREF="002882.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] get rid of the --prebuiltbootimage code</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20get%20rid%20of%20the%20--prebuiltbootimage%20code&In-Reply-To=%3C4E304B3F.2070009%40suse.com%3E"
+       TITLE="[Kiwi-users] get rid of the --prebuiltbootimage code">rjschwei at suse.com
+       </A><BR>
+    <I>Wed Jul 27 19:30:39 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002877.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+        <LI>Next message: <A HREF="002882.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2878">[ date ]</a>
+              <a href="thread.html#2878">[ thread ]</a>
+              <a href="subject.html#2878">[ subject ]</a>
+              <a href="author.html#2878">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 07/27/2011 11:26 AM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> I am not sure that the new features really preclude the current
+</I>&gt;&gt;<i> feature, i.e. why would the --prebuiltbootimage option need to be
+</I>&gt;&gt;<i> removed. I have not looked at the code, but it cannot be all that
+</I>&gt;&gt;<i> much code or all that difficult to maintain.
+</I>&gt;<i>
+</I>&gt;<i> Well it's difficult to track down problems related to this
+</I>
+Yes, it is difficult to track problems with the initrd. However, this 
+difficulty does not go away with the removal of the current option. For 
+the most common case, i.e. let kiwi create the initrd nothing changes 
+either.
+
+&gt;<i>
+</I>&gt;&gt;<i> My thought is that this is still very useful for an oem image where
+</I>&gt;&gt;<i> the hardware is very well defined and the initrd can be cut down and
+</I>&gt;&gt;<i> targeted for just the given hardware.
+</I>&gt;<i>
+</I>&gt;<i> Today you keep the initrd and if we do the change you will
+</I>&gt;<i> keep the unpacked tree from which the initrd is created.
+</I>&gt;<i> Or you decide to use the new image cache system
+</I>
+Well, the basic underlying assumption with this is that kiwi created the 
+initrd. What if I do not use kiwi to create the initrd?
+
+I am making an argument for a use case that is outside of &quot;mainstream&quot; 
+use of kiwi, that is correct. But we have other features that fit that 
+description.
+
+&gt;<i>
+</I>&gt;&gt;<i> I am not opposed to the idea, just not sure why we would need to
+</I>&gt;&gt;<i> remove the existing option in this case.
+</I>&gt;<i>
+</I>&gt;<i> I don't like to deal with the potential risk of that feature.
+</I>&gt;<i> I think it requests a lot knowledge from our users about the
+</I>&gt;<i> internal processes running in kiwi when dealing with the boot
+</I>&gt;<i> image. That's not user friendly
+</I>
+Well, user friendliness is in the eye of the beholder. If I cannot use 
+my own initrd anymore that's not necessarily user friendly either ;).
+
+Don't get me wrong, I am not married to this feature, and I am with you 
+in not wanting to spend time debugging other people's initrd problems. 
+However, there are valid use cases for this feature as an &quot;advanced user 
+feature&quot;. Speak, use it and you're on your own.
+
+&gt;<i> and I think kiwi should just
+</I>&gt;<i> do the right thing.
+</I>
+Yes, kiwi should just do the right thing, we need to work on that ;) but 
+that's another thread.
+
+&gt;<i> Even me stumbles over that from time to time
+</I>&gt;<i> when I forgot that I have added something in my system image which
+</I>&gt;<i> requires a rebuild of the boot image, but the system insists to
+</I>&gt;<i> use the static prebuilt version
+</I>&gt;<i>
+</I>&gt;<i> That's why I think it should go away
+</I>
+I like the feature as a &quot;use at your own risk&quot; feature, but if no one 
+else on this list chimes in and really cares to keep the feature than 
+yes, lets get rid of it as the feature is apparently not being used.
+
+Later,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweik at ca.ibm.com</A>
+781-464-8147
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002877.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+	<LI>Next message: <A HREF="002882.html">[Kiwi-users] get rid of the --prebuiltbootimage code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2878">[ date ]</a>
+              <a href="thread.html#2878">[ thread ]</a>
+              <a href="subject.html#2878">[ subject ]</a>
+              <a href="author.html#2878">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] VMX image creation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMX%20image%20creation&In-Reply-To=%3C000001c9e61f%246313b3a0%24293b1ae0%24%40net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001151.html">
+   <LINK REL="Next"  HREF="001155.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] VMX image creation</H1>
+    <B>Brandon Williams</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20VMX%20image%20creation&In-Reply-To=%3C000001c9e61f%246313b3a0%24293b1ae0%24%40net%3E"
+       TITLE="[Kiwi-users] VMX image creation">abwilliams1979 at sbcglobal.net
+       </A><BR>
+    <I>Fri Jun  5 22:51:22 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001151.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+        <LI>Next message: <A HREF="001155.html">[Kiwi-users] VMX image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1154">[ date ]</a>
+              <a href="thread.html#1154">[ thread ]</a>
+              <a href="subject.html#1154">[ subject ]</a>
+              <a href="author.html#1154">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks, Marcus. I finally got around to testing this and adding the two
+package definitions didn't fix the issue. I tried adding it in to my
+config.xml in /usr/share/kiwi/image/vmxboot/ and in my project folder in
+/usr/share/openSUSE-kiwi/
+
+I could see that it was including the packages when creating the image, but
+it still came up to a grub&gt; prompt after a reboot. Anything else I should
+look at?
+
+Regards,
+Brandon
+
+-----Original Message-----
+From: Marcus Sch&#228;fer [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at novell.com</A>] 
+Sent: Monday, May 25, 2009 1:43 AM
+To: Brandon Williams
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] VMX image creation
+
+Hi,
+
+&gt;<i> May-22 17:00:54 &lt;1&gt; : Creating initial boot structure
+</I>&gt;<i> May-22 17:00:55 &lt;1&gt; : Importing grub stages and graphics boot message
+</I>&gt;<i> May-22 17:00:55 &lt;3&gt; : Failed importing grub stages: mv: cannot stat
+</I>&gt;<i> `/tmp/kiwiboot.W8MXi3/image/loader/message': No such file or directory
+</I>
+This is what I wrote before on this list talking about the
+changes in the graphics boot menu
+
+&gt;<i> May-22 17:00:56 &lt;1&gt; : Trying to use grub stages from local machine
+</I>
+and that _could_ fail to boot the system depending on the grub
+installed on the build machine (maybe I'm going to remove that
+failover check) 
+
+What you need to do is add the following into your
+&lt;packages type=&quot;image&quot;&gt; section:
+
+  &lt;package name=&quot;bootsplash-branding-openSUSE&quot; 
+           bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+  &lt;package name=&quot;gfxboot-branding-openSUSE&quot; 
+           bootinclude=&quot;true&quot; bootdelete=&quot;true&quot;/&gt;
+
+you also can check the config.xml in the example templates from
+the kiwi-templates package. I have adapted all examples according
+to the change. Reason for the change was bug: #497888
+
+&gt;<i> Also, is there any way to have kiwi add the line to the .vmx file to not
+</I>add
+&gt;<i> a floppy drive? Easy enough to edit by hand or fix with a script, but I
+</I>was
+&gt;<i> curious if there was an undocumented way to do this.
+</I>
+sorry but floppy drive is not added to the .vmx file created by
+kiwi at least not in the current version. You can check the code
+in /usr/share/kiwi/modules/KIWIImage.pm and search for the function
+
+    buildVMwareConfig()
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001151.html">[Kiwi-users] USB image - Live-Stick System error
+</A></li>
+	<LI>Next message: <A HREF="001155.html">[Kiwi-users] VMX image creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1154">[ date ]</a>
+              <a href="thread.html#1154">[ thread ]</a>
+              <a href="subject.html#1154">[ subject ]</a>
+              <a href="author.html#1154">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011231806.36465.javier%40opensuse.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002156.html">
+   <LINK REL="Next"  HREF="002158.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory</H1>
+    <B>Javier Llorente</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20/dev/KiwiVG/LVhome%3A%20unlink%20failed%3A%20No%20such%20file%20or%0A%09directory&In-Reply-To=%3C201011231806.36465.javier%40opensuse.org%3E"
+       TITLE="[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory">javier at opensuse.org
+       </A><BR>
+    <I>Tue Nov 23 18:06:33 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002156.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+        <LI>Next message: <A HREF="002158.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2157">[ date ]</a>
+              <a href="thread.html#2157">[ thread ]</a>
+              <a href="subject.html#2157">[ subject ]</a>
+              <a href="author.html#2157">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>El Martes, 23 de Noviembre de 2010 17:42:42 usted escribi&#243;:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; dd if=/path/Open-PC_image.raw of=/dev/sdc bs=32k
+</I>&gt;<i> &gt; sdc is another disk attached to a VirtualBox machine, where I always put
+</I>&gt;<i> &gt; my kiwi images for testing. So before, sdc contained an openSUSE-based
+</I>&gt;<i> &gt; OS. This is the first time that I have the busy /home partition issue.
+</I>&gt;<i> 
+</I>&gt;<i> ok got it
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Image with patch tested! :-)
+</I>&gt;<i> &gt; I don't get the unlink or busy messages anymore. Regarding sizes:
+</I>&gt;<i> &gt; LVRoot: 5.02 GB, LVSwap: 1.00 GB, LVhome: 1.03 GB and 904 MB unassigned
+</I>&gt;<i> &gt; free space. /dev/sda1 uses 60.05 MB (/lvmboot) and /dev/sda2 uses 7.94
+</I>&gt;<i> &gt; GB (LVM). I have just realized that I forgot to change one thing. I have
+</I>&gt;<i> &gt; &lt;volume name=&quot;/home&quot; freespace=&quot;1024M&quot;/&gt;
+</I>&gt;<i> &gt; instead of
+</I>&gt;<i> &gt; &lt;volume name=&quot;/home&quot; size=&quot;1024M&quot;/&gt;
+</I>&gt;<i> &gt; I am going to rebuild the image &quot;with size&quot;. More info later :-)
+</I>&gt;<i> 
+</I>&gt;<i> That looks better now, so the disk is ~8G ? Could you attach the
+</I>&gt;<i> /var/log/boot.kiwi file ? Don't understand why there is still ~1G
+</I>&gt;<i> unassigned free after kiwi called &quot;lvextend -l 100%FREE&quot;. Is it
+</I>&gt;<i> possible to assign the free ~1G to LVRoot ?
+</I>
+That's right, the disk is 8 GB big.
+Here's the boot.kiwi: <A HREF="http://paste.opensuse.org/29232021">http://paste.opensuse.org/29232021</A>
+Yes, it's possible to assign the free ~1 GB to LVRoot.
+
+&gt;<i> &gt; One small detail: kiwi names the lvs LVRoot and LVhome. Is it possible
+</I>&gt;<i> &gt; to call it LVHome (with the H in uppercase so that it matches the
+</I>&gt;<i> &gt; naming style)?
+</I>&gt;<i> 
+</I>&gt;<i> unfortunately not because the name is created by the name of the directory
+</I>&gt;<i> in the filesystem. So if your /home directory is not named /Home the name
+</I>&gt;<i> will stay LVhome
+</I>
+OK, thanks!
+
+Greetings,
+-- 
+Javier Llorente
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20101123/d1c7e8fb/attachment.pgp">https://lists.berlios.de/pipermail/kiwi-users/attachments/20101123/d1c7e8fb/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002156.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or directory
+</A></li>
+	<LI>Next message: <A HREF="002158.html">[Kiwi-users] /dev/KiwiVG/LVhome: unlink failed: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2157">[ date ]</a>
+              <a href="thread.html#2157">[ thread ]</a>
+              <a href="subject.html#2157">[ subject ]</a>
+              <a href="author.html#2157">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

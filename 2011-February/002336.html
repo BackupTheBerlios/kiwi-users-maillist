@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-tools version question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C20110216163711.GA19441%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002335.html">
+   <LINK REL="Next"  HREF="002337.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-tools version question</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C20110216163711.GA19441%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi-tools version question">ms at suse.de
+       </A><BR>
+    <I>Wed Feb 16 17:37:11 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002335.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+        <LI>Next message: <A HREF="002337.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2336">[ date ]</a>
+              <a href="thread.html#2336">[ thread ]</a>
+              <a href="subject.html#2336">[ subject ]</a>
+              <a href="author.html#2336">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> That is my point: I did not add this! There is no reference anywhere in
+</I>&gt;<i> my files. I checked! But when looking at the build log, I see that it is
+</I>&gt;<i> being added!
+</I>&gt;<i> 
+</I>&gt;<i> The only repo line I have is:
+</I>&gt;<i> 
+</I>&gt;<i> &lt;repository type=&quot;yast2&quot;&gt;
+</I>&gt;<i>      &lt;source path=&quot;/home/roger/source.18.00/Tools_Diskless/openSUSE-11.2-DVD-i586&quot;/&gt;
+</I>&gt;<i> &lt;/repository&gt;
+</I>&gt;<i> 
+</I>&gt;<i> I will run this one more time just to be sure I did not look at an old
+</I>&gt;<i> log from something I tried a while back. That must be the only
+</I>&gt;<i> explanation.
+</I>
+ok, now I understand. You see this only for the creation of the boot
+image (initrd). oemboot/suse-11.2. I remember we updated kiwi-tools
+and because this happened after 11.2 was done we use the sle11 version
+of the kiwi-tools for the boot image. That works because it contains
+only simple C helper programs (no deep library dependencies)
+
+I though you added that repo for your system image which wouldn't make
+much sense imho. The kiwi-tools package is only relevant for the
+boot code. It contains small helper programs important when the system
+boots up but you don't need them in the system itself
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002335.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+	<LI>Next message: <A HREF="002337.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2336">[ date ]</a>
+              <a href="thread.html#2336">[ thread ]</a>
+              <a href="subject.html#2336">[ subject ]</a>
+              <a href="author.html#2336">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

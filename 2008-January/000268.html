@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] PXE Boot a new problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20a%20new%20problem&In-Reply-To=%3C47A04355.8010606%40comline.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000267.html">
+   <LINK REL="Next"  HREF="000269.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] PXE Boot a new problem</H1>
+    <B>Ralf Prengel</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20a%20new%20problem&In-Reply-To=%3C47A04355.8010606%40comline.de%3E"
+       TITLE="[Kiwi-users] PXE Boot a new problem">ralf.prengel at comline.de
+       </A><BR>
+    <I>Wed Jan 30 10:28:53 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000267.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+        <LI>Next message: <A HREF="000269.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#268">[ date ]</a>
+              <a href="thread.html#268">[ thread ]</a>
+              <a href="subject.html#268">[ subject ]</a>
+              <a href="author.html#268">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus Sch&#228;fer schrieb:
+
+&gt;<i> Ah, Ralf tftp is controlled by init atftp is a daemon started
+</I>&gt;<i> by rc script. Just install atftp again and edit the file
+</I>&gt;<i> /etc/sysconfig/atftpd: Set the following options there:
+</I>&gt;<i> 
+</I>&gt;<i> 	ATFTPD_OPTIONS=&quot;--daemon --no-multicast&quot;
+</I>&gt;<i> 	ATFTPD_DIRECTORY=&quot;/srv/tftpboot&quot;
+</I>&gt;<i> 
+</I>&gt;<i> now make sure there is no old tftp running:
+</I>&gt;<i> 
+</I>&gt;<i> 	init q
+</I>&gt;<i> 	ps ax | grep tftp --&gt; kill them
+</I>&gt;<i>  
+</I>&gt;<i> now start atftp
+</I>&gt;<i> 
+</I>&gt;<i> 	rcatftpd start 
+</I>&gt;<i> 
+</I>&gt;<i> you really should use atftp
+</I>&gt;<i> 
+</I>&gt;<i> If you want to give me access to your boot server machine I also
+</I>&gt;<i> can fix it there directly :-)
+</I>
+ok
+/usr/sbin/atftpd --pidfile /var/run/atftpd/pid --daemon --no-multicast /s
+is runing
+
+Error PXE-E53 No boot filename recieved
+
+/srv/tftpboot contains the same files as before.
+Does atftp needs other files or names?
+
+
+
+
+-- 
+i.A. Ralf Prengel
+Customer Care Manager
+Comline AG
+Hauert 8
+D-44227 Dortmund/Germany
+
+Fon +49231 97575- 904
+Fax +49231 97575- 905
+EMail <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ralf.prengel at comline.de</A>
+
+www.comline.de
+Vorstand Stephan Schilling,Erwin Leonhardi
+Aufsichtsrat Dr. Franz Schoser (Vorsitzender)
+HR Dortmund B 14570
+USt.-ID-Nr. DE 124727422
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000267.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+	<LI>Next message: <A HREF="000269.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#268">[ date ]</a>
+              <a href="thread.html#268">[ thread ]</a>
+              <a href="subject.html#268">[ subject ]</a>
+              <a href="author.html#268">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

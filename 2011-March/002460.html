@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimRyODbZKpBijUjfhcQJOz6def6wgp5H8EkZU5c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002459.html">
+   <LINK REL="Next"  HREF="002461.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimRyODbZKpBijUjfhcQJOz6def6wgp5H8EkZU5c%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Mar 11 21:27:51 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002459.html">[Kiwi-users] USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002461.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2460">[ date ]</a>
+              <a href="thread.html#2460">[ thread ]</a>
+              <a href="subject.html#2460">[ subject ]</a>
+              <a href="author.html#2460">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Mar 11, 2011 at 2:32 PM, Robert Schweikert
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 03/11/2011 01:57 PM, Chris Cunha wrote:
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> ok thanks Robert,
+</I>&gt;&gt;<i> It's installed and ready to go.
+</I>&gt;&gt;<i> I just made the changes to the config.xml file which looks like this:
+</I>&gt;&gt;<i> <A HREF="http://paste.opensuse.org/53332192">http://paste.opensuse.org/53332192</A>
+</I>&gt;<i>
+</I>&gt;<i> You should set up swap space:
+</I>&gt;<i>
+</I>&gt;<i> &lt;type....&gt;
+</I>&gt;<i> &#160; &#160;&lt;oemconfig&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160;&lt;oem-swap&gt;true&lt;/oem-swap&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160;&lt;oem-swapsize&gt;AN_INT_FOR_SWAP_IN_MB&lt;/oem-swapsize&gt;
+</I>&gt;<i> &#160; &#160;&lt;/oemconfig&gt;
+</I>&gt;<i> &lt;/type&gt;
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'm not familiar with the OEM type image as I've only worked with the
+</I>&gt;&gt;<i> ISO type and I'm getting quite a few (15) errors that read
+</I>&gt;&gt;<i> &#160;&quot;No update candidate for 'lxtask-0.1.3-20.1.i586'. The highest
+</I>&gt;&gt;<i> available version is already installed.&quot;
+</I>&gt;<i>
+</I>&gt;<i> That is not an error, the package manager is just telling you that the
+</I>&gt;<i> latest version of the package is already installed and you're trying to
+</I>&gt;<i> install it again.
+</I>&gt;<i>
+</I>&gt;<i> Usually you would not see these messages, thus there is probably a real
+</I>&gt;<i> error in your log file, most likely for a package that cannot be found.
+</I>&gt;<i>
+</I>&gt;<i> You will have to post the proper error message to get help.
+</I>&gt;<i>
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;<i> Tech Lead
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;<i> 781-464-8147
+</I>&gt;<i>
+</I>&gt;<i> Novell
+</I>&gt;<i> Making IT Work As One
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+Ahh  I'm not sure what the heck is going on here but it won't get
+through the &quot;prepare&quot; stage.  I thought I was going to be able to
+change the image type and it would build.  I would like to understand
+what's going on here better.
+Here is the log file.
+<A HREF="http://paste.opensuse.org/4048856">http://paste.opensuse.org/4048856</A>
+
+and here is the config.xml file that I'm using.
+<A HREF="http://paste.opensuse.org/5941063">http://paste.opensuse.org/5941063</A>
+
+I looked in the doc for kiwi for an OEM image file that was closer to
+what my options and layout is but nothing seems to comes close so I
+can't compare my config.xml file to the other because they are both so
+different.
+In this log file where exactly are you looking for the cause of the
+error as the terminal output is not very helpful.
+Thanks Robert
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002459.html">[Kiwi-users] USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002461.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2460">[ date ]</a>
+              <a href="thread.html#2460">[ thread ]</a>
+              <a href="subject.html#2460">[ subject ]</a>
+              <a href="author.html#2460">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

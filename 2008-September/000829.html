@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi, deb-file and arch != x86
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%2C%20deb-file%20and%20arch%20%21%3D%20x86&In-Reply-To=%3C200809031603.38312.dl9pf%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000830.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi, deb-file and arch != x86</H1>
+    <B>Jan-Simon M&#246;ller</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%2C%20deb-file%20and%20arch%20%21%3D%20x86&In-Reply-To=%3C200809031603.38312.dl9pf%40gmx.de%3E"
+       TITLE="[Kiwi-users] kiwi, deb-file and arch != x86">dl9pf at gmx.de
+       </A><BR>
+    <I>Wed Sep  3 16:03:37 CEST 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000830.html">[Kiwi-users] kiwi, deb-file and arch != x86
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#829">[ date ]</a>
+              <a href="thread.html#829">[ thread ]</a>
+              <a href="subject.html#829">[ subject ]</a>
+              <a href="author.html#829">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all, hi schaefi!
+
+I got a step further ;) but found another issue. Let's sum up:
+
+deb-file works, i can add repos now:
+------------------------------------
+[srv_obs_build_Debian:Etch:ARMV4L_standard_armv4l_:full]
+type = deb-dir
+name = srv_obs_build_Debian:Etch:ARMV4L_standard_armv4l_:full
+path = /srv/obs/build/Debian:Etch:ARMV4L/standard/armv4l/:full
+recursive = yes
+
+[deb-sys]
+type = deb-sys
+name = DEB System
+
+[rpm-sys]
+type = rpm-sys
+name = RPM System
+
+[srv_obs_repos_testarm_standard_arm]
+type = deb-dir
+name = srv_obs_repos_testarm_standard_arm
+path = /srv/obs/repos/testarm/standard/arm
+recursive = yes
+
+
+Next problem: my packages are ARCH=arm - smart needs -o deb-arch=arm  in this case.
+Ok, i hacked it after -o deb-root (could we add a cmdline-option?) . Now it is called like this:
+------------------------------------------------------------------------------------------------
+
+smart --data-dir=/var/cache/kiwi/smart -o remove-packages=false -o rpm-root=/tmp/kiwi.mB3893 -o deb-root=/tmp/kiwi.mB3893 -o deb-arch=arm update srv_obs_repos_testarm_standard_arm srv_obs_build_Debian:Etch:ARMV4L_standard_armv4l_:full
+
+And hooray, the metadata is valid then!
+---------------------------------------
+
+smart --data-dir=/var/cache/kiwi/smart -o remove-packages=false -o rpm-root=/tmp/kiwi.mB3893 -o deb-root=/tmp/kiwi.mB3893 -o deb-arch=arm install smartpm --explain --log-level=error -y
+
+Lade Zwischenspeicher...
+Update Zwischenspeicher...                    ############################################################# [100%]
+
+Berechne Vorgang ...
+
+Installiere Pakete (96):
+  ca-certificates_20070303
+    Ben&#246;tigt
+[..removed..]
+      libmagic1_4.17-5etch3 (installiert)
+
+41.4MB an Paketdateien sind ben&#246;tigt.131.0MB wird benutzt.
+
+&#220;bermittle Transaktion ...                                                                                  (  0%)
+[unpack] mime-support_3.39-1
+[unpack] libgtk2.0-common_2.8.20-7
+[unpack] tzdata_2007k-1etch1
+[unpack] gcc-4.1-base_4.1.1-21
+[unpack] readline-common_5.2-2
+dpkg: kann das Updates-Verzeichnis &#187;/tmp/kiwi.mB3893/var/lib/dpkg/updates/&#171; nicht einlesen: Datei oder Verzeichnis nicht gefunden
+FEHLER!: Unterprozess dpkg hat einen Fehler ausgeworfen (2)
+
+So there's a dpkg error ... 
+/tmp/kiwi.mB3893/var/lib/dpkg/updates/ doesn't exist.
+
+Best regards
+Jan-Simon
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000830.html">[Kiwi-users] kiwi, deb-file and arch != x86
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#829">[ date ]</a>
+              <a href="thread.html#829">[ thread ]</a>
+              <a href="subject.html#829">[ subject ]</a>
+              <a href="author.html#829">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

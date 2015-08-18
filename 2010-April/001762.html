@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Boot from hard drive feature
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20from%20hard%20drive%20feature&In-Reply-To=%3C4BB4B219.9040707%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001763.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Boot from hard drive feature</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Boot%20from%20hard%20drive%20feature&In-Reply-To=%3C4BB4B219.9040707%40novell.com%3E"
+       TITLE="[Kiwi-users] Boot from hard drive feature">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Apr  1 16:47:53 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001763.html">[Kiwi-users] KIWI diskless boot issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1762">[ date ]</a>
+              <a href="thread.html#1762">[ thread ]</a>
+              <a href="subject.html#1762">[ subject ]</a>
+              <a href="author.html#1762">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Back to this, sorry that it took me a while to get cracking on the testing.
+
+&lt;snip&gt;
+
+&gt;<i> 
+</I>&gt;&gt;<i> Long story: grubs chainloader command does not work as expected (at least as
+</I>&gt;&gt;<i> I would). I've looked at the source and am still not sure if that's
+</I>&gt;&gt;<i> intentional or a bug and quite frankly I don't care.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> What happened is that 'chainloader (hd0)' reads a block from hd0 but still
+</I>&gt;&gt;<i> passes the cdrom drive id to the boot code when booting. As the oem image
+</I>&gt;&gt;<i> has grub installed into mbr, grub fails to load its remaining code.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> And why did it work for me? Because I had a test image which has a generic
+</I>&gt;&gt;<i> mbr and grub was installed into a partition. The generic mbr threw away the
+</I>&gt;&gt;<i> cdrom drive id as obviously wrong and continued booting from the first disk
+</I>&gt;&gt;<i> as fallback.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've changed kiwi to use 'bootnext' for cdrom too.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks, I committed the patch. Will do that for SLE11 SP1 too
+</I>
+I tested a build created with 3.74 pulled from home:/ctso yesterday, the 
+rpm is labeled as follows:
+
+3.74-130.1
+
+Unfortunately I cannot report success. I get the following messages 
+(using ----- as delimiter) when selecting the &quot;Boot from hard drive&quot; 
+option after I installed the initial image. (testing with qemu)
+
+-----------
+Booting 'Boot from Hard Disk'
+
+chainloader (cd)/boot/grub/bootnext
+
+No operating system.
+
+Press a key to reboot.
+-------------
+
+I can boot the image with qemu.
+
+Thanks,
+Robert
+
+&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001763.html">[Kiwi-users] KIWI diskless boot issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1762">[ date ]</a>
+              <a href="thread.html#1762">[ thread ]</a>
+              <a href="subject.html#1762">[ subject ]</a>
+              <a href="author.html#1762">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Order of creating users and installing rpm packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Order%20of%20creating%20users%20and%20installing%20rpm%20packages&In-Reply-To=%3C20111018142118.Horde.Ge-9HklCcOxOnW8_QN1EbYA%40webmail.df.eu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002962.html">
+   <LINK REL="Next"  HREF="002964.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Order of creating users and installing rpm packages</H1>
+    <B>E.Waelde</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Order%20of%20creating%20users%20and%20installing%20rpm%20packages&In-Reply-To=%3C20111018142118.Horde.Ge-9HklCcOxOnW8_QN1EbYA%40webmail.df.eu%3E"
+       TITLE="[Kiwi-users] Order of creating users and installing rpm packages">ew.ng7125 at nassur.net
+       </A><BR>
+    <I>Tue Oct 18 14:21:18 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002962.html">[Kiwi-users] using systemdisk - sizing LVM partitions for OEM	kiwi images
+</A></li>
+        <LI>Next message: <A HREF="002964.html">[Kiwi-users] Order of creating users and installing rpm packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2963">[ date ]</a>
+              <a href="thread.html#2963">[ thread ]</a>
+              <a href="subject.html#2963">[ subject ]</a>
+              <a href="author.html#2963">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+Symptom:
+1. In config.xml I create 2 additional users.
+2. I have a bunch of rpms, which hold files, which should belong to  
+the users created in 1.
+3. turns out that some of the packages are installed before these  
+users show up in
+    /etc/passwd,group,shadow ...
+    This is clearly visible in the logfile:
+
+	|Retrieving package XXX-base-0.2-1.i586 (2/214), 3.0 KiB (1.0 KiB unpacked)
+	|Installing: XXX-base-0.2-1 [done]
+	|Additional rpm output:
+	|warning: user XXX does not exist - using root
+	|warning: group YYY does not exist - using root
+	|...
+	|warning: %post(mta-base-0.2-1.i586) scriptlet failed, exit status 1
+
+
+So: how is this solved correctly?
+
+a. Is there a requirement, that should be added to XXX-base.spec ?
+
+b. Should I use a pre-install scriptlet to create the users and let  
+kiwi (config.xml)
+handle the missing details like passwd string etc.?
+
+c. other?
+
+
+Cheers,
+Erich
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002962.html">[Kiwi-users] using systemdisk - sizing LVM partitions for OEM	kiwi images
+</A></li>
+	<LI>Next message: <A HREF="002964.html">[Kiwi-users] Order of creating users and installing rpm packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2963">[ date ]</a>
+              <a href="thread.html#2963">[ thread ]</a>
+              <a href="subject.html#2963">[ subject ]</a>
+              <a href="author.html#2963">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

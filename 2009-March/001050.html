@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] genisoimage failes, Directories too deep:
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20genisoimage%20failes%2C%20Directories%20too%20deep%3A&In-Reply-To=%3C200903200739.55825.scrute%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001049.html">
+   <LINK REL="Next"  HREF="001051.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] genisoimage failes, Directories too deep:</H1>
+    <B>Simon Crute</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20genisoimage%20failes%2C%20Directories%20too%20deep%3A&In-Reply-To=%3C200903200739.55825.scrute%40novell.com%3E"
+       TITLE="[Kiwi-users] genisoimage failes, Directories too deep:">scrute at novell.com
+       </A><BR>
+    <I>Fri Mar 20 08:39:55 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001049.html">[Kiwi-users] UID/GID changes
+</A></li>
+        <LI>Next message: <A HREF="001051.html">[Kiwi-users] genisoimage failes, Directories too deep:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1050">[ date ]</a>
+              <a href="thread.html#1050">[ thread ]</a>
+              <a href="subject.html#1050">[ subject ]</a>
+              <a href="author.html#1050">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, 
+
+Hopefully this isn't my fault too :)
+
+I'm trying to generate an ISO from an image that seems to have built for OEM 
+and VMX, and I get this error message. 
+
+
+Mar-19 20:14:51 &lt;1&gt; : EXEC [/usr/bin/isolinux-config --base boot/i386/loader 
+/tmp/kiwi-cdboot.hemS8G/kiwi-cdboot-3640/CD/boot/i386/loader/isolinux.bin 
+2&gt;&amp;1]
+Mar-19 20:14:52 &lt;1&gt; : EXEC [/usr/bin/mkisofs -p &quot;KIWI - 
+<A HREF="http://kiwi.berlios.de">http://kiwi.berlios.de</A>&quot; -publisher &quot;SUSE LINUX Products GmbH&quot; -R -J -pad -
+joliet-long -A undefined -sort /tmp/m_cd-Lx
+fepZ -no-emul-boot -boot-load-size 4 -boot-info-table -b 
+boot/i386/loader/isolinux.bin -c boot/i386/boot.catalog -hide 
+boot/i386/boot.catalog -hide-joliet boot/i386/boot.cat
+alog -o myiso/sled-11-live.i686-2.5.1.iso /tmp/m_cd-AepTMX /tmp/kiwi-
+cdboot.hemS8G/kiwi-cdboot-3640/CD 2&gt;&amp;1]
+Mar-19 20:14:52 &lt;3&gt; : Failed to call mkisofs binary: I: -input-charset not 
+specified, using utf-8 (detected in locale settings)
+genisoimage: Directories too deep for '/tmp/kiwi-cdboot.hemS8G/kiwi-
+cdboot-3640/CD/read-only-system/usr/share/beagle/icons/hicolor/24x24/apps' (7) 
+max is 6.
+   failed
+
+-- 
+Simon Crute
+Novell IS&amp;T
+UK
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001049.html">[Kiwi-users] UID/GID changes
+</A></li>
+	<LI>Next message: <A HREF="001051.html">[Kiwi-users] genisoimage failes, Directories too deep:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1050">[ date ]</a>
+              <a href="thread.html#1050">[ thread ]</a>
+              <a href="subject.html#1050">[ subject ]</a>
+              <a href="author.html#1050">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

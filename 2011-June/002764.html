@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Unable to change group/ownership of a directory (due	to permissions?)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20change%20group/ownership%20of%20a%20directory%20%28due%0A%09to%20permissions%3F%29&In-Reply-To=%3CBANLkTik3kiALmq8_BoyO%3DGQAuEnuU1KwrA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002770.html">
+   <LINK REL="Next"  HREF="002765.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Unable to change group/ownership of a directory (due	to permissions?)</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Unable%20to%20change%20group/ownership%20of%20a%20directory%20%28due%0A%09to%20permissions%3F%29&In-Reply-To=%3CBANLkTik3kiALmq8_BoyO%3DGQAuEnuU1KwrA%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Unable to change group/ownership of a directory (due	to permissions?)">eportel6607 at gmail.com
+       </A><BR>
+    <I>Fri Jun  3 18:52:54 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002770.html">[Kiwi-users] Amount of example image and boot descriptions
+</A></li>
+        <LI>Next message: <A HREF="002765.html">[Kiwi-users] Unable to change group/ownership of a directory (due	to permissions?)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2764">[ date ]</a>
+              <a href="thread.html#2764">[ thread ]</a>
+              <a href="subject.html#2764">[ subject ]</a>
+              <a href="author.html#2764">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Guys I'm trying to change the ownership and group of a directory.  I
+attempted to change the permissions of this directory in a working RAM
+only image.  Usually my changes will be applied until I reboot.  This
+is a good way for me to test if the command of my script actually
+work.
+The directory is &quot;/SOS&quot;.   This is the mount point for the fat
+partition that I have on this usb flash drive.  This SOS directory is
+sitting empty in my overlay file tree.  The subdirectories that are
+created in the /SOS directory is done with a script that is triggered
+from the /etc/init.d/boot.local script.  I was pointed out by Robert
+that the permissions of the /SOS directory are that the owner (root)
+can read and write but groups and other is read only.  Running the
+chmod command to resolve this (to allow read/write access for groups
+and other) generates no error (as if the command was excepted) however
+the status of the permissions doesn't change.
+
+In my config.sh script I have it attempt to change the group and
+ownership of the /SOS directory to the only user on the system.
+
+# Change ownership and group of the /SOS directory
+chown -R my_sos /SOS
+chgrp -R my_sos /SOS
+
+
+ This is necessary because this directory contains storage folders for
+the user that remain (on the fat partition) available after a reboot.
+ In a working system if I charge to root user and attempt to change
+the ownership and group settings of the /SOS directory and it's
+contents I appears like it works.  But again the status doesn't
+actually change.  How can the permissions/ownership/group be changed
+for this directory and it's contents?
+Should this /SOS directory not be placed in the overlay file tree and
+be created by maybe the config.sh script?   Even setting the ownership
+and permissions of the SOS directory in the overlay tree didn't make a
+difference.
+
+Thanks
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002770.html">[Kiwi-users] Amount of example image and boot descriptions
+</A></li>
+	<LI>Next message: <A HREF="002765.html">[Kiwi-users] Unable to change group/ownership of a directory (due	to permissions?)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2764">[ date ]</a>
+              <a href="thread.html#2764">[ thread ]</a>
+              <a href="subject.html#2764">[ subject ]</a>
+              <a href="author.html#2764">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

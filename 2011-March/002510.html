@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110318085509.GC11008%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002506.html">
+   <LINK REL="Next"  HREF="002511.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110318085509.GC11008%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Fri Mar 18 09:55:09 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002506.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002511.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2510">[ date ]</a>
+              <a href="thread.html#2510">[ thread ]</a>
+              <a href="subject.html#2510">[ subject ]</a>
+              <a href="author.html#2510">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> The way things currently work the fat partition contains a &quot;boot&quot;
+</I>&gt;<i> directory that holds the critical boot files for the OS.  As of right
+</I>&gt;<i> now I don't see a way to keep the end user out of the boot folder.
+</I>
+yes sorry that's not possible with a fat partition. fat fs doesn't
+have a mechanism to hide folders
+
+&gt;<i> Due to the boot folder being on the fat partition and there doesn't
+</I>&gt;<i> seem to be a way to create a &quot;Storage&quot; folder on this fat partition
+</I>&gt;<i> and have the .desktop file point to it, it seems that the .desktop
+</I>&gt;<i> file must be pointed to the /media folder.   If I'm clear on this,
+</I>
+I already wrote you how you can create a persistent mount
+point for the fat partition. You can enhance the script to also
+create a Storage folder and let your .desktop file point to
+that folder
+
+   ....
+   mount ${bootdev}1 /media/stickstorage
+
+   mkdir /media/stickstorage/Storage
+   
+let the .desktop file point to /media/stickstorage/Storage.
+But this will still allow the user to access /media/stickstorage/boot
+sorry this can't be prevented
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002506.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002511.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2510">[ date ]</a>
+              <a href="thread.html#2510">[ thread ]</a>
+              <a href="subject.html#2510">[ subject ]</a>
+              <a href="author.html#2510">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

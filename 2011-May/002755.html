@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] layout of  vmx type image regarding SSDs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20layout%20of%20%20vmx%20type%20image%20regarding%20SSDs&In-Reply-To=%3C20110531112535.65904re5cag4pq0w%40webmail.df.eu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002754.html">
+   <LINK REL="Next"  HREF="002756.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] layout of  vmx type image regarding SSDs</H1>
+    <B>E.Waelde</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20layout%20of%20%20vmx%20type%20image%20regarding%20SSDs&In-Reply-To=%3C20110531112535.65904re5cag4pq0w%40webmail.df.eu%3E"
+       TITLE="[Kiwi-users] layout of  vmx type image regarding SSDs">ew.ng7125 at nassur.net
+       </A><BR>
+    <I>Tue May 31 11:25:35 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002754.html">[Kiwi-users] kiwi version 4.90-254.1 requires perl-RPMQ
+</A></li>
+        <LI>Next message: <A HREF="002756.html">[Kiwi-users] layout of  vmx type image regarding SSDs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2755">[ date ]</a>
+              <a href="thread.html#2755">[ thread ]</a>
+              <a href="subject.html#2755">[ subject ]</a>
+              <a href="author.html#2755">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hello,
+
+I'm building a LimeJeOS image based on openSUSE 11.4
+kiwi version v4.87
+
+I found that copying the resulting LimeJeOS-openSUSE-11.4.i686-1.11.4.raw
+file onto a SSD disk (using dd) works, but is somewhat suboptimal,
+because the layout of the .raw image does not fit to a SSD device.
+
+in particular:
+1.
+# dd if=./mt-compile-11.4-out/LimeJeOS-openSUSE-11.4.i686-1.11.4.raw  
+of=/dev/sdc bs=1M
+# fdisk -l /dev/sdc
+Disk /dev/sdc: 8065 MB, 8065548288 bytes
+4 heads, 32 sectors/track, 123070 cylinders, total 15753024 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x944f6757
+    Device Boot      Start         End      Blocks   Id  System
+/dev/sdc1   *          32     1505279      752624   83  Linux
+-----------------------^^
+should be 2048 or whatever fdisk or parted know about the device.
+
+
+2.
+When creating a partition manually, the offset of the first
+partition is 2048, which is good for SSD devices.
+# fdisk -l /dev/sdc
+...
+    Device Boot      Start         End      Blocks   Id  System
+/dev/sdc1            2048     2099199     1048576   83  Linux
+---------------------^^^^
+
+I have looked into /usr/share/kiwi/modules/KIWIBoot.pm, but I'm
+uncertain, how and where to change the behaviour.
+
+
+Hints would be very welcome!
+Thanks,
+Erich
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002754.html">[Kiwi-users] kiwi version 4.90-254.1 requires perl-RPMQ
+</A></li>
+	<LI>Next message: <A HREF="002756.html">[Kiwi-users] layout of  vmx type image regarding SSDs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2755">[ date ]</a>
+              <a href="thread.html#2755">[ thread ]</a>
+              <a href="subject.html#2755">[ subject ]</a>
+              <a href="author.html#2755">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

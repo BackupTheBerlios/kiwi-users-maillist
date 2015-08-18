@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi preload image failure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C1297420947.10573.161.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002314.html">
+   <LINK REL="Next"  HREF="002319.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi preload image failure</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20preload%20image%20failure&In-Reply-To=%3C1297420947.10573.161.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] kiwi preload image failure">roger at opq.se
+       </A><BR>
+    <I>Fri Feb 11 11:42:27 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002314.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+        <LI>Next message: <A HREF="002319.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2318">[ date ]</a>
+              <a href="thread.html#2318">[ thread ]</a>
+              <a href="subject.html#2318">[ subject ]</a>
+              <a href="author.html#2318">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-02-10 at 15:17 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I am using whatever is in the preload example. I would expect that at
+</I>&gt;<i> &gt; least to boot. Whatever foolish things I may then attempt would be my
+</I>&gt;<i> &gt; own problem. Perhaps this is a 11.3 thing. I hope not...
+</I>&gt;<i> 
+</I>&gt;<i> ok now I understand. you just used the oem-preload examples from
+</I>&gt;<i> the kiwi-doc package. I have changed the filesystem type to ext3
+</I>&gt;<i> for the 11.2 example and I also removed the split sections from
+</I>&gt;<i> these examples which means the kiwi default split setup applies.
+</I>&gt;<i> That works then as expected
+</I>&gt;<i> 
+</I>&gt;<i> One side note. The examples in the kiwi-doc package didn't go
+</I>&gt;<i> through QA. So if you want to be sure an example works install
+</I>&gt;<i> the official kiwi-templates package and use of the JeOS image
+</I>&gt;<i> descriptions provided there. So far we have the following JeOS's
+</I>&gt;<i> 
+</I>&gt;<i>   suse-11.1-JeOS
+</I>&gt;<i>   suse-11.2-JeOS
+</I>&gt;<i>   suse-11.3-JeOS
+</I>&gt;<i>   suse-11.4-JeOS
+</I>&gt;<i>   suse-SLE10-JeOS
+</I>&gt;<i>   suse-SLE11-JeOS 
+</I>
+I am using whatever is in kiwi-templates-4.73-195.1.i586. 
+
+The JeOS seem to be Xen/VMX. I am getting confused.
+
+Version 1 of what I think might be happening (less likely, I guess):
+
+Some image is made by KIWI. The bootable part of that image is only
+whatever is needed to show the question about where to copy the pre-load
+blob, which is just payload in the image. After that blob is copied to
+the target disk, I guess the partition is resized and then the system
+should pass control to that blob and things continue. Maybe some other
+things happen first. But that is the general activity IIUC.
+
+Version 2 of what I think might be happening (most likely based on what
+I see):
+
+Some image is made by KIWI. That image boots and can copy itself to some
+other disk. After the copy, the disk image is resized, and the stuff
+that wants to do the copy/resize/cleanup is removed. The disk image will
+then boot as a normal OS. Just like it had been installed on the disk.
+
+
+Presumably I am doing something very wrong. But the templates you
+suggest to me are resulting in read-only parts of the file system on the
+target disk. I do not see that I am asking for a split setup. But I do
+see things like 
+
+	flags=&quot;clic&quot; hybrid=&quot;true&quot;
+
+in the config.xml. How does this get sorted out in the destination
+image?
+
+I think there is some basic concept I am not getting from the docs.
+Perhaps an assumption I am making that is incorrect and so I make dumb
+mistakes.
+
+This error seems consistent:
+
+	/etc/initscript: I see /etc/init.d/boot: permission denied
+
+There are also complaints that ptys cannot be found when running all the
+init scripts. Which causes various problems. The biggest is that the
+keyboard and mouse do not work, even though X is started. This makes
+post-mortem work rather difficult.
+
+What I am trying to accomplish is making an install media that contains
+all the packages I want to install. This includes things it may get over
+the internet (updates, additional packages, etc) to satisfy some
+requirement. It differs from an autoyast.xml setup in that the image is
+complete when installed. The autoyast.xml might need to get things from
+the internet to complete the installation. And it of course does the
+complete installation. If possible, I do not want that.
+
+I do not require that I have a bootable thing to deploy this image on
+the disk. But that would be extremely good. 
+
+
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002314.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+	<LI>Next message: <A HREF="002319.html">[Kiwi-users] kiwi preload image failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2318">[ date ]</a>
+              <a href="thread.html#2318">[ thread ]</a>
+              <a href="subject.html#2318">[ subject ]</a>
+              <a href="author.html#2318">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

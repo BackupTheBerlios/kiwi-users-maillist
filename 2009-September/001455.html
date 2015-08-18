@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Not accepting EULA does not cause system shutdown
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Not%20accepting%20EULA%20does%20not%20cause%20system%20shutdown&In-Reply-To=%3C20090928130610.GA18045%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001454.html">
+   <LINK REL="Next"  HREF="001456.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Not accepting EULA does not cause system shutdown</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Not%20accepting%20EULA%20does%20not%20cause%20system%20shutdown&In-Reply-To=%3C20090928130610.GA18045%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Not accepting EULA does not cause system shutdown">ms at novell.com
+       </A><BR>
+    <I>Mon Sep 28 15:06:10 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001454.html">[Kiwi-users] Not accepting EULA does not cause system shutdown
+</A></li>
+        <LI>Next message: <A HREF="001456.html">[Kiwi-users] Not accepting EULA does not cause system shutdown
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1455">[ date ]</a>
+              <a href="thread.html#1455">[ thread ]</a>
+              <a href="subject.html#1455">[ subject ]</a>
+              <a href="author.html#1455">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> For an OEM image based on SLES 10 with a recent version of Kiwi 
+</I>&gt;<i> (kiwi-3.74-44.1) not accepting the EULA does not cause the system to 
+</I>&gt;<i> shutdown, rather the state off the machine is returned to the EULA 
+</I>&gt;<i> display in what appears to be an endless loop. Looks like the &quot;No&quot; 
+</I>&gt;<i> condition for the EULA is not handled correctly.
+</I>&gt;<i> 
+</I>&gt;<i> If the user should get a second or third chance to accept the license it 
+</I>&gt;<i> appears that a counter is needed in KIWILinuxRC.sh.  However, I think if 
+</I>&gt;<i> the user does not accept the EULA the system should just shutdown. I 
+</I>&gt;<i> think the following should do the trick.
+</I>&gt;<i> 
+</I>&gt;<i>     case $? in
+</I>&gt;<i>             0 ) break
+</I>&gt;<i>                 ;;
+</I>&gt;<i>             1 ) systemException \
+</I>&gt;<i>                     &quot;License not accepted... reboot&quot; \
+</I>&gt;<i>                 &quot;reboot&quot;
+</I>&gt;<i>                 ;;
+</I>&gt;<i>         esac
+</I>&gt;<i> 
+</I>&gt;<i> Not sure if we should turn the system off, i.e. &quot;shutdown -h&quot; or simply 
+</I>&gt;<i> reboot as in the code above.
+</I>
+I thought I've implemented it that way... will check again
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001454.html">[Kiwi-users] Not accepting EULA does not cause system shutdown
+</A></li>
+	<LI>Next message: <A HREF="001456.html">[Kiwi-users] Not accepting EULA does not cause system shutdown
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1455">[ date ]</a>
+              <a href="thread.html#1455">[ thread ]</a>
+              <a href="subject.html#1455">[ subject ]</a>
+              <a href="author.html#1455">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

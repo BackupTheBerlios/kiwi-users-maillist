@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Optimizing turnaround time
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804100328n38e85859ia759385f1e6081a1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000569.html">
+   <LINK REL="Next"  HREF="000565.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Optimizing turnaround time</H1>
+    <B>Luis Garrido</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Optimizing%20turnaround%20time&In-Reply-To=%3Cffda12330804100328n38e85859ia759385f1e6081a1%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Optimizing turnaround time">luisgarrido at users.sourceforge.net
+       </A><BR>
+    <I>Thu Apr 10 12:28:02 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000569.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+        <LI>Next message: <A HREF="000565.html">[Kiwi-users] Improving the documentation...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#564">[ date ]</a>
+              <a href="thread.html#564">[ thread ]</a>
+              <a href="subject.html#564">[ subject ]</a>
+              <a href="author.html#564">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>  I believe we already wrote about many of these things but the doc is hidden
+</I>&gt;<i>  too well :)
+</I>&gt;<i>
+</I>&gt;<i>  For me it would be interesting to know what parts of the doc you read and why;
+</I>&gt;<i>  how did you find the things you found and why didn't you find the rest?
+</I>&gt;<i>  Knowing this we can make the documentation even better.
+</I>&gt;<i>
+</I>
+My main sources are the kiwi.pdf file, the results of kiwi --help, the
+examples and KIWIScheme.rnc. Some useful info only appears in the
+Changelogs courtesy of google.
+
+Regarding information organization, if I am making a livecd it is
+rather natural that I skip the usb or the netboot sections, I think.
+Everyone's time is limited and we want to cut to the chase.
+
+The main problem of kiwi's docs is that it is not clear what kiwi
+_does_, so it is difficult to figure out what all the parameters are
+for and how they affect the final result. This is why I think a
+procedural approach (describe kiwi procedure step by step and how
+every configuration option affects them) would be a more informative
+approach and put everything in its place. Who knows, it might even
+help the development team to find opportunities of improvement.
+
+A few things that I have not seen well described anywhere, there are
+probably more:
+- &lt;packages type=???&gt;
+- baseroot
+- prebuilt
+- role of &lt;root&gt;/image/config.xml in fine tuning.
+- role of MD5 sums.
+- real life workflow: how to prepare and then fine tune a good
+config.xml, description of some important packages, optimization of
+the turnaround time (I know this is very specific for every
+application, but when you use kiwi a bit some patterns emerge
+quickly.)
+- optimization of the result: disk space, available RAM, etc.
+- mandatory vs optional config.xml elements.
+
+&gt;<i>  You can put your flesh in there; it doesn't have to be perfect DocBook ;) and
+</I>&gt;<i>  send us a patch.
+</I>&gt;<i>
+</I>
+I am more with Richard in that a wiki would be easier and more
+effective in terms of user/developer feedback.
+
+Luis
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000569.html">[Kiwi-users] Optimizing turnaround time
+</A></li>
+	<LI>Next message: <A HREF="000565.html">[Kiwi-users] Improving the documentation...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#564">[ date ]</a>
+              <a href="thread.html#564">[ thread ]</a>
+              <a href="subject.html#564">[ subject ]</a>
+              <a href="author.html#564">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

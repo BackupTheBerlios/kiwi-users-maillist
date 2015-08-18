@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Setting the grub boot timeout?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20grub%20boot%20timeout%3F&In-Reply-To=%3C20100311113738.GA11125%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001722.html">
+   <LINK REL="Next"  HREF="001727.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Setting the grub boot timeout?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Setting%20the%20grub%20boot%20timeout%3F&In-Reply-To=%3C20100311113738.GA11125%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Setting the grub boot timeout?">ms at novell.com
+       </A><BR>
+    <I>Thu Mar 11 12:37:38 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001722.html">[Kiwi-users] Setting the grub boot timeout?
+</A></li>
+        <LI>Next message: <A HREF="001727.html">[Kiwi-users] Setting the grub boot timeout?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1726">[ date ]</a>
+              <a href="thread.html#1726">[ thread ]</a>
+              <a href="subject.html#1726">[ subject ]</a>
+              <a href="author.html#1726">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> My name is Lee, and I'm new to the list, so I hope this question hasn't already been answered.
+</I>&gt;<i> 
+</I>&gt;<i> I just inherited a kiwi build system, and it's working fine, but I'd like to change our Images Grub boot menu timeout to 0, so that the system boots more quickly.
+</I>&gt;<i> 
+</I>&gt;<i> Is there a way to do this in config.xml, or do I need to write a custom script (perhaps in images.sh)?
+</I>
+You can change that inside the image after it has been built.
+This works like the following commands explain:
+
+   losetup /dev/loop0 image.raw
+   kpartx -a /dev/loop0
+   mount /dev/mapper/loop0p1 /mnt
+  
+   ===&gt; vi /mnt/boot/grub/menu.lst
+   
+   change the timeout and store the file
+
+   umount /mnt
+   kpartx -d /dev/loop0
+   losetup -d /dev/loop0
+
+That's it
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001722.html">[Kiwi-users] Setting the grub boot timeout?
+</A></li>
+	<LI>Next message: <A HREF="001727.html">[Kiwi-users] Setting the grub boot timeout?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1726">[ date ]</a>
+              <a href="thread.html#1726">[ thread ]</a>
+              <a href="subject.html#1726">[ subject ]</a>
+              <a href="author.html#1726">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

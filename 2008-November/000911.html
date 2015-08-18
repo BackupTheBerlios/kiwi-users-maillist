@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Enhancement Request
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Enhancement%20Request&In-Reply-To=%3Cb317ae5c0811242034t3ee2c627v205f07e973a75294%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000910.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Enhancement Request</H1>
+    <B>Jigish Gohil</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Enhancement%20Request&In-Reply-To=%3Cb317ae5c0811242034t3ee2c627v205f07e973a75294%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] Enhancement Request">cyberorg at opensuse.org
+       </A><BR>
+    <I>Tue Nov 25 05:34:09 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000910.html">[Kiwi-users] Enhancement Request
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#911">[ date ]</a>
+              <a href="thread.html#911">[ thread ]</a>
+              <a href="subject.html#911">[ subject ]</a>
+              <a href="author.html#911">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Nov 25, 2008 at 12:40 AM, Cody Grosskopf &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cgrossko at wusd.org</A>&gt; wrote:
+&gt;<i> Tried to test the new packages out, upon installation I get the following:
+</I>&gt;<i>
+</I>&gt;<i> Mounting NBD root system: 10.19.33.141 2000 [/dev/nbd0]...negotiation: -------&gt; Failed to setup /dev/nbd0 device
+</I>&gt;<i> rebootException: error consoles at Alt-F3/F4
+</I>&gt;<i> rebootException: reboot in 120 sec...
+</I>&gt;<i>
+</I>&gt;<i> This is on a clean installation of opensuse 11. I have had this problem before and I believe it had to do with a certain version of KIWI that was not updated, I am using version 3.01-89.1 is this the correct version?
+</I>&gt;<i>
+</I>
+/usr/sbin/nbdrootd should have the following:
+
+/usr/bin/nbd-server 0 /srv/kiwi-ltsp/i386.img -r -C /dev/null &gt; /dev/null 2&gt;&amp;1
+
+Note i386.img.
+
+Ciao
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000910.html">[Kiwi-users] Enhancement Request
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#911">[ date ]</a>
+              <a href="thread.html#911">[ thread ]</a>
+              <a href="subject.html#911">[ subject ]</a>
+              <a href="author.html#911">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

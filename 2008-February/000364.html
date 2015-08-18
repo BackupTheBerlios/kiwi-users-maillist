@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Netboot and diskless - config.default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Netboot%20and%20diskless%20-%20config.default&In-Reply-To=%3C20080225142108.GA9499%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000363.html">
+   <LINK REL="Next"  HREF="000410.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Netboot and diskless - config.default</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Netboot%20and%20diskless%20-%20config.default&In-Reply-To=%3C20080225142108.GA9499%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Netboot and diskless - config.default">ms at suse.de
+       </A><BR>
+    <I>Mon Feb 25 15:21:08 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000363.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+        <LI>Next message: <A HREF="000410.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#364">[ date ]</a>
+              <a href="thread.html#364">[ thread ]</a>
+              <a href="subject.html#364">[ subject ]</a>
+              <a href="author.html#364">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> jap I found that's always the first problem people deal with :)
+</I>&gt;<i> I tried to face that in the documentation but I think It isn't
+</I>&gt;<i> good enough. So yes when creating an image you always have two
+</I>&gt;<i> parts:
+</I>&gt;<i> 
+</I>&gt;<i>    1) control how to boot, that's the boot image the initrd
+</I>&gt;<i>    2) define what the real system should be able to do, that's the system image
+</I>
+What I forgot to mention: point 1) is the service kiwi provides. Which
+means for all image types kiwi provides boot images. For the special use
+cases we try to provide profiles but you can imagine there might be
+special cases which are not covered. In such a case people most often
+start to clone from an existing boot image and add their special changes.
+That's ok of course but also means people need to take care for the boot
+and the system image.
+
+If everything is just fine the idea is that people only take care on
+the system image and according to this they only take care for the most
+important part. Nobody should care about how that thing boots that's
+kiwi's job ;) Unfortunately sometimes the requirements also steps into
+the boot part and so the boot image description needs to be adapted
+which should be avoided because it's a very sensitive part of an image
+but if urgently needed one can adapt it too.
+
+So the intention is to provide as much as possible and make it easy
+but don't loose the flexibility if the default doesn't apply.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000363.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+	<LI>Next message: <A HREF="000410.html">[Kiwi-users] Netboot and diskless - config.default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#364">[ date ]</a>
+              <a href="thread.html#364">[ thread ]</a>
+              <a href="subject.html#364">[ subject ]</a>
+              <a href="author.html#364">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] R&#233;p. : Re:  Booting via pxe tftp server issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%3D%3Futf-8%3Fq%3FR%3DC3%3DA9p%3D2E_%3D3A_Re%3D3A__Booting_via_pxe_tft%3F%3D%0A%20%3D%3Futf-8%3Fq%3Fp_server_issue%3F%3D&In-Reply-To=%3C46FCE23A.FD00.00D6.0%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000044.html">
+   <LINK REL="Next"  HREF="000048.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] R&#233;p. : Re:  Booting via pxe tftp server issue</H1>
+    <B>Mathieu Cadet</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%3D%3Futf-8%3Fq%3FR%3DC3%3DA9p%3D2E_%3D3A_Re%3D3A__Booting_via_pxe_tft%3F%3D%0A%20%3D%3Futf-8%3Fq%3Fp_server_issue%3F%3D&In-Reply-To=%3C46FCE23A.FD00.00D6.0%40novell.com%3E"
+       TITLE="[Kiwi-users] R&#233;p. : Re:  Booting via pxe tftp server issue">mcadet at novell.com
+       </A><BR>
+    <I>Fri Sep 28 11:15:06 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000044.html">[Kiwi-users] Booting via pxe tftp server issue
+</A></li>
+        <LI>Next message: <A HREF="000048.html">[Kiwi-users] R&#233;p. : Re:  Booting via pxe tftp server issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#47">[ date ]</a>
+              <a href="thread.html#47">[ thread ]</a>
+              <a href="subject.html#47">[ subject ]</a>
+              <a href="author.html#47">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> Hi,
+
+in fact I think there's a bug in the netboot process causing the kiwitftp parameter to be ignored if it is an IP
+address and not a resolvable hostname.
+
+According to the Kiwi Manual, this is the step 5 of the boot process of a netboot system ;
+
+&#171; 5. If LOCAL_BOOT is not set, The TFTP server address is acquired. During this step, a check is made to determine
+   whether the kiwitftp kernel parameter is set. If this is not the case a check whether the host name tftp.$DOMAIN
+   can be resolved is made. If both tests fail, the DHCP server is used as the TFTP server. For more infomation
+   about the TFTP server structure, refer to the section called &#8220;The TFTP Server Structure &#187;
+
+But in the linuxrc script, this step is handled like this:
+
+#======================================
+# 6) get TFTP Server IP/name
+#--------------------------------------
+if [ $LOCAL_BOOT = &quot;no&quot; ];then
+    checkTFTP
+    if [ -z $TSERVER ];then
+        TSERVER=tftp.$DOMAIN
+    fi
+    Echo &quot;Checking TFTP Server name: $TSERVER&quot;
+    ip=`host $TSERVER | cut -f4 -d' '`
+    if test $ip = &quot;found:&quot; -o $ip = &quot;out;&quot;;then
+        Echo &quot;TFTP Server: $TSERVER not found&quot;
+        Echo &quot;Using: $DHCPSIADDR from dhcpcd-info&quot;
+        TSERVER=$DHCPSIADDR
+    fi
+fi
+
+The checkTFTP function retrieve the value of the &quot;kiwitftp&quot; kernel parameter and store it into the TSERVER variable. If
+this parameter is empty then TSERVER is constructed like &quot;tftp.domainname&quot;.
+A resolution attempt is then made on the content of the TSERVER variable.
+
+The issue here is that if the kiwitftp parameter contains an IP address, a resolution attempt will be made on this
+address, and naturally it will fail as it's not a DNS name! Thus fallbacking to the value of dhcpcd-info...
+
+IMHO, a resolution attempt should be made ONLY if the kiwitftp parameter is a DNS name and not an IP address.
+
+Regards,
+Mathieu
+ 
+&gt;&gt;&gt;<i> Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; 25/9/2007 11:41 &gt;&gt;&gt; 
+</I>Hi,
+
+&gt;<i> When I boot from network via pxe and when kiwi tried to find the tftp
+</I>&gt;<i> server I get the following message:
+</I>&gt;<i> 
+</I>&gt;<i> Found TFTP server in kernel cmdline
+</I>&gt;<i> Checking TFTP server name: 192.168.230.30
+</I>&gt;<i> TFTP server: 192.168.230.30 not found
+</I>&gt;<i> Using TFTP server from dhcp-info
+</I>&gt;<i> 
+</I>&gt;<i> This doesn't look very serious to me am I right?
+</I>
+It's the normal fallback if the given address in the kernel
+parameter kiwitftp=... can't be resolved. In that case the
+DHCP server address is used as TFTP server address as well.
+I know it could be wrong but in many cases people setup DHCP
+on the same machine than TFTP ;)
+
+There is no risk in doing that as the client receives data
+from the DHCP server it should be allowed to receive other
+data from the same server as well. Problem is if there is no
+tftp server running on this machine the image download will
+fail
+
+I'd like to recommend to provide the correct address in
+the pxelinux configuration file (kernel append line)
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+_______________________________________________
+Kiwi-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000044.html">[Kiwi-users] Booting via pxe tftp server issue
+</A></li>
+	<LI>Next message: <A HREF="000048.html">[Kiwi-users] R&#233;p. : Re:  Booting via pxe tftp server issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#47">[ date ]</a>
+              <a href="thread.html#47">[ thread ]</a>
+              <a href="subject.html#47">[ subject ]</a>
+              <a href="author.html#47">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

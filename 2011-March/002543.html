@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Kiwi or package issue?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3C4D8B5FAC.5010807%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002541.html">
+   <LINK REL="Next"  HREF="002546.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Kiwi or package issue?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Kiwi%20or%20package%20issue%3F&In-Reply-To=%3C4D8B5FAC.5010807%40novell.com%3E"
+       TITLE="[Kiwi-users] Kiwi or package issue?">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Mar 24 16:13:48 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002541.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+        <LI>Next message: <A HREF="002546.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2543">[ date ]</a>
+              <a href="thread.html#2543">[ thread ]</a>
+              <a href="subject.html#2543">[ subject ]</a>
+              <a href="author.html#2543">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+&lt;snip&gt;
+&gt;&gt;<i>
+</I>&gt;&gt;<i> You can specify the package name including the version number, i.e.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;package name=&quot;blah-1.2.3&quot;/&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> However, be aware that if the upstream package changed the older version may
+</I>&gt;&gt;<i> have disappeared from the repo.
+</I>&gt;&gt;<i>
+</I>
+&lt;snip&gt;
+
+&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Geesss can there be any more variables?!
+</I>
+Welcome to release management.
+
+&gt;<i> So what is the cure for this issue?  I mean if an image is designed
+</I>&gt;<i> around certain packages and my packages are based off the original
+</I>&gt;<i> SUSE versions of them how do I avoid having issue when somebody
+</I>&gt;<i> updates the SUSE packages that mine are based from?
+</I>
+You can always keep a copy of the original packages in you own OBS 
+project. When you link a package from another project you have the 
+option to track the changes in the originating project or not.
+
+&gt;<i> All I want to do is have a consistent base to build from.
+</I>
+Don't include devel repositories from OBS, be careful which update repos 
+you include. Based on your earlier description I would say you are 
+probably pulling packages from a devel repo.
+
+If you stick to 11.x and 11.x update repos changes as you describe them 
+should not happen. You have got to develop an understanding of how 
+projects in OBS work and what their package update policy is, as well as 
+getting an understanding about how the moving pieces fit together. Based 
+on that you need to be mindful about the repositories you configure in 
+config.xml.
+
+&gt;<i> Should I be
+</I>&gt;<i> making my branding package in such as way that they don't depend on
+</I>&gt;<i> anything else?
+</I>
+Not necessarily, you just have to look at your dependencies and evaluate 
+what the effects of changes might be. If you think there might be 
+adverse effects you can lock down the dependency on a specific version.
+
+Requires: blah = 0.9.9
+
+instead of using
+
+Requires: blah &gt;= 0.9.9
+
+or
+
+Requires: blah
+
+&gt;<i> It just seems for every step forward that I make I
+</I>&gt;<i> take 4 steps backwards due to unforeseen changes or issues.  Don't get
+</I>&gt;<i> me wrong I'm learning alot and have a long way to go in that area but
+</I>&gt;<i> time wise this is killing me.
+</I>
+Well, it appears to me that you're in way over your head. You jumped off 
+the cliff and are now flying by the seat of your pants. This mode of 
+learning can be very frustrating, but it can also be very rewarding. It 
+is in any event more time consuming than a more methodical approach.
+
+Anyway,
+
+&gt;<i> Am I doing something wrong?
+</I>
+no, not necessarily. You just need to get your head around how the 
+various pieces of the puzzle fit together and be more mindful of your 
+dependencies and where you pull things from to create your image.
+
+Later,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002541.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+	<LI>Next message: <A HREF="002546.html">[Kiwi-users] Kiwi or package issue?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2543">[ date ]</a>
+              <a href="thread.html#2543">[ thread ]</a>
+              <a href="subject.html#2543">[ subject ]</a>
+              <a href="author.html#2543">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

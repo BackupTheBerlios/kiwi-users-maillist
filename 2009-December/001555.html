@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] password encryption problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C4B20E018.7040800%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001550.html">
+   <LINK REL="Next"  HREF="001557.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] password encryption problem</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20password%20encryption%20problem&In-Reply-To=%3C4B20E018.7040800%40novell.com%3E"
+       TITLE="[Kiwi-users] password encryption problem">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Dec 10 12:48:40 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001550.html">[Kiwi-users] password encryption problem
+</A></li>
+        <LI>Next message: <A HREF="001557.html">[Kiwi-users] password encryption problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1555">[ date ]</a>
+              <a href="thread.html#1555">[ thread ]</a>
+              <a href="subject.html#1555">[ subject ]</a>
+              <a href="author.html#1555">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Roger Oberholtzer wrote:
+&gt;<i> On Wed, 2009-12-09 at 14:26 -0500, Robert Schweikert wrote:
+</I>&gt;&gt;<i> I think I have found a password creation/encryption problem. When I use
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -&gt; kiwi --createpassword
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> and use linux as the plain text password I get the following encrypted 
+</I>&gt;&gt;<i> string back:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $2a$05$vgmS7MrbVWrghZGWn84CpeDjVSEzc5NSrYb8wtkwkm4EjJ2mRN4cO
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When comparing this to the encrypted password in the example config.xml 
+</I>&gt;&gt;<i> files ($1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0) the difference is obvious. 
+</I>&gt;&gt;<i> But the example config.xml files also use linux as the password.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I would have expected to get the same encrypted value back from 
+</I>&gt;&gt;<i> createpassword as is encoded in config.xml.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The createpassword invocation ends up calling Perl's crypt() interface 
+</I>&gt;&gt;<i> which according to <A HREF="http://www.osix.net/modules/article/?id=571">http://www.osix.net/modules/article/?id=571</A> 
+</I>&gt;&gt;<i> implements DES. However, the default encryption algorithm for the distro 
+</I>&gt;&gt;<i> is Blowfish, I believe. I also think this changed in the not too distant 
+</I>&gt;&gt;<i> past.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Couldn't figure out how to use Crypt::Blowfish or I would have tested this.
+</I>&gt;<i> 
+</I>&gt;<i> The same password will be different. That is what makes it more tricky
+</I>&gt;<i> to break. The same encoded string, however, is always the same password.
+</I>
+Sorry I don't get that. When I log in I type a plain text password. I 
+presume this is then encrypted somewhere and compared to what is stored 
+in /etc/shadow. So if the encryption is different how can the comparison 
+work?
+
+&gt;<i> 
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001550.html">[Kiwi-users] password encryption problem
+</A></li>
+	<LI>Next message: <A HREF="001557.html">[Kiwi-users] password encryption problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1555">[ date ]</a>
+              <a href="thread.html#1555">[ thread ]</a>
+              <a href="subject.html#1555">[ subject ]</a>
+              <a href="author.html#1555">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

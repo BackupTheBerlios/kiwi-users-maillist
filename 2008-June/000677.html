@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi on PPC
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20on%20PPC&In-Reply-To=%3C484D3C48.1030808%40fang.fa.gau.hu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000676.html">
+   <LINK REL="Next"  HREF="000681.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi on PPC</H1>
+    <B>Peter Czanik</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20on%20PPC&In-Reply-To=%3C484D3C48.1030808%40fang.fa.gau.hu%3E"
+       TITLE="[Kiwi-users] kiwi on PPC">pczanik at fang.fa.gau.hu
+       </A><BR>
+    <I>Mon Jun  9 16:20:56 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000676.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+        <LI>Next message: <A HREF="000681.html">[Kiwi-users] kiwi on PPC
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#677">[ date ]</a>
+              <a href="thread.html#677">[ thread ]</a>
+              <a href="subject.html#677">[ subject ]</a>
+              <a href="author.html#677">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I was very happy to see a few kiwi related lines in 'factory' ChangeLog:
+
+  - make kiwi build on all archs. This does _not_ mean it
+    has full functionality on other archs than ix86 and x86_64
+    Support for other archs is still work in progress !
+  - create generic bootloader functions which calls specific
+    bootloader code according to the architecture. At the moment
+    only x*86 and x86_64 have code for it
+
+I gave it a try, how far it gets, and after a few edits, here is where I 
+have no more clue where to continue. First here is what I changed:
+
+linux-3e5t:/usr/share/doc/packages/kiwi/examples/suse-oem-preload # diff 
+config.xml.orig config.xml
+21,22c21
+&lt;               &lt;source path=&quot;/image/CDs/full-10.3-i386&quot;/&gt;
+&lt;               &lt;!--&lt;source path=&quot;<A HREF="opensuse://openSUSE:10.3/standard/">opensuse://openSUSE:10.3/standard/</A>&quot;/&gt;--&gt;
+---
+ &gt;               &lt;source path=&quot;/data/factory/&quot;/&gt;
+26,27d24
+&lt;               &lt;package name=&quot;bootsplash&quot;/&gt;
+&lt;               &lt;package name=&quot;bootsplash-theme-SuSE&quot;/&gt;
+
+And what I can't figure out, how comes 'gfxboot' into the picture:
+
+oem-preload --root /tmp/myoem/
+Jun-05 16:19:49 &lt;1&gt; : Reading image 
+description...                                         done
+Jun-05 16:19:49 &lt;2&gt; : Description provides no MD5 hash, 
+check                              skipped
+Jun-05 16:19:49 &lt;1&gt; : Checking for default baseroot in XML 
+data...                         notset
+Jun-05 16:19:49 &lt;1&gt; : Set root log: 
+/tmp/myoem/.12755.screenrc.log...                      done
+Jun-05 16:19:49 &lt;1&gt; : Setting up package manager: 
+smart                                    done
+Jun-05 16:19:50 &lt;1&gt; : Setting RPM signature check to: 
+False                                done
+Jun-05 16:19:50 &lt;1&gt; : Creating default template files for new root 
+system                  done
+Jun-05 16:19:51 &lt;1&gt; : Adding local smart channel: 
+kiwi1-12755                              done
+Jun-05 16:19:51 &lt;1&gt; : Setting up SaT solver...
+Jun-05 16:19:52 &lt;1&gt; : Including pattern: 
+default                                           done
+Jun-05 16:19:52 &lt;1&gt; : Including pattern: 
+base                                              done
+Jun-05 16:19:52 &lt;1&gt; : Including pattern: 
+yast2_install_wf                                  done
+Jun-05 16:19:52 &lt;1&gt; : Including pattern: 
+apparmor                                          done
+Jun-05 16:19:52 &lt;1&gt; : Including pattern: 
+apparmor_opt                                      done
+Jun-05 16:19:52 &lt;1&gt; : Including pattern: 
+sw_management                                     done
+Jun-05 16:19:52 &lt;1&gt; : Initializing image system on: 
+/tmp/myoem/...                         done
+Jun-05 16:21:47 &lt;1&gt; : Removing smart channel(s): 
+kiwi1-12755                               done
+Jun-05 16:21:48 &lt;1&gt; : Reset RPM signature check to: 
+True                                   done
+Jun-05 16:21:48 &lt;1&gt; : Mounting required file 
+systems                                       done
+Jun-05 16:21:48 &lt;1&gt; : Mounting local channel: 
+kiwi1-12755                                  skipped
+Jun-05 16:21:48 &lt;2&gt; : Path /data/factory is writable, trying read-only 
+mount               skipped
+Jun-05 16:21:49 &lt;2&gt; : Couldn't mount read-only, using bind 
+mount                           done
+Jun-05 16:21:49 &lt;1&gt; : Setting RPM signature check to: 
+False                                done
+Jun-05 16:21:49 &lt;1&gt; : Adding image smart channel: 
+kiwi1-12755                              done
+Jun-05 16:21:50 &lt;1&gt; : Checking for already installed 
+packages...                           done
+Jun-05 16:23:14 &lt;1&gt; : Installing image 
+packages...                                         failed
+[*** log excerpt follows ***]
++ test 0 = 0
++ SPID=14111
++ wait 14111
++ chroot /tmp/myoem/ smart install ConsoleKit PolicyKit PolicyKit-doc 
+apparmor-docs apparmor-parser apparmor-profiles apparmor-utils audit 
+autoyast2-installation bash-doc binutils bootsplash 
+bootsplash-branding-openSUSE branding-openSUSE bundle-lang-common-ar 
+bzip2 checkmedia cracklib-dict-full cron cryptsetup curl cyrus-sasl 
+dbus-1 dbus-1-glib desktop-data-openSUSE device-mapper dhcpcd dirmngr 
+dmraid e2fsprogs expat fbset file freetype2 gawk gfxboot 
+gfxboot-branding-openSUSE glib2 glib2-branding-openSUSE gpg2 gzip hal 
+hicolor-icon-theme hwinfo iproute2 kbd kernel-default keyutils-libs 
+klogd kpartx krb5 lcms ldapcpplib libapparmor1 libblkid1 libblocxx6 
+libcom_err2 libcurl4 libexpat1 libext2fs2 libgcc43 libgcrypt11 
+libglib-2_0-0 libgobject-2_0-0 libgpg-error0 libgthread-2_0-0 libicu 
+libidn libjpeg libksba liblcms1 libltdl-3 libmng libnscd libopenct1 
+libopensc2 libreiserfs libsmbios-libs libstdc++43 libtiff3 libusb 
+libuuid1 libxml2 libzypp licenses lilo limal limal-perl logrotate lvm2 
+master-boot-code mdadm mkinitrd module-init-tools netcfg 
+openSUSE-release-dvd openldap2-client opensc openslp openssh openssl 
+pam-config pam-modules parted pciutils pciutils-ids pcre pcsc-lite perl 
+perl-Bootloader perl-Config-Crontab perl-Crypt-SSLeay perl-DBD-SQLite 
+perl-DBI perl-Digest-SHA1 perl-File-Tail perl-HTML-Parser 
+perl-HTML-Tagset perl-Net-Daemon perl-Parse-RecDescent perl-PlRPC 
+perl-RPC-XML perl-TermReadKey perl-TimeDate perl-URI perl-X500-DN 
+perl-XML-Bare perl-XML-Parser perl-XML-Simple perl-XML-Writer perl-doc 
+perl-gettext perl-libapparmor perl-libwww-perl pinentry pm-utils pmtools 
+postfix procps pth pwdutils readline-doc release-notes-openSUSE resmgr 
+satsolver-tools setserial sqlite3 suse-build-key suseRegister sysconfig 
+syslog-ng tar tcpd timezone unzip util-linux uuid-runtime vim xdg-utils 
+yast2 yast2-add-on yast2-apparmor yast2-bootloader yast2-core 
+yast2-country yast2-country-data yast2-firewall yast2-firstboot 
+yast2-hardware-detection yast2-installation yast2-ldap yast2-ldap-client 
+yast2-libyui yast2-mouse yast2-ncurses yast2-ncurses-pkg yast2-network 
+yast2-online-update yast2-packager yast2-pam yast2-perl-bindings 
+yast2-pkg-bindings yast2-registration yast2-security yast2-storage 
+yast2-storage-lib yast2-theme-openSUSE yast2-trans-stats yast2-transfer 
+yast2-update yast2-users yast2-xml yast2-ycp-ui-bindings zypper 
+--explain --log-level=error -y -o rpm-force=yes
+Gyors&#237;t&#243;t&#225;r bet&#246;lt&#233;se...
+Gyors&#237;t&#243;t&#225;r friss&#237;t&#233;se...       ######################################## 
+[100%]
+
+hiba: 'gfxboot' csomag nem tal&#225;lhat&#243;
+
+ echo 1
+[*** end ***]
+Jun-05 16:23:28 &lt;1&gt; : Removing smart channel(s): 
+kiwi1-12755                               done
+Jun-05 16:23:29 &lt;3&gt; : Image installation 
+failed                                            failed
+Jun-05 16:23:29 &lt;1&gt; : Umounting path: /tmp/myoem///base-system/data/factory
+Jun-05 16:23:29 &lt;1&gt; : Umounting path: /tmp/myoem//dev/pts
+Jun-05 16:23:29 &lt;1&gt; : Umounting path: /tmp/myoem//sys
+Jun-05 16:23:29 &lt;1&gt; : Umounting path: /tmp/myoem//dev
+Jun-05 16:23:29 &lt;1&gt; : Umounting path: /tmp/myoem//proc
+Jun-05 16:23:29 &lt;1&gt; : Logfile available at: 
+/tmp/myoem/.log                                done
+Jun-05 16:23:29 &lt;3&gt; : KIWI exited with 
+error(s)                                            done
+
+Bye,
+CzP
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000676.html">[Kiwi-users] Issues with Network boot image
+</A></li>
+	<LI>Next message: <A HREF="000681.html">[Kiwi-users] kiwi on PPC
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#677">[ date ]</a>
+              <a href="thread.html#677">[ thread ]</a>
+              <a href="subject.html#677">[ subject ]</a>
+              <a href="author.html#677">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

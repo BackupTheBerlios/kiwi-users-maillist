@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] config.sh not applied in final image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20not%20applied%20in%20final%20image&In-Reply-To=%3C20100913154026.GA29048%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002025.html">
+   <LINK REL="Next"  HREF="002028.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] config.sh not applied in final image</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20config.sh%20not%20applied%20in%20final%20image&In-Reply-To=%3C20100913154026.GA29048%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] config.sh not applied in final image">ms at novell.com
+       </A><BR>
+    <I>Mon Sep 13 17:40:26 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002025.html">[Kiwi-users] config.sh not applied in final image
+</A></li>
+        <LI>Next message: <A HREF="002028.html">[Kiwi-users] Request for comment, Additional grouping functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2026">[ date ]</a>
+              <a href="thread.html#2026">[ thread ]</a>
+              <a href="subject.html#2026">[ subject ]</a>
+              <a href="author.html#2026">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Hi
+</I>&gt;<i> 
+</I>&gt;<i> With kiwi 4.59 the script config.sh (see code sniplet) is applied correct in the kiwi root path /tmp/myvm. But in 
+</I>&gt;<i> the final vm image the SSL setting is not made in the appropriate apache2 sysconfig file. Also the file permissions 
+</I>&gt;<i> (srv/www,... are wrong (tux user). What have I overlooked?
+</I>&gt;<i> 
+</I>&gt;<i> ...
+</I>&gt;<i> suseInsertService apache2
+</I>&gt;<i> 
+</I>&gt;<i> baseUpdateSysConfig 
+</I>&gt;<i> /etc/sysconfig/apache2 APACHE_SERVER_FLAGS SSL
+</I>&gt;<i> 
+</I>&gt;<i> #======================================
+</I>&gt;<i> # SuSEconfig
+</I>&gt;<i> 
+</I>&gt;<i> #--------------------------------------
+</I>&gt;<i> baseUpdateSysConfig /etc/sysconfig/windowmanager DEFAULT_WM kde
+</I>&gt;<i> 
+</I>&gt;<i> baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER kdm
+</I>&gt;<i> baseUpdateSysConfig /etc/sysconfig/displaymanager 
+</I>&gt;<i> DISPLAYMANAGER_KDM_THEME cdbund
+</I>&gt;<i> 
+</I>&gt;<i> chown -R wwwrun.www/srv/www/chmod u+x /srv/www/htdocs/*.php...
+</I>&gt;<i> 
+</I>&gt;<i> Many thanks in advance
+</I>&gt;<i> 
+</I>&gt;<i> Chris
+</I>
+Hmm, if your changes are applied in the /tmp/myvm tree they also
+end up in the final image. kiwi just copies (by a tar command) the entire
+tree from /tmp/myvm into the destination image location
+
+are you sure /tmp/myvm/etc/sysconfig/apache2 has the correct contents
+and is different in the final image ? What is your final image type ?
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002025.html">[Kiwi-users] config.sh not applied in final image
+</A></li>
+	<LI>Next message: <A HREF="002028.html">[Kiwi-users] Request for comment, Additional grouping functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2026">[ date ]</a>
+              <a href="thread.html#2026">[ thread ]</a>
+              <a href="subject.html#2026">[ subject ]</a>
+              <a href="author.html#2026">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

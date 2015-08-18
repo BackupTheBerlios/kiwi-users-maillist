@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi: Weekly report 2010-05-23 - 2010-05-28...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-05-23%20-%202010-05-28...&In-Reply-To=%3C20100531091940.GA10382%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001815.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi: Weekly report 2010-05-23 - 2010-05-28...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%3A%20Weekly%20report%202010-05-23%20-%202010-05-28...&In-Reply-To=%3C20100531091940.GA10382%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi: Weekly report 2010-05-23 - 2010-05-28...">ms at novell.com
+       </A><BR>
+    <I>Mon May 31 11:19:41 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001815.html">[Kiwi-users] OEM image in ISO format fails to appear
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1816">[ date ]</a>
+              <a href="thread.html#1816">[ thread ]</a>
+              <a href="subject.html#1816">[ subject ]</a>
+              <a href="author.html#1816">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>==================================================
+Changes Report kiwi v4.38 2010-05-23 - 2010-05-28
+--------------------------------------------------
+most important changes for last weeks release...
+
+GIT: added support for extlinux based recovery (bnc #606651)
+     make recovery work with separate boot partition
+     use bind mount instead of link to boot partition
+
+  kiwi now supports extlinux as bootloader. This change was the
+  last in the chain of changes for this feature. In order to
+  use extlinux instead of grub your type line has to include
+  something like:
+
+  &lt;type .... bootloader=&quot;extlinux&quot;/&gt;
+
+  in this case the following applies:
+
+  * extlinux is used for system image
+  * extlinux is used for recovery (oem only)
+  * isolinux is used for install ISO (oem only)
+  
+
+GIT: changed ovftool options according to latest version
+
+  The current version of ovftool has totally new set of options
+  which I adapted in kiwi. Thanks for reporting this
+
+
+GIT: fixed clicfs resize operation. The command is now based
+     on a 512 byte sector size value instead of a 4k filesystem block
+     size value which might be wrong depending on the size of the
+     filesystem (bnc #604646)
+
+  When we call resizefs we just pass a blocksize value and assume
+  the blocksize is 4k. Depending on the size of the filesystem and
+  also depending on the options given on create of the filesystem
+  this assumption maybe wrong. So we changed this to pass a size
+  indicator to the resizefs call as mentioned in the man page
+
+Have fun :)
+
+Regards
+Marcus
+--
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001815.html">[Kiwi-users] OEM image in ISO format fails to appear
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1816">[ date ]</a>
+              <a href="thread.html#1816">[ thread ]</a>
+              <a href="subject.html#1816">[ subject ]</a>
+              <a href="author.html#1816">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

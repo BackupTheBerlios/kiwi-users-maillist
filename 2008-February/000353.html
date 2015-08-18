@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Localization
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization&In-Reply-To=%3C47BEE7AD.4080806%40ixsoft.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000300.html">
+   <LINK REL="Next"  HREF="000355.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Localization</H1>
+    <B>Bernd Hentig</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Localization&In-Reply-To=%3C47BEE7AD.4080806%40ixsoft.de%3E"
+       TITLE="[Kiwi-users] Localization">bernd at ixsoft.de
+       </A><BR>
+    <I>Fri Feb 22 16:18:05 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000300.html">[Kiwi-users] Localization
+</A></li>
+        <LI>Next message: <A HREF="000355.html">[Kiwi-users] Localization
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#353">[ date ]</a>
+              <a href="thread.html#353">[ thread ]</a>
+              <a href="subject.html#353">[ subject ]</a>
+              <a href="author.html#353">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marcus Sch&#228;fer schrieb:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I have added Stephan Binner, he might be interested in this too
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> after upgrading to kiwi 2.19.28.1 and livesystem 1.57.27.1, both ISO 
+</I>&gt;&gt;<i> live images and flash images boot correctly and start the KDE desktop 
+</I>&gt;&gt;<i> (since I selected the KDE profile).
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> sounds good
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> However, I added the right &quot;keytable= de-latin1-nodeadkeys.map.gz&quot; and 
+</I>&gt;&gt;<i> locale for Germany, but the KDE desktop still is coming up in US English 
+</I>&gt;&gt;<i> and the keyboard is set to english-us,pc104.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Hmm, what exactly does that mean ? Did you provide the file
+</I>&gt;<i> /etc/sysconfig/keyboard along with your image description ? 
+</I>No, I did not know that this was the correct method to configure 
+language / keyboard settings :-)
+I found the settings for keytable and language in SuseConfig, so I 
+assumed the german keyboard setting was somehow &quot;guessed&quot; by these 
+options. My fault ;-)
+Maybe there should be a &lt;keyboard&gt; tag in config.xml?
+If keytable is set to de-latin1, but keyboard is left to US-English, 
+this is not what one would expect...
+
+&gt;<i> I guess
+</I>&gt;<i> the problem is the creation of the xorg.conf file. We use sax2 to do
+</I>&gt;<i> the job and sax2 takes a look into the sysconfig/keyboard file to
+</I>&gt;<i> map the console keyboard layout into the X keyboard layout. If it
+</I>&gt;<i> runs X in English as you said I guess your console keyboard layout
+</I>&gt;<i> is also in English. You can try to edit the sysconfig/keyboard
+</I>&gt;<i> file and after that run sax2 again.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Hmmm, after I modified keyboard to the correct value now, the console 
+has German keys now, but in KDE, the US flag is still showing. Even if I 
+switch that to German, this setting is not persistent and at next 
+startup, US English is still the X-Default. Sax2 does not change this, 
+so perhaps my sysconfig is broken somewhere.
+Probably I can set the right values in Xorg.conf, I will try this out on 
+the weekend.
+&gt;<i> kiwi creates the keyboard setup by the function suseConfig() which
+</I>&gt;<i> should be called in your config.sh as part of the image description.
+</I>&gt;<i> The suseConfig function evaluates the contents of the optionally
+</I>&gt;<i> set &lt;keytable&gt; section as part of the &lt;preferences&gt; section. Did you
+</I>&gt;<i> have set that ?
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Yes,  but it does not change the keyboard setting on the bottom of the 
+file, only the keytable?
+&gt;&gt;<i> Yes, I selected &quot;German&quot; from the boot manager (German and English are 
+</I>&gt;&gt;<i> selectable). Some applications are coming up in English (firefox), while 
+</I>&gt;&gt;<i> the same application package uses German locale if installed in a 
+</I>&gt;&gt;<i> regular desktop installation.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> The problem here is that we currently don't hand over the value here
+</I>&gt;<i> from the initrd into the system. We are still searching for a general
+</I>&gt;<i> setup because in a normal installation yast is doing that for us but
+</I>&gt;<i> it also has to work if no yast is in place
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>I rebuilt everything and added kde3-i18n to config.xml, now most apps 
+are in German as expected.
+Only Firefox and Thunderbird still remain in English, so perhaps the 
+default package does not contain the locales for Germany - I will check 
+this now.
+
+&gt;&gt;<i> If I want to enable multiple desktops to choose from on Live DVD startup 
+</I>&gt;&gt;<i> (like GNOME, KDE and some other things), does kiwi already support this? 
+</I>&gt;&gt;<i> So I would not have to create multiple live images; most users have a 
+</I>&gt;&gt;<i> DVD drive or a large enough flash anyway.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> To choose different window/desktop managers at login is implemented in
+</I>&gt;<i> the KDE and GNome login managers (kdm/gdm) so as soon as they are installed
+</I>&gt;<i> in parallel you have the possibility to choose between the two anyway.
+</I>&gt;<i> For kiwi this means you need to call the prepare step with
+</I>&gt;<i>
+</I>&gt;<i> 	--add-profile KDE,GNOME
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>This is quite sufficient for our purposes, thanks for the hint.
+&gt;<i> What we don't support is to choose for a desktop environment at boot
+</I>&gt;<i> time. I don't want to have the complexity of switching desktop environments
+</I>&gt;<i> within the initrd.
+</I>&gt;<i>   
+</I>No, this is not necessary really. KDM is fine, it's just that I did not 
+want to have 2 different live images for KDE and GNOME.
+
+Thanks a lot! Hopefully I can figure out how to change the keyboard 
+persistently, this is really weird.
+
+Bernd
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: bernd.vcf
+Type: text/x-vcard
+Size: 300 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080222/705b4503/attachment.vcf">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080222/705b4503/attachment.vcf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000300.html">[Kiwi-users] Localization
+</A></li>
+	<LI>Next message: <A HREF="000355.html">[Kiwi-users] Localization
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#353">[ date ]</a>
+              <a href="thread.html#353">[ thread ]</a>
+              <a href="subject.html#353">[ subject ]</a>
+              <a href="author.html#353">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

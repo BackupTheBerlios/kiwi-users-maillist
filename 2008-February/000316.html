@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] LTSP question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LTSP%20question&In-Reply-To=%3Cb317ae5c0802151143s72ac93c2y2f6d3a8801ac4213%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000315.html">
+   <LINK REL="Next"  HREF="000317.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] LTSP question</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20LTSP%20question&In-Reply-To=%3Cb317ae5c0802151143s72ac93c2y2f6d3a8801ac4213%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] LTSP question">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Fri Feb 15 20:43:18 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000315.html">[Kiwi-users] KIWI-LTSP
+</A></li>
+        <LI>Next message: <A HREF="000317.html">[Kiwi-users] UNIONFS_CONFIG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#316">[ date ]</a>
+              <a href="thread.html#316">[ thread ]</a>
+              <a href="subject.html#316">[ subject ]</a>
+              <a href="author.html#316">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Feb 15, 2008 at 9:04 PM, Roger Oberholtzer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger at opq.se</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>  In your LTSP package, you have a great script that makes ssh keys when
+</I>&gt;<i>  the images are made. In my own kiwi images, the ssh keys are made each
+</I>&gt;<i>  time the system boots. I much prefer your method. It is not obvious to
+</I>&gt;<i>  me how you arranged for kiwi to do this. That is, when is your script
+</I>&gt;<i>  run in the image creation, and what did you do to keep kiwi from wanting
+</I>&gt;<i>  to have this generated at each boot?
+</I>&gt;<i>
+</I>
+Have a look at the following:
+
+<A HREF="https://forgesvn1.novell.com/viewsvn/kiwi-ltsp/trunk/kiwi-ltsp/ltsp/suse-10.3/ltsp-update-sshkeys?view=log">https://forgesvn1.novell.com/viewsvn/kiwi-ltsp/trunk/kiwi-ltsp/ltsp/suse-10.3/ltsp-update-sshkeys?view=log</A>
+<A HREF="https://forgesvn1.novell.com/viewsvn/kiwi-ltsp/trunk/kiwi-ltsp/ltsp/suse-10.3/kiwi-ltsp-functions.sh?view=log">https://forgesvn1.novell.com/viewsvn/kiwi-ltsp/trunk/kiwi-ltsp/ltsp/suse-10.3/kiwi-ltsp-functions.sh?view=log</A>
+<A HREF="https://forgesvn1.novell.com/viewsvn/kiwi-ltsp/trunk/kiwi-ltsp/ltsp/suse-10.3/kiwi-ltsp-setup?view=log">https://forgesvn1.novell.com/viewsvn/kiwi-ltsp/trunk/kiwi-ltsp/ltsp/suse-10.3/kiwi-ltsp-setup?view=log</A>
+
+And possibly running rcsshd start and stop once does the trick:
+<A HREF="https://forgesvn1.novell.com/viewsvn/kiwi-ltsp/trunk/kiwi-ltsp/ltsp/suse-10.3/config.sh?revision=2&amp;view=markup">https://forgesvn1.novell.com/viewsvn/kiwi-ltsp/trunk/kiwi-ltsp/ltsp/suse-10.3/config.sh?revision=2&amp;view=markup</A>
+
+You can post on kiwi-users ML in case you require more help, that way
+anyone else looking for similar solution can find it easily.
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000315.html">[Kiwi-users] KIWI-LTSP
+</A></li>
+	<LI>Next message: <A HREF="000317.html">[Kiwi-users] UNIONFS_CONFIG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#316">[ date ]</a>
+              <a href="thread.html#316">[ thread ]</a>
+              <a href="subject.html#316">[ subject ]</a>
+              <a href="author.html#316">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

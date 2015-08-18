@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie asks how to install OS from USB-Stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20asks%20how%20to%20install%20OS%20from%20USB-Stick&In-Reply-To=%3C20080303165400.GA20101%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000426.html">
+   <LINK REL="Next"  HREF="000430.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie asks how to install OS from USB-Stick</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20asks%20how%20to%20install%20OS%20from%20USB-Stick&In-Reply-To=%3C20080303165400.GA20101%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Newbie asks how to install OS from USB-Stick">ms at suse.de
+       </A><BR>
+    <I>Mon Mar  3 17:54:00 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000426.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+        <LI>Next message: <A HREF="000430.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#427">[ date ]</a>
+              <a href="thread.html#427">[ thread ]</a>
+              <a href="subject.html#427">[ subject ]</a>
+              <a href="author.html#427">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> A friend of mine has a laptop with a virus-broken, unusable Windows. 
+</I>&gt;<i> Unfortunatelly his DVD drive is also not working anymore. He is a student 
+</I>&gt;<i> with very few money (from Indonesia). I told him it should be possible to 
+</I>&gt;<i> bring a installation image onto a USB Stick and start Installation via DSL 
+</I>&gt;<i> from USB. There is a ISO-Image in the opensuse download area which starts 
+</I>&gt;<i> from CD and installs a Linux via network. I want the same for USB: boot from 
+</I>&gt;<i> USB and install Linux using the network.
+</I>&gt;<i> 
+</I>&gt;<i> - is it possible to create such an image for USB with kiwi?
+</I>&gt;<i> 
+</I>&gt;<i> - if yes, is there anybody kind enough giving me help creating this?
+</I>&gt;<i> 
+</I>&gt;<i> I am an experienced UNIX user but never used kiwi before and have few time to 
+</I>&gt;<i> study the details of the way kiwi works. So everything is welcome shortening 
+</I>&gt;<i> my way to success.
+</I>
+Hmm, I never tried this but the following should work:
+
+1) copy the initrd and kernel files from the ISO you or friend uses
+   normally for installation. On a suse CD you can find the files 
+   here:
+
+     boot/&lt;arch&gt;/loader/initrd
+     boot/&lt;arch&gt;/loader/linux
+
+2) if you got the files you need to copy them into a directory and
+   rename it as follows:
+
+     mkdir mytest
+     cp initrd mytest/initrd-xxxboot-suse-10.3.i686-1.1.1.splash.gz
+     cp linux  mytest/initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.1.2.34.5-67
+     cd mytest
+     ln -s initrd-xxxboot-suse-10.3.i686-1.1.1.kernel.1.2.34.5-67 \
+           initrd-xxxboot-suse-10.3.i686-2.1.1.kernel
+
+   Note I use fake names because normally kiwi creates that files for you
+   but you want the standard distro installation and so we can't use the
+   kiwi created files  
+
+3) if you have copied the files you can create a raw disk image for the
+   USB stick as follows:
+
+     kiwi --bootusb mytest/initrd-xxxboot-suse-10.3.i686-1.1.1.splash.gz
+
+   I hope that works but I never have tried that.
+
+4) the result is a .raw.install file which you can dd on the stick
+
+   dd if=mytest/initrd-xxxboot-suse-10.3.i686-1.1.1.splash.raw of=&lt;stick&gt; bs=32k
+
+NOTE: you need the latest svn head code of kiwi to do that
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000426.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+	<LI>Next message: <A HREF="000430.html">[Kiwi-users] Newbie asks how to install OS from USB-Stick
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#427">[ date ]</a>
+              <a href="thread.html#427">[ thread ]</a>
+              <a href="subject.html#427">[ subject ]</a>
+              <a href="author.html#427">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

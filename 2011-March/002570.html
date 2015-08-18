@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bootinclude%2C%20Bootdelete%2C%20and%20boot-theme&In-Reply-To=%3CAC52B440-FB43-44C5-9C9A-6C4045EBB8C2%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002584.html">
+   <LINK REL="Next"  HREF="002571.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Bootinclude, Bootdelete, and boot-theme</H1>
+    <B>Mark Haase</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Bootinclude%2C%20Bootdelete%2C%20and%20boot-theme&In-Reply-To=%3CAC52B440-FB43-44C5-9C9A-6C4045EBB8C2%40gmail.com%3E"
+       TITLE="[Kiwi-users] Bootinclude, Bootdelete, and boot-theme">mehaase at gmail.com
+       </A><BR>
+    <I>Wed Mar 30 00:35:13 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002584.html">[Kiwi-users] Password change in kiwi's config.xml
+</A></li>
+        <LI>Next message: <A HREF="002571.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2570">[ date ]</a>
+              <a href="thread.html#2570">[ thread ]</a>
+              <a href="subject.html#2570">[ subject ]</a>
+              <a href="author.html#2570">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have been reading a lot of docs and source code... slowly Kiwi is making sense to me, but there are a few mental hurdles I just can't get over on my own.
+
+(I am running Kiwi 2.82 and OpenSUSE 11.4.)
+
+1. Bootinclude attribute: Does this mean that kiwi will modify the raw boot image and installs new packages into it? Or does it mean that when kiwi builds the boot image (as a subroutine while building the system image) that it will add those packages at that time?
+
+To put another way, if I prebuild my boot image, will setting the &quot;bootinclulde&quot; attribute in my system image config.xml have any effect?
+
+2. Bootdelete attribute: The function of this is [mostly] clear to me, but I don't understand the use case. For example, branding packages are marked as bootdelete=&quot;true&quot;, but why? Aren't they needed in the final boot image?
+
+3. I am trying to set up branding by putting my artwork and configurations in the overlay (bootsplash in etc/bootsplash... and gfxboot in usr/share/gfxboot...). Is that a mistake? Does branding need to be deployed as an RPM in order to work? (I am including gfxboot and bootsplash in my system image, but not including any gfxboot-branding-* or bootsplash-branding-*).
+
+Muchas gracias for any advice!  Thanks,
+
+--
+Mark E. Haase
+571-334-8408
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002584.html">[Kiwi-users] Password change in kiwi's config.xml
+</A></li>
+	<LI>Next message: <A HREF="002571.html">[Kiwi-users] Bootinclude, Bootdelete, and boot-theme
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2570">[ date ]</a>
+              <a href="thread.html#2570">[ thread ]</a>
+              <a href="subject.html#2570">[ subject ]</a>
+              <a href="author.html#2570">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

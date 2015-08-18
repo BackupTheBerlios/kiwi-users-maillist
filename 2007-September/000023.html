@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-ltsp-setup problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-ltsp-setup%20problem&In-Reply-To=%3Cb317ae5c0709180047g37798bf3h26cb96d0566b6c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000022.html">
+   <LINK REL="Next"  HREF="000024.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-ltsp-setup problem</H1>
+    <B>CyberOrg</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-ltsp-setup%20problem&In-Reply-To=%3Cb317ae5c0709180047g37798bf3h26cb96d0566b6c%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] kiwi-ltsp-setup problem">jigish.gohil at gmail.com
+       </A><BR>
+    <I>Tue Sep 18 09:47:36 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000022.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+        <LI>Next message: <A HREF="000024.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 9/18/07, Mark Dickie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">markd at hotdesk.biz</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> Just to confirm I am putting a 10.3 i386 DVD in the drive while running the
+</I>&gt;<i> kiwi-ltsp-setup
+</I>
+You would have to change the installation source in
+/etc/sysconfig/kiwi-ltsp as /media/10.3mountpoint, use the one created
+by the DVD.
+
+Make sure you are using the latest smart rpm as mentioned on
+<A HREF="http://en.opensuse.org/LTSP.">http://en.opensuse.org/LTSP.</A>
+
+After that run &quot;kiwi-ltsp-setup -p&quot; this will run prerequisite check.
+If that is successful, run &quot;kiwi-ltsp-setup -s&quot;.
+
+Please make sure all the required variables are entered correctly in
+/etc/sysconfig/kiwi-ltsp.
+
+Cheers
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000022.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+	<LI>Next message: <A HREF="000024.html">[Kiwi-users] kiwi-ltsp-setup problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

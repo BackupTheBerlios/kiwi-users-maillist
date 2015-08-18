@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] swap order of split image parts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20swap%20order%20of%20split%20image%20parts&In-Reply-To=%3C20090209100413.GA30376%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000968.html">
+   <LINK REL="Next"  HREF="000971.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] swap order of split image parts</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20swap%20order%20of%20split%20image%20parts&In-Reply-To=%3C20090209100413.GA30376%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] swap order of split image parts">ms at novell.com
+       </A><BR>
+    <I>Mon Feb  9 11:04:14 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000968.html">[Kiwi-users] swap order of split image parts
+</A></li>
+        <LI>Next message: <A HREF="000971.html">[Kiwi-users] swap order of split image parts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#970">[ date ]</a>
+              <a href="thread.html#970">[ thread ]</a>
+              <a href="subject.html#970">[ subject ]</a>
+              <a href="author.html#970">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Why don't keep majority of stuff on read-only layer,
+</I>&gt;<i> and create just a few symlinks to read-write layer
+</I>&gt;<i> for writable stuff?
+</I>
+We had that system before and it turned out to be not
+flexible enough. It's really hard to identify a global
+useful set of writable data which doesn't bite some
+else requirements. The split approach at the moment
+creates a symlink tarball which contains the read-only
+and the read-write links. According to this you always
+have a full writable system except for the files already
+existing in the image. Of course all data you write are
+temporary as long as you don't specify them as
+persistent
+
+&gt;<i> Currently kiwi uses opposite approach:
+</I>&gt;<i> read-write contains sea of symlinks
+</I>&gt;<i> replacing almost all files in system tree.
+</I>
+That's part of the code, _all_ files except the temporary
+one living in RAM are symlinked to either a read-only or
+a read-write destination
+
+&gt;<i> Question, again, is about motivation.
+</I>&gt;<i> Why not change mind to opposite?
+</I>
+The motivation is to have a full flexible system. I agree
+if you say it's hard to create a &lt;split&gt; section which 
+includes all the information about temporary and persistent
+data. 
+
+At the moment I provide examples with &lt;split&gt; sections
+templates to get people started. This section looks like
+the following:
+
+    &lt;split&gt;
+        &lt;persistent&gt;
+            &lt;file name=&quot;/etc&quot;/&gt;
+            &lt;file name=&quot;/etc/*&quot;/&gt;
+            &lt;file name=&quot;/var&quot;/&gt;
+            &lt;file name=&quot;/var/*&quot;/&gt;
+            &lt;file name=&quot;/boot&quot;/&gt;
+            &lt;file name=&quot;/boot/*&quot;/&gt;
+        &lt;/persistent&gt;
+    &lt;/split&gt;
+
+Some time ago I thought we could also implement a hard &lt;split&gt;
+section containing the &quot;most popular&quot; read-write locations as
+you suggested and use this default split information if no
+split section was defined in config.xml
+
+I think that we have both a full flexible system but also at
+least a standard system working of no split information is there.
+What do you think ?
+
+If you think this is a good idea I need your and all other help
+to dicsuss
+
+   _what would be a good default split section_
+
+Thanks
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000968.html">[Kiwi-users] swap order of split image parts
+</A></li>
+	<LI>Next message: <A HREF="000971.html">[Kiwi-users] swap order of split image parts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#970">[ date ]</a>
+              <a href="thread.html#970">[ thread ]</a>
+              <a href="subject.html#970">[ subject ]</a>
+              <a href="author.html#970">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] boot failure on USB stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20boot%20failure%20on%20USB%20stick&In-Reply-To=%3C4A9FBFDC.10604%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001429.html">
+   <LINK REL="Next"  HREF="001423.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] boot failure on USB stick</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20boot%20failure%20on%20USB%20stick&In-Reply-To=%3C4A9FBFDC.10604%40novell.com%3E"
+       TITLE="[Kiwi-users] boot failure on USB stick">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Sep  3 15:08:44 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001429.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+        <LI>Next message: <A HREF="001423.html">[Kiwi-users] Problem with network module during boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1430">[ date ]</a>
+              <a href="thread.html#1430">[ thread ]</a>
+              <a href="subject.html#1430">[ subject ]</a>
+              <a href="author.html#1430">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcus,
+
+
+&gt;<i>   
+</I>&gt;&gt;<i> Thanks, but that still leaves a significant difference in the calculation. 
+</I>&gt;&gt;<i> Using blockdev on the stick in question:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> # blockdev --getsize64 /dev/sde 8032092160
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> For the same stick the boot log showed diskXMBytes=7660.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Where is the additional space?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I don't know why fdisk sometimes reports the wrong size but
+</I>&gt;<i> blockdev just calls an ioctl to obtain the size of the device.
+</I>&gt;<i> I trust these values more because the kernel controls and registers
+</I>&gt;<i> the device. Even if this value wouldn't be correct according to
+</I>&gt;<i> what the vendor of the disk said you wouldn't be able to use
+</I>&gt;<i> more than the space reported by blockdev
+</I>&gt;<i>   
+</I>I don't doubt that blockdev is more reliable than fdisk. What is curious 
+to me is that if I use blockdev, as shown above I still get a different 
+size for the device than the number reported in the boot.kiwi file.
+
+I am trying to understand why this difference exists.
+
+I took a look at KIWILinuxRC.sh but didn't see anything obvious.
+
+Thanks,
+Robert
+&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i>   
+</I>
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A> 
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001429.html">[Kiwi-users] boot failure on USB stick
+</A></li>
+	<LI>Next message: <A HREF="001423.html">[Kiwi-users] Problem with network module during boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1430">[ date ]</a>
+              <a href="thread.html#1430">[ thread ]</a>
+              <a href="subject.html#1430">[ subject ]</a>
+              <a href="author.html#1430">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

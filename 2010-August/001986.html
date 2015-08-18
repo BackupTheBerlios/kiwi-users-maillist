@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] source control files...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20source%20control%20files...&In-Reply-To=%3C1282569098.20267.140.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001985.html">
+   <LINK REL="Next"  HREF="001987.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] source control files...</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20source%20control%20files...&In-Reply-To=%3C1282569098.20267.140.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] source control files...">roger at opq.se
+       </A><BR>
+    <I>Mon Aug 23 15:11:38 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001985.html">[Kiwi-users] source control files...
+</A></li>
+        <LI>Next message: <A HREF="001987.html">[Kiwi-users] source control files...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1986">[ date ]</a>
+              <a href="thread.html#1986">[ thread ]</a>
+              <a href="subject.html#1986">[ subject ]</a>
+              <a href="author.html#1986">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-08-23 at 09:58 +0200, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Is there a built in way to remove source control files when building a system image?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; (e.g. any .svn directories and files that exist in the &lt;source&gt;/root directory structure)
+</I>&gt;<i> 
+</I>&gt;<i> There is no built in function for this but the following in
+</I>&gt;<i> config.sh should do it
+</I>&gt;<i> 
+</I>&gt;<i>   find -type d | grep .svn | xargs rm -rf
+</I>
+Hmm. I have this in my images.sh file, not my config.sh file.
+
+-- 
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001985.html">[Kiwi-users] source control files...
+</A></li>
+	<LI>Next message: <A HREF="001987.html">[Kiwi-users] source control files...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1986">[ date ]</a>
+              <a href="thread.html#1986">[ thread ]</a>
+              <a href="subject.html#1986">[ subject ]</a>
+              <a href="author.html#1986">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

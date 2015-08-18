@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Fwd: USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110317085210.GA5465%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002498.html">
+   <LINK REL="Next"  HREF="002500.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Fwd: USB image with storage partition</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Fwd%3A%20USB%20image%20with%20storage%20partition&In-Reply-To=%3C20110317085210.GA5465%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Fwd: USB image with storage partition">ms at suse.de
+       </A><BR>
+    <I>Thu Mar 17 09:52:10 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002498.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+        <LI>Next message: <A HREF="002500.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2499">[ date ]</a>
+              <a href="thread.html#2499">[ thread ]</a>
+              <a href="subject.html#2499">[ subject ]</a>
+              <a href="author.html#2499">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Ok here is my next question.
+</I>&gt;<i> I boot the live os from the drive.  Located the /lvmboot directory as
+</I>&gt;<i> this seems to be the Windows accessible fat file system).  I Created a
+</I>&gt;<i> .desktop file that points to this directory and it works.  I would
+</I>&gt;<i> however like to create a folder within this directory name
+</I>&gt;<i> whatever.... &quot;Storage&quot; and have the .desktop file point to this folder
+</I>&gt;<i> specifically.  In the config.sh script I added a line that reads
+</I>&gt;<i> &quot;mkdir -p /lvmboot/Storage&quot; but it doesn't actually create the
+</I>&gt;<i> &quot;Storage&quot; folder/dir within the lvmboot directory.  Is there another
+</I>&gt;<i> way to create this dir?  I don't see the exists of this lvmboot dir in
+</I>&gt;<i> the unpacked directory...so what's my alternative?
+</I>
+/boot or /lvmboot is a bad location for this because those
+directories are created on first boot of the OS. Having that said
+you can't place files in root/boot/... of your overlay tree in
+your image description because they will not show up.
+
+To my knowledge KDE4 .desktop files are stored in the users
+home directory. So copy your .desktop file into the home directory
+of the desired user in the overlay tree:
+
+   cd &lt;image-description&gt;
+   cd root
+   mkdir -p /home/&lt;user-name&gt;/.local/share/applications/
+   cp &lt;icon-name&gt;.desktop /home/&lt;user-name&gt;/.local/share/applications/
+
+That's it. I'm sorry I don't know how to setup that on Gnome if
+you use that desktop you might ask the gnome people
+
+&gt;<i> A few other things that I noticed.  On the first boot of the USB live
+</I>&gt;<i> image it would read [OEM] next to the image titile in the grub boot
+</I>&gt;<i> screen...other times that &quot;OEM&quot; wouldn't show up.
+</I>
+this is correct and intentional. The title name _after_ first boot
+is the one you set in the config.xml as displayname=&quot;...&quot; the little
+[ OEM ] tells people this is the first time that appliance boots
+
+&gt;<i> Also I booted another time and the /lvmboot directory wasn't there in
+</I>&gt;<i> the file tree at all (on the live image) but the USB fat partition was
+</I>&gt;<i> mounted in /media? What the heck is going on here?
+</I>
+This is also correct and the reason is because you want a ram-only
+system by intention and that means everything written on first boot
+will vanish after the second boot. As the lvmboot is just a bind link
+to your fat partition created on first boot to setup all subsequent
+boots, the link is gone after reboot
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002498.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+	<LI>Next message: <A HREF="002500.html">[Kiwi-users] Fwd: USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2499">[ date ]</a>
+              <a href="thread.html#2499">[ thread ]</a>
+              <a href="subject.html#2499">[ subject ]</a>
+              <a href="author.html#2499">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] USB image with storage partition
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimwiakOfytR5Qfxqr6UZp_7SMqTWtbPO%3DQA-%3D3u%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002405.html">
+   <LINK REL="Next"  HREF="002402.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] USB image with storage partition</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20USB%20image%20with%20storage%20partition&In-Reply-To=%3CAANLkTimwiakOfytR5Qfxqr6UZp_7SMqTWtbPO%3DQA-%3D3u%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] USB image with storage partition">eportel6607 at gmail.com
+       </A><BR>
+    <I>Tue Mar  1 19:52:16 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002405.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+        <LI>Next message: <A HREF="002402.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2401">[ date ]</a>
+              <a href="thread.html#2401">[ thread ]</a>
+              <a href="subject.html#2401">[ subject ]</a>
+              <a href="author.html#2401">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Guys I seem to remember a thread about a simlar quest but can't seem
+to find it in my ML records.
+I currently am having kiwi make an ISO image.  Then I use Suse Image
+Writer to write this image to USB flash drive.  This is a live image
+so changes to the image once on the flash drive are stored in RAM .
+Another words the changes are lost upon a reboot of the image.  Which
+is exacty what I want.
+The issue however is that Image Writer uses the whole USB drive.  I
+need to have about 1gb dedicated to the OS Live image and the rest of
+it formated as Fat.
+
+I've changed the image type in my config.xml file from &lt;type
+image=&quot;iso&quot; primary=&quot;true&quot; boot=&quot;isoboot/suse-11.3&quot; hybrid=&quot;true&quot;
+flags=&quot;clic&quot;/&gt; to  &lt;type image=&quot;usb&quot; primary=&quot;true&quot;
+boot=&quot;usboboot/suse-11.3&quot; hybrid=&quot;true&quot; flags=&quot;clic&quot;/&gt;
+
+I ran the kiwi with 'prepare'.  Which is completed without error.
+However when I ran it the &quot;create&quot; step I got this error.  &quot;Mar-01
+11:33:23 &lt;1&gt; : Checking for default baseroot in XML data...  notset
+Use of uninitialized value $type{&quot;filesystem&quot;} in split at
+/usr/sbin/kiwi line 2379.&quot;
+
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002405.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+	<LI>Next message: <A HREF="002402.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2401">[ date ]</a>
+              <a href="thread.html#2401">[ thread ]</a>
+              <a href="subject.html#2401">[ subject ]</a>
+              <a href="author.html#2401">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

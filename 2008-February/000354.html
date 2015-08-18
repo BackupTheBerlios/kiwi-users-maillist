@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] problem with using &lt;split&gt;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%20with%20using%20%3Csplit%3E&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A6040C%40XCH-NW-04P.nw.nos.boeing.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000344.html">
+   <LINK REL="Next"  HREF="000359.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] problem with using &lt;split&gt;</H1>
+    <B>Mattes, David</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20problem%20with%20using%20%3Csplit%3E&In-Reply-To=%3C00D888A75CF2E24487A638021DD2CB6B04A6040C%40XCH-NW-04P.nw.nos.boeing.com%3E"
+       TITLE="[Kiwi-users] problem with using &lt;split&gt;">david.mattes at boeing.com
+       </A><BR>
+    <I>Fri Feb 22 16:17:34 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000344.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+        <LI>Next message: <A HREF="000359.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#354">[ date ]</a>
+              <a href="thread.html#354">[ thread ]</a>
+              <a href="subject.html#354">[ subject ]</a>
+              <a href="author.html#354">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+&gt;<i> &gt;  I see, my problem was I was NOT using absolute paths!  
+</I>&gt;<i> Might be good 
+</I>&gt;<i> &gt; to warn the user if pathnames do not start with '/`.
+</I>&gt;<i> 
+</I>&gt;<i> Hmm, what exactly do you mean ? your split section has 
+</I>&gt;<i> absolute paths in it. Or is it the kiwi call which causes 
+</I>&gt;<i> that problem ? We definitely should fix this it sounds like a 
+</I>&gt;<i> real bug. Could you advise us how to reproduce ? Thanks
+</I>&gt;<i> 
+</I>
+The problem occurred when I did not have absolute paths in the kiwi call:
+kiwi -c phys-image/ -d /srv/tftpboot/image
+
+The following patch fixes the problem in the phys-image-tmp part:
+
+--- KIWIImage.pm.dist   2008-02-20 12:29:58.000000000 -0800
++++ KIWIImage.pm        2008-02-20 12:39:02.000000000 -0800
+@@ -1335,7 +1335,7 @@
+                my $createTmpTree = sub {
+                        my $file  = $_;
+                        my $dir   = $File::Find::dir;
+-                       my $path  = &quot;$dir/$file&quot;;
++                       my $path  = &quot;$File::Find::name&quot;;
+                        my $target= $path;
+                        $target =~ s#$imageTree#$imageTreeTmp#;
+                        my $rerooted = $path; @@ -1355,7 +1355,7 @@
+                                symlink ($rerooted, $target);
+                        }
+                };
+-               find(\&amp;$createTmpTree, $imageTree);
++               find({ wanted=&gt; \&amp;$createTmpTree, no_chdir=&gt;1}, 
++ $imageTree);
+                my @tempFiles = $sxml -&gt; getSplitTempFiles ();
+                if ($nopersistent) {
+                        push (@tempFiles, @persistFiles);
+
+
+But more problems arise later in this function, for instance when trying to create rootfs.tar.gz
+
+Thanks for a great tool!
+
+Regards,
+David
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000344.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+	<LI>Next message: <A HREF="000359.html">[Kiwi-users] problem with using &lt;split&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#354">[ date ]</a>
+              <a href="thread.html#354">[ thread ]</a>
+              <a href="subject.html#354">[ subject ]</a>
+              <a href="author.html#354">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

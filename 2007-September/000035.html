@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi setup questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20setup%20questions&In-Reply-To=%3C20070921141246.GA4221%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000032.html">
+   <LINK REL="Next"  HREF="000038.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi setup questions</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20setup%20questions&In-Reply-To=%3C20070921141246.GA4221%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi setup questions">ms at suse.de
+       </A><BR>
+    <I>Fri Sep 21 16:12:46 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000032.html">[Kiwi-users] kiwi setup questions
+</A></li>
+        <LI>Next message: <A HREF="000038.html">[Kiwi-users] kiwi setup questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#35">[ date ]</a>
+              <a href="thread.html#35">[ thread ]</a>
+              <a href="subject.html#35">[ subject ]</a>
+              <a href="author.html#35">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Wolfgang,
+
+&gt;<i> It looks to me that everything is related to OpenSuse 10.3. Is kiwi
+</I>&gt;<i> already released?
+</I>
+Hmm, don't understand that question. openSUSE 10.3 will be the first
+openSUSE version with kiwi onboard, but it has been built for other
+suse versions as well and is available on the openSUSE buildservice
+
+&gt;<i> Does the Hardware of the client matter or can I use any hardware as
+</I>&gt;<i> client? And if yes, where does the hardware dependent part begin?
+</I>
+The kiwi boot images (initrd) in your case the netboot boot image
+contains by default all required drivers of the kernel according
+to the distribution and architecture you use. So if the standard
+kernel of this distribution supports your hardware it is supported
+by kiwi as well. Right now we support only x86 and x86_64
+architectures with kiwi but that is supposed to be enhanced in
+the future (this requires more people to work on it)
+
+&gt;<i> To use an autoyast.xml file. What has to go in there? I've got a working
+</I>&gt;<i> autoyast file, which works fine with an network installation. I've
+</I>&gt;<i> copied this into the config directory. The kiwi client starts yast after
+</I>&gt;<i> booting up but the contest of this file doesn't seem to be read or
+</I>&gt;<i> executed. Do I have to drop some sections out of this file I am thinking
+</I>&gt;<i> especially about the section software and partitioning.
+</I>
+If you put the autoyast xml file as &quot;config-yast.xml&quot; into your
+image description yast will start automatically, of course only
+if yast is part of your image. I think you got so far already. The
+problem with the software depends on the fact that kiwi did not
+use the yast packagemanager if you don't specify it in config.xml
+(&lt;packagemanager&gt;zypper&lt;/packagemanager&gt;) As consequence there is
+no service for yast defined. In order to do that you need to add
+a yast(zypper) service in your image description config.sh script
+
+For example something like this could work:
+
+	rm -rf /var/cache/zypp/raw/*
+	zypper addrepo <A HREF="http://download.opensuse.org/distribution/10.3/repo/oss/">http://download.opensuse.org/distribution/10.3/repo/oss/</A> 10.3
+	zypper addrepo <A HREF="http://download.opensuse.org/update/10.3/">http://download.opensuse.org/update/10.3/</A> 10.3-update
+ 
+This will allow yast to install and update packages if network is available
+after booting the image
+
+&gt;<i> I've put a list of packages followed by a list of patterns into the
+</I>&gt;<i> config.xml file. Which I have taken over from the autoyast file. The
+</I>&gt;<i> kiwi --prepare complains about a missing pattern (sw_management). I've
+</I>&gt;<i> already checked it on my repository and it is there. All other patterns
+</I>&gt;<i> are read. Is there a debug option for the kiwi --prepare or --create.
+</I>&gt;<i> The output is not very detailed and knowing what kiwi is actually doing
+</I>&gt;<i> would probably help a lot with this.
+</I>
+The patterns itself sometimes has bugs and this is one of them. The pattern
+sw_management has been renamed to sw_management-10.3 but the reference may
+still be outdated so I assume this do disappear soon.
+
+You are right with the output, it should talk a bit more in case
+of an error here.
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000032.html">[Kiwi-users] kiwi setup questions
+</A></li>
+	<LI>Next message: <A HREF="000038.html">[Kiwi-users] kiwi setup questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#35">[ date ]</a>
+              <a href="thread.html#35">[ thread ]</a>
+              <a href="subject.html#35">[ subject ]</a>
+              <a href="author.html#35">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] error message with kiwi migrate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20error%20message%20with%20kiwi%20migrate&In-Reply-To=%3C20090126161911.GA28032%40idefix.dms.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000938.html">
+   <LINK REL="Next"  HREF="000939.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] error message with kiwi migrate</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20error%20message%20with%20kiwi%20migrate&In-Reply-To=%3C20090126161911.GA28032%40idefix.dms.net%3E"
+       TITLE="[Kiwi-users] error message with kiwi migrate">ms at novell.com
+       </A><BR>
+    <I>Mon Jan 26 17:19:11 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000938.html">[Kiwi-users] error message with kiwi migrate
+</A></li>
+        <LI>Next message: <A HREF="000939.html">[Kiwi-users] kiwi migrate doesn't include all packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#942">[ date ]</a>
+              <a href="thread.html#942">[ thread ]</a>
+              <a href="subject.html#942">[ subject ]</a>
+              <a href="author.html#942">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am trying the migrate tool and get this error message:
+</I>&gt;<i> Jan-21 20:36:06 &lt;1&gt; : Checking for broken links in custom root tree...Can't 
+</I>&gt;<i> call method &quot;loginfo&quot; on an undefined value at 
+</I>&gt;<i> /usr/share/kiwi/modules/KIWIMigrate.pm line 914.  
+</I>&gt;<i> 
+</I>&gt;<i> This is the command I use:
+</I>&gt;<i> kiwi --migrate mysys --destdir /tmp/testsys
+</I>&gt;<i> 
+</I>&gt;<i> I have installed the latest version of KIWI (kiwi-3.08-1.1).
+</I>
+I opened:
+
+  <A HREF="https://bugzilla.novell.com/show_bug.cgi?id=469366">https://bugzilla.novell.com/show_bug.cgi?id=469366</A>
+
+for this one. Thanks for reporting. The migration code is a bit
+rotten at the moment. You shouldn't consider this to use for a
+production system at the moment.
+
+I will improve the code as one of the objectives for
+this year but p2v migration is a big topic and I'm sure we
+will not be able to implement a 100% foolproof module with
+the resources we have today
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000938.html">[Kiwi-users] error message with kiwi migrate
+</A></li>
+	<LI>Next message: <A HREF="000939.html">[Kiwi-users] kiwi migrate doesn't include all packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#942">[ date ]</a>
+              <a href="thread.html#942">[ thread ]</a>
+              <a href="subject.html#942">[ subject ]</a>
+              <a href="author.html#942">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

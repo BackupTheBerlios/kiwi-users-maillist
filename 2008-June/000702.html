@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Newbie questions/clarification
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3C20080616134401.GA21639%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000701.html">
+   <LINK REL="Next"  HREF="000704.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Newbie questions/clarification</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Newbie%20questions/clarification&In-Reply-To=%3C20080616134401.GA21639%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] Newbie questions/clarification">ms at novell.com
+       </A><BR>
+    <I>Mon Jun 16 15:44:02 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000701.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+        <LI>Next message: <A HREF="000704.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#702">[ date ]</a>
+              <a href="thread.html#702">[ thread ]</a>
+              <a href="subject.html#702">[ subject ]</a>
+              <a href="author.html#702">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; - system image completely in RAM
+</I>&gt;<i> &gt; - system image partially in RAM and local storage
+</I>&gt;<i> &gt; - system image completely on local storage
+</I>&gt;<i> &gt; - system image remotely mounted via NFS (network file system)
+</I>&gt;<i> &gt; - system image remotely mounted via NBD (network block device)
+</I>&gt;<i> 
+</I>&gt;<i> In interest of having the quickest bootup time possible, I'm thinking that 
+</I>&gt;<i> the NBD remote mounted system image is what I need.  Does that sound 
+</I>&gt;<i> correct?
+</I>
+I guess yes :)
+
+&gt;<i> &gt; I agree you don't need the terminal aspects here. So to make this work
+</I>&gt;<i> &gt; you need the following:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 1) a system image tree exported via NFS or NBD
+</I>&gt;<i> &gt; 2) a PXE boot server based on the directory structure from the
+</I>&gt;<i> &gt; kiwi-pxeboot package
+</I>&gt;<i> &gt; 3) a netboot boot image and kernel built with kiwi
+</I>&gt;<i> &gt; 4) a config.&lt;MAC&gt; configuration file which includes one line
+</I>&gt;<i> &gt; telling netboot to use NBD or NFS
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Would you mind to jump in and tell us according to the list
+</I>&gt;<i> &gt; above at which point you are currently and what problems needs
+</I>&gt;<i> &gt; to be solved.
+</I>&gt;<i> 
+</I>&gt;<i> Thank you very much for the reply and explanations.  I'm really just 
+</I>&gt;<i> getting started - but here is how I understand the process (and I'd 
+</I>&gt;<i> appreciate it if you can correct me where I'm wrong)
+</I>&gt;<i> 
+</I>&gt;<i> First, the kiwi-pxeboot package is installed, which provides the 
+</I>&gt;<i> /srv/tftpboot structure necessary for the clients to boot.
+</I>
+correct
+
+&gt;<i> Second, the kiwi-desc-netboot package is installed, which provides the 
+</I>&gt;<i> config.xmls and scripts necessary to build the boot image (initrd).
+</I>
+correct
+
+&gt;<i> This is the point where I need help.  If I do &quot;kiwi -c 
+</I>&gt;<i> /usr/share/kiwi/image/netboot/suse-10.3 -r /tmp/pxe&quot;, what am I actually 
+</I>&gt;<i> getting?  Just the initrd?
+</I>&gt;<i> If so, what is the appropriate way to build the system? 
+</I>
+so first of all you don't need to build the boot image manually.
+kiwi does that for you automatically. Your problem is you need a
+system image description to start with. Let's have a look at the
+example provided with the kiwi-doc package. It makes much sense
+to have this one installed too. After that you will find an example
+system image descriptions in /usr/share/doc/packages/kiwi/examples.
+I suggest to take a look at the
+
+	suse-pxe-client
+
+example. If you open the file suse-pxe-client/config.xml you will
+see the system image description. If you check the type line you will
+see the following:
+
+	&lt;type filesystem=&quot;squashfs&quot; boot=&quot;netboot/suse-10.3&quot;&gt;pxe&lt;/type&gt;
+
+This means your system image is based on a compressed filesystem 
+(squashfs) and the boot=... information tells kiwi to build the initrd
+from the /usr/share/kiwi/image/netboot/suse-10.3 description.
+
+For a first start I recommend to change &quot;squashfs&quot; into &quot;ext3&quot; to
+avoid possible problems with the aufs overlay filesystem as you
+intend to use NBD root.
+ 
+&gt;<i> I'm thinking that I need to create a config directory structure (including 
+</I>&gt;<i> config.xml for my image, and other scripts as needed).  But how do I tie 
+</I>&gt;<i> the netboot initrd together with this system image?  I'm pretty sure it is 
+</I>&gt;<i> done based on the &quot;&lt;type&gt;&quot; block in my images' config.xml, but some 
+</I>&gt;<i> clarification would help here.
+</I>
+I think you almost got the picture :) I'm sure the information above
+helps you to complete the gaps. Once you have your system image description
+the kiwi --prepare call creates the new root of your image. A subsequent
+call of kiwi --create will create all images including the boot images
+in the specified destination directory. The boot image will be named
+initrd-... I recommend to have a look into the pxe chapter of the kiwi.pdf
+which is installed with the kiwi-doc package. You will find a step by step
+guide how to setup the remote boot and more. 
+
+For NBD root you need to make sure your new root tree is exported correctly
+using the nbd-server application. You also should test if you can
+successfully mount the root tree by nbd-client plus mount /dev/nbd0 ...
+before you start your client to be sure the remote mount works in
+principal
+
+Good luck and do not hesitate do ask any question :)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000701.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+	<LI>Next message: <A HREF="000704.html">[Kiwi-users] Newbie questions/clarification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#702">[ date ]</a>
+              <a href="thread.html#702">[ thread ]</a>
+              <a href="subject.html#702">[ subject ]</a>
+              <a href="author.html#702">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

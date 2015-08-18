@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTinHj6S_tkA7zrbb%3DUQG6DLiCCZVHQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002610.html">
+   <LINK REL="Next"  HREF="002627.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] live image streaming issues...swap file or other kiwi settings?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20live%20image%20streaming%20issues...swap%20file%20or%20other%0A%20kiwi%20settings%3F&In-Reply-To=%3CBANLkTinHj6S_tkA7zrbb%3DUQG6DLiCCZVHQ%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] live image streaming issues...swap file or other kiwi settings?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Thu Apr  7 03:23:43 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002610.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+        <LI>Next message: <A HREF="002627.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2625">[ date ]</a>
+              <a href="thread.html#2625">[ thread ]</a>
+              <a href="subject.html#2625">[ subject ]</a>
+              <a href="author.html#2625">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Apr 5, 2011 at 7:24 AM, Marcus Sch&#228;fer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">ms at suse.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> I made the image as ext3 file in place of clicfs. &#160;The behavior was
+</I>&gt;&gt;<i> totally different.
+</I>&gt;&gt;<i> The image, with a tiny fat partition of about 150mb was about 3GB.
+</I>&gt;&gt;<i> The initial boot was much slower. &#160;I assume this is partly becuase the
+</I>&gt;&gt;<i> image itself is much larger and needs to expand that to the USB drive
+</I>&gt;&gt;<i> on first boot. The streaming issue is completely gone! &#160;I was able to
+</I>&gt;&gt;<i> run two streaming videos (in two Firefox tabbed windows) with out a
+</I>&gt;&gt;<i> real issue. &#160;The memory usage was about 228MB with the CPU swapping
+</I>&gt;&gt;<i> between 38 to 75%. &#160;It would go to 100% from time to time but it seem
+</I>&gt;&gt;<i> to always recover. &#160;The USB drive is being accessed much more now so
+</I>&gt;&gt;<i> that tends to slow down applications starting and similar tasks.
+</I>&gt;&gt;<i> Also I noticed now that the video caches where as before it didn't
+</I>&gt;&gt;<i> seem to do this. &#160; When I say 'caches&quot; I mean it's able to buffer
+</I>&gt;&gt;<i> (preload) the video faster than it plays it which generally means that
+</I>&gt;&gt;<i> it will play smoother.
+</I>&gt;&gt;<i> Does this mean that clicfs has an issue with swapping?
+</I>&gt;<i>
+</I>&gt;<i> Ok, so this really looks like a clicfs problem. I guess the
+</I>&gt;<i> clicfs process crashed while you did the video streaming.
+</I>&gt;<i> Hmm, that's bad. You can give it a try with a newer version
+</I>&gt;<i> of clicfs (1.4) from here:
+</I>&gt;<i>
+</I>&gt;<i> &#160; <A HREF="http://download.opensuse.org/repositories/filesystems/openSUSE_11.3/">http://download.opensuse.org/repositories/filesystems/openSUSE_11.3/</A>
+</I>&gt;<i>
+</I>&gt;<i> add that repo to your image config.xml and rebuild the image
+</I>&gt;<i> with clicfs and ramonly enabled again. If the problem still
+</I>&gt;<i> exist it could also be a bug in the kernel fuse layer.
+</I>&gt;<i>
+</I>&gt;<i> Please also note that the kernel starts to kill userspace processes
+</I>&gt;<i> if it runs of out resources. The clicfs process is a userspace
+</I>&gt;<i> process and if the kernel kills it, it kills itself. That can't
+</I>&gt;<i> be prevented by the nature of a fuse based filesystem.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>&gt;<i> --
+</I>&gt;<i> &#160;Public Key available
+</I>&gt;<i> &#160;gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i> &#160;Marcus Sch&#228;fer (Res. &amp; Dev.) &#160; SUSE LINUX Products GmbH
+</I>&gt;<i> &#160;Tel: 0911-740 53 0 &#160; &#160; &#160; &#160; &#160; &#160; Maxfeldstrasse 5
+</I>&gt;<i> &#160;FAX: 0911-740 53 479 &#160; &#160; &#160; &#160; &#160; D-90409 N&#252;rnberg
+</I>&gt;<i> &#160;GF: Markus Rex &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; HRB: 16746 (AG N&#252;rnberg)
+</I>&gt;<i> &#160;<A HREF="http://www.suse.de">http://www.suse.de</A> &#160; &#160; &#160; &#160; &#160; &#160; Germany
+</I>&gt;<i> &#160;-------------------------------------------------------
+</I>&gt;<i>
+</I>
+As I mentioned in the kiwi irc channel the newer version of clicfs
+cured the apparent lack of swapping.  Installing clicfs 1.4 installed
+on the build machine as well as adding the above repo.
+I mentioned to Marcus yesterday (as we both tested that latest version
+of clicfs) that the video streaming issue was working perfectly.  So
+perfect that it was possible to stream more than one video at a time
+without any hickups.  When the streaming is working correctly the
+video would load and buffer faster then the video would play.  This
+successful test was done with &quot;ramonly=true&quot; a swap file size of
+1500mb and &quot;clicfs&quot; not &quot;ext3&quot; file type in the config.xml config file
+for Kiwi.
+
+Shortly after a few test that were flawless, I shut the test machine
+down for the night.  This morning I booted the same image from the
+same drive with no changes.  The streaming video didn't work this
+time.  Nothing I did would change this behavior.   It wasn't until
+late this afternoon that I noticed that the streaming would ALWAYS
+work perfectly on the FIRST boot of the OEM image.  After the first
+boot the streaming video wouldn't work correctly.
+
+I understand on an OEM first boot the image expands to the drive it's
+on.  I thought after this expansion that the actual desktop session
+loading was the same as any other boot.  Can anybody point me in the
+right direction as to what might be causing the streaming video to
+work so well on first boot of a fresh OEM image and not work anytime
+after the first boot?
+
+c
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002610.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+	<LI>Next message: <A HREF="002627.html">[Kiwi-users] live image streaming issues...swap file or other kiwi settings?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2625">[ date ]</a>
+              <a href="thread.html#2625">[ thread ]</a>
+              <a href="subject.html#2625">[ subject ]</a>
+              <a href="author.html#2625">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

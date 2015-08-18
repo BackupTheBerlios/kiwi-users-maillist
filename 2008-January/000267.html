@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] PXE Boot a new problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20a%20new%20problem&In-Reply-To=%3C20080130083600.GB30687%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000265.html">
+   <LINK REL="Next"  HREF="000268.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] PXE Boot a new problem</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20PXE%20Boot%20a%20new%20problem&In-Reply-To=%3C20080130083600.GB30687%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] PXE Boot a new problem">ms at suse.de
+       </A><BR>
+    <I>Wed Jan 30 09:36:01 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000265.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+        <LI>Next message: <A HREF="000268.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#267">[ date ]</a>
+              <a href="thread.html#267">[ thread ]</a>
+              <a href="subject.html#267">[ subject ]</a>
+              <a href="author.html#267">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; So you don't use NFS root at the moment but the &quot;standard&quot; atftp
+</I>&gt;<i> &gt; based deployment method correct ? In this case you should first
+</I>&gt;<i> &gt; have a look into your atftpd configuration. You should disable
+</I>&gt;<i> &gt; multicast at all in a first try:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 	vi /etc/sysconfig/atftpd
+</I>&gt;<i> &gt; 	ATFTPD_OPTIONS=&quot;--daemon --no-multicast&quot;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; restart atftpd, try again and run
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 	tail -f /var/log/messages
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; while the client &quot;unpack/download&quot; the image
+</I>&gt;<i> 
+</I>&gt;<i> 1)
+</I>&gt;<i> tftp was installed
+</I>&gt;<i> so i removed it
+</I>&gt;<i> 2)
+</I>&gt;<i> atftp installed
+</I>&gt;<i> 3)
+</I>&gt;<i> nothing works
+</I>&gt;<i> the client doesn't recieve files any longer.
+</I>
+Ah, Ralf tftp is controlled by init atftp is a daemon started
+by rc script. Just install atftp again and edit the file
+/etc/sysconfig/atftpd: Set the following options there:
+
+	ATFTPD_OPTIONS=&quot;--daemon --no-multicast&quot;
+	ATFTPD_DIRECTORY=&quot;/srv/tftpboot&quot;
+
+now make sure there is no old tftp running:
+
+	init q
+	ps ax | grep tftp --&gt; kill them
+
+now start atftp
+
+	rcatftpd start 
+
+you really should use atftp
+
+If you want to give me access to your boot server machine I also
+can fix it there directly :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000265.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+	<LI>Next message: <A HREF="000268.html">[Kiwi-users] PXE Boot a new problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#267">[ date ]</a>
+              <a href="thread.html#267">[ thread ]</a>
+              <a href="subject.html#267">[ subject ]</a>
+              <a href="author.html#267">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

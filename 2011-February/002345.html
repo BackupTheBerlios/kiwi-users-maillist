@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi-tools version question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C1297935318.12064.144.camel%40acme.pacific%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002343.html">
+   <LINK REL="Next"  HREF="002346.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi-tools version question</H1>
+    <B>Roger Oberholtzer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi-tools%20version%20question&In-Reply-To=%3C1297935318.12064.144.camel%40acme.pacific%3E"
+       TITLE="[Kiwi-users] kiwi-tools version question">roger at opq.se
+       </A><BR>
+    <I>Thu Feb 17 10:35:18 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002343.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+        <LI>Next message: <A HREF="002346.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2345">[ date ]</a>
+              <a href="thread.html#2345">[ thread ]</a>
+              <a href="subject.html#2345">[ subject ]</a>
+              <a href="author.html#2345">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have re-run the prep/create steps (having deleted everything first),
+and it is indeed using the repo as I claimed:
+
+Feb-16 18:53:26 &lt;1&gt; : Mounting local channel: usr_share_kiwi_repo_suse-repo_suse-sle11-repo                                                          skipped    
+Feb-16 18:53:26 &lt;2&gt; : Path /usr/share/kiwi/repo/suse-repo/suse-sle11-repo is writable, trying read-only mount  
+
+And if I look into the logs, I see that it is getting an old version of
+kiwi-tools from this repo.
+
+The example I used is suse-oem-preload for 11.2. It clarify, the type
+statement I am using is:
+
+  &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;/&gt;
+
+and the command lines (run as root and started from the directory with
+the suse-oem-preload directory are:
+
+  rm -rf /tmp/myoem /tmp/myoem-result
+  mkdir /tmp/myoem-result
+
+  kiwi -p `pwd` --root /tmp/myoem
+  kiwi --create /tmp/myoem --type oem -d /tmp/myoem-result
+
+I see that if I use the following type statement, this does bot happen:
+
+  &lt;type image=&quot;split&quot; fsreadwrite=&quot;ext3&quot; fsreadonly=&quot;squashfs&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;/&gt;
+
+That is, if that is the ONLY line I change, I can trigger this.
+
+The kiwi components I have installed are:
+
+kiwi-instsource-plugins-openSUSE-11-1-2.0-17.1.noarch
+kiwi-doc-4.74-204.1.i586
+kiwi-desc-vmxboot-4.74-204.1.i586
+kiwi-instsource-plugins-openSUSE-11-3-0.9-5.1.noarch
+kiwi-pxeboot-4.74-204.1.i586
+kiwi-desc-usbboot-4.74-204.1.i586
+kiwi-tools-imagewriter-3.74-80.1.i586
+kiwi-desc-isoboot-4.74-204.1.i586
+kiwi-desc-ltsp-0.8.1-3.1.noarch
+kiwi-pxeboot-prebuild-3.74-80.1.i586
+kiwi-instsource-4.74-204.1.i586
+kiwi-config-openSUSE-11.2-16.17.2.i586
+kiwi-tools-4.74-204.1.i586
+kiwi-desc-oemboot-4.74-204.1.i586
+kiwi-instsource-plugins-openSUSE-11-2-0.9-8.1.noarch
+kiwi-desc-netboot-4.74-204.1.i586
+kiwi-4.74-204.1.i586
+kiwi-ltsp-bootimages-0.8.1-2.1.noarch
+kiwi-templates-4.74-204.1.i586
+kiwi-ltsp-prebuilt-0.8.1-2.1.noarch
+
+I am running this on an up-to-date openSUSE 11.2, last updated
+yesterday. But I had this issue before I did the update.
+
+My root directory contains:
+
+root:
+total 4
+drwxr-xr-x 6 root root 4096 2011-02-16 14:49 etc
+
+root/etc:
+total 20
+drwxr-xr-x 2 root root 4096 2011-02-16 11:36 init.d
+drwxr-xr-x 3 root root 4096 2011-02-07 10:22 sysconfig
+-rw------- 1 root root    8 2011-02-16 14:48 vncpasswd
+drwxr-xr-x 2 root root 4096 2011-02-16 14:44 X11
+drwxr-xr-x 2 root root 4096 2011-02-16 14:50 xinetd.d
+
+root/etc/init.d:
+total 8
+-rw-r--r-- 1 root root 7210 2011-02-03 15:59 boot
+
+root/etc/sysconfig:
+total 20
+-rw-r--r-- 1 root root  548 2011-02-03 15:59 bootloader
+-rw-r--r-- 1 root root  505 2011-02-03 15:59 bootsplash
+-rw-r--r-- 1 root root 2893 2011-02-03 15:59 console
+-rw-r--r-- 1 root root 2954 2011-02-03 15:59 keyboard
+drwxr-xr-x 2 root root 4096 2011-02-16 18:23 network
+
+root/etc/sysconfig/network:
+total 28
+-rw-r--r-- 1 root root 8774 2011-02-03 15:59 config
+-rw-r--r-- 1 root root  584 2011-02-03 15:59 dhcp
+-rw-r--r-- 1 root root  170 2011-02-16 16:23 ifcfg-eth0
+-rw-r--r-- 1 root root  141 2011-02-03 15:59 ifcfg-lo
+-rw-r--r-- 1 root root  239 2011-02-03 15:59 ifroute-lo
+
+root/etc/X11:
+total 4
+-rw-r--r-- 1 root root 802 2011-02-16 14:44 xorg.conf
+
+root/etc/xinetd.d:
+total 4
+-rw-r--r-- 1 root root 343 2011-02-16 14:47 x11vncservice
+
+I am not really doing anything unusual here (IMO). But apparently I am
+doing something wrong.
+
+
+On Wed, 2011-02-16 at 17:14 +0100, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; If I am making an OEM preload using 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &lt;type image=&quot;oem&quot; filesystem=&quot;ext3&quot; boot=&quot;oemboot/suse-11.2&quot; installstick=&quot;true&quot;&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; should it be using this repo for anything: 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 	/usr/share/kiwi/repo/suse-repo/suse-sle11-repo/
+</I>&gt;<i> 
+</I>&gt;<i> no that doesn't fit together, as the name says it's a sle11 repo
+</I>&gt;<i> and it only contains a few packages which are not distributed by
+</I>&gt;<i> the sle11 media (DVD)
+</I>&gt;<i> 
+</I>&gt;<i> Roger, for a 11.2 image you need a 11.2 distribution repo. This is
+</I>&gt;<i> either the 11.2 DVD or the online repo:
+</I>&gt;<i> 
+</I>&gt;<i>    <A HREF="http://download.opensuse.org/distribution/11.2/repo/oss/">http://download.opensuse.org/distribution/11.2/repo/oss/</A>
+</I>&gt;<i> 
+</I>&gt;<i> &gt; In there is kiwi-tools-3.85, which is what gets installed in any images
+</I>&gt;<i> &gt; I create (I see this in the log of the image build). But as I am
+</I>&gt;<i> &gt; building things with kiwi 4.73, couldn't there be some mismatch between
+</I>&gt;<i> &gt; the build tools and the tools later used in the image?
+</I>&gt;<i> 
+</I>&gt;<i> I don't understand why you added that repo for a 11.2 image ?
+</I>&gt;<i> you don't need it. 11.2 provides kiwi-tools on the media, sle11 doesn't
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Marcus
+</I>
+Yours sincerely,
+
+Roger Oberholtzer
+
+OPQ Systems / Ramb&#246;ll RST
+
+Office: Int +46 10-615 60 20
+Mobile: Int +46 70-815 1696
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">roger.oberholtzer at ramboll.se</A>
+________________________________________
+
+Ramb&#246;ll Sverige AB
+Krukmakargatan 21
+P.O. Box 17009
+SE-104 62 Stockholm, Sweden
+www.rambollrst.se
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002343.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+	<LI>Next message: <A HREF="002346.html">[Kiwi-users] kiwi-tools version question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2345">[ date ]</a>
+              <a href="thread.html#2345">[ thread ]</a>
+              <a href="subject.html#2345">[ subject ]</a>
+              <a href="author.html#2345">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

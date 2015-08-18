@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] need your help with genisoimage problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20need%20your%20help%20with%20genisoimage%20problem&In-Reply-To=%3C863213.92123.qm%40web56504.mail.re3.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001718.html">
+   <LINK REL="Next"  HREF="001719.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] need your help with genisoimage problem</H1>
+    <B>Zdravko Angelov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20need%20your%20help%20with%20genisoimage%20problem&In-Reply-To=%3C863213.92123.qm%40web56504.mail.re3.yahoo.com%3E"
+       TITLE="[Kiwi-users] need your help with genisoimage problem">zdravko_angelov at yahoo.com
+       </A><BR>
+    <I>Tue Mar  9 14:17:40 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001718.html">[Kiwi-users] need your help with genisoimage problem
+</A></li>
+        <LI>Next message: <A HREF="001719.html">[Kiwi-users] Integrity check for	/usr/share/kiwi/image/isoboot/suse-11.2 failed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1721">[ date ]</a>
+              <a href="thread.html#1721">[ thread ]</a>
+              <a href="subject.html#1721">[ subject ]</a>
+              <a href="author.html#1721">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi
+
+&gt;<i> &gt; &gt; &gt; I had this problem and in my case everything is on the same filesystem.
+</I>&gt;<i> &gt; &gt; &gt; Straightforward, one local partition with ext4. I used as target
+</I>&gt;<i> &gt; &gt; &gt; /tmp/kiwi/... btw
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Zdravko, is the file missing entirely or did genisoimage include the symlink
+</I>&gt;<i> &gt; &gt; instead? Is this reproducible on your machine?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; It's a reproducible problem and this is what I get in the target dir:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root  23M 2010-02-24 11:47 suse-11.2-live-iso.i686-2.5.1.iso
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root 922M 2010-02-24 11:39 
+</I>&gt;<i> suse-11.2-live-iso-read-only.i686-2.5.1
+</I>&gt;<i> &gt; lrwxrwxrwx1 root root  39 2010-02-24 10:50 
+</I>&gt;<i> suse-11.2-live-iso-read-only.i686-2.5.1.clicfs -&gt; 
+</I>&gt;<i> suse-11.2-live-iso-read-only.i686-2.5.1
+</I>&gt;<i> &gt; -rw-r--r-- 1 root root  48 2010-02-24 11:05 
+</I>&gt;<i> suse-11.2-live-iso-read-only.i686-2.5.1.md5
+</I>&gt;<i> 
+</I>&gt;<i> Interesting would be to see the contents of the iso. Can you do the
+</I>&gt;<i> following:
+</I>&gt;<i> 
+</I>&gt;<i>    mount -o loop suse-11.2-live-iso.i686-2.5.1.iso /mnt
+</I>&gt;<i>    ls -l /mnt
+</I>&gt;<i> 
+</I>&gt;<i> Normally you should see the file
+</I>&gt;<i> 
+</I>&gt;<i>    suse-11.2-live-iso-read-only.i686-2.5.1
+</I>&gt;<i> 
+</I>&gt;<i> as part of the ls output but in your case I guess this file is missing
+</I>&gt;<i> completely
+</I>
+
+It is missing indeed. This is the content of the iso:
+
+drwxr-xr-x 3 root root 2048 2010-03-09 12:16 boot
+-rw-r--r-- 1 root root   80 2010-03-09 12:16 config.isoclient
+
+
+Cheers,
+Zdravko
+
+
+
+      
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001718.html">[Kiwi-users] need your help with genisoimage problem
+</A></li>
+	<LI>Next message: <A HREF="001719.html">[Kiwi-users] Integrity check for	/usr/share/kiwi/image/isoboot/suse-11.2 failed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1721">[ date ]</a>
+              <a href="thread.html#1721">[ thread ]</a>
+              <a href="subject.html#1721">[ subject ]</a>
+              <a href="author.html#1721">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

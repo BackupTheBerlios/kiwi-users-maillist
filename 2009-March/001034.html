@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] building 32bit images on 64bit machine
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20building%2032bit%20images%20on%2064bit%20machine&In-Reply-To=%3C20090317151003.GA32228%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001031.html">
+   <LINK REL="Next"  HREF="001025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] building 32bit images on 64bit machine</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20building%2032bit%20images%20on%2064bit%20machine&In-Reply-To=%3C20090317151003.GA32228%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] building 32bit images on 64bit machine">ms at novell.com
+       </A><BR>
+    <I>Tue Mar 17 16:10:03 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001031.html">[Kiwi-users] building 32bit images on 64bit machine
+</A></li>
+        <LI>Next message: <A HREF="001025.html">[Kiwi-users] Adaption of Kiwi to Scientific Linux?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1034">[ date ]</a>
+              <a href="thread.html#1034">[ thread ]</a>
+              <a href="subject.html#1034">[ subject ]</a>
+              <a href="author.html#1034">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; However, I still think there's a problem with the arch= parameter. 64bit sled 
+</I>&gt;<i> &gt; has some patterns that are not available on 32bit sled. (e.g. x11-32bit) 
+</I>&gt;<i> &gt; so, if I try to build the 32bit image when the line
+</I>&gt;<i> &gt;  &lt;opensusePattern name=&quot;x11-32bit&quot;&gt; 
+</I>&gt;<i> &gt; is in there, it fails. However if I put in 
+</I>&gt;<i> &gt; &lt;opensusePattern name=&quot;x11-32bit&quot; arch=&quot;x86_64&quot;/&gt;
+</I>&gt;<i> &gt; that fails the XML check. 
+</I>&gt;<i> 
+</I>&gt;<i> ok that's something I will check, looks like a bug
+</I>
+It's a bug and I fixed it some minutes before. v3.33 will allow
+arch setup of opensusePattern names. git push log follows
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001031.html">[Kiwi-users] building 32bit images on 64bit machine
+</A></li>
+	<LI>Next message: <A HREF="001025.html">[Kiwi-users] Adaption of Kiwi to Scientific Linux?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1034">[ date ]</a>
+              <a href="thread.html#1034">[ thread ]</a>
+              <a href="subject.html#1034">[ subject ]</a>
+              <a href="author.html#1034">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

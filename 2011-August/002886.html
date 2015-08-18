@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe-images%20give%20%22Image%20checksum%20test%20failed%22&In-Reply-To=%3C4E36B790.4020407%40tudelft.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002888.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;</H1>
+    <B>Rob Haverkort</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20pxe-images%20give%20%22Image%20checksum%20test%20failed%22&In-Reply-To=%3C4E36B790.4020407%40tudelft.nl%3E"
+       TITLE="[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;">r.j.haverkort at tudelft.nl
+       </A><BR>
+    <I>Mon Aug  1 16:26:24 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002888.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2886">[ date ]</a>
+              <a href="thread.html#2886">[ thread ]</a>
+              <a href="subject.html#2886">[ subject ]</a>
+              <a href="author.html#2886">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Im using KIWI to create a pxe-image and until today all worked perfect,
+but after I updated all kiwi-packages this morning, the pxe-booting pc gives
+
+Image checksum test failed
+
+and after the automatic retry it gives:
+
+Have size: /dev/sda -&gt; 1073741824 Bytes [ 1024 MB ]
+Need size: * Bytes [  MB ]
+Not enough space available for this image
+
+ths image is under 300 MB in size.
+
+What I can find on one of the consoles is this:
+
+++ expr bin boot bootsplash  dev etc image include init iprocs lib lib64
+linuxrc mnt preinit proc progress root sbin selinux sys tmp usr var /
+1048576
+expr: syntax error
+
+
+any help is welcome, thanks in advance
+
+Rob
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002888.html">[Kiwi-users] pxe-images give &quot;Image checksum test failed&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2886">[ date ]</a>
+              <a href="thread.html#2886">[ thread ]</a>
+              <a href="subject.html#2886">[ subject ]</a>
+              <a href="author.html#2886">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

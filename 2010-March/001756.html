@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel into	thinclient image?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BKiwi-ltsp-users%5D%20HowTO%20install%20new%20kernel%20into%0A%09thinclient%20image%3F&In-Reply-To=%3Cb317ae5c1003242254u70355f2dwb6e51e2e24651e9d%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001754.html">
+   <LINK REL="Next"  HREF="001757.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel into	thinclient image?</H1>
+    <B>Jigish Gohil</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BKiwi-ltsp-users%5D%20HowTO%20install%20new%20kernel%20into%0A%09thinclient%20image%3F&In-Reply-To=%3Cb317ae5c1003242254u70355f2dwb6e51e2e24651e9d%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel into	thinclient image?">cyberorg at opensuse.org
+       </A><BR>
+    <I>Thu Mar 25 06:54:38 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001754.html">[Kiwi-users] Image mount during build
+</A></li>
+        <LI>Next message: <A HREF="001757.html">[Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel	into	thinclient image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1756">[ date ]</a>
+              <a href="thread.html#1756">[ thread ]</a>
+              <a href="subject.html#1756">[ subject ]</a>
+              <a href="author.html#1756">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/3/24 &#1044;&#1072;&#1085;&#1080;&#1083; &#1047;&#1074;&#1103;&#1075;&#1080;&#1085;&#1094;&#1077;&#1074; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">danil at ooo-sm.ru</A>&gt;:
+&gt;<i> Hello
+</I>&gt;<i> i'm trying to make ebox 2300sx bootable with kiwi-ltsp
+</I>&gt;<i>
+</I>&gt;<i> 1) first of all i've made new kernel (downloaded sourses from www.kernel.org
+</I>&gt;<i> 2.6.18 and config with patch from
+</I>&gt;<i> <A HREF="http://www.compactpc.com.tw/download_drv.htm">http://www.compactpc.com.tw/download_drv.htm</A>)
+</I>&gt;<i> &#160;&#160;&#160; made new rpm (with make rpm) finaly got kernel-2.6.18DMP-1.i386.rpm and
+</I>&gt;<i> kernel-2.6.18DMP-1.src.rpm
+</I>&gt;<i> 2) i've mount opensuse DVD iso to /mnt/11.2 and run kiwi-ltsp-setup -l1
+</I>&gt;<i> 3) rpm -Uvh --root=/srv/kiwi-ltsp-nfs/&#160; kernel-2.6.18DMP-1.i386.rpm
+</I>&gt;<i> 4) kiwi-ltsp-setup -l2
+</I>&gt;<i>
+</I>&gt;<i> but i didn't understood where should i find initrd image&#160; so i've installed
+</I>&gt;<i> kernel-2.6.18DMP-1.i386.rpm into opensuse server and run mkinitrd
+</I>&gt;<i> 5) copied vmlinuz-2.6.18DMP and initrd--2.6.18DMP to /srv/tftpboot/ebox/ and
+</I>&gt;<i> made certain config files in pxelinux.cfg
+</I>&gt;<i>
+</I>&gt;<i> but not able boot in this way....
+</I>&gt;<i> and broke other clients&#160; now i get &quot;kernel mismatch version rebooting....&quot;
+</I>&gt;<i>
+</I>&gt;<i> Where can i find any howto how to make a custom kernel in thinclient chroot
+</I>&gt;<i> or similar?
+</I>&gt;<i> or what do i do wrong?
+</I>&gt;<i>
+</I>
+See /usr/share/kiwi/images/netboot/suse-*
+
+Check out /usr/share/doc/packages/kiwi/kiwi.pdf from kiwi-docs package.
+
+You will have to create profile for your custom flavored kernel, add
+it to the config.xml of netboot image as well as system image,
+/usr/share/kiwi/images/ltsp/suse-* in your case. Change --add-profile
+yourcustomprofile in
+/usr/share/kiwi/image/ltsp/include/kiwi-ltsp-functions.sh
+
+Kiwi's initrd and kernels are in /srv/tftpboot/boot/ to create those
+images use kiwi-ltsp-setup -n after adapting netboot image
+description.
+
+This is more of a kiwi question so copying it to
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>, you can post any further queries on it as
+more expert knowledge would be available there.
+
+Ciao
+
+-J
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001754.html">[Kiwi-users] Image mount during build
+</A></li>
+	<LI>Next message: <A HREF="001757.html">[Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel	into	thinclient image?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1756">[ date ]</a>
+              <a href="thread.html#1756">[ thread ]</a>
+              <a href="subject.html#1756">[ subject ]</a>
+              <a href="author.html#1756">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

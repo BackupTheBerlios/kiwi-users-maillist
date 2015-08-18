@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full	question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20kiwi%20to%20build%20SLED%2011%20image%20-%0A%09Cracklib-dict-full%09question&In-Reply-To=%3C4A1D23D4020000950004FD8C%40sinclair.provo.novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001141.html">
+   <LINK REL="Next"  HREF="001143.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full	question</H1>
+    <B>Jose Betancourt</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Using%20kiwi%20to%20build%20SLED%2011%20image%20-%0A%09Cracklib-dict-full%09question&In-Reply-To=%3C4A1D23D4020000950004FD8C%40sinclair.provo.novell.com%3E"
+       TITLE="[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full	question">jbetancourt at novell.com
+       </A><BR>
+    <I>Wed May 27 19:28:20 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001141.html">[Kiwi-users] VMX image creation
+</A></li>
+        <LI>Next message: <A HREF="001143.html">[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1142">[ date ]</a>
+              <a href="thread.html#1142">[ thread ]</a>
+              <a href="subject.html#1142">[ subject ]</a>
+              <a href="author.html#1142">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello list,
+
+I'm a newbie to the list.
+
+I'm using Kiwi to build a VMware-based image with SLED 11 instead of OpenSUSE.
+I've borrowed the config.xml provided under /usr/share/doc/packages/kiwi/examples/suse-11.1/suse-vm-guest and I was able to run the first stage (kiwi -p) with no issues (after making the necessary changes to the names of the pattern and bootsplash).
+
+I'm trying to run the kiwi --create step next, but I'm running into the following problem:
+
++ /usr/bin/zypper --non-interactive --no-gpg-checks --reposd-dir /var/cache/kiwi/zypper --cache-dir /var/cache/kiwi/zypper --raw-cache-dir /var/cache/kiwi/zypper --root /tmp/kiwi-VMX.Eo1RsV/kiwi-VMXboot-800 install --auto-agree-with-licenses --no-recommends cracklib-dict-small diffutils filesystem glibc-locale glibc.i586 procps zypper
++ SPID=1203
++ wait 1203
+Loading repository data...
+Reading installed packages...
+'cracklib-dict-small' not found.
++ ECODE=104
++ echo 104
++ exit 104
+
+If I understand correctly, it's looking for cracklib-dict-small, but SLED has cracklib-dict-full.  I don't see a place in the config.xml file  or images.sh script where to make the changes and put cracklib-full-dict.   Or do I need to install cracklib-dict-small and take out full?
+
+Regards,
+
+Jose Betancourt
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090527/1bff37f3/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090527/1bff37f3/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001141.html">[Kiwi-users] VMX image creation
+</A></li>
+	<LI>Next message: <A HREF="001143.html">[Kiwi-users] Using kiwi to build SLED 11 image -	Cracklib-dict-full question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1142">[ date ]</a>
+              <a href="thread.html#1142">[ thread ]</a>
+              <a href="subject.html#1142">[ subject ]</a>
+              <a href="author.html#1142">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

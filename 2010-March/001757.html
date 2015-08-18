@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel	into	thinclient image?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BKiwi-ltsp-users%5D%20HowTO%20install%20new%20kernel%0A%09into%09thinclient%20image%3F&In-Reply-To=%3C20100325103827.GA3937%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001756.html">
+   <LINK REL="Next"  HREF="001760.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel	into	thinclient image?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5BKiwi-ltsp-users%5D%20HowTO%20install%20new%20kernel%0A%09into%09thinclient%20image%3F&In-Reply-To=%3C20100325103827.GA3937%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel	into	thinclient image?">ms at novell.com
+       </A><BR>
+    <I>Thu Mar 25 11:38:27 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001756.html">[Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel into	thinclient image?
+</A></li>
+        <LI>Next message: <A HREF="001760.html">[Kiwi-users] kiwi 4.26, can't locate....
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1757">[ date ]</a>
+              <a href="thread.html#1757">[ thread ]</a>
+              <a href="subject.html#1757">[ subject ]</a>
+              <a href="author.html#1757">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> 2010/3/24 &#1044;&#1072;&#1085;&#1080;&#1083; &#1047;&#1074;&#1103;&#1075;&#1080;&#1085;&#1094;&#1077;&#1074; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">danil at ooo-sm.ru</A>&gt;:
+</I>&gt;<i> &gt; Hello
+</I>&gt;<i> &gt; i'm trying to make ebox 2300sx bootable with kiwi-ltsp
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 1) first of all i've made new kernel (downloaded sourses from www.kernel.org
+</I>&gt;<i> &gt; 2.6.18 and config with patch from
+</I>&gt;<i> &gt; <A HREF="http://www.compactpc.com.tw/download_drv.htm">http://www.compactpc.com.tw/download_drv.htm</A>)
+</I>&gt;<i> &gt; &#160;&#160;&#160; made new rpm (with make rpm) finaly got kernel-2.6.18DMP-1.i386.rpm and
+</I>&gt;<i> &gt; kernel-2.6.18DMP-1.src.rpm
+</I>&gt;<i> &gt; 2) i've mount opensuse DVD iso to /mnt/11.2 and run kiwi-ltsp-setup -l1
+</I>&gt;<i> &gt; 3) rpm -Uvh --root=/srv/kiwi-ltsp-nfs/&#160; kernel-2.6.18DMP-1.i386.rpm
+</I>&gt;<i> &gt; 4) kiwi-ltsp-setup -l2
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; but i didn't understood where should i find initrd image&#160; so i've installed
+</I>&gt;<i> &gt; kernel-2.6.18DMP-1.i386.rpm into opensuse server and run mkinitrd
+</I>&gt;<i> &gt; 5) copied vmlinuz-2.6.18DMP and initrd--2.6.18DMP to /srv/tftpboot/ebox/ and
+</I>&gt;<i> &gt; made certain config files in pxelinux.cfg
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; but not able boot in this way....
+</I>&gt;<i> &gt; and broke other clients&#160; now i get &quot;kernel mismatch version rebooting....&quot;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Where can i find any howto how to make a custom kernel in thinclient chroot
+</I>&gt;<i> &gt; or similar?
+</I>&gt;<i> &gt; or what do i do wrong?
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> See /usr/share/kiwi/images/netboot/suse-*
+</I>&gt;<i> 
+</I>&gt;<i> Check out /usr/share/doc/packages/kiwi/kiwi.pdf from kiwi-docs package.
+</I>&gt;<i> 
+</I>&gt;<i> You will have to create profile for your custom flavored kernel, add
+</I>&gt;<i> it to the config.xml of netboot image as well as system image,
+</I>&gt;<i> /usr/share/kiwi/images/ltsp/suse-* in your case. Change --add-profile
+</I>&gt;<i> yourcustomprofile in
+</I>&gt;<i> /usr/share/kiwi/image/ltsp/include/kiwi-ltsp-functions.sh
+</I>&gt;<i> 
+</I>&gt;<i> Kiwi's initrd and kernels are in /srv/tftpboot/boot/ to create those
+</I>&gt;<i> images use kiwi-ltsp-setup -n after adapting netboot image
+</I>&gt;<i> description.
+</I>&gt;<i> 
+</I>&gt;<i> This is more of a kiwi question so copying it to
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>, you can post any further queries on it as
+</I>&gt;<i> more expert knowledge would be available there.
+</I>
+In a clean way you would solve that by writing a boot profile but 
+I guess you want the fast and dirty solution :-) Here it is:
+
+1) create a repo with your kernel
+
+   mkdir /tmp/mykernel
+   cp kernel-2.6.18DMP-1.i386.rpm /tmp/mykernel
+
+2) make your repo available to the kiwi netboot image
+   I don't know which distro you want to use for the client so
+   the following guesses it is for suse-11.2
+
+   rm -f /usr/share/kiwi/image/netboot/suse-11.2/.checksum.md5
+   vi /usr/share/kiwi/image/netboot/suse-11.2/config.xml
+
+   &lt;repository type=&quot;rpm-dir&quot; status=&quot;fixed&quot;&gt;
+      &lt;source path=&quot;/tmp/mykernel&quot;/&gt;
+   &lt;/repository&gt;
+
+3) by default the &quot;std&quot; bootkernel profile is used so simply
+   exchanging the kernel package inside the std profiled path
+   will use your kernel   
+   
+   vi /usr/share/kiwi/image/netboot/suse-11.2/config.xml
+   
+   replace:
+
+   &lt;packages type=&quot;image&quot; profiles=&quot;std&quot;&gt;
+        &lt;package name=&quot;kernel-default&quot;/&gt;
+   &lt;/packages&gt;
+
+   with:
+
+   &lt;packages type=&quot;image&quot; profiles=&quot;std&quot;&gt;
+        &lt;package name=&quot;kernel-2.6.18DMP-1&quot;/&gt;
+   &lt;/packages&gt;
+
+4) last but not least make sure your system image config.xml also
+   includes the _same_ !! kernel-2.6.18DMP-1 package otherwise the
+   initrd kernel and the system kernel doesn't match
+
+Hope that helps
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001756.html">[Kiwi-users] [Kiwi-ltsp-users] HowTO install new kernel into	thinclient image?
+</A></li>
+	<LI>Next message: <A HREF="001760.html">[Kiwi-users] kiwi 4.26, can't locate....
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1757">[ date ]</a>
+              <a href="thread.html#1757">[ thread ]</a>
+              <a href="subject.html#1757">[ subject ]</a>
+              <a href="author.html#1757">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] fixupOverlayFilesOwnership issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20fixupOverlayFilesOwnership%20issue&In-Reply-To=%3C4B99756AC4788D48ACDE69294733D0AB9A733541%40MX22A.corp.emc.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002728.html">
+   <LINK REL="Next"  HREF="002730.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] fixupOverlayFilesOwnership issue</H1>
+    <B>natcho.natchev at emc.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20fixupOverlayFilesOwnership%20issue&In-Reply-To=%3C4B99756AC4788D48ACDE69294733D0AB9A733541%40MX22A.corp.emc.com%3E"
+       TITLE="[Kiwi-users] fixupOverlayFilesOwnership issue">natcho.natchev at emc.com
+       </A><BR>
+    <I>Mon May 16 20:16:46 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002728.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+        <LI>Next message: <A HREF="002730.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2729">[ date ]</a>
+              <a href="thread.html#2729">[ thread ]</a>
+              <a href="subject.html#2729">[ subject ]</a>
+              <a href="author.html#2729">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Robert and Marcus,
+
+I work with John on this, so here is my analysis of where the things break:
+
+/usr/share/kiwi/modules/KIWIManager.pm, line 1753:
+
+        print $fd &quot;   tar -tvf $idesc/\$i | grep -v ^d | cut -c49- | cut -f1 -d-&quot;;
+        print $fd &quot;&gt;&gt; $root/bootincluded_archives.filelist\n&quot;;
+
+
+The &quot;cut  -c49-&quot; part produces wrong results in our case:
+tar -tvf emcKiwiHooks.tgz  | grep -v ^d | cut -c49-
+3:46 kiwi-hooks/preHWdetect.sh
+3:46 kiwi-hooks/preCallInit.sh
+3:46 kiwi-hooks/postImageDump.sh
+
+For reference, here is the unprocessed &quot;tar -tvf&quot;
+tar -tvf emcKiwiHooks.tgz
+drwxr-xr-x autobuild/autobuild 0 2011-05-14 23:46 kiwi-hooks/
+-rwxr-xr-x autobuild/autobuild 4744 2011-05-14 23:46 kiwi-hooks/preHWdetect.sh
+-rwxr-xr-x autobuild/autobuild 6060 2011-05-14 23:46 kiwi-hooks/preCallInit.sh
+-rwxr-xr-x autobuild/autobuild 1614 2011-05-14 23:46 kiwi-hooks/postImageDump.sh
+
+To answer your other question - no we do not use the BuildService, &quot;autobuild&quot; is a local account on our build machines.
+
+Regards,
+Natcho
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A> [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users-bounces at lists.berlios.de</A>] On Behalf Of Robert Schweikert
+Sent: Monday, May 16, 2011 1:50 PM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">kiwi-users at lists.berlios.de</A>
+Subject: Re: [Kiwi-users] fixupOverlayFilesOwnership issue
+
+Hi John,
+
+On 05/16/2011 01:15 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">john.lund at emc.com</A> wrote:
+&gt;<i> Hi Marcus,
+</I>&gt;<i>
+</I>&gt;<i> This didn't fix it.  We have investigated a little more and are pretty sure it has something to do with how the archive package for the kiwi hook scripts is being handled.
+</I>
+Sorry, I am abit confused now, can you provide some detail about how you 
+came to the conclusion that hook scripts are related to the permissions 
+problem?
+
+&gt;<i> I was able to reproduce the issue quickly by adding a kiwi-hooks.tgz package with a few hooks scripts to the suse-SLE11-JeOS sample.
+</I>
+Can you make the archive available?
+
+Also, I am wondering how you end up with a &quot;/home/autobuild/.....&quot; path, 
+are you building the image in the BuildService?
+
+Thanks,
+Robert
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+_______________________________________________
+Kiwi-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002728.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+	<LI>Next message: <A HREF="002730.html">[Kiwi-users] fixupOverlayFilesOwnership issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2729">[ date ]</a>
+              <a href="thread.html#2729">[ thread ]</a>
+              <a href="subject.html#2729">[ subject ]</a>
+              <a href="author.html#2729">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

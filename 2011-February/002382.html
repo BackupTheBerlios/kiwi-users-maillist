@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTikWT%3DM4Fav20-wK29-EQT-WY-zuRqiNOCp8LAu2%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002381.html">
+   <LINK REL="Next"  HREF="002385.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Chris Cunha</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3CAANLkTikWT%3DM4Fav20-wK29-EQT-WY-zuRqiNOCp8LAu2%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">eportel6607 at gmail.com
+       </A><BR>
+    <I>Tue Feb 22 19:38:01 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002381.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+        <LI>Next message: <A HREF="002385.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2382">[ date ]</a>
+              <a href="thread.html#2382">[ thread ]</a>
+              <a href="subject.html#2382">[ subject ]</a>
+              <a href="author.html#2382">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Feb 22, 2011 at 1:24 PM, Chris Cunha &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">eportel6607 at gmail.com</A>&gt; wrote:
+&gt;<i> On Sat, Feb 19, 2011 at 7:40 AM, Robert Schweikert
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi guys,
+</I>&gt;&gt;&gt;<i> I emailed the LXDE maintainer about this issue but still haven't herd
+</I>&gt;&gt;&gt;<i> back from him yet.
+</I>&gt;&gt;&gt;<i> I'm trying so hard to understand and get the flow of all this but so
+</I>&gt;&gt;&gt;<i> far nothing has gone smoothly enough for me to get comfortable with
+</I>&gt;&gt;&gt;<i> anything. &#160;We talked about getting the contents of this package and
+</I>&gt;&gt;&gt;<i> using the Tar method to installing it and I assume that it would also
+</I>&gt;&gt;&gt;<i> work using the Overlay file method,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> No, it will not work using the overlay method. Some of the branding
+</I>&gt;&gt;<i> stuff needs to be in the initrd and this can only be accomplished via a
+</I>&gt;&gt;<i> package or archive, you need to use the bootinclude=&quot;true&quot; attribute
+</I>&gt;&gt;<i> setting.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> both would be a problem if the
+</I>&gt;&gt;&gt;<i> package manager updated these file.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> How can the package manager update &quot;these files&quot; when according to your
+</I>&gt;&gt;<i> earlier comment you placed all your branding into directories that are
+</I>&gt;&gt;<i> unique to your branding strategy?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The only thing that could happen is that an update overwrites the
+</I>&gt;&gt;<i> configuration file that points to your branding. IN that case you are
+</I>&gt;&gt;<i> dealing with a zypper bug.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I would think the results would
+</I>&gt;&gt;&gt;<i> be that my branding (at least the branding that was installed by one
+</I>&gt;&gt;&gt;<i> of these two methods) would be overwritten with the default Suse
+</I>&gt;&gt;&gt;<i> version.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Will mentioned that since I have the RPM package for this branding
+</I>&gt;&gt;&gt;<i> package that it could be used in a similar way to Tar file method but
+</I>&gt;&gt;&gt;<i> that I wouldn't get overwritten by the package manager during an
+</I>&gt;&gt;&gt;<i> update. &#160;He had a meeting to go to so that's all I have on this. &#160;Does
+</I>&gt;&gt;&gt;<i> he mean that the RPM can be &quot;tar-ed&quot; and is installed like a tar
+</I>&gt;&gt;&gt;<i> file??
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Sorry, I do not know what you mean. Since you appear to struggle with
+</I>&gt;&gt;<i> this concept, have you tried to built the Kiwi example that shows how to
+</I>&gt;&gt;<i> brand the bootmenu and splash screen? If not, you should follow this, it
+</I>&gt;&gt;<i> might clarify many of the things you appear to have troubles with.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I checked the kiwi PDF docs and can't find anything on this.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Can the RPM be &quot;forced&quot; in?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> No, Kiwi has no way to interact with the package manager other than
+</I>&gt;&gt;<i> saying &quot;go install this stuff&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> There are sooo many questions I have regarding this sort of stuff.
+</I>&gt;&gt;&gt;<i> When it comes to branding/re-branding that I'm at the mercy of whoever
+</I>&gt;&gt;&gt;<i> packaged the originals Suse packages.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Is there a way that if I built all the branding package that these
+</I>&gt;&gt;&gt;<i> RPMs can be installed in to the image without the &quot;overwrite&quot; issues?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> See my previous message about putting the rpms in the overlay tree and
+</I>&gt;&gt;<i> then using config.sh to get the packages installed.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I would think that if the RPMs are of the branding packages are used
+</I>&gt;&gt;&gt;<i> that the PM would &quot;know&quot; that they are there as compared to the tar
+</I>&gt;&gt;&gt;<i> and overlay method the PM wouldn't know the branding packages were
+</I>&gt;&gt;&gt;<i> there. &#160;I guess it would be the difference between managed and
+</I>&gt;&gt;&gt;<i> unmanaged package installations.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> If this is possible I assume the config.xml file would have to be
+</I>&gt;&gt;&gt;<i> tweaked to have the repos section allow for local installs of the
+</I>&gt;&gt;&gt;<i> RPMs?
+</I>&gt;&gt;&gt;<i> Would the &quot;image.sh&quot; script have to actually install the RPMs?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> See above and previous mail in this thread. It does help to read the
+</I>&gt;&gt;<i> answers we provide ;)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Later,
+</I>&gt;&gt;<i> Robert
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> Robert Schweikert &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; MAY THE SOURCE BE WITH YOU
+</I>&gt;&gt;<i> Novell-IBM Software Integration Center &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;LINUX
+</I>&gt;&gt;<i> Tech Lead
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+</I>&gt;&gt;<i> 781-464-8147
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Novell
+</I>&gt;&gt;<i> Making IT Work As One
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Kiwi-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Hi Robert,
+</I>&gt;<i> Hey thanks again for the help on this. &#160;I realize that I'm a bit thick
+</I>&gt;<i> headed. It's not intentional. &#160;After writing the developer/package of
+</I>&gt;<i> LXDE I'm a bit disappointed with the reply. (displayed at the end of
+</I>&gt;<i> this message)
+</I>&gt;<i> Due to this I'm going to try placing my LXDE-common-branding-SOS
+</I>&gt;<i> packaged RPM file in the overlay tree of Kiwi. &#160;I've read the tutorial
+</I>&gt;<i> on the GFXBoot and Bootsplash package and who it was integrated into
+</I>&gt;<i> the kiwi image. &#160;This seems very similar but instead of the package
+</I>&gt;<i> contents being tared the will be be installed as an RPM.
+</I>&gt;<i> I included in my &quot;config.sh&quot; file the commands
+</I>&gt;<i>
+</I>&gt;<i> &quot;rpm -e --nodeps lxde-common-branding-openSUSE-11.3-54.2.noarch&quot;
+</I>&gt;<i> &quot;rpm -i lxde-common-branding-SOS-11.3-30.1.noarch&quot;
+</I>&gt;<i>
+</I>&gt;<i> A couple of questions.
+</I>&gt;<i> 1) Does the RPM command have to be placed in a specific place within
+</I>&gt;<i> the config.sh file?
+</I>&gt;<i> 2) In the config.xml file I know I have to add a line or two. &#160;Am I
+</I>&gt;<i> adding an &lt;archive&gt; line? &#160;I assume that this line would be just for
+</I>&gt;<i> the Tar archive only.
+</I>&gt;<i> Currently kiwi is pulling this lxde-common-branding-SOS package from
+</I>&gt;<i> my repo but now it's going to be installing from a local source. &#160;I
+</I>&gt;<i> placed this RPM withing the overlay tree in /opt/branding/ &#160;How is
+</I>&gt;<i> this done?
+</I>&gt;<i> 3) Do I also have to add the bootinclude=&quot;true&quot; string in the package line?
+</I>&gt;<i> 4) If the Tar archive is to be used I would place the tar file in the
+</I>&gt;<i> kiwi discription directory with the &quot;root&quot; overlay folder, config.xml
+</I>&gt;<i> and config.sh files correct?
+</I>&gt;<i>
+</I>&gt;<i> I'm looking for a branding solution that will be consistent regardless
+</I>&gt;<i> of what somebody else did in a spec file. &#160;If including the said
+</I>&gt;<i> branding package in RPM form works like this every time I would apt to
+</I>&gt;<i> go with this method...or if the Tar archive is faster (I assume it
+</I>&gt;<i> would be if the RPM isn't already made) then I would go in this
+</I>&gt;<i> direction.
+</I>&gt;<i>
+</I>&gt;<i> In this particular circumstance I have already made the RPM for this
+</I>&gt;<i> package but for the sake of using one method (for now) should I just
+</I>&gt;<i> download the source files from my RPM and tarball the contents. &#160;It
+</I>&gt;<i> seems like the end results is the same...and the config.sh file
+</I>&gt;<i> wouldn't need to be tweaked as the RPMs wouldn't be used at all.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Reply from Andrea regarding the request to remove the &quot;Conflicts&quot; line
+</I>&gt;<i> from the spec file of the lxde-common-branding-openSUSE package
+</I>&gt;<i> ------------------------------------------------------------------------------
+</I>&gt;<i> that's the problem, they don't go in different folders and then the
+</I>&gt;<i> conflicts.
+</I>&gt;<i>
+</I>&gt;<i> you need to create a &quot;lxde-common-branding-whatever&quot;
+</I>&gt;<i>
+</I>&gt;<i> and you need to include:
+</I>&gt;<i>
+</I>&gt;<i> Provides: &#160; &#160; &#160; lxde-common-branding = %{version}
+</I>&gt;<i> Conflicts: &#160; &#160; &#160;otherproviders(lxde-common-branding)
+</I>&gt;<i> Supplements: &#160; &#160;packageand(lxde-common:branding-whatever)
+</I>&gt;<i>
+</I>&gt;<i> please take you time to check the file list of
+</I>&gt;<i> &quot;lxde-common-branding-upstream&quot; and &quot;lxde-common-branding-openSUSE&quot;
+</I>&gt;<i>
+</I>&gt;<i> p.s. is the first time i hear you can install more than 1 branding at
+</I>&gt;<i> the sime time.. how are you supposed to switch between them after that?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Sorry for not being able to help you more.
+</I>&gt;<i> Regards
+</I>&gt;<i> Andrea
+</I>&gt;<i> ------------------------------------------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i> Thanks Robert
+</I>&gt;<i> Chris
+</I>&gt;<i>
+</I>
+I'm doing a bit of a re-think on this issue.
+What if I just stick with the Tar archive method.   So in this case
+I'll extract the source of the RPM I already made for this
+lxde-common-branding-SOS package.  I'll create the dir tree were the
+contents of each file will go. Then I'll Tarball the tree.
+Since the openSuse version of this branding package will be there
+because of the pattern I'll do a &quot;rpm -e --nodeps
+lxde-common-branding-openSUSE&quot; in my config.sh script so it removes
+the original package. This way it can't update if it's not there to
+begin with and my Tar archive installs my version of the package.
+Will this work for this case and any other brand situation?
+Chris
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002381.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+	<LI>Next message: <A HREF="002385.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2382">[ date ]</a>
+              <a href="thread.html#2382">[ thread ]</a>
+              <a href="subject.html#2382">[ subject ]</a>
+              <a href="author.html#2382">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

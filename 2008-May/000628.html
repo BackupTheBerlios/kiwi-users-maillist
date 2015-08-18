@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI-LTSP%20%26%20Layouts%20%26%20Openchrome%20driver&In-Reply-To=%3Cbd7534d0805100321g6fb3d418ubc5824349ee5565e%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000627.html">
+   <LINK REL="Next"  HREF="000629.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver</H1>
+    <B>Yuriy Andamasov</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20KIWI-LTSP%20%26%20Layouts%20%26%20Openchrome%20driver&In-Reply-To=%3Cbd7534d0805100321g6fb3d418ubc5824349ee5565e%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver">andamasov at gmail.com
+       </A><BR>
+    <I>Sat May 10 12:21:23 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000627.html">[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+</A></li>
+        <LI>Next message: <A HREF="000629.html">[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#628">[ date ]</a>
+              <a href="thread.html#628">[ thread ]</a>
+              <a href="subject.html#628">[ subject ]</a>
+              <a href="author.html#628">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>
+</I>&gt;<i> Are openchrome drivers available on the media or
+</I>&gt;<i> /usr/share/kiwi/images/ltsp/suse-&lt;version&gt;/extra-rpms ?
+</I>
+
+yes, i'm put those drivers
+/usr/share/kiwi/images/ltsp/suse-&lt;version&gt;/extra-rpms
+and in image build process i can see that it's installed, but in final image
+it's not appear
+for example:
+
+i'm installed this driver on the another machine and i can find
+/usr/lib/xorg/modules/updates/drivers/openchrome_drv.la
+/usr/lib/xorg/modules/updates/drivers/openchrome_drv.ko
+but in the TC this modules not appear
+
+Try adding the video server and keyboard layout required in
+&gt;<i> /srv/tftpboot/KIWI/lts.conf
+</I>&gt;<i>
+</I>&gt;<i> For example:
+</I>&gt;<i>
+</I>&gt;<i> XKBLAYOUT=de
+</I>&gt;<i> XSERVER = vesa
+</I>
+
+So i'm doing like you said
+  XKBLAYOUT=en,ru
+ * XKBOPTIONS=grp:ctrl_shift_toggle,grp_led:scroll
+
+but that not working for me,
+*
+
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> See
+</I>&gt;<i> <A HREF="http://doc.ubuntu.com/edubuntu/edubuntu/handbook/C/customizing-thin-client.html">http://doc.ubuntu.com/edubuntu/edubuntu/handbook/C/customizing-thin-client.html</A>
+</I>&gt;<i> for details.
+</I>&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i>
+</I>&gt;<i> -J
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Kiwi-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">Kiwi-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">https://lists.berlios.de/mailman/listinfo/kiwi-users</A>
+</I>&gt;<i>
+</I>
+
+
+
+
+-- 
+----------------------------------------------
+&#1047; &#1087;&#1086;&#1074;&#1072;&#1075;&#1086;&#1102;, &#1040;&#1085;&#1076;&#1072;&#1084;&#1072;&#1089;&#1086;&#1074; &#1070;&#1088;&#1110;&#1081;.
+----------------------------------------------
+&#1047; &#1091;&#1074;&#1072;&#1078;&#1077;&#1085;&#1080;&#1077;&#1084;, &#1040;&#1085;&#1076;&#1072;&#1084;&#1072;&#1089;&#1086;&#1074; &#1070;&#1088;&#1080;&#1081;
+----------------------------------------------
+With best regards, Andamasov Yuriy
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20080510/5fafb44a/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20080510/5fafb44a/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000627.html">[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+</A></li>
+	<LI>Next message: <A HREF="000629.html">[Kiwi-users] KIWI-LTSP &amp; Layouts &amp; Openchrome driver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#628">[ date ]</a>
+              <a href="thread.html#628">[ thread ]</a>
+              <a href="subject.html#628">[ subject ]</a>
+              <a href="author.html#628">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

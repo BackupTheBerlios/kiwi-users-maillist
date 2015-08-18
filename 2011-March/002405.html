@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D6D8069.2070805%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002400.html">
+   <LINK REL="Next"  HREF="002401.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20%5Bopensuse-buildservice%5D%20kiwi%27s%20ignore%20element%3F&In-Reply-To=%3C4D6D8069.2070805%40novell.com%3E"
+       TITLE="[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?">rschweikert at novell.com
+       </A><BR>
+    <I>Wed Mar  2 00:25:29 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002400.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+        <LI>Next message: <A HREF="002401.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2405">[ date ]</a>
+              <a href="thread.html#2405">[ thread ]</a>
+              <a href="subject.html#2405">[ subject ]</a>
+              <a href="author.html#2405">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&lt;snip&gt;
+&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> Thanks Robert,
+</I>&gt;<i> This method worked like a charm.  It looks like there are some other
+</I>&gt;<i> packages that may need to be installed this way.
+</I>&gt;<i> I installed the package &quot;desktop-data-distroname&quot; to replace the Suse version.
+</I>&gt;<i> It appears that taking the default SUSE packages and modifying them
+</I>&gt;<i> with my branding and changes doesn't seem to work quite as smoothy as
+</I>&gt;<i> I was hoping.  There are strings in the spec file that I'm not clear
+</I>&gt;<i> what to do with.
+</I>&gt;<i> It seems like the new package &quot;desktop-data-distroname&quot; package does
+</I>&gt;<i> build and install however it leaves the default Suse version behind.
+</I>&gt;<i> So using the same method (config.sh) to uninstall the SUSE default and
+</I>&gt;<i> install my version it seems to work without a hitch.  Is there any
+</I>&gt;<i> wrong way to do this?
+</I>
+Well, the only advice I can give here is, that you need to make sure you
+do not leave any dangling dependencies in the RPM db.
+
+&gt;<i> 
+</I>&gt;<i> I wanted to produce a package for &quot;distroname-release&quot;.  Long story
+</I>&gt;<i> short I could make this package.  OBS was looking for the actual text
+</I>&gt;<i> file for the release package but I had no clue were to place that
+</I>&gt;<i> within the package because I can't use the SUSE release package as a
+</I>&gt;<i> reference.  For some reason there is nothing more than a spec file and
+</I>&gt;<i> changes text file in the default Suse package for release.  What I did
+</I>&gt;<i> was in my overlay I created my release file then sym linked this to
+</I>&gt;<i> the &quot;Suse-release&quot; and &quot;openSUSE-release&quot; files.  This works but it
+</I>&gt;<i> feels like a hack job.
+</I>&gt;<i> Any thoughts on the correct way to do this...or is this good enough?
+</I>
+Sorry, I have no idea how these packages and release related file get
+onto a system. That would be a good question for the opensuse list.
+
+Robert
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Novell-IBM Software Integration Center                LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at ca.ibm.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002400.html">[Kiwi-users] [opensuse-buildservice] kiwi's ignore element?
+</A></li>
+	<LI>Next message: <A HREF="002401.html">[Kiwi-users] USB image with storage partition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2405">[ date ]</a>
+              <a href="thread.html#2405">[ thread ]</a>
+              <a href="subject.html#2405">[ subject ]</a>
+              <a href="author.html#2405">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

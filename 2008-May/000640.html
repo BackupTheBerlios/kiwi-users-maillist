@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%202.38-59.1%20%20initrd%20kernel%20panic&In-Reply-To=%3C20080515075640.GA6620%40idefix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000636.html">
+   <LINK REL="Next"  HREF="000641.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20%202.38-59.1%20%20initrd%20kernel%20panic&In-Reply-To=%3C20080515075640.GA6620%40idefix%3E"
+       TITLE="[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic">ms at suse.de
+       </A><BR>
+    <I>Thu May 15 09:56:40 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000636.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+        <LI>Next message: <A HREF="000641.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#640">[ date ]</a>
+              <a href="thread.html#640">[ thread ]</a>
+              <a href="subject.html#640">[ subject ]</a>
+              <a href="author.html#640">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Bernd,
+
+&gt;<i> Hmm, this is quite different from most other distributions, where the 
+</I>&gt;<i> bootable partition can be FAT16 or FAT32, so to improve booting
+</I>&gt;<i> with syslinux on broken BIOS systems
+</I>
+Oh that remembers me that you told me to have a look into isolinux
+as alternative boot loader for the USB sticks. I'm sorry I didn't
+thought that a single boot partition based on FAT is also &quot;required&quot;
+here. The reason for not having a single /boot partition has happened
+because of size reasons. Together with the partition alignment and 
+the filesystem overhead this was requested by some people which was
+the reason why we changed it. Frankly said it also sounds rather
+weird to fix BIOS bugs by the geometry of a boot partition :)
+
+&gt;<i> Of course we could always use extlinux, but grub is AFAIK not the best 
+</I>&gt;<i> choice for booting a USB device.
+</I>
+That's what I have heared too. Some people point me to grub2 which
+should be better ? I agree it would make sense to have alternative
+boot loaders available. At the moment this is only grub which also
+sucks for ppc and other archs. A clean implementation which leaves
+us the choice for either a) or b) would be the best I think. Perhaps
+the perl-bootloader module could help us to implement that in a
+clean way. 
+
+&gt;<i> Also, putting the boot section into the writeable partition has the 
+</I>&gt;<i> disadvantage that you
+</I>&gt;<i> cannot &quot;reset&quot; the USB stick to factory defaults by just formatting the 
+</I>&gt;<i> third partition with ext3 ;-)
+</I>
+Hmm, sorry I think I don't get the point. The original /boot information
+can be preserved as compressed data on the read-only partition. In case
+of resetting these values they can be obtained from there
+
+&gt;<i> I've been able to do a successful build with 2.38-61, for split and aufs 
+</I>&gt;<i> mounts :-)
+</I>
+fine
+
+&gt;<i> Also the problem with cp -RL for copying the files from root/ to the 
+</I>&gt;<i> writeable partition is fixed :-)
+</I>&gt;<i>
+</I>&gt;<i> Thanks for your work so far ;-)
+</I>
+Thanks for your tests :-)
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000636.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+	<LI>Next message: <A HREF="000641.html">[Kiwi-users] kiwi  2.38-59.1  initrd kernel panic
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#640">[ date ]</a>
+              <a href="thread.html#640">[ thread ]</a>
+              <a href="subject.html#640">[ subject ]</a>
+              <a href="author.html#640">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

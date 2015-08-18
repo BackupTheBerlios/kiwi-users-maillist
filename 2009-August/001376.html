@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Mystery of disappearing packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Mystery%20of%20disappearing%20packages&In-Reply-To=%3C4A840373.7010802%40novell.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001375.html">
+   <LINK REL="Next"  HREF="001377.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Mystery of disappearing packages</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Mystery%20of%20disappearing%20packages&In-Reply-To=%3C4A840373.7010802%40novell.com%3E"
+       TITLE="[Kiwi-users] Mystery of disappearing packages">rschweikert at novell.com
+       </A><BR>
+    <I>Thu Aug 13 14:13:39 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001375.html">[Kiwi-users] Mystery of disappearing packages
+</A></li>
+        <LI>Next message: <A HREF="001377.html">[Kiwi-users] Mystery of disappearing packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1376">[ date ]</a>
+              <a href="thread.html#1376">[ thread ]</a>
+              <a href="subject.html#1376">[ subject ]</a>
+              <a href="author.html#1376">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Marcus Sch&#228;fer wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I am building an appliance on SLES 10, using a recent version of kiwi 
+</I>&gt;&gt;<i> (3.70) and am specifying that the YaST firewall and network modules 
+</I>&gt;&gt;<i> should be included in the appliance:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;package name=&quot;yast2-network&quot;/&gt;
+</I>&gt;&gt;<i> &lt;package name=&quot;yast2-firewall&quot;/&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> As package manager I am using smart
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Looking at the log file I can see that the requested packages are installed:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 436:Installing yast2-firewall  ######################################## 
+</I>&gt;&gt;<i> [ 83%]
+</I>&gt;&gt;<i> 493:Installing yast2-network   ######################################## 
+</I>&gt;&gt;<i> [ 94%]
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Yet in the unpacked image the files somehow disappear as
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> UNPACKED-IMG_DIR/usr/shareYaST2/clients
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> is empty.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> There does not appear to be a message in the log file that alerts me to 
+</I>&gt;&gt;<i> the removal of these files/packages.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I wonder how this stuff disappears?
+</I>&gt;&gt;<i> What do I need to do to get the packages and their content to stick, 
+</I>&gt;&gt;<i> i.e. be part of the appliance?
+</I>&gt;<i> 
+</I>&gt;<i> Well the only reason I could imagine is some config.sh script
+</I>&gt;<i> which removes it after the installation is done. I suggest
+</I>&gt;<i> to check config.sh first
+</I>
+Thanks, and sure enough the config.sh for the SLE 10 template on which 
+this appliance is based has the following:
+
+#======================================
+# Remove unneeded packages
+#--------------------------------------
+rpm -qa | grep yast | xargs rpm -e --nodeps
+
+
+I suppose this is in config.sh for SLE10-JeOS as YaST should not be part 
+of &quot;Just Enough OS&quot;.
+
+Thanks,
+Robert
+
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+Software Engineer Consultant                          LINUX
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweikert at novell.com</A>
+781-464-8147
+
+Novell
+Making IT Work As One
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001375.html">[Kiwi-users] Mystery of disappearing packages
+</A></li>
+	<LI>Next message: <A HREF="001377.html">[Kiwi-users] Mystery of disappearing packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1376">[ date ]</a>
+              <a href="thread.html#1376">[ thread ]</a>
+              <a href="subject.html#1376">[ subject ]</a>
+              <a href="author.html#1376">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

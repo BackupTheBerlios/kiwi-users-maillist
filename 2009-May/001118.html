@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Enhancement idea
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Enhancement%20idea&In-Reply-To=%3C4A0981CD020000BC00012A28%40webmail.wusd.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001127.html">
+   <LINK REL="Next"  HREF="001119.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Enhancement idea</H1>
+    <B>Cody Grosskopf</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Enhancement%20idea&In-Reply-To=%3C4A0981CD020000BC00012A28%40webmail.wusd.org%3E"
+       TITLE="[Kiwi-users] Enhancement idea">cgrossko at wusd.org
+       </A><BR>
+    <I>Tue May 12 23:03:57 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001127.html">[Kiwi-users] Enhancement idea
+</A></li>
+        <LI>Next message: <A HREF="001119.html">[Kiwi-users] Enhancement idea
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1118">[ date ]</a>
+              <a href="thread.html#1118">[ thread ]</a>
+              <a href="subject.html#1118">[ subject ]</a>
+              <a href="author.html#1118">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've created a script that worked one time, however all the rsa keys are regenerated upon reboot? I imported the key's using ssh-copy-id -i ~/.ssh/id_rsa.pub <A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">root at ws5</A>
+
+That works until I use my script:
+
+for i in $( arp | cut -c1-20 | grep '10.20.100.*' ); do
+        echo $i
+        ssh root@$i '/sbin/reboot -f'
+done
+
+The reboot thing didn't work all that well, it would require me to hit ctrl-c on each station. Anyway I thought I would give it a shot, any comments are appreciated!
+
+Cody
+
+&gt;&gt;&gt;<i> &quot;Cody Grosskopf&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cgrossko at wusd.org</A>&gt; 05/12/09 9:48 AM &gt;&gt;&gt;
+</I>After using KIWI-LTSP pretty much since it has existed, I have come to the conclusion that it would be very helpful if you could restart/halt the terminals from the server. Does anyone else see the need for this? It would be fairly simple for someone as brilliant as Jigish to do, it could also be integrated into Easy-LTSP. 
+
+Thanks for listening!
+
+Cody
+&lt;/<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">cgrossko at wusd.org</A>&gt;
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/kiwi-users/attachments/20090512/d2ea23a4/attachment.html">https://lists.berlios.de/pipermail/kiwi-users/attachments/20090512/d2ea23a4/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001127.html">[Kiwi-users] Enhancement idea
+</A></li>
+	<LI>Next message: <A HREF="001119.html">[Kiwi-users] Enhancement idea
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1118">[ date ]</a>
+              <a href="thread.html#1118">[ thread ]</a>
+              <a href="subject.html#1118">[ subject ]</a>
+              <a href="author.html#1118">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

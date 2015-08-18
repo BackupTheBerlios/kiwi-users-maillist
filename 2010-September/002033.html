@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Request for comment,	Additional grouping	functionality
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Request%20for%20comment%2C%0A%09Additional%20grouping%09functionality&In-Reply-To=%3C4C8F6A44.6030106%40tenthpowertech.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002030.html">
+   <LINK REL="Next"  HREF="002034.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Request for comment,	Additional grouping	functionality</H1>
+    <B>Chris Bowlby</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Request%20for%20comment%2C%0A%09Additional%20grouping%09functionality&In-Reply-To=%3C4C8F6A44.6030106%40tenthpowertech.com%3E"
+       TITLE="[Kiwi-users] Request for comment,	Additional grouping	functionality">cbowlby at tenthpowertech.com
+       </A><BR>
+    <I>Tue Sep 14 14:27:48 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002030.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+        <LI>Next message: <A HREF="002034.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2033">[ date ]</a>
+              <a href="thread.html#2033">[ thread ]</a>
+              <a href="subject.html#2033">[ subject ]</a>
+              <a href="author.html#2033">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>  Hi Marcus,
+
+On 09/14/2010 06:23 AM, Marcus Sch&#228;fer wrote:
+&gt;<i> Hi Chris,
+</I>&gt;<i>
+</I>&gt;<i> If I understand you correctly this is kind of a stacked configuration.
+</I>&gt;<i> So the main entrance is the MAC based mapping from a group followed by
+</I>&gt;<i> a vendor specific add-on. If this is correct I really like the idea.
+</I>&gt;<i>
+</I>Yes, correct, the first stack would allow for &quot;common&quot; application 
+functionality to be configured, as well as the storage devices, thus far 
+I can't think of a way to use mixed storage configurations with out 
+breaking them out into another group. The second stack would link 
+hardware specific components outside of the initial application 
+configuration, for vendor specific components that are &quot;shipped&quot; with 
+the hardware. So essentially the stack would:
+
+Stage/Stack 1
+1. Boot into the initrd, as it currently does.
+2. Load the image, and other elements via the config.&lt;MAC&gt; or 
+config.&lt;group_name&gt; files, depending on if the systems is linked to a 
+group or not.
+
+At this point Stage/Stack 2 kicks in (if the system admin has decided to 
+use/configure it):
+3. Check for hardware specific mapping files
+4. If found, load the configurations into the image.
+
+Then it continues to boot the kernel as it currently does.
+&gt;<i> How do you plan to specify the vendor ? Do you want to use a unique
+</I>&gt;<i> machine id ? I mean somehow we need to check which vendor map fits
+</I>&gt;<i> to the machine we are currently on.
+</I>I had not fully worked out this idea, so I was figuring the initial 
+version would be configured by the system admins themselves, with kiwi 
+based variables defined either in the config.group, or 
+config.&lt;MAC&gt;/config.&lt;group_name&gt; files. As we got feed back in relation 
+to it, we could slowly work in some form of automated methodology to map 
+the hardware to a known list, or something. This would require research 
+into the vendors and hardware suppliers to create that mapping file, 
+however, and would need community involvement for sure. The automated 
+method could not take into account hardware that had additional add-ons, 
+such as PCI based serial cards or additional network interfaces, as that 
+would have been a vendor -&gt; customer agreement, ontop of the base 
+hardware configuration. Unless we created an &quot;add-ons&quot; map, that would 
+be optionally activated as needed, but again we'd need the base code 
+components there before we even considered that.
+
+However, if we provide a simple means for a system admin to create the 
+mapping link, and keep it in place as a &quot;fall-back&quot; for when the 
+auto-mapping functionality has been implemented, I think that would 
+address that issue. I believe that this is really the part that needs 
+discussion itself, trying to find a means of extending the current set 
+of KIWI configuration elements with out requiring potentially drastic 
+changes :/
+
+Doing so such that both single hardware configurations (config.&lt;MAC&gt;) 
+benefit, in addition to the group ones. That would maintain consistent 
+behavior between a config.&lt;MAC&gt; file and a config.&lt;group_name&gt; file...
+
+&gt;&gt;<i> Definitely want some thoughts before moving forward with it.
+</I>&gt;<i> I think it's worth to implement it :-)
+</I>Cool, if we can nail down the finer points specific to configuration 
+changes and figure out a flexible enough stack map I am willing to work 
+on the code changes to get us started, and open it up for the other 
+developers once I have something stable, in addition to extending it as 
+needed.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002030.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+	<LI>Next message: <A HREF="002034.html">[Kiwi-users] Request for comment,	Additional grouping	functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2033">[ date ]</a>
+              <a href="thread.html#2033">[ thread ]</a>
+              <a href="subject.html#2033">[ subject ]</a>
+              <a href="author.html#2033">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

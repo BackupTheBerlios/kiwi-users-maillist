@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Installable SLES11 SP1 iso creation - hints for some &quot;clueless&quot; user? Thanks and a new problem?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installable%20SLES11%20SP1%20iso%20creation%20-%20hints%20for%0A%20some%20%22clueless%22%20user%3F%20Thanks%20and%20a%20new%20problem%3F&In-Reply-To=%3C20101207200636.GA24839%40lily.ncbx-mln.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002172.html">
+   <LINK REL="Next"  HREF="002182.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Installable SLES11 SP1 iso creation - hints for some &quot;clueless&quot; user? Thanks and a new problem?</H1>
+    <B>Christian Franck</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Installable%20SLES11%20SP1%20iso%20creation%20-%20hints%20for%0A%20some%20%22clueless%22%20user%3F%20Thanks%20and%20a%20new%20problem%3F&In-Reply-To=%3C20101207200636.GA24839%40lily.ncbx-mln.de%3E"
+       TITLE="[Kiwi-users] Installable SLES11 SP1 iso creation - hints for some &quot;clueless&quot; user? Thanks and a new problem?">listgetter at ncbx-mln.de
+       </A><BR>
+    <I>Tue Dec  7 21:06:36 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002172.html">[Kiwi-users] Installable SLES11 SP1 iso creation - hints for some &quot;clueless&quot; user?
+</A></li>
+        <LI>Next message: <A HREF="002182.html">[Kiwi-users] [Solved]: Installable SLES11 SP1 iso creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2179">[ date ]</a>
+              <a href="thread.html#2179">[ thread ]</a>
+              <a href="subject.html#2179">[ subject ]</a>
+              <a href="author.html#2179">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Robert and all,
+
+
+On Sun, Dec 05, 2010 at 09:47:09PM -0500, Robert Schweikert wrote:
+ 
+&gt;<i> Using image=&quot;iso&quot; produces a live CD, basically what you already have
+</I>&gt;<i> with the SLES iso image. To have an image that self installs you want to
+</I>&gt;<i> use image=&quot;oem&quot; and then use the attribute installiso=&quot;true&quot; to bet a
+</I>&gt;<i> file you can burn to optical media.
+</I>
+Basically I got confused by &quot;iso&quot; which made me think that this were
+the way to go for an iso file so thanks a lot for the push into the
+right corner.
+
+The kiwi schema used here &quot;4.6&quot; does not (yet) seem to know the &quot;installiso&quot;
+attribute,  I found hints for schema version &quot;4.7&quot;.
+
+A friendly
+
+	os11-3:~ # kiwi --build /usr/share/kiwi/image/suse-SLE11-JeOS  -d /tmp/qqqq \
+			--type oem --fs -inodesize 128
+
+did it, the &quot;iso&quot; file is now created as expected. 
+
+My config file looks now like this, repo location adapted to my build
+env, the rest remains unchanged:
+
+	os11-3:/usr/share/kiwi/image/suse-SLE11-JeOS # diff config.xml os113-config.xml
+	[ ..password snipped .. ]
+
+	62,63c60,61
+	&lt;       &lt;repository type=&quot;yast2&quot;&gt;
+---&gt;	&lt;               &lt;source path=&quot;/root/SLES11-SP1-ISO/&quot;/&gt;
+	---
+	&gt;       &lt;repository type=&quot;rpm-md&quot;&gt;
+	&gt;               &lt;source
+	&gt;               path=&quot;<A HREF="obs:///SUSE:SLE-11:GA:Products:Test/standard">obs:///SUSE:SLE-11:GA:Products:Test/standard</A>&quot;/&gt;
+	65,66c63,64
+	&lt;       &lt;repository type=&quot;rpm-dir&quot;&gt;
+	&lt;               &lt;source
+---&gt;	path=&quot;/usr/share/kiwi/repo/suse-repo/suse-sle11-repo&quot;/&gt;
+	---
+	&gt;       &lt;repository type=&quot;rpm-md&quot;&gt;
+	&gt;               &lt;source path=&quot;<A HREF="obs:///SUSE:SLE-11:GA/standard">obs:///SUSE:SLE-11:GA/standard</A>&quot;/&gt;
+
+
+I have include the shipped &quot;/usr/share/kiwi/repo/suse-repo/suse-sle11-repo&quot;
+and &quot;/root/SLES11-SP1-ISO&quot; points to my loopback-mounted &quot;SLES11 SP1&quot;-ISO file:
+
+
+	os11-3:/usr/share/kiwi/image/suse-SLE11-JeOS # mount
+	wallnx07.deu.hp.com:/export/internal_kits/Kits/SuSE/SLES11 on /mnt/SLES11-SP1 type nfs (rw,addr=&lt;valid IP&gt;)
+	/dev/loop0 on /tmp/SLES11-SP1-iso type iso9660 (ro)
+
+
+What puzzles me now that the booting iso file asks for &quot;Destroying All data on /dev/sda, continue?&quot;
+but seems not to install anything, is reports (&quot;kiwidebug=1&quot; given as boot option)
+
+	&quot;Loading LimeJeOS-SLE11.x86_64.gz&quot;
+
+The md5 checksum is verified and kiwi installation &quot;jumps&quot; directly to
+&quot;/dev/sda&quot;-Verifikation and ends with:
+
+	Image checksum test fine:)
+	System installation has finished
+	Repartition the disk according to real geometry [parted]
+	Repartition the disk according to real geometry [parted] (sic!, reported twice)
+	
+	Set Bootflag to partition ID: 1 [/dev/sda]
+	Activation swap space on /dev/sda2
+	Filesystem on OEM system is: unknown -&gt; /dev/sda1
+	/sbin/init not found or not executable
+	shellException: providing shell
+
+My kiwi version is &quot;kiwi-4.43&quot; on &quot;OpenSuSE 11.3&quot; (64bit),
+filesystem setting in &quot;config.xml&quot; is still &quot;ext3&quot;, nothing altered.
+
+
+Anyone to hit me or am I just too stupid?
+
+Thanks for your time and best regards
+
+Christian
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002172.html">[Kiwi-users] Installable SLES11 SP1 iso creation - hints for some &quot;clueless&quot; user?
+</A></li>
+	<LI>Next message: <A HREF="002182.html">[Kiwi-users] [Solved]: Installable SLES11 SP1 iso creation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2179">[ date ]</a>
+              <a href="thread.html#2179">[ thread ]</a>
+              <a href="subject.html#2179">[ subject ]</a>
+              <a href="author.html#2179">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] openSUSE Completelu Run on RAM?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20openSUSE%20Completelu%20Run%20on%20RAM%3F&In-Reply-To=%3C20090728095320.GA799%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001306.html">
+   <LINK REL="Next"  HREF="001308.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] openSUSE Completelu Run on RAM?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20openSUSE%20Completelu%20Run%20on%20RAM%3F&In-Reply-To=%3C20090728095320.GA799%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] openSUSE Completelu Run on RAM?">ms at novell.com
+       </A><BR>
+    <I>Tue Jul 28 11:53:20 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001306.html">[Kiwi-users] openSUSE Completelu Run on RAM?
+</A></li>
+        <LI>Next message: <A HREF="001308.html">[Kiwi-users] make USB Boot problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1307">[ date ]</a>
+              <a href="thread.html#1307">[ thread ]</a>
+              <a href="subject.html#1307">[ subject ]</a>
+              <a href="author.html#1307">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Is this possible to completely running openSUSE from RAM (using RAMFS
+</I>&gt;<i> or TMPFS) which should be faster than a standard disk? I would like to
+</I>&gt;<i> test openSUSE with standard app (office with kde or gnome base or even
+</I>&gt;<i> with xfce or icewm).
+</I>&gt;<i> 
+</I>&gt;<i> Our workstation has minimum 4-8 GB of RAM and all of data load and
+</I>&gt;<i> save onto server. I know it's possible to do that with small Linux
+</I>&gt;<i> distro like Puppy or DSL but it should be an interesting work to make
+</I>&gt;<i> openSUSE run on RAM instead of disk. If a small size is the key, I
+</I>&gt;<i> want to test it with limejeos package.
+</I>
+kiwi supports running the OS in RAM only via the PXE boot
+process.
+
+The kiwi initrd loads the kernel and initrd via PXE/TFTP
+from a boot server. When the kernel has unpacked the initrd 
+the initrd code will search for a configuration file which tells
+the system where to obtain; and how to activate the root filesystem.
+One of the supported modes here is to load the root filesystem image
+into the RAM of the system.
+
+The root filesystem image can be stored in any location supported
+by curl or atftp which are the tools used to download the image.
+At the end your OS runs in RAM
+
+You can ask the LTSP people on the list here for the setup
+of the boot server. They know much about that setup
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001306.html">[Kiwi-users] openSUSE Completelu Run on RAM?
+</A></li>
+	<LI>Next message: <A HREF="001308.html">[Kiwi-users] make USB Boot problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1307">[ date ]</a>
+              <a href="thread.html#1307">[ thread ]</a>
+              <a href="subject.html#1307">[ subject ]</a>
+              <a href="author.html#1307">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

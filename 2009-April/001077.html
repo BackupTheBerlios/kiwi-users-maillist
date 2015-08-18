@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] How to designate the size of the partitions?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20designate%20the%20size%20of%20the%20partitions%3F&In-Reply-To=%3C20090426184028.GA6257%40idefix.dms.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001076.html">
+   <LINK REL="Next"  HREF="001078.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] How to designate the size of the partitions?</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20How%20to%20designate%20the%20size%20of%20the%20partitions%3F&In-Reply-To=%3C20090426184028.GA6257%40idefix.dms.net%3E"
+       TITLE="[Kiwi-users] How to designate the size of the partitions?">ms at novell.com
+       </A><BR>
+    <I>Sun Apr 26 20:40:28 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001076.html">[Kiwi-users] How to designate the size of the partitions?
+</A></li>
+        <LI>Next message: <A HREF="001078.html">[Kiwi-users] How to combine kiwi and cryptsetup to create image	containing encrypted partition?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1077">[ date ]</a>
+              <a href="thread.html#1077">[ thread ]</a>
+              <a href="subject.html#1077">[ subject ]</a>
+              <a href="author.html#1077">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> I am building a live usb stick image ( split image with ext3 and
+</I>&gt;<i> squashfs ) and want to explicitly determine the size of / and /home,
+</I>&gt;<i> say, 1.5G and 1G.
+</I>&gt;<i> Is there any way to do that? I guess I need to modify the suse-repart
+</I>&gt;<i> script or some other kiwi modules?
+</I>
+you can do that by calling
+
+  du -s --block-size=1
+
+kiwi does that in KIWIBoot.pm. I don't know when and for what you
+need that size values but you can use the config.sh or images.sh
+scripts to run the &quot;du&quot; call
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001076.html">[Kiwi-users] How to designate the size of the partitions?
+</A></li>
+	<LI>Next message: <A HREF="001078.html">[Kiwi-users] How to combine kiwi and cryptsetup to create image	containing encrypted partition?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1077">[ date ]</a>
+              <a href="thread.html#1077">[ thread ]</a>
+              <a href="subject.html#1077">[ subject ]</a>
+              <a href="author.html#1077">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

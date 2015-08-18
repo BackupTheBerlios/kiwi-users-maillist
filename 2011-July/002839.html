@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] customizing linuxrc: moving to the new root fails ...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20customizing%20linuxrc%3A%20moving%20to%20the%20new%20root%20fails%0A%20...&In-Reply-To=%3C20110719131825.GA26047%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002838.html">
+   <LINK REL="Next"  HREF="002840.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] customizing linuxrc: moving to the new root fails ...</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20customizing%20linuxrc%3A%20moving%20to%20the%20new%20root%20fails%0A%20...&In-Reply-To=%3C20110719131825.GA26047%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] customizing linuxrc: moving to the new root fails ...">ms at suse.de
+       </A><BR>
+    <I>Tue Jul 19 15:18:25 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002838.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+        <LI>Next message: <A HREF="002840.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2839">[ date ]</a>
+              <a href="thread.html#2839">[ thread ]</a>
+              <a href="subject.html#2839">[ subject ]</a>
+              <a href="author.html#2839">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Erich,
+
+&gt;<i> up to this point everything works as expected, I can start &quot;debug
+</I>&gt;<i> shells&quot; and check the results. So all, that needs to be done is to
+</I>&gt;<i> move the root fs and start init:
+</I>&gt;<i> 
+</I>&gt;<i> This is what I try (full script below):
+</I>&gt;<i> 
+</I>&gt;<i> # --- snip ---
+</I>&gt;<i>     umountSystemFilesystems
+</I>&gt;<i>     createInitialDevices /mnt/dev
+</I>&gt;<i> 
+</I>&gt;<i>     cat &lt;&lt;&quot;EOF&quot; &gt;&gt; /mnt/etc/fstab
+</I>&gt;<i>     #
+</I>&gt;<i>     sysfs        /sys      sysfs  noauto    0 0
+</I>&gt;<i>     /dev/sdb1    /usbstick vfat   defaults  0 0
+</I>&gt;<i>     /dev/loop0p1 /         ext4   defaults  0 0
+</I>&gt;<i>     EOF
+</I>&gt;<i> 
+</I>&gt;<i>     cd /mnt
+</I>&gt;<i>     mkdir /mnt/usbstick
+</I>&gt;<i>     mount --move /usbstick /mnt/usbstick
+</I>&gt;<i>     mount --move /dev /mnt/dev
+</I>&gt;<i>     mount --move . /
+</I>&gt;<i> 
+</I>&gt;<i>     exec chroot . /sbin/init
+</I>&gt;<i> # --- snip ---
+</I>&gt;<i> 
+</I>&gt;<i> anything obviously wrong with that
+</I>
+
+I would do it that way:
+
+   mount --move /usbstick /mnt/usbstick
+   mount --move /dev /mnt/dev
+   cd /mnt &amp;&amp; exec chroot . /sbin/init $runlevel
+
+&gt;<i> However, &quot;cd /mnt; mount --move . /&quot; seems not to work,
+</I>&gt;<i> with no indication of what went wrong.
+</I>
+This call doesn't make sense to me if you do a chroot afterwards
+
+&gt;<i> So instead of &quot;mount --move . / ...&quot; I tried to
+</I>&gt;<i>   cd /mnt
+</I>&gt;<i>   chroot . /bin/bash
+</I>&gt;<i> and in the new shell
+</I>&gt;<i>   exec /sbin/init
+</I>&gt;<i> This gives a usage message for init and a subsequent kernel panic:
+</I>
+That's clear you did not give it a runlevel and exec replaces the
+shell with init which cannot execute and then the kernel panics
+because there are no processes anymore
+
+&gt;<i> Other messages I have seen are:
+</I>&gt;<i>  /sbin/init: error while loading shared libraries: libpam.so.0:
+</I>&gt;<i> cannot open shared object file: No such file or directory
+</I>
+This looks more severe to me. Are you sure the system below
+/mnt is clean ? I mean in terms of binaries and linked libraries
+and such. pam for example must be installed in order to let
+the system work correctly.
+
+&gt;<i> init: /dev/initctl: no such file or directory.
+</I>
+that only exists if init runs but it doesn't because you called
+it wrongly
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF:  Jeff Hawn,Jennifer Guild, Felix Imend&#246;rffer                  
+ HRB: 21284 (AG N&#252;rnberg)       Germany
+ <A HREF="http://www.suse.de">http://www.suse.de</A>
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002838.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+	<LI>Next message: <A HREF="002840.html">[Kiwi-users] customizing linuxrc: moving to the new root fails ...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2839">[ date ]</a>
+              <a href="thread.html#2839">[ thread ]</a>
+              <a href="subject.html#2839">[ subject ]</a>
+              <a href="author.html#2839">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

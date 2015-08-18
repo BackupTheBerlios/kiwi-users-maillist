@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Solved - Question about usb stick
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Solved%20-%20Question%20about%20usb%20stick&In-Reply-To=%3C20090126163907.GA29301%40idefix.dms.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000941.html">
+   <LINK REL="Next"  HREF="000946.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Solved - Question about usb stick</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Solved%20-%20Question%20about%20usb%20stick&In-Reply-To=%3C20090126163907.GA29301%40idefix.dms.net%3E"
+       TITLE="[Kiwi-users] Solved - Question about usb stick">ms at novell.com
+       </A><BR>
+    <I>Mon Jan 26 17:39:07 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000941.html">[Kiwi-users] Solved - Question about usb stick
+</A></li>
+        <LI>Next message: <A HREF="000946.html">[Kiwi-users] kiwi 3.09-80.1 - chown: /dev/fd: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#944">[ date ]</a>
+              <a href="thread.html#944">[ thread ]</a>
+              <a href="subject.html#944">[ subject ]</a>
+              <a href="author.html#944">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Just for information - I have solved the problem with partition layout,
+</I>&gt;<i> I have now bootable usb stick with split filesystem and FAT partition,
+</I>&gt;<i> which is accesible from Windows machines.
+</I>&gt;<i> 
+</I>&gt;<i> The solution is quite simple, instead of rewriting Kiwi, I just have let
+</I>&gt;<i> Kiwi do the default partition layout (first partition squashfs, second
+</I>&gt;<i> ext3) and then I shrinked second partition and move both of them to the
+</I>&gt;<i> end of the stick. (I used cfdisk, resize2fs and dd to achieve it). I
+</I>&gt;<i> created FAT partition on the first part of stick.
+</I>&gt;<i> 
+</I>&gt;<i> Then I reinstalled grub with a new menu.lst config and unpacked initrd
+</I>&gt;<i> created by Kiwi, had a nice time reading it and changed three variables
+</I>&gt;<i> reffering to root partition of the stick, read only partition and
+</I>&gt;<i> read-write partition. Repacked initrd, copied it over and it worked.
+</I>&gt;<i> 
+</I>&gt;<i> Good night, maybe I will write something more detailed later.
+</I>
+Hey nice job you rock and you know a lot about linux :)
+Would be great to see a blog about that
+
+Each of the changes you made could severily 
+prevent the system from working if they fail so I hope you
+haven't had a too hard time to get that working ;)
+
+Regards,
+Marcus 
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000941.html">[Kiwi-users] Solved - Question about usb stick
+</A></li>
+	<LI>Next message: <A HREF="000946.html">[Kiwi-users] kiwi 3.09-80.1 - chown: /dev/fd: No such file or	directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#944">[ date ]</a>
+              <a href="thread.html#944">[ thread ]</a>
+              <a href="subject.html#944">[ subject ]</a>
+              <a href="author.html#944">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

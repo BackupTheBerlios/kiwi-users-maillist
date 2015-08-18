@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Multiple vmware harddisks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Multiple%20vmware%20harddisks&In-Reply-To=%3C4F96E37C.3070308%40suse.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003013.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Multiple vmware harddisks</H1>
+    <B>Robert Schweikert</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Multiple%20vmware%20harddisks&In-Reply-To=%3C4F96E37C.3070308%40suse.com%3E"
+       TITLE="[Kiwi-users] Multiple vmware harddisks">rjschwei at suse.com
+       </A><BR>
+    <I>Tue Apr 24 19:31:40 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003013.html">[Kiwi-users] Multiple vmware harddisks
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3014">[ date ]</a>
+              <a href="thread.html#3014">[ thread ]</a>
+              <a href="subject.html#3014">[ subject ]</a>
+              <a href="author.html#3014">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 04/24/2012 01:20 PM, balaguru wrote:
+&gt;<i> hi,
+</I>&gt;<i> I am very new to kiwi build system and don't know how to achieve this.We
+</I>&gt;<i> are trying to create vmware appliance(ovf) with multiple harddisks,one
+</I>&gt;<i> contains system files(softwares,system files,etc.) and another contains
+</I>&gt;<i> just data.Idea is in case of software updates just replace primary disk
+</I>&gt;<i> which contains system files and retain data disk.Something like this we
+</I>&gt;<i> want to achieve in kiwi. We kind of stuck up here.If anyone could help
+</I>&gt;<i> I'd really appreciate.
+</I>
+KIWI does not directly support this. Then again this is very easy to 
+script or follow through manually.
+
+All you have to do is create an image file:
+
+qemu-img create -f vmdk [ANY_OPTIONS] myDatadisk.vmdk [SIZE]
+
+You can loopmount the image file to format the disk image.
+
+In the .vmx file you just need to add the path to your file as an 
+additional disk entry.
+
+done.
+
+HTH,
+Robert
+
+
+-- 
+Robert Schweikert                           MAY THE SOURCE BE WITH YOU
+SUSE-IBM Software Integration Center                   LINUX
+Tech Lead
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rjschwei at suse.com</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">rschweik at ca.ibm.com</A>
+781-464-8147
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003013.html">[Kiwi-users] Multiple vmware harddisks
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3014">[ date ]</a>
+              <a href="thread.html#3014">[ thread ]</a>
+              <a href="subject.html#3014">[ subject ]</a>
+              <a href="author.html#3014">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

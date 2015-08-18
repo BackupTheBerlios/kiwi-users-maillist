@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwitftp parameter
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwitftp%20parameter&In-Reply-To=%3C40276.203.189.129.129.1205752290.squirrel%40angkor.geesink.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000513.html">
+   <LINK REL="Next"  HREF="000514.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwitftp parameter</H1>
+    <B>bart at geesink.org</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwitftp%20parameter&In-Reply-To=%3C40276.203.189.129.129.1205752290.squirrel%40angkor.geesink.org%3E"
+       TITLE="[Kiwi-users] kiwitftp parameter">bart at geesink.org
+       </A><BR>
+    <I>Mon Mar 17 12:11:30 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000513.html">[Kiwi-users] kiwitftp parameter
+</A></li>
+        <LI>Next message: <A HREF="000514.html">[Kiwi-users] kiwitftp parameter
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#512">[ date ]</a>
+              <a href="thread.html#512">[ thread ]</a>
+              <a href="subject.html#512">[ subject ]</a>
+              <a href="author.html#512">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list
+
+I noticed that when I boot my thin client, it is always waiting to find
+tftp.$mydomain . From the kiwi.pdf I understood that it will not look for
+this address when kiwiftp is given as a kernel parameter. My entry in 
+/srv/tftpboot/pxelinux.cfg/default looks like this:
+LABEL KIWI-Boot
+        kernel boot/linux
+        append initrd=boot/initrd vga=normal ramdisk_size=512000
+ramdisk_blocksize=4096 kiwitftp=192.168.1.240
+        IPAPPEND 2
+
+That would mean it doesn't have to wait for the tftp.$mydomain right? I am
+asking this because I have two DHCP servers, and I want the LTSP one only
+listen to PXE requests. This is possible, but not when it asks the DHCP
+server a second time what the tftp server is (as it does when it can't
+find tftp.$mydomain).
+Thanks
+Bart
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000513.html">[Kiwi-users] kiwitftp parameter
+</A></li>
+	<LI>Next message: <A HREF="000514.html">[Kiwi-users] kiwitftp parameter
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#512">[ date ]</a>
+              <a href="thread.html#512">[ thread ]</a>
+              <a href="subject.html#512">[ subject ]</a>
+              <a href="author.html#512">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

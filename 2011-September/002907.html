@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] question on flags = compressed vs unified
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20question%20on%20flags%20%3D%20compressed%20vs%20unified&In-Reply-To=%3CCABKsJ%3DQiETRq%2BsagZTTgZbWqnNb6_zUQ7jyKZGNXp2JZeT90cw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002927.html">
+   <LINK REL="Next"  HREF="002908.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] question on flags = compressed vs unified</H1>
+    <B>marcin kowalski</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20question%20on%20flags%20%3D%20compressed%20vs%20unified&In-Reply-To=%3CCABKsJ%3DQiETRq%2BsagZTTgZbWqnNb6_zUQ7jyKZGNXp2JZeT90cw%40mail.gmail.com%3E"
+       TITLE="[Kiwi-users] question on flags = compressed vs unified">yoshi314 at gmail.com
+       </A><BR>
+    <I>Fri Sep  2 09:04:57 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002927.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+        <LI>Next message: <A HREF="002908.html">[Kiwi-users] question on flags = compressed vs unified
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2907">[ date ]</a>
+              <a href="thread.html#2907">[ thread ]</a>
+              <a href="subject.html#2907">[ subject ]</a>
+              <a href="author.html#2907">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list, i'm a bit confused about the iso generation flags in config.xml.
+
+the only reasonable snippet on it i found said :
+
+&quot;compressed - Compressed filesystem with squashfs mounted with an aufs
+based overlay mount to allow read-write access.
+unified - Compressed filesystem with squashfs mounted with an aufs
+based overlay mount to allow read-write access.&quot;
+
+However, when i created an image with such settings
+
+ &lt;type primary=&quot;true&quot; boot=&quot;isoboot/suse-11.4&quot; bootprofile=&quot;default&quot;
+bootkernel=&quot;std&quot; flags=&quot;compressed&quot; hybrid=&quot;true&quot;
+hybridpersistent=&quot;false&quot; image=&quot;iso&gt;
+
+the /root contents are read-only. I actually get the message &quot;read
+only filesystem&quot;.
+
+Does that mean i should go with &quot;unified&quot;?
+
+p.s. where is the most comprehensive documentation ? I'm having
+trouble finding explanation for many options and have to experiment by
+basing off examples provided with ki.  I already looked through kiwi
+cookbook PDF, which unfortunately lacks a lot of options, and most
+sites with kiwi help seem to be outdated.
+
+I am using opensuse 11.4 with Virtualization_Appliances repository.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002927.html">[Kiwi-users] KIWI VMX build problem
+</A></li>
+	<LI>Next message: <A HREF="002908.html">[Kiwi-users] question on flags = compressed vs unified
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2907">[ date ]</a>
+              <a href="thread.html#2907">[ thread ]</a>
+              <a href="subject.html#2907">[ subject ]</a>
+              <a href="author.html#2907">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

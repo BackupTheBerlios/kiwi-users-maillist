@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] Minimal X configuration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Minimal%20X%20configuration&In-Reply-To=%3COFCCD45D26.F70B2BA1-ON86257472.0063D8B3-86257472.00666657%40academy.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000732.html">
+   <LINK REL="Next"  HREF="000734.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] Minimal X configuration</H1>
+    <B>justin.kinney at academy.com</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20Minimal%20X%20configuration&In-Reply-To=%3COFCCD45D26.F70B2BA1-ON86257472.0063D8B3-86257472.00666657%40academy.com%3E"
+       TITLE="[Kiwi-users] Minimal X configuration">justin.kinney at academy.com
+       </A><BR>
+    <I>Tue Jun 24 20:37:45 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000732.html">[Kiwi-users] openSuSE 11 installation
+</A></li>
+        <LI>Next message: <A HREF="000734.html">[Kiwi-users] Minimal X configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#733">[ date ]</a>
+              <a href="thread.html#733">[ thread ]</a>
+              <a href="subject.html#733">[ subject ]</a>
+              <a href="author.html#733">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I'm working on building a minimal X client that includes rdesktop and 
+firefox, plus sun-java and it's plugin.
+
+Perhaps somebody can point me in the right direction here.  I've tried 
+various different example image configurations, but I can't seem to find 
+what I'm looking for.
+
+This is a pxe boot image, and the clients have no hard disks.  Each client 
+will have a minimum of 512MB of memory.
+
+What I've found so far is that the image I'm building is (obviously) quite 
+large with all of these packages.  I'd like to export as much as possible 
+to the clients via NFS, but when the clients boot, I'm running them right 
+out of memory when they untar the rootfs.tar.
+
+Is it possible to create a split filesystem configuration such that there 
+are two NFS shares - one read-only and one read/write.  Multiple clients 
+could then read/write on their own NFS shares, but all of them could mount 
+the read-only portion.  If this is not possible, does anyone have any 
+experience doing something similar in another fashion (that doesn't 
+require local storage other than perhaps a ram disk)?
+
+My config.xml for this image so far is listed below (and is largely based 
+on Marcus's wyse term examples).
+
+Thanks in advance,
+Justin
+
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;image schemeversion=&quot;2.0&quot; name=&quot;academy-mini-suse-11.0&quot;&gt;
+        &lt;description type=&quot;system&quot;&gt;
+                &lt;author&gt;Justin Kinney&lt;/author&gt;
+                &lt;contact&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/kiwi-users">justin.kinney at academy.com</A>&lt;/contact&gt;
+                &lt;specification&gt;openSUSE 11.0 512MB&lt;/specification&gt;
+        &lt;/description&gt;
+        &lt;preferences&gt;
+                &lt;type filesystem=&quot;squashfs&quot; boot=&quot;netboot/suse-11.0&quot; 
+checkprebuilt=&quot;true&quot;&gt;pxe&lt;/type&gt;
+                &lt;version&gt;1.2.8&lt;/version&gt;
+                &lt;packagemanager&gt;smart&lt;/packagemanager&gt;
+                &lt;rpm-check-signatures&gt;False&lt;/rpm-check-signatures&gt;
+                &lt;rpm-force&gt;True&lt;/rpm-force&gt;
+ 
+&lt;defaultdestination&gt;/srv/builds/academy-pxeboot-result&lt;/defaultdestination&gt;
+                &lt;defaultroot&gt;/srv/builds/academy-pxeboot&lt;/defaultroot&gt;
+        &lt;/preferences&gt;
+        &lt;users group=&quot;users&quot;&gt;
+                &lt;user name=&quot;linux&quot; 
+pwd=&quot;$2a$10$90AjhfXU2YIwTRrIftBauecvWXVuaNZ6JLM2IpWi0svu2kO16le9e&quot; 
+home=&quot;/home/linux&quot;/&gt;
+        &lt;/users&gt;
+        &lt;repository type=&quot;yast2&quot;&gt;
+                &lt;!--&lt;source path=&quot;<A HREF="opensuse://10.3">opensuse://10.3</A>&quot;/&gt;--&gt;
+                &lt;source path=&quot;/opt/opensuse-11.0&quot;/&gt;
+        &lt;/repository&gt;
+        &lt;repository type=&quot;rpm-dir&quot;&gt;
+                &lt;!--&lt;source path=&quot;<A HREF="opensuse://10.3">opensuse://10.3</A>&quot;/&gt;--&gt;
+                &lt;source 
+path=&quot;/srv/images/academy-pxeboot/extra-packages&quot;/&gt;
+        &lt;/repository&gt;
+        &lt;packages type=&quot;image&quot;&gt;
+                &lt;package name=&quot;binutils&quot;/&gt;
+                &lt;package name=&quot;file&quot;/&gt;
+                &lt;package name=&quot;gawk&quot;/&gt;
+                &lt;package name=&quot;kernel-default&quot;/&gt;
+                &lt;package name=&quot;module-init-tools&quot;/&gt;
+                &lt;package name=&quot;net-tools&quot;/&gt;
+                &lt;package name=&quot;netcfg&quot;/&gt;
+                &lt;package name=&quot;openssh&quot;/&gt;
+                &lt;package name=&quot;pam-modules&quot;/&gt;
+                &lt;package name=&quot;procinfo&quot;/&gt;
+                &lt;package name=&quot;sysconfig&quot;/&gt;
+                &lt;package name=&quot;syslinux&quot;/&gt;
+                &lt;package name=&quot;sysfsutils&quot;/&gt;
+                &lt;package name=&quot;syslog-ng&quot;/&gt;
+                &lt;package name=&quot;kbd&quot;/&gt;
+                &lt;package name=&quot;ksymoops&quot;/&gt;
+                &lt;package name=&quot;less&quot;/&gt;
+                &lt;package name=&quot;initviocons&quot;/&gt;
+                &lt;package name=&quot;iputils&quot;/&gt;
+                &lt;package name=&quot;procps&quot;/&gt;
+                &lt;package name=&quot;psmisc&quot;/&gt;
+                &lt;package name=&quot;pwdutils&quot;/&gt;
+                &lt;package name=&quot;portmap&quot;/&gt;
+                &lt;package name=&quot;dhcpcd&quot;/&gt;
+                &lt;package name=&quot;dbus-1&quot;/&gt;
+                &lt;package name=&quot;resmgr&quot;/&gt;
+                &lt;package name=&quot;hal&quot;/&gt;
+                &lt;package name=&quot;grub&quot;/&gt;
+                &lt;package name=&quot;bootsplash&quot;/&gt;
+                &lt;package name=&quot;bootsplash-theme-SuSE&quot;/&gt;
+                &lt;package name=&quot;gfxboot-branding-academy&quot;/&gt;
+                &lt;package name=&quot;acpid&quot;/&gt;
+                &lt;package name=&quot;vim&quot;/&gt;
+                &lt;!-- PLUS: Sound --&gt;
+                &lt;package name=&quot;alsa&quot;/&gt;
+                &lt;!-- PLUS: X11 --&gt;
+                &lt;package name=&quot;xorg-x11&quot;/&gt;
+                &lt;package name=&quot;xorg-x11-server&quot;/&gt;
+                &lt;package name=&quot;xorg-x11-driver-video&quot;/&gt;
+                &lt;package name=&quot;xorg-x11-fonts-scalable&quot;/&gt;
+                &lt;package name=&quot;xterm&quot;/&gt;
+                &lt;package name=&quot;xdmbgrd&quot;/&gt;
+                &lt;package name=&quot;xkeyboard-config&quot;/&gt;
+                &lt;package name=&quot;icewm-lite&quot;/&gt;
+                &lt;!-- PLUS: rdesktop --&gt;
+                &lt;package name=&quot;rdesktop&quot;/&gt;
+                &lt;!-- Needed for VDI --&gt;
+                &lt;package name=&quot;java-1_6_0-sun&quot;/&gt;
+                &lt;package name=&quot;java-1_6_0-sun-plugin&quot;/&gt;
+                &lt;package name=&quot;MozillaFirefox&quot;/&gt;
+        &lt;/packages&gt;
+        &lt;packages type=&quot;bootstrap&quot;&gt;
+                &lt;package name=&quot;filesystem&quot;/&gt;
+                &lt;package name=&quot;glibc-locale&quot;/&gt;
+                &lt;!--
+                &lt;package name=&quot;devs&quot;/&gt;
+                --&gt;
+                &lt;package name=&quot;rpm&quot;/&gt;
+        &lt;/packages&gt;
+&lt;/image&gt;
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000732.html">[Kiwi-users] openSuSE 11 installation
+</A></li>
+	<LI>Next message: <A HREF="000734.html">[Kiwi-users] Minimal X configuration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#733">[ date ]</a>
+              <a href="thread.html#733">[ thread ]</a>
+              <a href="subject.html#733">[ subject ]</a>
+              <a href="author.html#733">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

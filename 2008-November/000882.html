@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] kiwi errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20errors&In-Reply-To=%3C20081107105130.GA29778%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000881.html">
+   <LINK REL="Next"  HREF="000883.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] kiwi errors</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20kiwi%20errors&In-Reply-To=%3C20081107105130.GA29778%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] kiwi errors">ms at novell.com
+       </A><BR>
+    <I>Fri Nov  7 11:51:30 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000881.html">[Kiwi-users] kiwi errors
+</A></li>
+        <LI>Next message: <A HREF="000883.html">[Kiwi-users] kiwi errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#882">[ date ]</a>
+              <a href="thread.html#882">[ thread ]</a>
+              <a href="subject.html#882">[ subject ]</a>
+              <a href="author.html#882">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i>      I am done with the creation of image, thanks for your help. 
+</I>&gt;<i>      But while using that image its asking for username and password. 
+</I>&gt;<i>      i tried many options, but did not go through it. 
+</I>&gt;<i>      did not find anything in config.xml related to users. 
+</I>&gt;<i>      can u please tell me which username and password work for it? 
+</I>&gt;<i>      or how to reset the password for root. 
+</I>
+oh, yes the default password for the root user in the template
+is simply &quot;linux&quot; :-) You should do the following in your config.xml
+to make your own users:
+
+    &lt;users group=&quot;root&quot;&gt;
+        &lt;user pwd=&quot;crypted-password-string&quot; home=&quot;/root&quot; name=&quot;root&quot;/&gt;
+    &lt;/users&gt;
+
+and remove the passwd copy inside the image description
+
+    root/etc/passwd
+
+The &quot;crypted-password-string&quot; can be created with kiwi itself
+
+    kiwi --createpassword
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000881.html">[Kiwi-users] kiwi errors
+</A></li>
+	<LI>Next message: <A HREF="000883.html">[Kiwi-users] kiwi errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#882">[ date ]</a>
+              <a href="thread.html#882">[ thread ]</a>
+              <a href="subject.html#882">[ subject ]</a>
+              <a href="author.html#882">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>

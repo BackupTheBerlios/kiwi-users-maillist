@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Kiwi-users] about oem-unattended mode and multiple disk systems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/kiwi-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20about%20oem-unattended%20mode%20and%20multiple%20disk%20systems&In-Reply-To=%3C20101117074503.GA21308%40D7.ddts.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002127.html">
+   <LINK REL="Next"  HREF="002125.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Kiwi-users] about oem-unattended mode and multiple disk systems</H1>
+    <B>Marcus Sch&#228;fer</B> 
+    <A HREF="mailto:kiwi-users%40lists.berlios.de?Subject=Re%3A%20%5BKiwi-users%5D%20about%20oem-unattended%20mode%20and%20multiple%20disk%20systems&In-Reply-To=%3C20101117074503.GA21308%40D7.ddts.net%3E"
+       TITLE="[Kiwi-users] about oem-unattended mode and multiple disk systems">ms at novell.com
+       </A><BR>
+    <I>Wed Nov 17 08:45:03 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002127.html">[Kiwi-users] about oem-unattended mode and multiple disk systems
+</A></li>
+        <LI>Next message: <A HREF="002125.html">[Kiwi-users] Adding drivers to the system image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2128">[ date ]</a>
+              <a href="thread.html#2128">[ thread ]</a>
+              <a href="subject.html#2128">[ subject ]</a>
+              <a href="author.html#2128">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+&gt;<i> I have a request from my team to update the oem-unattended mode so it does not ask the user which device to install to when multiple storage devices are found.  We have a suggested change to the &quot;dump&quot; script that will do this:
+</I>&gt;<i> 
+</I>&gt;<i> --- /usr/share/kiwi/image/oemboot/suse-SLES11/root/dump 2010-09-16 13:50:53.000000000 +0000
+</I>&gt;<i> +++ ../oemboot/suse-SLES11/root/dump    2010-11-03 16:07:29.000000000 +0000
+</I>&gt;<i> @@ -207,6 +220,11 @@
+</I>&gt;<i>                 # Found one single disk... use it
+</I>&gt;<i>                 #--------------------------------------
+</I>&gt;<i>                 instDisk=${deviceArray[0]}
+</I>&gt;<i> +       elif [ ! -z &quot;$kiwi_oemunattended&quot; ];then
+</I>&gt;<i> +               #======================================
+</I>&gt;<i> +               # Unattended mode... use first disk
+</I>&gt;<i> +               #--------------------------------------
+</I>&gt;<i> +               instDisk=${deviceArray[0]}
+</I>&gt;<i>         else
+</I>&gt;<i>                 #======================================
+</I>&gt;<i>                 # Found multiple disks...
+</I>&gt;<i> 
+</I>&gt;<i> Would you like this filed as an enhancement request?  And what is the best way to do that - I thought I had seen a link for creating kiwi bugzilla cases, but I don't find it right now.
+</I>
+I'm fine with the patch and it's small enough to go in the short way :)
+I also added the doc hint Robert provided.
+
+Thanks much
+
+Regards,
+Marcus
+-- 
+ Public Key available
+ gpg --keyserver gpg-keyserver.de --recv-keys 0xCCE3C6A2
+ -------------------------------------------------------
+ Marcus Sch&#228;fer (Res. &amp; Dev.)   SUSE LINUX Products GmbH
+ Tel: 0911-740 53 0             Maxfeldstrasse 5
+ FAX: 0911-740 53 479           D-90409 N&#252;rnberg
+ GF: Markus Rex                 HRB: 16746 (AG N&#252;rnberg)
+ <A HREF="http://www.suse.de">http://www.suse.de</A>             Germany
+ -------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002127.html">[Kiwi-users] about oem-unattended mode and multiple disk systems
+</A></li>
+	<LI>Next message: <A HREF="002125.html">[Kiwi-users] Adding drivers to the system image initrd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2128">[ date ]</a>
+              <a href="thread.html#2128">[ thread ]</a>
+              <a href="subject.html#2128">[ subject ]</a>
+              <a href="author.html#2128">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/kiwi-users">More information about the Kiwi-users
+mailing list</a><br>
+</body></html>
